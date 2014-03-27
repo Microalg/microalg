@@ -1,0 +1,10 @@
+(let (Goods 0 Bads 0)
+	(mapc
+		'((BoolExpr)
+			(if (eval BoolExpr)
+				(inc 'Goods)
+				(inc 'Bads) (js:alert BoolExpr (eval (caddr BoolExpr))) ) )
+		(list
+			'(= version "0.1.0")
+			) )
+	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
