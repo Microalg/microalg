@@ -1287,14 +1287,6 @@ var pub = {
 	}
 }
 
-function testExports() {
-	var pubKeys = Object.keys(pub);
-	for (var i=0; i<pubKeys.length; i++) {
-		console.log("pub.%s: %s", pubKeys[i], typeof pub[pubKeys[i]]);
-	}
-}
-testExports();
-
 return pub;
 
 }());
