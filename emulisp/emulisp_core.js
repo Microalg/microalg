@@ -629,6 +629,7 @@ var coreFunctions = {
 		_stdPrint(((new Date()).getTime() - t0) / 1000 + " sec\n"); return r;
 	},
 	"box": function(c) { return box(evalLisp(c.car)); },
+	"bye": function(c) { if (process) process.exit() else return; },
 	"caar": function(c) { return car(car(evalLisp(c.car))); },
 	"caddr": function(c) { return car(cdr(cdr(evalLisp(c.car)))); },
 	"cadr": function(c) { return car(cdr(evalLisp(c.car))); },
