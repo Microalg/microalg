@@ -1,7 +1,0 @@
-{
-    "name": "microalg",
-    "version": "0.1.0",
-    "scripts": {
-          "test": "node microalg_tests.js"
-    }
-}

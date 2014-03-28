@@ -8,3 +8,4 @@
 			'(= version "0.1.0")
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
+(bye)
