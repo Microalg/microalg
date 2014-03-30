@@ -13,6 +13,13 @@ var VERSION = [2, 0, 0, 1],
 	NOT_MAK = "Not making", PROT_SYM = "Protected symbol", UNDEF = "Undefined",
 	JS_CTORNAME_EXP = "Constructor name expected", JS_RESERVED = "Reserved word";
 
+var platform;
+if (typeof window === 'undefined') {
+	platform = 'nodejs';
+} else {
+	platform = 'browser';
+}
+
 function getFileSync(fileUrl) {
 	var req = new XMLHttpRequest();
 	var OK = fileUrl.match(/^https?:/) ? 200 : 0;
@@ -629,7 +636,13 @@ var coreFunctions = {
 		_stdPrint(((new Date()).getTime() - t0) / 1000 + " sec\n"); return r;
 	},
 	"box": function(c) { return box(evalLisp(c.car)); },
-	"bye": function(c) { if (process) process.exit(); else return; },
+	"bye": function(c) {
+		if (platform == 'nodejs') {
+			process.exit();
+		} else {
+			throw "bye";
+		}
+	},
 	"caar": function(c) { return car(car(evalLisp(c.car))); },
 	"caddr": function(c) { return car(cdr(cdr(evalLisp(c.car)))); },
 	"cadr": function(c) { return car(cdr(evalLisp(c.car))); },
@@ -1282,8 +1295,13 @@ var pub = {
 	NIL: NIL, T: T,
 	
 	eval: function(code) {
-		var result = prog(parseList(new Source(code)));
-		if (result) return result.toString();
+		try {
+			return prog(parseList(new Source(code))).toString();
+		} catch (e) {
+			console.log(e);
+			if (e == "bye") {}  // (bye) called
+			else throw e;
+		}
 	}
 }
 
