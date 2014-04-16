@@ -966,6 +966,10 @@ var coreFunctions = {
 		if (cv === NIL) return NIL;
 		throw new Error(newErrMsg(CELL_EXP, cv));
 	},
+	"sym": function(c) {
+		if (c.car === NIL) return newTransSymbol("NIL");
+		else return newTransSymbol(evalArgs(c).toString().slice(1, -1));
+	},
 	"tail": function(c) {
 		var cl = evalLisp(c.car), lst = evalLisp(c.cdr.car);
 		if (cl instanceof Cell) {

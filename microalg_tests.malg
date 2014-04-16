@@ -3,7 +3,7 @@
 		'((BoolExpr)
 			(if (eval BoolExpr)
 				(inc 'Goods)
-				(inc 'Bads) (js:alert BoolExpr (eval (caddr BoolExpr))) ) )
+				(inc 'Bads) (println (pack "Return value for " (sym BoolExpr) " was " (sym (eval (caddr BoolExpr))) ".")) ) )
 		(list
 			'(= "0.1.0" version)
 			) )
