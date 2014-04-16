@@ -5,7 +5,7 @@
 				(inc 'Goods)
 				(inc 'Bads) (js:alert BoolExpr (eval (caddr BoolExpr))) ) )
 		(list
-			'(= version "0.1.0")
+			'(= "0.1.0" version)
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
 (bye)
