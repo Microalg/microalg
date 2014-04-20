@@ -925,6 +925,15 @@ var coreFunctions = {
 		do { r = new Cell(lst.car, r); lst = lst.cdr; } while (lst instanceof Cell);
 		return r;
 	},
+	"set": function(c) {
+		var v = NIL;
+		while (c instanceof Cell) {
+			v = (c.cdr instanceof Cell) ? evalLisp(c.cdr.car) : NIL;
+			setSymbolValue(evalLisp(c.car), v);
+			c = (c.cdr instanceof Cell) ? c.cdr.cdr : NIL;
+		}
+		return v;
+	},	
 	"setq": function(c) {
 		var v = NIL;
 		while (c instanceof Cell) {
