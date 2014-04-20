@@ -6,6 +6,8 @@
 				(inc 'Bads) (println (pack "Return value for " (sym BoolExpr) " was " (sym (eval (caddr BoolExpr))) ".")) ) )
 		(list
 			'(= "0.1.0" version)
+            # Affichage
+			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *StdOut))
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
 (bye)
