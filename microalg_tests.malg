@@ -8,6 +8,9 @@
 			'(= "0.1.0" version)
             # Affichage
 			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *StdOut))
+            # Gestion des variables
+            '(let (x NIL) (= 0 (prog (setq x 0) x)))
+            '(let (x NIL) (= 0 (prog (Affecter_a x 0) x)))
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
 (bye)
