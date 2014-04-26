@@ -22,7 +22,7 @@ if (typeof window === 'undefined') {
 
 function getFileSync(fileUrl) {
 	var req = new XMLHttpRequest();
-	var OK = fileUrl.match(/^https?:/) ? 200 : 0;
+	var OK = fileUrl.match(/^https?:/) ? 200 : 200;
 	req.open("GET", fileUrl, false);		// synchronous
 	req.overrideMimeType("text/plain; charset=utf-8");
 	req.send(null);
