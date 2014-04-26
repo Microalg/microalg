@@ -1303,6 +1303,7 @@ var pub = {
 	isCell: function(obj) { return (obj instanceof Cell); },
 	isSymbol: function(obj) { return (obj instanceof Symbol); },
 	
+	loadLisp: loadLisp,  // ok there is (load), but...
 	evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr, newErrMsg: newErrMsg,
 	newTransSymbol: newTransSymbol, prog: prog, valueToStr: valueToStr, Params: Params,
 	NIL: NIL, T: T,
