@@ -1,0 +1,12 @@
+code {
+    margin: 0 2px;
+    padding: 0px 5px;
+    border: 1px solid #AAA;
+    background-color: #DDD;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+pre code {
+    white-space: pre;
+    position: relative;
+}

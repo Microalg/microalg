@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>MicroAlg - Web IDE</title>
+    <meta name="description"
+          content="Environnement en ligne pour MicroAlg." />
+    <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web_ide/style.css" />
+    <script type="text/javascript" src="web_ide/ide_injections.js"></script>
+    <script type="text/javascript" src="web_ide/parenedit.js"></script>
+    <link type="text/css" href="web_ide/parenedit.css" rel="stylesheet" />
+</head>
+<body>
+    <noscript>
+        <div style="color:#CC0000; text-align:center">
+        Besoin de Javascript pour utiliser cet IDE.
+        </div>
+    </noscript>
+    <div id="content" style="display:none;">
+        <div id="script-container"></div>
+        <div id="repl-container"></div>
+        <div id="footer"><a href="http://microalg.info">microalg.info</a></div>
+    </div>
+    <script>
+        onload = function () {
+        $('#content').show();
+        EMULISP_CORE.loadLisp("microalg.l");
+        inject_microalg_editor_in('#script-container',
+            '# Voici l’éditeur en ligne de MicroAlg. Ctrl + Entrée pour exécuter le code.');
+        inject_microalg_repl_in('#repl-container',
+            '(+ 2 2)  # Voici la console interactive de MicroAlg. Ctrl + Entrée pour exécuter le code.');
+        }
+    </script>
+</body>
+</html>

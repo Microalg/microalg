@@ -1,0 +1,84 @@
+/* http://stackoverflow.com/questions/14043727/auto-resizing-textarea-is-bumpy-highlighting-parentheses */
+/* http://jsfiddle.net/ACF8e/ */
+
+.defaultEm {
+  font-size: 1em;
+  position: absolute;
+  line-height: 1;
+  padding: 0;
+  visibility: hidden;
+}
+.richtext {
+    display: inline-block;
+    overflow: hidden;
+    margin: 2px 0;
+    vertical-align: top;
+}
+.richtext pre {
+    display: inline-block;
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    min-height: 25;
+    background: #fff;
+    outline: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: transparent;
+}
+input,.richtext {
+    padding: 5px;
+    color: #282828;
+    background: #fff;
+    outline: 0;
+    border: 1px solid #BABABA;
+}
+input, textarea, .richtext > pre {
+    font-family: monaco, courier;
+    font-size: 100%;
+    width: 100%;
+}
+#test:focus, input:focus, .fake_focus {
+    border: 1px solid #85B6DA;
+    outline: 0;
+}
+#test:active, input:active, .richtext:active {
+    border: 1px solid #3385C2;
+}
+.unmatched {
+    background: red;
+}
+.paren_0 {
+    background: #fcf;
+}
+.paren_1 {
+    background: #cff;
+}
+.paren_2 {
+    background: #ffa;
+}
+.paren_3 {
+    background: #fcc;
+}
+.paren_4 {
+    background: #cfa;
+}
+.paren_5 {
+    background: #ccf;
+}
+.selected_paren {
+    background: #999 !important;
+}
+.richtext textarea, .richtext pre {
+    resize: none !important;
+    outline: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow: hidden !important;
+}
+.richtext textarea {
+    height: 100%;
+}
