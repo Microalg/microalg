@@ -1,3 +1,8 @@
+body {font-family: Verdana, Arial, sans-serif;}
+a:link {color:#337;}
+a:visited {color:#333;}
+a:hover {color:#000;}
+a:active {color:#000;}
 #script-container, #repl-container {
     width: 95%;
     margin: 0px auto;
@@ -9,9 +14,19 @@
     border-color: black;
     border-style: solid;
     border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 #links {
     text-align: right;
+}
+#bla {
+    width: 60%;
+    margin: 0px auto;
+}
+#bla h1 {
+    text-align: center;
 }
 code {
     margin: 0 2px;
