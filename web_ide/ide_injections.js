@@ -66,7 +66,8 @@ function inject_microalg_repl_in(selector, msg) {
         }
         if (result != '' && result != 'NIL') {
             repl_elt.val(repl_elt.val() + "\n-> " + result);
-            $.modal(result, {onClose: function (dialog) {$.modal.close();repl_elt.focus();}});
+            $.modal('<div class="web-ide">' + result + '</div>',
+                    {onClose: function (dialog) {$.modal.close();repl_elt.focus();}});
         }
         var stdout = EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name;
         if (stdout != '' && stdout != 'NIL') {
