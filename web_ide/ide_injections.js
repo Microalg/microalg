@@ -8,7 +8,7 @@ function onCtrlEnter(elt, f) {
 
 function inject_microalg_editor_in(selector, msg) {
     var script_container = $(selector);
-    var script_string = '<textarea id="malg-editor" class="malg-editor" cols="80" style="width:98%;" rows="5" >' + msg + '</textarea>' +
+    var script_string = '<textarea id="malg-editor" class="malg-editor" cols="80" rows="5" >' + msg + '</textarea>' +
             '<div class="malg-error" style="color: red;"></div>' +
             '<div class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
@@ -50,8 +50,7 @@ function inject_microalg_editor_in(selector, msg) {
 function inject_microalg_repl_in(selector, msg) {
     var malg_prompt = ": ";
     var repl_container = $(selector);
-    var repl_string = '<textarea class="malg-repl" style="width:98%;" rows="5" >' + malg_prompt + msg + '</textarea>' +
-        '<p>Besoin d’aide&nbsp;? Taper «&nbsp;(Aide)&nbsp;» puis <code>Ctrl</code>+<code>Entrée</code> pour valider.</p>';
+    var repl_string = '<textarea id="malg-repl" class="malg-repl" rows="5" >' + malg_prompt + msg + '</textarea>';
     repl_container.html(repl_string);
     var repl = repl_container.find('.malg-repl').first();
     createRichInput(repl);
