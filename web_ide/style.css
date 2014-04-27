@@ -1,8 +1,20 @@
-body {font-family: Verdana, Arial, sans-serif;}
-a:link {color:#337;}
-a:visited {color:#333;}
-a:hover {color:#000;}
-a:active {color:#000;}
+.web-ide {font-family: Verdana, Arial, sans-serif;}
+.web-ide a:link {color:#337;}
+.web-ide a:visited {color:#333;}
+.web-ide a:hover {color:#000;}
+.web-ide a:active {color:#000;}
+.web-ide code {
+    margin: 0 2px;
+    padding: 0px 5px;
+    border: 1px solid #AAA;
+    background-color: #DDD;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+.web-ide pre code {
+    white-space: pre;
+    position: relative;
+}
 #script-container, #repl-container {
     width: 95%;
     margin: 0px auto;
@@ -27,16 +39,4 @@ a:active {color:#000;}
 }
 #bla h1 {
     text-align: center;
-}
-code {
-    margin: 0 2px;
-    padding: 0px 5px;
-    border: 1px solid #AAA;
-    background-color: #DDD;
-    border-radius: 3px;
-    white-space: nowrap;
-}
-pre code {
-    white-space: pre;
-    position: relative;
 }
