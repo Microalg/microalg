@@ -73,6 +73,7 @@
         EMULISP_CORE.loadLisp("microalg.l");
         inject_microalg_editor_in('#script-container',
             '(Afficher (Aide))  # Voici l’éditeur en ligne de MicroAlg. Ctrl + Entrée pour exécuter le code.');
+        $('#script-container').find('.malg-editor').first().focus();
         inject_microalg_repl_in('#repl-container',
             '(Aide)  # Voici la console interactive de MicroAlg. Ctrl + Entrée pour exécuter le code.');
         }

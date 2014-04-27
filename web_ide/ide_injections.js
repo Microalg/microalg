@@ -22,7 +22,6 @@ function inject_microalg_editor_in(selector, msg) {
         }
     }
     createRichInput(editor);
-    editor.focus();
     onCtrlEnter(editor, ide_action);
     function ide_action(editor_elt) {
         var src = editor_elt.val();
