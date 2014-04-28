@@ -71,7 +71,7 @@
         onload = function () {
             $('#content').show();
             EMULISP_CORE.loadLisp("microalg.l");
-            inject_microalg_editor_in('script-container',
+            inject_microalg_editor_in('script-container', {localStorage: true},
                 '# Voici l’éditeur en ligne de MicroAlg.\n' +
                 '# Ctrl + Entrée pour exécuter le code.\n' +
                 '(Afficher (Aide))');

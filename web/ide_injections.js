@@ -6,7 +6,7 @@ function onCtrlEnter(elt, f) {
     });
 }
 
-function inject_microalg_editor_in(elt_id, msg) {
+function inject_microalg_editor_in(elt_id, config, msg) {
     var script_container = $('#' + elt_id);
     var script_string = '<textarea id="malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
             '<div class="malg-error" style="color: red;"></div>' +
@@ -14,7 +14,7 @@ function inject_microalg_editor_in(elt_id, msg) {
     script_container.html(script_string);
     var editor = script_container.find('.malg-editor').first();
     // Load local storage in the editor.
-    if (typeof(Storage)!=="undefined") {
+    if (config.localStorage && typeof(Storage)!=="undefined") {
         var key = 'microalg_src_' + elt_id;
         if (localStorage[key]) {
             editor.val(localStorage[key]);
@@ -41,7 +41,7 @@ function inject_microalg_editor_in(elt_id, msg) {
         }
         display_elt.html(stdout);
         EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name = '';
-        if (typeof(Storage)!=="undefined") {
+        if (config.localStorage && typeof(Storage)!=="undefined") {
             localStorage[key] = src;
         }
     }
