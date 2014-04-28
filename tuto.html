@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tuto - MicroAlg</title>
+    <meta name="description"
+          content="Tutoriel en ligne pour MicroAlg." />
+    <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+    <script type="text/javascript" src="web/ide_injections.js"></script>
+    <script type="text/javascript" src="web/parenedit.js"></script>
+    <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
+</head>
+<body class="microalg">
+    <noscript>
+        <div style="color:#CC0000; text-align:center">
+        Besoin de Javascript pour les exercices interactifs.
+        </div>
+    </noscript>
+    <script>EMULISP_CORE.loadLisp("microalg.l");</script>
+    <h1>MicroAlg - Tutoriel</h1>
+    <p>
+    Aller directement à :
+    <a href="#affichage">Affichage</a>
+    </p>
+    <h2 id="questce">Qu’est-ce ?</h2>
+    <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel">tutoriel</a>
+    pour <a href="http://microalg.info">MicroAlg</a>.</p>
+    <p>Elle est en cours de développement et me permet pour l’instant de faire
+    quelques tests, mais aussi d’avoir une vitrine en ligne pour ce langage.</p>
+    <h2 id="contact">Contact</h2>
+    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
+    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
+    une idée lumineuse, merci de (au choix) :</p>
+    <ul>
+        <li>proposer une « pull request » en éditant directement un fichier sur
+            <a href="https://github.com/Microalg/Microalg">Github</a>,</li>
+        <li>poster une « issue » sur
+            <a href="https://github.com/Microalg/Microalg">Github</a>,</li>
+        <li>m’envoyer <a href="mailto:profgra.org@gmail.com">un mail</a>.</li>
+    </ul>
+    <h2 id="affichage">Affichage</h2>
+    <p>Pourquoi ne pas commencer tout de suite !</p>
+    <div id="script-afficher"></div>
+    <script>inject_microalg_editor_in('script-afficher', {localStorage: false},
+        '# Voici votre premier programme.\n' +
+        '# Les lignes commençant par # sont des commentaires\n' +
+        '# et ne sont pas interprétées par MicroAlg.\n' +
+        '# Cliquer dans cette zone de texte,\n' +
+        '# puis Ctrl + Entrée pour exécuter le code.\n' +
+        '(Afficher (+ 2 2))');
+    </script>
+    <p>Un « 4 » devrait s’être affiché dans la barre un peu arrondie ci-dessus.
+    Sinon, suivre les instructions de <a href="#probleme">cette section</a>.</p>
+    <h2 id="fin">Fin</h2>
+    <p>Voilà, c’est fini. Si ça vous a plu, si vous avez une envie de
+    contribuer, suivre les instructions de <a href="#probleme">cette section</a>.</p>
+    <p>Bonne continuation !</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
