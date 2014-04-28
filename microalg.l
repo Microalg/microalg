@@ -39,3 +39,7 @@
 "Commande qui permet d’affecter une valeur à une variable."))
 (de Affecter_a arg_lst (set (car arg_lst) (cadr arg_lst)))
 
+# Structure conditionnelle
+(setq Vrai T)
+(setq Faux NIL)
+(de Si arg_lst (if (eval (car arg_lst)) (cadr arg_lst) (caddr arg_lst)))
