@@ -43,3 +43,7 @@
 (setq Vrai T)
 (setq Faux NIL)
 (de Si arg_lst (if (eval (car arg_lst)) (cadr arg_lst) (caddr arg_lst)))
+
+# Prédicats
+(de Vrai? (x) (= x Vrai))
+(de Faux? (x) (= x Faux))

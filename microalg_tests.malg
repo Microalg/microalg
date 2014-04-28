@@ -14,6 +14,11 @@
             # Structure conditionnelle
             '(= 1 (Si Vrai 1 0))
             '(= 0 (Si Faux 1 0))
+            # Prédicats
+            '(= 1 (Si (Vrai? Vrai) 1 0))
+            '(= 0 (Si (Vrai? Faux) 1 0))
+            '(= 1 (Si (Faux? Faux) 1 0))
+            '(= 0 (Si (Faux? Vrai) 1 0))
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads)) )
 (bye)
