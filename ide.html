@@ -33,7 +33,7 @@
             <a href="https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement_int%C3%A9gr%C3%A9">environnement
                 de développement intégré</a> de fortune pour
             <a href="http://microalg.info">MicroAlg</a>.</p>
-            <p>Elle permet pour l’instant de faire quelques tests mais aussi
+            <p>Elle permet pour l’instant de faire quelques tests, mais aussi
             d’avoir une vitrine en ligne pour ce langage.</p>
             <p>D’autres façons d’utiliser MicroAlg sont en cours de
             développement. Il est prévu par exemple d’utiliser :
@@ -69,13 +69,17 @@
     </div>
     <script>
         onload = function () {
-        $('#content').show();
-        EMULISP_CORE.loadLisp("microalg.l");
-        inject_microalg_editor_in('#script-container',
-            '(Afficher (Aide))  # Voici l’éditeur en ligne de MicroAlg. Ctrl + Entrée pour exécuter le code.');
-        $('#script-container').find('.malg-editor').first().focus();
-        inject_microalg_repl_in('#repl-container',
-            '(Aide)  # Voici la console interactive de MicroAlg. Ctrl + Entrée pour exécuter le code.');
+            $('#content').show();
+            EMULISP_CORE.loadLisp("microalg.l");
+            inject_microalg_editor_in('#script-container',
+                '# Voici l’éditeur en ligne de MicroAlg.\n' +
+                '# Ctrl + Entrée pour exécuter le code.\n' +
+                '(Afficher (Aide))');
+            $('#script-container').find('.malg-editor').first().focus();
+            inject_microalg_repl_in('#repl-container',
+                '# Voici la console interactive de MicroAlg.\n' +
+                ': # Ctrl + Entrée pour exécuter le code.\n' +
+                ': (Aide)');
         }
     </script>
 </body>
