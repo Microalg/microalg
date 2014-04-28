@@ -1,9 +1,13 @@
-.web-ide {font-family: Verdana, Arial, sans-serif;}
-.web-ide a:link {color:#337;}
-.web-ide a:visited {color:#333;}
-.web-ide a:hover {color:#000;}
-.web-ide a:active {color:#000;}
-.web-ide code {
+body.microalg {
+    width: 95%;
+    margin: 0px auto;
+    font-family: Verdana, Arial, sans-serif;
+}
+.microalg a:link {color:#337;}
+.microalg a:visited {color:#333;}
+.microalg a:hover {color:#000;}
+.microalg a:active {color:#000;}
+.microalg code {
     margin: 0 2px;
     padding: 0px 5px;
     border: 1px solid #AAA;
@@ -11,7 +15,7 @@
     border-radius: 3px;
     white-space: nowrap;
 }
-.web-ide pre code {
+.microalg pre code {
     white-space: pre;
     position: relative;
 }
