@@ -71,12 +71,12 @@
         onload = function () {
             $('#content').show();
             EMULISP_CORE.loadLisp("microalg.l");
-            inject_microalg_editor_in('#script-container',
+            inject_microalg_editor_in('script-container',
                 '# Voici l’éditeur en ligne de MicroAlg.\n' +
                 '# Ctrl + Entrée pour exécuter le code.\n' +
                 '(Afficher (Aide))');
             $('#script-container').find('.malg-editor').first().focus();
-            inject_microalg_repl_in('#repl-container',
+            inject_microalg_repl_in('repl-container',
                 '# Voici la console interactive de MicroAlg.\n' +
                 ': # Ctrl + Entrée pour exécuter le code.\n' +
                 ': (Aide)');
