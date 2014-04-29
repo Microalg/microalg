@@ -40,10 +40,12 @@
 (de Affecter_a arg_lst (set (car arg_lst) (cadr arg_lst)))
 
 # Structure conditionnelle
-(setq Vrai T)
-(setq Faux NIL)
-(de Si arg_lst (if (eval (car arg_lst)) (cadr arg_lst) (caddr arg_lst)))
+(put 'Vrai 'doc (pack "Booléen valant Vrai."))
+(setq Vrai 'Vrai)
+(put 'Vrai 'doc (pack "Booléen valant Faux."))
+(setq Faux 'Faux)
+(de Si arg_lst (if (= Vrai (eval (car arg_lst))) (cadr arg_lst) (caddr arg_lst)))
 
 # Prédicats
-(de Vrai? (x) (= x Vrai))
-(de Faux? (x) (= x Faux))
+(de Vrai? (x) (if (= x Vrai) Vrai Faux))
+(de Faux? (x) (if (= x Faux) Vrai Faux))
