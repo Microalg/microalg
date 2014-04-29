@@ -30,9 +30,16 @@
 
 # L’affichage se fait au travers de la variable globale *StdOut.
 (put 'Affecter_a 'doc (pack
-"Commande qui permet d’afficher l’argument qu’on lui passe."))
+"Commande qui évalue son premier argument et l’affiche.<br />"
+"Attention, certains symboles particuliers comme `aide’ ou `version’ "
+"ont des comportements différents suivant qu’on les évalue, qu’on les "
+"affiche ou qu’on les appelle."))
 (setq *StdOut "")
-(de Afficher (obj) (setq *StdOut (pack *StdOut obj)))
+(de Afficher args (let (first (car args)
+                        text (get first 'text)
+                        a_afficher (if text text (eval first)))
+                       (setq *StdOut (pack *StdOut a_afficher))))
+(put 'Afficher 'text "Commande 'Afficher'.")
 
 # Gestion des variables
 (put 'Affecter_a 'doc (pack
