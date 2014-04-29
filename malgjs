@@ -1,4 +1,10 @@
+#!/usr/bin/env node
 fs = require('fs')
+var script = process.argv[2];
+if (typeof script == 'undefined') {
+    console.log("Merci de donner un fichier .malg en argument.");
+    process.exit(1);
+}
 function rec_read(filelist, e) {
     if (filelist.length > 0) {
         var filename = filelist.shift();
@@ -17,4 +23,4 @@ function rec_read(filelist, e) {
     }
 }
 rec_read(['emulisp/emulisp_core.js',
-          'microalg.l', 'microalg_tests.malg']);
+          'microalg.l', process.argv[2]]);
