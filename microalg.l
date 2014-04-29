@@ -44,7 +44,11 @@
 (setq Vrai 'Vrai)
 (put 'Vrai 'doc (pack "Booléen valant Faux."))
 (setq Faux 'Faux)
-(de Si arg_lst (if (= Vrai (eval (car arg_lst))) (cadr arg_lst) (caddr arg_lst)))
+(de Si arg_lst (let (condition (car arg_lst)
+                     bloc_vrai (cadr arg_lst)
+                     bloc_faux (caddr arg_lst))
+                    (if (= Vrai (eval condition))
+                        (eval bloc_vrai) (eval bloc_faux))))
 
 # Prédicats
 (de Vrai? (x) (if (= x Vrai) Vrai Faux))
