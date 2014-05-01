@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env nodejs
 fs = require('fs')
 var script = process.argv[2];
 if (typeof script == 'undefined') {
