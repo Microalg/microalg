@@ -1,0 +1,2 @@
+#!/bin/sh
+./ersatz/pil microalg.l $1
