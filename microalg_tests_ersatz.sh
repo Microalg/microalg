@@ -1,10 +1,9 @@
 #!/bin/sh
 
-echo "Testing with Ersatz..."
 if [ -n "${TRAVIS+x}" ]
 then
-    wget http://www.software-lab.de/ersatz.tgz
-    tar xvzf ersatz.tgz
+    ./install_ersatz.sh
 fi
-ersatz/pil microalg.l microalg_tests.malg
+echo "Testing with Ersatz..."
+./malgj microalg_tests.malg
 
