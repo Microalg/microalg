@@ -1,26 +1,26 @@
 #!/usr/bin/env nodejs
 fs = require('fs')
+
+// Load EmuLisp and MicroAlg.
+var content = '';
+content = fs.readFileSync('emulisp/emulisp_core.js').toString();
+eval(content);
+content = fs.readFileSync('microalg.l').toString();
+EMULISP_CORE.eval(content);
+
+// To REPL or not to REPL:
 var script = process.argv[2];
 if (typeof script == 'undefined') {
-    console.log("Merci de donner un fichier .malg en argument.");
-    process.exit(1);
-}
-function rec_read(filelist, e) {
-    if (filelist.length > 0) {
-        var filename = filelist.shift();
-        fs.readFile(filename, 'utf8', function (err, content) {
-            if (err) {
-                return console.log(err);
-            }
-            if (filename.slice(-3) == '.js') {
-                eval(content);
-                rec_read(filelist, EMULISP_CORE);
-            } else {
-                e.eval(content);
-                rec_read(filelist, e);
-            }
-        });
+    // No arg: start REPL.
+    var prompt = require('sync-prompt').prompt;
+    var user_input = prompt(': ');
+    while (user_input != '(bye)') {
+        EMULISP_CORE.eval(user_input);
+        user_input = prompt(': ');
     }
+} else {
+    // File interpreter.
+    content = fs.readFileSync(process.argv[2]).toString();
+    EMULISP_CORE.eval(content);
 }
-rec_read(['emulisp/emulisp_core.js',
-          'microalg.l', process.argv[2]]);
+
