@@ -1197,7 +1197,7 @@ function _stdPrint(text) {
 	if (typeof stdPrint === "function") stdPrint(text)
 	else // when function stdPrint is not available in front end
 	//if (!confirm("_stdPrint:\n" + text)) throw new Error("_stdPrint aborted");
-	console.log(text);
+	console.log(text.replace(/\n$/g,''));
 }
 
 function _warn(msg) {
