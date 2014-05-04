@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
-from lettuce import world, step, before
+from lettuce import world, step, before, after
 from subprocess import Popen, PIPE
 import signal
 
 @before.each_scenario
-def setup_some_scenario(scenario):
+def world_init_for_Popen(scenario):
     world.cmd_list = []   # list of strings to provide to Popen
     world.process = None  # the process Popen will give us
     world.inputs = []     # list of strings that the user may input
     world.output = ''     # string that may be printed
     world.error = ''      # errors that may occur
+
+@after.each_scenario
+def kill_any_remaining_process(scenario):
+    if world.process.poll() is None:  # not terminated
+        print "Killing a remaining process..."
+        world.process.kill()
 
 class TimeoutException(Exception):
     pass
