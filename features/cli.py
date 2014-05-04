@@ -39,8 +39,8 @@ def ayant_demarre(step):
 def avec_interaction(step, user_input):
     world.inputs.append(user_input)
 
-@step(u'Doit afficher «(.*)»')
-def doit_afficher(step, expected):
+@step(u'Doit afficher «([^»]*)(»?)')
+def doit_afficher(step, expected, singleline):
     timeout = 1
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(timeout)  # timeout in seconds
@@ -52,6 +52,8 @@ def doit_afficher(step, expected):
         world.process.kill()
         tpl = "L’exécution aurait du durer moins de %d seconde(s)."
         raise AssertionError(tpl % timeout)
+    if not singleline:
+        expected = step.multiline
     if world.output != expected:
         tpl = "Devait afficher %s, mais on a eu: %s."
         raise AssertionError(tpl % (expected, world.output))
