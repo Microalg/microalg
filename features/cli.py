@@ -9,7 +9,7 @@ def world_init_for_Popen(scenario):
     world.process = None  # the process Popen will give us
     world.inputs = []     # list of strings that the user may input
     world.output = ''     # string that may be printed
-    world.error = ''      # errors that may occur
+    world.errors = []     # errors that may occur
 
 @after.each_scenario
 def kill_any_remaining_process(scenario):
@@ -41,17 +41,29 @@ def avec_interaction(step, user_input):
 
 @step(u'Doit afficher «([^»]*)(»?)')
 def doit_afficher(step, expected, singleline):
-    timeout = 1
+    timeout = 2
     signal.signal(signal.SIGALRM, timeout_handler)
     signal.alarm(timeout)  # timeout in seconds
-    input_str = world.inputs and '\n'.join(world.inputs) or None
-    try:
-        world.output, world.error = world.process.communicate(input_str)
-        signal.signal(signal.SIGALRM, signal.SIG_DFL)
-    except TimeoutException:
-        world.process.kill()
-        tpl = "L’exécution aurait du durer moins de %d seconde(s)."
-        raise AssertionError(tpl % timeout)
+    if not world.inputs:
+        pass
+    else:
+        for user_input in world.inputs:
+            try:
+                # in
+                world.process.stdin.write(user_input + '\n')
+                # out
+                output = world.process.stdout.readline()
+                world.output += output + user_input
+                # error
+                error = world.process.stderr.readline()
+                if error:
+                    world.errors.append(error)
+                # Restore default handling for alarm signal.
+                signal.signal(signal.SIGALRM, signal.SIG_DFL)
+            except TimeoutException:
+                world.process.kill()
+                tpl = "L’exécution aurait du durer moins de %d seconde(s)."
+                raise AssertionError(tpl % timeout)
     if not singleline:
         expected = step.multiline
     if world.output != expected:
@@ -60,7 +72,7 @@ def doit_afficher(step, expected, singleline):
 
 @step(u'Sans erreur')
 def sans_erreur(step):
-    if world.error:
+    if world.errors:
         tpl = "Aucune erreur ne devait se produire, mais on a eu: %s."
-        raise AssertionError(tpl % (world.error))
+        raise AssertionError(tpl % ('\n'.join(world.errors)))
 
