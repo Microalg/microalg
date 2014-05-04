@@ -7,8 +7,8 @@ def setup_some_scenario(scenario):
     world.cmd_list = []   # list of strings to provide to Popen
     world.process = None  # the process Popen will give us
     world.inputs = []     # list of strings that the user may input
-    world.outputs = []    # list of strings that may be printed
-    world.errors = []     # list of errors that may occur
+    world.output = ''     # string that may be printed
+    world.error = ''      # errors that may occur
 
 @step(u'Le programme (.*)')
 def le_programme(step, interp):
@@ -28,24 +28,15 @@ def avec_interaction(step, user_input):
 
 @step(u'Doit afficher «(.*)»')
 def doit_afficher(step, expected):
-    if world.inputs:
-        for user_input in world.inputs:
-            output, error = world.process.communicate(user_input)
-            world.outputs.append(output)
-            world.errors.append(error)
-    else:
-        output, error = world.process.communicate()
-        world.outputs.append(output)
-        world.errors.append(error)
-    joined_outputs = '\n'.join(world.outputs)
-    if joined_outputs != expected:
+    input_str = world.inputs and '\n'.join(world.inputs) or None
+    world.output, world.error = world.process.communicate(input_str)
+    if world.output != expected:
         tpl = "Devait afficher %s, mais on a eu: %s."
-        raise AssertionError(tpl % (expected, joined_outputs))
+        raise AssertionError(tpl % (expected, world.output))
 
 @step(u'Sans erreur')
 def sans_erreur(step):
-    joined_errors = '\n'.join(world.errors)
-    if joined_errors:
+    if world.error:
         tpl = "Aucune erreur ne devait se produire, mais on a eu: %s."
-        raise AssertionError(tpl % (joined_errors))
+        raise AssertionError(tpl % (world.error))
 
