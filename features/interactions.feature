@@ -11,10 +11,10 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 
     Scénario: Avec «pilj»,   je peux faire une simple addition.
         Le programme pilj
@@ -23,10 +23,10 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 
     Scénario: Avec «piljs»,  je peux faire une simple addition.
         Le programme piljs
@@ -35,10 +35,10 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 
     Scénario: Avec «malg»,   je peux faire une simple addition.
         Le programme malg
@@ -47,10 +47,10 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 
     Scénario: Avec «malgj»,  je peux faire une simple addition.
         Le programme malgj
@@ -59,10 +59,10 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 
     Scénario: Avec «malgjs», je peux faire une simple addition.
         Le programme malgjs
@@ -71,8 +71,8 @@ Fonctionnalité: Invocation des interpréteurs, interactions puis sortie
         Avec interaction (bye)
         Doit afficher «
           """
-          : -> 4
-          : "
+          : (+ 2 2)
+          -> 4
+          : (bye)
           """
-        Sans erreur
 

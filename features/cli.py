@@ -1,39 +1,26 @@
 # -*- coding: utf-8 -*-
 from lettuce import world, step, before, after
-from subprocess import Popen, PIPE
-import signal
+import pexpect
 
 @before.each_scenario
-def world_init_for_Popen(scenario):
-    world.cmd_list = []   # list of strings to provide to Popen
-    world.process = None  # the process Popen will give us
+def world_init(scenario):
+    world.interp = ''     # name of the interpreter
+    world.arg_list = []   # list of strings to provide to the interpreter
+    world.process = None  # the process pexpect will spawn
     world.inputs = []     # list of strings that the user may input
-    world.output = ''     # string that may be printed
-    world.errors = []     # errors that may occur
-
-@after.each_scenario
-def kill_any_remaining_process(scenario):
-    if world.process.poll() is None:  # not terminated
-        print "Killing a remaining process..."
-        world.process.kill()
-
-class TimeoutException(Exception):
-    pass
-
-def timeout_handler(signum, frame):
-    raise TimeoutException()
+    world.output = ''     # string that will be displayed
 
 @step(u'Le programme (.*)')
 def le_programme(step, interp):
-    world.cmd_list = [interp]
+    world.interp = interp
 
 @step(u'Avec argument (.*)')
 def avec_argument(step, arg):
-    world.cmd_list.append(arg)
+    world.arg_list.append(arg)
 
 @step(u'Ayant démarré')
 def ayant_demarre(step):
-    world.process = Popen(world.cmd_list, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    world.process = pexpect.spawn(world.interp, world.arg_list, timeout=5)
 
 @step(u'Avec interaction (.*)')
 def avec_interaction(step, user_input):
@@ -41,38 +28,23 @@ def avec_interaction(step, user_input):
 
 @step(u'Doit afficher «([^»]*)(»?)')
 def doit_afficher(step, expected, singleline):
-    timeout = 2
-    signal.signal(signal.SIGALRM, timeout_handler)
-    signal.alarm(timeout)  # timeout in seconds
-    if not world.inputs:
-        pass
-    else:
-        for user_input in world.inputs:
-            try:
-                # in
-                world.process.stdin.write(user_input + '\n')
-                # out
-                output = world.process.stdout.readline()
-                world.output += output + user_input
-                # error
-                error = world.process.stderr.readline()
-                if error:
-                    world.errors.append(error)
-                # Restore default handling for alarm signal.
-                signal.signal(signal.SIGALRM, signal.SIG_DFL)
-            except TimeoutException:
-                world.process.kill()
-                tpl = "L’exécution aurait du durer moins de %d seconde(s)."
-                raise AssertionError(tpl % timeout)
+    # Append first prompt:
+    world.process.expect('.*')
+    world.output += world.process.after
+    # Process user inputs:
+    for user_input in world.inputs:
+        world.process.sendline(user_input)
+        world.process.expect('.*')
+        world.output += world.process.after  # we see input + result
+    # The end:
+    world.process.expect('.*')
+    # We rstrip because Lettuce seems to do the same when parsing multiline.
+    world.output += world.process.after.rstrip('\n')
+    world.process.expect(pexpect.EOF)
+    # Post process output:
+    world.output = world.output.replace('\r', '')
     if not singleline:
         expected = step.multiline
-    if world.output != expected:
-        tpl = "Devait afficher %s, mais on a eu: %s."
-        raise AssertionError(tpl % (expected, world.output))
-
-@step(u'Sans erreur')
-def sans_erreur(step):
-    if world.errors:
-        tpl = "Aucune erreur ne devait se produire, mais on a eu: %s."
-        raise AssertionError(tpl % ('\n'.join(world.errors)))
-
+    # Final check:
+    assert world.output == expected, \
+       u"Devait afficher %s, mais on a eu %s." % (expected, world.output)
