@@ -1,7 +1,7 @@
-language: python
 install:
   - sudo apt-get update -qq
   - sudo apt-get install gcc-multilib
-  - "pip install pexpect"
-  - "pip install lettuce"
+  - sudo pip install pexpect
+  - sudo pip install lettuce
+  - ./fix_lettuce.sh
 script: sh microalg_tests.sh
