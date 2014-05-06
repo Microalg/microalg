@@ -1,3 +1,4 @@
 *.swp
 *.pyc
 /ersatz/
+/picolisp/

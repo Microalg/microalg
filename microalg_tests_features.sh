@@ -4,6 +4,5 @@ then
     pip install lettuce
 fi
 
-PATH=$PATH:`pwd`:`pwd`/ersatz:`pwd`/emulisp
+PATH=$PATH:`pwd`:`pwd`/picolisp:`pwd`/ersatz:`pwd`/emulisp
 lettuce --verbosity=2
-
