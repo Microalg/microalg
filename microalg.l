@@ -46,6 +46,16 @@
 "Commande qui permet d’affecter une valeur à une variable."))
 (de Affecter_a arg_lst (set (car arg_lst) (cadr arg_lst)))
 
+# Demander.
+(put 'Demander 'doc (pack
+"Commande qui permet de demander une valeur à l’utilisateur."))
+(de Demander () (in NIL (read " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")))
+# Références:
+# https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange#Table_des_128_caract.C3.A8res_ASCII
+# https://en.wikipedia.org/wiki/ASCII#ASCII_printable_character_code_chart
+# >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
+# ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
 # Structure conditionnelle
 (put 'Vrai 'doc (pack "Booléen valant Vrai."))
 (setq Vrai 'Vrai)
