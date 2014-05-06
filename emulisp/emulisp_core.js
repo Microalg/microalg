@@ -9,6 +9,7 @@ var VERSION = [2, 0, 0, 1],
 	BOOL_EXP = "Boolean expected", CELL_EXP = "Cell expected", LIST_EXP = "List expected",
 	NUM_EXP = "Number expected", SYM_EXP = "Symbol expected", VAR_EXP = "Variable expected",
 	EXEC_OR_NUM_EXP = "Executable or Number expected",
+	CHANNEL_NOT_SUPPORTED = "EmuLisp only supports the NIL channel",
 	BAD_ARG = "Bad argument", BAD_DOT = "Bad dotted pair", BAD_INPUT = "Bad input", DIV_0 = "Div/0",
 	NOT_MAK = "Not making", PROT_SYM = "Protected symbol", UNDEF = "Undefined",
 	JS_CTORNAME_EXP = "Constructor name expected", JS_RESERVED = "Reserved word";
@@ -762,6 +763,14 @@ var coreFunctions = {
 	},
 	"if": function(c) { return aTrue(evalLisp(c.car)) ? aPop(evalLisp(c.cdr.car)) : prog(c.cdr.cdr); },
 	"ifn": function(c) { return aTrue(evalLisp(c.car)) ? aPop(prog(c.cdr.cdr)) : evalLisp(c.cdr.car); },
+	"in": function(c) { // For now only the NIL channel is supported, just for compat with the use of 'read'.
+		var chan = c.car;
+		if (chan === NIL) {
+			return prog(c.cdr);
+		} else {
+			throw new Error(newErrMsg(CHANNEL_NOT_SUPPORTED, chan));
+		}
+	},
 	"inc": function(c) {
 		if (c === NIL) return NIL;
 		var ns = evalLisp(c.car);
@@ -918,6 +927,12 @@ var coreFunctions = {
 		if (n > n2) s = -s;
 		mkNew(); do { link(n); n = new Number(n + s); } while ((s > 0) ? (n <= n2) : (n >= n2));
 		return mkResult();
+	},
+	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
+		if (platform == 'nodejs') {
+			var prompt = require('sync-prompt').prompt;
+		}
+		return newTransSymbol(prompt());
 	},
 	"rest": function(c) { return cst.evFrames.car.cdr; },
 	"reverse": function(c) { var lst = evalLisp(c.car), r = NIL;
