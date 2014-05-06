@@ -3,5 +3,5 @@ install:
   - sudo apt-get install gcc-multilib
   - sudo pip install pexpect
   - sudo pip install lettuce
-  - ./fix_lettuce.sh
+  - sudo ./fix_lettuce.sh
 script: sh microalg_tests.sh
