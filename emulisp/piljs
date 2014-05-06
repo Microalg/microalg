@@ -32,14 +32,13 @@ while (typeof script != 'undefined') {
 // Start REPL if '-bye' was not passed in command line arguments.
 if (!option_bye) {
     var prompt = require('sync-prompt').prompt;
-    var user_input = prompt(': ');
-    while (user_input != '(bye)') {
+    while (true) {
+        var user_input = prompt(': ');
         try {
             var result = EMULISP_CORE.eval(user_input);
             console.log('-> ' + result);
         } catch(e) {
             console.log(e.toString() + "  (piljs -> no debug yet)");
         }
-        user_input = prompt(': ');
     }
 }
