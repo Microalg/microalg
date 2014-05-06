@@ -63,7 +63,11 @@ function inject_microalg_repl_in(elt_id, msg) {
         try {
             result = EMULISP_CORE.eval(src).toString();
         } catch(e) {
-            repl_elt.val(repl_elt.val() + "\n" + e.toString());
+            if (e.toString() == "Error: Function 'bye' not supported") {
+                repl_container.html('');
+            } else {
+                repl_elt.val(repl_elt.val() + "\n" + e.toString());
+            }
         }
         if (result != '' && result != 'NIL') {
             repl_elt.val(repl_elt.val() + "\n-> " + result);
