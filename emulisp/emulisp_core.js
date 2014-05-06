@@ -14,11 +14,10 @@ var VERSION = [2, 0, 0, 1],
 	NOT_MAK = "Not making", PROT_SYM = "Protected symbol", UNDEF = "Undefined",
 	JS_CTORNAME_EXP = "Constructor name expected", JS_RESERVED = "Reserved word";
 
-var platform;
-if (typeof window === 'undefined') {
-	platform = 'nodejs';
-} else {
-	platform = 'browser';
+function emuEnv() {
+	if (typeof window != "undefined") return "browser";
+	if (typeof process != "undefined") return "nodejs";
+	return NIL;
 }
 
 function getFileSync(fileUrl) {
@@ -637,11 +636,8 @@ var coreFunctions = {
 		_stdPrint(((new Date()).getTime() - t0) / 1000 + " sec\n"); return r;
 	},
 	"box": function(c) { return box(evalLisp(c.car)); },
-	"bye": function(c) {
-		if (platform == 'nodejs') {
-			process.exit();
-		} else {
-			throw "bye";
+	"bye": function(c) { if (emuEnv() == "nodejs") { process.exit(); } else {
+			throw new Error(newErrMsg("Function 'bye' not supported"));
 		}
 	},
 	"caar": function(c) { return car(car(evalLisp(c.car))); },
@@ -929,7 +925,7 @@ var coreFunctions = {
 		return mkResult();
 	},
 	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
-		if (platform == 'nodejs') {
+		if (emuEnv() == 'nodejs') {
 			var prompt = require('sync-prompt').prompt;
 		}
 		return newTransSymbol(prompt());
@@ -1324,13 +1320,7 @@ var pub = {
 	NIL: NIL, T: T,
 	
 	eval: function(code) {
-		try {
-			return prog(parseList(new Source(code))).toString();
-		} catch (e) {
-			console.log(e);
-			if (e == "bye") {}  // (bye) called
-			else throw e;
-		}
+        return prog(parseList(new Source(code))).toString();
 	}
 }
 
