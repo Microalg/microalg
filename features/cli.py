@@ -76,4 +76,4 @@ def doit_afficher(step, expected, singleline):
     assert world.output == expected, \
        u"Devait afficher %s, mais on a eu %s." % (expected,
        ### display full pexpect spawn inst. details
-       world)
+       world.process)
