@@ -67,5 +67,13 @@ def doit_afficher(step, expected, singleline):
     if not singleline:
         expected = step.multiline
     # Final check:
+    
+    #### Check for timing race condition (sometimes travis is dog-slow ??)
+    import time
+    time.sleep(1)
+    ### anyway shouldn't be required, just trying 
+    
     assert world.output == expected, \
-       u"Devait afficher %s, mais on a eu %s." % (expected, world.output)
+       u"Devait afficher %s, mais on a eu %s." % (expected,
+       ### display full pexpect spawn inst. details
+       world)
