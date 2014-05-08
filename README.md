@@ -64,7 +64,7 @@ Fichiers
     * `microalg_tests_ersatz.sh` :   de quoi lancer les tests avec Ersatz
     * `microalg_tests_picolisp.sh` : de quoi lancer les tests avec Ersatz
     * `microalg_tests.sh` :  de quoi lancer les tests sur toutes les
-                             plateformes possibles, features comprises
+                             plateformes possibles, features non comprises
 * `README.md` : ce fichier (j’ai toujours rêvé d’écrire ça)
 * `tuto.html` : une page web interactive pour apprendre MicroAlg, et plus
   généralement à faire ses premiers pas en algorithmique et en programmation
