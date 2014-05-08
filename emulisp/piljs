@@ -1,44 +1,54 @@
-#!/usr/bin/env node
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+
 fs = require('fs')
+prompt = require('sync-prompt').prompt;
+
+var NO_DEBUG = "piljs -> no debug yet";
 
 // Load EmuLisp.
 var emulisp_src = fs.readFileSync('emulisp/emulisp_core.js').toString();
 eval(emulisp_src);
 
-var option_bye = false;
-
 // Process command line args.
+// TODO tp://www.software-lab.de/doc/refL.html#load
 var arglist = process.argv.slice(2);
-var script = arglist.shift();
-while (typeof script != 'undefined') {
-    if (script == '-bye') {
-        option_bye = true;
-        continue;
+while (true) {
+    var arg = arglist.shift();
+    if (typeof arg == 'undefined') {
+        // Now all command line args have been consumed.
+        break;
     }
-    if(fs.existsSync(script)){
-        // File interpreter.
-        content = fs.readFileSync(script).toString();
-        try {
-            EMULISP_CORE.eval(content);
-        } catch(e) {
-            console.log(e.toString() + "  (piljs -> no debug yet)");
-        }
+    var src;
+    if (arg.slice(0, 1) == '-') {
+        // Interpret arg as source code.
+        src = '(' + arg.slice(1) + ')';
     } else {
-        console.log(script + " not found.");
+        // Interpret arg as a file to read.
+        if(fs.existsSync(arg)) {
+            src = fs.readFileSync(arg).toString();
+        } else {
+            if (arg == '+') {
+                console.log("+ not supported (yet)");
+            } else {
+                console.log(arg + " not found.");
+            }
+        }
     }
-    script = arglist.shift();
+    try {
+        EMULISP_CORE.eval(src);
+    } catch(e) {
+        console.log(e.toString() + "  (" + NO_DEBUG + ")");
+    }
 }
 
-// Start REPL if '-bye' was not passed in command line arguments.
-if (!option_bye) {
-    var prompt = require('sync-prompt').prompt;
-    while (true) {
-        var user_input = prompt(': ');
-        try {
-            var result = EMULISP_CORE.eval(user_input);
-            console.log('-> ' + result);
-        } catch(e) {
-            console.log(e.toString() + "  (piljs -> no debug yet)");
-        }
+// REPL
+while (true) {
+    var user_input = prompt(': ');
+    try {
+        var result = EMULISP_CORE.eval(user_input);
+        console.log('-> ' + result);
+    } catch(e) {
+        console.log(e.toString() + "  (" + NO_DEBUG + ")");
     }
 }
