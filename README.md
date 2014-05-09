@@ -30,6 +30,11 @@ dans [PicoLisp](http://picolisp.com). Donc :
 
 Voir le [site officiel](http://microalg.info/) pour plus de détails.
 
+Installation
+============
+
+Voir le fichier [INSTALL.md](https://github.com/Microalg/Microalg/blob/latest/INSTALL.md).
+
 Fichiers
 ========
 
@@ -44,6 +49,8 @@ Fichiers
     * `cli.py` fait le lien entre les mots-clef des tests Gherkin et les
       actions à prendre pour exécuter concrètement ces tests
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
+* `INSTALL.md` : documentation complète concernant les différentes manières
+  d’installer MicroAlg.
 * scripts d’installation :
     * `install_ersatz.sh` : pour Ersatz
       (d’où peut-être le répertoire `ersatz` qui traîne)
