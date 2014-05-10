@@ -22,7 +22,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 * Utiliser [MicroAlg en ligne](http://microalg.info/ide.html) :
   rien à installer !
 * Installation pour développeur/contributeur…
-    * …au [cœur de MicroAlg](#developpeur) (attention, il n’y a pas
+    * …au [cœur de MicroAlg](#développeur) (attention, il n’y a pas
       d’environnement de développement pour Windows ou Android),
     * …à la documentation, tutoriels… chercher ci-dessous un lien pour
       « utilisation possible sans connextion » adaptée à votre système
@@ -59,7 +59,8 @@ version Javascript (via NodeJS). Plus précisément, installer :
 * PicoLisp et Ersatz, pour cela voir les fichiers `install...`.
 * [NodeJS](http://nodejs.org/download/) (`npm` compris, le gestionnaire de
   modules pour NodeJS).
-* Différents outils, listés dans le fichier `.travis.yml`
+* Différents outils, listés dans le fichier `.travis.yml`.
+* Cloner [le dépôt](https://github.com/Microalg/Microalg).
 
 ## Utilisateur
 
@@ -70,11 +71,19 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
 
 #### Hors ligne
 
-* <https://github.com/Microalg/Microalg/archive/latest.zip>
-* civetweb
-    home: <https://github.com/bel2125/civetweb>
-    dl: <http://sourceforge.net/projects/civetweb/files/> si mieux que 1.5
-    win <http://sourceforge.net/projects/civetweb/files/1.5/civetweb-1.5-win.zip/download>
+* MicroAlg
+    * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+    * Extraire l’archive quelque part, disons dans un dossier `microalg` de
+      façon à avoir `microalg\INSTALL.md`, puis supprimer cette archive.
+* Un serveur (au choix)
+    * via Python
+    * via CivetWeb (pour référence, [le dépôt Github](https://github.com/bel2125/civetweb))
+        * Télécharger une version :
+            * <http://sourceforge.net/projects/civetweb/files/1.5/civetweb-1.5-win.zip/download>
+            * ou voir [ici](http://sourceforge.net/projects/civetweb/files/)
+              s’il y mieux que 1.5
+* Démarrer le serveur dans `microalg` et ouvrir le fichier `microalg\ide.html`
+  dans un navigateur.
 
 #### Avec Java
 
@@ -96,7 +105,7 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
     * Télécharger <http://software-lab.de/ersatz.tgz>.
     * Extraire avec un logiciel adéquat, par exemple
       [7-zip](http://www.7-zip.org/). Deux passages seront peut-être
-      nécessaires car c’est un `.tar` dans un `.gz`).
+      nécessaires car c’est un `.tar` dans un `.gz`.
     * Déplacer le dossier obtenu : `ersatz`, dans `microalg` (que vous avez
       peut-être mis dans le dossier d’installation Notepad++, `chemin_NPP`,
       faut suivre…).
@@ -107,7 +116,8 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
     * Appuyer sur `F5` ou choisir le menu `Run` puis l’action `Run…`.
     * Choisir le fichier qui va exécuter le code :
         * cliquer sur « parcourir » (le bouton `...`),
-        * faire apparaître `Tous les fichiers` (`*.*`),
+        * faire apparaître tous les fichiers en choisissant :  
+          `Tous les fichiers : (*.*)`,
         * choisir `microalg/malgj_npp.bat`.
     * Ajouter à la main (si possible avec un copier/coller :  
       `"$(NPP_DIRECTORY)" "$(FULL_CURRENT_PATH)"`  
