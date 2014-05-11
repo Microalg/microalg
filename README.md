@@ -33,6 +33,8 @@ Voir le [site officiel](http://microalg.info/) pour plus de détails.
 Installation
 ============
 
+Il est possible d’installer MicroAlg sur sa machine ou sur son site.
+
 Voir le fichier [INSTALL.md](https://github.com/Microalg/Microalg/blob/latest/INSTALL.md).
 
 Fichiers

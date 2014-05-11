@@ -21,6 +21,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 * Utiliser [MicroAlg en ligne](http://microalg.info/ide.html) :
   rien à installer !
+* Installer MicroAlg sur son site
 * Installation pour développeur/contributeur…
     * …au [cœur de MicroAlg](#développeur) (attention, il n’y a pas
       d’environnement de développement pour Windows ou Android),
@@ -46,6 +47,20 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
         * avec le vrai PicoLisp (C et assembleur)
         * avec Ersatz (Java)
         * avec EmuLisp (NodeJS)
+
+## Installer sur son site
+
+* Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+* Extraire quelque part dans l’arborescence de votre site.
+* Ouvrir `microalg/ide.html`.
+    * Si tout fonctionne, vous pouvez essayer d’injecter MicroAlg dans la page
+      de votre choix.
+    * Sinon, merci de (au choix) :
+        * proposer une « pull request » en éditant directement un fichier sur
+          [Github](https://github.com/Microalg/Microalg),
+        * poster une « issue » sur
+          [Github](https://github.com/Microalg/Microalg),
+        * m’envoyer [un email](mailto:profgra.org@gmail.com).
 
 ## Développeur
 
