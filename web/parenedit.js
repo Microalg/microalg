@@ -16,7 +16,7 @@ function createRichInput(original) {
     if (typeof original == "string") original = $(original);
     var original_id = original.attr('id');
     if (typeof original_id == "undefined") console.log("parenedit: elt with no id!");
-    var newId = "richtext_" + original_id;
+    var newId = "richtext-" + original_id;
     var newElement = "<div class=\"richtext\" id=\"" + newId + "\"></div>";
 
     newId = '#' + newId;

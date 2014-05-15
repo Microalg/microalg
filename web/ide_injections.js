@@ -8,7 +8,7 @@ function onCtrlEnter(elt, f) {
 
 function inject_microalg_editor_in(elt_id, config, msg) {
     var script_container = $('#' + elt_id);
-    var script_string = '<textarea id="malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
+    var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
             '<div class="malg-error" style="color: red;"></div>' +
             '<div class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
