@@ -2,11 +2,21 @@ body.microalg {
     width: 95%;
     margin: 0px auto;
     font-family: Verdana, Arial, sans-serif;
+    color: black;
+    background-color: white;
 }
 .microalg a:link {color:#337;}
 .microalg a:visited {color:#333;}
 .microalg a:hover {color:#000;}
 .microalg a:active {color:#000;}
+.microalg h1 a,
+.microalg h2 a,
+.microalg h3 a,
+.microalg h4 a,
+.microalg h5 a,
+.microalg h6 a {
+    text-decoration: none;
+}
 .microalg code {
     margin: 0 2px;
     padding: 0px 5px;

@@ -20,11 +20,14 @@
         </div>
     </noscript>
     <script>EMULISP_CORE.loadLisp("microalg.l");</script>
-    <h1>MicroAlg - Tutoriel</h1>
+    <h1 id="top">MicroAlg - Tutoriel</h1>
     <p>
     Aller directement à :
-    <a href="#affichage">Affichage</a>
+    <a href="#affichage">Affichage</a>,
+    <a href="#calculs_nombres">Calculs avec des nombres</a>,
+    <a href="#contact">Contact</a>.
     </p>
+
     <h2 id="questce">Qu’est-ce ?</h2>
     <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel">tutoriel</a>
     pour <a href="http://microalg.info">MicroAlg</a>.</p>
@@ -41,7 +44,8 @@
             <a href="https://github.com/Microalg/Microalg">Github</a>,</li>
         <li>m’envoyer <a href="mailto:profgra.org@gmail.com">un mail</a>.</li>
     </ul>
-    <h2 id="affichage">Affichage</h2>
+
+    <h2 id="affichage"><a href="#affichage">: </a>Affichage</a></h2>
     <p>Pourquoi ne pas commencer tout de suite !</p>
     <div id="script-afficher"></div>
     <script>inject_microalg_editor_in('script-afficher', {localStorage: false},
@@ -50,13 +54,55 @@
         '# et ne sont pas interprétées par MicroAlg.\n' +
         '# Cliquer dans cette zone de texte,\n' +
         '# puis Ctrl + Entrée pour exécuter le code.\n' +
+        '(Afficher "Bonjour tout le monde!")');
+    </script>
+    <p>Un message de bienvenue devrait s’être affiché dans la barre un peu
+    arrondie ci-dessus (sinon, suivre les instructions de
+    <a href="#probleme">cette section</a>).</p>
+    <p>Avant de passer à l’exemple suivant, apprenez à vous servir de la touche
+    <code>TAB</code> (à gauche du <code>A</code>. Elle vous permet de passer
+    de zone de code en zone de code, en passant aussi sur les liens. En
+    appuyant deux fois dessus, vous arrivez à la prochaine zone. Pratique, pas
+    besoin de toucher la souris.</p>
+
+    <h2 id="calculs_nombres"><a href="#calculs_nombres">: </a>Calculs avec des nombres</h2>
+    <p>MicroAlg sait effectuer des calculs, mais il faut bien les rédiger.
+    Pour chaque exemple ci-dessous, essayer de deviner ce que va afficher
+    MicroAlg, puis vérifier en exécutant le code avec <code>Ctrl</code> +
+    <code>Entrée</code>.</p>
+    <div id="script-aff-deux-et-deux"></div>
+    <script>inject_microalg_editor_in('script-aff-deux-et-deux', {localStorage: false},
         '(Afficher (+ 2 2))');
     </script>
-    <p>Un « 4 » devrait s’être affiché dans la barre un peu arrondie ci-dessus.
-    Sinon, suivre les instructions de <a href="#probleme">cette section</a>.</p>
+    <div id="script-deux-et-deux"></div>
+    <script>inject_microalg_editor_in('script-deux-et-deux', {localStorage: false},
+        '# Noter comme MicroAlg n’affiche rien si on ne lui demande pas :\n' +
+        '(+ 2 2)');
+    </script>
+    <div id="script-emboite"></div>
+    <script>inject_microalg_editor_in('script-emboite', {localStorage: false},
+        '# Une expression peut prendre la place d’un nombre.\n' +
+        '# Ici le deuxième 2 a été remplacé par (- 5 3) :\n' +
+        '(Afficher (+ 2 (- 5 3)))');
+    </script>
+    <p>Autres exemples (papier crayon ou calculatrice autorisés si le calcul
+    mental ne suit pas).</p>
+    <div id="script-calc1"></div>
+    <script>inject_microalg_editor_in('script-calc1', {localStorage: false},
+        '(Afficher (+ 1 2 3 4 5))');
+    </script>
+    <div id="script-calc2"></div>
+    <script>inject_microalg_editor_in('script-calc2', {localStorage: false},
+        '(Afficher (+ 2 (* 5 3)))');
+    </script>
+
     <h2 id="fin">Fin</h2>
-    <p>Voilà, c’est fini. Si ça vous a plu, si vous avez une envie de
-    contribuer, suivre les instructions de <a href="#probleme">cette section</a>.</p>
+    <p>Voilà, c’est fini. Si ça vous a plu et que vous avez une envie de créer
+    votre propre tutoriel, il faut installer MicroAlg localement. Pour cela,
+    chercher « utilisation possible sans connextion » sur
+    <a href="https://github.com/Microalg/Microalg/blob/latest/INSTALL.md">cette page</a>.
+    <p>Si ça vous a plu et que vous avez une envie de contribuer, suivre les
+    instructions de <a href="#contact">cette section</a>.</p>
     <p>Bonne continuation !</p>
     <br>
     <br>
