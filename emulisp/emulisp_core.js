@@ -372,6 +372,8 @@ function getAlg(c) {
 				} else {
 					do { s = s.cdr; } while ((s !== NIL) && (++k < 0));
 				}
+			} else {
+				return NIL;
 			}
 		} else throw new Error(newErrMsg(SYM_EXP));
 		c = c.cdr;
