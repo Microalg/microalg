@@ -16,7 +16,7 @@ var VERSION = [2, 0, 0, 3],
 
 function getFileSync(fileUrl) {
 	var req = new XMLHttpRequest();
-	var OK = fileUrl.match(/^https?:/) ? 200 : 200;
+	var OK = fileUrl.match(/^file:/) ? 0 : 200;
 	req.open("GET", fileUrl, false);		// synchronous
 	if (req.overrideMimeType) req.overrideMimeType("text/plain; charset=utf-8");
 	req.send(null);
