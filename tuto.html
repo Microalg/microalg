@@ -24,6 +24,7 @@
     <p>
     Aller directement à :
     <a href="#affichage">Affichage</a>,
+    <a href="#texte-et-concatenation">Texte et concaténation</a>,
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -64,6 +65,44 @@
     de zone de code en zone de code, en passant aussi sur les liens. En
     appuyant deux fois dessus, vous arrivez à la prochaine zone. Pratique, pas
     besoin de toucher la souris.</p>
+
+    <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
+    <p>Dans l’exemple précédent, que nous rappelons ci-dessous, nous avons
+    affiché du texte. Nous dirons que nous avons passé du texte en paramètre à
+    la commande <code>Afficher</code>.</p>
+    <p>Mieux : ce que l’on appelle ici « texte » est parfois appelé « chaîne de
+    caractères ». On doit le mettre entre guillemets.</p>
+    <div id="script-afficher-rappel"></div>
+    <script>inject_microalg_editor_in('script-afficher-rappel', {localStorage: false},
+        '(Afficher "Rebonjour tout le monde!")');
+    </script>
+    <p>Malheureusement la commande <code>Afficher</code> n’affiche que son
+    premier argument (ce qui lui arrive en paramètre) et ignore tous les
+    autres. Ici, le deuxième argument « et encore du texte » est ignoré et seul
+    le premier argument « du texte » est affiché :</p>
+    <div id="script-afficher-params"></div>
+    <script>inject_microalg_editor_in('script-afficher-params', {localStorage: false},
+        '(Afficher "du texte " "et encore du texte")');
+    </script>
+    <p>Pour « concaténer » deux textes, c’est-à-dire les mettre bout-à-bout,
+    on utilise la commande <code>Concaténer</code>. Dans l’exemple suivant,
+    on affiche la concaténation de deux textes :</p>
+    <div id="script-concat"></div>
+    <script>inject_microalg_editor_in('script-concat', {localStorage: false},
+        '(Afficher (Concaténer "du texte " "et encore du texte"))');
+    </script>
+    <p>Noter les parenthèses qui s’emboîtent. L’emboîtement des parenthèses est
+    la base de MicroAlg, et plus généralement des langages de type
+    <a href="https://fr.wikipedia.org/wiki/Lisp">Lisp</a> (noter aussi le
+    nombre de traductions de cette page !).</p>
+    <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
+    ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
+    que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
+    <p>Pour finir, il n’y a pas de limite au nombre de textes à concaténer :</p>
+    <div id="script-concat3"></div>
+    <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
+        '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
+    </script>
 
     <h2 id="calculs_nombres"><a href="#calculs_nombres">: </a>Calculs avec des nombres</h2>
     <p>MicroAlg sait effectuer des calculs, mais il faut bien les rédiger.
