@@ -939,6 +939,8 @@ var coreFunctions = {
 	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
 		if (emuEnv() == 'nodejs') {
 			var prompt = require('sync-prompt').prompt;
+		} else {
+			var prompt = window.prompt;
 		}
 		return newTransSymbol(prompt());
 	},
