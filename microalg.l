@@ -41,6 +41,17 @@
                        (setq *StdOut (pack *StdOut a_afficher))))
 (put 'Afficher 'text "Commande 'Afficher'.")
 
+# Concaténer
+(put 'Concaténer 'doc (pack
+"Commande qui concatène les textes passés en paramètre."))
+(de Concaténer @ (let (
+                       result (pack (rest))
+                      )
+                      (if result
+                          result
+                          ""
+                      )))
+
 # Gestion des variables
 (put 'Affecter_a 'doc (pack
 "Commande qui permet d’affecter une valeur à une variable."))

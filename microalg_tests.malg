@@ -10,6 +10,13 @@
 			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *StdOut))
 			'(= "Commande 'Afficher'." (prog (setq *StdOut "") (Afficher Afficher) *StdOut))
 			'(= "4" (prog (setq *StdOut "") (Afficher (+ 2 2)) *StdOut))
+            # Concaténation
+            '(= "" (Concaténer))
+            '(= "" (Concaténer ""))
+            '(= "" (Concaténer "" ""))
+            '(= "hello world" (Concaténer "hello " "world"))
+            '(= "Salut tout le monde!" (Concaténer "Salut " "tout " "le " "monde!"))
+            '(= "àéèîïôü" (Concaténer "à" "é" "è" "î" "ï" "ô" "ü" ))
             # Gestion des variables
             '(let (x NIL) (= 0 (prog (setq x 0) x)))
             '(let (x NIL) (= 0 (prog (Affecter_a x 0) x)))
