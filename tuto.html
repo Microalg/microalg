@@ -25,6 +25,7 @@
     Aller directement à :
     <a href="#affichage">Affichage</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
+    <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -102,6 +103,19 @@
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
         '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
+    </script>
+
+    <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
+    <p>Il est possible de demander une valeur à l’utilisateur :</p>
+    <div id="ex-demander"></div>
+    <script>inject_microalg_editor_in('ex-demander', {localStorage: false},
+        '(Demander)');
+    </script>
+    <p>Mais si on affiche pas le résultat de cette commande, rien ne se passe
+    bien sûr. Il faut afficher le résultat de la demande.</p>
+    <div id="afficher-demander"></div>
+    <script>inject_microalg_editor_in('afficher-demander', {localStorage: false},
+        '(Afficher (Demander))');
     </script>
 
     <h2 id="calculs_nombres"><a href="#calculs_nombres">: </a>Calculs avec des nombres</h2>
