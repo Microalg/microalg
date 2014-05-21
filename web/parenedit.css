@@ -49,23 +49,27 @@ input, textarea, .richtext > pre {
 .unmatched {
     background: red;
 }
-.paren_0 {
-    background: #fcf;
-}
+/* paren_0 is after paren_5*/
 .paren_1 {
-    background: #cff;
+    background: #fab;
 }
 .paren_2 {
-    background: #ffa;
+    background: #fdb;
 }
 .paren_3 {
-    background: #fcc;
+    background: #ffd;
 }
 .paren_4 {
-    background: #cfa;
+    background: #cfc;
 }
 .paren_5 {
-    background: #ccf;
+    background: #cef;
+}
+.paren_6 {
+    background: #dcf;
+}
+.paren_0 {
+    background: #bbe;
 }
 .selected_paren {
     background: #999 !important;

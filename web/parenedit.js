@@ -89,7 +89,7 @@ function colorize(text, pos) {
     indices = indices.sort(function(x,y) { return Number(y) - Number(x); });
     indices.forEach(function(i) {
         newtext = newtext.substr(0,i) + o[i].extra +
-        "<span class='" + (o[i].pair == -1 ? "unmatched " : "paren_" + (o[i].depth % 6)) +
+        "<span class='" + (o[i].pair == -1 ? "unmatched " : "paren_" + (o[i].depth % 7)) +
         (o[i].selected ? " selected_paren": "") + "'>" + o[i].type + "</span>" +
         newtext.substr(i + 1 + o[i].extra.length)
     });
