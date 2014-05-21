@@ -98,8 +98,18 @@
     nombre de traductions de cette page Wikipedia !).</p>
     <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
     ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
-    que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
-    <p>Pour finir, il n’y a pas de limite au nombre de textes à concaténer :</p>
+    que c’est moins clair que des parenthèses, mais il faudra faire avec.
+    Même si les parenthèses sont déjà assez claire, il est bien pratique de
+    pouvoir savoir par exemple quelle parenthèse fermante correspond à une
+    parenthèse ouvrante. C’est le but de la coloration des parenthèses.</p>
+    <div id="script-parens"></div>
+    <script>inject_microalg_editor_in('script-parens', {localStorage: false},
+        '((((((( )))))))\n' +
+        '((((((( ) ) ) ) ) ) )\n' +
+        '(((((((  )  )  )  )  )  )  )');
+    </script>
+    <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
+    au nombre de textes à concaténer :</p>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
         '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
