@@ -4,29 +4,42 @@
 (setq J "#FF0")  # jaune
 (setq V "#0F0")  # vert
 (setq B "#00F")  # bleu
+(setq N "#000")  # noir
 (setq L/2 200)
 (setq L   400)
+(setq fond_blanc '(<xml> rect x 0 y 0 width L height L fill W))
 (<xml> svg width L height L xmlns "http://www.w3.org/2000/svg" xmlns:svg "http://www.w3.org/2000/svg"
+    (<xml> defs
+        (<xml> mask id "masque-r" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
+            (eval fond_blanc)
+            (<xml> ellipse cx L/2 cy L/2 rx 165 ry 125 fill N)
+            (<xml> ellipse cx L   cy L/2 rx 150 ry  95 fill N)
+            (<xml> ellipse cx 0   cy L/2 rx 150 ry  95 fill N)
+        )
+        (<xml> mask id "masque-j" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
+            (eval fond_blanc)
+            (<xml> ellipse cx L/2 cy L/2 rx 135 ry  95 fill N)
+            (<xml> ellipse cx L   cy L/2 rx 150 ry  75 fill N)
+            (<xml> ellipse cx 0   cy L/2 rx 150 ry  75 fill N)
+        )
+        (<xml> mask id "masque-v" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
+            (eval fond_blanc)
+            (<xml> ellipse cx L/2 cy L/2 rx 105 ry  65 fill N)
+            (<xml> ellipse cx L   cy L/2 rx 150 ry  55 fill N)
+            (<xml> ellipse cx 0   cy L/2 rx 150 ry  55 fill N)
+        )
+        (<xml> mask id "masque-b" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
+            (eval fond_blanc)
+            (<xml> ellipse cx L/2 cy L/2 rx  70 ry  35 fill N)
+            (<xml> ellipse cx L   cy L/2 rx 150 ry  35 fill N)
+            (<xml> ellipse cx 0   cy L/2 rx 150 ry  35 fill N)
+        )
+    )
     (<xml> g id "logo-microalg" stroke-opacity 0 transform (pack "rotate(-45 " L/2 " " L/2 ")")
-        (<xml> ellipse id "rouge"    fill R cx L/2 cy L/2 rx 190 ry 150)
-        (<xml> ellipse id "blanc-r1" fill W cx L/2 cy L/2 rx 165 ry 125)
-        (<xml> ellipse id "blanc-r2" fill W cx L   cy L/2 rx 150 ry  95)
-        (<xml> ellipse id "blanc-r3" fill W cx 0   cy L/2 rx 150 ry  95)
-
-        (<xml> ellipse id "jaune"    fill J cx L/2 cy L/2 rx 160 ry 120)
-        (<xml> ellipse id "blanc-j1" fill W cx L/2 cy L/2 rx 135 ry  95)
-        (<xml> ellipse id "blanc-j2" fill W cx L   cy L/2 rx 150 ry  75)
-        (<xml> ellipse id "blanc-j3" fill W cx 0   cy L/2 rx 150 ry  75)
-
-        (<xml> ellipse id "vert"     fill V cx L/2 cy L/2 rx 130 ry  90)
-        (<xml> ellipse id "blanc-v1" fill W cx L/2 cy L/2 rx 105 ry  65)
-        (<xml> ellipse id "blanc-v2" fill W cx L   cy L/2 rx 150 ry  55)
-        (<xml> ellipse id "blanc-v3" fill W cx 0   cy L/2 rx 150 ry  55)
-
-        (<xml> ellipse id "bleu"     fill B cx L/2 cy L/2 rx 100 ry  60)
-        (<xml> ellipse id "blanc-b1" fill W cx L/2 cy L/2 rx  70 ry  35)
-        (<xml> ellipse id "blanc-b2" fill W cx L   cy L/2 rx 150 ry  35)
-        (<xml> ellipse id "blanc-b3" fill W cx 0   cy L/2 rx 150 ry  35)
+        (<xml> ellipse id "rouge" fill R cx L/2 cy L/2 rx 190 ry 150 mask "url(#masque-r)")
+        (<xml> ellipse id "jaune" fill J cx L/2 cy L/2 rx 160 ry 120 mask "url(#masque-j)")
+        (<xml> ellipse id "vert"  fill V cx L/2 cy L/2 rx 130 ry  90 mask "url(#masque-v)")
+        (<xml> ellipse id "bleu"  fill B cx L/2 cy L/2 rx 100 ry  60 mask "url(#masque-b)")
     )
 )
 (bye)
