@@ -77,4 +77,5 @@ Fichiers
 * `README.md` : ce fichier (j’ai toujours rêvé d’écrire ça)
 * `tuto.html` : une page web interactive pour apprendre MicroAlg, et plus
   généralement à faire ses premiers pas en algorithmique et en programmation
+* `visuels` : divers fichiers graphiques comme par exemple le logo
 * `web` : des fichiers de complément pour les `.html` de ce projet
