@@ -1,10 +1,10 @@
 (load "lib/xml.l")
-(setq W "#FFF")  # blanc
-(setq R "#F00")  # rouge
-(setq J "#FF0")  # jaune
-(setq V "#0F0")  # vert
-(setq B "#00F")  # bleu
-(setq N "#000")  # noir
+(setq W "#FFF")     # blanc
+(setq R "#e11d21")  # rouge
+(setq J "#fbca04")  # jaune
+(setq V "#009800")  # vert
+(setq B "#0052cc")  # bleu
+(setq N "#000")     # noir
 (setq L/2 200)
 (setq L   400)
 (setq fond_blanc '(<xml> rect x 0 y 0 width L height L fill W))
@@ -12,25 +12,25 @@
     (<xml> defs
         (<xml> mask id "masque-r" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
             (eval fond_blanc)
-            (<xml> ellipse cx L/2 cy L/2 rx 165 ry 125 fill N)
+            (<xml> ellipse cx L/2 cy L/2 rx 190 ry 125 fill N)
             (<xml> ellipse cx L   cy L/2 rx 150 ry  95 fill N)
             (<xml> ellipse cx 0   cy L/2 rx 150 ry  95 fill N)
         )
         (<xml> mask id "masque-j" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
             (eval fond_blanc)
-            (<xml> ellipse cx L/2 cy L/2 rx 135 ry  95 fill N)
+            (<xml> ellipse cx L/2 cy L/2 rx 160 ry  95 fill N)
             (<xml> ellipse cx L   cy L/2 rx 150 ry  75 fill N)
             (<xml> ellipse cx 0   cy L/2 rx 150 ry  75 fill N)
         )
         (<xml> mask id "masque-v" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
             (eval fond_blanc)
-            (<xml> ellipse cx L/2 cy L/2 rx 105 ry  65 fill N)
+            (<xml> ellipse cx L/2 cy L/2 rx 130 ry  65 fill N)
             (<xml> ellipse cx L   cy L/2 rx 150 ry  55 fill N)
             (<xml> ellipse cx 0   cy L/2 rx 150 ry  55 fill N)
         )
         (<xml> mask id "masque-b" maskUnits "userSpaceOnUse" x 0 y 0 width L height L
             (eval fond_blanc)
-            (<xml> ellipse cx L/2 cy L/2 rx  70 ry  35 fill N)
+            (<xml> ellipse cx L/2 cy L/2 rx  95 ry  35 fill N)
             (<xml> ellipse cx L   cy L/2 rx 150 ry  35 fill N)
             (<xml> ellipse cx 0   cy L/2 rx 150 ry  35 fill N)
         )
