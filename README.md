@@ -54,9 +54,6 @@ Fichiers
 * `INSTALL.md` : documentation complète concernant les différentes manières
   d’installer MicroAlg.
 * scripts d’installation :
-    * `install_ersatz.sh` : pour Ersatz
-      (d’où peut-être le répertoire `ersatz` qui traîne)
-      l’interpréteur officiel de PicoLisp écrit en Java
     * `install_picolisp.sh` : pour l’interpréteur officiel de PicoLisp écrit en
       assembleur et C
       (d’où peut-être le répertoire `picolisp` qui traîne)

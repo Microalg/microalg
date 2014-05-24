@@ -69,11 +69,14 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 Il faut installer les trois versions : le vrai PicoLisp, la version Java et la
 version Javascript (via NodeJS). Plus précisément, installer :
 
-* Une chaîne d’outils de base pour la compilation de projets en C.
-* Java (pas besoin de `javac`).
-* PicoLisp et Ersatz, pour cela voir les fichiers `install...`.
-* [NodeJS](http://nodejs.org/download/) (`npm` compris, le gestionnaire de
-  modules pour NodeJS).
+* PicoLisp, pour cela voir le fichier `install_picolisp.sh` (vous aurez par
+  exemple besoin d’une chaîne d’outils de base pour la compilation de projets
+  en C).
+* Pas besoin d’installer les deux autres implémentations de PicoLisp (Java et
+  NodeJS), mais besoin des plateformes sous-jacentes :
+    * Java (pas besoin de `javac`).
+    * [NodeJS](http://nodejs.org/download/) (`npm` compris, le gestionnaire de
+      modules pour NodeJS).
 * Différents outils, listés dans le fichier `.travis.yml`.
 * Cloner [le dépôt](https://github.com/Microalg/Microalg).
 
@@ -114,17 +117,9 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
     * Obtenir un dossier contenant les différents fichiers de l’archive (et non
       contenant un dossier seul contenant ces fichiers).
     * Renommer ce dernier dossier `microalg` et le déplacer dans `chemin_NPP`.
-* Ersatz
-    * Si besoin, installer Java (si vous n’avez aucune idée de la marche à
-      suivre, essayez [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
-    * Télécharger <http://software-lab.de/ersatz.tgz>.
-    * Extraire avec un logiciel adéquat, par exemple
-      [7-zip](http://www.7-zip.org/). Deux passages seront peut-être
-      nécessaires car c’est un `.tar` dans un `.gz`.
-    * Déplacer le dossier obtenu : `ersatz`, dans `microalg` (que vous avez
-      peut-être mis dans le dossier d’installation Notepad++, `chemin_NPP`,
-      faut suivre…).
-    * Supprimer `ersatz.tgz` et `ersatz.tar`.
+* Si votre ordinateur ne dispose pas de Java, il faut l’installer (si vous
+  n’avez aucune idée de la marche à suivre, essayez
+  [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
 * Configurer Notepad++ :
     * Ouvrir un fichier donné en exemple dans l’archive de MicroAlg, par
       exemple `microalg/exemples/test_demander.malg`.
