@@ -37,6 +37,7 @@ function createRichInput(original) {
         'width': width
     });
 
+    fresh = true;
     original.bind('propertychange keydown keyup input paste click', function(e) {
         var code = (e.keyCode ? e.keyCode : e.which);
         var text = original.val();
@@ -48,6 +49,7 @@ function createRichInput(original) {
         $(newId).height(newHeight);
     });
     original.trigger(jQuery.Event("keydown"));
+    fresh = false;
 }
 
 function colorize(text, pos) {
@@ -71,15 +73,15 @@ function colorize(text, pos) {
             indices.push(idx);
             if (x == startc) ++i;
             o[idx] = { selected: false, type: x, depth: i, idx: idx, pair: -1, extra: escape };
-            if (idx == pos) o[idx].selected = true;
+            if (idx == pos && !fresh) o[idx].selected = true;
             if (x == startc) parens.push(idx);
             else {
                 if (parens.length > 0) {
                     var p = parens.pop();
                     o[idx].pair = p;
-                    if (o[p].selected) o[idx].selected = true;
+                    if (o[p].selected && !fresh) o[idx].selected = true;
                     o[p].pair = idx;
-                    if (o[idx].selected) o[p].selected = true;
+                    if (o[idx].selected && !fresh) o[p].selected = true;
                 }
                 --i
             }
