@@ -5,4 +5,4 @@ install:
   - sudo pip install pexpect
   - sudo pip install lettuce
   - sudo ./install_scripts/fix_lettuce.sh
-script: sh install_scripts/microalg_tests.sh
+script: sh microalg_tests.sh
