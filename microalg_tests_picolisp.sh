@@ -2,7 +2,7 @@
 
 if [ -n "${TRAVIS+x}" ]
 then
-    ./install_picolisp.sh
+    ./install_scripts/install_picolisp.sh
 fi
 PATH=$PATH:`pwd`/picolisp
 echo "Testing with PicoLisp..."
