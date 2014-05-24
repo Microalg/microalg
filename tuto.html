@@ -186,6 +186,28 @@
     <script>inject_microalg_editor_in('afficher-demander', {localStorage: false},
         '(Afficher (Demander))');
     </script>
+    <p>En combinant les commandes <code>Demander</code>,
+    <code>Concaténer</code> et <code>Afficher</code>, nous allons pouvoir coder
+    un premier programme (presque) intéressant : les présentations.</p>
+    <p>Ici, nous effectuons deux affichages successifs. Même s’il y a une
+    demande dans le deuxième, on peut dire que le programme est de la forme :</p>
+    <pre><code>(Afficher ...)
+(Afficher ...)</code></pre>
+    <div id="presentations"></div>
+    <script>inject_microalg_editor_in('presentations', {localStorage: false},
+        '(Afficher "Bonjour, quel est ton nom ?")\n' +
+        '(Afficher (Concaténer "Bonjour " (Demander) " !"))');
+    </script>
+    <p>Comme promis, une vérification que l’exécution se fait bien de la gauche
+    vers la droite :</p>
+    <div id="gauche-droite"></div>
+    <script>inject_microalg_editor_in('gauche-droite', {localStorage: false},
+        '(Afficher (Concaténer\n' +
+        '             (Concaténer "d’abord " (Demander))\n' +
+        '             (Concaténer " ensuite " (Demander))\n' +
+        '          )\n' +
+        ')');
+    </script>
 
     <h2 id="calculs_nombres"><a href="#calculs_nombres">: </a>Calculs avec des nombres</h2>
     <p>MicroAlg sait effectuer des calculs, mais il faut bien les rédiger.
