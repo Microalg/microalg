@@ -53,7 +53,9 @@ Fichiers
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
 * `INSTALL.md` : documentation complète concernant les différentes manières
   d’installer MicroAlg.
-* scripts d’installation :
+* `install_scripts` : scripts d’installation :
+    * `fix_lettuce.sh` : permet d’utiliser `lettuce` avec du texte comprenant
+      des accents
     * `install_picolisp.sh` : pour l’interpréteur officiel de PicoLisp écrit en
       assembleur et C
       (d’où peut-être le répertoire `picolisp` qui traîne)

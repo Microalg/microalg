@@ -4,5 +4,5 @@ install:
   - npm install sync-prompt
   - sudo pip install pexpect
   - sudo pip install lettuce
-  - sudo ./fix_lettuce.sh
-script: sh microalg_tests.sh
+  - sudo ./install_scripts/fix_lettuce.sh
+script: sh install_scripts/microalg_tests.sh
