@@ -26,6 +26,7 @@ body.microalg {
     white-space: nowrap;
 }
 .microalg pre code {
+    display: block;
     white-space: pre;
     position: relative;
 }
