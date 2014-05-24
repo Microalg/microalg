@@ -25,6 +25,7 @@
     Aller directement à :
     <a href="#affichage">Affichage</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
+    <a href="#parentheses">Parentheses</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
     <a href="#contact">Contact</a>.
@@ -99,22 +100,79 @@
     nombre de traductions de cette page Wikipedia !).</p>
     <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
     ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
-    que c’est moins clair que des parenthèses, mais il faudra faire avec.
-    Même si les parenthèses sont déjà assez claire, il est bien pratique de
-    pouvoir savoir par exemple quelle parenthèse fermante correspond à une
-    parenthèse ouvrante. C’est le but de la coloration des parenthèses.</p>
-    <div id="script-parens"></div>
-    <script>inject_microalg_editor_in('script-parens', {localStorage: false},
-        '((((((( )))))))\n' +
-        '((((((( ) ) ) ) ) ) )\n' +
-        '(((((((  )  )  )  )  )  )  )');
-    </script>
+    que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
     <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
     au nombre de textes à concaténer :</p>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
         '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
     </script>
+
+    <h2 id="parentheses"><a href="#parentheses">: </a>Les parenthèses</h2>
+    <p>Même si les parenthèses indiquent déjà assez clairement la structure du
+    programme, il est bien pratique de pouvoir savoir quelle parenthèse
+    fermante correspond à une parenthèse ouvrante (et inversement). C’est le
+    but de la coloration des parenthèses (la parenthèse à droite du curseur et
+    celle qui lui correspond sont en gris).</p>
+    <div id="script-parens-seules"></div>
+    <script>inject_microalg_editor_in('script-parens-seules', {localStorage: false},
+        '((((((( )))))))\n' +
+        '((((((( ) ) ) ) ) ) )\n' +
+        '(((((((  )  )  )  )  )  )  )');
+    </script>
+    <p>Si jamais les parenthèses ne sont pas équilibrées, les parenthèses en
+    trop seront affichées en rouge vif. Essayez !</p>
+    <p>Dans le dernier exemple de la section précédente, nous avons affiché la
+    concaténation de trois textes.</p>
+    <div id="script-concat-rappel"></div>
+    <script>inject_microalg_editor_in('script-concat-rappel', {localStorage: false},
+        '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
+    </script>
+    <p>Comment aurions-nous pu faire la même chose si la commande
+    <code>Concaténer</code> n’acceptait que deux paramètres ?</p>
+    <p>Il aurait suffit :</p>
+    <ol>
+        <li>de prendre les deux premiers (ou les deux derniers, puisque la
+            concaténation est <a href="https://fr.wikipedia.org/wiki/Associativit%C3%A9">associative</a>),</li>
+        <li>de les concaténer,</li>
+        <li>puis de concaténer le résultat au troisième fragment de texte.</li>
+    </ol>
+    <p>Si on commence par la gauche :</p>
+    <div id="script-concat-gauche"></div>
+    <script>inject_microalg_editor_in('script-concat-gauche', {localStorage: false},
+        '(Afficher (Concaténer (Concaténer "du texte, " "du texte, ") "et encore du texte"))');
+    </script>
+    <p>Et si on commence par la droite :</p>
+    <div id="script-concat-droite"></div>
+    <script>inject_microalg_editor_in('script-concat-droite', {localStorage: false},
+        '(Afficher (Concaténer "du texte, " (Concaténer "du texte, " "et encore du texte")))');
+    </script>
+    <p>Si vous trouvez que l’on y comprend rien, c’est normal (quoiqu’avec un
+    peu d’habitude…).</p>
+    <p>Pour y voir plus clair, on peut passer à la ligne à des endroits
+    judicieux. Pour le côté gauche :</p>
+    <div id="script-concat-gauche2"></div>
+    <script>inject_microalg_editor_in('script-concat-gauche2', {localStorage: false},
+        '(Afficher (Concaténer\n' +
+        '             (Concaténer "du texte, " "du texte, ")\n' +
+        '             "et encore du texte"\n' +
+        '          )\n' +
+        ')');
+    </script>
+    <p>Et pour le côté droit :</p>
+    <div id="script-concat-droite2"></div>
+    <script>inject_microalg_editor_in('script-concat-droite2', {localStorage: false},
+        '(Afficher (Concaténer\n' +
+        '             "du texte, "\n' +
+        '             (Concaténer "du texte, " "et encore du texte")\n' +
+        '          )\n' +
+        ')');
+    </script>
+    <p>C’est mieux ?</p>
+    <p>Notez que, comme en maths, les commandes qui sont
+    « les plus à l’intérieur des parenthèses » seront exécutées en premier, en
+    commençant par la gauche (nous allons le vérifier dans la section
+    suivante).</p>
 
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <p>Il est possible de demander une valeur à l’utilisateur :</p>
