@@ -178,6 +178,13 @@ pour mac,
 
 #### Avec PicoLisp
 
+Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
+
 #### Avec Java
 
+Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
+
 #### Avec NodeJS
+
+Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
+
