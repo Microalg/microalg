@@ -28,7 +28,8 @@ dans [PicoLisp](http://picolisp.com). Donc :
   directement PicoLisp dans du code MicroAlg voir par exemple le fichier de
   tests `microalg_tests.malg`.
 
-Voir le [site officiel](http://microalg.info/) pour plus de détails.
+Voir le [site officiel](http://microalg.info/) pour plus de détails, dont le
+code est dans [ce dépôt](https://github.com/Microalg/microalg.github.io).
 
 Installation
 ============
