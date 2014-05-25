@@ -38,6 +38,9 @@ function stdPrint(text, state) {
             repl_elt.val(repl_elt.val() + "\n" + text);
         }
     }
+    if (state.context.type == 'jrepl') {
+        state.context.term.echo(text);
+    }
 }
 
 function stdPrompt() {

@@ -54,6 +54,13 @@ body.microalg {
     margin: 0px;
     margin-left: 3px;
 }
+.microalg .terminal, .microalg .cmd {
+    width: 93%;
+    margin: 0px auto;
+    color: black;
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
 #links {
     text-align: right;
 }

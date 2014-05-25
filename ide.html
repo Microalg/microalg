@@ -13,6 +13,8 @@
     <script type="text/javascript" src="web/parenedit.js"></script>
     <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
     <script src="web/showdown.js"></script>
+    <script src="web/jquery.terminal-min.js"></script>
+    <link href="web/jquery.terminal.css" rel="stylesheet"/>
 </head>
 <body class="microalg">
     <noscript>
@@ -23,6 +25,7 @@
     <div id="content" class="web-ide" style="display:none;">
         <div id="links"><a href="#questce">Qu’est-ce ?</a> - <a href="#instructions">Instructions</a></div>
         <div id="script-container"></div>
+        <div id="repl-container2"></div>
         <div id="repl-container"></div>
         <div id="bla">
             <h1>MicroAlg - web IDE</h1>
@@ -69,6 +72,7 @@
         onload = function () {
             $('#content').show();
             EMULISP_CORE.loadLisp("microalg.l");
+            // Éditeur:
             inject_microalg_editor_in('script-container', {localStorage: true},
                 '# Voici l’éditeur en ligne de MicroAlg.\n' +
                 '# <- le # indique que la fin de la ligne est un commentaire.\n' +
@@ -76,11 +80,53 @@
                 '(Afficher (Aide))');
             var txtarea = $('#script-container').find('.malg-editor').first();
             txtarea.focus().selectRange(txtarea.val().length, txtarea.val().length);
+            // REPL de fortune:
             inject_microalg_repl_in('repl-container',
                 '# Voici la console interactive de MicroAlg.\n' +
                 ': # <- le # indique que la fin de la ligne est un commentaire.\n' +
                 ': # Ctrl + Entrée pour exécuter le code.\n' +
                 ': (Aide)');
+            // jQuery Term:
+            var repl_id = 'repl-container2';
+            $('#' + repl_id).terminal(function(command, term) {
+                if (command !== '') {
+                    // Fetch the relevant state.
+                    EMULISP_CORE.init(emulisp_states[repl_id]);
+                    try {
+                        var result = EMULISP_CORE.eval(command);
+                        if (result != '""') {
+                            term.echo('-> ' + cleanTransient(result.toString()));
+                        }
+                    } catch(e) {
+                        if (e.toString() == "Error: Function 'bye' not supported") {
+                            term.destroy();
+                        } else {
+                            term.error(new String(e));
+                        }
+                    }
+                }
+            }, {
+                greetings: ': # Voici la console interactive de MicroAlg.\n' +
+                           ': # <- le # indique que la fin de la ligne est un commentaire.',
+                name: 'malg_repl',
+                height: 150,
+                prompt: ': ',
+                clear: false,
+                exit: false,
+                keypress: function(e, term) {
+                    // http://stackoverflow.com/questions/23817604/how-to-hook-on-keypress-and-grab-the-current-content-of-the-terminal
+                    setTimeout(function() {
+                        if (false) console.log(term.html());
+                    }, 5);
+                },
+                onInit: function(term) {
+                    // Custom state for a custom display in the REPL.
+                    var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
+                    EMULISP_CORE.init(state_clone);
+                    EMULISP_CORE.currentState().context = {type: 'jrepl', term: term};
+                    emulisp_states[repl_id] = EMULISP_CORE.currentState();
+                }
+            });
         }
     </script>
 </body>
