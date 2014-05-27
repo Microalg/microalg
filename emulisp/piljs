@@ -16,7 +16,7 @@ var emulisp_src = fs.readFileSync('emulisp/emulisp_core.js').toString();
 eval(emulisp_src);
 
 // Process command line args.
-// TODO tp://www.software-lab.de/doc/refL.html#load
+// TODO http://www.software-lab.de/doc/refL.html#load
 var arglist = process.argv.slice(2);
 while (true) {
     var arg = arglist.shift();
@@ -57,3 +57,5 @@ while (true) {
         console.log(e.toString() + "  (" + NO_DEBUG + ")");
     }
 }
+
+// vim: filetype=javascript
