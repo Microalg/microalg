@@ -4,6 +4,11 @@
 fs = require('fs')
 prompt = require('sync-prompt').prompt;
 
+// Override _stdPrint with the official mechanism.
+function stdPrint(text) {
+	console.log(text.replace(/\n$/g,''));
+}
+
 var NO_DEBUG = "piljs -> no debug yet";
 
 // Load EmuLisp.
