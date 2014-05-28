@@ -8,22 +8,29 @@
 "Voir <a href=\"http://microalg.info\">microalg.info</a>."))
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
+(setq commandes '("Aide" "Affecter_a" "Afficher" "Concaténer" "Demander"
+                  "Vrai?" "Faux?"
+                 )
+)
+
 # Aide
 (put 'Aide 'doc (pack
 "Commande qui permet d’obtenir de l’aide."))
 (de Aide syms (let truc (car syms)
-              (let doc (get truc 'doc)
+                   doc (get truc 'doc)
                   (cond
                     ((== truc NIL) (get 'Aide 'text))
+                    ((== truc 'commandes) commandes)
                     (doc (pack "Aide pour `" truc "’:<br />" doc))
                     ((eval truc) (pack "Pas d’aide pour " truc "."))
                     (T (pack "`" truc "’ n’existe pas."))
-                  ))))
+                  )))
 (put 'Aide 'text (pack
 "MicroAlg permet de s’initier à l’algorithmique et à la programmation.<br />"
-"Pour valider une commande, taper <code>Ctrl</code>+<code>Entrée</code>.<br />"
+"Si vous ne l’avez pas déjà fait, commencez par le <a href=http://microalg.info/tuto.html>tutoriel</a>.<br />"
 "<ul>"
-"<li><code>(Aide commande)</code> pour de l’aide sur une commande,</li>"
+"<li><code>(Aide commandes)</code> pour une liste des commandes,</li>"
+"<li><code>(Aide «commande»)</code> (sans «») pour de l’aide sur une commande particulière,</li>"
 "<li><code>version</code> ou <code>apropos</code> pour des informations sur"
 "    MicroAlg.</li>"
 "<ul>"))
