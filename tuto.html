@@ -186,10 +186,16 @@
     <script>inject_microalg_editor_in('afficher-demander', {localStorage: false},
         '(Afficher (Demander))');
     </script>
-    <!--
     <p>En combinant les commandes <code>Demander</code>,
     <code>Concaténer</code> et <code>Afficher</code>, nous allons pouvoir coder
-    un premier programme (presque) intéressant : les présentations.</p>
+    un premier programme (presque) intéressant : les salutations.</p>
+    <p>Avant de l’exécuter, essayez de deviner ce que le programme va faire.</p>
+    <div id="salutations"></div>
+    <script>inject_microalg_editor_in('salutations', {localStorage: false},
+        '(Afficher (Concaténer "Bonjour " (Demander) " !"))');
+    </script>
+    <!--
+    <p>Mieux : les présentations !</p>
     <p>Ici, nous effectuons deux affichages successifs. Même s’il y a une
     demande dans le deuxième affichage, on peut dire que le programme est de la
     forme :</p>
