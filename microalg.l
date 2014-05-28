@@ -13,6 +13,15 @@
                  )
 )
 
+# picolisp.l shimz
+(de glue (c l)
+  (cond
+    ((= 0 (length l)) "")
+    ((= 1 (length l)) (car l))
+    (T                (pack (car l) c  (glue c (cdr l))))
+  )
+)
+
 # Aide
 (put 'Aide 'doc (pack
 "Commande qui permet d’obtenir de l’aide."))
@@ -20,7 +29,7 @@
                    doc (get truc 'doc)
                   (cond
                     ((== truc NIL) (get 'Aide 'text))
-                    ((== truc 'commandes) commandes)
+                    ((== truc 'commandes) (glue " " commandes))
                     (doc (pack "Aide pour `" truc "’:<br />" doc))
                     ((eval truc) (pack "Pas d’aide pour " truc "."))
                     (T (pack "`" truc "’ n’existe pas."))
