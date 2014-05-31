@@ -129,7 +129,7 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
         * faire apparaître tous les fichiers en choisissant :  
           `Tous les fichiers : (*.*)`,
         * choisir `microalg/malgj_npp.bat`.
-    * Ajouter à la main (si possible avec un copier/coller :  
+    * Ajouter à la main (si possible avec un copier/coller) :  
       `"$(NPP_DIRECTORY)" "$(FULL_CURRENT_PATH)"`  
       de façon à obtenir dans la petite boîte :  
       `chemin\vers\malgj_npp.bat "$(NPP_DIRECTORY)" "$(FULL_CURRENT_PATH)"`
