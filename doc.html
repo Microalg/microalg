@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Doc - MicroAlg</title>
+        <meta name="description"
+              content="Tutoriel en ligne pour MicroAlg." />
+        <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="web/showdown.js"></script>
+        <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="web/style.css" />
+    </head>
+    <body class="microalg">
+        <noscript>
+            <div style="color:#CC0000; text-align:center">
+            Besoin de Javascript pour afficher certaines listes.
+            </div>
+        </noscript>
+        <script>EMULISP_CORE.loadLisp("microalg.l");</script>
+        <script type="text/markdown">
+<!--
+<a name="top"></a>
+
+# MicroAlg - Documentation
+
+Aller directement à :
+
+* [Pourquoi MicroAlg](#pourquoimicroalg)
+* [Syntaxe](#syntaxe)
+* [Liste des commandes](#listedescommandes)
+* [Types](#types)
+
+## Avertissement
+
+Que vous soyez débutant ou expert en informatique ou même en programmation,
+cette page n’est pas idéale pour apprendre à utiliser MicroAlg. Voir plutôt le
+[tutoriel officiel](tuto.html).
+
+## Pourquoi MicroAlg ?
+
+Suite à une formation suivie pour enseigner ISN, j’ai décidé vers le printemps
+2012 de me lancer dans un outil pédagogique pour l’algorithmique. Après deux ans
+de profonde réflexion puis de maturation en tiroir, le
+[dépôt GitHub](https://github.com/Microalg/Microalg), sorte de quartier général
+du projet, est créé fin mars 2014. Suivront :
+
+* le [site officiel](http://microalg.info) et
+  [son dépôt](https://github.com/Microalg/microalg.github.io),
+* le [compte Twitter](https://twitter.com/microalg).
+
+Au départ prévu pour être embarqué dans le langage Tcl, il a finalement été
+embarqué dans PicoLisp.
+
+## Caractéristiques principales
+
+MicroAlg se veut :
+
+* **Minimal** : peu d’instructions sont disponibles dans le cœur du langage.
+  Si l’utilisateur a besoin d’autre chose, il doit l’implémenter
+  lui-même. Il n’y a pas de bibliothèque standard, donc il faut s’en constituer
+  une et apprécier celle offerte par les « vrais » langages.
+* **Simple à installer** : car utilisable dans un navigateur.
+* **Connecté à des outils** : de codage graphique, de visualisation…
+
+## Syntaxe
+
+### Instructions
+
+Une *instruction* est constituée de parenthèses, contenant une *commande* et ses
+*arguments* : `(Commande arg1 arg2 ...)`.
+
+Les instructions peuvent être imbriquées. En effet, un des arguments d’une
+commande peut être remplacé par une autre instruction :
+`(Commande1 (Commande2 arg1 arg2 ...) arg3 ...)`.
+
+### Conventions
+
+Le nom d’une commande :
+
+* ne contient pas d’accent
+* commence par une majuscule
+* le « tiret du 8 » ou « underscore » (`_`) en sépare les mots
+* se termine par `?` si retourne un booléen
+
+## Liste des commandes
+
+Cette section est générée directement à partir du fichier `microalg.l`, que
+vous pouvez trouver [ici](microalg.l).
+
+<div id="cmds"></div>
+
+## Types
+
+En cours de rédaction.
+
+On trouvera :
+
+* [booléen](#boolen),
+* [nombre](#nombre),
+* [texte](#texte),
+* [liste](#liste),
+* [exécutable](#excutable).
+
+## Booléen
+
+Deux valeurs : `Vrai` ou `Faux`.
+
+## Nombre
+
+Les nombres de MicroAlg sont ceux de Picolisp.
+
+* Les entiers sont arbitrairement grands, positifs ou négatifs.
+    * [Documentation Picolisp](http://software-lab.de/doc/ref.html#number)
+      (en anglais)
+* Les décimaux sont à [virgule fixe](http://fr.wikipedia.org/wiki/Virgule_fixe).
+    * Le séparateur décimal est `.`.
+    * L’échelle est `*Scl`. <!-- TODO: http://pastebin.com/A6tPQNqT -->
+    * [Documentation Picolisp](http://software-lab.de/doc/ref.html#num-io)
+      (en anglais)
+
+## Texte
+
+Délimités par des guillemets doubles : `"salut"`.
+
+* [Documentation Picolisp](http://software-lab.de/doc/ref.html#transient)
+  (en anglais)
+* [Documentation Picolisp](http://software-lab.de/doc/ref.html#transient-io)
+  (en anglais)
+
+## Liste
+
+En cours de rédaction.
+
+## Exécutable
+
+En cours de rédaction.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+-->
+        </script>
+        <script>
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++){
+            var script = scripts[i];
+            if (script.type != 'text/markdown') continue;
+            var md = script.innerHTML.replace(/^\s<!--*/, '')
+                .replace(/-->\s*$/, '');
+            var markup = new Showdown.converter().makeHtml(md);
+            document.write(markup);
+        }
+        </script>
+        <script>
+            var cmds_as_list = EMULISP_CORE.eval("commandes").toString();
+            var cmds_as_strings = cmds_as_list
+                .slice(1, -1)
+                .split(' ')
+                .map(function (x) {return x.slice(1, -1);});
+            // TOC
+            var toc = $('<div/>').addClass('cmds-list toc').appendTo($('#cmds'));
+            $.each(cmds_as_strings, function(i, cmd) {
+                var span = $('<span/>').appendTo(toc);
+                $("<a/>").attr("href", "#cmd-" + cmd)
+                    .attr("title", "Voir la doc de la commande " + cmd)
+                    .html(cmd)
+                    .appendTo(span);
+                span.html((i==0? "" : " - ") + span.html());
+            });
+            // Defs
+            var defs = $('<div/>').addClass('cmds-list defs').appendTo($('#cmds'));
+            var dl = $('<dl/>').addClass('cmds-list').appendTo(defs);
+            $.each(cmds_as_strings, function(i, cmd) {
+                var cmd_doc = EMULISP_CORE.eval("(get " + cmd + " 'doc)");
+                $('<dt/>').html(cmd).appendTo(dl);
+                $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
+                var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)").slice(1, -1);
+                $("<dd/>").html(cmd_doc).appendTo(dl);
+                // corps fonction $("<dd/>").html(lisp_cmd.props.car.car.name).appendTo(dl);
+            });
+        </script>
+    </body>
+</html>
