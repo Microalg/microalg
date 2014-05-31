@@ -3,7 +3,7 @@ body.microalg {
     margin: 0px auto;
     font-family: Verdana, Arial, sans-serif;
     color: black;
-    background-color: white;
+    background-color: #D1D1D1;
 }
 .microalg a:link {color:#337;}
 .microalg a:visited {color:#333;}
@@ -44,6 +44,7 @@ body.microalg {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    background-color: white;
 }
 #links {
     text-align: right;
