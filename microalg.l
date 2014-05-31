@@ -45,7 +45,7 @@
 "<ul>"))
 
 # L’affichage se fait au travers de la variable globale *StdOut.
-(put 'Affecter_a 'doc (pack
+(put 'Afficher 'doc (pack
 "Commande qui évalue son premier argument et l’affiche.<br />"
 "Attention, certains symboles particuliers comme `aide’ ou `version’ "
 "ont des comportements différents suivant qu’on les évalue, qu’on les "
