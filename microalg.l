@@ -95,5 +95,9 @@
                         (eval bloc_vrai) (eval bloc_faux))))
 
 # Prédicats
+(put 'Vrai? 'doc (pack
+"Prédicat retournant Vrai si son argument est Vrai, et Faux sinon."))
 (de Vrai? (x) (if (= x Vrai) Vrai Faux))
+(put 'Faux? 'doc (pack
+"Prédicat retournant Vrai si son argument est Faux, et Faux sinon."))
 (de Faux? (x) (if (= x Faux) Vrai Faux))
