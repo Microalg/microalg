@@ -26,7 +26,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * …au [cœur de MicroAlg](#développeur) (attention, il n’y a pas
       d’environnement de développement pour Windows ou Android),
     * …à la documentation, tutoriels… chercher ci-dessous un lien pour
-      « utilisation possible sans connextion » adaptée à votre système
+      « utilisation possible sans connexion » adaptée à votre système
       d’exploitation.
 * Installation pour utilisateur
     * Windows
