@@ -103,11 +103,24 @@
     <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
     ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
     que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
+    <p>Une solution pour y voir clair : organiser son code sur différentes
+    lignes :</p>
+    <div id="script-concat-lignes"></div>
+    <script>inject_microalg_editor_in('script-concat-lignes', {localStorage: false},
+        '(Afficher (Concaténer\n' +
+        '             "du texte "\n' +
+        '             "et encore du texte"\n' +
+        '))');
+    </script>
     <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
     au nombre de textes à concaténer :</p>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
-        '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
+        '(Afficher (Concaténer\n' +
+        '             "du texte, "\n' +
+        '             "du texte, "\n' +
+        '             "et encore du texte"\n' +
+        '))');
     </script>
 
     <h2 id="parentheses"><a href="#parentheses">: </a>Les parenthèses</h2>
@@ -128,7 +141,11 @@
     concaténation de trois textes.</p>
     <div id="script-concat-rappel"></div>
     <script>inject_microalg_editor_in('script-concat-rappel', {localStorage: false},
-        '(Afficher (Concaténer "du texte, " "du texte, " "et encore du texte"))');
+        '(Afficher (Concaténer\n' +
+        '             "du texte, "\n' +
+        '             "du texte, "\n' +
+        '             "et encore du texte"\n' +
+        '))');
     </script>
     <p>Comment aurions-nous pu faire la même chose si la commande
     <code>Concaténer</code> n’acceptait que deux paramètres ?</p>
@@ -151,7 +168,7 @@
     </script>
     <p>Si vous trouvez que l’on y comprend rien, c’est normal (quoiqu’avec un
     peu d’habitude…).</p>
-    <p>Pour y voir plus clair, on peut passer à la ligne à des endroits
+    <p>Pour y voir plus clair, il suffit encore passer à la ligne à des endroits
     judicieux. Pour le côté gauche :</p>
     <div id="script-concat-gauche2"></div>
     <script>inject_microalg_editor_in('script-concat-gauche2', {localStorage: false},
@@ -170,7 +187,6 @@
         '          )\n' +
         ')');
     </script>
-    <p>C’est mieux ?</p>
     <p>Notez que, comme en maths, les commandes qui sont
     « les plus à l’intérieur des parenthèses » seront exécutées en premier, en
     commençant par la gauche (nous allons le vérifier dans la section
@@ -194,7 +210,11 @@
     <p>Avant de l’exécuter, essayez de deviner ce que le programme va faire.</p>
     <div id="salutations"></div>
     <script>inject_microalg_editor_in('salutations', {localStorage: false},
-        '(Afficher (Concaténer "Bonjour " (Demander) " !"))');
+        '(Afficher (Concaténer\n' +
+        '             "Bonjour "\n' +
+        '             (Demander)\n' +
+        '             " !"\n' +
+        '))');
     </script>
     <!--
     <p>Mieux : les présentations !</p>
