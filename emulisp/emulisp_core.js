@@ -1,10 +1,10 @@
-/* 13may14jk
+/* 02jun14jk
  * (c) Jon Kleiser
  */
 
 var EMULISP_CORE = (function () {
 
-var VERSION = [2, 0, 0, 3],
+var VERSION = [2, 0, 0, 4],
 	BOXNAT_EXP = "Boxed native object expected",
 	BOOL_EXP = "Boolean expected", CELL_EXP = "Cell expected", LIST_EXP = "List expected",
 	NUM_EXP = "Number expected", SYM_EXP = "Symbol expected", VAR_EXP = "Variable expected",
@@ -374,7 +374,7 @@ function getAlg(c) {
 					do { s = s.cdr; } while ((s !== NIL) && (++k < 0));
 				}
 			} else {
-				return NIL;
+				s = NIL;
 			}
 		} else throw new Error(newErrMsg(SYM_EXP));
 		c = c.cdr;
@@ -753,11 +753,15 @@ var coreFunctions = {
 		s.popValue();	if (s2 != null) s2.popValue();
 		return v;
 	},
+	"ge0": function(c) { var cv = evalLisp(c.car);
+		return ((cv instanceof Number) && (cv >= 0)) ? cv : NIL; },
 	"get": function(c) { return getAlg(evalArgs(c)); },
 	"getl": function(c) { var s = getAlg(evalArgs(c));
 		if (s instanceof Symbol) return s.props;
 		throw new Error(newErrMsg(SYM_EXP, s));
 	},
+	"gt0": function(c) { var cv = evalLisp(c.car);
+		return ((cv instanceof Number) && (cv > 0)) ? cv : NIL; },
 	"idx": function(c) { var s = evalLisp(c.car);
 		if (!(s instanceof Symbol)) return NIL;
 		if (c.cdr === NIL) { mkNew(); idxLinkSorted(s.getVal()); return mkResult(); }
@@ -782,6 +786,8 @@ var coreFunctions = {
 		var v = new Number(ns.getVal() + ((c.cdr !== NIL) ? numeric(evalLisp(c.cdr.car)) : 1));
 		ns.setVal(v); return v;
 	},
+	"le0": function(c) { var cv = evalLisp(c.car);
+		return ((cv instanceof Number) && (cv <= 0)) ? cv : NIL; },
 	"length": function(c) { var cv = evalLisp(c.car), v = 0;
 		if (cv instanceof Number) { v = cv.toString().length; }
 		else if (cv instanceof Symbol) { v = cv.lock ? cv.toValueString().length :
@@ -826,6 +832,8 @@ var coreFunctions = {
 	"loop": function(c) {
 		var v = NIL; while (true) { var r = iter(c); v = r.v; if (r.m) break; }; return v;
 	},
+	"lt0": function(c) { var cv = evalLisp(c.car);
+		return ((cv instanceof Number) && (cv < 0)) ? cv : NIL; },
 	"make": function(c) { mkNew(); prog(c); return mkResult(); },
 	"mapc": function(c) { var r = NIL, fn = evalLisp(c.car), ci = evalArgs(c.cdr);
 		if (! (fn instanceof Symbol)) fn = box(fn);
@@ -851,7 +859,7 @@ var coreFunctions = {
 	"nth": function(c) { var lst = evalArgs(c); c = lst.cdr;
 		do { lst = nth(lst.car, numeric(c.car)); c = c.cdr; } while(c !== NIL); return lst; },
 	"or": function(c) { while (c instanceof Cell) { var v = evalLisp(c.car);
-			if (v !== NIL) return v; c = c.cdr; } return NIL;
+			if (aTrue(v)) return v; c = c.cdr; } return NIL;
 	},
 	// pack has no support for circular lists, same as in PicoLisp
 	"pack": function(c) { return (c !== NIL) ? newTransSymbol(valueToStr(evalArgs(c))) : NIL; },
@@ -1045,6 +1053,9 @@ var coreFunctions = {
 	"usec": function(c) { return new Number(((new Date()).getTime() - cst.startupMillis) * 1000); },
 	"version": function(c) { if (!aTrue(evalLisp(c.car))) _stdPrint(VERSION.join(".") + " JS\n");
 		mkNew(); for (var i=0; i<VERSION.length; i++) { link(VERSION[i]); }; return mkResult(); },
+	"while": function(c) {
+		var v = NIL; while (aTrue(evalLisp(c.car))) { v = prog(c.cdr); }; return v;
+	},
 	"yoke": function(c) { if (cst.mk.length === 0) throw new Error(newErrMsg(NOT_MAK));
 		var tn = (cst.mk[0].t === NIL);
 		do { var h = new Cell(evalLisp(c.car), cst.mk[0].h);
@@ -1091,8 +1102,10 @@ var coreFunctions = {
 		return (d >= 0) ? Math.floor(d) : Math.ceil(d); }); },	// truncated division
 	"=": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) { d = d.cdr; dv = evalLisp(d.car); if (!eqVal(cv, dv)) return NIL; }; return T; },
+	"=0": function(c) { return eqVal(evalLisp(c.car), ZERO) ? ZERO : NIL; },
 	"==": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) { d = d.cdr; dv = evalLisp(d.car); if (cv !== dv) return NIL; }; return T; },
+	"=T": function(c) { return (evalLisp(c.car) === T) ? T : NIL; },
 	"<": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) {
 			d = d.cdr; dv = evalLisp(d.car); if (!ltVal(cv, dv)) return NIL;
@@ -1105,6 +1118,8 @@ var coreFunctions = {
 			cv = dv;
 		}; return T;
 	},
+	"<>": function(c) { var cv = evalLisp(c.car), d = c, dv;
+		while (d.cdr !== NIL) { d = d.cdr; dv = evalLisp(d.car); if (!eqVal(cv, dv)) return T; }; return NIL; },
 	">": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) {
 			d = d.cdr; dv = evalLisp(d.car); if (!ltVal(dv, cv)) return NIL;
@@ -1329,7 +1344,9 @@ var pub = {
 	NIL: NIL, T: T,
 	
 	eval: function(code) {
-		return prog(parseList(new Source(code))).toString();
+		var result = prog(parseList(new Source(code))).toString();
+		A3.setVal(A2.getVal()); A2.setVal(A1.getVal()); A1.setVal(result);
+		return result;
 	}
 }
 
