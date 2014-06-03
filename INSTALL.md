@@ -103,6 +103,22 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
 * Démarrer le serveur dans `microalg` et ouvrir le fichier `microalg\ide.html`
   dans un navigateur.
 
+Notez que pour être totalement indépendant d’Internet, il vous faudra
+télécharger localement une version de *jQuery* [ici](http://jquery.com/download/).
+Vous pourrez prendre une version compressée (*compressed*) de jQuery 1.x ou
+même, si vos utilisateurs n’ont pas IE 6, 7 ou 8, de jQuery 2.x.
+
+En supposant que vous l’avez téléchargée dans `microalg/web`, remplacez dans
+tous vos fichiers `.html`
+
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+
+par
+
+    src="web/jquery-version.min.js"
+
+avec le bon numéro de `version` bien sûr.
+
 #### Avec Java
 
 * Notepad++
@@ -170,6 +186,22 @@ Vous savez comment démarrer un serveur web.
 pour mac, 
     dl: http://sourceforge.net/projects/civetweb/files/ si > 1.5
     mac http://sourceforge.net/projects/civetweb/files/1.5/Civetweb-1.5.dmg/download
+
+Notez que pour être totalement indépendant d’Internet, il vous faudra
+télécharger localement une version de *jQuery* [ici](http://jquery.com/download/).
+Vous pourrez prendre une version compressée (*compressed*) de jQuery 1.x ou
+même, si vos utilisateurs n’ont pas IE 6, 7 ou 8, de jQuery 2.x.
+
+En supposant que vous l’avez téléchargée dans `microalg/web`, remplacez dans
+tous vos fichiers `.html`
+
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+
+par
+
+    src="web/jquery-version.min.js"
+
+avec le bon numéro de `version` bien sûr.
 
 #### Avec PicoLisp
 
