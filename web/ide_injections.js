@@ -100,12 +100,12 @@ function inject_microalg_repl_in(elt_id, msg) {
             $.modal('<div class="web-ide">' + result + '</div>',
                     {onClose: function (dialog) {$.modal.close();repl_elt.focus();}});
         }
-        var stdout = EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name;
-        if (stdout != '' && stdout != 'NIL') {
+        var stdout = EMULISP_CORE.currentState().iSym['*LastStdOut'].cdr.name;
+        if (stdout !== undefined && stdout != '' && stdout != 'NIL') {
             repl_elt.val(repl_elt.val() + "\n" + stdout);
         }
         repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
-        EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name = '';
+        EMULISP_CORE.currentState().iSym['*LastStdOut'].cdr.name = '';
         old_src = repl_elt.val();
     }
 }
