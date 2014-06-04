@@ -9,6 +9,10 @@ function stdPrint(text, state) {
     var target = $('#' + state.context.display_div);
     text = text.replace(/\n$/,'');  // remove last newline
     text = text.slice(1, -1);       // remove enclosing quotes
+    if (target.html() == "&nbsp;" && text != "") {
+        target.html("");            // clean the target
+    }
+    text = text + '<br>';           // add the web new line
     target.html(target.html() + text);
 }
 
