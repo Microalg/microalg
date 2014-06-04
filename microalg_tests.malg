@@ -7,9 +7,9 @@
 		(list
 			'(= "0.1.0" version)
             # Affichage
-			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *StdOut))
-			'(= "Commande 'Afficher'." (prog (setq *StdOut "") (Afficher Afficher) *StdOut))
-			'(= "4" (prog (setq *StdOut "") (Afficher (+ 2 2)) *StdOut))
+			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *LastStdOut))
+			'(= "Deux" (prog (Afficher "Un") (Afficher "Deux") *LastStdOut))
+			'(= "Commande 'Afficher'." (prog (setq *LastStdOut "") (Afficher Afficher) *LastStdOut))
             # Concaténation
             '(= "" (Concaténer))
             '(= "" (Concaténer ""))

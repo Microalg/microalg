@@ -1,3 +1,17 @@
+// Keep a state where microalg is loaded.
+// (We cannot load from here because we'd need ../)
+var microalg_fresh_state = EMULISP_CORE.currentState();
+
+// Editor states are stored with key = div id to print
+var editor_states = {};
+
+function stdPrint(text, state) {
+    var target = $('#' + state.context.display_div);
+    text = text.replace(/\n$/,'');  // remove last newline
+    text = text.slice(1, -1);       // remove enclosing quotes
+    target.html(target.html() + text);
+}
+
 function onCtrlEnter(elt, f) {
     elt.keydown(function (e) {
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
@@ -7,10 +21,17 @@ function onCtrlEnter(elt, f) {
 }
 
 function inject_microalg_editor_in(elt_id, config, msg) {
+    // New state for this editor.
+    var display_target_id = elt_id + '-displaytarget';
+    var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
+    EMULISP_CORE.init(state_clone);
+    EMULISP_CORE.currentState().context = {display_div: display_target_id};
+    editor_states[elt_id] = EMULISP_CORE.currentState();
+    // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
     var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
             '<div class="malg-error" style="color: red;"></div>' +
-            '<div class="malg-display">&nbsp;</div>';
+            '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
     var editor = script_container.find('.malg-editor').first();
     // Load local storage in the editor.
@@ -23,6 +44,9 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     createRichInput(editor);
     onCtrlEnter(editor, ide_action);
     function ide_action(editor_elt) {
+        // Fetch the relevant state.
+        EMULISP_CORE.init(editor_states[editor_elt.attr('id').slice(0, -('-malg-editor'.length))]);
+        // Process src.
         var src = editor_elt.val();
         // createRichInput put the editor in a sub div, that's why we use
         // parent().parent()
@@ -35,13 +59,7 @@ function inject_microalg_editor_in(elt_id, config, msg) {
         } catch(e) {
             error_elt.text(e.toString());
         }
-        var stdout = EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name;
-        if (stdout == '') {
-            stdout = '&nbsp;';
-        }
-        display_elt.html(stdout);
-        EMULISP_CORE.currentState().iSym['*StdOut'].cdr.name = '';
-        if (config.localStorage && typeof(Storage)!=="undefined") {
+        if (config.localStorage && typeof(Storage) !== "undefined") {
             localStorage[key] = src;
         }
     }

@@ -1230,7 +1230,7 @@ function loadJavaScript(fileUrl) {
 }
 
 function _stdPrint(text) {
-	if (typeof stdPrint === "function") stdPrint(text)
+	if (typeof stdPrint === "function") stdPrint(text, cst)
 	else // when function stdPrint is not available in front end
 	//if (!confirm("_stdPrint:\n" + text)) throw new Error("_stdPrint aborted");
 	console.log(text);
