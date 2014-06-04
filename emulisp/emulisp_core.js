@@ -946,11 +946,15 @@ var coreFunctions = {
 	},
 	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
 		if (emuEnv() == 'nodejs') {
-			var prompt = require('sync-prompt').prompt;
+			var _stdPrompt = require('sync-prompt').prompt;
 		} else {
-			var prompt = window.prompt;
+			if (typeof(stdPrompt) != "undefined") {
+				var _stdPrompt = stdPrompt;
+			} else {
+				var _stdPrompt = window.prompt;
+			}
 		}
-		return newTransSymbol(prompt());
+		return newTransSymbol(_stdPrompt());
 	},
 	"rest": function(c) { return cst.evFrames.car.cdr; },
 	"reverse": function(c) { var lst = evalLisp(c.car), r = NIL;

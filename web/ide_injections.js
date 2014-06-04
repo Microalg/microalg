@@ -12,6 +12,10 @@ function stdPrint(text, state) {
     target.html(target.html() + text);
 }
 
+function stdPrompt() {
+    return window.prompt(EMULISP_CORE.eval('*LastStdOut').slice(1, -1));
+}
+
 function onCtrlEnter(elt, f) {
     elt.keydown(function (e) {
         if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {

@@ -80,6 +80,10 @@
 (de Affecter_a arg_lst (set (car arg_lst) (cadr arg_lst)))
 
 # Demander.
+# Avec EmuLisp, les entrées utilisateur se font au travers de la fonction
+# _stdPrompt, surchargée dans ide_injection.js. Dans un navigateur, la dernière
+# ligne ayant été affichée précédemment est réutilisée lors de l’appel à
+# window.prompt.
 (put 'Demander 'doc (pack
 "Commande qui permet de demander une valeur à l’utilisateur."))
 (de Demander () (in NIL (read " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")))
