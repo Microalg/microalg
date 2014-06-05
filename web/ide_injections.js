@@ -3,17 +3,28 @@
 var microalg_fresh_state = EMULISP_CORE.currentState();
 
 // Editor states are stored with key = div id to print
-var editor_states = {};
+var emulisp_states = {};
+
+// The marvellous PicoLisp prompt:
+var malg_prompt = ": ";
 
 function stdPrint(text, state) {
-    var target = $('#' + state.context.display_div);
+    var target = $('#' + state.context.display_elt);
     text = text.replace(/\n$/,'');  // remove last newline
     text = text.slice(1, -1);       // remove enclosing quotes
-    if (target.html() == "&nbsp;" && text != "") {
-        target.html("");            // clean the target
+    if (state.context.type == 'editor') {
+        if (target.html() == "&nbsp;" && text != "") {
+            target.html("");            // clean the target
+        }
+        text = text + '<br>';           // add the web new line
+        target.html(target.html() + text);
     }
-    text = text + '<br>';           // add the web new line
-    target.html(target.html() + text);
+    if (state.context.type == 'repl') {
+        var repl_elt = $('#' + state.context.display_elt);
+        if (text !== undefined && text != '' && text != 'NIL') {
+            repl_elt.val(repl_elt.val() + "\n" + text);
+        }
+    }
 }
 
 function stdPrompt() {
@@ -33,8 +44,8 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     var display_target_id = elt_id + '-displaytarget';
     var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
     EMULISP_CORE.init(state_clone);
-    EMULISP_CORE.currentState().context = {display_div: display_target_id};
-    editor_states[elt_id] = EMULISP_CORE.currentState();
+    EMULISP_CORE.currentState().context = {type: 'editor', display_elt: display_target_id};
+    emulisp_states[elt_id] = EMULISP_CORE.currentState();
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
     var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
@@ -53,7 +64,7 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     onCtrlEnter(editor, ide_action);
     function ide_action(editor_elt) {
         // Fetch the relevant state.
-        EMULISP_CORE.init(editor_states[editor_elt.attr('id').slice(0, -('-malg-editor'.length))]);
+        EMULISP_CORE.init(emulisp_states[editor_elt.attr('id').slice(0, -('-malg-editor'.length))]);
         // Process src.
         var src = editor_elt.val();
         // createRichInput put the editor in a sub div, that's why we use
@@ -74,23 +85,32 @@ function inject_microalg_editor_in(elt_id, config, msg) {
 }
 
 function inject_microalg_repl_in(elt_id, msg) {
-    var malg_prompt = ": ";
+    // Custom state for a custom display in the REPL.
+    var repl_id = elt_id + '-mals-repl';
+    var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
+    EMULISP_CORE.init(state_clone);
+    EMULISP_CORE.currentState().context = {type: 'repl', display_elt: repl_id};
+    emulisp_states[repl_id] = EMULISP_CORE.currentState();
+    // Build the html and bind to ide_action.
     var repl_container = $('#' + elt_id);
     var rows = msg.split('\n').length;
-    var repl_string = '<textarea id="malg-repl" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>';
+    var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>';
     repl_container.html(repl_string);
-    var repl = repl_container.find('.malg-repl').first();
+    var repl = $('#' + repl_id);
     createRichInput(repl);
     onCtrlEnter(repl, repl_action);
     var old_src = malg_prompt;
     function repl_action(repl_elt) {
+        // Fetch the relevant state.
+        EMULISP_CORE.init(emulisp_states[repl_elt.attr('id')]);
         var result = '';
         var repl_content = repl_elt.val();
         var src = repl_content.slice(old_src.length, repl_content.length);
         try {
-            result = EMULISP_CORE.eval(src).toString();
+            result = EMULISP_CORE.eval(src).toString().slice(1, -1);
         } catch(e) {
             if (e.toString() == "Error: Function 'bye' not supported") {
+                // Destroy
                 repl_container.html('');
             } else {
                 repl_elt.val(repl_elt.val() + "\n" + e.toString());
@@ -98,15 +118,8 @@ function inject_microalg_repl_in(elt_id, msg) {
         }
         if (result != '' && result != 'NIL') {
             repl_elt.val(repl_elt.val() + "\n-> " + result);
-            $.modal('<div class="web-ide">' + result + '</div>',
-                    {onClose: function (dialog) {$.modal.close();repl_elt.focus();}});
-        }
-        var stdout = EMULISP_CORE.currentState().iSym['*LastStdOut'].cdr.name;
-        if (stdout !== undefined && stdout != '' && stdout != 'NIL') {
-            repl_elt.val(repl_elt.val() + "\n" + stdout);
         }
         repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
-        EMULISP_CORE.currentState().iSym['*LastStdOut'].cdr.name = '';
         old_src = repl_elt.val();
     }
 }
