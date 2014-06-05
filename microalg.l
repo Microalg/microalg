@@ -25,15 +25,15 @@
 # Aide
 (put 'Aide 'doc (pack
 "Commande qui permet d’obtenir de l’aide."))
-(de Aide syms (let truc (car syms)
-                   doc (get truc 'doc)
-                  (cond
+(de Aide syms (let (truc (car syms)
+                    doc (get truc 'doc))
+                   (cond
                     ((== truc NIL) (get 'Aide 'text))
                     ((== truc 'commandes) (glue " " commandes))
                     (doc (pack "Aide pour `" truc "’:<br />" doc))
                     ((eval truc) (pack "Pas d’aide pour " truc "."))
                     (T (pack "`" truc "’ n’existe pas."))
-                  )))
+                   )))
 (put 'Aide 'text (pack
 "MicroAlg permet de s’initier à l’algorithmique et à la programmation.<br />"
 "Si vous ne l’avez pas déjà fait, commencez par le <a href=http://microalg.info/tuto.html>tutoriel</a>.<br />"
