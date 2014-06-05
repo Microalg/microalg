@@ -36,7 +36,8 @@ Voir <http://microalg.info>.")
                    )))
 (put 'Aide 'text
 "MicroAlg permet de s’initier à l’algorithmique et à la programmation.  
-Si vous ne l’avez pas déjà fait, commencez par le [tutoriel](http://microalg.info/tuto.html).  
+Si vous ne l’avez pas déjà fait, commencez par le
+[tutoriel](http://microalg.info/tuto.html).  
 
 * `(Aide commandes)` pour une liste des commandes,
 * `(Aide «commande»)` (sans «») pour de l’aide sur une commande particulière,
