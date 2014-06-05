@@ -124,7 +124,7 @@ function inject_microalg_repl_in(elt_id, msg) {
                 repl_elt.val(repl_elt.val() + "\n" + e.toString());
             }
         }
-        if (result != EMULISP_CORE.NIL) {
+        if (result != '""') {
             repl_elt.val(repl_elt.val() + "\n-> " + cleanTransient(result));
         }
         repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
