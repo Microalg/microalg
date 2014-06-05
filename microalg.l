@@ -5,7 +5,7 @@
 "l’abscence d’un langage vraiment axé sur la pédagogie.<br />"
 "À l’origine pensé comme DSL au sein de Tcl, il est finalement embarqué dans "
 "PicoLisp.<br />"
-"Voir <a href=\"http://microalg.info\">microalg.info</a>."))
+"Voir <http://microalg.info>."))
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq commandes '("Aide" "Affecter_a" "Afficher" "Concaténer" "Demander"

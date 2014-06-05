@@ -46,6 +46,10 @@ body.microalg {
     border-radius: 5px;
     background-color: white;
 }
+.malg-display p {
+    margin: 0px;
+    margin-left: 3px;
+}
 #links {
     text-align: right;
 }

@@ -16,7 +16,7 @@ function stdPrint(text, state) {
         if (target.html() == "&nbsp;" && text != "") {
             target.html("");            // clean the target
         }
-        text = text + '<br>';           // add the web new line
+        text = new Showdown.converter().makeHtml(text);
         target.html(target.html() + text);
     }
     if (state.context.type == 'repl') {
