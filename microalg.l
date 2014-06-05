@@ -59,6 +59,7 @@
                         a_afficher (if text text (eval first)))
                        (setq *LastStdOut a_afficher)
                        (println a_afficher)
+                       NIL  # Pas de valeur de retour
                   )
 )
 (put 'Afficher 'text "Commande 'Afficher'.")
