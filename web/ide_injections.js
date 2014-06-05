@@ -8,11 +8,16 @@ var emulisp_states = {};
 // The marvellous PicoLisp prompt:
 var malg_prompt = ": ";
 
-function stdPrint(text, state) {
-    var target = $('#' + state.context.display_elt);
+function cleanTransient(text) {
     text = text.replace(/\^J/g,'\n');  // PicoLisp control char
     text = text.replace(/\n$/,'');     // remove last newline
     text = text.slice(1, -1);          // remove enclosing quotes
+    return text;
+}
+
+function stdPrint(text, state) {
+    var target = $('#' + state.context.display_elt);
+    text = cleanTransient(text);
     if (state.context.type == 'editor') {
         if (target.html() == "&nbsp;" && text != "") {
             target.html("");            // clean the target
@@ -118,7 +123,7 @@ function inject_microalg_repl_in(elt_id, msg) {
             }
         }
         if (result != EMULISP_CORE.NIL) {
-            repl_elt.val(repl_elt.val() + "\n-> " + result);
+            repl_elt.val(repl_elt.val() + "\n-> " + cleanTransient(result));
         }
         repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
         old_src = repl_elt.val();
