@@ -10,8 +10,9 @@ var malg_prompt = ": ";
 
 function stdPrint(text, state) {
     var target = $('#' + state.context.display_elt);
-    text = text.replace(/\n$/,'');  // remove last newline
-    text = text.slice(1, -1);       // remove enclosing quotes
+    text = text.replace(/\^J/g,'\n');  // PicoLisp control char
+    text = text.replace(/\n$/,'');     // remove last newline
+    text = text.slice(1, -1);          // remove enclosing quotes
     if (state.context.type == 'editor') {
         if (target.html() == "&nbsp;" && text != "") {
             target.html("");            // clean the target
