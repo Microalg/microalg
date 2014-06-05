@@ -103,11 +103,11 @@ function inject_microalg_repl_in(elt_id, msg) {
     function repl_action(repl_elt) {
         // Fetch the relevant state.
         EMULISP_CORE.init(emulisp_states[repl_elt.attr('id')]);
-        var result = '';
+        var result;
         var repl_content = repl_elt.val();
         var src = repl_content.slice(old_src.length, repl_content.length);
         try {
-            result = EMULISP_CORE.eval(src).toString().slice(1, -1);
+            result = EMULISP_CORE.eval(src);
         } catch(e) {
             if (e.toString() == "Error: Function 'bye' not supported") {
                 // Destroy
@@ -116,7 +116,7 @@ function inject_microalg_repl_in(elt_id, msg) {
                 repl_elt.val(repl_elt.val() + "\n" + e.toString());
             }
         }
-        if (result != '' && result != 'NIL') {
+        if (result != EMULISP_CORE.NIL) {
             repl_elt.val(repl_elt.val() + "\n-> " + result);
         }
         repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
