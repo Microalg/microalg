@@ -76,7 +76,8 @@
                 '# <- le # indique que la fin de la ligne est un commentaire.\n' +
                 '# Ctrl + Entrée pour exécuter le code.\n' +
                 '(Afficher (Aide))');
-            $('#script-container').find('.malg-editor').first().focus();
+            var txtarea = $('#script-container').find('.malg-editor').first();
+            txtarea.focus().selectRange(txtarea.val().length, txtarea.val().length);
             inject_microalg_repl_in('repl-container',
                 '# Voici la console interactive de MicroAlg.\n' +
                 ': # <- le # indique que la fin de la ligne est un commentaire.\n' +
