@@ -76,7 +76,8 @@ function inject_microalg_editor_in(elt_id, config, msg) {
 function inject_microalg_repl_in(elt_id, msg) {
     var malg_prompt = ": ";
     var repl_container = $('#' + elt_id);
-    var repl_string = '<textarea id="malg-repl" class="malg-repl" rows="2" >' + malg_prompt + msg + '</textarea>';
+    var rows = msg.split('\n').length;
+    var repl_string = '<textarea id="malg-repl" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>';
     repl_container.html(repl_string);
     var repl = repl_container.find('.malg-repl').first();
     createRichInput(repl);
