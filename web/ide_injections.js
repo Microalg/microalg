@@ -101,6 +101,30 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     onCtrlEnter(editor, ide_action);
 }
 
+function repl_action(repl_elt) {
+    // Fetch the relevant state.
+    EMULISP_CORE.init(emulisp_states[repl_elt.attr('id')]);
+    var result;
+    var repl_content = repl_elt.val();
+    var src = repl_content.slice(EMULISP_CORE.currentState().old_src.length,
+                                 repl_content.length);
+    try {
+        result = EMULISP_CORE.eval(src);
+    } catch(e) {
+        if (e.toString() == "Error: Function 'bye' not supported") {
+            // Destroy
+            repl_container.html('');
+        } else {
+            repl_elt.val(repl_elt.val() + "\n" + e.toString());
+        }
+    }
+    if (result != '""') {
+        repl_elt.val(repl_elt.val() + "\n-> " + cleanTransient(result));
+    }
+    repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
+    EMULISP_CORE.currentState().old_src = repl_elt.val();
+}
+
 function inject_microalg_repl_in(elt_id, msg) {
     // Custom state for a custom display in the REPL.
     var repl_id = elt_id + '-mals-repl';
@@ -111,34 +135,13 @@ function inject_microalg_repl_in(elt_id, msg) {
     // Build the html and bind to ide_action.
     var repl_container = $('#' + elt_id);
     var rows = msg.split('\n').length;
-    var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>';
+    var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>' +
+        (isTouch()?'<input type="button" onclick="repl_action($(\'#' + repl_id +'\'))" value="OK" class="malg-ok"/>':'');
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
     createRichInput(repl);
     onCtrlEnter(repl, repl_action);
-    var old_src = malg_prompt;
-    function repl_action(repl_elt) {
-        // Fetch the relevant state.
-        EMULISP_CORE.init(emulisp_states[repl_elt.attr('id')]);
-        var result;
-        var repl_content = repl_elt.val();
-        var src = repl_content.slice(old_src.length, repl_content.length);
-        try {
-            result = EMULISP_CORE.eval(src);
-        } catch(e) {
-            if (e.toString() == "Error: Function 'bye' not supported") {
-                // Destroy
-                repl_container.html('');
-            } else {
-                repl_elt.val(repl_elt.val() + "\n" + e.toString());
-            }
-        }
-        if (result != '""') {
-            repl_elt.val(repl_elt.val() + "\n-> " + cleanTransient(result));
-        }
-        repl_elt.val(repl_elt.val() + "\n" + malg_prompt);
-        old_src = repl_elt.val();
-    }
+    EMULISP_CORE.currentState().old_src = malg_prompt;
 }
 
 // http://www.sitepoint.com/jquery-set-focus-character-range/
