@@ -138,7 +138,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     // Build the html and bind to ide_action.
     var repl_container = $('#' + elt_id);
     var rows = msg.split('\n').length;
-    var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" >' + malg_prompt + msg + '</textarea>' +
+    var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" spellcheck="false">' + malg_prompt + msg + '</textarea>' +
         (isTouch()?'<input type="button" onclick="repl_action($(\'#' + repl_id +'\'))" value="OK" class="malg-ok"/>':'');
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
