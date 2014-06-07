@@ -1348,9 +1348,9 @@ var pub = {
 	NIL: NIL, T: T,
 	
 	eval: function(code) {
-		var result = prog(parseList(new Source(code))).toString();
+		var result = prog(parseList(new Source(code)));
 		A3.setVal(A2.getVal()); A2.setVal(A1.getVal()); A1.setVal(result);
-		return result;
+		return result.toString();
 	}
 }
 
