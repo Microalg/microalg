@@ -127,7 +127,7 @@ function repl_action(repl_elt) {
 
 function inject_microalg_repl_in(elt_id, msg) {
     // Custom state for a custom display in the REPL.
-    var repl_id = elt_id + '-mals-repl';
+    var repl_id = elt_id + '-malg-repl';
     var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
     EMULISP_CORE.init(state_clone);
     EMULISP_CORE.currentState().context = {type: 'repl', display_elt: repl_id};
