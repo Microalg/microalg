@@ -132,7 +132,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     }
 }
 
-http://www.sitepoint.com/jquery-set-focus-character-range/
+// http://www.sitepoint.com/jquery-set-focus-character-range/
 $.fn.selectRange = function(start, end) {
     return this.each(function() {
         if (this.setSelectionRange) {
