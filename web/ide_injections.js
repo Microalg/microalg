@@ -8,6 +8,11 @@ var emulisp_states = {};
 // The marvellous PicoLisp prompt:
 var malg_prompt = ": ";
 
+function isTouch() {
+    if ("ontouchstart" in window || navigator.msMaxTouchPoints) return true;
+    return false;
+}
+
 function cleanTransient(text) {
     text = text.replace(/\^J/g,'\n');  // PicoLisp control char
     text = text.replace(/\n$/,'');     // remove last newline
@@ -47,6 +52,29 @@ function onCtrlEnter(elt, f) {
     });
 }
 
+function ide_action(editor_elt) {
+    // Fetch the relevant state.
+    var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
+    EMULISP_CORE.init(emulisp_states[elt_id]);
+    // Process src.
+    var src = editor_elt.val();
+    // createRichInput put the editor in a sub div, that's why we use
+    // parent().parent()
+    var error_elt = editor_elt.parent().parent().find('.malg-error').first();
+    var display_elt = editor_elt.parent().parent().find('.malg-display').first();
+    display_elt.html('&nbsp;');
+    try {
+        EMULISP_CORE.eval(src).toString();
+        error_elt.text('');
+    } catch(e) {
+        error_elt.text(e.toString());
+    }
+    if (typeof(Storage) !== "undefined") {
+        var key = 'microalg_src_' + elt_id;
+        localStorage[key] = src;
+    }
+}
+
 function inject_microalg_editor_in(elt_id, config, msg) {
     // New state for this editor.
     var display_target_id = elt_id + '-displaytarget';
@@ -56,11 +84,12 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     emulisp_states[elt_id] = EMULISP_CORE.currentState();
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
-    var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" >' + msg + '</textarea>' +
+    var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" spellcheck="false">' + msg + '</textarea>' +
+            (isTouch()?'<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>':'') +
             '<div class="malg-error" style="color: red;"></div>' +
             '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
-    var editor = script_container.find('.malg-editor').first();
+    var editor = $('#' + elt_id + '-malg-editor');
     // Load local storage in the editor.
     if (config.localStorage && typeof(Storage)!=="undefined") {
         var key = 'microalg_src_' + elt_id;
@@ -70,26 +99,6 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     }
     createRichInput(editor);
     onCtrlEnter(editor, ide_action);
-    function ide_action(editor_elt) {
-        // Fetch the relevant state.
-        EMULISP_CORE.init(emulisp_states[editor_elt.attr('id').slice(0, -('-malg-editor'.length))]);
-        // Process src.
-        var src = editor_elt.val();
-        // createRichInput put the editor in a sub div, that's why we use
-        // parent().parent()
-        var error_elt = editor_elt.parent().parent().find('.malg-error').first();
-        var display_elt = editor_elt.parent().parent().find('.malg-display').first();
-        display_elt.html('&nbsp;');
-        try {
-            EMULISP_CORE.eval(src).toString();
-            error_elt.text('');
-        } catch(e) {
-            error_elt.text(e.toString());
-        }
-        if (config.localStorage && typeof(Storage) !== "undefined") {
-            localStorage[key] = src;
-        }
-    }
 }
 
 function inject_microalg_repl_in(elt_id, msg) {
