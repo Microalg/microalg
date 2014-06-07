@@ -147,6 +147,47 @@ function inject_microalg_repl_in(elt_id, msg) {
     EMULISP_CORE.currentState().old_src = malg_prompt;
 }
 
+function inject_microalg_jrepl_in(elt_id, msg) {
+    $('#' + elt_id).terminal(function(command, term) {
+        if (command !== '') {
+            // Fetch the relevant state.
+            EMULISP_CORE.init(emulisp_states[elt_id]);
+            try {
+                var result = EMULISP_CORE.eval(command);
+                if (result != '""') {
+                    term.echo('-> ' + cleanTransient(result.toString()));
+                }
+            } catch(e) {
+                if (e.toString() == "Error: Function 'bye' not supported") {
+                    term.destroy();
+                } else {
+                    term.error(new String(e));
+                }
+            }
+        }
+    }, {
+        greetings: msg,
+        name: 'malg_repl',
+        height: 150,
+        prompt: ': ',
+        clear: false,
+        exit: false,
+        keypress: function(e, term) {
+            // http://stackoverflow.com/questions/23817604/how-to-hook-on-keypress-and-grab-the-current-content-of-the-terminal
+            setTimeout(function() {
+                if (false) console.log(term.html());
+            }, 5);
+        },
+        onInit: function(term) {
+            // Custom state for a custom display in the REPL.
+            var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
+            EMULISP_CORE.init(state_clone);
+            EMULISP_CORE.currentState().context = {type: 'jrepl', term: term};
+            emulisp_states[elt_id] = EMULISP_CORE.currentState();
+        }
+    });
+}
+
 // http://www.sitepoint.com/jquery-set-focus-character-range/
 $.fn.selectRange = function(start, end) {
     return this.each(function() {
