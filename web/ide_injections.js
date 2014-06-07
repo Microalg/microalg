@@ -44,7 +44,10 @@ function stdPrint(text, state) {
 }
 
 function stdPrompt() {
-    return window.prompt(EMULISP_CORE.eval('*LastStdOut').slice(1, -1));
+    var last_line_displayed = EMULISP_CORE.eval('*LastStdOut').slice(1, -1);
+    var user_input = window.prompt(last_line_displayed);
+    if (user_input !== null) return user_input;
+    else throw new Error("Opération 'Demander' annulée.")
 }
 
 function onCtrlEnter(elt, f) {
