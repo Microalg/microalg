@@ -56,7 +56,7 @@ les appelle.")
 (de Afficher args (let (first (car args)
                         text (get first 'text)
                         a_afficher (if text text (eval first)))
-                       (setq *LastStdOut a_afficher)
+                       (setq *LastStdOut (if a_afficher a_afficher "?"))
                        (println a_afficher)
                        NIL  # Pas de valeur de retour
                   )
