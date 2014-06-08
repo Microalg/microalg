@@ -858,6 +858,10 @@ var coreFunctions = {
 	"not": function(c) { return (evalLisp(c.car) === NIL) ? T : NIL; },
 	"nth": function(c) { var lst = evalArgs(c); c = lst.cdr;
 		do { lst = nth(lst.car, numeric(c.car)); c = c.cdr; } while(c !== NIL); return lst; },
+	"num?": function(c) { c = evalArgs(c);
+		if (c.car instanceof Number) return c.car;
+		return NIL;
+	},
 	"or": function(c) { while (c instanceof Cell) { var v = evalLisp(c.car);
 			if (aTrue(v)) return v; c = c.cdr; } return NIL;
 	},
@@ -1011,6 +1015,10 @@ var coreFunctions = {
 		}
 		if (cv === NIL) return NIL;
 		throw new Error(newErrMsg(CELL_EXP, cv));
+	},
+	"str?": function(c) { c = evalArgs(c);
+		if (c.car.trans) return c.car;
+		return NIL;
 	},
 	"sym": function(c) { return newTransSymbol(evalLisp(c.car).toString()); },
 	"tail": function(c) {
