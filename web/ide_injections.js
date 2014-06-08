@@ -29,7 +29,9 @@ function stdPrint(text, state) {
         if (target.html() == "&nbsp;" && text != "") {
             target.html("");            // clean the target
         }
-        text = new Showdown.converter().makeHtml(text);
+        if (typeof Showdown != 'undefined') {
+            text = new Showdown.converter().makeHtml(text);
+        }
         target.html(target.html() + text);
     }
     if (state.context.type == 'repl') {
