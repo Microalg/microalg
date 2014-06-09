@@ -93,6 +93,22 @@ les appelle.")
 # >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
 # ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 
+# Conversions
+(put 'Texte 'doc
+"Commande qui retourne le texte correspondant à son paramètre.")
+(de Texte (x) (cond
+                ((str? x) x)
+                ((num? x) (format x))
+                (T NIL)
+              ))
+(put 'Nombre 'doc
+"Commande qui retourne le nombre correspondant à son paramètre textuel.")
+(de Nombre (x) (cond
+                ((num? x) x)
+                ((str? x) (format x))
+                (T NIL)
+              ))
+
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
 (setq Vrai 'Vrai)
