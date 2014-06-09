@@ -753,6 +753,13 @@ var coreFunctions = {
 		s.popValue();	if (s2 != null) s2.popValue();
 		return v;
 	},
+	"format": function(c) { var cv = evalLisp(c.car);
+		// Decimal and thousands separators not implemented yet:
+		// http://www.software-lab.de/doc/refF.html#format
+		if (cv instanceof Number) return newTransSymbol(cv);
+		if (cv.trans) return new Number(parseFloat(cv.name));
+		return NIL;
+	},
 	"ge0": function(c) { var cv = evalLisp(c.car);
 		return ((cv instanceof Number) && (cv >= 0)) ? cv : NIL; },
 	"get": function(c) { return getAlg(evalArgs(c)); },
