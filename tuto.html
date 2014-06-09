@@ -233,7 +233,12 @@
     <div id="presentations"></div>
     <script>inject_microalg_editor_in('presentations', {localStorage: false},
         '(Afficher "Bonjour, quel est ton nom ?")\n' +
-        '(Afficher (Concaténer "Bonjour " (Demander) " !"))');
+        '(Afficher (Concaténer\n' +
+        '             "Bonjour "\n' +
+        '             (Demander)\n' +
+        '             " !"\n' +
+        '          )\n' +
+        ')');
     </script>
     <p>Comme promis, une vérification que l’exécution se fait bien de la gauche
     vers la droite :</p>
