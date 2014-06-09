@@ -131,6 +131,7 @@ Symbol.prototype.setVal = function(val) {
 // It is possible, though, to include these special characters into symbol names
 // by escaping them with a backslash '\'.
 Symbol.prototype.escName = function() {
+	if (this.name instanceof Number) return this.name;
 	var eName = this.name.replace(/\\/g, "\\\\");
 	eName = eName.replace(/\"/g, "\\\"");
 	eName = eName.replace(/\^/g, "\\^");
