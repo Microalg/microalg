@@ -61,7 +61,7 @@ body.microalg {
     background-color: white;
     font-family: 'Courier New', Courier, monospace;
 }
-#links {
+.link-right {
     text-align: right;
 }
 #bla {
