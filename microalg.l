@@ -77,7 +77,7 @@ les appelle.")
 # Gestion des variables
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
-(de Affecter_a arg_lst (set (car arg_lst) (cadr arg_lst)))
+(de Affecter_a arg_lst (set (car arg_lst) (eval (cadr arg_lst))))
 
 # Demander.
 # Avec EmuLisp, les entrées utilisateur se font au travers de la fonction

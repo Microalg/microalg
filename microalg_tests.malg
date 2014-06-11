@@ -20,6 +20,7 @@
             # Gestion des variables
             '(let (x NIL) (= 0 (prog (setq x 0) x)))
             '(let (x NIL) (= 0 (prog (Affecter_a x 0) x)))
+            '(let (x NIL) (= 0 (prog (Affecter_a x (+ 0 0)) x)))
             # Structure conditionnelle
             '(= 1 (Si Vrai 1 0))
             '(= 0 (Si Faux 1 0))
