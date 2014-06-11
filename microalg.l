@@ -122,14 +122,14 @@ les appelle.")
 
 # Prédicats
 (put 'Vrai? 'doc
-"Prédicat retournant Vrai si son argument est Vrai, et Faux sinon.")
+"Prédicat retournant `Vrai` si son argument est `Vrai`, et `Faux` sinon.")
 (de Vrai? (x) (if (= x Vrai) Vrai Faux))
 (put 'Faux? 'doc
-"Prédicat retournant Vrai si son argument est Faux, et Faux sinon.")
+"Prédicat retournant `Vrai` si son argument est `Faux`, et `Faux` sinon.")
 (de Faux? (x) (if (= x Faux) Vrai Faux))
 (put 'Texte? 'doc
-"Prédicat retournant Vrai si son argument est du texte, et Faux sinon.")
+"Prédicat retournant `Vrai` si son argument est du texte, et `Faux` sinon.")
 (de Texte? (x) (if (str? x) Vrai Faux))
 (put 'Nombre? 'doc
-"Prédicat retournant Vrai si son argument est un nombre, et Faux sinon.")
+"Prédicat retournant `Vrai` si son argument est un nombre, et `Faux` sinon.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
