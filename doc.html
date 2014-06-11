@@ -211,7 +211,12 @@ Voici les directions que le projet va prendre :
                 var cmd_doc = EMULISP_CORE.eval("(get " + cmd + " 'doc)");
                 $('<dt/>').html(cmd).appendTo(dl);
                 $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
-                var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)").slice(1, -1);
+                var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
+                cmd_doc = cmd_doc.replace(/\^J/g,'\n');  // PicoLisp control char
+                if (cmd_doc.charAt(0) == '"' && cmd_doc.charAt(cmd_doc.length-1) == '"') {
+                    cmd_doc = cmd_doc.slice(1, -1);      // remove enclosing quotes
+                }
+                cmd_doc = new Showdown.converter().makeHtml(cmd_doc);
                 $("<dd/>").html(cmd_doc).appendTo(dl);
                 // corps fonction $("<dd/>").html(lisp_cmd.props.car.car.name).appendTo(dl);
             });
