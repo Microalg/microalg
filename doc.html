@@ -8,10 +8,16 @@
         <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="web/showdown.js"></script>
+        <script src="web/showup.js"></script>
+        <link type="text/css" href="web/showup.css" rel="stylesheet" />
         <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="web/style.css" />
     </head>
     <body class="microalg">
+        <div class="navbar">
+            <a href="./">Accueil</a> :
+            <a href="#top">Haut de page</a>
+        </div>
         <noscript>
             <div style="color:#CC0000; text-align:center">
             Besoin de Javascript pour afficher certaines listes.
@@ -219,6 +225,12 @@ Voici les directions que le projet va prendre :
                 cmd_doc = new Showdown.converter().makeHtml(cmd_doc);
                 $("<dd/>").html(cmd_doc).appendTo(dl);
                 // corps fonction $("<dd/>").html(lisp_cmd.props.car.car.name).appendTo(dl);
+            });
+        </script>
+        <script>
+            $().showUp('.navbar', {
+                upClass: 'navbar-show',
+                downClass: 'navbar-hide'
             });
         </script>
     </body>

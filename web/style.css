@@ -71,3 +71,12 @@ body.microalg {
 #bla h1 {
     text-align: center;
 }
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 1em;
+    padding: 1em;
+    z-index: 100;
+    background-color: #eee;
+}

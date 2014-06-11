@@ -13,6 +13,8 @@
     <script type="text/javascript" src="web/parenedit.js"></script>
     <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
     <script src="web/showdown.js"></script>
+    <script src="web/showup.js"></script>
+    <link type="text/css" href="web/showup.css" rel="stylesheet" />
 </head>
 <body class="microalg">
     <noscript>
@@ -21,6 +23,10 @@
         </div>
     </noscript>
     <script>EMULISP_CORE.loadLisp("microalg.l");</script>
+    <div class="navbar">
+        <a href="./">accueil</a> :
+        <a href="#top">haut de page</a>
+    </div>
     <h1 id="top">MicroAlg - Tutoriel</h1>
     <p>Pour les bons lecteurs, utiliser <a href="tuto.html">cette page</a>.</p>
     <p>
@@ -390,5 +396,11 @@
     <br>
     <br>
     <br>
+    <script>
+        $().showUp('.navbar', {
+            upClass: 'navbar-show',
+            downClass: 'navbar-hide'
+        });
+    </script>
 </body>
 </html>
