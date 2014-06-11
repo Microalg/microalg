@@ -262,15 +262,33 @@
         '# Ici le deuxième 2 a été remplacé par (+ 1 1) :\n' +
         '(Afficher (+ 2 (+ 1 1)))');
     </script>
-    <p>Autres exemples (papier crayon ou calculatrice autorisés si le calcul
-    mental ne suit pas).</p>
+    <div id="script-assoc"></div>
+    <script>inject_microalg_editor_in('script-assoc', {localStorage: false},
+        '# Pour effectuer 2+2+2, on peut faire, au choix :\n' +
+        '(Afficher (+ 2 (+ 2 2)))\n' +
+        '(Afficher (+ (+ 2 2) 2))\n' +
+        '# Mais pour plus de lisibilité, les opérations associatives\n' +
+        '# acceptent plusieurs paramètres:\n' +
+        '(Afficher (+ 2 2 2))');
+    </script>
+    <p>Autres exemples avec <code>+</code>, <code>-</code>, <code>*</code> et
+    <code>/</code> (papier crayon ou calculatrice autorisés si vous n’êtes pas
+    fort en calcul mental).</p>
     <div id="script-calc1"></div>
     <script>inject_microalg_editor_in('script-calc1', {localStorage: false},
-        '(Afficher (+ 1 2 3 4 5))');
+        '(Afficher (- 7 (+ 2 3)))');
     </script>
     <div id="script-calc2"></div>
     <script>inject_microalg_editor_in('script-calc2', {localStorage: false},
+        '(Afficher (+ 1 2 3 4 5))');
+    </script>
+    <div id="script-calc3"></div>
+    <script>inject_microalg_editor_in('script-calc3', {localStorage: false},
         '(Afficher (+ 2 (* 5 3)))');
+    </script>
+    <div id="script-calc4"></div>
+    <script>inject_microalg_editor_in('script-calc4', {localStorage: false},
+        '(Afficher (/ 6 (+ 1 1 1)))');
     </script>
 
     <h2 id="fin">Fin</h2>
