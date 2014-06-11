@@ -30,6 +30,7 @@
     <a href="#parentheses">Parentheses</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
+    <a href="#calculs_nombres_demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -293,6 +294,82 @@
     <script>inject_microalg_editor_in('script-calc4', {localStorage: false},
         '(Afficher (/ 6 (+ 1 1 1)))');
     </script>
+
+    <h2 id="calculs_nombres_demandes"><a href="#calculs_nombres_demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
+    <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
+    l’utilisateur. Mais les opérations <code>+</code>, <code>-</code>,
+    <code>*</code> et <code>/</code> ne travaillent qu'avec des nombres et non
+    avec du texte. Essayons avec l’exemple ci-dessous, en répondant par exemple
+    « 1 » pour calculer « 1 + 1 » :</p>
+    <div id="script-pas-nombre"></div>
+    <script>inject_microalg_editor_in('script-pas-nombre', {localStorage: false},
+        '(Afficher (+ 1 (Demander)))');
+    </script>
+    </p>C'est la première fois que dans ce tutoriel nous faisons cette
+    distinction. On dira que :</p>
+    <ul>
+        <li><code>0</code>, <code>1</code> ou <code>2</code>… sont de
+            <em>type</em> « nombre »</li>
+        <li><code>"salut"</code> est de <em>type</em> « texte » ou « chaîne de
+            caractères »</li>
+    </ul>
+    <p>Nous verrons d'autres types plus loin. Pour l'instant, nous avons les
+    nouvelles commandes :</p>
+    <ul>
+        <li><code>Texte?</code> et <code>Nombre?</code>, qui nous
+        permettent de savoir si une valeur est d’un certain type,</li>
+        <li><code>Texte</code> et <code>Nombre</code>, qui renvoient une
+        nouvelle valeur, convertie avec le bon type.</li>
+    </ul>
+    <div id="script-texte"></div>
+    <script>inject_microalg_editor_in('script-texte', {localStorage: false},
+        '(Afficher (Texte? "2"))\n' +
+        '(Afficher (Texte? 2))\n' +
+        '(Afficher (Texte? (Texte 2)))');
+    </script>
+    <div id="script-nombre"></div>
+    <script>inject_microalg_editor_in('script-nombre', {localStorage: false},
+        '(Afficher (Nombre? 2))\n' +
+        '(Afficher (Nombre? "2"))\n' +
+        '(Afficher (Nombre? (Nombre "2")))');
+    </script>
+    <p>Pour demander un nombre, il faut donc utiliser une combinaison de
+    <code>Demander</code> et de <code>Nombre</code>. Le premier exemple
+    devient :</p>
+    <div id="script-demander-nombre"></div>
+    <script>inject_microalg_editor_in('script-demander-nombre', {localStorage: false},
+        '(Afficher (+ 1 (Nombre (Demander))))');
+    </script>
+    <p>Plus tard, vous pourrez vous-même créer une commande qui sera un
+    raccourci pour cette combinaison de <code>Nombre</code> et de
+    <code>Demander</code> : <code>DemanderNbre</code>.</p>
+    <p>Pour finir cette section en beauté, voici un programme qui réutilise
+    tout ce que l’on a appris jusqu’ici. Pourrez-vous deviner ce qu’il va
+    afficher ?</p>
+    <div id="script-incrementation"></div>
+    <script>inject_microalg_editor_in('script-incrementation', {localStorage: false},
+        '(Afficher (Concaténer\n' +
+        '              "Un de plus: "\n' +
+        '              (Texte (+\n' +
+        '                      1\n' +
+        '                      (Nombre (Demander))\n' +
+        '                     )\n' +
+        '              )\n' +
+        '))');
+    </script>
+    <p><strong>Rappel</strong> : l’exécution se fait de l’intérieur vers
+    l’extérieur.  Voici donc ce que fait ce petit programme, dans l’ordre
+    d’exécution :</p>
+    <ol>
+        <li>demander une valeur à l’utilisateur,</li>
+        <li>convertir le texte reçu en nombre,</li>
+        <li>ajouter 1,</li>
+        <li>convertir le résultat en texte,</li>
+        <li>le concaténer avec le début de la phrase.</li>
+    </ol>
+    <p>Pour résumer en une phrase : « le programme affiche la concaténation
+    de <code>"Un de plus: "</code> avec le texte correspondant à la somme de 1
+    avec le nombre que l’utilisateur a tapé ».</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si ça vous a plu et que vous avez une envie de créer
