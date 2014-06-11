@@ -121,8 +121,9 @@ function repl_action(repl_elt) {
         result = EMULISP_CORE.eval(src);
     } catch(e) {
         if (e.toString() == "Error: Function 'bye' not supported") {
-            // Destroy
-            repl_container.html('');
+            // Destroy the textarea (parent.parent is because of parenedit).
+            repl_elt.parent().parent().html('');
+            return;
         } else {
             repl_elt.val(repl_elt.val() + "\n" + e.toString());
         }
