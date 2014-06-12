@@ -126,13 +126,16 @@ avec le bon numéro de `version` bien sûr.
       d’éditeur de fichiers et qui lancera leur exécution d’un simple `F5` (une
       sorte d’environnement de développement intégré,
       ou [IDE](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement_int%C3%A9gr%C3%A9)).
-    * Repérer où Notepad++ a été installé. On notera `chemin_NPP\notepad++.exe`.
+    * Il est tout à fait possible de l’installer sur un disque amovible. Ainsi,
+      vous pouvez garder votre environnement de travail avec vous.
 * MicroAlg
     * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
     * Extraire l’archive quelque part, puis supprimer cette archive.
     * Obtenir un dossier contenant les différents fichiers de l’archive (et non
       contenant un dossier seul contenant ces fichiers).
-    * Renommer ce dernier dossier `microalg` et le déplacer dans `chemin_NPP`.
+    * Renommer ce dernier dossier `microalg`.
+    * Déplacer ce dossier `microalg` afin de ne pas avoir d’espaces dans son
+      chemin. Le lecteur amovible devrait faire l’affaire.
 * Si votre ordinateur ne dispose pas de Java, il faut l’installer (si vous
   n’avez aucune idée de la marche à suivre, essayez
   [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
@@ -146,10 +149,12 @@ avec le bon numéro de `version` bien sûr.
           `Tous les fichiers : (*.*)`,
         * choisir `microalg/malgj_npp.bat`.
     * Ajouter à la main (si possible avec un copier/coller) :  
-      `"$(NPP_DIRECTORY)" "$(FULL_CURRENT_PATH)"`  
+      `"$(FULL_CURRENT_PATH)"`  
       de façon à obtenir dans la petite boîte :  
-      `chemin\vers\malgj_npp.bat "$(NPP_DIRECTORY)" "$(FULL_CURRENT_PATH)"`
+      `chemin\vers\malgj_npp.bat "$(FULL_CURRENT_PATH)"`
     * Valider avec `Entrée` ou le bouton `Run`.
+    * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
+      enregistrer cette commande et même lui associer un raccourci clavier.
 * Et voilà.
 
 #### Avec NodeJS
