@@ -9,7 +9,8 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq commandes '("Aide" "Affecter_a" "Afficher" "Concaténer" "Demander"
-                  "Vrai?" "Faux?"
+                  "Texte" "Nombre"
+                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
                  )
 )
 
@@ -114,6 +115,8 @@ les appelle.")
 (setq Vrai 'Vrai)
 (put 'Vrai 'doc "Booléen valant Faux.")
 (setq Faux 'Faux)
+(put 'Si 'doc
+"Structure conditionnelle.")
 (de Si arg_lst (let (condition (car arg_lst)
                      bloc_vrai (cadr arg_lst)
                      bloc_faux (caddr arg_lst))
