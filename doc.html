@@ -84,7 +84,9 @@ Une *instruction* est constituée de parenthèses, contenant une *commande* et s
 
 Les instructions peuvent être imbriquées. En effet, un des arguments d’une
 commande peut être remplacé par une autre instruction :
-`(Commande1 (Commande2 arg1 arg2 ...) arg3 ...)`.
+`(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`.  
+Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
+premier.
 
 ### Conventions
 
