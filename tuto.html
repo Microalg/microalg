@@ -103,11 +103,11 @@
     </script>
     <p>Pour « concaténer » deux textes, c’est-à-dire
     <a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">les mettre bout-à-bout</a>,
-    on utilise la commande <code>Concaténer</code>. Dans l’exemple suivant,
+    on utilise la commande <code>Concatener</code>. Dans l’exemple suivant,
     on affiche la concaténation de deux textes :</p>
     <div id="script-concat"></div>
     <script>inject_microalg_editor_in('script-concat', {localStorage: false},
-        '(Afficher (Concaténer "du texte " "et encore du texte"))');
+        '(Afficher (Concatener "du texte " "et encore du texte"))');
     </script>
     <p>Noter les parenthèses qui s’emboîtent. L’emboîtement des parenthèses est
     la base de MicroAlg, et plus généralement des langages de type
@@ -123,7 +123,7 @@
     lignes :</p>
     <div id="script-concat-lignes"></div>
     <script>inject_microalg_editor_in('script-concat-lignes', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "du texte "\n' +
         '             "et encore du texte"\n' +
         '))');
@@ -132,7 +132,7 @@
     au nombre de textes à concaténer :</p>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "du texte, "\n' +
         '             "du texte, "\n' +
         '             "et encore du texte"\n' +
@@ -159,14 +159,14 @@
     concaténation de trois textes.</p>
     <div id="script-concat-rappel"></div>
     <script>inject_microalg_editor_in('script-concat-rappel', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "du texte, "\n' +
         '             "du texte, "\n' +
         '             "et encore du texte"\n' +
         '))');
     </script>
     <p>Comment aurions-nous pu faire la même chose si la commande
-    <code>Concaténer</code> n’acceptait que deux paramètres ?</p>
+    <code>Concatener</code> n’acceptait que deux paramètres ?</p>
     <p>Il aurait suffit :</p>
     <ol>
         <li>de prendre les deux premiers (ou les deux derniers, puisque la
@@ -177,12 +177,12 @@
     <p>Si on commence par la gauche :</p>
     <div id="script-concat-gauche"></div>
     <script>inject_microalg_editor_in('script-concat-gauche', {localStorage: false},
-        '(Afficher (Concaténer (Concaténer "du texte, " "du texte, ") "et encore du texte"))');
+        '(Afficher (Concatener (Concatener "du texte, " "du texte, ") "et encore du texte"))');
     </script>
     <p>Et si on commence par la droite :</p>
     <div id="script-concat-droite"></div>
     <script>inject_microalg_editor_in('script-concat-droite', {localStorage: false},
-        '(Afficher (Concaténer "du texte, " (Concaténer "du texte, " "et encore du texte")))');
+        '(Afficher (Concatener "du texte, " (Concatener "du texte, " "et encore du texte")))');
     </script>
     <p>Si vous trouvez que l’on y comprend rien, c’est normal (quoiqu’avec un
     peu d’habitude…).</p>
@@ -190,8 +190,8 @@
     judicieux. Pour le côté gauche :</p>
     <div id="script-concat-gauche2"></div>
     <script>inject_microalg_editor_in('script-concat-gauche2', {localStorage: false},
-        '(Afficher (Concaténer\n' +
-        '             (Concaténer "du texte, " "du texte, ")\n' +
+        '(Afficher (Concatener\n' +
+        '             (Concatener "du texte, " "du texte, ")\n' +
         '             "et encore du texte"\n' +
         '          )\n' +
         ')');
@@ -199,9 +199,9 @@
     <p>Et pour le côté droit :</p>
     <div id="script-concat-droite2"></div>
     <script>inject_microalg_editor_in('script-concat-droite2', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "du texte, "\n' +
-        '             (Concaténer "du texte, " "et encore du texte")\n' +
+        '             (Concatener "du texte, " "et encore du texte")\n' +
         '          )\n' +
         ')');
     </script>
@@ -223,12 +223,12 @@
         '(Afficher (Demander))');
     </script>
     <p>En combinant les commandes <code>Demander</code>,
-    <code>Concaténer</code> et <code>Afficher</code>, nous allons pouvoir coder
+    <code>Concatener</code> et <code>Afficher</code>, nous allons pouvoir coder
     un premier programme (presque) intéressant : les salutations.</p>
     <p>Avant de l’exécuter, essayez de deviner ce que le programme va faire.</p>
     <div id="salutations"></div>
     <script>inject_microalg_editor_in('salutations', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "Bonjour "\n' +
         '             (Demander)\n' +
         '             " !"\n' +
@@ -243,7 +243,7 @@
     <div id="presentations"></div>
     <script>inject_microalg_editor_in('presentations', {localStorage: false},
         '(Afficher "Bonjour, quel est ton nom ?")\n' +
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '             "Bonjour "\n' +
         '             (Demander)\n' +
         '             " !"\n' +
@@ -254,9 +254,9 @@
     vers la droite :</p>
     <div id="gauche-droite"></div>
     <script>inject_microalg_editor_in('gauche-droite', {localStorage: false},
-        '(Afficher (Concaténer\n' +
-        '             (Concaténer "d’abord " (Demander))\n' +
-        '             (Concaténer " ensuite " (Demander))\n' +
+        '(Afficher (Concatener\n' +
+        '             (Concatener "d’abord " (Demander))\n' +
+        '             (Concatener " ensuite " (Demander))\n' +
         '          )\n' +
         ')');
     </script>
@@ -363,7 +363,7 @@
     afficher ?</p>
     <div id="script-incrementation"></div>
     <script>inject_microalg_editor_in('script-incrementation', {localStorage: false},
-        '(Afficher (Concaténer\n' +
+        '(Afficher (Concatener\n' +
         '              "Un de plus: "\n' +
         '              (Texte (+\n' +
         '                      1\n' +

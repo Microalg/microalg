@@ -8,7 +8,7 @@ PicoLisp.
 Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
-(setq commandes '("Aide" "Affecter_a" "Afficher" "Concaténer" "Demander"
+(setq commandes '("Aide" "Affecter_a" "Afficher" "Concatener" "Demander"
                   "Texte" "Nombre"
                   "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
                  )
@@ -64,10 +64,10 @@ les appelle.")
 )
 (put 'Afficher 'text "Commande 'Afficher'.")
 
-# Concaténer
-(put 'Concaténer 'doc
+# Concatener
+(put 'Concatener 'doc
 "Commande qui concatène les textes passés en paramètre.")
-(de Concaténer @ (let (
+(de Concatener @ (let (
                        result (pack (rest))
                       )
                       (if result
