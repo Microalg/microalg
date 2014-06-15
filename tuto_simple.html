@@ -37,6 +37,7 @@
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
     <a href="#calculs_nombres_demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
+    <a href="#booleens">Booléens</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -376,6 +377,78 @@
     <p>Pour résumer en une phrase : « le programme affiche la concaténation
     de <code>"Un de plus: "</code> avec le texte correspondant à la somme de 1
     avec le nombre que l’utilisateur a tapé ».</p>
+
+    <h2 id="booleens"><a href="#booleens">: </a>Calculs avec des booléens</h2>
+    <p>Les commandes <code>Texte?</code> et <code>Nombre?</code> de la section
+     précédente sont particulières car :</p>
+    <ul>
+        <li>elles se terminent par <code>?</code>,</li>
+        <li>elles retournent des valeurs spéciales : <code>Vrai</code> ou
+            <code>Faux</code>.</li>
+    </ul>
+    <p>Ces valeurs spéciales <code>Vrai</code> et <code>Faux</code> sont d’un
+    type nouveau. Ce ne sont ni des nombres ni du texte, mais des
+    <em>booléens</em> (de <a href="http://fr.wikipedia.org/wiki/George_Boole">George Boole</a>).
+    Un booléen ne peut avoir qu’une de ces deux valeurs.</p>
+    <p>Les commandes qui retournent un booléen sont appelées des
+     <em>prédicats</em>. Les seuls prédicats de MicroAlg qui ne se terminent
+     pas par <code>?</code> sont :</p>
+    <ul>
+        <li><code>=</code>, qui teste l’égalité de deux valeurs (c’est-à-dire
+            retourne <code>Vrai</code> si les deux valeurs sont égales,
+            <code>Faux</code> sinon),</li>
+        <li><code>=/</code>, qui teste la non égalité de deux valeurs,</li>
+        <li>concernant les nombres uniquement :</li>
+        <ul>
+            <li><code>&lt;</code>, strictement inférieur</li>
+            <li><code>&lt;=</code>, inférieur ou égal</li>
+            <li><code>&gt;</code>, strictement supérieur</li>
+            <li><code>&gt;=</code>, supérieur ou égal</li>
+        </ul>
+    </ul>
+    <p><code>=</code> et <code>=/</code> peuvent comparer des booléens.
+    Essayez de deviner ce que va afficher le programme suivant :</p>
+    <div id="script-predicats-booleens"></div>
+    <script>inject_microalg_editor_in('script-predicats-booleens', {localStorage: false},
+        '(Afficher (= Vrai Vrai))\n' +
+        '(Afficher (= Vrai Faux))\n' +
+        '(Afficher (= Faux Vrai))\n' +
+        '(Afficher (= Faux Faux))\n' +
+        '(Afficher (=/ Vrai Vrai))\n' +
+        '(Afficher (=/ Vrai Faux))\n' +
+        '');
+    </script>
+    <p>Concernant les nombres, pas de surprise :</p>
+    <div id="script-predicats-nombres"></div>
+    <script>inject_microalg_editor_in('script-predicats-nombres', {localStorage: false},
+        '(Afficher (= 1 1))\n' +
+        '(Afficher (= 1 2))\n' +
+        '(Afficher (= 2 1))\n' +
+        '(Afficher (= 2 2))\n' +
+        '(Afficher (=/ 1 1))\n' +
+        '(Afficher (=/ 1 2))\n' +
+        '');
+    </script>
+    <p>Pas de surprise non plus pour comparer du texte :</p>
+    <div id="script-predicats-textes"></div>
+    <script>inject_microalg_editor_in('script-predicats-textes', {localStorage: false},
+        '(Afficher (= "salut" "salut"))\n' +
+        '(Afficher (= "salut" "bonjour"))\n' +
+        '(Afficher (= "bonjour" "salut"))\n' +
+        '(Afficher (= "bonjour" "bonjour"))\n' +
+        '(Afficher (=/ "salut" "salut"))\n' +
+        '(Afficher (=/ "salut" "bonjour"))\n' +
+        '');
+    </script>
+    <p>À vous maintenant de tester les comparaisons entre nombres ! Il y a
+    quatre commandes : <code>&lt;</code>, <code>&lt;=</code>,
+    <code>&gt;</code> et <code>&gt;=</code>, mais aussi différentes
+    combinaisons de nombres possibles.</p>
+    <div id="script-predicats-comparaisons"></div>
+    <script>inject_microalg_editor_in('script-predicats-comparaisons', {localStorage: false},
+        '(Afficher (< 0 1))\n' +
+        '');
+    </script>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si ça vous a plu et que vous avez une envie de créer
