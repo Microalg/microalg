@@ -10,7 +10,8 @@ Voir <http://microalg.info>.")
 
 (setq commandes '("Aide" "Affecter_a" "Afficher" "Concatener" "Demander"
                   "Texte" "Nombre"
-                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?" "=" "=/"
+                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
+                  "=" "=/" "<" "<=" ">" ">="
                  )
 )
 
@@ -151,3 +152,20 @@ et `Faux` sinon.")
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 différentes, et `Faux` sinon.")
 (de =/ (x y) (if (<> x y) Vrai Faux))
+(put '< 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
+dans l’ordre croissant
+(strictement), et `Faux` sinon.")
+(de < (x y) (ifn (ge0 (- x y)) Vrai Faux))
+(put '<= 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
+dans l’ordre croissant.")
+(de <= (x y) (if (le0 (- x y)) Vrai Faux))
+(put '> 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
+dans l’ordre décroissant (strictement), et `Faux` sinon.")
+(de > (x y) (ifn (le0 (- x y)) Vrai Faux))
+(put '>= 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
+dans l’ordre décroissant.")
+(de >= (x y) (if (ge0 (- x y)) Vrai Faux))
