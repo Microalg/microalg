@@ -184,13 +184,20 @@ Bref, c’est pas encore ça.
 
 #### Hors ligne
 
-terminal et python2
+Pour démarrer un serveur grâce à Python2 (qui doit être installé par défaut
+sur votre machine) :
 
-Vous savez comment démarrer un serveur web.
+* Ouvrir un terminal
+* Naviguer vers `microalg`
+* Lancer la commande `python -m SimpleHTTPServer 8080`
+* Vous pouvez accéder par exemple au tutoriel à l’adresse :  
+  `http://127.0.0.1:8080/tuto.html`
 
+<!--
 pour mac, 
     dl: http://sourceforge.net/projects/civetweb/files/ si > 1.5
     mac http://sourceforge.net/projects/civetweb/files/1.5/Civetweb-1.5.dmg/download
+-->
 
 Notez que pour être totalement indépendant d’Internet, il vous faudra
 télécharger localement une version de *jQuery* [ici](http://jquery.com/download/).
