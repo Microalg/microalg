@@ -206,11 +206,12 @@ Voici les directions que le projet va prendre :
             var toc = $('<div/>').addClass('cmds-list toc').appendTo($('#cmds'));
             $.each(cmds_as_strings, function(i, cmd) {
                 var span = $('<span/>').appendTo(toc);
+                var code = $('<code/>').appendTo(span);
                 $("<a/>").attr("href", "#cmd-" + cmd)
                     .attr("title", "Voir la doc de la commande " + cmd)
                     .html(cmd)
-                    .appendTo(span);
-                span.html((i==0? "" : " - ") + span.html());
+                    .appendTo(code);
+                span.html((i==0? "" : " ") + span.html());
             });
             // Defs
             var defs = $('<div/>').addClass('cmds-list defs').appendTo($('#cmds'));
