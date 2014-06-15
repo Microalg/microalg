@@ -63,6 +63,7 @@ Fichiers
 * `LICENSE` : la licence
 * `malg` : exécutable permettant d’exécuter un `.malg` avec PicoLisp (ASM/C)
 * `malgj` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java)
+* `malgj.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows
 * `malgjs` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * tests :
@@ -71,6 +72,7 @@ Fichiers
     * `microalg_tests_features.sh` : de quoi lancer les tests de fonctionnalité
     * `microalg_tests_emulisp.sh` :  de quoi lancer les tests avec Node et EmuLisp
     * `microalg_tests_ersatz.sh` :   de quoi lancer les tests avec Ersatz
+    * `microalg_tests_ersatz.bat` :   de quoi lancer les tests avec Ersatz sous Windows
     * `microalg_tests_picolisp.sh` : de quoi lancer les tests avec Ersatz
     * `microalg_tests.sh` :  de quoi lancer les tests sur toutes les
                              plateformes possibles, features non comprises
