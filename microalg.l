@@ -10,7 +10,7 @@ Voir <http://microalg.info>.")
 
 (setq commandes '("Aide" "Affecter_a" "Afficher" "Concatener" "Demander"
                   "Texte" "Nombre"
-                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
+                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?" "=" "=/"
                  )
 )
 
@@ -122,19 +122,28 @@ les appelle.")
 (de Si arg_lst (let (condition (car arg_lst)
                      bloc_vrai (cadr arg_lst)
                      bloc_faux (caddr arg_lst))
-                    (if (= Vrai (eval condition))
+                    (if (<> Faux (eval condition))  # = retourne Vrai ou Faux
                         (eval bloc_vrai) (eval bloc_faux))))
 
 # Prédicats
 (put 'Vrai? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`, et `Faux` sinon.")
-(de Vrai? (x) (if (= x Vrai) Vrai Faux))
+(de Vrai? (x) (if (<> x Faux) Vrai Faux))
 (put 'Faux? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Faux`, et `Faux` sinon.")
-(de Faux? (x) (if (= x Faux) Vrai Faux))
+(de Faux? (x) (if (<> x Vrai) Vrai Faux))
 (put 'Texte? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est du texte, et `Faux` sinon.")
 (de Texte? (x) (if (str? x) Vrai Faux))
 (put 'Nombre? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un nombre, et `Faux` sinon.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
+# Sans le suffixe '?'
+(put '= 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
+et `Faux` sinon.")
+(de = (x y) (ifn (<> x y) Vrai Faux))
+(put '=/ 'doc
+"Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
+différentes, et `Faux` sinon.")
+(de =/ (x y) (if (<> x y) Vrai Faux))

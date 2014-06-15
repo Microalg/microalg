@@ -1,7 +1,7 @@
 (let (Goods 0 Bads 0)
 	(mapc
 		'((BoolExpr)
-			(if (eval BoolExpr)
+			(if (<> (eval BoolExpr) Faux)
 				(inc 'Goods)
 				(inc 'Bads) (println 'Error: BoolExpr 'Result: (eval (caddr BoolExpr))) ) )
 		(list
@@ -30,6 +30,10 @@
             '(= 0 (Nombre 0))
             '(= 0 (Nombre "0"))
             # Prédicats
+            '(= Vrai (= Vrai Vrai))
+            '(= Faux (= Vrai Faux))
+            '(= Faux (=/ Vrai Vrai))
+            '(= Vrai (=/ Vrai Faux))
             '(= 1 (Si (Vrai? Vrai) 1 0))
             '(= 0 (Si (Vrai? Faux) 1 0))
             '(= 1 (Si (Faux? Faux) 1 0))
