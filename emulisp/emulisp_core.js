@@ -972,6 +972,16 @@ var coreFunctions = {
 		do { r = new Cell(lst.car, r); lst = lst.cdr; } while (lst instanceof Cell);
 		return r;
 	},
+	"run": function(c) { 	// TODO: binding env. offset cnt
+		c = c.car;
+		c = evalArgs(c);
+		while (c.cdr !== NIL) { c = c.cdr; }; return c.car;
+	},
+	//"run": function(c) { 	// TODO: binding env. offset cnt
+	//  c = c.car;
+	//	var r = NIL;
+	//	while (c.car !== NIL) { r = evalLisp(c.car); c = c.cdr }; return r;
+	//},
 	"set": function(c) {
 		var v = NIL;
 		while (c instanceof Cell) {
