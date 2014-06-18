@@ -38,6 +38,7 @@
     <a href="#calculs_nombres">Calculs avec des nombres</a>,
     <a href="#calculs_nombres_demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
     <a href="#booleens">Booléens</a>,
+    <a href="#si">Si</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -447,6 +448,148 @@
     <div id="script-predicats-comparaisons"></div>
     <script>inject_microalg_editor_in('script-predicats-comparaisons', {localStorage: false},
         '(Afficher (< 0 1))\n' +
+        '');
+    </script>
+
+    <h2 id="si"><a href="#si">: </a>Si</h2>
+    <p>Les booléens servent surtout à décider quelle instruction exécuter
+    plutôt qu’une autre.</p>
+    Par exemple, lorsque l’on discute avec quelqu’un, on peut commencer par :
+    « Salut, ça va ? ».<br>
+    Si la personne répond « oui » (qui correspondrait à <code>Vrai</code>), on
+    lui répond « Tant mieux ! ».<br>
+    Sinon (ce qui correspondrait à <code>Faux</code>), on lui répond « Ah, qu’y
+    a-t-il ? ».</p>
+    <p>Avec MicroAlg, pour programmer ce genre de situation, on utilisera la
+    commande <code>Si</code>.</p>
+    <p>Attention, dans l’exemple suivant, seul le mot « oui » en minuscule est
+    reconnu comme une réponse positive.</p>
+    <div id="script-si"></div>
+    <script>inject_microalg_editor_in('script-si', {localStorage: false},
+        '(Afficher "Salut, ça va ?")\n' +
+        '(Si (= (Demander) "oui")\n' +
+        '    (Afficher "Tant mieux !")\n' +
+        '    (Afficher "Ah, qu’y a-t-il ?")\n' +
+        ')');
+    </script>
+    <p>Même si ce n’est pas écrit dans le code, on peut utiliser les mots
+    « alors » et « sinon ». Le code ci-dessus pourra se lire :</p>
+    <ul>
+        <li>Afficher la question.</li>
+        <li><strong>Si</strong> l’utilisateur répond « oui »,</li>
+        <li><strong>Alors</strong> afficher « Tant mieux ! »,</li>
+        <li><strong>Sinon</strong> afficher « Ah, qu’y a-t-il ? ».</li>
+    </ul>
+    <p>On peut donc résumer la commande <code>Si</code> ainsi :<br>
+    <code>(Si booléen commande-si-vrai commande-si-faux)</code></p>
+    <p>Si on veut détailler, la commande <code>Si</code> possède trois
+    paramètres :</p>
+    <ul>
+        <li>un booléen,</li>
+        <li>l’instruction à exécuter si le booléen est <code>Vrai</code>,</li>
+        <li>l’instruction à exécuter si le booléen est <code>Faux</code>,</li>
+    </ul>
+    <p>Cette commande agit comme un aiguillage. L’analogie de l’arbre est aussi
+    possible : l’exécution peut suivre une des deux branches, la branche du
+    « alors » ou la branche du « sinon ».</p>
+    <p>Voici d’autres exemples :</p>
+    <div id="script-si-mdp"></div>
+    <script>inject_microalg_editor_in('script-si-mdp', {localStorage: false},
+        '(Afficher "Quel est le mot de passe ?")\n' +
+        '(Si (= (Demander) "funambule")\n' +
+        '    (Afficher "Accès autorisé.")\n' +
+        '    (Afficher "Accès refusé.")\n' +
+        ')');
+    </script>
+    <div id="script-si-calcul"></div>
+    <script>inject_microalg_editor_in('script-si-calcul', {localStorage: false},
+        '(Afficher "Combien font deux et deux ?")\n' +
+        '(Si (= (Demander) "quatre")\n' +
+        '    (Afficher "Bravo !")\n' +
+        '    (Afficher "Perdu, c’était « quatre ».")\n' +
+        ')');
+    </script>
+    <div id="script-si-majeur-mineur"></div>
+    <script>inject_microalg_editor_in('script-si-majeur-mineur', {localStorage: false},
+        '(Afficher "Quel âge as-tu ?")\n' +
+        '(Si (< (Nombre (Demander)) 18)\n' +
+        '    (Afficher "Tu es mineur.")\n' +
+        '    (Afficher "Tu es majeur.")\n' +
+        ')');
+    </script>
+    <p>Après avoir vu les bases de la commande <code>Si</code>, voyons quelques
+    variantes :</p>
+    <ul>
+        <li><a href="#si-sans-sinon">Si sans « sinon »</a>,</li>
+        <li><a href="#si-blocs">Si avec des blocs</a>,</li>
+        <li><a href="#si-emboites">Si(s) emboîtés</a>,</li>
+        <li><a href="#si-valeurs">Si avec des valeurs uniquement</a>,</li>
+    </ul>
+    <h3 id="si-sans-sinon"><a href="#si-sans-sinon">: </a>Si sans « sinon »</h3>
+    <p>Il est possible d’ommettre la commande correspondant au « sinon » :</p>
+    <div id="script-si-sans-sinon"></div>
+    <script>inject_microalg_editor_in('script-si-sans-sinon', {localStorage: false},
+        '(Si Vrai\n' +
+        '    (Afficher "Bonjour !")\n' +
+        ')\n' +
+        '(Si Faux\n' +
+        '    (Afficher "Bonjour !")\n' +
+        ')\n' +
+        '');
+    </script>
+    <h3 id="si-blocs"><a href="#si-blocs">: </a>Si avec des blocs</h3>
+    <p>On peut parfois avoir besoin d’exécuter plusieurs instructions dans une
+    même branche. On peut regrouper ces instructions avec la commande
+    <code>Bloc</code>.</p>
+    <p>Le principe de la commande <code>Si</code> reste inchangé :<br>
+    <code>(Si booléen bloc-si-vrai bloc-si-faux)</code></p>
+    <p>Essayez de deviner ce que va faire le programme suivant :</p>
+    <div id="script-si-blocs"></div>
+    <script>inject_microalg_editor_in('script-si-blocs', {localStorage: false},
+        '(Si Vrai\n' +
+        '    (Afficher "Bonjour !")\n' +
+        '    (Afficher "Et rebonjour !")\n' +
+        ')\n' +
+        '(Si Vrai\n' +
+        '    (Bloc\n' +
+        '        (Afficher "Bonjour !")\n' +
+        '        (Afficher "Et rebonjour !")\n' +
+        '    )\n' +
+        ')\n' +
+        '');
+    </script>
+    <h3 id="si-emboites"><a href="#si-emboites">: </a>Si(s) emboîtés</h3>
+    <p>Un arbre a parfois plus de deux branches !</p>
+    <p>Qu’affiche le programme suivant ? Comment lui faire afficher
+    « deuxième » ? « troisième » ? « quatrième » ?</p>
+    <div id="script-si-emboites"></div>
+    <script>inject_microalg_editor_in('script-si-emboites', {localStorage: false},
+        '(Si Vrai\n' +
+        '    (Si Vrai\n' +
+        '        (Afficher "premier")\n' +
+        '        (Afficher "deuxième")\n' +
+        '    )\n' +
+        '   (Si Vrai\n' +
+        '       (Afficher "troisième")\n' +
+        '       (Afficher "quatrième")\n' +
+        '    )\n' +
+        ')');
+    </script>
+    <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
+    <p>Comme une valeur peut être considérée comme une instruction, on peut
+    utiliser <code>Si</code> ainsi :</p>
+    <div id="script-si-valeurs"></div>
+    <script>inject_microalg_editor_in('script-si-valeurs', {localStorage: false},
+        '(Afficher (Si Vrai "ici" "là"))\n' +
+        '(Afficher (Si Faux "ici" "là"))\n' +
+        '');
+    </script>
+    <p>Attention, si le booléen est <code>Faux</code> et s’il n’y a pas de
+    valeur correspondant au « sinon », la commande <code>Si</code> retournera
+    <code>Rien</code>.</p>
+    <div id="script-si-valeurs-sans-sinon"></div>
+    <script>inject_microalg_editor_in('script-si-valeurs-sans-sinon', {localStorage: false},
+        '(Afficher (Si Faux "ici"))\n' +
         '');
     </script>
 
