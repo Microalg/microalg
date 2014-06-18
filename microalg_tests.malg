@@ -30,6 +30,7 @@
             '(= "0" (Texte 0))
             '(= 0 (Nombre 0))
             '(= 0 (Nombre "0"))
+            '(= Rien (Nombre "a"))
             # Prédicats
             '(= Vrai (= Vrai Vrai))
             '(= Faux (= Vrai Faux))

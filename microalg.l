@@ -109,7 +109,7 @@ les appelle.")
 "Commande qui retourne le nombre correspondant à son paramètre textuel.")
 (de Nombre (x) (cond
                 ((num? x) x)
-                ((str? x) (format x))
+                ((str? x) (or (format x) Rien))
                 (T NIL)
               ))
 
