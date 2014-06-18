@@ -124,7 +124,10 @@ les appelle.")
                      bloc_vrai (cadr arg_lst)
                      bloc_faux (caddr arg_lst))
                     (if (<> Faux (eval condition))  # = retourne Vrai ou Faux
-                        (eval bloc_vrai) (eval bloc_faux))))
+                        (eval bloc_vrai)
+                        (if (== NIL bloc_faux)
+                            Rien
+                            (eval bloc_faux)))))
 
 # Prédicats
 (put 'Vrai? 'doc
@@ -169,3 +172,8 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.")
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant.")
 (de >= (x y) (if (ge0 (- x y)) Vrai Faux))
+
+# Rien
+(put 'Rien 'doc
+"Valeur de contenant aucune information.")
+(setq Rien 'Rien)

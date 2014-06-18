@@ -24,6 +24,7 @@
             # Structure conditionnelle
             '(= 1 (Si Vrai 1 0))
             '(= 0 (Si Faux 1 0))
+            '(= Rien (Si Faux 1))
             # Conversions
             '(= "0" (Texte "0"))
             '(= "0" (Texte 0))
