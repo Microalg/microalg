@@ -6,6 +6,8 @@
 				(inc 'Bads) (println 'Error: BoolExpr 'Result: (eval (caddr BoolExpr))) ) )
 		(list
 			'(= "0.1.0" version)
+            # Blocs
+            '(= 1 (Bloc (setq x 0) (setq x (+ x 1))))
             # Affichage
 			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *LastStdOut))
 			'(= "Deux" (prog (Afficher "Un") (Afficher "Deux") *LastStdOut))
@@ -25,6 +27,8 @@
             '(= 1 (Si Vrai 1 0))
             '(= 0 (Si Faux 1 0))
             '(= Rien (Si Faux 1))
+            '(= 1 (Si Vrai (Bloc (setq x 0) (setq x (+ x 1)))))
+            '(= 1 (Si Faux Rien (Bloc (setq x 0) (setq x (+ x 1)))))
             # Conversions
             '(= "0" (Texte "0"))
             '(= "0" (Texte 0))

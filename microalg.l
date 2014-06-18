@@ -12,6 +12,7 @@ Voir <http://microalg.info>.")
                   "Texte" "Nombre"
                   "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
                   "=" "=/" "<" "<=" ">" ">="
+                  "Bloc"
                  )
 )
 
@@ -112,6 +113,11 @@ les appelle.")
                 ((str? x) (or (format x) Rien))
                 (T NIL)
               ))
+
+# Blocs
+(put 'Bloc 'doc
+"Commande qui permet de regrouper plusieurs instructions en une seule.")
+(de Bloc arg_lst (run arg_lst))
 
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
