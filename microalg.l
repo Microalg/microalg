@@ -135,6 +135,32 @@ les appelle.")
                             Rien
                             (eval bloc_faux)))))
 
+# Structures itératives
+(put 'Tant_que 'doc
+"Structure itérative de type « tant que ... faire ... ».")
+(de Tant_que arg_lst (let (Bool (car arg_lst)
+                           Mot-Clef (cadr arg_lst)
+                           Bloc (caddr arg_lst))
+                          # Ce if permet de retourner Rien plutôt que NIL
+                          # dans le cas où Bool est tout de suite Faux,
+                          # mais du coup Bool peut être évalué plusieurs fois.
+                          (if (<> Vrai (eval Bool))
+                              Rien
+                              (while (<> Faux (eval Bool))
+                                     (eval Bloc)))))
+(put 'Faire 'doc
+"Structure itérative de type « faire ... tant que ... ».")
+(de Faire arg_lst (let (Bloc (car arg_lst)
+                        Mot-Clef (cadr arg_lst)
+                        Bool (caddr arg_lst))
+                       # Ce let permet de retourner le résultat du premier
+                       # tour dans le cas où Bool est tout de suite Faux.
+                       (let (resultat-premier-tour (eval Bloc))
+                            (if (<> Vrai (eval Bool))
+                                resultat-premier-tour
+                                (while (<> Faux (eval Bool))
+                                       (eval Bloc))))))
+
 # Prédicats
 (put 'Vrai? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
