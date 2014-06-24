@@ -8,8 +8,9 @@ PicoLisp.
 Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
-(setq commandes '("Aide" "Affecter_a" "Afficher" "Concatener" "Demander"
-                  "Texte" "Nombre"
+(setq commandes '("Aide" "Initialiser" "Affecter_a" "Afficher" "Concatener"
+                  "Demander"
+                  "Type" "Texte" "Nombre"
                   "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
                   "=" "=/" "<" "<=" ">" ">="
                   "Bloc"
@@ -80,9 +81,25 @@ les appelle.")
                       )))
 
 # Gestion des variables
+(put 'Initialiser 'doc
+"Commande qui permet d’initialiser une variable avec une valeur.")
+(de Initialiser arg_lst (let (var (car arg_lst)
+                              val (eval (cadr arg_lst)))
+                             (if (== NIL (eval var))
+                                 (set var val)
+                                 (quit "Variable déjà initialisée" var)
+                             )))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
-(de Affecter_a arg_lst (set (car arg_lst) (eval (cadr arg_lst))))
+(de Affecter_a arg_lst (let (var (car arg_lst)
+                             val (eval (cadr arg_lst)))
+                            (if (== NIL (eval var))
+                                (quit "Variable non initialisée" var)
+                                (if (<> Faux (= (Type (eval var)) (Type val)))
+                                    (set var val)
+                                    (quit "Le type ne correspond pas" (list var 'est 'un (Type (eval var)) ', val 'un (Type val)))
+                                )
+                            )))
 
 # Demander.
 # Avec EmuLisp, les entrées utilisateur se font au travers de la fonction
@@ -98,7 +115,17 @@ les appelle.")
 # >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
 # ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 
-# Conversions
+# Types et conversions
+(put 'Type 'doc
+"Commande qui retourne le type de son paramètre (sous forme de texte et
+en minuscule).")
+(de Type (x) (cond
+                ((<> Faux (Texte? x)) "texte")
+                ((<> Faux (Nombre? x)) "nombre")
+                ((<> Faux (Booleen? x)) "booleen")
+                ((<> Faux (== Rien x)) "rien")
+                (T NIL)
+              ))
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.")
 (de Texte (x) (cond
@@ -178,6 +205,10 @@ et `Faux` sinon.")
 "Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
 et `Faux` sinon.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
+(put 'Booleen? 'doc
+"Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
+et `Faux` sinon.")
+(de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 # Sans le suffixe '?'
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,

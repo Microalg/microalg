@@ -21,8 +21,9 @@
             '(= "àéèîïôü" (Concatener "à" "é" "è" "î" "ï" "ô" "ü" ))
             # Gestion des variables
             '(let (x NIL) (= 0 (prog (setq x 0) x)))
-            '(let (x NIL) (= 0 (prog (Affecter_a x 0) x)))
-            '(let (x NIL) (= 0 (prog (Affecter_a x (+ 0 0)) x)))
+            '(let (x NIL) (= 0 (prog (Initialiser x 0) x)))
+            '(let (x NIL) (= 0 (prog (Initialiser x (+ 0 0)) x)))
+            '(let (x NIL) (= 1 (prog (Initialiser x 0) (Affecter_a x 1 x))))
             # Structure conditionnelle
             '(= 1 (Si Vrai 1 0))
             '(= 0 (Si Faux 1 0))
@@ -35,7 +36,11 @@
 			'(let (x 3) (= Rien (Tant_que Faux Faire (setq x (- x 1)))))
 			'(let (x 3) (= 0 (Faire (setq x (- x 1)) Tant_que (=/ x 0))))
 			'(let (x 3) (= 2 (Faire (setq x (- x 1)) Tant_que Faux)))
-            # Conversions
+            # Types et conversions
+            '(= "texte" (Type "bonjour"))
+            '(= "nombre" (Type 0))
+            '(= "booleen" (Type Vrai))
+            '(= "booleen" (Type Faux))
             '(= "0" (Texte "0"))
             '(= "0" (Texte 0))
             '(= 0 (Nombre 0))
@@ -66,6 +71,9 @@
             '(= Faux (Texte? 0))
             '(= Vrai (Nombre? 0))
             '(= Faux (Nombre? "0"))
+            '(= Vrai (Booleen? Vrai))
+            '(= Vrai (Booleen? Faux))
+            '(= Faux (Booleen? 0))
 			) )
 	(println (pack "Tests: " (+ Goods Bads) ", Errors: " Bads))
 	(if (= 0 Bads) (bye 0) (bye 1)) )
