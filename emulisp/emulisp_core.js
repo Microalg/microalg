@@ -941,6 +941,7 @@ var coreFunctions = {
 		throw new Error(newErrMsg(VAR_EXP, s));
 	},
 	"quote": function(c) { return c; },
+	"quit": function(c) { throw new Error(newErrMsg(evalLisp(c.car), evalLisp(c.cdr.car))); },
 	"rand": function(c) { var r = Math.random();
 		if (c === NIL) return new Number(r);	// range 0.0 .. 1.0
 		var n = evalLisp(c.car);
