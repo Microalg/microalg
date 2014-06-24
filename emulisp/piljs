@@ -54,7 +54,9 @@ while (true) {
         var result = EMULISP_CORE.eval(user_input);
         console.log('-> ' + result);
     } catch(e) {
-        console.log(e.toString() + "  (" + NO_DEBUG + ")");
+        console.log("!? " + user_input)
+        console.log(e.message)
+        console.log("? (" + NO_DEBUG + ")");
     }
 }
 
