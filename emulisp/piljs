@@ -43,7 +43,8 @@ while (true) {
     try {
         EMULISP_CORE.eval(src);
     } catch(e) {
-        console.log(e.toString() + "  (" + NO_DEBUG + ")");
+        console.log(e.message)
+        console.log("? (" + NO_DEBUG + ")");
     }
 }
 

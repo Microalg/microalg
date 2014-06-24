@@ -75,7 +75,7 @@ function ide_action(editor_elt) {
         EMULISP_CORE.eval(src).toString();
         error_elt.text('');
     } catch(e) {
-        error_elt.text(e.toString());
+        error_elt.text(e.message);
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
     if (typeof(Storage) !== "undefined") {
@@ -120,12 +120,12 @@ function repl_action(repl_elt) {
     try {
         result = EMULISP_CORE.eval(src);
     } catch(e) {
-        if (e.toString() == "Error: Function 'bye' not supported") {
+        if (e.message == "Function 'bye' not supported") {
             // Destroy the textarea (parent.parent is because of parenedit).
             repl_elt.parent().parent().html('');
             return;
         } else {
-            repl_elt.val(repl_elt.val() + "\n" + e.toString());
+            repl_elt.val(repl_elt.val() + "\n" + e.message);
         }
     }
     if (result != '""') {
@@ -166,10 +166,10 @@ function inject_microalg_jrepl_in(elt_id, msg) {
                     term.echo('-> ' + cleanTransient(result.toString()));
                 }
             } catch(e) {
-                if (e.toString() == "Error: Function 'bye' not supported") {
+                if (e.message == "Function 'bye' not supported") {
                     term.destroy();
                 } else {
-                    term.error(new String(e));
+                    term.error(e.message);
                 }
             }
             EMULISP_CORE.eval('(setq *LastStdOut "?")');
