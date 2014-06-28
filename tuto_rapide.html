@@ -28,11 +28,8 @@
         <a href="#top">haut de page</a>
     </div>
     <h1 id="top">MicroAlg - Tutoriel</h1>
-    <p>Si vous avez <strong>moins de 16 ans</strong> ou n’êtes <strong>pas fort
-    en lecture</strong>, utilisez <a href="tuto_simple.html">cette page</a>.</p>
-    <p>Si vous pensez que seulement des <strong>exemples</strong> et des notes
-    <strong>très brèves</strong> peuvent vous suffire, utilisez
-    <a href="tuto_rapide.html">cette page</a>.</p>
+    <p>Pour un tutoriel comportant plus d’explications, utiliser
+    <a href="tuto.html">cette page</a>.</p>
     <p>
     Aller directement à :
     <a href="#affichage">Affichage</a>,
@@ -48,20 +45,13 @@
     </p>
 
     <h2 id="questce">Qu’est-ce ?</h2>
-    <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel">tutoriel</a>
-    pour <a href="http://microalg.info">MicroAlg</a>.</p>
-    <p>Le tutoriel est assez long car il couvre tout le langage. Patience !
-    Peut-être faudra-t-il le faire en plusieurs fois !</p>
-    <p>Au cours de ce tutoriel, on vous proposera des petits programmes à
-    exécuter directement dans le navigateur. N’hésitez pas à les modifier afin
-    d’être sûre de comprendre le principe (si possible une modification
-    rigolote).</p>
+    <p>Ce tutoriel propose des petits programmes à exécuter directement dans le
+    navigateur. N’hésitez pas à les modifier afin d’être sûre de comprendre le
+    principe (si possible une modification rigolote).</p>
     <p>Avant de les exécuter, essayez de deviner ce qu’ils vont faire.</p>
 
     <h2 id="contact">Contact</h2>
-    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
-    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
-    une idée lumineuse, merci de (au choix) :</p>
+    <p>Plusieurs possibilités :</p>
     <ul>
         <li>proposer une « pull request » en éditant directement un fichier sur
             <a href="https://github.com/Microalg/Microalg">Github</a>,</li>
@@ -71,7 +61,6 @@
     </ul>
 
     <h2 id="affichage"><a href="#affichage">: </a>Affichage</a></h2>
-    <p>Pourquoi ne pas commencer tout de suite !</p>
     <div id="script-afficher"></div>
     <script>inject_microalg_editor_in('script-afficher', {localStorage: false},
         '# Voici votre premier programme.\n' +
@@ -81,53 +70,20 @@
         '# puis Ctrl + Entrée pour exécuter le code.\n' +
         '(Afficher "Bonjour tout le monde!")');
     </script>
-    <p>Un message de bienvenue devrait s’être affiché dans la barre un peu
-    arrondie ci-dessus (sinon, suivre les instructions de
-    <a href="#contact">cette section</a>).</p>
-    <p>Avant de passer à l’exemple suivant, apprenez à vous servir de la touche
-    <code>TAB</code> (à gauche du <code>A</code>). Elle vous permet de passer
-    de zone de code en zone de code, en passant aussi sur les liens. En
-    appuyant deux fois dessus, vous arrivez à la prochaine zone. Pratique, pas
-    besoin de toucher la souris.</p>
 
     <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
-    <p>Dans l’exemple précédent, que nous rappelons ci-dessous, nous avons
-    affiché du texte. Nous dirons que nous avons passé du texte en paramètre à
-    la commande <code>Afficher</code>.</p>
-    <p>Mieux : ce que l’on appelle ici « texte » est parfois appelé « chaîne de
-    caractères ». On doit le mettre entre guillemets.</p>
-    <div id="script-afficher-rappel"></div>
-    <script>inject_microalg_editor_in('script-afficher-rappel', {localStorage: false},
-        '(Afficher "Rebonjour tout le monde!")');
-    </script>
-    <p>Malheureusement la commande <code>Afficher</code> n’affiche que son
-    premier argument (ce qui lui arrive en paramètre) et ignore tous les
-    autres. Ici, le deuxième argument « et encore du texte » est ignoré et seul
-    le premier argument « du texte » est affiché :</p>
     <div id="script-afficher-params"></div>
     <script>inject_microalg_editor_in('script-afficher-params', {localStorage: false},
         '(Afficher "du texte " "et encore du texte")');
     </script>
-    <p>Pour « concaténer » deux textes, c’est-à-dire
-    <a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">les mettre bout-à-bout</a>,
-    on utilise la commande <code>Concatener</code>. Dans l’exemple suivant,
-    on affiche la concaténation de deux textes :</p>
+    <p><a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">Concaténation</a>.</p>
     <div id="script-concat"></div>
     <script>inject_microalg_editor_in('script-concat', {localStorage: false},
         '(Afficher (Concatener "du texte " "et encore du texte"))');
     </script>
     <p>Noter les parenthèses qui s’emboîtent. L’emboîtement des parenthèses est
     la base de MicroAlg, et plus généralement des langages de type
-    <a href="https://fr.wikipedia.org/wiki/Lisp">Lisp</a> (noter aussi le
-    nombre de traductions de cette page Wikipedia !).</p>
-    <p>Même si en français on dit que le programme « affiche la concaténation
-    de deux textes », le programme s’exécute depuis l’intérieur vers
-    l’extérieur : le programme concatène d’abord, et affiche ensuite.</p>
-    <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
-    ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
-    que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
-    <p>Une solution pour y voir clair : organiser son code sur différentes
-    lignes :</p>
+    <a href="https://fr.wikipedia.org/wiki/Lisp">Lisp</a></p>
     <div id="script-concat-lignes"></div>
     <script>inject_microalg_editor_in('script-concat-lignes', {localStorage: false},
         '(Afficher (Concatener\n' +
@@ -135,8 +91,6 @@
         '             "et encore du texte"\n' +
         '))');
     </script>
-    <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
-    au nombre de textes à concaténer :</p>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
         '(Afficher (Concatener\n' +
@@ -162,8 +116,6 @@
     <p>Si jamais les parenthèses ne sont pas équilibrées, les parenthèses en
     trop seront affichées en rouge vif. Essayez d’en ajouter ou d’en
     supprimer !</p>
-    <p>Dans le dernier exemple de la section précédente, nous avons affiché la
-    concaténation de trois textes.</p>
     <div id="script-concat-rappel"></div>
     <script>inject_microalg_editor_in('script-concat-rappel', {localStorage: false},
         '(Afficher (Concatener\n' +
@@ -172,15 +124,6 @@
         '             "et encore du texte"\n' +
         '))');
     </script>
-    <p>Comment aurions-nous pu faire la même chose si la commande
-    <code>Concatener</code> n’acceptait que deux paramètres ?</p>
-    <p>Il aurait suffit :</p>
-    <ol>
-        <li>de prendre les deux premiers (ou les deux derniers, puisque la
-            concaténation est <a href="https://fr.wikipedia.org/wiki/Associativit%C3%A9">associative</a>),</li>
-        <li>de les concaténer,</li>
-        <li>puis de concaténer le résultat au troisième fragment de texte.</li>
-    </ol>
     <p>Si on commence par la gauche :</p>
     <div id="script-concat-gauche"></div>
     <script>inject_microalg_editor_in('script-concat-gauche', {localStorage: false},
@@ -191,8 +134,6 @@
     <script>inject_microalg_editor_in('script-concat-droite', {localStorage: false},
         '(Afficher (Concatener "du texte, " (Concatener "du texte, " "et encore du texte")))');
     </script>
-    <p>Si vous trouvez que l’on y comprend rien, c’est normal (quoiqu’avec un
-    peu d’habitude…).</p>
     <p>Pour y voir plus clair, il suffit encore passer à la ligne à des endroits
     judicieux. Pour le côté gauche :</p>
     <div id="script-concat-gauche2"></div>
@@ -212,27 +153,18 @@
         '          )\n' +
         ')');
     </script>
-    <p>Notez que, comme en maths, les commandes qui sont
-    « les plus à l’intérieur des parenthèses » seront exécutées en premier, en
-    commençant par la gauche (nous allons le vérifier dans la section
-    suivante).</p>
+    <p>Les commandes qui sont « les plus à l’intérieur des parenthèses » seront
+    exécutées en premier, en commençant par la gauche.</p>
 
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
-    <p>Il est possible de demander une valeur à l’utilisateur :</p>
     <div id="ex-demander"></div>
     <script>inject_microalg_editor_in('ex-demander', {localStorage: false},
         '(Demander)');
     </script>
-    <p>Mais si on n’affiche pas le résultat de cette commande, rien ne se passe
-    bien sûr. Il faut afficher le résultat de la demande.</p>
     <div id="afficher-demander"></div>
     <script>inject_microalg_editor_in('afficher-demander', {localStorage: false},
         '(Afficher (Demander))');
     </script>
-    <p>En combinant les commandes <code>Demander</code>,
-    <code>Concatener</code> et <code>Afficher</code>, nous allons pouvoir coder
-    un premier programme (presque) intéressant : les salutations.</p>
-    <p>Avant de l’exécuter, essayez de deviner ce que le programme va faire.</p>
     <div id="salutations"></div>
     <script>inject_microalg_editor_in('salutations', {localStorage: false},
         '(Afficher (Concatener\n' +
@@ -241,12 +173,6 @@
         '             " !"\n' +
         '))');
     </script>
-    <p>Mieux : les présentations !</p>
-    <p>Ici, nous effectuons deux affichages successifs. Même s’il y a une
-    demande dans le deuxième affichage, on peut dire que le programme est de la
-    forme :</p>
-    <pre><code>(Afficher ...)
-(Afficher ...)</code></pre>
     <div id="presentations"></div>
     <script>inject_microalg_editor_in('presentations', {localStorage: false},
         '(Afficher "Bonjour, quel est ton nom ?")\n' +
@@ -257,8 +183,8 @@
         '          )\n' +
         ')');
     </script>
-    <p>Comme promis, une vérification que l’exécution se fait bien de la gauche
-    vers la droite :</p>
+    <p>Une vérification que l’exécution se fait bien de la gauche vers la
+    droite :</p>
     <div id="gauche-droite"></div>
     <script>inject_microalg_editor_in('gauche-droite', {localStorage: false},
         '(Afficher (Concatener\n' +
@@ -269,10 +195,6 @@
     </script>
 
     <h2 id="calculs_nombres"><a href="#calculs_nombres">: </a>Calculs avec des nombres</h2>
-    <p>MicroAlg sait effectuer des calculs, mais il faut les rédiger
-    correctement. Pour chaque exemple ci-dessous, essayer de deviner ce que va
-    afficher MicroAlg, puis vérifier en exécutant le code avec
-    <code>Ctrl</code> + <code>Entrée</code>.</p>
     <div id="script-aff-deux-et-deux"></div>
     <script>inject_microalg_editor_in('script-aff-deux-et-deux', {localStorage: false},
         '(Afficher (+ 2 2))');
@@ -297,9 +219,6 @@
         '# acceptent plusieurs paramètres:\n' +
         '(Afficher (+ 2 2 2))');
     </script>
-    <p>Autres exemples avec <code>+</code>, <code>-</code>, <code>*</code> et
-    <code>/</code> (papier crayon ou calculatrice autorisés si vous n’êtes pas
-    fort en calcul mental).</p>
     <div id="script-calc1"></div>
     <script>inject_microalg_editor_in('script-calc1', {localStorage: false},
         '(Afficher (- 7 (+ 2 3)))');
@@ -318,25 +237,21 @@
     </script>
 
     <h2 id="calculs_nombres_demandes"><a href="#calculs_nombres_demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
-    <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
-    l’utilisateur. Mais les opérations <code>+</code>, <code>-</code>,
-    <code>*</code> et <code>/</code> ne travaillent qu'avec des nombres et non
-    avec du texte. Essayons avec l’exemple ci-dessous, en répondant par exemple
-    « 1 » pour calculer « 1 + 1 » :</p>
+    <p>La commande <code>Demander</code> renvoie du texte. Les opérations
+    <code>+</code>, <code>-</code>, <code>*</code> et <code>/</code> ne
+    travaillent qu'avec des nombres.</p>
     <div id="script-pas-nombre"></div>
     <script>inject_microalg_editor_in('script-pas-nombre', {localStorage: false},
         '(Afficher (+ 1 (Demander)))');
     </script>
-    </p>C'est la première fois que dans ce tutoriel nous évoquons cette
-    distinction. On dira que :</p>
+    <p>Types :</p>
     <ul>
         <li><code>0</code>, <code>1</code> ou <code>2</code>… sont de
             <em>type</em> « nombre »</li>
         <li><code>"salut"</code> est de <em>type</em> « texte » ou « chaîne de
             caractères »</li>
     </ul>
-    <p>Nous verrons d'autres types plus loin. Pour l'instant, nous avons les
-    nouvelles commandes :</p>
+    <p>Commandes relatives aux types :</p>
     <ul>
         <li><code>Texte?</code> et <code>Nombre?</code>, qui nous
         permettent de savoir si une valeur est d’un certain type,</li>
@@ -355,16 +270,10 @@
         '(Afficher (Nombre? "2"))\n' +
         '(Afficher (Nombre? (Nombre "2")))');
     </script>
-    <p>Pour demander un nombre avec lequel faire un calcul, il faut donc
-    utiliser une combinaison de <code>Demander</code> et de
-    <code>Nombre</code>. En reprenant le premier exemple :</p>
     <div id="script-demander-nombre"></div>
     <script>inject_microalg_editor_in('script-demander-nombre', {localStorage: false},
         '(Afficher (+ 1 (Nombre (Demander))))');
     </script>
-    <p>Plus tard, vous pourrez vous-même créer une commande qui sera un
-    raccourci pour cette combinaison de <code>Nombre</code> et de
-    <code>Demander</code> : <code>DemanderNbre</code>.</p>
     <p>Pour finir cette section en beauté, voici un programme qui réutilise
     tout ce que l’on a appris jusqu’ici. Pourrez-vous deviner ce qu’il va
     afficher ?</p>
@@ -379,30 +288,15 @@
         '              )\n' +
         '))');
     </script>
-    <p><strong>Rappel</strong> : l’exécution se fait de l’intérieur vers
-    l’extérieur.  Voici donc ce que fait ce petit programme, dans l’ordre
-    d’exécution :</p>
-    <ol>
-        <li>demander une valeur à l’utilisateur,</li>
-        <li>convertir le texte reçu en nombre,</li>
-        <li>ajouter 1,</li>
-        <li>convertir le résultat en texte,</li>
-        <li>le concaténer avec le début de la phrase.</li>
-    </ol>
-    <p>Pour résumer en une phrase : « le programme affiche la concaténation
-    de <code>"Un de plus: "</code> avec le texte correspondant à la somme de 1
-    avec le nombre que l’utilisateur a tapé ».</p>
 
     <h2 id="booleens"><a href="#booleens">: </a>Calculs avec des booléens</h2>
-    <p>Les commandes <code>Texte?</code> et <code>Nombre?</code> de la section
-     précédente sont particulières car :</p>
+    <p>Remarques sur <code>Texte?</code> et <code>Nombre?</code> :</p>
     <ul>
         <li>elles se terminent par <code>?</code>,</li>
         <li>elles retournent des valeurs spéciales : <code>Vrai</code> ou
             <code>Faux</code>.</li>
     </ul>
-    <p>Ces valeurs spéciales <code>Vrai</code> et <code>Faux</code> sont d’un
-    type nouveau. Ce ne sont ni des nombres ni du texte, mais des
+    <p>Ces valeurs spéciales <code>Vrai</code> et <code>Faux</code> sont des
     <em>booléens</em> (de <a href="http://fr.wikipedia.org/wiki/George_Boole">George Boole</a>).
     Un booléen ne peut avoir qu’une de ces deux valeurs.</p>
     <p>Les commandes qui retournent un booléen sont appelées des
@@ -466,18 +360,6 @@
     </script>
 
     <h2 id="si"><a href="#si">: </a>Si</h2>
-    <p>Les booléens servent surtout à décider quelle instruction exécuter
-    plutôt qu’une autre.</p>
-    Par exemple, lorsque l’on discute avec quelqu’un, on peut commencer par :
-    « Salut, ça va ? ».<br>
-    Si la personne répond « oui » (qui correspondrait à <code>Vrai</code>), on
-    lui répond « Tant mieux ! ».<br>
-    Sinon (ce qui correspondrait à <code>Faux</code>), on lui répond « Ah, qu’y
-    a-t-il ? ».</p>
-    <p>Avec MicroAlg, pour programmer ce genre de situation, on utilisera la
-    commande <code>Si</code>.</p>
-    <p>Attention, dans l’exemple suivant, seul le mot « oui » en minuscule est
-    reconnu comme une réponse positive.</p>
     <div id="script-si"></div>
     <script>inject_microalg_editor_in('script-si', {localStorage: false},
         '(Afficher "Salut, ça va ?")\n' +
@@ -503,9 +385,6 @@
         <li>l’instruction à exécuter si le booléen est <code>Vrai</code>,</li>
         <li>l’instruction à exécuter si le booléen est <code>Faux</code>,</li>
     </ul>
-    <p>Cette commande agit comme un aiguillage. L’analogie de l’arbre est aussi
-    possible : l’exécution peut suivre une des deux branches, la branche du
-    « alors » ou la branche du « sinon ».</p>
     <p>Voici d’autres exemples :</p>
     <div id="script-si-mdp"></div>
     <script>inject_microalg_editor_in('script-si-mdp', {localStorage: false},
@@ -552,12 +431,6 @@
         '');
     </script>
     <h3 id="si-blocs"><a href="#si-blocs">: </a>Si avec des blocs</h3>
-    <p>On peut parfois avoir besoin d’exécuter plusieurs instructions dans une
-    même branche. On peut regrouper ces instructions avec la commande
-    <code>Bloc</code>.</p>
-    <p>Le principe de la commande <code>Si</code> reste inchangé :<br>
-    <code>(Si booléen bloc-si-vrai bloc-si-faux)</code></p>
-    <p>Essayez de deviner ce que va faire le programme suivant :</p>
     <div id="script-si-blocs"></div>
     <script>inject_microalg_editor_in('script-si-blocs', {localStorage: false},
         '(Si Vrai\n' +
@@ -590,17 +463,12 @@
         ')');
     </script>
     <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
-    <p>Comme une valeur peut être considérée comme une instruction, on peut
-    utiliser <code>Si</code> ainsi :</p>
     <div id="script-si-valeurs"></div>
     <script>inject_microalg_editor_in('script-si-valeurs', {localStorage: false},
         '(Afficher (Si Vrai "ici" "là"))\n' +
         '(Afficher (Si Faux "ici" "là"))\n' +
         '');
     </script>
-    <p>Attention, si le booléen est <code>Faux</code> et s’il n’y a pas de
-    valeur correspondant au « sinon », la commande <code>Si</code> retournera
-    <code>Rien</code>.</p>
     <div id="script-si-valeurs-sans-sinon"></div>
     <script>inject_microalg_editor_in('script-si-valeurs-sans-sinon', {localStorage: false},
         '(Afficher (Si Faux "ici"))\n' +
@@ -608,17 +476,6 @@
     </script>
 
     <h2 id="variables"><a href="#variables">: </a>Variables</h2>
-    <p>On a parfois besoin de stocker le résultat de <code>(Demander)</code>
-    pour pouvoir se servir plusieurs fois de cette valeur. En effet, si on
-    demande deux fois une valeur, l'utilisateur peut ne pas répondre deux fois
-    la même chose.</p>
-    <p>Cela peut être :</p>
-    <ul>
-        <li>le nom de l'utilisateur, si on veut afficher des phrases contenant
-            son nom tout au long d'un jeu,</li>
-        <li>une valeur numérique qui sert plusieurs fois dans un calcul comme
-            <code>x</code> dans <code>(x+1)(x+2)</code>.</li>
-    </ul>
     <p>Pour pouvoir utiliser une variable avec MicroAlg, il faut :</p>
     <ol>
         <li>tout d’abord <em>l’initialiser</em>, c’est-à-dire lui donner une
@@ -628,8 +485,6 @@
             programme, lui <em>affecter</em> une autre valeur, peut-être
             plusieurs fois au cours du programme.</li>
     </ol>
-    <p>La valeur stockée dans la variable est accessible simplement en donnant
-    son nom dans une instruction. Voici quelques exemples :</p>
     <div id="script-variable-texte"></div>
     <script>inject_microalg_editor_in('script-variable-texte', {localStorage: false},
         '(Initialiser nom "pas de nom")  # nom de l’utilisateur\n' +
@@ -687,8 +542,6 @@
         <li><code>nombre</code>,</li>
         <li><code>booléen</code>,</li>
     </ul>
-    <p>et nous avons vu des commandes permettent de vérifier le type de
-    certaines valeurs, et d’autres d’effectuer des conversions :</p>
     <div id="script-types-rappels"></div>
     <script>inject_microalg_editor_in('script-types-rappels', {localStorage: false},
         '(Afficher (Texte? "Bonjour !"))\n' +
@@ -711,9 +564,7 @@
     </script>
     <p><strong>Remarque</strong> : Il n’est pas interdit d’utiliser la valeur
     d’une variable dans une instruction qui sera affectée à cette même
-    variable. C’est même parfois utile en vue d’<em>accumuler</em> des
-    valeurs, textuelles, numériques ou autres. Nous allons donner deux
-    exemples.</p>
+    variable.</p>
     <p>Dans le premier, on accumule des nombres avec une instruction de la
     forme :<br>
     <code>(Affecter_a valeur (+ valeur valeur_a_ajouter))</code></p>
