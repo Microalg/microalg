@@ -40,6 +40,8 @@
     <a href="#booleens">Booléens</a>,
     <a href="#si">Si</a>,
     <a href="#variables">Variables</a>,
+    <a href="#faire-tant-que">Faire… tant que…</a>,
+    <a href="#tant-que-faire">Tant que… faire…</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -620,6 +622,61 @@
         '(Affecter_a mots (Concatener mots (Demander)))\n' +
         '(Afficher "Vous avez tapé :")\n' +
         '(Afficher mots)\n' +
+        ''
+        );
+    </script>
+
+    <h2 id="faire-tant-que"><a href="#faire-tant-que">: </a>Faire… tant que…</h2>
+    <div id="script-accu-nombres-tq"></div>
+    <script>inject_microalg_editor_in('script-accu-nombres-tq', {localStorage: false},
+        '(Initialiser somme 0)\n' +
+        '(Initialiser valeur 0)\n' +
+        '(Faire\n' +
+        '    (Bloc\n' +
+        '        (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
+        '        (Affecter_a valeur (Nombre (Demander)))\n' +
+        '        (Affecter_a somme (+ somme valeur))\n' +
+        '    )\n' +
+        '    Tant_que (=/ valeur 0)\n' +
+        ')\n' +
+        '(Afficher "La somme des nombres vaut :")\n' +
+        '(Afficher somme)\n' +
+        ''
+        );
+    </script>
+    <div id="script-accu-textes-tq"></div>
+    <script>inject_microalg_editor_in('script-accu-textes-tq', {localStorage: false},
+        '(Initialiser mots " ")\n' +
+        '(Initialiser mot " ")\n' +
+        '(Faire\n' +
+        '    (Bloc\n' +
+        '        (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
+        '        (Affecter_a mot (Demander))\n' +
+        '        (Affecter_a mots (Concatener mots " " mot))\n' +
+        '    )\n' +
+        ' Tant_que (=/ mot "STOP")\n' +
+        ')\n' +
+        '(Afficher "Vous avez tapé :")\n' +
+        '(Afficher mots)\n' +
+        ''
+        );
+    </script>
+    <p>Dans ce dernier programme, il y a au moins un bug. Quel est ce bug et
+    comment le faire disparaître ?</p>
+
+    <h2 id="tant-que-faire"><a href="#tant-que-faire">: </a>Tant que… faire…</h2>
+    <div id="script-tq-affichage"></div>
+    <script>inject_microalg_editor_in('script-tq-affichage', {localStorage: false},
+        '(Initialiser repetitions 0)\n' +
+        '(Afficher "Combien de fois voulez-vous afficher « Bonjour ! » ?")\n' +
+        '(Affecter_a repetitions (Nombre (Demander)))\n' +
+        '(Tant_que (=/ repetitions 0)\n' +
+        ' Faire\n' +
+        '    (Bloc\n' +
+        '        (Afficher "Bonjour !")\n' +
+        '        (Affecter_a repetitions (- repetitions 1))\n' +
+        '    )\n' +
+        ')\n' +
         ''
         );
     </script>
