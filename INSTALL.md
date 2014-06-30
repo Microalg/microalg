@@ -170,18 +170,6 @@ Dans une console DOS :
     npm http 304 https://registry.npmjs.org/readline-sync
     readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync
 
-* Sauf que NodeJS ne va pas trouver le module, il faut ajuster `NODE_PATH`.  
-
-Toujours dans une console DOS, en remplaçant `prof` par votre nom
-d’utilisateur :
-
-    D:\microalg>echo %NODE_PATH%
-    %NODE_PATH%
-    D:\microalg>set NODE_PATH=C:\Users\prof\AppData\Roaming\npm\node_modules\
-    D:\microalg>echo %NODE_PATH%
-    C:\Users\prof\AppData\Roaming\npm\node_modules\
-    D:\microalg>exit
-
 <!--
 Pour les archives, voici une liste d’autre modules candidats à un prompt
 asynchrone :
