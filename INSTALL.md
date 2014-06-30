@@ -33,7 +33,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
         * simple utilisateur
             * dans un navigateur, mais utilisation possible sans connexion
             * [avec Java](#avec-java)
-            * avec NodeJS
+            * [avec NodeJS](#avec-nodejs)
         * utilisateur avancé
             * les mêmes
             * le vrai PicoLisp dans Cygwin
@@ -199,6 +199,24 @@ asynchrone :
     * `prompter` <https://github.com/substack/node-prompter> (créer des JSON)
     * `promzard` <https://github.com/isaacs/promzard> (spécifique à un truc)
 -->
+
+* Configurer Notepad++ :
+    * Ouvrir un fichier donné en exemple dans l’archive de MicroAlg, par
+      exemple `microalg/exemples/test_demander.malg`.
+    * Appuyer sur `F5` ou choisir le menu `Run` puis l’action `Run…`.
+    * Choisir le fichier qui va exécuter le code :
+        * cliquer sur « parcourir » (le bouton `...`),
+        * faire apparaître tous les fichiers en choisissant :  
+          `Tous les fichiers : (*.*)`,
+        * choisir `microalg/malgjs_npp.bat`.
+    * Ajouter à la main (si possible avec un copier/coller) :  
+      `"$(FULL_CURRENT_PATH)"`  
+      de façon à obtenir dans la petite boîte :  
+      `chemin\vers\malgjs_npp.bat "$(FULL_CURRENT_PATH)"`
+    * Valider avec `Entrée` ou le bouton `Run`.
+    * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
+      enregistrer cette commande et même lui associer un raccourci clavier.
+* Et voilà.
 
 ### Autre
 
