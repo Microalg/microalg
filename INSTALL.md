@@ -161,14 +161,14 @@ avec le bon numéro de `version` bien sûr.
 
 * Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
   gestionnaire de modules pour NodeJS)
-* Installer le module `readline-sync` (<https://github.com/anseki/readline-sync>).  
-
-Dans une console DOS :
-
-    D:\microalg>npm install -g readline-sync
+* Installer le module `readline-sync` (<https://github.com/anseki/readline-sync>)
+  en tapant dans une console DOS :  
+  `npm install -g readline-sync`  
+  Vous devriez obtenir :
+  <pre><code>    D:\microalg>npm install -g readline-sync
     npm http GET https://registry.npmjs.org/readline-sync
     npm http 304 https://registry.npmjs.org/readline-sync
-    readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync
+    readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync</code></pre>
 
 <!--
 Pour les archives, voici une liste d’autre modules candidats à un prompt
