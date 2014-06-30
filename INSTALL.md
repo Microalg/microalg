@@ -160,7 +160,7 @@ avec le bon numéro de `version` bien sûr.
 #### Avec NodeJS
 
 * Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
-  gestionnaire de modules pour NodeJS)
+  gestionnaire de modules pour NodeJS).
 * Installer le module `readline-sync` (<https://github.com/anseki/readline-sync>)
   en tapant dans une console DOS :  
   `npm install -g readline-sync`  
