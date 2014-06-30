@@ -128,7 +128,7 @@ function repl_action(repl_elt) {
             repl_elt.val(repl_elt.val() + "\n" + e.message);
         }
     }
-    if (result != '""') {
+    if (typeof result != "undefined" && result != '""') {
         repl_elt.val(repl_elt.val() + "\n-> " + cleanTransient(result));
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
