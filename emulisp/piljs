@@ -2,6 +2,7 @@
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 fs = require('fs')
+path = require('path')
 
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
@@ -11,7 +12,8 @@ function stdPrint(text) {
 var NO_DEBUG = "piljs -> no debug yet";
 
 // Load EmuLisp.
-var emulisp_src = fs.readFileSync('emulisp/emulisp_core.js').toString();
+var emulisp_src = fs.readFileSync(
+    path.resolve(__dirname, 'emulisp_core.js')).toString();
 eval(emulisp_src);
 
 // Process command line args.
