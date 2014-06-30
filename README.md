@@ -64,6 +64,7 @@ Fichiers
 * `malg` : exécutable permettant d’exécuter un `.malg` avec PicoLisp (ASM/C)
 * `malgj` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java)
 * `malgj.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows
+* `malgj_npp.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows et depuis NotePad++
 * `malgjs` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * tests :
