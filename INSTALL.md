@@ -159,26 +159,46 @@ avec le bon numéro de `version` bien sûr.
 
 #### Avec NodeJS
 
-Pas simple : `sync-prompt` a besoin de Python lors de l’installation. Pour
-l’instant pas d’autre module NodeJS pour un prompt synchro :
+* Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
+  gestionnaire de modules pour NodeJS)
+* Installer le module `readline-sync` (<https://github.com/anseki/readline-sync>).  
 
-* `readline-sync` se plaint de la platforme Debian, ne fonctionne pas sous Win,
-* `ask` est pour CoffeeScript,
-* async :
-    * `cli-prompt` <https://github.com/carlos8f/node-cli-prompt>
+Dans une console DOS :
+
+    D:\microalg>npm install -g readline-sync
+    npm http GET https://registry.npmjs.org/readline-sync
+    npm http 304 https://registry.npmjs.org/readline-sync
+    readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync
+
+* Sauf que NodeJS ne va pas trouver le module, il faut ajuster `NODE_PATH`.  
+
+Toujours dans une console DOS, en remplaçant `prof` par votre nom
+d’utilisateur :
+
+    D:\microalg>echo %NODE_PATH%
+    %NODE_PATH%
+    D:\microalg>set NODE_PATH=C:\Users\prof\AppData\Roaming\npm\node_modules\
+    D:\microalg>echo %NODE_PATH%
+    C:\Users\prof\AppData\Roaming\npm\node_modules\
+    D:\microalg>exit
+
+<!--
+Pour les archives, voici une liste d’autre modules candidats à un prompt
+asynchrone :
+
+* `sync-prompt` <https://github.com/shovon/sync-prompt/>  
+  A besoin de Python lors de l’installation (et encore, foire sous Windows).
+* `ask` est pour CoffeeScript.
+* avec callback :
+    * <http://nodejs.org/api/readline.html>
+    * <https://github.com/flatiron/prompt>
+    * <https://github.com/carlos8f/node-cli-prompt>
+    * [doc sur nodejitsu](http://docs.nodejitsu.com/articles/command-line/how-to-prompt-for-command-line-input)
 * rien à voir :
     * `commander` <https://github.com/visionmedia/commander.js> (parse args)
     * `prompter` <https://github.com/substack/node-prompter> (créer des JSON)
     * `promzard` <https://github.com/isaacs/promzard> (spécifique à un truc)
-
-Bref, c’est pas encore ça.
-
-* Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
-  gestionnaire de modules pour NodeJS)
-* Installer le module `readline-sync` (sauf si pas d’utilisation de la commande
-  `Demander`) 
-    * Dans une console DOS : `npm install sync-prompt` puis `exit`
-    <https://github.com/anseki/readline-sync>
+-->
 
 ### Autre
 

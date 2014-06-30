@@ -2,7 +2,6 @@
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 fs = require('fs')
-prompt = require('sync-prompt').prompt;
 
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
@@ -49,8 +48,10 @@ while (true) {
 }
 
 // REPL
+var readlinesync = require('readline-sync');
+readlinesync.setPrompt(": ");
 while (true) {
-    var user_input = prompt(': ');
+    var user_input = readlinesync.prompt();
     try {
         var result = EMULISP_CORE.eval(user_input);
         console.log('-> ' + result);

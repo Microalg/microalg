@@ -964,7 +964,9 @@ var coreFunctions = {
 	},
 	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
 		if (emuEnv() == 'nodejs') {
-			var _stdPrompt = require('sync-prompt').prompt;
+			var readlinesync = require('readline-sync');
+			readlinesync.setPrompt("");
+			_stdPrompt = readlinesync.prompt;
 		} else {
 			if (typeof(stdPrompt) != "undefined") {
 				var _stdPrompt = stdPrompt;
