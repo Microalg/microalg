@@ -194,8 +194,10 @@ function inject_microalg_jrepl_in(elt_id, msg) {
             EMULISP_CORE.currentState().context = {type: 'jrepl', term: term};
             emulisp_states[elt_id] = EMULISP_CORE.currentState();
         },
-        onClear: function(term) {
-            term.disable();
+        keydown: function(e) {
+            if (e.which === 76 && e.ctrlKey) { // CTRL+L
+                return true;
+            }
         }
     });
 }
