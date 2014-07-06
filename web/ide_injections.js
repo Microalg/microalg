@@ -8,11 +8,6 @@ var emulisp_states = {};
 // The marvellous PicoLisp prompt:
 var malg_prompt = ": ";
 
-function isTouch() {
-    if ("ontouchstart" in window || navigator.msMaxTouchPoints) return true;
-    return false;
-}
-
 function cleanTransient(text) {
     text = text.replace(/\^J/g,'\n');  // PicoLisp control char
     text = text.replace(/\n$/,'');     // remove last newline
@@ -94,7 +89,7 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
     var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" spellcheck="false">' + msg + '</textarea>' +
-            (isTouch()?'<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>':'') +
+            '<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>' +
             '<div class="malg-error" style="color: red;"></div>' +
             '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
