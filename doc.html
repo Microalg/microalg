@@ -38,6 +38,7 @@ Aller directement à :
 * [Liste des commandes](#listedescommandes)
 * [Types](#types)
 * [Feuille de route](#feuillederoute)
+* [Architecture](#architecture)
 
 ## Avertissement
 
@@ -176,6 +177,61 @@ Voici les directions que le projet va prendre :
 
 À un niveau moins général, des rapports de bugs ou idées d’amélioration sont
 régulièrement [reportées sur Github](https://github.com/Microalg/Microalg/issues?state=open).
+
+# Architecture
+
+Cette section explique les relations entre les différents composants de
+MicroAlg et les composants sur lequels elle repose.
+
+MicroAlg est un langage embarqué dans un langage de type
+[Lisp](http://fr.wikipedia.org/wiki/Lisp), [PicoLisp](http://picolisp.com/).
+Ce dernier est implémenté au moins avec trois langages, C+ASM, Java et
+Javascript.
+
+* En C+ASM, c’est la version dite *officielle*
+  d’[Alexander Burger](http://software-lab.de/).
+* En Java, c’est l’implémentation nommée Ersatz et réalisée par le créateur de
+  PicoLisp lui-même.
+* En Javascript, c’est l’implémentation nommée EmuLisp, réalisée par
+  [Jon Kleiser](http://folk.uio.no/jkleiser/), dont je suis quasiment le seul
+  utilisateur, et que je maintiens dans un
+  [dépôt semi-officiel](https://github.com/grahack/emulisp).
+
+Chaque implémentation posséde un programme principal, nommés respectivement
+`pil`, `pilj` et `piljs`. Ces programmes ont deux missions :
+
+* lancés sans argument, ils offrent un interpréteur interactif,
+* lancés avec un nom de fichier en argument, ils interprètent ce fichier et
+  passent en mode interactif, sauf si on les arrête avant.
+
+Attention, `pilj` n’est pas le nom officiel de l’exécutable d’Ersatz (c’est
+`pil`). De plus, les versions officielles et semi-officielles d’EmuLisp n’ont
+pas de `piljs`. `piljs` n’existe (pour l’instant) que dans MicroAlg.
+
+MicroAlg offre donc naturellement les programmes `malg`, `malgj` et `malgjs`.
+Ils ont les mêmes missions que leurs homologues, la seule différence est qu’ils
+chargent `microalg.l`, le cœur du projet MicroAlg, où les commandes du langage
+sont définies.
+
+![Diagramme d’architecture](visuels/archi.svg)
+
+**Légende**
+
+* MACHINE : l’ordinateur, le smartphone, la tablette, la machine virtuelle…
+* JVM : pour [Java Virtual Machine](http://fr.wikipedia.org/wiki/Machine_virtuelle_Java),
+  exécute du byte-code Java
+* NodeJS : plateforme permettant d’interpréter du code Javascript
+  (voir [l’article Wikipedia](http://fr.wikipedia.org/wiki/Nodejs))
+* browser : le navigateur (Internet) installé sur la MACHINE
+* PicoLisp : la version officielle du langage hôte, PicoLisp
+* Ersatz : implémentation en Java de PicoLisp
+* EmuLisp : implémentation en Javascript de PicoLisp
+* `pil`, `pilj` et `piljs` : les interpréteurs des implémentations de PicoLisp
+* `microalg.l` : le fichier définissant le langage MicroAlg
+* `malg`, `malgj` et `malgjs` : les interpréteurs de MicroAlg,
+  correspondants aux implémentations de PicoLisp
+* web IDE : interface permettant de manipuler MicroAlg depuis un navigateur
+
 
 <br>
 <br>
