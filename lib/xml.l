@@ -1,5 +1,10 @@
 # https://www.mail-archive.com/picolisp@software-lab.de/msg00510.html
-(de <xml> Lst
+# https://www.mail-archive.com/picolisp@software-lab.de/msg04592.html
+
+(de <xmlq> Lst
+   (<xml> Lst) )
+
+(de <xml> (Lst)
    (let Tag (pop 'Lst)
       (prin "<" Tag)
       (while (and Lst (atom (car Lst)))
