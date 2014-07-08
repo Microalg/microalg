@@ -11,7 +11,8 @@ Voir <http://microalg.info>.")
 (setq commandes '("Aide" "Initialiser" "Affecter_a" "Afficher" "Concatener"
                   "Demander"
                   "Type" "Texte" "Nombre"
-                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?"
+                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?" "Booleen?"
+                  "Tant_que" "Faire"
                   "=" "=/" "<" "<=" ">" ">="
                   "Bloc"
                  )
