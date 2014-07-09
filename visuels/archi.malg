@@ -25,12 +25,12 @@
     # cadre
     (<xmlq> rect height H width L x 0 y 0)
     # lignes
-    (apply <xml> (list (append text_conf_small '( x malgj_x_pos y 25 (prin "résultat dans la console")))))
+    (apply <xml> (list (append text_conf_small '(x malgj_x_pos y 25 (prin "résultat dans la console")))))
     (<xmlq> line x1 malgj_x_pos y1 35 x2 malgj_x_pos y2 50 stroke-width 5 stroke N)
-    (apply <xml> (list (append text_conf_small '( x malgj_x_pos y 70 (prin "malg* fichier.malg (ou NP++)")))))
-    (apply <xml> (list (append text_conf_small '( x malgjs_browser_x_pos y 25 (prin "HTML")))))
+    (apply <xml> (list (append text_conf_small '(x malgj_x_pos y 70 (prin "malg* fichier.malg (ou NP++)")))))
+    (apply <xml> (list (append text_conf_small '(x malgjs_browser_x_pos y 25 (prin "HTML")))))
     (<xmlq> line x1 malgjs_browser_x_pos y1 35 x2 malgjs_browser_x_pos y2 50 stroke-width 5 stroke N)
-    (apply <xml> (list (append text_conf_small '( x malgjs_browser_x_pos y 70 (prin "formulaire")))))
+    (apply <xml> (list (append text_conf_small '(x malgjs_browser_x_pos y 70 (prin "formulaire")))))
     # microalg.l
     (<xmlq> rect height H_rects width 500 x 58 y (- couche_malg_l 30))
     (apply <xml> (list (append text_conf_big '(x 320 y couche_malg_l (prin "microalg.l")))))
@@ -59,10 +59,10 @@
     (<xmlq> line x1 malgjs_x_pos y1 335 x2 malgjs_x_pos y2 350 stroke-width 5 stroke N)
     # web IDE
     (<xmlq> rect height H_rects width L_rects x 448 y (- couche_malg 30) stroke-width 5 stroke N fill W)
-    (apply <xml> (list (append text_conf_big '( x malgjs_browser_x_pos y couche_malg (prin "web IDE")))))
+    (apply <xml> (list (append text_conf_big '(x malgjs_browser_x_pos y couche_malg (prin "web IDE")))))
     (<xmlq> line x1 malgjs_browser_x_pos y1 195 x2 malgjs_browser_x_pos y2 250 stroke-width 5 stroke N)
-    (apply <xml> (list (append text_conf_big '( x malgjs_browser_x_pos y couche_2 (prin "EmuLisp")))))
-    (apply <xml> (list (append text_conf_big '( x malgjs_browser_x_pos y couche_1 (prin "browser")))))
+    (apply <xml> (list (append text_conf_big '(x malgjs_browser_x_pos y couche_2 (prin "EmuLisp")))))
+    (apply <xml> (list (append text_conf_big '(x malgjs_browser_x_pos y couche_1 (prin "browser")))))
     (<xmlq> line x1 malgjs_browser_x_pos y1 335 x2 malgjs_browser_x_pos y2 350 stroke-width 5 stroke N)
     # Machine
     (<xmlq> rect fill W stroke N stroke-width 5 x 50 y (- couche_machine 30) width 500 height 40)
