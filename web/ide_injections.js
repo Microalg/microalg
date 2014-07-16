@@ -1,6 +1,17 @@
-// Keep a state where microalg is loaded.
-// (We cannot load from here because we'd need ../)
-var microalg_fresh_state = EMULISP_CORE.currentState();
+// Load microalg.l.
+// http://stackoverflow.com/questions/984510/what-is-my-script-src-url
+var this_script_url = (function(scripts) {
+    var scripts = document.getElementsByTagName('script'),
+    script = scripts[scripts.length - 1];
+    if (script.getAttribute.length !== undefined) {
+        return script.src
+    }
+    return script.getAttribute('src', -1)
+}());
+var this_script_path = 'web/ide_injections.js';
+var microalg_l_path = this_script_url.slice(0, -this_script_path.length)
+                      + 'microalg.l';
+var microalg_l_src = EMULISP_CORE.getFileSync(microalg_l_path);
 
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
@@ -56,9 +67,14 @@ function onCtrlEnter(elt, f) {
 }
 
 function ide_action(editor_elt) {
-    // Fetch the relevant state.
+    // Compute the target HTML elt.
     var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
-    EMULISP_CORE.init(emulisp_states[elt_id]);
+    var display_target_id = elt_id + '-displaytarget';
+    // Init the state and load it with MicroAlg.
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(microalg_l_src);
+    // Custom state for a custom display in the page.
+    EMULISP_CORE.currentState().context = {type: 'editor', display_elt: display_target_id};
     // Process src.
     var src = editor_elt.val();
     // createRichInput put the editor in a sub div, that's why we use
@@ -80,13 +96,8 @@ function ide_action(editor_elt) {
 }
 
 function inject_microalg_editor_in(elt_id, config, msg) {
-    // New state for this editor.
-    var display_target_id = elt_id + '-displaytarget';
-    var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
-    EMULISP_CORE.init(state_clone);
-    EMULISP_CORE.currentState().context = {type: 'editor', display_elt: display_target_id};
-    emulisp_states[elt_id] = EMULISP_CORE.currentState();
     // Build the html and bind to ide_action.
+    var display_target_id = elt_id + '-displaytarget';
     var script_container = $('#' + elt_id);
     var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" spellcheck="false">' + msg + '</textarea>' +
             '<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>' +
@@ -132,10 +143,12 @@ function repl_action(repl_elt) {
 }
 
 function inject_microalg_repl_in(elt_id, msg) {
-    // Custom state for a custom display in the REPL.
+    // Compute the target HTML elt.
     var repl_id = elt_id + '-malg-repl';
-    var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
-    EMULISP_CORE.init(state_clone);
+    // Init the state and load it with MicroAlg.
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(microalg_l_src);
+    // Custom state for a custom display in the REPL.
     EMULISP_CORE.currentState().context = {type: 'repl', display_elt: repl_id};
     emulisp_states[repl_id] = EMULISP_CORE.currentState();
     // Build the html and bind to ide_action.
@@ -183,9 +196,10 @@ function inject_microalg_jrepl_in(elt_id, msg) {
             }, 5);
         },
         onInit: function(term) {
+            // Init the state and load it with MicroAlg.
+            EMULISP_CORE.init();
+            EMULISP_CORE.eval(microalg_l_src);
             // Custom state for a custom display in the REPL.
-            var state_clone = jQuery.extend(true, {}, microalg_fresh_state);
-            EMULISP_CORE.init(state_clone);
             EMULISP_CORE.currentState().context = {type: 'jrepl', term: term};
             emulisp_states[elt_id] = EMULISP_CORE.currentState();
         },
