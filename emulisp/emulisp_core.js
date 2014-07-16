@@ -1375,6 +1375,8 @@ var pub = {
 	evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr, loadLisp: loadLisp, newErrMsg: newErrMsg,
 	newTransSymbol: newTransSymbol, prog: prog, valueToStr: valueToStr, Params: Params,
 	NIL: NIL, T: T,
+
+	getFileSync: getFileSync,
 	
 	eval: function(code) {
 		var result = prog(parseList(new Source(code)));
