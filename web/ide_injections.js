@@ -83,8 +83,8 @@ function ide_action(editor_elt) {
     var display_elt = editor_elt.parent().parent().find('.malg-display').first();
     display_elt.html('&nbsp;');
     try {
-        EMULISP_CORE.eval(src);
         error_elt.text('');
+        EMULISP_CORE.eval(src);
     } catch(e) {
         error_elt.text(e.message);
     }
