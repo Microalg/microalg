@@ -8,15 +8,21 @@ PicoLisp.
 Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
-(setq commandes '("Aide" "Initialiser" "Affecter_a" "Afficher" "Concatener"
-                  "Demander"
-                  "Type" "Texte" "Nombre"
-                  "Si" "Vrai?" "Faux?" "Texte?" "Nombre?" "Booleen?"
-                  "Tant_que" "Faire"
-                  "=" "=/" "<" "<=" ">" ">="
-                  "Bloc"
-                 )
-)
+(setq symboles '(
+"=" "=/" "<" "<=" ">" ">="
+"Affecter_a" "Afficher" "Aide"
+"Bloc" "Booleen?"
+"Concatener"
+"Demander"
+"Faire"
+"Faux" "Faux?"
+"Initialiser"
+"Nombre" "Nombre?"
+"Rien"
+"Si"
+"Tant_que" "Texte" "Texte?" "Type"
+"Vrai" "Vrai?"
+))
 
 # picolisp.l shimz
 (ifn glue
@@ -36,7 +42,7 @@ Voir <http://microalg.info>.")
                     doc (get truc 'doc))
                    (cond
                     ((== truc NIL) (get 'Aide 'text))
-                    ((== truc 'commandes) (glue " " commandes))
+                    ((== truc 'symboles) (glue " " symboles))
                     (doc (pack "Aide pour `" truc "`:  ^J" doc))
                     ((eval truc) (pack "Pas d’aide pour " truc "."))
                     (T (pack "`" truc "’ n’existe pas."))
@@ -46,8 +52,8 @@ Voir <http://microalg.info>.")
 Si vous ne l’avez pas déjà fait, commencez par le
 [tutoriel](http://microalg.info/tuto.html).  
 
-* `(Aide commandes)` pour une liste des commandes,
-* `(Aide «commande»)` (sans «») pour de l’aide sur une commande particulière,
+* `(Aide symboles)` pour une liste des symboles prédéfinis,
+* `(Aide «quoi»)` (sans «») pour de l’aide sur quelque chose en particulier,
 * `version` ou `apropos` pour des informations sur MicroAlg.")
 
 # Afficher.
