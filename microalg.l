@@ -245,5 +245,5 @@ dans l’ordre décroissant.")
 
 # Rien
 (put 'Rien 'doc
-"Valeur de contenant aucune information.")
+"Valeur de contenant aucune information, représentant l’absence de valeur.")
 (setq Rien 'Rien)
