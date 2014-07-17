@@ -277,8 +277,8 @@ sont définies.
             var dl = $('<dl/>').addClass('cmds-list').appendTo(defs);
             $.each(cmds_as_strings, function(i, cmd) {
                 var cmd_doc = EMULISP_CORE.eval("(get " + cmd + " 'doc)");
-                $('<dt/>').html(cmd).appendTo(dl);
                 $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
+                $('<dt/>').html(cmd).appendTo(dl);
                 var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
                 cmd_doc = cmd_doc.replace(/\^J/g,'\n');  // PicoLisp control char
                 if (cmd_doc.charAt(0) == '"' && cmd_doc.charAt(cmd_doc.length-1) == '"') {
