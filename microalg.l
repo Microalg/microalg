@@ -150,7 +150,7 @@ en minuscule).")
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
 (setq Vrai 'Vrai)
-(put 'Vrai 'doc "Booléen valant Faux.")
+(put 'Faux 'doc "Booléen valant Faux.")
 (setq Faux 'Faux)
 (put 'Si 'doc
 "Structure conditionnelle.")
