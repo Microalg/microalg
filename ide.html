@@ -15,6 +15,9 @@
     <script src="web/showdown.js"></script>
     <script src="web/jquery.terminal-min.js"></script>
     <link href="web/jquery.terminal.css" rel="stylesheet"/>
+  <script type="text/javascript" src="web/blockly/blockly_compressed.js"></script>
+  <script type="text/javascript" src="web/blockly_microalg.js"></script>
+  <script type="text/javascript" src="web/blockly/msg/js/fr.js"></script>
 </head>
 <body class="microalg">
     <noscript>
@@ -22,7 +25,7 @@
         Besoin de Javascript pour utiliser cet IDE.
         </div>
     </noscript>
-    <div id="content" class="web-ide" style="display:none;">
+    <div id="content" class="web-ide">
         <div class="link-right">
             <a href="#questce">Qu’est-ce ?</a> :
             <a href="#instructions">Instructions</a> :
@@ -34,6 +37,34 @@
         <div id="repl-container"></div>
         &nbsp;
         <div id="repl-container2"></div>
+        <br><br>
+        <div id="blockly-container">
+            <div id="blocklyDiv" style="height: 400px; width: 600px;"></div>
+            <button onclick="blockly_action()">OK</button>
+            <xml id="toolbox" style="display: none">
+              <block type="afficher"></block>
+              <block type="texte"></block>
+              <block type="concatener"></block>
+              <block type="demander"></block>
+            </xml>
+            <script>
+              Blockly.inject(document.getElementById('blocklyDiv'),
+                  {path: 'web/blockly/', toolbox: document.getElementById('toolbox')});
+              function blockly_action() {
+                  window.LoopTrap = 1000;
+                  //Blockly.JavaScript.INFINITE_LOOP_TRAP =
+                  //    'if (--window.LoopTrap == 0) throw "Boucle infinie.";\n';
+                  var code = Blockly.MicroAlg.workspaceToCode();
+                  //Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+                  try {
+                      alert(code);
+                      //alert(EMULISP_CORE.eval(code));
+                  } catch (e) {
+                      alert(e);
+                  }
+              }
+            </script>
+        </div>
         <div id="bla">
             <h1>MicroAlg - web IDE</h1>
             <h2 id="questce">Qu’est-ce ?</h2>
@@ -79,7 +110,6 @@
     </div>
     <script>
         onload = function () {
-            $('#content').show();
             // Éditeur:
             inject_microalg_editor_in('script-container', {localStorage: true},
                 '# Voici l’éditeur en ligne de MicroAlg.\n' +
