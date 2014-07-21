@@ -31,16 +31,8 @@
             <a href="./">Accueil</a> :
             <a href="#content">Haut de page</a>
         </div>
-        <div id="script-container"></div>
-        &nbsp;
-        <div id="repl-container"></div>
-        &nbsp;
-        <div id="repl-container2"></div>
-        <br><br>
         <div id="blockly-container">
-            <div id="blocklyDiv" style="height: 400px; width: 600px;"></div>
-            <div id="blockly-malg-src" style="font-family: 'Courier New', Courier, monospace; white-space: pre;">&nbsp;</div>
-            <button onclick="blockly_action()">OK</button>
+            <div id="blockly-blocks" style="height: 400px; width: 600px;"></div>
             <xml id="toolbox" style="display: none">
               <block type="afficher"></block>
               <block type="texte"></block>
@@ -51,18 +43,6 @@
               // Can't use jQuery here…
               Blockly.inject(document.getElementById('blockly-blocks'),
                   {path: 'web/blockly/', toolbox: document.getElementById('toolbox')});
-              function blockly_action() {
-                  window.LoopTrap = 1000;
-                  Blockly.MicroAlg.INFINITE_LOOP_TRAP =
-                      'if (--window.LoopTrap == 0) throw "Boucle infinie.";\n';
-                  var code = Blockly.MicroAlg.workspaceToCode();
-                  Blockly.MicroAlg.INFINITE_LOOP_TRAP = null;
-                  try {
-                      EMULISP_CORE.eval(code);
-                  } catch (e) {
-                      alert(e);
-                  }
-              }
               Blockly.addChangeListener(function () {
                   var textarea = $('#script-container-malg-editor');
                   textarea.val(Blockly.MicroAlg.workspaceToCode());
@@ -70,6 +50,12 @@
                 });
             </script>
         </div>
+        <div id="script-container"></div>
+        &nbsp;
+        <div id="repl-container"></div>
+        &nbsp;
+        <div id="repl-container2"></div>
+        <br><br>
         <div id="bla">
             <h1>MicroAlg - web IDE</h1>
             <h2 id="questce">Qu’est-ce ?</h2>
