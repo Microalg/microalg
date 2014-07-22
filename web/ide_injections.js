@@ -211,6 +211,26 @@ function inject_microalg_jrepl_in(elt_id, msg) {
     });
 }
 
+function inject_microalg_blockly_in(elt_id, editor_id) {
+    var blockly_container = $('#' + elt_id);
+    var toolbox_string =
+            '<xml id="' + elt_id + '-toolbox" style="display: none">' +
+            '  <block type="afficher"></block>' +
+            '  <block type="texte"></block>' +
+            '  <block type="concatener"></block>' +
+            '  <block type="demander"></block>' +
+            '</xml>';
+    blockly_container.html(toolbox_string);
+    // Can't use jQuery here…
+    Blockly.inject(document.getElementById(elt_id),
+        {path: 'web/blockly/', toolbox: document.getElementById(elt_id + '-toolbox')});
+    Blockly.addChangeListener(function () {
+        var textarea = $('#' + editor_id);
+        textarea.val(Blockly.MicroAlg.workspaceToCode());
+        textarea.click();  // Trigger a parenedit redraw.
+    });
+}
+
 // http://www.sitepoint.com/jquery-set-focus-character-range/
 $.fn.selectRange = function(start, end) {
     return this.each(function() {

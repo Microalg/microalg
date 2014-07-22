@@ -32,23 +32,8 @@
             <a href="#content">Haut de page</a>
         </div>
         <br>
-            <div id="blockly-blocks" style="height: 400px;" class="malg-container"></div>
-            <xml id="toolbox" style="display: none">
-              <block type="afficher"></block>
-              <block type="texte"></block>
-              <block type="concatener"></block>
-              <block type="demander"></block>
-            </xml>
-            <script>
-              // Can't use jQuery here…
-              Blockly.inject(document.getElementById('blockly-blocks'),
-                  {path: 'web/blockly/', toolbox: document.getElementById('toolbox')});
-              Blockly.addChangeListener(function () {
-                  var textarea = $('#script-container-malg-editor');
-                  textarea.val(Blockly.MicroAlg.workspaceToCode());
-                  textarea.click();  // Trigger a parenedit redraw.
-                });
-            </script>
+        <div id="blockly-container" style="height: 400px;" class="malg-container"></div>
+        &nbsp;
         <div id="script-container" class="malg-container"></div>
         &nbsp;
         <div id="repl-container" class="malg-container"></div>
@@ -100,6 +85,9 @@
     </div>
     <script>
         onload = function () {
+            // Blockly:
+            inject_microalg_blockly_in('blockly-container',
+                                       'script-container-malg-editor');
             // Éditeur:
             inject_microalg_editor_in('script-container', {localStorage: true},
                 '# Voici l’éditeur en ligne de MicroAlg.\n' +
