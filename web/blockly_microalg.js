@@ -1,5 +1,30 @@
 var malg_url = 'http://microalg.info/doc.html';
 
+// Un extrait des messages originaux:
+// http://code.google.com/p/blockly/source/browse/trunk/msg/js/fr.js
+
+Blockly.Msg.ADD_COMMENT = "Ajouter un commentaire";
+Blockly.Msg.AUTH = "Veuillez autoriser cette application à permettre la sauvegarde de votre travail et à l’autoriser de le partager avec vous.";
+Blockly.Msg.CHANGE_VALUE_TITLE = "Modifier la valeur :";
+Blockly.Msg.CHAT = "Discuter avec votre collaborateur en tapant dans cette zone !";
+Blockly.Msg.COLLAPSE_ALL = "Réduire les blocs";
+Blockly.Msg.COLLAPSE_BLOCK = "Réduire le bloc";
+Blockly.Msg.DELETE_BLOCK = "Supprimer le bloc";
+Blockly.Msg.DELETE_X_BLOCKS = "Supprimer %1 blocs";
+Blockly.Msg.DISABLE_BLOCK = "Désactiver le bloc";
+Blockly.Msg.DUPLICATE_BLOCK = "Dupliquer";
+Blockly.Msg.ENABLE_BLOCK = "Activer le bloc";
+Blockly.Msg.EXPAND_ALL = "Développer les blocs";
+Blockly.Msg.EXPAND_BLOCK = "Développer le bloc";
+Blockly.Msg.EXTERNAL_INPUTS = "Entrées externes";
+Blockly.Msg.HELP = "Aide";
+Blockly.Msg.INLINE_INPUTS = "Entrées en ligne";
+Blockly.Msg.NEW_VARIABLE = "Nouvelle variable…";
+Blockly.Msg.NEW_VARIABLE_TITLE = "Nom de la nouvelle variable :";
+Blockly.Msg.REMOVE_COMMENT = "Supprimer un commentaire";
+Blockly.Msg.RENAME_VARIABLE = "Renommer la variable…";
+Blockly.Msg.RENAME_VARIABLE_TITLE = "Renommer toutes les variables '%1' en :";
+
 // Préparation du générateur de code basée sur
 // http://code.google.com/p/blockly/source/browse/trunk/generators/python.js
 
