@@ -4,7 +4,7 @@ var malg_url = 'http://microalg.info/doc.html';
 // http://code.google.com/p/blockly/source/browse/trunk/generators/python.js
 
 Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
-
+Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
     '=, =/, <, <=, >, >=, ' +
     'Affecter_a, Afficher, Aide, Bloc, Booleen?, Concatener, ' +
@@ -12,29 +12,6 @@ Blockly.MicroAlg.addReservedWords(
     'Rien, Si, Tant_que, Texte, Texte?, Type, Vrai, Vrai?');
 
 // La suite, jusqu’au commentaire de fin, n’a pas été modifiée.
-
-Blockly.MicroAlg.ORDER_ATOMIC = 0;            // 0 "" ...
-Blockly.MicroAlg.ORDER_COLLECTION = 1;        // tuples, lists, dictionaries
-Blockly.MicroAlg.ORDER_STRING_CONVERSION = 1; // `expression...`
-Blockly.MicroAlg.ORDER_MEMBER = 2;            // . []
-Blockly.MicroAlg.ORDER_FUNCTION_CALL = 2;     // ()
-Blockly.MicroAlg.ORDER_EXPONENTIATION = 3;    // **
-Blockly.MicroAlg.ORDER_UNARY_SIGN = 4;        // + -
-Blockly.MicroAlg.ORDER_BITWISE_NOT = 4;       // ~
-Blockly.MicroAlg.ORDER_MULTIPLICATIVE = 5;    // * / // %
-Blockly.MicroAlg.ORDER_ADDITIVE = 6;          // + -
-Blockly.MicroAlg.ORDER_BITWISE_SHIFT = 7;     // << >>
-Blockly.MicroAlg.ORDER_BITWISE_AND = 8;       // &
-Blockly.MicroAlg.ORDER_BITWISE_XOR = 9;       // ^
-Blockly.MicroAlg.ORDER_BITWISE_OR = 10;       // |
-Blockly.MicroAlg.ORDER_RELATIONAL = 11;       // in, not in, is, is not,
-                                            //     <, <=, >, >=, <>, !=, ==
-Blockly.MicroAlg.ORDER_LOGICAL_NOT = 12;      // not
-Blockly.MicroAlg.ORDER_LOGICAL_AND = 13;      // and
-Blockly.MicroAlg.ORDER_LOGICAL_OR = 14;       // or
-Blockly.MicroAlg.ORDER_CONDITIONAL = 15;      // if else
-Blockly.MicroAlg.ORDER_LAMBDA = 16;           // lambda
-Blockly.MicroAlg.ORDER_NONE = 99;             // (...)
 
 /**
  * Initialise the database of variable names.
@@ -181,7 +158,7 @@ Blockly.Blocks['texte'] = {
 Blockly.MicroAlg['texte'] = function(block) {
   // Text value.
   var code = Blockly.MicroAlg.quote_(block.getFieldValue('TEXT'));
-  return [code, 0];
+  return code;
 };
 
 // Bloc concatener
@@ -310,19 +287,19 @@ Blockly.MicroAlg['concatener'] = function(block) {
   var cmd = 'Concatener';
   var code;
   if (block.itemCount_ == 0) {
-    return ['(' + cmd + ')', Blockly.MicroAlg.ORDER_ATOMIC];
+    code ='(' + cmd + ')';
   } else if (block.itemCount_ == 1) {
-    var argument0 = Blockly.MicroAlg.valueToCode(block, 'ADD0', Blockly.MicroAlg.ORDER_NONE) || '""';
+    var argument0 = Blockly.MicroAlg.statementToCode(block, 'ADD0') || '""';
     code = '(' + cmd + ' ' + argument0 + ')';
-    return [code, Blockly.MicroAlg.ORDER_FUNCTION_CALL];
   } else {
     var args = [];
     for (var n = 0; n < block.itemCount_; n++) {
-      args[n] = Blockly.MicroAlg.valueToCode(block, 'ADD' + n, Blockly.MicroAlg.ORDER_NONE) || '""';
+      args[n] = Blockly.MicroAlg.statementToCode(block, 'ADD' + n) ||
+             Blockly.MicroAlg.INDENT + '""';
     }
-    code = '(' + cmd + ' ' + args.join(' ') + ')';
-    return [code, Blockly.MicroAlg.ORDER_FUNCTION_CALL];
+    code = '(' + cmd + '\n' + args.join('\n') + '\n)';
   }
+  return code;
 };
 
 // Bloc afficher
@@ -341,8 +318,15 @@ Blockly.Blocks['afficher'] = {
 
 // Gen afficher
 Blockly.MicroAlg['afficher'] = function(block) {
-  var argument0 = Blockly.MicroAlg.valueToCode(block, 'VALUE', Blockly.MicroAlg.ORDER_NONE) || '';
-  return '(Afficher ' + argument0 + ')\n';
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Afficher)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Afficher ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Afficher\n' + arg + '\n)';
+  }
 };
 
 // Bloc demander
@@ -359,5 +343,5 @@ Blockly.Blocks['demander'] = {
 
 // Gen demander
 Blockly.MicroAlg['demander'] = function(block) {
-  return ['(Demander)', Blockly.MicroAlg.ORDER_ATOMIC];
+  return '(Demander)';
 };
