@@ -30,7 +30,7 @@ body.microalg {
     white-space: pre;
     position: relative;
 }
-#script-container, #repl-container {
+.malg-container {
     width: 95%;
     margin: 0px auto;
 }
