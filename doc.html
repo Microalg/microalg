@@ -339,7 +339,6 @@ le savoir, contribué à donner à ce projet un nom digne de ce nom.
             var defs = $('<div/>').addClass('cmds-list defs').appendTo($('#cmds'));
             var dl = $('<dl/>').addClass('cmds-list').appendTo(defs);
             $.each(cmds_as_strings, function(i, cmd) {
-                var cmd_doc = EMULISP_CORE.eval("(get " + cmd + " 'doc)");
                 $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
                 $('<dt/>').html(cmd).appendTo(dl);
                 var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
