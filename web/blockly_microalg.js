@@ -217,10 +217,7 @@ Blockly.Blocks['concatener'] = {
     }
     if (this.itemCount_ == 0) {
       this.appendDummyInput('EMPTY')
-          .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-          'media/quote0.png', 12, 12, '"'))
-          .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-          'media/quote1.png', 12, 12, '"'));
+          .appendField('Concaténer');
     }
   },
   decompose: function(workspace) {
@@ -263,10 +260,7 @@ Blockly.Blocks['concatener'] = {
     }
     if (this.itemCount_ == 0) {
       this.appendDummyInput('EMPTY')
-          .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-          'media/quote0.png', 12, 12, '"'))
-          .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-          'media/quote1.png', 12, 12, '"'));
+          .appendField('Concaténer');
     }
   },
   saveConnections: function(containerBlock) {
