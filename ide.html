@@ -40,6 +40,7 @@
         <br><br>
         <div id="blockly-container">
             <div id="blocklyDiv" style="height: 400px; width: 600px;"></div>
+            <div id="blockly-malg-src" style="font-family: 'Courier New', Courier, monospace; white-space: pre;">&nbsp;</div>
             <button onclick="blockly_action()">OK</button>
             <xml id="toolbox" style="display: none">
               <block type="afficher"></block>
@@ -48,21 +49,26 @@
               <block type="demander"></block>
             </xml>
             <script>
-              Blockly.inject(document.getElementById('blocklyDiv'),
+              // Can't use jQuery here…
+              Blockly.inject(document.getElementById('blockly-blocks'),
                   {path: 'web/blockly/', toolbox: document.getElementById('toolbox')});
               function blockly_action() {
                   window.LoopTrap = 1000;
-                  //Blockly.JavaScript.INFINITE_LOOP_TRAP =
-                  //    'if (--window.LoopTrap == 0) throw "Boucle infinie.";\n';
+                  Blockly.MicroAlg.INFINITE_LOOP_TRAP =
+                      'if (--window.LoopTrap == 0) throw "Boucle infinie.";\n';
                   var code = Blockly.MicroAlg.workspaceToCode();
-                  //Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+                  Blockly.MicroAlg.INFINITE_LOOP_TRAP = null;
                   try {
-                      alert(code);
-                      //alert(EMULISP_CORE.eval(code));
+                      EMULISP_CORE.eval(code);
                   } catch (e) {
                       alert(e);
                   }
               }
+              Blockly.addChangeListener(function () {
+                  var textarea = $('#script-container-malg-editor');
+                  textarea.val(Blockly.MicroAlg.workspaceToCode());
+                  textarea.click();  // Trigger a parenedit redraw.
+                });
             </script>
         </div>
         <div id="bla">
