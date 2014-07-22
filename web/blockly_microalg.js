@@ -307,9 +307,8 @@ Blockly.Blocks['afficher'] = {
   init: function() {
     this.setHelpUrl(malg_url);
     this.setColour(160);
-    this.interpolateMsg('Afficher %1',
-                        ['VALUE', null, Blockly.ALIGN_RIGHT],
-                        Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE')
+        .appendField('Afficher');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Afficher une valeur à l’utilisateur.');
