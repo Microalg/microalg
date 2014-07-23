@@ -409,6 +409,74 @@ Blockly.MicroAlg['texte'] = function(block) {
   return code;
 };
 
+// Bloc nombre litéral
+Blockly.Blocks['nombre'] = {
+  init: function() {
+    this.setHelpUrl(malg_url);
+    this.setColour(230);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput('0',
+        Blockly.FieldTextInput.numberValidator), 'NUM');
+    this.setOutput(true, 'Number');
+    this.setTooltip("Nombre");
+  }
+};
+
+// Gen nombre litéral
+Blockly.MicroAlg['nombre'] = function(block) {
+  return block.getFieldValue('NUM');
+};
+
+// Bloc opérations
+Blockly.Blocks['operations'] = {
+  init: function() {
+    var OPERATORS =
+        [['+', 'ADD'],
+         ['-', 'MINUS'],
+         ['×', 'MULTIPLY'],
+         ['÷', 'DIVIDE']];
+    this.setHelpUrl(malg_url);
+    this.setColour(230);
+    this.setOutput(true, 'Number');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP');
+    this.appendValueInput('A')
+        .setCheck('Number');
+    this.appendValueInput('B')
+        .setCheck('Number')
+    this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    this.setTooltip(function() {
+      var mode = thisBlock.getFieldValue('OP');
+      var TOOLTIPS = {
+        'ADD'     : "Renvoie la somme des deux nombres.",
+        'MINUS'   : "Renvoie le quotient des deux nombres.",
+        'MULTIPLY': "Renvoie la différence des deux nombres.",
+        'DIVIDE'  : "Renvoie le produit des deux nombres.",
+      };
+      return TOOLTIPS[mode];
+    });
+  }
+};
+
+// Gen opérations
+Blockly.MicroAlg['operations'] = function(block) {
+  var OPERATORS = {
+    'ADD':      '+',
+    'MINUS':    '-',
+    'MULTIPLY': '*',
+    'DIVIDE':   '/'
+  };
+  var operator = OPERATORS[block.getFieldValue('OP')];
+  var inputA = Blockly.MicroAlg.statementToCode(block, 'A');
+  var inputB = Blockly.MicroAlg.statementToCode(block, 'B');
+  var argument0 = inputA.substring(Blockly.MicroAlg.INDENT.length) || '0';
+  var argument1 = inputB.substring(Blockly.MicroAlg.INDENT.length) || '0';
+  var code = '(' + operator + ' ' + argument0 + ' ' + argument1 + ')';
+  return code;
+};
+
 // Bloc Faux
 // Gen Faux
 // Bloc Rien

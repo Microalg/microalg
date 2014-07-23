@@ -219,9 +219,11 @@ function inject_microalg_blockly_in(elt_id, editor_id) {
             '  <block type="afficher"></block>' +
             '  <block type="concatener"></block>' +
             '  <block type="demander"></block>' +
+            '  <block type="operations"></block>' +
             ' </category>' +
             ' <category name="Autres">' +
             '  <block type="texte"></block>' +
+            '  <block type="nombre"></block>' +
             ' </category>' +
             '</xml>';
     blockly_container.html(toolbox_string);
