@@ -405,7 +405,6 @@ Blockly.Blocks['texte'] = {
 
 // Gen texte litéral
 Blockly.MicroAlg['texte'] = function(block) {
-  // Text value.
   var code = Blockly.MicroAlg.quote_(block.getFieldValue('TEXT'));
   return code;
 };
