@@ -215,10 +215,14 @@ function inject_microalg_blockly_in(elt_id, editor_id) {
     var blockly_container = $('#' + elt_id);
     var toolbox_string =
             '<xml id="' + elt_id + '-toolbox" style="display: none">' +
+            ' <category name="Commandes">' +
             '  <block type="afficher"></block>' +
-            '  <block type="texte"></block>' +
             '  <block type="concatener"></block>' +
             '  <block type="demander"></block>' +
+            ' </category>' +
+            ' <category name="Autres">' +
+            '  <block type="texte"></block>' +
+            ' </category>' +
             '</xml>';
     blockly_container.html(toolbox_string);
     // Can't use jQuery here…
