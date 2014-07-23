@@ -67,7 +67,7 @@ comportements différents suivant qu’on les évalue, qu’on les affiche ou qu
 les appelle.")
 (setq *LastStdOut "?")
 (de Afficher args (let (first (car args)
-                        text (get first 'text)
+                        text (if (num? first) first (get first 'text))
                         a_afficher (if text text (eval first)))
                        (setq *LastStdOut (if a_afficher a_afficher "?"))
                        (println a_afficher)
