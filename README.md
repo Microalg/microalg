@@ -84,3 +84,13 @@ Fichiers
   généralement à faire ses premiers pas en algorithmique et en programmation
 * `visuels` : divers fichiers graphiques comme par exemple le logo
 * `web` : des fichiers de complément pour les `.html` de ce projet
+    * `blockly` : un extrait des fichiers du projet permettant de programmer
+      avec des pièces de puzzle ([Blockly](http://code.google.com/p/blockly/))
+    * `blockly_microalg.js` : les blocs Blockly et leur générateur,
+      correspondant aux mots-clés prédéfinis de MicroAlg
+    * `ide_injections.js` : contient de quoi intégrer MicroAlg dans une page
+    * `jquery.terminal*` : pour la console ou REPL ([site officiel](http://terminal.jcubic.pl/))
+    * `parenedit.*` : pour les parenthèses de couleur
+    * `showdown.*` : ([github](https://github.com/coreyti/showdown))
+    * `showup.*` : ([github](https://github.com/upstage/showup))
+    * `style.css` : la feuille de style
