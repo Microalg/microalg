@@ -156,37 +156,41 @@ Blockly.MicroAlg.scrub_ = function(block, code) {
 // http://code.google.com/p/blockly/source/browse/trunk/blocks
 // http://code.google.com/p/blockly/source/browse/trunk/generators/python
 
-// Bloc texte
-Blockly.Blocks['texte'] = {
+// Bloc Affecter_a
+// Gen Affecter_a
+// Bloc Aide
+// Gen Aide
+
+// Bloc Afficher
+Blockly.Blocks['afficher'] = {
   init: function() {
     this.setHelpUrl(malg_url);
     this.setColour(160);
-    this.appendDummyInput()
-        .appendField(this.newQuote_(true))
-        .appendField(new Blockly.FieldTextInput(''), 'TEXT')
-        .appendField(this.newQuote_(false));
-    this.setOutput(true, 'String');
-    this.setTooltip('Texte');
-  },
-  newQuote_: function(open) {
-    if (open == Blockly.RTL) {
-      var file = 'quote1.png';
-    } else {
-      var file = 'quote0.png';
-    }
-    return new Blockly.FieldImage(Blockly.pathToBlockly + 'media/' + file,
-                                  12, 12, '"');
+    this.appendValueInput('VALUE')
+        .appendField('Afficher');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Afficher une valeur à l’utilisateur.');
   }
 };
 
-// Gen texte
-Blockly.MicroAlg['texte'] = function(block) {
-  // Text value.
-  var code = Blockly.MicroAlg.quote_(block.getFieldValue('TEXT'));
-  return code;
+// Gen Afficher
+Blockly.MicroAlg['afficher'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Afficher)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Afficher ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Afficher\n' + arg + '\n)';
+  }
 };
 
-// Bloc concatener
+// Bloc Bloc
+// Gen Bloc
+
+// Bloc Concatener
 Blockly.Blocks['concatener'] = {
   init: function() {
     this.setHelpUrl(malg_url);
@@ -276,7 +280,7 @@ Blockly.Blocks['concatener'] = {
   }
 };
 
-// Conteneur pour le mutator de concatener
+// Conteneur pour le mutator de Concatener
 Blockly.Blocks['text_create_join_container'] = {
   init: function() {
     this.setColour(160);
@@ -288,7 +292,7 @@ Blockly.Blocks['text_create_join_container'] = {
   }
 };
 
-// Élément pour le mutator de concatener
+// Élément pour le mutator de Concatener
 Blockly.Blocks['text_create_join_item'] = {
   init: function() {
     this.setColour(160);
@@ -301,7 +305,7 @@ Blockly.Blocks['text_create_join_item'] = {
   }
 };
 
-// Gen concatener
+// Gen Concatener
 Blockly.MicroAlg['concatener'] = function(block) {
   var cmd = 'Concatener';
   var code;
@@ -321,33 +325,7 @@ Blockly.MicroAlg['concatener'] = function(block) {
   return code;
 };
 
-// Bloc afficher
-Blockly.Blocks['afficher'] = {
-  init: function() {
-    this.setHelpUrl(malg_url);
-    this.setColour(160);
-    this.appendValueInput('VALUE')
-        .appendField('Afficher');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('Afficher une valeur à l’utilisateur.');
-  }
-};
-
-// Gen afficher
-Blockly.MicroAlg['afficher'] = function(block) {
-  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
-  if (arg === '') return '(Afficher)';
-  var num_lines = arg.split('\n').length;
-  if (num_lines == 1) {
-    // Prevent indentation if we only have one line.
-    return '(Afficher ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
-  } else {
-    return '(Afficher\n' + arg + '\n)';
-  }
-};
-
-// Bloc demander
+// Bloc Demander
 Blockly.Blocks['demander'] = {
   init: function() {
     this.setHelpUrl(malg_url);
@@ -359,7 +337,82 @@ Blockly.Blocks['demander'] = {
   }
 };
 
-// Gen demander
+// Gen Demander
 Blockly.MicroAlg['demander'] = function(block) {
   return '(Demander)';
 };
+
+// Bloc Faire
+// Gen Faire
+// Bloc Initialiser
+// Gen Initialiser
+// Bloc Nombre
+// Gen Nombre
+// Bloc Si
+// Gen Si
+// Bloc Tant_que
+// Gen Tant_que
+// Bloc Texte
+// Gen Texte
+// Bloc Type
+// Gen Type
+
+// Bloc <
+// Gen <
+// Bloc <=
+// Gen <=
+// Bloc =
+// Gen =
+// Bloc =/
+// Gen =/
+// Bloc >
+// Gen >
+// Bloc >=
+// Gen >=
+// Bloc Booleen?
+// Gen Booleen?
+// Bloc Faux?
+// Gen Faux?
+// Bloc Nombre?
+// Gen Nombre?
+// Bloc Texte?
+// Gen Texte?
+// Bloc Vrai?
+// Gen Vrai?
+
+// Bloc texte litéral
+Blockly.Blocks['texte'] = {
+  init: function() {
+    this.setHelpUrl(malg_url);
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField(this.newQuote_(true))
+        .appendField(new Blockly.FieldTextInput(''), 'TEXT')
+        .appendField(this.newQuote_(false));
+    this.setOutput(true, 'String');
+    this.setTooltip('Texte');
+  },
+  newQuote_: function(open) {
+    if (open == Blockly.RTL) {
+      var file = 'quote1.png';
+    } else {
+      var file = 'quote0.png';
+    }
+    return new Blockly.FieldImage(Blockly.pathToBlockly + 'media/' + file,
+                                  12, 12, '"');
+  }
+};
+
+// Gen texte litéral
+Blockly.MicroAlg['texte'] = function(block) {
+  // Text value.
+  var code = Blockly.MicroAlg.quote_(block.getFieldValue('TEXT'));
+  return code;
+};
+
+// Bloc Faux
+// Gen Faux
+// Bloc Rien
+// Gen Rien
+// Bloc Vrai
+// Gen Vrai
