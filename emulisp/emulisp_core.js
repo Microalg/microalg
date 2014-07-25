@@ -968,7 +968,7 @@ var coreFunctions = {
 			readlinesync.setPrompt("");
 			_stdPrompt = readlinesync.prompt;
 		} else {
-			if (typeof(stdPrompt) != "undefined") {
+			if (typeof stdPrompt != "undefined") {
 				var _stdPrompt = stdPrompt;
 			} else {
 				var _stdPrompt = window.prompt;
