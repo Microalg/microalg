@@ -78,10 +78,11 @@ function ide_action(editor_elt) {
     EMULISP_CORE.currentState().context = {type: 'editor', display_elt: display_target_id};
     // Process src.
     var src = editor_elt.val();
-    // createRichInput put the editor in a sub div, that's why we use
-    // parent().parent()
-    var error_elt = editor_elt.parent().parent().find('.malg-error').first();
-    var display_elt = editor_elt.parent().parent().find('.malg-display').first();
+    // The editor is in a hiddable div,
+    // createRichInput put the editor in a sub div,
+    // that's why we use parent().parent().parent()
+    var error_elt = editor_elt.parent().parent().parent().find('.malg-error').first();
+    var display_elt = editor_elt.parent().parent().parent().find('.malg-display').first();
     display_elt.html('&nbsp;');
     try {
         error_elt.text('');
