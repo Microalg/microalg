@@ -9,9 +9,9 @@ var this_script_url = (function(scripts) {
     return script.getAttribute('src', -1)
 }());
 var this_script_path = 'web/ide_injections.js';
-var microalg_l_path = this_script_url.slice(0, -this_script_path.length)
-                      + 'microalg.l';
-var microalg_l_src = EMULISP_CORE.getFileSync(microalg_l_path);
+var root_path = this_script_url.slice(0, -this_script_path.length);
+var microalg_l_src = EMULISP_CORE.getFileSync(root_path + 'microalg.l');
+var microalg_blockly_l_src = EMULISP_CORE.getFileSync(root_path + 'microalg_blockly.l');
 
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
@@ -21,6 +21,7 @@ var malg_prompt = ": ";
 
 function cleanTransient(text) {
     text = text.replace(/\^J/g,'\n');  // PicoLisp control char
+    text = text.replace(/\\"/g,'"');   // unescape double quotes
     text = text.replace(/\n$/,'');     // remove last newline
     if (text.charAt(0) == '"' && text.charAt(text.length-1) == '"') {
         text = text.slice(1, -1);      // remove enclosing quotes
@@ -211,7 +212,20 @@ function inject_microalg_jrepl_in(elt_id, msg) {
     });
 }
 
-function inject_microalg_blockly_in(elt_id, editor_id) {
+function malg2blockly(src) {
+    EMULISP_CORE.init();
+    EMULISP_CORE.currentState().transient_shortcut = function (name) {
+        return '<block type=\"texte\"><field name=\"TEXT\">' + name + '</field></block>';
+    }
+    EMULISP_CORE.eval(microalg_blockly_l_src);
+    var xml = cleanTransient(EMULISP_CORE.eval(src));
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(microalg_l_src);
+    xml = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">" + xml + "</xml>";
+    return xml;
+}
+
+function inject_microalg_blockly_in(elt_id, editor_id, msg) {
     var blockly_container = $('#' + elt_id);
     var toolbox_string =
             '<xml id="' + elt_id + '-toolbox" style="display: none">' +
@@ -230,6 +244,11 @@ function inject_microalg_blockly_in(elt_id, editor_id) {
     // Can't use jQuery here…
     Blockly.inject(document.getElementById(elt_id),
         {path: 'web/blockly/', toolbox: document.getElementById(elt_id + '-toolbox')});
+    if (typeof msg != 'undefined') {
+        var xml_text = malg2blockly(msg);
+        var xml = Blockly.Xml.textToDom(xml_text);
+        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+    }
     Blockly.addChangeListener(function () {
         var textarea = $('#' + editor_id);
         textarea.val(Blockly.MicroAlg.workspaceToCode());

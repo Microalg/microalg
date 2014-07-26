@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tuto - MicroAlg</title>
+    <meta name="description"
+          content="Tutoriel en ligne pour MicroAlg." />
+    <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+    <script type="text/javascript" src="web/ide_injections.js"></script>
+    <script type="text/javascript" src="web/parenedit.js"></script>
+    <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
+    <script src="web/showdown.js"></script>
+    <script src="web/showup.js"></script>
+    <link type="text/css" href="web/showup.css" rel="stylesheet" />
+    <script type="text/javascript" src="web/blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="web/blockly_microalg.js"></script>
+</head>
+<body class="microalg">
+    <noscript>
+        <div style="color:#CC0000; text-align:center">
+        Besoin de Javascript pour les exercices interactifs.
+        </div>
+    </noscript>
+    <div class="navbar">
+        <a href="./">accueil</a> :
+        <a href="#top">haut de page</a>
+    </div>
+    <h1 id="top">MicroAlg - Tutoriel par blocs</h1>
+    <p><a href="#affichage">Commencer tout de suite</a>, sans lire
+    l’introduction.</p>
+    <p>
+    Aller directement à :
+    <a href="#affichage">Affichage</a>,
+    <a href="#texte-et-concatenation">Texte et concaténation</a>,
+    <a href="#parentheses">Parenthèses</a>,
+    <a href="#demander">Demander à l’utilisateur</a>,
+    <a href="#calculs_nombres">Calculs avec des nombres</a>,
+    <a href="#calculs_nombres_demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
+    <a href="#booleens">Booléens</a>,
+    <a href="#si">Si</a>,
+    <a href="#variables">Variables</a>,
+    <a href="#faire-tant-que">Faire… tant que…</a>,
+    <a href="#tant-que-faire">Tant que… faire…</a>,
+    <a href="#contact">Contact</a>.
+    </p>
+
+    <h2 id="autres-tutos">Les autres tutoriels</h2>
+    <p>Si vous préférez <strong>ne pas utiliser votre souris</strong> et
+    <strong>taper le code</strong> vous-même, vous pouvez plutôt essayer :</p>
+    <ul>
+        <li>
+            <a href="tuto_simple.html">le tutoriel simplifié</a>, rédigé dans
+            un <strong>français simplifié</strong> ;
+        </li>
+        <li>
+            <a href="tuto.html">le tutoriel officiel</a>, rédigé dans un
+            <strong>français assez soutenu</strong> ;</li>
+        <li>
+            <a href="tuto_rapide.html">le tutoriel rapide</a>, réservé aux
+            personnes connaissant déjà un langage de programmation.</p>
+        </li>
+    </ul>
+
+    <h2 id="questce">Qu’est-ce ?</h2>
+    <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel">tutoriel</a>
+    pour <a href="http://microalg.info">MicroAlg</a>.</p>
+    <p>Le tutoriel est assez long car il couvre tout le langage. Patience !
+    Peut-être faudra-t-il le faire en plusieurs fois !</p>
+    <p>Au cours de ce tutoriel, on vous proposera des petits programmes à
+    exécuter directement dans le navigateur. N’hésitez pas à les modifier afin
+    d’être sûre de comprendre le principe (si possible une modification
+    rigolote).</p>
+    <p>Avant de les exécuter, essayez de deviner ce qu’ils vont faire.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
+    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
+    une idée lumineuse, merci de (au choix) :</p>
+    <ul>
+        <li>proposer une « pull request » en éditant directement
+            <a href="https://github.com/Microalg/Microalg/edit/master/tuto.html">ce fichier sur Github</a> ;</li>
+        <li>poster une « issue » sur
+            <a href="https://github.com/Microalg/Microalg/issues/new">Github</a> ;</li>
+        <li>poser une question dans
+            <a href="http://qr.microalg.info">la section Questions/Réponses</a> ;</li>
+        <li>m’envoyer <a href="mailto:profgra.org@gmail.com">un mail</a>.</li>
+    </ul>
+
+    <h2 id="affichage"><a href="#affichage">: </a>Affichage</a></h2>
+    <p>Pourquoi ne pas commencer tout de suite !</p>
+    <p>On a mis deux blocs ci-dessous.</p>
+    <div id="script-afficher-blockly" height="200px"></div>
+    <div id="script-afficher"></div>
+    <script>
+    inject_microalg_blockly_in('script-afficher-blockly',
+                               'script-afficher-malg-editor',
+        '# Voici votre premier programme.\n' +
+        '# Les lignes commençant par # sont des commentaires\n' +
+        '# et ne sont pas interprétées par MicroAlg.\n' +
+        '# Cliquer dans cette zone de texte,\n' +
+        '# puis Ctrl + Entrée pour exécuter le code.\n' +
+        '(Afficher "Bonjour tout le monde!")');
+    inject_microalg_editor_in('script-afficher', {localStorage: false});
+    </script>
+    <p>Un message de bienvenue devrait s’être affiché dans la barre un peu
+    arrondie ci-dessus (sinon, suivre les instructions de
+    <a href="#contact">cette section</a>).</p>
+    <p>Avant de passer à l’exemple suivant, apprenez à vous servir de la touche
+    <code>TAB</code> (à gauche du <code>A</code>). Elle vous permet de passer
+    de zone de code en zone de code, en passant aussi sur les liens. En
+    appuyant deux fois dessus, vous arrivez à la prochaine zone. Pratique, pas
+    besoin de toucher la souris.</p>
+
+    <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
+    <p>Dans l’exemple précédent, que nous rappelons ci-dessous, nous avons
+    affiché du texte. Nous dirons que nous avons passé du texte en paramètre à
+    la commande <code>Afficher</code>.</p>
+    <p>Mieux : ce que l’on appelle ici « texte » est parfois appelé « chaîne de
+    caractères ». On doit le mettre entre guillemets.</p>
+    <div id="script-afficher-rappel"></div>
+    <script>inject_microalg_editor_in('script-afficher-rappel', {localStorage: false},
+        '(Afficher "Rebonjour tout le monde!")');
+    </script>
+    <p>Malheureusement la commande <code>Afficher</code> n’affiche que son
+    premier argument (ce qui lui arrive en paramètre) et ignore tous les
+    autres. Ici, le deuxième argument « et encore du texte » est ignoré et seul
+    le premier argument « du texte » est affiché :</p>
+    <div id="script-afficher-params"></div>
+    <script>inject_microalg_editor_in('script-afficher-params', {localStorage: false},
+        '(Afficher "du texte" "et encore du texte")');
+    </script>
+    <p>Pour « concaténer » deux textes, c’est-à-dire
+    <a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">les mettre bout-à-bout</a>,
+    on utilise la commande <code>Concatener</code>. Dans l’exemple suivant,
+    on affiche la concaténation de deux textes :</p>
+    <div id="script-concat"></div>
+    <script>inject_microalg_editor_in('script-concat', {localStorage: false},
+        '(Afficher (Concatener "du texte" "et encore du texte"))');
+    </script>
+    <p>Rappelez-vous, vous pouvez modifier les programmes de cette page pour
+    éventuellement les améliorer !</p>
+    <p>Notez les parenthèses qui s’emboîtent. L’emboîtement des parenthèses est
+    la base de MicroAlg, et plus généralement des langages de type
+    <a href="https://fr.wikipedia.org/wiki/Lisp">Lisp</a> (noter aussi le
+    nombre de traductions de cette page Wikipedia !).</p>
+    <p>Même si en français on dit que le programme « affiche la concaténation
+    de deux textes », le programme s’exécute depuis l’intérieur vers
+    l’extérieur : le programme concatène d’abord, et affiche ensuite.</p>
+    <p>Attention, les guillemets utilisés ici : « " » servent aussi bien à
+    ouvrir qu’à fermer une chaîne de caractères. On voit sur ce dernier exemple
+    que c’est moins clair que des parenthèses, mais il faudra faire avec.</p>
+    <p>Une solution pour y voir clair : organiser son code sur différentes
+    lignes :</p>
+    <div id="script-concat-lignes"></div>
+    <script>inject_microalg_editor_in('script-concat-lignes', {localStorage: false},
+        '(Afficher (Concatener\n' +
+        '             "du texte "\n' +
+        '             "et encore du texte"\n' +
+        '))');
+    </script>
+    <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
+    au nombre de textes à concaténer :</p>
+    <div id="script-concat3"></div>
+    <script>inject_microalg_editor_in('script-concat3', {localStorage: false},
+        '(Afficher (Concatener\n' +
+        '             "du texte, "\n' +
+        '             "du texte, "\n' +
+        '             "et encore du texte"\n' +
+        '))');
+    </script>
+
+    <h2 id="fin">Fin</h2>
+    <p>Ce tutoriel est en cours de rédaction, les
+    <a href="#autres-tutos">autres</a> sont bien plus complets.</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+        $().showUp('.navbar', {
+            upClass: 'navbar-show',
+            downClass: 'navbar-hide'
+        });
+    </script>
+</body>
+</html>

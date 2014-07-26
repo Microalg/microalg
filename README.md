@@ -69,6 +69,7 @@ Fichiers
 * `malgjs.bat` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp sous Windows
 * `malgjs_npp.bat` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp sous Windows et depuis NotePad++
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
+* `microalg_blockly.l` : reprogrammation de MicroAlg pour la mise en place de blocs correspondant à un programme
 * tests :
     * `microalg_tests.malg` : les tests des commandes MicroAlg testables avec
       PicoLisp/MicroAlg seulement
