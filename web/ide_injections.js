@@ -100,7 +100,10 @@ function inject_microalg_editor_in(elt_id, config, msg) {
     // Build the html and bind to ide_action.
     var display_target_id = elt_id + '-displaytarget';
     var script_container = $('#' + elt_id);
-    var script_string = '<textarea id="' + elt_id + '-malg-editor" class="malg-editor" cols="80" rows="2" spellcheck="false">' + msg + '</textarea>' +
+    var hidden = config.hidden ? ' style="display:none;"' : '';
+    var script_string = '<div ' + hidden + '><textarea id="' + elt_id + '-malg-editor" ' +
+                        'class="malg-editor" cols="80" rows="2"' +
+                        'spellcheck="false">' + msg + '</textarea></div>' +
             '<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>' +
             '<div class="malg-error" style="color: red;"></div>' +
             '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
