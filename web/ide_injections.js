@@ -231,6 +231,15 @@ function malg2blockly(src) {
 
 function inject_microalg_blockly_in(elt_id, editor_id, msg) {
     var blockly_container = $('#' + elt_id);
+    var iframe_id = elt_id + '-iframe';
+    // http://stackoverflow.com/questions/13214419/alternatives-to-iframe-srcdoc
+    blockly_container.html('<iframe style="border:none" scrolling="no" id="foo" seamless></iframe>');
+    var iframeDocument = document.querySelector('#foo').contentWindow.document;
+    var content = '<html>yo tavu</html>';
+    iframeDocument.open('text/html', 'replace');
+    iframeDocument.write(content);
+    iframeDocument.close();
+    return;
     var toolbox_string =
             '<xml id="' + elt_id + '-toolbox" style="display: none">' +
             ' <category name="Commandes">' +
