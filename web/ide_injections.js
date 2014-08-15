@@ -234,15 +234,15 @@ function malg2blockly(src) {
 
 function inject_microalg_blockly_in(elt_id, editor_id, msg) {
     var blockly_container = $('#' + elt_id);
-    var iframe_id = elt_id + '-iframe';
+    // Injection de HTML dans une iframe car besoin de plusieurs Blockly.
     // http://stackoverflow.com/questions/13214419/alternatives-to-iframe-srcdoc
-    blockly_container.html('<iframe style="border:none" scrolling="no" id="foo" seamless></iframe>');
-    var iframeDocument = document.querySelector('#foo').contentWindow.document;
-    var content = '<html>yo tavu</html>';
-    iframeDocument.open('text/html', 'replace');
-    iframeDocument.write(content);
-    iframeDocument.close();
-    return;
+    // Le code MicroAlg doit être sur une ligne pour passer dans le js généré:
+    if (typeof msg != "undefined") {
+        msg = msg.replace(/(\r\n|\n|\r)/gm, "");
+    } else {
+        msg = "";
+    }
+    // Ensuite le contenu de la toolbox:
     var toolbox_string =
             '<xml id="' + elt_id + '-toolbox" style="display: none">' +
             ' <category name="Commandes">' +
@@ -256,18 +256,59 @@ function inject_microalg_blockly_in(elt_id, editor_id, msg) {
             '  <block type="nombre"></block>' +
             ' </category>' +
             '</xml>';
-    blockly_container.html(toolbox_string);
-    // Can't use jQuery here…
-    Blockly.inject(document.getElementById(elt_id),
-        {path: 'web/blockly/', toolbox: document.getElementById(elt_id + '-toolbox')});
+    // La page:
+    var content = '<!DOCTYPE html>' +
+'<html>\n' +
+'  <head>\n' +
+'    <meta charset="utf-8">\n' +
+'    <script type="text/javascript" src="web/blockly/blockly_compressed.js"></script>\n' +
+'    <script type="text/javascript" src="web/blockly_microalg.js"></script>\n' +
+'    <style>\n' +
+'      html, body {\n' +
+'        background-color: #fff;\n' +
+'        margin: 0;\n' +
+'        padding: 0;\n' +
+'        overflow: hidden;\n' +
+'        height: 100%;\n' +
+'      }\n' +
+'      .blocklySvg {\n' +
+'        height: 100%;\n' +
+'        width: 100%;\n' +
+'      }\n' +
+'    </style>\n' +
+'    <script>\n' +
+'      function init() {\n' +
+'        Blockly.inject(document.body,\n' +
+'            {path: "../../web/blockly/", toolbox: document.getElementById("' + elt_id + '-toolbox")});\n' +
+'        // Let the top-level application know that Blockly is ready.\n' +
+'        window.parent.blocklyLoaded(Blockly, "' + editor_id + '", \'' + msg + '\');\n' +
+'      }\n' +
+'    </script>\n' +
+'  </head>\n' +
+'  <body onload="init()">\n' + toolbox_string
+'  </body>\n' +
+'</html>';
+    // Création de l’iframe et injection.
+    var iframe_id = elt_id + '-iframe';
+    var style = 'seamless class="malg-blockly-iframe" scrolling="no"';
+    blockly_container.html('<iframe id="' + iframe_id + '" ' + style + '></iframe>');
+    var iframeDocument = document.querySelector('#' + iframe_id).contentWindow.document;
+    iframeDocument.open('text/html', 'replace');
+    iframeDocument.write(content);
+    iframeDocument.close();
+    // La suite se passe dans blocklyLoaded ci-dessous, une fois que chaque
+    // iframe est chargée.
+}
+
+function blocklyLoaded(blockly, editor_id, msg) {
     if (typeof msg != 'undefined') {
         var xml_text = malg2blockly(msg);
-        var xml = Blockly.Xml.textToDom(xml_text);
-        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+        var xml = blockly.Xml.textToDom(xml_text);
+        blockly.Xml.domToWorkspace(blockly.mainWorkspace, xml);
     }
-    Blockly.addChangeListener(function () {
+    blockly.addChangeListener(function () {
         var textarea = $('#' + editor_id);
-        textarea.val(Blockly.MicroAlg.workspaceToCode());
+        textarea.val(blockly.MicroAlg.workspaceToCode());
         textarea.click();  // Trigger a parenedit redraw.
     });
 }

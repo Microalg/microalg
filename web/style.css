@@ -34,6 +34,13 @@ body.microalg {
     width: 95%;
     margin: 0px auto;
 }
+.malg-blockly-iframe {
+    height: 350px;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aaa;
+}
 .malg-editor, .malg-repl {
     width: 100%;
 }
