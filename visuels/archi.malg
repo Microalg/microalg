@@ -1,5 +1,5 @@
 (load "lib/xml.l")
-# TODO: inclure blockly processing, processingJS, webGL, openGL, swing, NP++
+# TODO: inclure blockly, processing, processingJS, webGL, openGL, swing, NP++
 # TODO: checker la nécessité des fill de MACHINE (a pas dans microalg.l)
 (setq W "#FFF")  # blanc
 (setq R "#F00")  # rouge
