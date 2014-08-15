@@ -96,11 +96,33 @@ MicroAlg se veut :
 Une *instruction* est constituée de parenthèses, contenant une *commande* et ses
 *arguments* : `(Commande arg1 arg2 ...)`.
 
+Certaines commandes n’ont pas besoin d’argument. On écrira simplement :
+`(Commande)`.
+
 Les instructions peuvent être imbriquées. En effet, un des arguments d’une
 commande peut être remplacé par une autre instruction :
 `(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`.  
 Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
 premier.
+
+Un *programme* est constitué d’une ou plusieurs instructions.
+
+### Symboles
+
+À part les **parenthèses**, les **nombres** (le séparateur est le `.`) et les
+**textes** (délimités par des `"`), le langage comporte des symboles. Ils sont
+organisés comme ceci :
+
+* symboles
+    * commandes
+        * prédéfinies
+            * flot (`Si`, `Tant_que`…)
+            * structures de données (`Liste`…)
+            * autres (`Afficher`, `Concatener`…)
+        * définies par l’utilisateur
+    * mots-clefs
+        * intermédiaires (`Alors`, `Sinon`…)
+        * autres (`Vrai`, `Faux`, `Rien`…)
 
 ### Conventions
 
