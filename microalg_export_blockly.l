@@ -21,4 +21,7 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
-(de !!! () "")
+(de !!! (content)
+  (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
+        content
+        "</field></block>"))

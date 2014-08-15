@@ -9,7 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq symboles '(
-"=" "=/" "<" "<=" ">" ">="
+"!!!" "=" "=/" "<" "<=" ">" ">="
 "Affecter_a" "Afficher" "Aide"
 "Bloc" "Booleen?"
 "Concatener"
@@ -34,6 +34,11 @@ Voir <http://microalg.info>.")
     )
   )
 )
+
+# Commentaires
+(put '!!! 'doc
+"Commande qui ne fait rien et sert pour les commentaires.")
+(de !!! () Rien)
 
 # Aide
 (put 'Aide 'doc

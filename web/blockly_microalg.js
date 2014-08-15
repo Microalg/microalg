@@ -156,6 +156,37 @@ Blockly.MicroAlg.scrub_ = function(block, code) {
 // http://code.google.com/p/blockly/source/browse/trunk/blocks
 // http://code.google.com/p/blockly/source/browse/trunk/generators/python
 
+// Bloc Commentaire
+Blockly.Blocks['commentaire'] = {
+  init: function() {
+    this.setHelpUrl(malg_url);
+    this.setColour(160);
+    this.appendDummyInput()
+        .appendField('!!!')
+        .appendField(this.newQuote_(true))
+        .appendField(new Blockly.FieldTextInput(''), 'COMZ')
+        .appendField(this.newQuote_(false));
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Commentaire. Aucune action n’est réalisée.');
+  },
+  newQuote_: function(open) {
+    if (open == Blockly.RTL) {
+      var file = 'quote1.png';
+    } else {
+      var file = 'quote0.png';
+    }
+    return new Blockly.FieldImage(Blockly.pathToBlockly + 'media/' + file,
+                                  12, 12, '"');
+  }
+};
+
+// Gen Commentaire
+Blockly.MicroAlg['commentaire'] = function(block) {
+  var arg = Blockly.MicroAlg.quote_(block.getFieldValue('COMZ'));
+  return '(!!! ' + arg + ')';
+};
+
 // Bloc Affecter_a
 // Gen Affecter_a
 // Bloc Aide

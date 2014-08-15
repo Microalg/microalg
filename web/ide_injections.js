@@ -246,6 +246,7 @@ function inject_microalg_blockly_in(elt_id, editor_id, msg) {
     var toolbox_string =
             '<xml id="' + elt_id + '-toolbox" style="display: none">' +
             ' <category name="Commandes">' +
+            '  <block type="commentaire"></block>' +
             '  <block type="afficher"></block>' +
             '  <block type="concatener"></block>' +
             '  <block type="demander"></block>' +
