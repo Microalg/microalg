@@ -323,11 +323,6 @@ function getString(str, editMode) {
 		s = newTransSymbol(str);
 		if (! (editMode || (str in gEmptyObj))) cst.tSym[str] = s;
 	}
-    if (typeof cst.transient_shortcut != 'undefined') {
-        if (['<', '"'].indexOf(s.car.name.charAt(0)) == -1) {
-            s.car.name = cst.transient_shortcut(s.car.name);
-        }
-    }
 	return s;
 }
 
