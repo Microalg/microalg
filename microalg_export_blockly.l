@@ -1,3 +1,13 @@
+(de Litteral (content)
+  (cond
+    ((num? content) (pack "<block type=\"nombre\"><field name=\"TEXT\">"
+                          content
+                          "</field></block>"))
+    ((str? content) (pack "<block type=\"texte\"><field name=\"TEXT\">"
+                          content
+                          "</field></block>"))
+    (T "Littéral de type inconnu.")
+  ))
 (de Afficher (content)
   (pack "<block type=\"afficher\">"
         "<value name=\"VALUE\">"
@@ -11,3 +21,4 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
+(de !!! () "")

@@ -10,8 +10,12 @@ var this_script_url = (function(scripts) {
 }());
 var this_script_path = 'web/ide_injections.js';
 var root_path = this_script_url.slice(0, -this_script_path.length);
-var microalg_l_src = EMULISP_CORE.getFileSync(root_path + 'microalg.l');
-var microalg_blockly_l_src = EMULISP_CORE.getFileSync(root_path + 'microalg_blockly.l');
+var microalg_l_src =
+    EMULISP_CORE.getFileSync(root_path + 'microalg.l');
+var microalg_export_src =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export.l');
+var microalg_export_blockly_src =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
 
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
@@ -218,14 +222,13 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 
 function malg2blockly(src) {
     EMULISP_CORE.init();
-    EMULISP_CORE.currentState().transient_shortcut = function (name) {
-        return '<block type=\"texte\"><field name=\"TEXT\">' + name + '</field></block>';
-    }
-    EMULISP_CORE.eval(microalg_blockly_l_src);
-    var xml = cleanTransient(EMULISP_CORE.eval(src));
+    EMULISP_CORE.eval(microalg_export_src);
+    var litteraux_proteges = EMULISP_CORE.eval("(proteger_litteraux '(list " + src + "))");
+    EMULISP_CORE.eval(microalg_export_blockly_src);
+    var xml = cleanTransient(EMULISP_CORE.eval(litteraux_proteges.slice('(list '.length, -1)));
+    xml = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">" + xml + "</xml>";
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_l_src);
-    xml = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">" + xml + "</xml>";
     return xml;
 }
 
