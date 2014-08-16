@@ -156,6 +156,31 @@ Blockly.MicroAlg.scrub_ = function(block, code) {
 // http://code.google.com/p/blockly/source/browse/trunk/blocks
 // http://code.google.com/p/blockly/source/browse/trunk/generators/python
 
+// Bloc Programme
+Blockly.Blocks['programme'] = {
+  init: function() {
+    this.setHelpUrl(malg_url);
+    this.setColour(160);
+    this.appendStatementInput('VALUE')
+        .appendField('Programme');
+    this.setPreviousStatement(false);
+    this.setNextStatement(false);
+    this.setTooltip('Contient le programme.');
+    this.setDeletable(false);
+  }
+};
+
+// Gen Programme
+Blockly.MicroAlg['programme'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  // Le slice neutralise l’indentation,
+  // et on passe à la ligne entre les ) et les (.
+  var src = arg.substring(2).replace(/\)\(/gm, ')\n(');
+  // Ensuite on marque le début et la fin histoire de ne garder que le code des
+  // blocs situés dans Programme.
+  return '««««««««««' + src + '»»»»»»»»»»';
+};
+
 // Bloc Commentaire
 Blockly.Blocks['commentaire'] = {
   init: function() {

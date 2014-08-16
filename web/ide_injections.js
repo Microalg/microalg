@@ -225,8 +225,10 @@ function malg2blockly(src) {
     EMULISP_CORE.eval(microalg_export_src);
     var litteraux_proteges = EMULISP_CORE.eval("(proteger_litteraux '(list " + src + "))");
     EMULISP_CORE.eval(microalg_export_blockly_src);
-    var xml = cleanTransient(EMULISP_CORE.eval(litteraux_proteges.slice('(list '.length, -1)));
-    xml = "<xml xmlns=\"http://www.w3.org/1999/xhtml\">" + xml + "</xml>";
+    var xml = cleanTransient(EMULISP_CORE.eval('(pack ' + litteraux_proteges + ')'));
+    xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="programme"><value name="VALUE">' +
+          xml +
+          '</value></block></xml>';
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_l_src);
     return xml;
@@ -308,8 +310,11 @@ function blocklyLoaded(blockly, editor_id, msg) {
         blockly.Xml.domToWorkspace(blockly.mainWorkspace, xml);
     }
     blockly.addChangeListener(function () {
+        var raw_src = blockly.MicroAlg.workspaceToCode();
+        // Ne garder que le code entre les marqueurs:
+        var src = /.*««««««««««([^]*)»»»»»»»»»».*/.exec(raw_src)[1];
         var textarea = $('#' + editor_id);
-        textarea.val(blockly.MicroAlg.workspaceToCode());
+        textarea.val(src);
         textarea.click();  // Trigger a parenedit redraw.
     });
 }
