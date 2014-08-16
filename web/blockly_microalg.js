@@ -214,8 +214,6 @@ Blockly.MicroAlg['commentaire'] = function(block) {
 
 // Bloc Affecter_a
 // Gen Affecter_a
-// Bloc Aide
-// Gen Aide
 
 // Bloc Afficher
 Blockly.Blocks['afficher'] = {
@@ -242,6 +240,9 @@ Blockly.MicroAlg['afficher'] = function(block) {
     return '(Afficher\n' + arg + '\n)';
   }
 };
+
+// Bloc Aide
+// Gen Aide
 
 // Bloc Bloc
 // Gen Bloc
