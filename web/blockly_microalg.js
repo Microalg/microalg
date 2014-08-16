@@ -437,7 +437,7 @@ Blockly.MicroAlg['demander'] = function(block) {
 // Bloc Vrai?
 // Gen Vrai?
 
-// Bloc texte litéral
+// Bloc texte littéral
 Blockly.Blocks['texte'] = {
   init: function() {
     this.setHelpUrl(malg_url);
@@ -460,13 +460,13 @@ Blockly.Blocks['texte'] = {
   }
 };
 
-// Gen texte litéral
+// Gen texte littéral
 Blockly.MicroAlg['texte'] = function(block) {
   var code = Blockly.MicroAlg.quote_(block.getFieldValue('TEXT'));
   return code;
 };
 
-// Bloc nombre litéral
+// Bloc nombre littéral
 Blockly.Blocks['nombre'] = {
   init: function() {
     this.setHelpUrl(malg_url);
@@ -479,7 +479,7 @@ Blockly.Blocks['nombre'] = {
   }
 };
 
-// Gen nombre litéral
+// Gen nombre littéral
 Blockly.MicroAlg['nombre'] = function(block) {
   return block.getFieldValue('NUM');
 };
