@@ -6,7 +6,7 @@
     ((str? content) (pack "<block type=\"texte\"><field name=\"TEXT\">"
                           content
                           "</field></block>"))
-    (T "Littéral de type inconnu.")
+    (T "LittÃ©ral de type inconnu.")
   ))
 (de Afficher (content)
   (pack "<block type=\"afficher\">"
