@@ -282,7 +282,10 @@ function inject_microalg_blockly_in(elt_id, editor_id, msg) {
 '    <script>\n' +
 '      function init() {\n' +
 '        Blockly.inject(document.body,\n' +
-'            {path: "../../web/blockly/", toolbox: document.getElementById("' + elt_id + '-toolbox")});\n' +
+'            {path: "../../web/blockly/",\n' +
+'             comments: false,\n' +
+'             disable: false,\n' +
+'             toolbox: document.getElementById("' + elt_id + '-toolbox")});\n' +
 '        // Let the top-level application know that Blockly is ready.\n' +
 '        window.parent.blocklyLoaded(Blockly, "' + editor_id + '", \'' + msg + '\');\n' +
 '      }\n' +
