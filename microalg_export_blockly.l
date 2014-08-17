@@ -8,11 +8,33 @@
                           "</field></block>"))
     (T "Littéral de type inconnu.")
   ))
-(de Afficher (content)
+(de insertion_next (src) (car (insertion_next_aux (reverse src))))
+(de insertion_next_aux (src)
+  (if (<= (length src) 1) src
+                          # Déplacement de la tête, enfermée dans un (Next ),
+                          # À la fin du deuxième élément.
+                          # La queue restant inchangée.
+                          (let (tete           (car src)
+                                deuxieme_instr (cadr src)
+                                reste          (cddr src))
+                               (queue 'deuxieme_instr (list 'Next tete))
+                               (insertion_next_aux
+                                 (cons
+                                   deuxieme_instr
+                                   reste)
+                               )
+                          )
+  ))
+(de Next (content)
+  (pack "<next>"
+        content
+        "</next>"))
+(de Afficher (content next)
   (pack "<block type=\"afficher\">"
         "<value name=\"VALUE\">"
         content
         "</value>"
+        next
         "</block>"))
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
@@ -21,7 +43,9 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
-(de !!! (content)
+(de !!! (content next)
   (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
         content
-        "</field></block>"))
+        "</field>"
+        next
+        "</block>"))
