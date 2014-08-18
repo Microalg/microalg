@@ -223,11 +223,9 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 function malg2blockly(src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_export_src);
-    // Le list parce que proteger_litteraux travaille sur un seul élément.
-    var litteraux_proteges = EMULISP_CORE.eval("(proteger_litteraux '(list " + src + "))");
+    var litteraux_proteges = EMULISP_CORE.eval("(proteger_litteraux  " + src + ")");
     EMULISP_CORE.eval(microalg_export_blockly_src);
-    // Le cdr pour retirer 'list'.
-    var avec_des_next = EMULISP_CORE.eval("(insertion_next (cdr '" + litteraux_proteges + "))");
+    var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + litteraux_proteges + ")");
     // Le car pour récupérer l’unique élément de la liste finale.
     var xml = cleanTransient(EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')'));
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="programme"><value name="VALUE">' +
