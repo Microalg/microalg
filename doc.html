@@ -93,19 +93,21 @@ MicroAlg se veut :
 
 ### Instructions
 
-Une *instruction* est constituée de parenthèses, contenant une *commande* et ses
-*arguments* : `(Commande arg1 arg2 ...)`.
-
-Certaines commandes n’ont pas besoin d’argument. On écrira simplement :
-`(Commande)`.
-
-Les instructions peuvent être imbriquées. En effet, un des arguments d’une
-commande peut être remplacé par une autre instruction :
-`(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`.  
-Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
-premier.
-
-Un *programme* est constitué d’une ou plusieurs instructions.
+* Un *programme* est constitué d’une ou plusieurs *instructions*.
+* Une *instruction* est constituée de parenthèses, contenant une *commande* et
+  ses *arguments* :  
+  `(Commande arg1 arg2 ...)`
+* C’est absolument universel dans MicroAlg. Même les commentaires sont de cette
+  forme :  
+  `(!!! "Ceci est un commentaire")`
+* Si une *commande* ne prend pas d’*argument*, on écrira simplement :  
+`(Commande)`
+* Les *instructions* peuvent être imbriquées. En effet, dans une *instruction*,
+  un des *arguments* d’une *commande* peut être remplacé par une autre
+  *instruction* :
+  `(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`  
+  Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
+  premier.
 
 ### Symboles
 
@@ -128,10 +130,10 @@ organisés comme ceci :
 
 Le nom d’une commande :
 
-* ne contient pas d’accent
-* commence par une majuscule
-* le « tiret du 8 » ou « underscore » (`_`) en sépare les mots
-* se termine par `?` si retourne un booléen
+* ne contient pas d’accent ;
+* commence par une majuscule ;
+* le « tiret du 8 » ou « underscore » (`_`) en sépare les mots ;
+* se termine par `?` si la commande retourne un booléen.
 
 ## Liste des symboles prédéfinis
 
