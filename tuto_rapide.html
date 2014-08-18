@@ -31,6 +31,7 @@
     l’introduction.</p>
     <p>Aller directement à :
     <a href="#affichage">Affichage</a>,
+    <a href="#commentaires">Commentaires</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
     <a href="#parentheses">Parenthèses</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
@@ -69,12 +70,15 @@
     <h2 id="affichage"><a href="#affichage">: </a>Affichage</a></h2>
     <div id="script-afficher"></div>
     <script>inject_microalg_editor_in('script-afficher', {localStorage: false},
-        '# Voici votre premier programme.\n' +
-        '# Les lignes commençant par # sont des commentaires\n' +
-        '# et ne sont pas interprétées par MicroAlg.\n' +
-        '# Cliquer dans cette zone de texte,\n' +
-        '# puis Ctrl + Entrée pour exécuter le code.\n' +
         '(Afficher "Bonjour tout le monde!")');
+    </script>
+
+    <h2 id="commentaires"><a href="#commentaires">: </a>Commentaires</h2>
+    <div id="script-commentaires"></div>
+    <script>inject_microalg_editor_in('script-commentaires', {localStorage: false},
+        '(!!! "Ce programme explique le rôle des commentaires.")\n' +
+        '(!!! "Il est constitué de trois commentaires.")\n' +
+        '(!!! "Et ne comporte aucune instruction qui fasse quelque chose.")');
     </script>
 
     <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
@@ -116,7 +120,7 @@
     celle qui lui correspond sont en gris).</p>
     <div id="script-parens-seules"></div>
     <script>inject_microalg_editor_in('script-parens-seules', {localStorage: false},
-        '# Remarque : ce programme est joli, mais il n’est pas valide\n' +
+        '(!!! "Remarque : ce programme est joli, mais il n’est pas valide.")\n' +
         '((((((( )))))))\n' +
         '((((((( ) ) ) ) ) ) )\n' +
         '(((((((  )  )  )  )  )  )  )');
@@ -209,22 +213,22 @@
     </script>
     <div id="script-deux-et-deux"></div>
     <script>inject_microalg_editor_in('script-deux-et-deux', {localStorage: false},
-        '# Noter que MicroAlg n’affiche rien si on ne lui demande pas :\n' +
+        '(!!! "Noter que MicroAlg n’affiche rien si on ne lui demande pas :")\n' +
         '(+ 2 2)');
     </script>
     <div id="script-emboite"></div>
     <script>inject_microalg_editor_in('script-emboite', {localStorage: false},
-        '# Une expression peut prendre la place d’un nombre.\n' +
-        '# Ici le deuxième 2 a été remplacé par (+ 1 1) :\n' +
+        '(!!! "Une expression peut prendre la place d’un nombre.")\n' +
+        '(!!! "Ici le deuxième 2 a été remplacé par (+ 1 1) :")\n' +
         '(Afficher (+ 2 (+ 1 1)))');
     </script>
     <div id="script-assoc"></div>
     <script>inject_microalg_editor_in('script-assoc', {localStorage: false},
-        '# Pour effectuer 2+2+2, on peut faire, au choix :\n' +
+        '(!!! "Pour effectuer 2+2+2, on peut faire, au choix :")\n' +
         '(Afficher (+ 2 (+ 2 2)))\n' +
         '(Afficher (+ (+ 2 2) 2))\n' +
-        '# Mais pour plus de lisibilité, les opérations associatives\n' +
-        '# acceptent plusieurs paramètres:\n' +
+        '(!!! "Mais pour plus de lisibilité, les opérations associatives")\n' +
+        '(!!! "acceptent plusieurs paramètres:")\n' +
         '(Afficher (+ 2 2 2))');
     </script>
     <div id="script-calc1"></div>
@@ -495,7 +499,8 @@
     </ol>
     <div id="script-variable-texte"></div>
     <script>inject_microalg_editor_in('script-variable-texte', {localStorage: false},
-        '(Initialiser nom "pas de nom")  # nom de l’utilisateur\n' +
+        '(!!! "`nom` est le nom de l’utilisateur")\n' +
+        '(Initialiser nom "pas de nom")\n' +
         '(Afficher "Quel est votre nom ?")\n' +
         '(Affecter_a nom (Demander))\n' +
         '(Afficher\n' +
