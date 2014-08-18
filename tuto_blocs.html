@@ -31,9 +31,8 @@
     <h1 id="top">MicroAlg - Tutoriel par blocs</h1>
     <p><a href="#affichage">Commencer tout de suite</a>, sans lire
     l’introduction.</p>
-    <p>
-    Aller directement à :
-    <a href="#affichage">Affichage</a>,
+    <p>Aller directement à :
+    <a href="#prise-en-main">Prise en main</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
     <a href="#parentheses">Parenthèses</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
@@ -57,10 +56,12 @@
         </li>
         <li>
             <a href="tuto.html">le tutoriel officiel</a>, rédigé dans un
-            <strong>français assez soutenu</strong> ;</li>
+            <strong>français assez soutenu</strong> ;
+        </li>
         <li>
             <a href="tuto_rapide.html">le tutoriel rapide</a>, réservé aux
-            personnes connaissant déjà un langage de programmation.</p>
+            personnes <strong>connaissant déjà un langage</strong> de
+            programmation.
         </li>
     </ul>
 
@@ -72,7 +73,7 @@
     <a href="https://fr.wikipedia.org/wiki/Langage_graphique">l’article
     Wikipedia sur la programmation visuelle</a>).
     <p>Le tutoriel est assez long car il couvre tout le langage. Patience !
-    Peut-être faudra-t-il le faire en plusieurs fois !</p>
+    Peut-être qu’il faudra le faire en plusieurs fois !</p>
     <p>Au cours de ce tutoriel, on vous proposera des petits programmes à
     exécuter directement dans le navigateur. N’hésitez pas à les modifier afin
     d’être sûre de comprendre le principe (si possible une modification
@@ -80,34 +81,32 @@
     <p>Avant de les exécuter, essayez de deviner ce qu’ils vont faire.</p>
 
     <h2 id="contact">Contact</h2>
-    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
-    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
-    une idée lumineuse, merci de (au choix) :</p>
-    <ul>
-        <li>proposer une « pull request » en éditant directement
-            <a href="https://github.com/Microalg/Microalg/edit/master/tuto.html">ce fichier sur Github</a> ;</li>
-        <li>poster une « issue » sur
-            <a href="https://github.com/Microalg/Microalg/issues/new">Github</a> ;</li>
-        <li>poser une question dans
-            <a href="http://qr.microalg.info">la section Questions/Réponses</a> ;</li>
-        <li>m’envoyer <a href="mailto:profgra.org@gmail.com">un mail</a>.</li>
-    </ul>
+    <p>En cas de problème, ne pas hésiter à poser une question dans
+    <a href="http://qr.microalg.info">la section Questions/Réponses</a>,
+    ou à m’envoyer <a href="mailto:profgra.org@gmail.com">un mail</a>.</p>
 
-    <h2 id="affichage"><a href="#affichage">: </a>Affichage</a></h2>
-    <p>Pourquoi ne pas commencer tout de suite !</p>
-    <p>On a mis deux blocs dans la fenêtre ci-dessous.</p>
-    <div id="script-afficher-blockly" height="200px"></div>
-    <div id="script-afficher"></div>
+    <h2 id="prise-en-main"><a href="#prise-en-main">: </a>Prise en main</a></h2>
+    <p>Dans le bloc <code>Programme</code> de la fenêtre ci-dessous, on a mis
+    deux blocs : un bloc <code>Afficher</code> et un bloc de texte
+    <code>"..."</code>.</p>
+    <div id="script-prise-en-main-blockly" height="200px"></div>
+    <div id="script-prise-en-main"></div>
     <script>
-    inject_microalg_blockly_in('script-afficher-blockly',
-                               'script-afficher-malg-editor',
+    inject_microalg_blockly_in('script-prise-en-main-blockly',
+                               'script-prise-en-main-malg-editor',
         '(Afficher "Bonjour tout le monde!")');
-    inject_microalg_editor_in('script-afficher', {localStorage: false, hidden: true});
+    inject_microalg_editor_in('script-prise-en-main', {localStorage: false, hidden: true});
     </script>
-    <p>Cliquer sur le bouton <code>OK</code> pour exécuter le programme.</p>
-    <p>Un message de bienvenue devrait s’être affiché dans la barre un peu
-    arrondie ci-dessus (sinon, suivre les instructions de
+    <p>Cliquer sur le bouton <code>OK</code> pour exécuter le programme. Un
+    message de bienvenue devrait s’être affiché dans la barre un peu arrondie
+    ci-dessus (sinon, suivre les instructions de
     <a href="#contact">cette section</a>).</p>
+    <p>Le bloc <code>Programe</code> ne peut pas être supprimé, mais vous
+    pouvez supprimer les autres, par exemple avec un clic-droit. Essayez !</p>
+    <p>Maintenant, retrouvez les blocs <code>Afficher</code> et
+    <code>"..."</code> dans les catégories <code>Commandes</code> ou
+    <code>Autres</code> pour réécrire le même programme (ou à peu près), puis
+    le tester.</p>
 
     <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
     <p>Dans l’exemple précédent, que nous rappelons ci-dessous, nous avons
