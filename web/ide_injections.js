@@ -257,8 +257,8 @@ function inject_microalg_blockly_in(elt_id, editor_id, msg) {
             '  <block type="operations"></block>' +
             ' </category>' +
             ' <category name="Autres">' +
-            '  <block type="texte"></block>' +
-            '  <block type="nombre"></block>' +
+            '  <block type="texte_litteral"></block>' +
+            '  <block type="nombre_litteral"></block>' +
             ' </category>' +
             '</xml>';
     // La page:

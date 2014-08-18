@@ -1,9 +1,9 @@
 (de Litteral (content)
   (cond
-    ((num? content) (pack "<block type=\"nombre\"><field name=\"TEXT\">"
+    ((num? content) (pack "<block type=\"nombre_litteral\"><field name=\"TEXT\">"
                           content
                           "</field></block>"))
-    ((str? content) (pack "<block type=\"texte\"><field name=\"TEXT\">"
+    ((str? content) (pack "<block type=\"texte_litteral\"><field name=\"TEXT\">"
                           content
                           "</field></block>"))
     (T "Littéral de type inconnu.")
