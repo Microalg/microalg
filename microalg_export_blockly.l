@@ -1,6 +1,6 @@
 (de Litteral (content)
   (cond
-    ((num? content) (pack "<block type=\"nombre_litteral\"><field name=\"TEXT\">"
+    ((num? content) (pack "<block type=\"nombre_litteral\"><field name=\"NUM\">"
                           content
                           "</field></block>"))
     ((str? content) (pack "<block type=\"texte_litteral\"><field name=\"TEXT\">"
@@ -29,6 +29,26 @@
   (pack "<next>"
         content
         "</next>"))
+(de + (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">ADD</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de - (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">MINUS</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de * (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">MULTIPLY</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de / (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">DIVIDE</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
 (de Afficher (content next)
   (pack "<block type=\"afficher\">"
         "<value name=\"VALUE\">"
