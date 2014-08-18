@@ -9,6 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq symboles '(
+"+" "-" "*" "/"
 "!!!" "=" "=/" "<" "<=" ">" ">="
 "Affecter_a" "Afficher" "Aide"
 "Bloc" "Booleen?"
@@ -34,6 +35,16 @@ Voir <http://microalg.info>.")
     )
   )
 )
+
+# Doc pour les fonctions PicoLisp
+(put '+ 'doc
+"Commande ajoute tous ses paramètres.")
+(put '- 'doc
+"Commande qui soustrait son second paramètre à son premier paramètre.")
+(put '* 'doc
+"Commande multiplie tous ses paramètres.")
+(put '/ 'doc
+"Commande qui divise son premier paramètre par son second paramètre.")
 
 # Commentaires
 (put '!!! 'doc
