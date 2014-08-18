@@ -104,13 +104,21 @@
         '(!!! "Rappel du tout premier exemple.")\n' +
         '(Afficher "Rebonjour tout le monde!")');
     </script>
-    <p>Malheureusement la commande <code>Afficher</code> n’affiche que son
-    premier argument (ce qui lui arrive en paramètre) et ignore tous les
-    autres. Ici, le deuxième argument « et encore du texte » est ignoré et seul
-    le premier argument « du texte » est affiché :</p>
+    <p>Supposons maintenant que l’on veuille afficher deux textes.</p>
+    <p>La commande <code>Afficher</code> n’affiche que son premier argument et
+    ignore tous les autres. Ici, le deuxième argument « et encore du texte »
+    est ignoré et seul le premier argument « du texte » est affiché :</p>
     <div id="script-afficher-params"></div>
     <script>inject_microalg_editor_in('script-afficher-params', {localStorage: false},
         '(Afficher "du texte" "et encore du texte")');
+    </script>
+    <p>L’idée d’utiliser deux instructions est bonne, mais avec cette technique,
+    il est impossible d’afficher deux textes différents sans passer à la
+    ligne :</p>
+    <div id="script-deux-afficher"></div>
+    <script>inject_microalg_editor_in('script-deux-afficher', {localStorage: false},
+        '(Afficher "du texte")\n' +
+        '(Afficher "et encore du texte")');
     </script>
     <p>Pour « concaténer » deux textes, c’est-à-dire
     <a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">les mettre bout-à-bout</a>,
