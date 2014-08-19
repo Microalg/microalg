@@ -35,6 +35,34 @@ Voir <http://microalg.info>.")
     )
   )
 )
+(ifn member
+  (de member (lst elt)
+    (let (result lst)
+         (while (not (or (not (<> elt (car result)))
+                         (not (n0 (length result)))))
+                (pop 'result))
+    result)
+  )
+)
+(ifn split
+  (de split @
+    (let (lst   (next)
+          seps  (rest)
+          result NIL
+          tmp    NIL
+          elt    NIL)
+         (while (setq elt (pop 'lst))
+                (ifn (member seps elt)
+                     (push 'tmp elt)
+                     (push 'result (reverse tmp))
+                     (setq tmp NIL)
+                )
+         )
+         (push 'result (reverse tmp))
+         (reverse result)
+    )
+  )
+)
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
