@@ -11,7 +11,7 @@ Voir <http://microalg.info>.")
 (setq symboles '(
 "+" "-" "*" "/"
 "!!!" "=" "=/" "<" "<=" ">" ">="
-"Affecter_a" "Afficher" "Aide"
+"Affecter_a" "Afficher" "Aide" "Alors"
 "Bloc" "Booleen?"
 "Concatener"
 "Demander"
@@ -20,7 +20,7 @@ Voir <http://microalg.info>.")
 "Initialiser"
 "Nombre" "Nombre?"
 "Rien"
-"Si"
+"Si" "Sinon"
 "Tant_que" "Texte" "Texte?" "Type"
 "Vrai" "Vrai?"
 ))
@@ -202,16 +202,24 @@ en minuscule).")
 (setq Vrai 'Vrai)
 (put 'Faux 'doc "Booléen valant Faux.")
 (setq Faux 'Faux)
+(put 'Alors 'doc "Mot-clef intermédiaire pour la commande `Si`.")
+(setq Alors 'Alors)
+(put 'Sinon 'doc "Mot-clef intermédiaire pour la commande `Si`.")
+(setq Sinon 'Sinon)
 (put 'Si 'doc
-"Structure conditionnelle.")
+"Structure conditionnelle, de la forme `Si ... Alors ... Sinon ...` où le
+`Sinon` est facultatif.")
 (de Si arg_lst (let (condition (car arg_lst)
-                     bloc_vrai (cadr arg_lst)
-                     bloc_faux (caddr arg_lst))
+                     kw_alors  (cadr arg_lst)
+                     splitted  (split (cddr arg_lst) 'Sinon)
+                     bloc_vrai (car splitted)
+                     bloc_faux (cadr splitted))
+                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant !" arg_lst))
                     (if (<> Faux (eval condition))  # = retourne Vrai ou Faux
-                        (eval bloc_vrai)
+                        (run bloc_vrai)
                         (if (== NIL bloc_faux)
                             Rien
-                            (eval bloc_faux)))))
+                            (run bloc_faux)))))
 
 # Structures itératives
 (put 'Tant_que 'doc
