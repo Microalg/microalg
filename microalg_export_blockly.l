@@ -63,6 +63,30 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
+(de Nombre (content)
+  (pack "<block type=\"nombre\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Nombre? (content)
+  (pack "<block type=\"nombre?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Texte (content)
+  (pack "<block type=\"texte\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Texte? (content)
+  (pack "<block type=\"texte?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
 (de !!! (content next)
   (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
         content

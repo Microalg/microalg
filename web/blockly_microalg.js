@@ -403,14 +403,62 @@ Blockly.MicroAlg['demander'] = function(block) {
 // Gen Faire
 // Bloc Initialiser
 // Gen Initialiser
+
 // Bloc Nombre
+Blockly.Blocks['nombre'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Nombre');
+    this.setColour(80);
+    this.appendValueInput('VALUE')
+        .appendField('Nombre');
+    this.setOutput(true, 'Number');
+    this.setTooltip('Convertir une valeur en nombre.');
+  }
+};
+
 // Gen Nombre
+Blockly.MicroAlg['nombre'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Nombre)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Nombre ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Nombre\n' + arg + '\n)';
+  }
+};
+
 // Bloc Si
 // Gen Si
 // Bloc Tant_que
 // Gen Tant_que
+
 // Bloc Texte
+Blockly.Blocks['texte'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Texte');
+    this.setColour(80);
+    this.appendValueInput('VALUE')
+        .appendField('Texte');
+    this.setOutput(true, 'String');
+    this.setTooltip('Convertir une valeur en texte.');
+  }
+};
+
 // Gen Texte
+Blockly.MicroAlg['texte'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Texte)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Texte ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Texte\n' + arg + '\n)';
+  }
+};
+
 // Bloc Type
 // Gen Type
 
@@ -430,10 +478,57 @@ Blockly.MicroAlg['demander'] = function(block) {
 // Gen Booleen?
 // Bloc Faux?
 // Gen Faux?
+
 // Bloc Nombre?
+Blockly.Blocks['nombre?'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Nombre?');
+    this.setColour(40);
+    this.appendValueInput('VALUE')
+        .appendField('Nombre?');
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Teste si une valeur est un nombre.');
+  }
+};
+
 // Gen Nombre?
+Blockly.MicroAlg['nombre?'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Afficher)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Nombre? ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Nombre?\n' + arg + '\n)';
+  }
+};
+
 // Bloc Texte?
+Blockly.Blocks['texte?'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Texte?');
+    this.setColour(40);
+    this.appendValueInput('VALUE')
+        .appendField('Texte?');
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Teste si une valeur est un texte.');
+  }
+};
+
 // Gen Texte?
+Blockly.MicroAlg['texte?'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Texte?)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Texte? ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Texte?\n' + arg + '\n)';
+  }
+};
+
 // Bloc Vrai?
 // Gen Vrai?
 
