@@ -26,6 +26,11 @@ Voir <http://microalg.info>.")
 ))
 
 # picolisp.l shimz
+(ifn caadr
+  (de caadr (arg)
+     (car (car (cdr arg)))
+  )
+)
 (ifn glue
   (de glue (c l)
     (cond
@@ -226,26 +231,26 @@ en minuscule).")
 "Structure itérative de type « tant que ... faire ... ».")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
-                           Bloc (caddr arg_lst))
+                           Bloc (cddr arg_lst))
                           # Ce if permet de retourner Rien plutôt que NIL
                           # dans le cas où Bool est tout de suite Faux,
                           # mais du coup Bool peut être évalué plusieurs fois.
                           (if (<> Vrai (eval Bool))
                               Rien
                               (while (<> Faux (eval Bool))
-                                     (eval Bloc)))))
+                                     (run Bloc)))))
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».")
-(de Faire arg_lst (let (Bloc (car arg_lst)
-                        Mot-Clef (cadr arg_lst)
-                        Bool (caddr arg_lst))
+(de Faire arg_lst (let (Splitted (split arg_lst 'Tant_que)
+                        Bloc (car Splitted)
+                        Bool (caadr Splitted))
                        # Ce let permet de retourner le résultat du premier
                        # tour dans le cas où Bool est tout de suite Faux.
-                       (let (resultat-premier-tour (eval Bloc))
+                       (let (resultat-premier-tour (run Bloc))
                             (if (<> Vrai (eval Bool))
                                 resultat-premier-tour
                                 (while (<> Faux (eval Bool))
-                                       (eval Bloc))))))
+                                       (run Bloc))))))
 
 # Prédicats
 (put 'Vrai? 'doc

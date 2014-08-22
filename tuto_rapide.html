@@ -620,13 +620,10 @@
     <script>inject_microalg_editor_in('script-accu-nombres-tq', {localStorage: false},
         '(Initialiser somme 0)\n' +
         '(Initialiser valeur 0)\n' +
-        '(Faire\n' +
-        '    (Bloc\n' +
-        '        (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
-        '        (Affecter_a valeur (Nombre (Demander)))\n' +
-        '        (Affecter_a somme (+ somme valeur))\n' +
-        '    )\n' +
-        '    Tant_que (=/ valeur 0)\n' +
+        '(Faire (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
+        '       (Affecter_a valeur (Nombre (Demander)))\n' +
+        '       (Affecter_a somme (+ somme valeur))\n' +
+        ' Tant_que (=/ valeur 0)\n' +
         ')\n' +
         '(Afficher "La somme des nombres vaut :")\n' +
         '(Afficher somme)\n' +
@@ -637,12 +634,9 @@
     <script>inject_microalg_editor_in('script-accu-textes-tq', {localStorage: false},
         '(Initialiser mots " ")\n' +
         '(Initialiser mot " ")\n' +
-        '(Faire\n' +
-        '    (Bloc\n' +
-        '        (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
-        '        (Affecter_a mot (Demander))\n' +
-        '        (Affecter_a mots (Concatener mots " " mot))\n' +
-        '    )\n' +
+        '(Faire (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
+        '       (Affecter_a mot (Demander))\n' +
+        '       (Affecter_a mots (Concatener mots " " mot))\n' +
         ' Tant_que (=/ mot "STOP")\n' +
         ')\n' +
         '(Afficher "Vous avez tapé :")\n' +
@@ -660,11 +654,8 @@
         '(Afficher "Combien de fois voulez-vous afficher « Bonjour ! » ?")\n' +
         '(Affecter_a repetitions (Nombre (Demander)))\n' +
         '(Tant_que (=/ repetitions 0)\n' +
-        ' Faire\n' +
-        '    (Bloc\n' +
-        '        (Afficher "Bonjour !")\n' +
-        '        (Affecter_a repetitions (- repetitions 1))\n' +
-        '    )\n' +
+        ' Faire (Afficher "Bonjour !")\n' +
+        '       (Affecter_a repetitions (- repetitions 1))\n' +
         ')\n' +
         ''
         );
