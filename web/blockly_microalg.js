@@ -386,7 +386,7 @@ Blockly.MicroAlg['concatener'] = function(block) {
 Blockly.Blocks['demander'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#cmd-Demander');
-    this.setColour(160);
+    this.setColour(0);
     this.appendDummyInput()
         .appendField('Demander');
     this.setOutput(true, 'String');
