@@ -47,6 +47,7 @@ body.microalg {
 .malg-ok {
     margin: 2px;
     background-color: #ddd;
+    width: 100%;
 }
 .malg-display {
     border-color: black;

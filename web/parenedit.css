@@ -36,7 +36,6 @@ input,.richtext {
 input, textarea, .richtext > pre {
     font-family: 'Courier New', Courier, monospace;
     font-size: 100%;
-    width: 100%;
     line-height: 1.5;
 }
 #test:focus, input:focus, .fake_focus {
