@@ -29,6 +29,12 @@
   (pack "<next>"
         content
         "</next>"))
+(de !!! (content next)
+  (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
+        content
+        "</field>"
+        next
+        "</block>"))
 (de + (A B)
    (pack "<block type=\"operations\"><field name=\"OP\">ADD</field>"
          "<value name=\"A\">" A "</value>"
@@ -86,10 +92,4 @@
         "<value name=\"VALUE\">"
         content
         "</value>"
-        "</block>"))
-(de !!! (content next)
-  (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
-        content
-        "</field>"
-        next
         "</block>"))
