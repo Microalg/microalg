@@ -444,6 +444,7 @@ le savoir, contribué à donner à ce projet un nom digne de ce nom.
                 $('<dt/>').html(cmd).appendTo(dl);
                 var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
                 cmd_doc = cmd_doc.replace(/\^J/g,'\n');  // PicoLisp control char
+                cmd_doc = cmd_doc.replace(/\\"/g,'"');   // PicoLisp quoted quote
                 if (cmd_doc.charAt(0) == '"' && cmd_doc.charAt(cmd_doc.length-1) == '"') {
                     cmd_doc = cmd_doc.slice(1, -1);      // remove enclosing quotes
                 }
