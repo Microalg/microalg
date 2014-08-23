@@ -42,6 +42,7 @@
     <a href="#variables">Variables</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
+    <a href="#definir">Définir ses commandes</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -865,6 +866,33 @@
         ''
         );
     </script>
+
+    <h2 id="definir"><a href="#definir">: </a>Définir ses commandes</h2>
+    <p>En plus des <a href="doc.html#listedessymbolesprdfinis">symboles prédéfinis</a>
+    dans MicroAlg, vous pouvez créer vos propres commandes, grâce à la commande
+    <code>Definir</code>.</p>
+    <div id="script-definir"></div>
+    <script>inject_microalg_editor_in('script-definir', {localStorage: false},
+        '(Definir (Double x)\n' +
+        '    "Retourne le double du nombre (paramètre `x`)."\n' +
+        '    "anonyme"\n' +
+        '    (Retourner (* 2 x))\n' +
+        ')\n' +
+        '\n' +
+        '(!!! "Voici différentes façons d’utiliser la commande ainsi définie :")\n' +
+        '\n' +
+        '(Afficher "**(Afficher Double)** donne :")\n' +
+        '(Afficher Double)\n' +
+        '(Afficher "**(Afficher (Aide Double))** donne :")\n' +
+        '(Afficher (Aide Double))\n' +
+        '(Afficher "**(Afficher (Double 7))** donne :")\n' +
+        '(Afficher (Double 7))\n' +
+        '');
+    </script>
+    <p>Comme d’habitude, modifier le code ci-dessus puis le tester pour bien
+    comprendre la commande <code>Definir</code>.</p>
+    <p>Voir <a href="doc.html#cmd-Definir">la documentation</a> pour plus de
+    détails.</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si ça vous a plu et que vous avez une envie de créer
