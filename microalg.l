@@ -92,7 +92,7 @@ Voir <http://microalg.info>.")
                    (cond
                     ((== truc NIL) (get 'Aide 'text))
                     ((== truc 'symboles) (glue " " symboles))
-                    (doc (pack "Aide pour `" truc "`:  ^J" doc))
+                    (doc (pack "Aide pour `" truc "` :  ^J" doc))
                     ((eval truc) (pack "Pas d’aide pour " truc "."))
                     (T (pack "`" truc "’ n’existe pas."))
                    )))
