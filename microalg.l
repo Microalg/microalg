@@ -14,12 +14,12 @@ Voir <http://microalg.info>.")
 "Affecter_a" "Afficher" "Aide" "Alors"
 "Bloc" "Booleen?"
 "Concatener"
-"Demander"
+"Definir" "Demander"
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
 "Nombre" "Nombre?"
-"Rien"
+"Retourner" "Rien"
 "Si" "Sinon"
 "Tant_que" "Texte" "Texte?" "Type"
 "Vrai" "Vrai?"
@@ -251,6 +251,69 @@ en minuscule).")
                                 resultat-premier-tour
                                 (while (<> Faux (eval Bool))
                                        (run Bloc))))))
+
+# Procédures utilisateur
+(put 'Definir 'doc
+"Permet de définir une nouvelle commande (fonction mathématique ou procédure).
+
+La syntaxe de cette commande est :
+
+    (Definir (Nom_de_la_nouvelle_commande arg1 arg2 ...)
+        \"Une phrase expliquant le rôle de cette commande.\"
+        \"L’auteur de cette commande.\"
+        (...    ici les     ...)
+        (...  instructions  ...)
+        (... de la commande ...)
+        (Retourner la_valeur_de_retour)
+    )
+
+Il peut être intéressant de signer ses créations avec le pseudo utilisé sur
+[les questions/réponses](http://qr.microalg.info).
+
+Exemple 1 :
+
+    (Definir (Double x)
+        \"Retourne le double du nombre (paramètre `x`).\"
+        \"anonyme\"
+        (Retourner (* 2 x))
+    )
+
+Exemple 2 :
+
+    (Definir (Crier texte)
+        \"Affiche le texte (paramètre `texte`) avec un point d’exclamation.\"
+        \"ProfGra\"
+        (Afficher (Concatener texte \" !\"))
+        (Retourner Rien)
+    )
+")
+(put 'Definir 'text "Commande `Definir`.")
+(de Definir arg_lst
+  (let (signature (car arg_lst)
+        nom       (car signature)
+        params    (cdr signature)
+        corps     (cdr arg_lst)
+        doc       (car corps)
+        auteur    (cadr corps))
+       (ifn (str? doc)
+            (put nom 'doc Rien)
+            (put nom 'doc (pack "`(" (str signature) ")` : " doc)))
+       (ifn (str? auteur) (setq auteur "un auteur anonyme"))
+       (put nom 'text (pack "Commande `"
+                            (str nom)
+                            "`, définie par *"
+                            auteur
+                            "*."))
+       (set nom (list params (list 'run (cons 'quote corps))))
+  )
+)
+(put 'Retourner 'doc
+"Dernière instruction du corps d’une commande définie avec `Definir`.
+Indique la valeur que cette commande va retourner.
+
+Utiliser `(Retourner Rien)` pour ne rien retourner.")
+(put 'Retourner 'text "Commande `Retourner`.")
+(de Retourner (val) val)
 
 # Prédicats
 (put 'Vrai? 'doc
