@@ -3,7 +3,14 @@
 		'((BoolExpr)
 			(if (<> (eval BoolExpr) Faux)
 				(inc 'Goods)
-				(inc 'Bads) (println 'Error: BoolExpr 'Result: (eval (caddr BoolExpr))) ) )
+				(inc 'Bads) (println 'Error: BoolExpr 'Result:
+                                     (if (<> 'let (car BoolExpr))
+                                         (eval (caddr BoolExpr))
+                                         (eval (caddr (caddr BoolExpr)))
+                                     )
+                            )
+            )
+        )
 		(list
 			'(= "0.1.0" version)
             # Blocs
