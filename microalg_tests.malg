@@ -13,8 +13,6 @@
         )
 		(list
 			'(= "0.1.0" version)
-            # Blocs
-            '(= 1 (Bloc (setq x 0) (setq x (+ x 1))))
             # Affichage
 			'(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *LastStdOut))
 			'(= "Deux" (prog (Afficher "Un") (Afficher "Deux") *LastStdOut))

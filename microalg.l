@@ -12,7 +12,7 @@ Voir <http://microalg.info>.")
 "+" "-" "*" "/"
 "!!!" "=" "=/" "<" "<=" ">" ">="
 "Affecter_a" "Afficher" "Aide" "Alors"
-"Bloc" "Booleen?"
+"Booleen?"
 "Concatener"
 "Definir" "Demander"
 "Faire"
@@ -197,11 +197,6 @@ en minuscule).")
                 (T NIL)
               ))
 
-# Blocs
-(put 'Bloc 'doc
-"Commande qui permet de regrouper plusieurs instructions en une seule.")
-(de Bloc arg_lst (run arg_lst))
-
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
 (setq Vrai 'Vrai)
@@ -231,26 +226,26 @@ en minuscule).")
 "Structure itérative de type « tant que ... faire ... ».")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
-                           Bloc (cddr arg_lst))
+                           Corps (cddr arg_lst))
                           # Ce if permet de retourner Rien plutôt que NIL
                           # dans le cas où Bool est tout de suite Faux,
                           # mais du coup Bool peut être évalué plusieurs fois.
                           (if (<> Vrai (eval Bool))
                               Rien
                               (while (<> Faux (eval Bool))
-                                     (run Bloc)))))
+                                     (run Corps)))))
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».")
 (de Faire arg_lst (let (Splitted (split arg_lst 'Tant_que)
-                        Bloc (car Splitted)
+                        Corps (car Splitted)
                         Bool (caadr Splitted))
                        # Ce let permet de retourner le résultat du premier
                        # tour dans le cas où Bool est tout de suite Faux.
-                       (let (resultat-premier-tour (run Bloc))
+                       (let (resultat-premier-tour (run Corps))
                             (if (<> Vrai (eval Bool))
                                 resultat-premier-tour
                                 (while (<> Faux (eval Bool))
-                                       (run Bloc))))))
+                                       (run Corps))))))
 
 # Procédures utilisateur
 (put 'Definir 'doc
