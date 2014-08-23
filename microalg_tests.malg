@@ -45,6 +45,28 @@
 			'(let (x 3) (= 2 (Faire (setq x (- x 1)) Tant_que Faux)))
 			'(let (x 3 y 0) (= 3 (prog (Tant_que (=/ x 0) Faire (setq x (- x 1)) (setq y (+ y 1))) y)))
 			'(let (x 3 y 0) (= 3 (prog (Faire (setq x (- x 1)) (setq y (+ y 1)) Tant_que (=/ x 0)) y)))
+            # Commandes utilisateur
+            '(let (f NIL) (= 14 (prog
+                                  (Definir (f x) (Retourner (* 2 x)))
+                                  (f 7) )
+                          ))
+            '(let (f NIL) (= "Commande `f`, définie par *un auteur anonyme*."
+                             (prog
+                                  (Definir (f) (Retourner Rien))
+                                  (Afficher f)
+                                   *LastStdOut)
+                          ))
+            '(let (f NIL) (= "Commande `f`, définie par *anonyme*."
+                             (prog
+                                  (Definir (f) "doc" "anonyme" (Retourner Rien))
+                                  (Afficher f)
+                                   *LastStdOut)
+                          ))
+            '(let (f NIL) (= "Aide pour `f` :  ^J`(f x y z)` : doc"
+                             (prog
+                                  (Definir (f x y z) "doc" (Retourner Rien))
+                                  (Aide f))
+                          ))
             # Types et conversions
             '(= "texte" (Type "bonjour"))
             '(= "nombre" (Type 0))
