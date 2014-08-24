@@ -379,7 +379,7 @@ function getAlg(c) {
 			} else {
 				s = NIL;
 			}
-		} else throw new Error(newErrMsg(SYM_EXP));
+		} else throw new Error(newErrMsg(SYM_EXP, s));
 		c = c.cdr;
 	}
 	return s;
