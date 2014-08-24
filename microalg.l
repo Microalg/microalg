@@ -114,6 +114,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
 Attention, certains symboles particuliers comme `aide` ou `version` ont des
 comportements différents suivant qu’on les évalue, qu’on les affiche ou qu’on
 les appelle.")
+(put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
 (de Afficher args (let (first (car args)
                         text (if (num? first) first (get first 'text))
@@ -123,11 +124,11 @@ les appelle.")
                        NIL  # Pas de valeur de retour
                   )
 )
-(put 'Afficher 'text "Commande 'Afficher'.")
 
 # Concatener
 (put 'Concatener 'doc
 "Commande qui concatène les textes passés en paramètre.")
+(put 'Concatener 'text "Commande `Concatener`.")
 (de Concatener @ (let (
                        result (pack (rest))
                       )
@@ -139,6 +140,7 @@ les appelle.")
 # Gestion des variables
 (put 'Initialiser 'doc
 "Commande qui permet d’initialiser une variable avec une valeur.")
+(put 'Initialiser 'text "Commande `Initialiser`.")
 (de Initialiser arg_lst (let (var (car arg_lst)
                               val (eval (cadr arg_lst)))
                              (if (== NIL (eval var))
@@ -147,6 +149,7 @@ les appelle.")
                              )))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
+(put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de Affecter_a arg_lst (let (var (car arg_lst)
                              val (eval (cadr arg_lst)))
                             (if (== NIL (eval var))
@@ -164,6 +167,7 @@ les appelle.")
 # window.prompt.
 (put 'Demander 'doc
 "Commande qui permet de demander une valeur à l’utilisateur.")
+(put 'Demander 'text "Commande `Demander`.")
 (de Demander () (in NIL (read " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")))
 # Références:
 # https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange#Table_des_128_caract.C3.A8res_ASCII
@@ -314,48 +318,58 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.")
 (put 'Vrai? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
 et `Faux` sinon.")
+(put 'Vrai? 'text "Prédicat `Vrai?`.")
 (de Vrai? (x) (if (<> x Faux) Vrai Faux))
 (put 'Faux? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
 et `Faux` sinon.")
+(put 'Faux? 'text "Prédicat `Faux?`.")
 (de Faux? (x) (if (<> x Vrai) Vrai Faux))
 (put 'Texte? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est du texte,
 et `Faux` sinon.")
+(put 'Texte? 'text "Prédicat `Texte?`.")
 (de Texte? (x) (if (str? x) Vrai Faux))
 (put 'Nombre? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
 et `Faux` sinon.")
+(put 'Nombre? 'text "Prédicat `Nombre?`.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
 (put 'Booleen? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
 et `Faux` sinon.")
+(put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 # Sans le suffixe '?'
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
 et `Faux` sinon.")
+(put '= 'text "Prédicat `=`.")
 (de = (x y) (ifn (<> x y) Vrai Faux))
 (put '=/ 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 différentes, et `Faux` sinon.")
+(put '=/ 'text "Prédicat `=/`.")
 (de =/ (x y) (if (<> x y) Vrai Faux))
 (put '< 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-dans l’ordre croissant
-(strictement), et `Faux` sinon.")
+dans l’ordre croissant (strictement), et `Faux` sinon.")
+(put '< 'text "Prédicat `<`.")
 (de < (x y) (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre croissant.")
+(put '<= 'text "Prédicat `<=`.")
 (de <= (x y) (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant (strictement), et `Faux` sinon.")
+(put '> 'text "Prédicat `>`.")
 (de > (x y) (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant.")
+(put '>= 'text "Prédicat `>=`.")
 (de >= (x y) (if (ge0 (- x y)) Vrai Faux))
 
 # Rien
