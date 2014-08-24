@@ -982,6 +982,13 @@ var coreFunctions = {
 		do { r = new Cell(lst.car, r); lst = lst.cdr; } while (lst instanceof Cell);
 		return r;
 	},
+    "round": function(c) {
+        var len = evalLisp(c.cdr.car);
+        if (len == NIL) len = 3;
+        var power_of_ten = Math.pow(10, len);
+        var num = evalLisp(c.car);
+        return Math.round(num * power_of_ten) / power_of_ten;
+    },
 	"run": function(c) { 	// TODO: binding env. offset cnt
 		c = evalLisp(c.car);
 		// Reuse prog here.
