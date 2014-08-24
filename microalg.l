@@ -143,22 +143,26 @@ les appelle.")
 (put 'Initialiser 'text "Commande `Initialiser`.")
 (de Initialiser arg_lst (let (var (car arg_lst)
                               val (eval (cadr arg_lst)))
-                             (if (== NIL (eval var))
-                                 (set var val)
-                                 (quit "Variable déjà initialisée" var)
-                             )))
+                             (if (get var 'type)
+                                 (quit "Variable déjà initialisée." var)
+                             )
+                             (set var val)
+                             (put var 'type (Type (eval var)))
+                        ))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de Affecter_a arg_lst (let (var (car arg_lst)
                              val (eval (cadr arg_lst)))
-                            (if (== NIL (eval var))
-                                (quit "Variable non initialisée" var)
-                                (if (<> Faux (= (Type (eval var)) (Type val)))
-                                    (set var val)
-                                    (quit "Le type ne correspond pas" (list var 'est 'un (Type (eval var)) ', val 'un (Type val)))
-                                )
-                            )))
+                            (ifn (get var 'type)
+                                 (quit "Variable non initialisée" var)
+                            )
+                            (if (<> Faux (= (get var 'type) (get 'val 'type))
+                                (set var val)
+                                (quit "Le type ne correspond pas"
+                                      (list var 'est 'un (Type (eval var)) ', val 'un (Type val)))
+                            )
+                       )))
 
 # Demander.
 # Avec EmuLisp, les entrées utilisateur se font au travers de la fonction
@@ -179,13 +183,17 @@ les appelle.")
 (put 'Type 'doc
 "Commande qui retourne le type de son paramètre (sous forme de texte et
 en minuscule).")
-(de Type (x) (cond
-                ((<> Faux (Texte? x)) "texte")
-                ((<> Faux (Nombre? x)) "nombre")
-                ((<> Faux (Booleen? x)) "booleen")
-                ((<> Faux (== Rien x)) "rien")
-                (T NIL)
-              ))
+(put 'Type 'text "Commande `Type`.")
+(de Type arg_lst
+  (let (x (car arg_lst))
+       (cond
+         ((<> Faux (Texte?   (eval x))) "texte")
+         ((<> Faux (Booleen? (eval x))) "booleen")
+         ((<> Faux (Nombre?  (eval x))) "nombre")
+         ((<> Faux (== Rien  (eval x))) "rien")
+         ((sym? x) (get x 'type))
+         (T Rien)
+       ) ) )
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.")
 (de Texte (x) (cond
