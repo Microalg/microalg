@@ -2,7 +2,7 @@
 	(mapc
 		'((BoolExpr)
 			(if (<> (eval BoolExpr) Faux)
-				(inc 'Goods)
+				(if (<> 'or (car BoolExpr)) (inc 'Goods))
 				(inc 'Bads) (println 'Error: BoolExpr 'Result:
                                      (if (<> 'let (car BoolExpr))
                                          (eval (caddr BoolExpr))
