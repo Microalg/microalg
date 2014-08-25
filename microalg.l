@@ -18,11 +18,13 @@ Voir <http://microalg.info>.")
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
-"Nombre" "Nombre?"
+"Longueur"
+"Nieme" "Nombre" "Nombre?"
+"Queue"
 "Retourner" "Rien"
 "Si" "Sinon"
-"Tant_que" "Texte" "Texte?" "Type"
-"Vrai" "Vrai?"
+"Tant_que" "Tete" "Texte" "Texte?" "Type"
+"Vide?" "Vrai" "Vrai?"
 ))
 
 # picolisp.l shimz
@@ -68,6 +70,9 @@ Voir <http://microalg.info>.")
     )
   )
 )
+
+# Conversion de booléens MicroAlg -> PicoLisp:
+(de ?vrai (x) (if (<> Faux x) T NIL))
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -184,6 +189,62 @@ les appelle.")
 # https://en.wikipedia.org/wiki/ASCII#ASCII_printable_character_code_chart
 # >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
 # ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
+# Manipulations de texte
+(put 'Longueur 'doc
+"Commande qui retourne la longueur d’une liste.")
+(put 'Longueur 'text "Commande `Longueur`.")
+(de Longueur (obj)
+    (length obj))
+(put 'Nieme 'doc
+"Permet d’accéder en lecture à un des éléments d’une liste (se lit « énième »).
+
+La numérotation commence à 1.")
+(put 'Nieme 'text "Commande `Nieme`.")
+(de Nieme (obj idx)
+    # Quelques vérifications
+    (let (len (length obj))
+      (cond
+        ((not idx) (quit "Il manque le deuxième paramètre : l’indice." Rien))
+        ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
+        ((le0 idx) (quit "Indice négatif ou nul." idx))
+        ((le0 (- (length obj) idx)) (quit "Indice trop grand." (list idx '> len)))
+      )
+    )
+    # Le calcul
+    (cond
+      ((str? obj) (car (nth (chop obj) idx)))
+      #((lst? obj) (nth obj idx))
+      (T Rien)
+    ))
+(put 'Tete 'doc
+"Commande qui retourne le premier élément d’une liste.")
+(put 'Tete 'text "Commande `Tete`.")
+(de Tete (obj)
+    # Quelques vérifications
+    (if (?vrai (Vide? obj))
+        (quit "Un objet vide n’a pas de tête." Rien)
+    )
+    # Le calcul
+    (cond
+      ((str? obj) (car (chop obj)))
+      #((lst? obj) (car obj))
+      (T Rien)
+    ))
+(put 'Queue 'doc
+"Commande qui retourne une copie de la liste en paramètre, mais sans son premier élément.")
+(put 'Queue 'text "Commande `Queue`.")
+(de Queue (obj)
+    # Quelques vérifications
+    (if (?vrai (Vide? obj))
+        (quit "Un objet vide n’a pas de queue." Rien)
+    )
+    # Le calcul
+    (cond
+      ((str? obj) (pack (cdr (chop obj))))
+      #((lst? obj) (cdr obj))
+      (T Rien)
+    ))
 
 # Types et conversions
 (put 'Type 'doc
@@ -386,6 +447,14 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.")
 dans l’ordre décroissant.")
 (put '>= 'text "Prédicat `>=`.")
 (de >= (x y) (if (ge0 (- x y)) Vrai Faux))
+(put 'Vide? 'doc
+"Prédicat retournant `Vrai` si l’argument est considéré comme vide.
+
+* **Textes** : le seul texte vide est `\"\"`.
+")
+(put 'Vide? 'text "Prédicat `Vide?`.")
+(de Vide? (obj)
+    (if (<> 0 (length obj)) Faux Vrai))
 
 # Rien
 (put 'Rien 'doc
