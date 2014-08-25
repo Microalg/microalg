@@ -152,6 +152,7 @@ les appelle.")
                              )
                              (set var val)
                              (put var 'type (Type (eval var)))
+                             Rien  # Pas de valeur de retour
                         ))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
@@ -166,6 +167,7 @@ les appelle.")
                                 (quit "Le type ne correspond pas"
                                       (list var 'est 'un (Type (eval var)) ', val 'un (Type val)))
                             )
+                            Rien  # Pas de valeur de retour
                        )))
 
 # Demander.
@@ -316,6 +318,7 @@ Exemple 2 :
                             auteur
                             "*."))
        (set nom (list params (list 'run (cons 'quote corps))))
+       Rien  # Pas de valeur de retour
   )
 )
 (put 'Retourner 'doc
