@@ -37,9 +37,9 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "" (prog (Initialiser x "") x)))
             '(or (put 'x 'type NIL) T)
-            #'(let (x NIL) (= "" (prog (Initialiser x "salut") (Affecter_a x "") x)))
+            '(let (x NIL) (= "" (prog (Initialiser x "salut") (Affecter_a x "") x)))
             '(or (put 'x 'type NIL) T)
-            #'(let (x NIL) (= "salut" (prog (Initialiser x "") (Affecter_a x "salut") x)))
+            '(let (x NIL) (= "salut" (prog (Initialiser x "") (Affecter_a x "salut") x)))
             '(or (put 'x 'type NIL) T)
             # Manipulations de texte
             '(= 0 (Longueur ""))

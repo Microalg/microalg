@@ -150,14 +150,20 @@ les appelle.")
 (put 'Initialiser 'doc
 "Commande qui permet d’initialiser une variable avec une valeur.")
 (put 'Initialiser 'text "Commande `Initialiser`.")
-(de Initialiser arg_lst (let (var (car arg_lst)
+(de Initialiser arg_lst (let (nbr_args (length arg_lst))
+                             (if (<> 2 nbr_args)
+                                 (quit (pack "Initialiser prend 2 paramètres. "
+                                             "Vous en donnez " nbr_args ".") )
+                             )  # Du coup un deuxième arg NIL ne peut être que "".
+                        )
+                        (let (var (car arg_lst)
                               val (eval (cadr arg_lst)))
                              (if (get var 'type)
                                  (quit "Variable déjà initialisée."
                                        (pack (str var) ", " (get var 'type)))
                              )
                              (set var val)
-                             (put var 'type (Type val))
+                             (put var 'type (ifn val "texte" (Type val)))
                              Rien  # Pas de valeur de retour
                         ))
 (put 'Affecter_a 'doc
@@ -176,7 +182,8 @@ les appelle.")
                  (ifn (get var 'type)
                       (quit "Variable non initialisée." var)
                  )
-                 (if (<> Faux (= (get var 'type) (Type val)))
+                 (if (or (not val)  # Pour accepter "" qui est NIL.
+                         (<> Faux (= (get var 'type) (Type val))))
                      (set var val)
                      (quit "Le type ne correspond pas."
                            (list var 'est 'un (get var 'type) '; val 'un (Type val))
