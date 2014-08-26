@@ -294,7 +294,7 @@ en minuscule).")
                      splitted  (split (cddr arg_lst) 'Sinon)
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
-                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant !" arg_lst))
+                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant." arg_lst))
                     (if (<> Faux (eval condition))  # = retourne Vrai ou Faux
                         (run bloc_vrai)
                         (if (== NIL bloc_faux)
