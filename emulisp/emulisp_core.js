@@ -328,7 +328,7 @@ function getString(str, editMode) {
 
 function newErrMsg(msg, badValue) {
 	getSymbol("*Msg").setVal(newTransSymbol(msg));
-	return (badValue === undefined) ? msg : lispToStr(badValue) + " -- " + msg;
+	return (badValue === undefined) ? msg + "" : lispToStr(badValue) + " -- " + msg;
 }
 
 function aTrue(val) { if (val !== NIL) { A1.setVal(val); return true; } else return false; }
@@ -948,7 +948,11 @@ var coreFunctions = {
 		throw new Error(newErrMsg(VAR_EXP, s));
 	},
 	"quote": function(c) { return c; },
-	"quit": function(c) { throw new Error(newErrMsg(evalLisp(c.car), evalLisp(c.cdr.car))); },
+	"quit": function(c) {
+		var value = evalLisp(c.cdr.car);
+		if (value == NIL) throw new Error(newErrMsg(evalLisp(c.car)));
+		else throw new Error(newErrMsg(evalLisp(c.car), value));
+	},
 	"rand": function(c) { var r = Math.random();
 		if (c === NIL) return new Number(r);	// range 0.0 .. 1.0
 		var n = evalLisp(c.car);
