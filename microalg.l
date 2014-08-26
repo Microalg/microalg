@@ -157,24 +157,39 @@ les appelle.")
                                        (pack (str var) ", " (get var 'type)))
                              )
                              (set var val)
-                             (put var 'type (Type (eval var)))
+                             (put var 'type (Type val))
                              Rien  # Pas de valeur de retour
                         ))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
-(de Affecter_a arg_lst (let (var (car arg_lst)
-                             val (eval (cadr arg_lst)))
-                            (ifn (get var 'type)
-                                 (quit "Variable non initialisée." var)
-                            )
-                            (if (<> Faux (= (get var 'type) (get 'val 'type))
-                                (set var val)
-                                (quit "Le type ne correspond pas"
-                                      (list var 'est 'un (Type (eval var)) ', val 'un (Type val)))
-                            )
-                            Rien  # Pas de valeur de retour
-                       )))
+(de Affecter_a arg_lst
+    (let (preums (car arg_lst)
+          deuz   (eval (cadr arg_lst))
+          troiz  (eval (caddr arg_lst))
+          var    preums
+          val    (ifn troiz deuz troiz)
+          idx    troiz)
+         (ifn idx
+              (prog
+                 # Affectation au symbole dans `var`.
+                 (ifn (get var 'type)
+                      (quit "Variable non initialisée." var)
+                 )
+                 (if (<> Faux (= (get var 'type) (Type val)))
+                     (set var val)
+                     (quit "Le type ne correspond pas."
+                           (list var 'est 'un (get var 'type) '; val 'un (Type val))
+                     )
+                 )
+              )
+              (prog
+                 # Affectation à l’élément `idx` du symbole dans `var`.
+              )
+         )
+         Rien  # Pas de valeur de retour
+    )
+)
 
 # Demander.
 # Avec EmuLisp, les entrées utilisateur se font au travers de la fonction
