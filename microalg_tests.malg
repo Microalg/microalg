@@ -57,6 +57,17 @@
             '(= Rien (Si Faux Alors 1))
             '(= 1 (Si Vrai Alors (setq x 0) (setq x (+ x 1))))
             '(= 1 (Si Faux Alors Rien Sinon (setq x 0) (setq x (+ x 1))))
+            # Opérations logiques
+            '(= Vrai (Non Faux))
+            '(= Faux (Non Vrai))
+            '(= Faux (Et Faux Faux))
+            '(= Faux (Et Faux Vrai))
+            '(= Faux (Et Vrai Faux))
+            '(= Vrai (Et Vrai Vrai))
+            '(= Faux (Ou Faux Faux))
+            '(= Vrai (Ou Faux Vrai))
+            '(= Vrai (Ou Vrai Faux))
+            '(= Vrai (Ou Vrai Vrai))
             # Structures itératives
             '(= Rien (Tant_que Faux Faire 0))
             '(let (x 3) (= 0 (Tant_que (=/ x 0) Faire (setq x (- x 1)))))

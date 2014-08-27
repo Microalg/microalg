@@ -15,11 +15,13 @@ Voir <http://microalg.info>.")
 "Booleen?"
 "Concatener"
 "Definir" "Demander"
+"Et"
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
 "Longueur"
-"Nieme" "Nombre" "Nombre?"
+"Nieme" "Nombre" "Nombre?" "Non"
+"Ou"
 "Queue"
 "Retourner" "Rien"
 "Si" "Sinon"
@@ -324,6 +326,28 @@ en minuscule).")
                         (if (== NIL bloc_faux)
                             Rien
                             (run bloc_faux)))))
+
+# Opérations logiques
+(put 'Non 'doc
+"Non logique.")
+(put 'Non 'text "Commande `Non`.")
+(de Non (P)
+    (ifn (!boolCheck P) (quit "`Non` prend un paramètre booléen."))
+    (!boolP2M (not (!boolM2P P))) )
+(put 'Et 'doc
+"Et logique.")
+(put 'Et 'text "Commande `Et`.")
+(de Et (P Q)
+    (ifn (!boolCheck P) (quit "Le premier paramètre de `Et` doit être un booléen."))
+    (ifn (!boolCheck Q) (quit "Le second paramètre de `Et` doit être un booléen."))
+    (!boolP2M (and (!boolM2P P) (!boolM2P Q))) )
+(put 'Ou 'doc
+"Ou logique.")
+(put 'Ou 'text "Commande `Ou`.")
+(de Ou (P Q)
+    (ifn (!boolCheck P) (quit "Le premier paramètre de `Ou` doit être un booléen."))
+    (ifn (!boolCheck Q) (quit "Le second paramètre de `Ou` doit être un booléen."))
+    (!boolP2M (or (!boolM2P P) (!boolM2P Q))) )
 
 # Structures itératives
 (put 'Tant_que 'doc
