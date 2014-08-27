@@ -942,6 +942,21 @@
     </script>
     <p>Comme d’habitude, modifier le code ci-dessus puis le tester pour bien
     comprendre la commande <code>Definir</code>.</p>
+    <p><strong>Attention !</strong> Cette instruction doit être la dernière de
+    la commande créée car <code>Retourner</code> n’en interrompt pas
+    l’exécution, comme on peut le voir ici :</p>
+    <div id="script-bug-retourner"></div>
+    <script>inject_microalg_editor_in('script-bug-retourner', {localStorage: false},
+        '(Definir (Bug_Retourner)\n' +
+        '    "Un vrai `Retourner` aurait retourné `Premier retour`."\n' +
+        '    "ProfGra"\n' +
+        '    (Retourner "Premier retour.")\n' +
+        '    (Retourner "Bug.")\n' +
+        ')\n' +
+        '(Afficher (Bug_Retourner))\n' +
+        '');
+    </script>
+
     <p>Voir <a href="doc.html#cmd-Definir">la documentation</a> pour plus de
     détails.</p>
 

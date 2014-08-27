@@ -443,8 +443,8 @@ Indique la valeur que cette commande va retourner.
 
 Utiliser `(Retourner Rien)` pour ne rien retourner.
 
-**Attention !** Cette instruction doit être la dernière de la commande car elle
-n’en interrompt pas l’exécution.")
+**Attention !** Cette instruction doit être la dernière de la commande créée car
+`Retourner` n’en interrompt pas l’exécution.")
 (put 'Retourner 'text "Commande `Retourner`.")
 (de Retourner (val) val)
 
