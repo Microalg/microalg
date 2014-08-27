@@ -290,6 +290,7 @@ en minuscule).")
        ) ) )
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.")
+(put 'Texte 'text "Commande `Texte`.")
 (de Texte (x) (cond
                 ((str? x) x)
                 ((num? x) (format x))
@@ -297,6 +298,7 @@ en minuscule).")
               ))
 (put 'Nombre 'doc
 "Commande qui retourne le nombre correspondant à son paramètre textuel.")
+(put 'Nombre 'text "Commande `Nombre`.")
 (de Nombre (x) (cond
                 ((num? x) x)
                 ((str? x) (or (format x) Rien))
@@ -315,6 +317,7 @@ en minuscule).")
 (put 'Si 'doc
 "Structure conditionnelle, de la forme `Si ... Alors ... Sinon ...` où le
 `Sinon` est facultatif.")
+(put 'Si 'text "Commande `Si`.")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
                      splitted  (split (cddr arg_lst) 'Sinon)
@@ -352,6 +355,7 @@ en minuscule).")
 # Structures itératives
 (put 'Tant_que 'doc
 "Structure itérative de type « tant que ... faire ... ».")
+(put 'Tant_que 'text "Commande `Tant_que`.")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
                            Corps (cddr arg_lst))
@@ -364,6 +368,7 @@ en minuscule).")
                                      (run Corps)))))
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».")
+(put 'Faire 'text "Commande `Faire`.")
 (de Faire arg_lst (let (Splitted (split arg_lst 'Tant_que)
                         Corps (car Splitted)
                         Bool (caadr Splitted))
