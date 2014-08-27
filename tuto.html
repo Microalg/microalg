@@ -959,9 +959,9 @@
     </script>
     <p>Comme d’habitude, modifier le code ci-dessus puis le tester pour bien
     comprendre la commande <code>Definir</code>.</p>
-    <p><strong>Attention !</strong> Cette instruction doit être la dernière de
-    la commande créée car <code>Retourner</code> n’en interrompt pas
-    l’exécution, comme on peut le voir ici :</p>
+    <p><strong>Attention !</strong> La commande <strong>Retourner</strong> doit
+    être la dernière de la commande créée car <code>Retourner</code> n’en
+    interrompt pas l’exécution, comme on peut le voir ici :</p>
     <div id="script-bug-retourner"></div>
     <script>inject_microalg_editor_in('script-bug-retourner', {localStorage: false},
         '(Definir (Bug_Retourner)\n' +
@@ -976,6 +976,27 @@
 
     <p>Voir <a href="doc.html#cmd-Definir">la documentation</a> pour plus de
     détails.</p>
+    <p>Comme promis, voici un moyen de définir une commande qui demande un
+    nombre à l’utilisateur..</p>
+    <div id="script-demandernbre"></div>
+    <script>inject_microalg_editor_in('script-demandernbre', {localStorage: false},
+        '(Definir (DemanderNbre)\n' +
+        '    "Retourne le nombre tapé par l’utilisateur, ou `Rien` si\n' +
+        '     l’utilisateur n’a pas tapé un nombre."\n' +
+        '    "ProfGra"\n' +
+        '    (Retourner (Nombre (Demander)))\n' +
+        ')\n' +
+        '\n' +
+        '(!!! "Vérifions la valeur, mais surtout le type de la valeur retournée :")\n' +
+        '\n' +
+        '(Afficher "Veuillez taper un nombre.")\n' +
+        '(Initialiser x (DemanderNbre))\n' +
+        '(Afficher x)\n' +
+        '(Afficher (Type x))\n' +
+        '');
+    </script>
+    <p>À essayer une première fois en tapant un nombre, puis une seconde en
+    tapant une lettre.</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si ça vous a plu et que vous avez une envie de créer
