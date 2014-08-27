@@ -43,6 +43,7 @@
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
+    <a href="#definir">Définir ses commandes</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -719,6 +720,43 @@
         ')\n' +
         ''
         );
+    </script>
+
+    <h2 id="definir"><a href="#definir">: </a>Définir ses commandes</h2>
+    <p>En plus des <a href="doc.html#listedessymbolesprdfinis">symboles prédéfinis</a>
+    dans MicroAlg, vous pouvez créer vos propres commandes, grâce à la commande
+    <code>Definir</code>.</p>
+    <div id="script-definir"></div>
+    <script>inject_microalg_editor_in('script-definir', {localStorage: false},
+        '(Definir (Double x)\n' +
+        '    "Retourne le double du nombre (paramètre `x`)."\n' +
+        '    "anonyme"\n' +
+        '    (Retourner (* 2 x))\n' +
+        ')\n' +
+        '\n' +
+        '(!!! "Voici différentes façons d’utiliser la commande ainsi définie :")\n' +
+        '\n' +
+        '(Afficher "**(Afficher Double)** donne :")\n' +
+        '(Afficher Double)\n' +
+        '(Afficher "**(Afficher (Aide Double))** donne :")\n' +
+        '(Afficher (Aide Double))\n' +
+        '(Afficher "**(Afficher (Double 7))** donne :")\n' +
+        '(Afficher (Double 7))\n' +
+        '');
+    </script>
+    <p><strong>Attention !</strong> La commande <strong>Retourner</strong> doit
+    être la dernière de la commande créée car <code>Retourner</code> n’en
+    interrompt pas l’exécution, comme on peut le voir ici :</p>
+    <div id="script-bug-retourner"></div>
+    <script>inject_microalg_editor_in('script-bug-retourner', {localStorage: false},
+        '(Definir (Bug_Retourner)\n' +
+        '    "Un vrai `Retourner` aurait retourné `Premier retour`."\n' +
+        '    "ProfGra"\n' +
+        '    (Retourner "Premier retour.")\n' +
+        '    (Retourner "Bug.")\n' +
+        ')\n' +
+        '(Afficher (Bug_Retourner))\n' +
+        '');
     </script>
 
     <h2 id="fin">Fin</h2>
