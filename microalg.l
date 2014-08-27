@@ -71,8 +71,10 @@ Voir <http://microalg.info>.")
   )
 )
 
-# Conversion de booléens MicroAlg -> PicoLisp:
-(de ?vrai (x) (if (<> Faux x) T NIL))
+# Vérif et conversions de booléens MicroAlg <-> PicoLisp:
+(de !boolM2P (x) (if (<> Faux x) T NIL))
+(de !boolP2M (x) (if x Vrai Faux))
+(de !boolCheck (x) (if (member x '(Vrai Faux)) T))
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -245,7 +247,7 @@ La numérotation commence à 1.")
 (put 'Tete 'text "Commande `Tete`.")
 (de Tete (obj)
     # Quelques vérifications
-    (if (?vrai (Vide? obj))
+    (if (!boolM2P (Vide? obj))
         (quit "Un objet vide n’a pas de tête." Rien)
     )
     # Le calcul
@@ -259,7 +261,7 @@ La numérotation commence à 1.")
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
-    (if (?vrai (Vide? obj))
+    (if (!boolM2P (Vide? obj))
         (quit "Un objet vide n’a pas de queue." Rien)
     )
     # Le calcul
