@@ -623,6 +623,23 @@
         '    )\n' +
         ')');
     </script>
+    <p>Voici une application concrète d’une structure avec des <code>Si</code>
+    emboîtés :</p>
+    <div id="script-si-emboites-appli"></div>
+    <script>inject_microalg_editor_in('script-si-emboites-appli', {localStorage: false},
+        '(Afficher "Veuillez taper un nombre.")\n' +
+        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Si (>= nbre 0)\n' +
+        '    Alors (Si (>= nbre 1000)\n' +
+        '              Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '              Sinon (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
+        '          )\n' +
+        '    Sinon (Si (<= nbre -1000)\n' +
+        '              Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '              Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        '    )\n' +
+        ')');
+    </script>
     <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
     <p>Comme une valeur peut être considérée comme une instruction (et
     inversement), on peut utiliser <code>Si</code> ainsi :</p>
