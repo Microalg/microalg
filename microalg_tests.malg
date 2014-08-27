@@ -41,6 +41,16 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "salut" (prog (Initialiser x "") (Affecter_a x "salut") x)))
             '(or (put 'x 'type NIL) T)
+            # Types et conversions
+            '(= "texte" (Type "bonjour"))
+            '(= "nombre" (Type 0))
+            '(= "booleen" (Type Vrai))
+            '(= "booleen" (Type Faux))
+            '(= "0" (Texte "0"))
+            '(= "0" (Texte 0))
+            '(= 0 (Nombre 0))
+            '(= 0 (Nombre "0"))
+            '(= Rien (Nombre "a"))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))
@@ -98,16 +108,6 @@
                                   (Definir (f x y z) "doc" (Retourner Rien))
                                   (Aide f))
                           ))
-            # Types et conversions
-            '(= "texte" (Type "bonjour"))
-            '(= "nombre" (Type 0))
-            '(= "booleen" (Type Vrai))
-            '(= "booleen" (Type Faux))
-            '(= "0" (Texte "0"))
-            '(= "0" (Texte 0))
-            '(= 0 (Nombre 0))
-            '(= 0 (Nombre "0"))
-            '(= Rien (Nombre "a"))
             # Prédicats
             '(= Vrai (= Vrai Vrai))
             '(= Faux (= Vrai Faux))
