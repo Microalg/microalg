@@ -232,7 +232,7 @@ La numérotation commence à 1.")
     # Quelques vérifications
     (let (len (length obj))
       (cond
-        ((not idx) (quit "Il manque le deuxième paramètre : l’indice." Rien))
+        ((not idx) (quit "Il manque le deuxième paramètre : l’indice."))
         ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
         ((le0 idx) (quit "Indice négatif ou nul." idx))
         ((le0 (- (length obj) idx)) (quit "Indice trop grand." (list idx '> len)))
@@ -250,7 +250,7 @@ La numérotation commence à 1.")
 (de Tete (obj)
     # Quelques vérifications
     (if (!boolM2P (Vide? obj))
-        (quit "Un objet vide n’a pas de tête." Rien)
+        (quit "Un objet vide n’a pas de tête.")
     )
     # Le calcul
     (cond
@@ -264,7 +264,7 @@ La numérotation commence à 1.")
 (de Queue (obj)
     # Quelques vérifications
     (if (!boolM2P (Vide? obj))
-        (quit "Un objet vide n’a pas de queue." Rien)
+        (quit "Un objet vide n’a pas de queue.")
     )
     # Le calcul
     (cond
