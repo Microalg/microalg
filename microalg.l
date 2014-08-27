@@ -333,20 +333,26 @@ en minuscule).")
 
 # Opérations logiques
 (put 'Non 'doc
-"Non logique.")
+"Non logique.
+
+Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 (put 'Non 'text "Commande `Non`.")
 (de Non (P)
     (ifn (!boolCheck P) (quit "`Non` prend un paramètre booléen."))
     (!boolP2M (not (!boolM2P P))) )
 (put 'Et 'doc
-"Et logique.")
+"Et logique.
+
+Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 (put 'Et 'text "Commande `Et`.")
 (de Et (P Q)
     (ifn (!boolCheck P) (quit "Le premier paramètre de `Et` doit être un booléen."))
     (ifn (!boolCheck Q) (quit "Le second paramètre de `Et` doit être un booléen."))
     (!boolP2M (and (!boolM2P P) (!boolM2P Q))) )
 (put 'Ou 'doc
-"Ou logique.")
+"Ou logique.
+
+Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Ou 'text "Commande `Ou`.")
 (de Ou (P Q)
     (ifn (!boolCheck P) (quit "Le premier paramètre de `Ou` doit être un booléen."))
