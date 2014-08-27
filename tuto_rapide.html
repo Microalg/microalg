@@ -40,6 +40,7 @@
     <a href="#booleens">Booléens</a>,
     <a href="#si">Si</a>,
     <a href="#variables">Variables</a>,
+    <a href="#operations-logiques">Opérations logiques</a>,
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
@@ -632,6 +633,24 @@
         '(Afficher mots)\n' +
         ''
         );
+    </script>
+
+    <h2 id="operations-logiques"><a href="#operations-logiques">: </a>Opérations logiques</h2>
+    <div id="script-operations-logiques"></div>
+    <script>inject_microalg_editor_in('script-operations-logiques', {localStorage: false},
+        '(Afficher (Concatener "`(Non Faux)` donne : " (Non Faux)))\n' +
+        '(Afficher (Concatener "`(Non Vrai)` donne : " (Non Vrai)))\n' +
+        '(Afficher "")\n' +
+        '(Afficher (Concatener "`(Et Faux Faux)` donne : " (Et Faux Faux)))\n' +
+        '(Afficher (Concatener "`(Et Faux Vrai)` donne : " (Et Faux Vrai)))\n' +
+        '(Afficher (Concatener "`(Et Vrai Faux)` donne : " (Et Vrai Faux)))\n' +
+        '(Afficher (Concatener "`(Et Vrai Vrai)` donne : " (Et Vrai Vrai)))\n' +
+        '(Afficher "")\n' +
+        '(Afficher (Concatener "`(Ou Faux Faux)` donne : " (Ou Faux Faux)))\n' +
+        '(Afficher (Concatener "`(Ou Faux Vrai)` donne : " (Ou Faux Vrai)))\n' +
+        '(Afficher (Concatener "`(Ou Vrai Faux)` donne : " (Ou Vrai Faux)))\n' +
+        '(Afficher (Concatener "`(Ou Vrai Vrai)` donne : " (Ou Vrai Vrai)))\n' +
+        '');
     </script>
 
     <h2 id="manipulation-de-texte"><a href="#manipulation-de-texte">: </a>Manipulation de texte</h2>

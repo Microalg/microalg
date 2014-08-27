@@ -40,6 +40,7 @@
     <a href="#booleens">Booléens</a>,
     <a href="#si">Si</a>,
     <a href="#variables">Variables</a>,
+    <a href="#operations-logiques">Opérations logiques</a>,
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
@@ -813,6 +814,63 @@
         '(Afficher mots)\n' +
         ''
         );
+    </script>
+
+    <h2 id="operations-logiques"><a href="#operations-logiques">: </a>Opérations logiques</h2>
+    <p>Voici un programme vu précédemment :</p>
+    <div id="script-si-emboites-appli2"></div>
+    <script>inject_microalg_editor_in('script-si-emboites-appli2', {localStorage: false},
+        '(Afficher "Veuillez taper un nombre.")\n' +
+        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Si (>= nbre 0)\n' +
+        '    Alors (Si (>= nbre 1000)\n' +
+        '              Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '              Sinon (Afficher "Ce nombre est positif ou nul, et pas trop grand.")\n' +
+        '          )\n' +
+        '    Sinon (Si (<= nbre -1000)\n' +
+        '              Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '              Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        '    )\n' +
+        ')');
+    </script>
+    <p>On peut parfois éviter d’emboîter les <code>Si</code> en effectuant des
+    calculs sur les booléens. Cela simplifie beaucoup le code quand, par
+    exemple, on doit vérifier qu’un nombre appartient à un intervalle.</p>
+    <div id="script-intervalle"></div>
+    <script>inject_microalg_editor_in('script-intervalle', {localStorage: false},
+        '(Afficher "Veuillez taper un nombre.")\n' +
+        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Si (Et (>= nbre 1) (<= nbre 6))\n' +
+        '    Alors (Afficher "Ce nombre est compris entre 1 et 6.")\n' +
+        '    Sinon (Afficher "Ce nombre est n’est pas compris entre 1 et 6.")\n' +
+        ')' +
+        '');
+    </script>
+    <p>Essayez d’obtenir le même résultat sans l’instruction <code>Et</code> !</p>
+    <p>MicroAlg fournit les opérations sur les booléens suivantes :</p>
+    <ul>
+        <li><code>Non</code>, qui retourne le contraire du booléen fourni en
+            paramètre ;</li>
+        <li><code>Et</code>, qui retourne <code>Vrai</code> seulement si les
+            deux booléens en paramètre sont <code>Vrai</code>s ;</li>
+        <li><code>Ou</code>, qui retourne <code>Vrai</code> si au moins un des
+        deux booléens est <code>Vrai</code>.</li>
+    </ul>
+    <div id="script-operations-logiques"></div>
+    <script>inject_microalg_editor_in('script-operations-logiques', {localStorage: false},
+        '(Afficher (Concatener "`(Non Faux)` donne : " (Non Faux)))\n' +
+        '(Afficher (Concatener "`(Non Vrai)` donne : " (Non Vrai)))\n' +
+        '(Afficher "")\n' +
+        '(Afficher (Concatener "`(Et Faux Faux)` donne : " (Et Faux Faux)))\n' +
+        '(Afficher (Concatener "`(Et Faux Vrai)` donne : " (Et Faux Vrai)))\n' +
+        '(Afficher (Concatener "`(Et Vrai Faux)` donne : " (Et Vrai Faux)))\n' +
+        '(Afficher (Concatener "`(Et Vrai Vrai)` donne : " (Et Vrai Vrai)))\n' +
+        '(Afficher "")\n' +
+        '(Afficher (Concatener "`(Ou Faux Faux)` donne : " (Ou Faux Faux)))\n' +
+        '(Afficher (Concatener "`(Ou Faux Vrai)` donne : " (Ou Faux Vrai)))\n' +
+        '(Afficher (Concatener "`(Ou Vrai Faux)` donne : " (Ou Vrai Faux)))\n' +
+        '(Afficher (Concatener "`(Ou Vrai Vrai)` donne : " (Ou Vrai Vrai)))\n' +
+        '');
     </script>
 
     <h2 id="manipulation-de-texte"><a href="#manipulation-de-texte">: </a>Manipulation de texte</h2>
