@@ -630,6 +630,9 @@ CompExpr.prototype.evalTrue = function(a, b) {
 function lispFnOrder(a, b) { return cst.compExprArr[0].evalTrue(a, b) ? -1 : 1; }
 
 var coreFunctions = {
+	"and": function(c) { var v = NIL; while (c instanceof Cell) { v = evalLisp(c.car);
+			if (!aTrue(v)) return NIL; c = c.cdr; } return v;
+	},
 	"apply": function(c) { return applyFn(c.car, evalLisp(c.cdr.car), c.cdr.cdr); },
 	"arg": function(c) { var n = 0, f = cst.evFrames.car;
 		if (c !== NIL) {
