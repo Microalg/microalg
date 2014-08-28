@@ -384,8 +384,8 @@
     <script>inject_microalg_editor_in('script-si', {localStorage: false},
         '(Afficher "Salut, ça va ?")\n' +
         '(Si (= (Demander) "oui")\n' +
-        '    Alors (Afficher "Tant mieux !")\n' +
-        '    Sinon (Afficher "Ah, qu’y a-t-il ?")\n' +
+        ' Alors (Afficher "Tant mieux !")\n' +
+        ' Sinon (Afficher "Ah, qu’y a-t-il ?")\n' +
         ')');
     </script>
     <p>On peut résumer la commande <code>Si</code> ainsi :<br>
@@ -400,8 +400,8 @@
     <script>inject_microalg_editor_in('script-si-majeur-mineur', {localStorage: false},
         '(Afficher "Quel âge as-tu ?")\n' +
         '(Si (< (Nombre (Demander)) 18)\n' +
-        '    Alors (Afficher "Tu es mineur.")\n' +
-        '    Sinon (Afficher "Tu es majeur.")\n' +
+        ' Alors (Afficher "Tu es mineur.")\n' +
+        ' Sinon (Afficher "Tu es majeur.")\n' +
         ')');
     </script>
     <p>Après avoir vu les bases de la commande <code>Si</code>, voyons quelques
@@ -417,10 +417,10 @@
     <div id="script-si-sans-sinon"></div>
     <script>inject_microalg_editor_in('script-si-sans-sinon', {localStorage: false},
         '(Si Vrai\n' +
-        '    Alors (Afficher "Bonjour !")\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
         ')\n' +
         '(Si Faux\n' +
-        '    Alors (Afficher "Bonjour !")\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
         ')\n' +
         '');
     </script>
@@ -428,17 +428,17 @@
     <div id="script-si-blocs"></div>
     <script>inject_microalg_editor_in('script-si-blocs', {localStorage: false},
         '(Si Vrai\n' +
-        '    Alors (Afficher "Bonjour !")\n' +
-        '          (Afficher "Et rebonjour !")\n' +
-        '    Sinon (Afficher "Au revoir !")\n' +
-        '          (Afficher "Et au revoir encore !")\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
+        '       (Afficher "Et rebonjour !")\n' +
+        ' Sinon (Afficher "Au revoir !")\n' +
+        '       (Afficher "Et au revoir encore !")\n' +
         ')\n' +
         '(!!! "Le même code, mais avec l’autre booléen :")\n' +
         '(Si Faux\n' +
-        '    Alors (Afficher "Bonjour !")\n' +
-        '          (Afficher "Et rebonjour !")\n' +
-        '    Sinon (Afficher "Au revoir !")\n' +
-        '          (Afficher "Et au revoir encore !")\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
+        '       (Afficher "Et rebonjour !")\n' +
+        ' Sinon (Afficher "Au revoir !")\n' +
+        '       (Afficher "Et au revoir encore !")\n' +
         ')\n' +
         '');
     </script>
@@ -462,14 +462,14 @@
     <div id="script-si-emboites"></div>
     <script>inject_microalg_editor_in('script-si-emboites', {localStorage: false},
         '(Si Vrai\n' +
-        '    Alors (Si Vrai\n' +
-        '              Alors (Afficher "premier")\n' +
-        '              Sinon (Afficher "deuxième")\n' +
-        '          )\n' +
-        '    Sinon (Si Vrai\n' +
-        '              Alors (Afficher "troisième")\n' +
-        '              Sinon (Afficher "quatrième")\n' +
-        '    )\n' +
+        ' Alors (Si Vrai\n' +
+        '        Alors (Afficher "premier")\n' +
+        '        Sinon (Afficher "deuxième")\n' +
+        '       )\n' +
+        ' Sinon (Si Vrai\n' +
+        '        Alors (Afficher "troisième")\n' +
+        '        Sinon (Afficher "quatrième")\n' +
+        '        )\n' +
         ')');
     </script>
     <p>Voici une application concrète d’une structure avec des <code>Si</code>
@@ -479,14 +479,14 @@
         '(Afficher "Veuillez taper un nombre.")\n' +
         '(Initialiser nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
-        '    Alors (Si (>= nbre 1000)\n' +
-        '              Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
-        '              Sinon (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
-        '          )\n' +
-        '    Sinon (Si (<= nbre -1000)\n' +
-        '              Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
-        '              Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
-        '    )\n' +
+        ' Alors (Si (>= nbre 1000)\n' +
+        '        Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '        Sinon (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
+        '       )\n' +
+        ' Sinon (Si (<= nbre -1000)\n' +
+        '        Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '        Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        '       )\n' +
         ')');
     </script>
     <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
