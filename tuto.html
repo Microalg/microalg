@@ -525,7 +525,12 @@
         <li><strong>Sinon</strong> afficher « Ah, qu’y a-t-il ? ».</li>
     </ul>
     <p>On peut donc résumer la commande <code>Si</code> ainsi :<br>
-    <code>(Si booléen Alors commandes-si-vrai Sinon commandes-si-faux)</code></p>
+    <code>(Si booléen Alors commande-si-vrai Sinon commande-si-faux)</code></p>
+    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
+    <pre><code>(Si booléen
+ Alors commande-si-vrai
+ Sinon commande-si-faux
+)</code></pre></p>
     <p>Si on veut détailler, la commande <code>Si</code> possède cinq
     paramètres :</p>
     <ul>
@@ -607,6 +612,18 @@
         ')\n' +
         '');
     </script>
+    <p>Avec plusieurs commandes, la commande <code>Si</code> est finalement
+    de la forme :<br>
+    <code>(Si booléen Alors commandes-si-vrai Sinon commandes-si-faux)</code></p>
+    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
+    <pre><code>(Si booléen
+ Alors commande-si-vrai
+       commande-si-vrai
+       ...
+ Sinon commande-si-faux
+       commande-si-faux
+       ...
+)</code></pre></p>
     <h3 id="si-emboites"><a href="#si-emboites">: </a>Si(s) emboîtés</h3>
     <p>Un arbre a parfois plus de deux branches !</p>
     <p>Qu’affiche le programme suivant ? Comment lui faire afficher
