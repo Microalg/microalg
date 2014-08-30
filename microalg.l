@@ -14,8 +14,9 @@ Voir <http://microalg.info>.")
 "Affecter_a" "Afficher" "Aide" "Alors"
 "Booleen?"
 "Concatener"
+"Decimal@"
 "Definir" "Demander"
-"Et"
+"Entier@" "Et"
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
@@ -200,6 +201,32 @@ les appelle.")
          )
          Rien  # Pas de valeur de retour
     )
+)
+
+# Tirages pseudo-aléatoires.
+(put 'Decimal@ 'doc
+"Retourne un nombre décimal pseudo-aléatoire dans [0;1[.
+
+Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
+(put 'Decimal@ 'text "Commande `Decimal@`.")
+(de Decimal@ () (/ (+ 2147483648 (rand)) 4294967296))
+(put 'Entier@ 'doc
+"Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`].
+
+Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
+(put 'Entier@ 'text "Commande `Entier@`.")
+(de Entier@ arg_lst (let (nbr_args (length arg_lst))
+                         (if (<> 2 nbr_args)
+                             (quit (pack "`Entier@` prend 2 paramètres. "
+                                         "Vous en donnez " nbr_args ".") )
+                         )
+                    )
+                    (let (min (eval (car arg_lst))
+                          max (eval (cadr arg_lst)))
+                         (ifn (num? min) (quit "Le premier paramètre de `Entier@` doit être un nombre."))
+                         (ifn (num? max) (quit "Le second paramètre de `Entier@` doit être un nombre."))
+                         (rand min max)
+                    )
 )
 
 # Demander.
