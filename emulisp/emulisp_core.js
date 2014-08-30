@@ -957,10 +957,17 @@ var coreFunctions = {
 		else throw new Error(newErrMsg(evalLisp(c.car), value));
 	},
 	"rand": function(c) { var r = Math.random();
-		if (c === NIL) return new Number(r);	// range 0.0 .. 1.0
 		var n = evalLisp(c.car);
 		if (n === T) return (r < 0.5) ? NIL : T;
-		return new Number((-numeric(n) + numeric(evalLisp(c.cdr.car))) * r + n);
+		if (c === NIL) {
+			var min = -2147483648;
+			var max = +2147483647;
+		} else {
+			n = numeric(n);
+			var min = n;
+			var max = numeric(evalLisp(c.cdr.car));
+		}
+		return new Number(Math.floor(min + (max - min + 1) * r));
 	},
 	"range": function(c) {
 		var n = numeric(evalLisp(c.car)), n2 = numeric(evalLisp(c.cdr.car)), s = evalLisp(c.cdr.cdr.car);
