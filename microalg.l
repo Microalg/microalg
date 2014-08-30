@@ -393,26 +393,24 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
                            Corps (cddr arg_lst))
-                          # Ce if permet de retourner Rien plutôt que NIL
-                          # dans le cas où Bool est tout de suite Faux,
-                          # mais du coup Bool peut être évalué plusieurs fois.
-                          (if (<> Vrai (eval Bool))
-                              Rien
-                              (while (<> Faux (eval Bool))
-                                     (run Corps)))))
+                          (while (<> Faux (eval Bool))
+                                 (run Corps))
+                          Rien
+                     )
+)
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».")
 (put 'Faire 'text "Commande `Faire`.")
 (de Faire arg_lst (let (Splitted (split arg_lst 'Tant_que)
                         Corps (car Splitted)
                         Bool (caadr Splitted))
-                       # Ce let permet de retourner le résultat du premier
-                       # tour dans le cas où Bool est tout de suite Faux.
-                       (let (resultat-premier-tour (run Corps))
-                            (if (<> Vrai (eval Bool))
-                                resultat-premier-tour
-                                (while (<> Faux (eval Bool))
-                                       (run Corps))))))
+                       (run Corps)
+                       (if (<> Faux (eval Bool))
+                           (while (<> Faux (eval Bool))
+                                  (run Corps)))
+                       Rien
+                  )
+)
 
 # Procédures utilisateur
 (put 'Definir 'doc
