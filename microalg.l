@@ -162,13 +162,15 @@ les appelle.")
                              )  # Du coup un deuxième arg NIL ne peut être que "".
                         )
                         (let (var (car arg_lst)
-                              val (eval (cadr arg_lst)))
-                             (if (get var 'type)
-                                 (quit "Variable déjà initialisée."
-                                       (pack (str var) ", " (get var 'type)))
+                              val (eval (cadr arg_lst))
+                              type_var (get var 'type)
+                              type_val (Type val))
+                             (if (and type_var (<> type_val type_var))
+                                 (quit (pack "Valeur de type " type_val ", ne peut initialiser "
+                                             var " qui est de type " type_var "."))
                              )
                              (set var val)
-                             (put var 'type (ifn val "texte" (Type val)))
+                             (put var 'type (ifn val "texte" type_val))
                              Rien  # Pas de valeur de retour
                         ))
 (put 'Affecter_a 'doc
