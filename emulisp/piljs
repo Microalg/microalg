@@ -8,6 +8,10 @@ path = require('path')
 function stdPrint(text) {
 	console.log(text.replace(/\n$/g,''));
 }
+// Override _warn with the official mechanism.
+function warn(msg) {
+	console.log(msg);
+}
 
 var NO_DEBUG = "piljs -> no debug yet";
 
