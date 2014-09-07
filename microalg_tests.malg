@@ -1,3 +1,4 @@
+(setq !testing T)
 (let (Goods 0 Bads 0)
     (mapc
         '((BoolExpr)

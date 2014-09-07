@@ -130,11 +130,12 @@ les appelle.")
                         text (if (num? first) first (get first 'text))
                         a_afficher (if text text (eval first)))
                        (setq *LastStdOut (if a_afficher a_afficher "?"))
-                       (println (ifn a_afficher
-                                     (if (<> *EMUENV "browser")
-                                         " "
-                                         "&nbsp;")
-                                     a_afficher))
+                       (ifn !testing
+                            (println (ifn a_afficher
+                                          (if (<> *EMUENV "browser")
+                                              " "
+                                              "&nbsp;")
+                                          a_afficher)))
                        Rien  # Pas de valeur de retour
                   )
 )
