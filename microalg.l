@@ -54,25 +54,6 @@ Voir <http://microalg.info>.")
     result)
   )
 )
-(ifn split
-  (de split @
-    (let (lst   (next)
-          seps  (rest)
-          result NIL
-          tmp    NIL
-          elt    NIL)
-         (while (setq elt (pop 'lst))
-                (ifn (member elt seps)
-                     (push 'tmp elt)
-                     (push 'result (reverse tmp))
-                     (setq tmp NIL)
-                )
-         )
-         (push 'result (reverse tmp))
-         (reverse result)
-    )
-  )
-)
 
 # Vérif et conversions de booléens MicroAlg <-> PicoLisp:
 (de !boolM2P (x) (if (<> Faux x) T NIL))
