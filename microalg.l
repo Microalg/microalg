@@ -510,6 +510,12 @@ et `Faux` sinon.")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 # Sans le suffixe '?'
+# Éviter le message « redefined »
+(setq = NIL)
+(setq < NIL)
+(setq <= NIL)
+(setq > NIL)
+(setq >= NIL)
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
 et `Faux` sinon.")
