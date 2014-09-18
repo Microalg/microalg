@@ -4,6 +4,19 @@ Installation
 Cette page est accessible
 [ici](https://github.com/Microalg/Microalg/blob/latest/INSTALL.md).
 
+Aller directement à :
+
+* Windows :
+    * [avec Java](#avec-java)
+    * [avec NodeJS](#avec-nodejs)
+* Développeur :
+    * [tout sauf Windows](#développeur)
+* Utilisation en ligne (rien à installer !) :
+    * [Galerie Web](http://galerie.microalg.info/) (wiki avec code exécutable
+      dans le navigateur)
+    * [Web IDE](http://microalg.info/ide.html) (un éditeur et une console
+      expérimentale)
+
 Si vous trouvez une faute d’orthographe, ou si vous rencontrez un problème
 d’installation, merci de (au choix) :
 
