@@ -59,6 +59,9 @@ Voir <http://microalg.info>.")
 (de !boolM2P (x) (if (<> Faux x) T NIL))
 (de !boolP2M (x) (if x Vrai Faux))
 (de !boolCheck (x) (if (member x '(Vrai Faux)) T))
+(de !boolCheckM2P (x msg)
+    (ifn (!boolCheck x) (quit msg x))
+    (!boolM2P x) )
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -336,7 +339,7 @@ en minuscule).")
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
                     (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant." arg_lst))
-                    (if (<> Faux (eval condition))  # = retourne Vrai ou Faux
+                    (if (!boolCheckM2P (eval condition) "La condition n’est pas un booléen.")
                         (run bloc_vrai)
                         (if (== NIL bloc_faux)
                             Rien
@@ -378,7 +381,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                            Mot-Clef (cadr arg_lst)
                            Corps (cddr arg_lst))
                           (if (<> 'Faire Mot-Clef) (quit "Commande Tant_que sans mot-clé Faire."))
-                          (while (<> Faux (eval Bool))
+                          (while (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
                                  (run Corps))
                           Rien
                      )
@@ -390,8 +393,8 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                         Corps (car Splitted)
                         Bool (caadr Splitted))
                        (run Corps)
-                       (if (<> Faux (eval Bool))
-                           (while (<> Faux (eval Bool))
+                       (if (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
+                           (while (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
                                   (run Corps)))
                        Rien
                   )
