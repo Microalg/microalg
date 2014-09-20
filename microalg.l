@@ -9,7 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq symboles '(
-"+" "-" "*" "/"
+"+" "-" "*" "/" "%"
 "!!!" "=" "=/" "<" "<=" ">" ">="
 "Affecter_a" "Afficher" "Aide" "Alors"
 "Booleen?"
@@ -72,6 +72,8 @@ Voir <http://microalg.info>.")
 "Commande multiplie tous ses paramètres.")
 (put '/ 'doc
 "Commande qui divise son premier paramètre par son second paramètre.")
+(put '% 'doc
+"Commande qui donne le reste de la division euclidienne de son premier paramètre par son second paramètre.")
 
 # Commentaires
 (put '!!! 'doc
