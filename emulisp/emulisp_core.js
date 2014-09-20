@@ -1231,6 +1231,7 @@ var coreFunctions = {
 	"/": function(c) { return div(c, function(a, b) { return a / b; }); },	// floating point division
 	"/t": function(c) { return div(c, function(a, b) { var d = a / b;
 		return (d >= 0) ? Math.floor(d) : Math.ceil(d); }); },	// truncated division
+	"%": function(c) { return div(c, function(a, b) { return a % b; }); },
 	"=": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) { d = d.cdr; dv = evalLisp(d.car); if (!eqVal(cv, dv)) return NIL; }; return T; },
 	"=0": function(c) { return eqVal(evalLisp(c.car), ZERO) ? ZERO : NIL; },
