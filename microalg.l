@@ -545,3 +545,16 @@ dans l’ordre décroissant.")
 (put 'Rien 'doc
 "Valeur de contenant aucune information, représentant l’absence de valeur.")
 (setq Rien 'Rien)
+
+# Ignorer les balises de la galerie (http://galerie.microalg.info) si utilisées
+# par inadvertance, ou une fois de trop dans la galerie.
+(de MicroAlg arg_lst
+    (Afficher
+        (pack "L’instruction `(MicroAlg ...)` est une instruction fantôme.  ^J"
+              "Merci de la supprimer, elle ne sert que pour la galerie  ^J"
+              "(<http://galerie.microalg.info>).") ) )
+(de /MicroAlg arg_lst
+    (Afficher
+        (pack "L’instruction `(/MicroAlg)` est une instruction fantôme.  ^J"
+              "Merci de la supprimer, elle ne sert que pour la galerie  ^J"
+              "(<http://galerie.microalg.info>).") ) )
