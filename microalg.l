@@ -1,5 +1,5 @@
-(put 'version 'text "MicroAlg version 0.1.0")
 (setq version "0.1.0")
+(put 'version 'text (pack "MicroAlg version " version))
 (setq apropos
 "L’idée de MicroAlg est née lors d’une formation ISN, de la frustration due à
 l’abscence d’un langage vraiment axé sur la pédagogie.  
