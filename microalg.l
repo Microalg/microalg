@@ -384,7 +384,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
                            Corps (cddr arg_lst))
-                          (if (<> 'Faire Mot-Clef) (quit "Commande Tant_que sans mot-clé Faire."))
+                          (if (<> 'Faire Mot-Clef) (quit "Commande `Tant_que` sans mot-clé `Faire`."))
                           (while (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
                                  (run Corps))
                           Rien
