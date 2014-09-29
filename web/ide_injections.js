@@ -255,6 +255,7 @@ function inject_microalg_blockly_in(elt_id, editor_id, msg) {
             '  <block type="concatener"></block>' +
             '  <block type="demander"></block>' +
             '  <block type="operations"></block>' +
+            '  <block type="type"></block>' +
             '  <block type="texte?"></block>' +
             '  <block type="texte"></block>' +
             '  <block type="nombre?"></block>' +

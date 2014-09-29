@@ -69,6 +69,12 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
+(de Type (content)
+  (pack "<block type=\"type\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
 (de Nombre (content)
   (pack "<block type=\"nombre\">"
         "<value name=\"VALUE\">"

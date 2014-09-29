@@ -460,7 +460,29 @@ Blockly.MicroAlg['texte'] = function(block) {
 };
 
 // Bloc Type
+Blockly.Blocks['type'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Type');
+    this.setColour(20);
+    this.appendValueInput('VALUE')
+        .appendField('Type');
+    this.setOutput(true, 'String');
+    this.setTooltip('Convertir une valeur en texte.');
+  }
+};
+
 // Gen Type
+Blockly.MicroAlg['type'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Type)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Type ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Type\n' + arg + '\n)';
+  }
+};
 
 // Bloc <
 // Gen <
