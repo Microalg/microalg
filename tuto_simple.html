@@ -357,11 +357,22 @@
     <p>Nous verrons d'autres types plus loin. Pour l'instant, nous avons les
     nouvelles commandes :</p>
     <ul>
+        <li><code>Type</code> qui retourne un texte en minuscule décrivant le
+        type de la valeur,</li>
         <li><code>Texte?</code> et <code>Nombre?</code>, qui nous
         permettent de savoir si une valeur est d’un certain type,</li>
         <li><code>Texte</code> et <code>Nombre</code>, qui renvoient une
         nouvelle valeur, convertie avec le bon type.</li>
     </ul>
+    <div id="script-type"></div>
+    <script>inject_microalg_editor_in('script-type', {localStorage: false},
+        '(Afficher (Type "Bonjour !"))\n' +
+        '(Afficher (Type 12345))\n' +
+        '(Afficher "Veuillez taper n’importe quoi.")\n' +
+        '(Afficher (Type (Demander)))\n' +
+        ''
+        );
+    </script>
     <div id="script-texte"></div>
     <script>inject_microalg_editor_in('script-texte', {localStorage: false},
         '(Afficher (Texte? "2"))\n' +
@@ -756,16 +767,6 @@
         '(Afficher (Booleen? Vrai))\n' +
         '(Afficher (Texte? (Texte 12345)))\n' +
         '(Afficher (Nombre? (Nombre "12345")))\n' +
-        ''
-        );
-    </script>
-    <p>La nouvelle commande <code>Type</code> permet d’obtenir le type de
-    certaines valeurs :</p>
-    <div id="script-type"></div>
-    <script>inject_microalg_editor_in('script-type', {localStorage: false},
-        '(Afficher (Type "Bonjour !"))\n' +
-        '(Afficher (Type 12345))\n' +
-        '(Afficher (Type Vrai))\n' +
         ''
         );
     </script>
