@@ -167,7 +167,10 @@ avec le bon numéro de `version` bien sûr.
       `chemin\vers\malgj_npp.bat "$(FULL_CURRENT_PATH)"`
     * Valider avec `Entrée` ou le bouton `Run`.
     * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
-      enregistrer cette commande et même lui associer un raccourci clavier.
+      enregistrer cette commande. Il est très conseillé de cliquer sur `Save…`
+      pour ne pas avoir à refaire cette manipulation et d’associer à cette
+      commande un nom (comme `malg`) et un raccourci clavier (différent de
+      `F5`, par exemple `Ctrl`+`F5`).
 * Et voilà.
 
 #### Avec NodeJS
