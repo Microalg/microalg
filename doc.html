@@ -34,6 +34,7 @@ Aller directement à :
 
 * [Installation](#installation)
 * [Pourquoi MicroAlg](#pourquoimicroalg)
+* [Limitations](#limitations)
 * [Syntaxe](#syntaxe)
 * [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
 * [Types](#types)
@@ -93,6 +94,29 @@ MicroAlg se veut :
       visualisation d’exécution ou de résultats…
     * Elle est **insérable** facilement dans une page web ou tout autre système
       via Javascript, Java, ou C.
+
+## Limitations
+
+MicroAlg est encore jeune et il manque encore des choses importantes avant
+qu’elle ne soit considérée comme complète :
+
+* Dans sa version Javascript, c’est-à-dire principalement dans le navigateur,
+  MicroAlg peut pour l’instant travailler avec des flottants. C’est plutôt
+  appréciable, sauf que dans les autres versions, ça ne sera pas possible
+  (voir la documentation officielle de PicoLisp sur les nombres :
+  [ici](http://www.software-lab.de/doc/ref.html#number) et
+  [là](http://www.software-lab.de/doc/ref.html#num-io)).  
+  L’idée est de trouver un moyen de présenter à l’utilisateur les nombres en
+  virgule fixe de PicoLisp.
+* Les messages d’erreurs ne sont pas encore tous très clairs, voire même pas
+  encore tous en français. J’attends que les instructions `throw` et `catch`
+  soient implémentées dans EmuLisp.
+* La commande `Retourner` n’interrompt pas la commande en cours. Voir
+  [ici](tuto.html#script-bug-retourner) une illustration du problème.
+* Il n’y a pas encore de structure de type *liste* dans MicroAlg. J’attends
+  que les instructions de
+  [programmation orientée objet](http://software-lab.de/doc/tut.html#oop)
+  soient implémentées dans EmuLisp.
 
 ## Syntaxe
 
