@@ -1,10 +1,10 @@
-/* 15sep14jk
+/* 28sep14jk
  * (c) Jon Kleiser
  */
 
 var EMULISP_CORE = (function () {
 
-var VERSION = [2, 0, 2, 0],
+var VERSION = [2, 0, 2, 1],
 	MONLEN = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 	BOXNAT_EXP = "Boxed native object expected",
 	BOOL_EXP = "Boolean expected", CELL_EXP = "Cell expected", LIST_EXP = "List expected",
@@ -29,6 +29,8 @@ function getFileSync(fileUrl) {
 
 var NILTYPE = 0, NUMBERTYPE = 1, SYMBOLTYPE = 2, CELLTYPE = 3, TRUETYPE = 4;
 
+Number.prototype.pow = function(p) { return new Number(Math.pow(this, p)); };
+Number.prototype.rem = function(d) { return new Number(this % d); };
 Number.prototype.TYPEVAL = NUMBERTYPE;
 Function.prototype.TYPEVAL = NUMBERTYPE;
 
@@ -432,7 +434,7 @@ function iter(c) {
 	return {v: v, m: false};
 }
 
-function div(c, divFn) {
+function divs(c, divFn) {
 	var t = evalLisp(c.car);
 	if (t === NIL) return NIL;
 	t = numeric(t);
@@ -1224,21 +1226,26 @@ var coreFunctions = {
 		do { var v = evalLisp(c.car); if (v === NIL) return NIL;
 			t -= numeric(v); c = c.cdr; } while (c instanceof Cell); return new Number(t);
 	},
+	"%": function(c) { var t = evalLisp(c.car); if (t === NIL) return NIL;
+		t = numeric(t);
+		while (c.cdr !== NIL) {
+			c = c.cdr;
+			var v = evalLisp(c.car); if (v === NIL) return NIL;
+			if (numeric(v) == 0) throw new Error(newErrMsg(DIV_0));
+			t = t.rem(v);
+		}
+		return t;
+	},
 	"*": function(c) { var t = 1;
 		do { var v = evalLisp(c.car); if (v === NIL) return NIL;
 			t *= numeric(v); c = c.cdr; } while (c instanceof Cell); return new Number(t);
 	},
-	"/": function(c) { return div(c, function(a, b) { return a / b; }); },	// floating point division
-	"/t": function(c) { return div(c, function(a, b) { var d = a / b;
-		return (d >= 0) ? Math.floor(d) : Math.ceil(d); }); },	// truncated division
-	"**": function(c) {
-		var a = evalLisp(c.car);
-		var b = evalLisp(c.cdr.car);
-		if (a == NIL) return NIL;
-		if (b == NIL) return new Number(0);
-		return new Number(Math.pow(a, b));
+	"**": function(c) { var n1 = evalLisp(c.car), n2 = evalLisp(c.cdr.car);
+		return (n2 instanceof Number) ? numeric(n1).pow(n2) : ZERO;
 	},
-	"%": function(c) { return div(c, function(a, b) { return a % b; }); },
+	"/": function(c) { return divs(c, function(a, b) { return a / b; }); },	// floating point division
+	"/t": function(c) { return divs(c, function(a, b) { var d = a / b;
+		return (d >= 0) ? Math.floor(d) : Math.ceil(d); }); },	// truncated division
 	"=": function(c) { var cv = evalLisp(c.car), d = c, dv;
 		while (d.cdr !== NIL) { d = d.cdr; dv = evalLisp(d.car); if (!eqVal(cv, dv)) return NIL; }; return T; },
 	"=0": function(c) { return eqVal(evalLisp(c.car), ZERO) ? ZERO : NIL; },
@@ -1356,16 +1363,21 @@ function evalArgs(lst) {
 	return resLst;
 }
 
-function loadLisp(fileUrl) {
+function loadLispStr(srcString) {
 	cst.tSym = {};
-	var res = parseList(new Source(getFileSync(fileUrl)), true);
+	var res = parseList(new Source(srcString), true);
 	cst.tSym = {};
-	//alert("loadLisp: " + lispToStr(res));
+	//console.log("loadLispStr: res=%s", lispToStr(res));
 	return res;
 }
 
+function loadLisp(fileUrl) {
+	return loadLispStr(getFileSync(fileUrl));
+}
+
 function loadJavaScript(fileUrl) {
-	return newTransSymbol(eval(getFileSync(fileUrl)).toString());
+	var res = eval(getFileSync(fileUrl));
+	return (res !== undefined) ? newTransSymbol(res.toString()) : NIL;
 }
 
 function _stdPrint(text) {
@@ -1477,8 +1489,9 @@ var pub = {
 	
 	isCell: function(obj) { return (obj instanceof Cell); },
 	isSymbol: function(obj) { return (obj instanceof Symbol); },
-	
-	evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr, loadLisp: loadLisp, newErrMsg: newErrMsg,
+
+	evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr, loadLisp: loadLisp,
+	loadLispStr: loadLispStr, newErrMsg: newErrMsg,
 	newTransSymbol: newTransSymbol, prog: prog, valueToStr: valueToStr, Params: Params,
 	NIL: NIL, T: T,
 
