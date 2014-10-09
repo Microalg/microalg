@@ -268,8 +268,17 @@
     <script>
     inject_microalg_blockly_in('script-calc1-blockly',
                                'script-calc1-malg-editor',
-        '(Afficher (- 7 (+ 2 3)))');
+        '(Afficher (- 7 1))');
     inject_microalg_editor_in('script-calc1', {localStorage: false, hidden: true});
+    </script>
+    <br>
+    <div id="script-calc2-blockly"></div>
+    <div id="script-calc2"></div>
+    <script>
+    inject_microalg_blockly_in('script-calc2-blockly',
+                               'script-calc2-malg-editor',
+        '(Afficher (- 7 (+ 2 3)))');
+    inject_microalg_editor_in('script-calc2', {localStorage: false, hidden: true});
     </script>
     <br>
     <div id="script-calc3-blockly"></div>
