@@ -945,7 +945,51 @@
     savoir à l’avance combien de valeurs doivent être demandées. Comment faire
     si l’utilisateur ne veut pas additionner trois nombres, mais deux ou
     quatre ? ou concaténer plus ou moins de trois mots ? <br>
-    C’est le rôle des instructions <code>Faire</code> et <code>Tant_que</code>.
+    C’est le rôle des instructions <code>Faire... Tant_que...</code> et
+    <code>Tant_que... Faire...</code>.</p>
+    <p>Commençons par l’instruction <code>Faire... Tant_que</code> avec un
+    exemple très simple, mais très important :</p>
+    <div id="script-faire-tq"></div>
+    <script>inject_microalg_editor_in('script-faire-tq', {localStorage: false},
+        '(Initialiser valeur 3)\n' +
+        '(Faire (Afficher valeur)\n' +
+        '       (Affecter_a valeur (- valeur 1))\n' +
+        ' Tant_que (=/ valeur 0)\n' +
+        ')\n' +
+        '(Afficher "Zéro !")\n' +
+        '');
+    </script>
+    <p>Voici comment se déroule ce programme :</p>
+    <ol>
+        <li>Les deux instructions qui suivent <code>Faire</code> sont exécutées :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire 3 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> diminue la valeur de
+                <code>valeur</code> d’une unité (voir
+                <a href="#script-accu-nombres-ex">cet exemple</a>) et la fait
+                donc passer à 2.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et pour cette
+            première fois, elle vaut <code>Vrai</code> (car 2≠0) et donc on
+            exécute à nouveau les instructions dans le <code>Faire</code>.</li>
+        <li>Comme lors du premier tour :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire maintenant 2 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> fait passer
+                <code>valeur</code> à 1.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et lors de ce
+            deuxième tour, elle vaut encore <code>Vrai</code> (car 1≠0) et donc on
+            exécute à nouveau les instructions dans le <code>Faire</code>.</li>
+        <li>Comme lors des deux premiers tours :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire maintenant 1 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> fait passer
+                <code>valeur</code> à 0.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et lors de ce
+            tour, elle vaut <code>Faux</code> (valeur de 0≠0). C’est le signal
+            qui annonce la sortie du <code>Faire... Tant_que...</code>.</li>
+        <li>La dernière ligne est exécutée.</li>
+    </ol>
+    <p>Voici deux exemples plus complets :</p>
     <div id="script-accu-nombres-tq"></div>
     <script>inject_microalg_editor_in('script-accu-nombres-tq', {localStorage: false},
         '(Initialiser somme 0)\n' +

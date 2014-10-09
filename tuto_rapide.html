@@ -713,6 +713,18 @@
     </script>
 
     <h2 id="faire-tant-que"><a href="#faire-tant-que">: </a>Faire… tant que…</h2>
+    <p>Commençons par un exemple très simple, mais très important :</p>
+    <div id="script-faire-tq"></div>
+    <script>inject_microalg_editor_in('script-faire-tq', {localStorage: false},
+        '(Initialiser valeur 3)\n' +
+        '(Faire (Afficher valeur)\n' +
+        '       (Affecter_a valeur (- valeur 1))\n' +
+        ' Tant_que (=/ valeur 0)\n' +
+        ')\n' +
+        '(Afficher "Zéro !")\n' +
+        '');
+    </script>
+    <p>Voici deux exemples plus complets :</p>
     <div id="script-accu-nombres-tq"></div>
     <script>inject_microalg_editor_in('script-accu-nombres-tq', {localStorage: false},
         '(Initialiser somme 0)\n' +
