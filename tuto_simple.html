@@ -374,8 +374,7 @@
         '(Afficher (Type 12345))\n' +
         '(Afficher "Veuillez taper n’importe quoi.")\n' +
         '(Afficher (Type (Demander)))\n' +
-        ''
-        );
+        '');
     </script>
     <div id="script-texte"></div>
     <script>inject_microalg_editor_in('script-texte', {localStorage: false},
@@ -771,8 +770,7 @@
         '(Afficher (Booleen? Vrai))\n' +
         '(Afficher (Texte? (Texte 12345)))\n' +
         '(Afficher (Nombre? (Nombre "12345")))\n' +
-        ''
-        );
+        '');
     </script>
     <p><strong>Remarque</strong> : Il n’est pas interdit d’utiliser la valeur
     d’une variable dans une instruction qui sera affectée à cette même
@@ -789,8 +787,7 @@
         '(Initialiser valeur 0)\n' +
         '(Affecter_a valeur (+ valeur 1))\n' +
         '(Afficher valeur)\n' +
-        ''
-        );
+        '');
     </script>
     <p>Dans le second, on accumule du texte avec une instruction de la
     forme :<br>
@@ -802,8 +799,7 @@
         '(Initialiser texte "Bonjour")\n' +
         '(Affecter_a texte (Concatener texte " !"))\n' +
         '(Afficher texte)\n' +
-        ''
-        );
+        '');
     </script>
     <p>Voici deux programmes plus complets qui utilisent ce principe.</p>
     <p>Un où l’on accumule des nombres pour calculer leur somme :</p>
@@ -818,8 +814,7 @@
         '(Affecter_a somme (+ somme (Nombre (Demander))))\n' +
         '(Afficher "La somme des nombres vaut :")\n' +
         '(Afficher somme)\n' +
-        ''
-        );
+        '');
     </script>
     <p>Un où l’on accumule du texte (en ajoutant au passage des espaces) :</p>
     <div id="script-accu-textes"></div>
@@ -835,8 +830,7 @@
         '(Affecter_a mots (Concatener mots (Demander)))\n' +
         '(Afficher "Vous avez tapé :")\n' +
         '(Afficher mots)\n' +
-        ''
-        );
+        '');
     </script>
 
     <h2 id="operations-logiques"><a href="#operations-logiques">: </a>Opérations logiques</h2>
@@ -963,8 +957,7 @@
         ')\n' +
         '(Afficher "La somme des nombres vaut :")\n' +
         '(Afficher somme)\n' +
-        ''
-        );
+        '');
     </script>
     <p>Idem en accumulant du texte (en ajoutant au passage des espaces) :</p>
     <div id="script-accu-textes-tq"></div>
@@ -978,8 +971,7 @@
         ')\n' +
         '(Afficher "Vous avez tapé :")\n' +
         '(Afficher mots)\n' +
-        ''
-        );
+        '');
     </script>
     <p>Dans ce dernier programme, il y a au moins un bug. Quel est ce bug et
     comment le faire disparaître ?</p>
@@ -1000,8 +992,7 @@
         ' Faire (Afficher "Bonjour !")\n' +
         '       (Affecter_a repetitions (- repetitions 1))\n' +
         ')\n' +
-        ''
-        );
+        '');
     </script>
 
     <h2 id="definir"><a href="#definir">: </a>Définir ses commandes</h2>
