@@ -138,32 +138,42 @@ Si vous ne l’avez pas déjà fait, commencez par le
 "Commande qui affiche son unique argument, si besoin après l’avoir évalué.")
 (put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
+(de !text (truc)
+    (let (
+          first truc
+          efirst (eval first)
+         )
+         (cond
+          ((num? first) first)                    # nombre litéral
+          ((get first 'text) (get first 'text))   # p.ex. commandes, après num
+          ((try 'text> first) (text> first))      # liste évaluée (avec $), avant txt
+          ((str? first) first)                    # texte litéral
+          ((try 'text> efirst) (text> efirst))    # liste
+          ((num? efirst) efirst)                  # expr -> des nbres
+          ((str? efirst) efirst)                  # expr -> texte
+          ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
+          (T (quit "Pas de représentation textuelle." first))
+         )
+     )
+)
+
 (de Afficher args
-  (let (first (car args)
-        evaled_first (eval first)
-        second (cadr args)
-        text (cond
-               ((num? first) first)
-               ((str? first) first)
-               ((get first 'text) (get first 'text))
-               ((try 'text> evaled_first) (text> evaled_first))
-               ((num? evaled_first) evaled_first)
-               ((str? evaled_first) evaled_first)
-               ((get evaled_first 'text) (get evaled_first 'text))
-               (T (quit "Impossible d’afficher ceci." first))
-             )
-        a_afficher (if text text (eval first)))
-       (if second (quit (pack "`Afficher` n’accepte qu’un paramètre, faites "
-                              "plusieurs affichages ou utilisez `Concaténer`." )))
-       (setq *LastStdOut (if a_afficher a_afficher "?"))
-       (ifn !testing
-            (println (ifn a_afficher
-                          (if (<> *EMUENV "browser")
-                              " "
-                              "&nbsp;")
-                          a_afficher)))
-       Rien  # Pas de valeur de retour
-      )
+  (let (
+   first (car args)
+   second (cadr args)
+   a_afficher (!text first)
+  )
+  (if second (quit (pack "`Afficher` n’a qu’un paramètre, faîtes plusieurs "
+                         "affichages ou utilisez `Concaténer`." )))
+  (setq *LastStdOut (if a_afficher a_afficher "?"))
+  (ifn !testing
+       (println (ifn a_afficher
+                     (if (<> *EMUENV "browser")
+                         " "
+                         "&nbsp;")
+                     a_afficher)))
+  Rien  # Pas de valeur de retour
+  )
 )
 
 # Concatener
@@ -281,7 +291,11 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
       (=: elts ELTS)
 )
 (dm text> ()
-    (pack "(Liste" (if (: elts) " ") (glue " " (: elts)) ")")
+    (pack "(Liste"
+          (if (: elts) " ")
+          (glue " " (mapcar '!text (: elts)))
+          ")"
+    )
 )
 # Interface MicroAlg des listes
 (put 'Liste 'doc
