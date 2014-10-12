@@ -152,6 +152,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
           ((num? efirst) efirst)                  # expr -> des nbres
           ((str? efirst) efirst)                  # expr -> texte
           ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
+          ((sym? efirst) efirst)                  # expr -> sym (Rien, bool…)
           (T (quit "Pas de représentation textuelle." first))
          )
      )
