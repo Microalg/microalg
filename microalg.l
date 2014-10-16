@@ -146,7 +146,7 @@ les appelle.")
 (put 'Initialiser 'text "Commande `Initialiser`.")
 (de Initialiser arg_lst (let (nbr_args (length arg_lst))
                              (if (<> 2 nbr_args)
-                                 (quit (pack "Initialiser prend 2 paramètres. "
+                                 (quit (pack "`Initialiser` prend 2 paramètres. "
                                              "Vous en donnez " nbr_args ".") )
                              )  # Du coup un deuxième arg NIL ne peut être que "".
                         )
@@ -342,7 +342,7 @@ en minuscule).")
                      splitted  (split (cddr arg_lst) 'Sinon)
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
-                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant." arg_lst))
+                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant."))
                     (if (!boolCheckM2P (eval condition) "La condition n’est pas un booléen.")
                         (run bloc_vrai)
                         (if (== NIL bloc_faux)
