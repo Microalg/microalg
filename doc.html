@@ -38,6 +38,7 @@ Aller directement à :
 * [Syntaxe](#syntaxe)
 * [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
 * [Types](#types)
+* [Erreurs fréquentes](#erreursfrquentes)
 * [Feuille de route](#feuillederoute)
 * [Contribuer](#contribuer)
 * [Architecture](#architecture)
@@ -218,6 +219,57 @@ En cours de rédaction.
 ### Commande
 
 En cours de rédaction.
+
+# Erreurs fréquentes
+
+Les messages sont classés par ordre alphabétique, sans tenir compte de la
+valeur qui est parfois fournie :
+
+* Commande `Faire` sans mot-clé `Tant_que`.
+    * `Tant_que` est peut-être mal orthographié, il manque peut-être le « _ ».
+    * Le `Faire` correspondant a pu être fermé prématurément.
+* Commande `Tant_que` sans mot-clé `Faire`.
+    * Le `Tant_que` correspondant a pu être fermé prématurément.
+* `Entier@` prend 2 paramètres. Vous en donnez X.
+* Il manque le deuxième paramètre : l’indice.
+* Indice négatif ou nul.
+* Indice non entier.
+* Indice trop grand.
+* `Initialiser` prend 2 paramètres. Vous en donnez X.
+* X -- La condition n’est pas un booléen.
+    * Voir la sous-section [booléens](#boolens).
+* Le premier paramètre de `Entier@` doit être un nombre.
+* Le premier paramètre de X doit être un booléen.
+    * Voir la sous-section [booléens](#boolens).
+* Le second paramètre de `Entier@` doit être un nombre.
+* Le second paramètre de X doit être un booléen.
+    * Voir la sous-section [booléens](#boolens).
+* (V est un W ; X un Y) -- Le type ne correspond pas.
+* Mot-clef `Alors` manquant.
+    * La condition du `Si` correspondant a pu être laissée ouverte.
+    * Le `Si` correspondant a pu être fermé prématurément.
+* `Non` prend un paramètre booléen.
+    * Voir la sous-section [booléens](#boolens).
+* Un objet vide n’a pas de queue.
+* Un objet vide n’a pas de tête.
+* X -- undefined
+    * « `Tant` -- undefined » indique qu’il vous manque un « _ ».
+* Valeur de type X, ne peut initialiser Y qui est de type Z.
+* X -- Variable non initialisée.
+    * Affectation sur une variable non initialisée.
+
+Si jamais le message que vous avez n’est pas ou pas assez documenté, merci de
+le signaler en :
+
+* [postant une « issue » sur Github](https://github.com/Microalg/Microalg/issues/new) ;
+* posant une question dans [la section Questions/Réponses](http://qr.microalg.info) ;
+* m’envoyant un [mail](mailto:profgra.org@gmail.com).
+
+## Booléens
+
+*  Si un comparateur est utilisé pour produire un booléen, penser à le mettre
+   en premier car c’est une commande comme les autres. Par exemple `(n > 1)`
+   ne fonctionnera pas, il faut écrire `(> n 1)`.
 
 # Feuille de route
 
