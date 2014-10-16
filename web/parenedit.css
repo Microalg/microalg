@@ -45,9 +45,15 @@ input, textarea, .richtext > pre {
 #test:active, input:active, .richtext:active {
     border: 1px solid #3385C2;
 }
+
+/* http://jsfiddle.net/ojetot9k/ */
 .unmatched {
-    background: red;
+    animation: blink 1s steps(1) infinite;
+    -webkit-animation: blink 1s steps(1) infinite;
 }
+@keyframes blink { 50% { background: red; } }
+@-webkit-keyframes blink { 50% { background: red; } }
+
 /* paren_0 is after paren_5*/
 .paren_1 {
     background: #fab;
