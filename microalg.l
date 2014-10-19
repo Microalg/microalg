@@ -115,8 +115,12 @@ les appelle.")
 (put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
 (de Afficher args (let (first (car args)
+                        second (cadr args)
                         text (if (num? first) first (get first 'text))
                         a_afficher (if text text (eval first)))
+                       (if second (quit (pack "`Afficher` n’a qu’un paramètre, "
+                                              "faîtes plusieurs affichages ou "
+                                              "utilisez `Concaténer`." )))
                        (setq *LastStdOut (if a_afficher a_afficher "?"))
                        (ifn !testing
                             (println (ifn a_afficher
