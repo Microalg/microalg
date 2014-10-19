@@ -88,14 +88,12 @@
     <p>Dans le bloc <code>Programme</code> de la fenêtre ci-dessous, on a mis
     deux blocs : un bloc <code>Afficher</code> et un bloc de texte
     <code>"..."</code>.</p>
-    <div id="script-prise-en-main-blockly" height="200px"></div>
     <div id="script-prise-en-main"></div>
-    <script>
-    inject_microalg_blockly_in('script-prise-en-main-blockly',
-                               'script-prise-en-main-malg-editor',
-        '(Afficher "Bonjour tout le monde !")');
-    inject_microalg_editor_in('script-prise-en-main', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-prise-en-main', {
+     blockly_only: true,
+     src:
+        '(Afficher "Bonjour tout le monde !")'
+    });</script>
     <p>Cliquer sur le bouton <code>OK</code> pour exécuter le programme. Un
     message de bienvenue devrait s’être affiché dans la barre un peu arrondie
     ci-dessus (sinon, ne pas hésiter à poser une question dans
@@ -118,26 +116,23 @@
     <p>Comme le bloc <code>Afficher</code> n’a qu’un branchement, on peut penser
     à utiliser deux instructions. Mais avec cette technique, il est impossible
     d’afficher deux textes différents sans passer à la ligne :</p>
-    <div id="script-deux-afficher-blockly"></div>
     <div id="script-deux-afficher"></div>
-    <script>inject_microalg_blockly_in('script-deux-afficher-blockly',
-                                       'script-deux-afficher-malg-editor',
+    <script>inject_microalg_editor_in('script-deux-afficher', {
+     blockly_only: true,
+     src:
         '(Afficher "du texte")\n' +
-        '(Afficher "et encore du texte")');
-    inject_microalg_editor_in('script-deux-afficher', {localStorage: false, hidden: true});
-    </script>
+        '(Afficher "et encore du texte")'
+    });</script>
     <p>Pour « concaténer » deux textes, c’est-à-dire
     <a href="https://fr.wikipedia.org/wiki/Concat%C3%A9nation">les mettre bout-à-bout</a>,
     on utilise la commande <code>Concatener</code>. Dans l’exemple suivant,
     on affiche la concaténation de deux textes :</p>
-    <div id="script-concat-blockly"></div>
     <div id="script-concat"></div>
-    <script>
-    inject_microalg_blockly_in('script-concat-blockly',
-                               'script-concat-malg-editor',
-        '(Afficher (Concatener "du texte" "et encore du texte"))');
-    inject_microalg_editor_in('script-concat', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-concat', {
+     blockly_only: true,
+     src:
+        '(Afficher (Concatener "du texte" "et encore du texte"))'
+    });</script>
     <p>Rappelez-vous, vous pouvez modifier les programmes de cette page pour
     éventuellement les améliorer !</p>
     <p>Même si en français on dit que le programme « affiche la concaténation
@@ -145,18 +140,16 @@
     l’extérieur : le programme concatène d’abord, et affiche ensuite.</p>
     <p>Pour finir la partie « concaténation », notons qu’il n’y a pas de limite
     au nombre de textes à concaténer :</p>
-    <div id="script-concat3-blockly"></div>
     <div id="script-concat3"></div>
-    <script>
-    inject_microalg_blockly_in('script-concat3-blockly',
-                               'script-concat3-malg-editor',
+    <script>inject_microalg_editor_in('script-concat3', {
+     blockly_only: true,
+     src:
         '(Afficher (Concatener\n' +
         '             "du texte, "\n' +
         '             "du texte, "\n' +
         '             "et encore du texte"\n' +
-        '))');
-    inject_microalg_editor_in('script-concat3', {localStorage: false, hidden: true});
-    </script>
+        '))'
+    });</script>
     <p>Il suffit de cliquer sur la petite étoile du bloc <code>Concatener</code>
     pour pouvoir choisir combien de textes vont être concaténés, en glissant
     un bloc supplémentaire, ou en supprimant un bloc pour faire apparaître ou
@@ -166,59 +159,51 @@
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <p>Il est possible de demander une valeur à l’utilisateur, pour ensuite
     l’afficher :</p>
-    <div id="afficher-demander-blockly"></div>
-    <div id="afficher-demander"></div>
-    <script>
-    inject_microalg_blockly_in('afficher-demander-blockly',
-                               'afficher-demander-malg-editor',
-        '(Afficher (Demander))');
-    inject_microalg_editor_in('afficher-demander', {localStorage: false, hidden: true});
-    </script>
+    <div id="script-afficher-demander"></div>
+    <script>inject_microalg_editor_in('script-afficher-demander', {
+     blockly_only: true,
+     src:
+        '(Afficher (Demander))'
+    });</script>
     <p>En combinant les commandes <code>Demander</code>,
     <code>Concatener</code> et <code>Afficher</code>, nous allons pouvoir coder
     un premier programme (presque) intéressant : les salutations.</p>
     <p>Avant de l’exécuter, essayez de deviner ce que le programme va faire.</p>
-    <div id="salutations-blockly"></div>
-    <div id="salutations"></div>
-    <script>
-    inject_microalg_blockly_in('salutations-blockly',
-                               'salutations-malg-editor',
+    <div id="script-salutations"></div>
+    <script>inject_microalg_editor_in('script-salutations', {
+     blockly_only: true,
+     src:
         '(Afficher (Concatener\n' +
         '             "Bonjour "\n' +
         '             (Demander)\n' +
         '             " !"\n' +
-        '))');
-    inject_microalg_editor_in('salutations', {localStorage: false, hidden: true});
-    </script>
+        '))'
+    });</script>
     <p>Mieux : les présentations !</p>
     <p>Ici, nous effectuons deux affichages successifs.
-    <div id="presentations-blockly"></div>
-    <div id="presentations"></div>
-    <script>
-    inject_microalg_blockly_in('presentations-blockly',
-                               'presentations-malg-editor',
+    <div id="script-presentations"></div>
+    <script>inject_microalg_editor_in('script-presentations', {
+     blockly_only: true,
+     src:
         '(Afficher "Bonjour, quel est ton nom ?")\n' +
         '(Afficher (Concatener\n' +
         '             "Bonjour "\n' +
         '             (Demander)\n' +
         '             " !"\n' +
         '          )\n' +
-        ')');
-    inject_microalg_editor_in('presentations', {localStorage: false, hidden: true});
-    </script>
+        ')'
+    });</script>
     <p>Voici, une démonstration que l’exécution se fait bien de haut en bas :</p>
-    <div id="gauche-droite-blockly"></div>
-    <div id="gauche-droite"></div>
-    <script>
-    inject_microalg_blockly_in('gauche-droite-blockly',
-                               'gauche-droite-malg-editor',
+    <div id="script-gauche-droite"></div>
+    <script>inject_microalg_editor_in('script-gauche-droite', {
+     blockly_only: true,
+     src:
         '(Afficher (Concatener\n' +
         '             (Concatener "d’abord " (Demander))\n' +
         '             (Concatener " ensuite " (Demander))\n' +
         '          )\n' +
-        ')');
-    inject_microalg_editor_in('gauche-droite', {localStorage: false, hidden: true});
-    </script>
+        ')'
+    });</script>
 
     <h2 id="calculs-nombres"><a href="#calculs-nombres">: </a>Calculs avec des nombres</h2>
     <p>MicroAlg sait effectuer des calculs. Il faut juste savoir que :</p>
@@ -228,75 +213,61 @@
     </ol>
     <p>Pour chaque exemple ci-dessous, essayer de deviner ce que va afficher
     MicroAlg, puis vérifier en cliquant sur <code>OK</code>.</p>
-    <div id="script-aff-deux-et-deux-blockly"></div>
     <div id="script-aff-deux-et-deux"></div>
-    <script>
-    inject_microalg_blockly_in('script-aff-deux-et-deux-blockly',
-                               'script-aff-deux-et-deux-malg-editor',
-        '(Afficher (+ 2 2))');
-    inject_microalg_editor_in('script-aff-deux-et-deux', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-aff-deux-et-deux', {
+     blockly_only: true,
+     src:
+        '(Afficher (+ 2 2))'
+    });</script>
     <br>
-    <div id="script-emboite-blockly"></div>
     <div id="script-emboite"></div>
-    <script>
-    inject_microalg_blockly_in('script-emboite-blockly',
-                               'script-emboite-malg-editor',
+    <script>inject_microalg_editor_in('script-emboite', {
+     blockly_only: true,
+     src:
         '(!!! "Une expression peut prendre la place d’un nombre.")\n' +
         '(!!! "Ici le deuxième 2 a été remplacé par (+ 1 1) :")\n' +
-        '(Afficher (+ 2 (+ 1 1)))');
-    inject_microalg_editor_in('script-emboite', {localStorage: false, hidden: true});
-    </script>
+        '(Afficher (+ 2 (+ 1 1)))'
+    });</script>
     <br>
-    <div id="script-assoc-blockly"></div>
     <div id="script-assoc"></div>
-    <script>
-    inject_microalg_blockly_in('script-assoc-blockly',
-                               'script-assoc-malg-editor',
+    <script>inject_microalg_editor_in('script-assoc', {
+     blockly_only: true,
+     src:
         '(!!! "Pour effectuer 2+2+2, on peut faire, au choix :")\n' +
         '(Afficher (+ 2 (+ 2 2)))\n' +
-        '(Afficher (+ (+ 2 2) 2))');
-    inject_microalg_editor_in('script-assoc', {localStorage: false, hidden: true});
-    </script>
+        '(Afficher (+ (+ 2 2) 2))'
+    });</script>
     <p>Ce n’est pas très pratique. Quand vous saurez taper votre code sans les
     blocs, il suffira de taper : <code>(+ 2 2 2)</code>.</p>
     <p>Autres exemples avec <code>+</code>, <code>-</code>, <code>*</code> et
     <code>/</code> (papier crayon ou calculatrice autorisés si vous n’êtes pas
     fort en calcul mental).</p>
-    <div id="script-calc1-blockly"></div>
     <div id="script-calc1"></div>
-    <script>
-    inject_microalg_blockly_in('script-calc1-blockly',
-                               'script-calc1-malg-editor',
-        '(Afficher (- 7 1))');
-    inject_microalg_editor_in('script-calc1', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-calc1', {
+     blockly_only: true,
+     src:
+        '(Afficher (- 7 1))'
+    });</script>
     <br>
-    <div id="script-calc2-blockly"></div>
     <div id="script-calc2"></div>
-    <script>
-    inject_microalg_blockly_in('script-calc2-blockly',
-                               'script-calc2-malg-editor',
-        '(Afficher (- 7 (+ 2 3)))');
-    inject_microalg_editor_in('script-calc2', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-calc2', {
+     blockly_only: true,
+     src:
+        '(Afficher (- 7 (+ 2 3)))'
+    });</script>
     <br>
-    <div id="script-calc3-blockly"></div>
     <div id="script-calc3"></div>
-    <script>
-    inject_microalg_blockly_in('script-calc3-blockly',
-                               'script-calc3-malg-editor',
-        '(Afficher (+ 2 (* 5 3)))');
-    inject_microalg_editor_in('script-calc3', {localStorage: false, hidden: true});
-    </script>
-    <div id="script-calc4-blockly"></div>
+    <script>inject_microalg_editor_in('script-calc3', {
+     blockly_only: true,
+     src:
+        '(Afficher (+ 2 (* 5 3)))'
+    });</script>
     <div id="script-calc4"></div>
-    <script>
-    inject_microalg_blockly_in('script-calc4-blockly',
-                               'script-calc4-malg-editor',
-        '(Afficher (/ 6 (+ 1 1)))');
-    inject_microalg_editor_in('script-calc4', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-calc4', {
+     blockly_only: true,
+     src:
+        '(Afficher (/ 6 (+ 1 1)))'
+    });</script>
 
     <h2 id="calculs-nombres-demandes"><a href="#calculs-nombres-demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
     <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
@@ -304,14 +275,12 @@
     <code>*</code> et <code>/</code> ne travaillent qu'avec des nombres et non
     avec du texte. Essayons avec l’exemple ci-dessous, en répondant par exemple
     « 1 » pour calculer « 1 + 1 » :</p>
-    <div id="script-pas-nombre-blockly"></div>
     <div id="script-pas-nombre"></div>
-    <script>
-    inject_microalg_blockly_in('script-pas-nombre-blockly',
-                               'script-pas-nombre-malg-editor',
-        '(Afficher (+ 1 (Demander)))');
-    inject_microalg_editor_in('script-pas-nombre', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-pas-nombre', {
+     blockly_only: true,
+     src:
+        '(Afficher (+ 1 (Demander)))'
+    });</script>
     </p>C'est la première fois que dans ce tutoriel nous évoquons cette
     distinction. On dira que :</p>
     <ul>
@@ -330,61 +299,52 @@
         <li><code>Texte</code> et <code>Nombre</code>, qui renvoient une
         nouvelle valeur, convertie avec le bon type.</li>
     </ul>
-    <div id="script-type-blockly"></div>
     <div id="script-type"></div>
-    <script>
-    inject_microalg_blockly_in('script-type-blockly',
-                               'script-type-malg-editor',
+    <script>inject_microalg_editor_in('script-type', {
+     blockly_only: true,
+     src:
         '(Afficher (Type "Bonjour !"))\n' +
         '(Afficher (Type 12345))\n' +
         '(Afficher "Veuillez taper n’importe quoi.")\n' +
         '(Afficher (Type (Demander)))\n' +
-        '');
-    inject_microalg_editor_in('script-type', {localStorage: false, hidden: true});
-    </script>
-    <div id="script-texte-blockly"></div>
+        ''
+    });</script>
     <div id="script-texte"></div>
-    <script>
-    inject_microalg_blockly_in('script-texte-blockly',
-                               'script-texte-malg-editor',
+    <script>inject_microalg_editor_in('script-texte', {
+     blockly_only: true,
+     src:
         '(Afficher (Texte? "2"))\n' +
         '(Afficher (Texte? 2))\n' +
-        '(Afficher (Texte? (Texte 2)))');
-    inject_microalg_editor_in('script-texte', {localStorage: false, hidden: true});
-    </script>
+        '(Afficher (Texte? (Texte 2)))'
+    });</script>
     <br>
-    <div id="script-nombre-blockly"></div>
     <div id="script-nombre"></div>
-    <script>
-    inject_microalg_blockly_in('script-nombre-blockly',
-                               'script-nombre-malg-editor',
+    <script>inject_microalg_editor_in('script-nombre', {
+     blockly_only: true,
+     src:
         '(Afficher (Nombre? 2))\n' +
         '(Afficher (Nombre? "2"))\n' +
-        '(Afficher (Nombre? (Nombre "2")))');
-    inject_microalg_editor_in('script-nombre', {localStorage: false, hidden: true});
-    </script>
+        '(Afficher (Nombre? (Nombre "2")))'
+    });</script>
     <p>Pour demander un nombre avec lequel faire un calcul, il faut donc
     utiliser une combinaison de <code>Demander</code> et de
     <code>Nombre</code>. En reprenant le premier exemple :</p>
-    <div id="script-demander-nombre-blockly"></div>
     <div id="script-demander-nombre"></div>
-    <script>
-    inject_microalg_blockly_in('script-demander-nombre-blockly',
-                               'script-demander-nombre-malg-editor',
-        '(Afficher (+ 1 (Nombre (Demander))))');
-    inject_microalg_editor_in('script-demander-nombre', {localStorage: false, hidden: true});
-    </script>
+    <script>inject_microalg_editor_in('script-demander-nombre', {
+     blockly_only: true,
+     src:
+        '(Afficher (+ 1 (Nombre (Demander))))'
+    });</script>
     <p>Plus tard, vous pourrez vous-même créer une commande qui sera un
     raccourci pour cette combinaison de <code>Nombre</code> et de
     <code>Demander</code> : <code>DemanderNbre</code>.</p>
     <p>Pour finir cette section en beauté, voici un programme qui réutilise
     tout ce que l’on a appris jusqu’ici. Pourrez-vous deviner ce qu’il va
     afficher ?</p>
-    <div id="script-incrementation-blockly"></div>
     <div id="script-incrementation"></div>
-    <script>
-    inject_microalg_blockly_in('script-incrementation-blockly',
-                               'script-incrementation-malg-editor',
+    <script>inject_microalg_editor_in('script-incrementation', {
+     blockly_only: true,
+     src:
         '(Afficher (Concatener\n' +
         '              "Un de plus: "\n' +
         '              (Texte (+\n' +
@@ -392,9 +352,8 @@
         '                      (Nombre (Demander))\n' +
         '                     )\n' +
         '              )\n' +
-        '))');
-    inject_microalg_editor_in('script-incrementation', {localStorage: false, hidden: true});
-    </script>
+        '))'
+    });</script>
     <p><strong>Rappel</strong> : l’exécution se fait de l’intérieur vers
     l’extérieur, et si les blocs sont au même niveau, de haut en bas. Voici
     donc ce que fait ce petit programme, dans l’ordre d’exécution :</p>
@@ -411,8 +370,24 @@
 
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,
-    c’est mieux.</p>
-    <p>Ce que vous allez y perdre :</p>
+    c’est mieux. Voici un espace de travail qui vous permet de voir à quoi
+    ressemble MicroAlg sans les blocs. Observez le code (juste en dessous) au
+    fur et à mesure que vous bougez les blocs. Attention : les couleurs des
+    parenthèses n’ont rien à voir avec la couleur des blocs.</p>
+    <div id="script-taper-du-code"></div>
+    <script>inject_microalg_editor_in('script-taper-du-code', {
+     blockly: true,
+     src:
+        '(Afficher (Concatener\n' +
+        '              "Un de plus: "\n' +
+        '              (Texte (+\n' +
+        '                      1\n' +
+        '                      (Nombre (Demander))\n' +
+        '                     )\n' +
+        '              )\n' +
+        '))'
+    });</script>
+    <p>Ce que vous allez perdre en abandonnant les blocs :</p>
     <ul>
         <li><strong>de l’assurance</strong> : au début vous serez un peu perdues
             car vous ne serez pas sûres de l’orthographe des commandes,
@@ -423,7 +398,7 @@
             apprendre à taper !!!
         </li>
     </ul>
-    <p>Ce que vous allez y gagner :</p>
+    <p>Ce que vous allez gagner en abandonnant les blocs :</p>
     <ul>
         <li><strong>de l’assurance</strong> : vous serez tellement heureux quand
             vous aurez franchi ce cap, que vous y prendrez goût et ne reviendrez
