@@ -30,8 +30,6 @@
             <a href="#content">Haut de page</a>
         </div>
         <br>
-        <div id="blockly-container" class="malg-container"></div>
-        &nbsp;
         <div id="script-container" class="malg-container"></div>
         &nbsp;
         <div id="repl-container" class="malg-container"></div>
@@ -96,11 +94,11 @@
     </div>
     <script>
         onload = function () {
-            // Blockly:
-            inject_microalg_blockly_in('blockly-container',
-                                       'script-container-malg-editor');
             // Éditeur:
-            inject_microalg_editor_in('script-container', {localStorage: true});
+            inject_microalg_editor_in('script-container',
+                {src: '(Afficher "Bonjour tout le monde !")',
+                 blockly: true,
+                 localStorage: true});
             // Focus et curseur final dans l’éditeur:
             var txtarea = $('#script-container').find('.malg-editor').first();
             txtarea.focus().selectRange(txtarea.val().length, txtarea.val().length);
