@@ -71,7 +71,7 @@ function onCtrlEnter(elt, f) {
     });
 }
 
-function ide_action(editor_elt) {
+function ide_action(editor_elt, store) {
     // Compute the target HTML elt.
     var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
     var display_target_id = elt_id + '-displaytarget';
@@ -95,7 +95,7 @@ function ide_action(editor_elt) {
         error_elt.text(e.message);
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
-    if (typeof(Storage) !== "undefined") {
+    if (store && typeof(Storage) !== "undefined") {
         var key = 'microalg_src_' + elt_id;
         localStorage[key] = src;
     }
@@ -151,7 +151,8 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
                                       'class="malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +
-        '<input type="button" onclick="ide_action($(\'#' + elt_id + '-malg-editor\'))" value="OK" class="malg-ok"/>' +
+        '<input type="button" value="OK" class="malg-ok" ' +
+                'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' + config.localStorage + ')" />' +
         '<div class="malg-error" style="color: red;"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
