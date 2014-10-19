@@ -160,7 +160,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     // Custom state for a custom display in the REPL.
     EMULISP_CORE.currentState().context = {type: 'repl', display_elt: repl_id};
     emulisp_states[repl_id] = EMULISP_CORE.currentState();
-    // Build the html and bind to ide_action.
+    // Build the html and bind to repl_action.
     var repl_container = $('#' + elt_id);
     var rows = msg.split('\n').length;
     var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" spellcheck="false">' + malg_prompt + msg + '</textarea>' +
