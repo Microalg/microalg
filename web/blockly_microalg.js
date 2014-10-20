@@ -244,9 +244,6 @@ Blockly.MicroAlg['afficher'] = function(block) {
 // Bloc Aide
 // Gen Aide
 
-// Bloc Bloc
-// Gen Bloc
-
 // Bloc Concatener
 Blockly.Blocks['concatener'] = {
   init: function() {
