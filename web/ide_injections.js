@@ -146,8 +146,12 @@ function inject_microalg_editor_in(elt_id, config) {
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
     var hidden = config.blockly_only ? ' style="display:none;"' : '';
-    var script_string = (
-        (config.blockly || config.blockly_only) ? '<div id="' + blockly_id + '"></div>' : '') +
+    var link_snippet =
+        '<div class="link-snippet">' +
+        '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
+    var script_string =
+        link_snippet +
+        ((config.blockly || config.blockly_only) ? '<div id="' + blockly_id + '"></div>' : '') +
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
                                       'class="malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +

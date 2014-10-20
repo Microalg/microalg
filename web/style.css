@@ -72,6 +72,12 @@ body.microalg {
 .link-right {
     text-align: right;
 }
+.link-snippet {
+    text-align: right;
+}
+.link-snippet a {
+    text-decoration: none;
+}
 #bla {
     width: 60%;
     margin: 0px auto;
