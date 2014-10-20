@@ -180,6 +180,8 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Autres">' +
                 '  <block type="texte_litteral"></block>' +
                 '  <block type="nombre_litteral"></block>' +
+                '  <block type="vrai"></block>' +
+                '  <block type="faux"></block>' +
                 ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +

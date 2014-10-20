@@ -649,8 +649,38 @@ Blockly.MicroAlg['operations'] = function(block) {
 };
 
 // Bloc Faux
+Blockly.Blocks['faux'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-faux');
+    this.setColour(0);
+    this.appendDummyInput()
+        .appendField('Faux');
+    this.setOutput(true);
+    this.setTooltip('Booléen valant Faux.');
+  }
+};
+
 // Gen Faux
+Blockly.MicroAlg['faux'] = function(block) {
+  return 'Faux';
+};
+
 // Bloc Rien
 // Gen Rien
+
 // Bloc Vrai
+Blockly.Blocks['vrai'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-vrai');
+    this.setColour(0);
+    this.appendDummyInput()
+        .appendField('Vrai');
+    this.setOutput(true);
+    this.setTooltip('Booléen valant Vrai.');
+  }
+};
+
 // Gen Vrai
+Blockly.MicroAlg['vrai'] = function(block) {
+  return 'Vrai';
+};
