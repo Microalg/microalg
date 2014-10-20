@@ -621,10 +621,10 @@ Blockly.Blocks['operations'] = {
     this.setTooltip(function() {
       var mode = thisBlock.getFieldValue('OP');
       var TOOLTIPS = {
-        'ADD'     : "Renvoie la somme des deux nombres.",
-        'MINUS'   : "Renvoie le quotient des deux nombres.",
-        'MULTIPLY': "Renvoie la différence des deux nombres.",
-        'DIVIDE'  : "Renvoie le produit des deux nombres.",
+        'ADD'     : "Retourne la somme des deux nombres.",
+        'MINUS'   : "Retourne le quotient des deux nombres.",
+        'MULTIPLY': "Retourne la différence des deux nombres.",
+        'DIVIDE'  : "Retourne le produit des deux nombres.",
       };
       return TOOLTIPS[mode];
     });
