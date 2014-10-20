@@ -55,6 +55,36 @@
          "<value name=\"A\">" A "</value>"
          "<value name=\"B\">" B "</value>"
          "</block>"))
+(de = (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">EQ</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de =/ (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">NEQ</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de < (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">INF</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de > (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">SUP</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de <= (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">INFEQ</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de >= (A B)
+   (pack "<block type=\"comparaisons\"><field name=\"COMP\">SUPEQ</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
 (de Afficher (content next)
   (pack "<block type=\"afficher\">"
         "<value name=\"VALUE\">"

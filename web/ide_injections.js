@@ -171,6 +171,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="concatener"></block>' +
                 '  <block type="demander"></block>' +
                 '  <block type="operations"></block>' +
+                '  <block type="comparaisons"></block>' +
                 '  <block type="type"></block>' +
                 '  <block type="texte?"></block>' +
                 '  <block type="texte"></block>' +

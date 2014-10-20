@@ -481,18 +481,6 @@ Blockly.MicroAlg['type'] = function(block) {
   }
 };
 
-// Bloc <
-// Gen <
-// Bloc <=
-// Gen <=
-// Bloc =
-// Gen =
-// Bloc =/
-// Gen =/
-// Bloc >
-// Gen >
-// Bloc >=
-// Gen >=
 // Bloc Booleen?
 // Gen Booleen?
 // Bloc Faux?
@@ -644,6 +632,60 @@ Blockly.MicroAlg['operations'] = function(block) {
   var inputB = Blockly.MicroAlg.statementToCode(block, 'B');
   var argument0 = inputA.substring(Blockly.MicroAlg.INDENT.length) || '0';
   var argument1 = inputB.substring(Blockly.MicroAlg.INDENT.length) || '0';
+  var code = '(' + operator + ' ' + argument0 + ' ' + argument1 + ')';
+  return code;
+};
+
+// Bloc comparaisons
+Blockly.Blocks['comparaisons'] = {
+  init: function() {
+    var OPERATORS =
+        [['=', 'EQ'],
+         ['≠', 'NEQ'],
+         ['<', 'INF'],
+         ['>', 'SUP'],
+         ['≤', 'INFEQ'],
+         ['≥', 'SUPEQ']];
+    this.setHelpUrl(malg_url + '#comparaisonsavecblockly');
+    this.setColour(200);
+    this.setOutput(true, 'Boolean');
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(OPERATORS), 'COMP');
+    this.appendValueInput('A');
+    this.appendValueInput('B');
+    this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    this.setTooltip(function() {
+      var mode = thisBlock.getFieldValue('COMP');
+      var TOOLTIPS = {
+        '=': "Retourne Vrai si les arguments sont égaux.",
+        '≠': "Retourne Vrai si les arguments sont différents.",
+        '<': "Retourne Vrai si le premier argument est strictement inférieur au second.",
+        '>': "Retourne Vrai si le premier argument est strictement supérieur au second.",
+        '≤': "Retourne Vrai si le premier argument est inférieur ou égal au second.",
+        '≥': "Retourne Vrai si le premier argument est supérieur ou égal au second."
+      };
+      return TOOLTIPS[mode];
+    });
+  }
+};
+
+// Gen comparaisons
+Blockly.MicroAlg['comparaisons'] = function(block) {
+  var OPERATORS = {
+    'EQ':    '=',
+    'NEQ':   '=/',
+    'INF':   '<',
+    'SUP':   '>',
+    'INFEQ': '<=',
+    'SUPEQ': '>='
+  };
+  var operator = OPERATORS[block.getFieldValue('COMP')];
+  var inputA = Blockly.MicroAlg.statementToCode(block, 'A');
+  var inputB = Blockly.MicroAlg.statementToCode(block, 'B');
+  var argument0 = inputA.substring(Blockly.MicroAlg.INDENT.length) || '';
+  var argument1 = inputB.substring(Blockly.MicroAlg.INDENT.length) || '';
   var code = '(' + operator + ' ' + argument0 + ' ' + argument1 + ')';
   return code;
 };
