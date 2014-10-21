@@ -84,6 +84,8 @@
             '(= 0 (Longueur (Liste)))
             '(= 3 (Longueur (Liste 1 2 3)))
             '(= 3 (Longueur (Liste 1 2 (Liste 3 4))))
+            '(= Vrai (Vide? (Liste)))
+            '(= Faux (Vide? (Liste 1)))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))
