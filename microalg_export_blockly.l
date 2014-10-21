@@ -129,3 +129,7 @@
         content
         "</value>"
         "</block>"))
+(de Vrai ()
+  "<block type=\"vrai\"></block>")
+(de Faux ()
+  "<block type=\"faux\"></block>")
