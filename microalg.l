@@ -301,6 +301,9 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (dm T (ELTS)
       (=: elts ELTS)
 )
+(dm length> ()
+    (length (: elts))
+)
 (dm text> ()
     (pack "(Liste"
           (if (: elts) " ")
@@ -315,12 +318,16 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (de Liste @
     (new '(+Liste) (rest)) )
 
-# Manipulations de texte
+# Manipulations de texte et de liste
 (put 'Longueur 'doc
-"Commande qui retourne la longueur d’une liste.")
+"Commande qui retourne la longueur d’un texte ou d’une liste.")
 (put 'Longueur 'text "Commande `Longueur`.")
 (de Longueur (obj)
-    (length obj))
+    (if (!boolM2P (Liste? obj))
+        (length> obj)
+        (length obj)
+    )
+)
 (put 'Nieme 'doc
 "Permet d’accéder en lecture à un des éléments d’une liste (se lit « énième »).
 
