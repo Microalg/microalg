@@ -80,6 +80,10 @@
             '(or (put 'x 'type NIL) T)
             '(= "(Liste 1 \"bonjour\" Vrai)" (prog (Afficher (Liste 1 "bonjour" Vrai)) *LastStdOut))
             '(= "(Liste \"bonjour\" (Liste \"salut\"))" (prog (Afficher (Liste "bonjour" (Liste "salut"))) *LastStdOut))
+            # Manipulations de listes en // avec manipulations de texte
+            '(= 0 (Longueur (Liste)))
+            '(= 3 (Longueur (Liste 1 2 3)))
+            '(= 3 (Longueur (Liste 1 2 (Liste 3 4))))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))
