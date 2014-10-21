@@ -636,7 +636,7 @@ dans l’ordre décroissant.")
 ")
 (put 'Vide? 'text "Prédicat `Vide?`.")
 (de Vide? (obj)
-    (if (<> 0 (length obj)) Faux Vrai))
+    (if (<> 0 (Longueur obj)) Faux Vrai))
 
 # Rien
 (put 'Rien 'doc
