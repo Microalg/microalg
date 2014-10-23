@@ -66,6 +66,7 @@
             '(= Vrai (Vide? ""))
             '(= Faux (Vide? "pas vide"))
             '(= "a" (Nieme "salut" 2))
+            '(= "t" (Nieme "salut" 5))
             '(= "s" (Tete "salut"))
             '(= "alut" (Queue "salut"))
             '(= "x" (Tete "x"))
