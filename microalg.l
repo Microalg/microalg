@@ -311,6 +311,9 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
           ")"
     )
 )
+(dm nth> (idx)
+    (car (nth (: elts) idx))
+)
 # Interface MicroAlg des listes
 (put 'Liste 'doc
 "Commande qui construit une liste.")
@@ -335,18 +338,18 @@ La numérotation commence à 1.")
 (put 'Nieme 'text "Commande `Nieme`.")
 (de Nieme (obj idx)
     # Quelques vérifications
-    (let (len (length obj))
+    (let (len (Longueur obj))
       (cond
         ((not idx) (quit "Il manque le deuxième paramètre : l’indice."))
         ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
         ((le0 idx) (quit "Indice négatif ou nul." idx))
-        ((lt0 (- (length obj) idx)) (quit "Indice trop grand." (list idx '> len)))
+        ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
       )
     )
     # Le calcul
     (cond
+      ((!boolM2P (Liste? obj)) (nth> obj idx))
       ((str? obj) (car (nth (chop obj) idx)))
-      #((lst? obj) (nth obj idx))
       (T Rien)
     ))
 (put 'Tete 'doc
