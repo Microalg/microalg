@@ -88,6 +88,10 @@
             '(= Faux (Vide? (Liste 1)))
             '(= 10 (Nieme (Liste 10 20) 1))
             '(= 20 (Nieme (Liste 10 20) 2))
+            '(= 10 (Tete (Liste 10 20 30)))
+            '(= "(Liste 20 30)" (!text (Queue (Liste 10 20 30))))
+            '(= 10 (Tete (Liste 10)))
+            '(= "(Liste)" (!text (Queue (Liste 10))))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))

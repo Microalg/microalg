@@ -314,6 +314,9 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (dm nth> (idx)
     (car (nth (: elts) idx))
 )
+(dm elts> ()
+    (: elts)
+)
 # Interface MicroAlg des listes
 (put 'Liste 'doc
 "Commande qui construit une liste.")
@@ -362,8 +365,8 @@ La numérotation commence à 1.")
     )
     # Le calcul
     (cond
+      ((!boolM2P (Liste? obj)) (nth> obj 1))
       ((str? obj) (car (chop obj)))
-      #((lst? obj) (car obj))
       (T Rien)
     ))
 (put 'Queue 'doc
@@ -376,9 +379,10 @@ La numérotation commence à 1.")
     )
     # Le calcul
     (cond
+      ((!boolM2P (Liste? obj)) (apply Liste (cdr (elts> obj))))
       ((str? obj) (pack (cdr (chop obj))))
-      #((lst? obj) (cdr obj))
-      (T Rien)
+      (T (quit "Vous cherchez la queue d’une valeur qui n’est ni un texte ni une liste."
+               (list obj (Type obj))))
     ))
 
 # Types et conversions
