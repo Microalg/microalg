@@ -280,7 +280,7 @@ La numérotation commence à 1.")
       (T Rien)
     ))
 (put 'Queue 'doc
-"Commande qui retourne une copie de la liste en paramètre, mais sans son premier élément.")
+"Commande qui retourne une copie du texte ou de la liste en paramètre `obj`, mais sans son premier élément.")
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
