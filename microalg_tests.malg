@@ -68,6 +68,7 @@
             # Manipulations de listes
             '(= "(Liste)" (prog (Afficher (Liste)) *LastStdOut))
             '(= "(Liste Rien)" (prog (Afficher (Liste Rien)) *LastStdOut))
+            # '(= "(Liste \"\")" (prog (Afficher (Liste "")) *LastStdOut))
             '(= "(Liste 1 2 3)" (prog (Afficher (Liste 1 2 3)) *LastStdOut))
             '(let (x NIL) (= "(Liste 1 2 3)" (prog (Initialiser x 1) (Afficher (Liste x 2 3)) *LastStdOut)))
             '(or (put 'x 'type NIL) T)
