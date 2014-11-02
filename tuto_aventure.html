@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tuto aventure - MicroAlg</title>
+
+    <script src="http://olado.github.io/doT/doT.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="web/dedalus.js"></script>
+    <script src="web/dedalus-web.js"></script>
+    <link rel="stylesheet" href="web/dedalus-web.css">
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+    <script type="text/javascript" src="web/ide_injections.js"></script>
+    <script type="text/javascript" src="web/parenedit.js"></script>
+    <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
+    <script type="text/javascript" src="web/showdown.js"></script>
+    <script>EMULISP_CORE.loadLisp("microalg.l");</script>
+    <link rel="icon" href="visuels/logo_microalg.ico" />
+ </head>
+<body>
+    <div id="story">
+
+        <initscript>
+        </initscript>
+
+        <!-- Novel -->
+        <title>Tutoriel aventure</title>
+
+        <!-- Objects -->
+        <obj id="afficher" inventoryName="Afficher">
+            <action id="Rappel">
+                <when>story.isInInventory('afficher')</when>
+                {{ alert(EMULISP_CORE.eval("(get 'Afficher 'doc)")); }}
+            </action>
+            <action id="J’ai compris">
+                <when>!story.isInInventory('afficher')</when>
+                Bravo.
+                {{ story.putInInventory('afficher'); }}
+            </action>
+        </obj>
+
+        <!-- Pages -->
+        <page id="intro">
+            <p>Bienvenue dans ce tutoriel « doublement interactif ».</p>
+            <p>Si vous voulez l’explication ennuyeuse qui explique
+            pourquoi ce tutoriel est doublement interactif, cliquez sur
+            <show paragraph="explication-ennuyeuse">ce lien</show>.</p>
+        </page>
+        <paragraph id="explication-ennuyeuse">
+            <p>Tout d’abord, ce tutoriel vous laisse agir directement sur son
+            déroulement, comme dans un
+            <a target="_blank" href="http://fr.wikipedia.org/wiki/Livre-jeu">livre
+            dont vous êtes le héros</a>. Ensuite, vous pouvez exécuter du
+            code MicroAlg dans le navigateur.</p>
+        </paragraph>
+            
+        <page id="menu" class="first">
+            <turn to="afficher">On commence</turn> ?
+        </page>
+
+        <page id="afficher">
+            <p>La première commande à connaître est la commande
+            <interact with="afficher">Afficher</interact>.</p>
+            <div class="microalg">
+            <div id="script-si-majeur-mineur"></div>
+            <script>inject_microalg_editor_in('script-si-majeur-mineur', {src:
+                '(Afficher "Quel âge as-tu ?")\n' +
+                '(Si (< (Nombre (Demander)) 18)\n' +
+                ' Alors (Afficher "Tu es mineur, mais tu peux continuer sur le site.")\n' +
+                ' Sinon (Afficher "Tu prétends être majeur.")\n' +
+                ')'});
+             </script>
+            </div>
+
+        </page>
+
+        <!-- Paragraphs -->
+        <paragraph id="darkWarning">
+            It is very dark here, you can't even see your hands.
+        </paragraph>
+
+    </div>
+
+    <div id="title"></div>
+
+    <div id="inventoryHostWrapper">
+        <h2>Commandes rencontrées</h2>
+        <div id="inventoryHost" class="glow"></div>
+    </div>
+
+    <div id="host"></div>
+
+    <div id="interactionHost" class="glow"></div>
+
+    <div id="undoStageHost"></div>
+
+    <div id="footer">
+        <a id="undoHost" href="#">Revenir</a>
+        <a id="saveHost" href="#">Enregistrer</a>
+        <a id="restoreHost" href="#">Recharger</a>
+        <a id="reseteHost" href="#">Réinitialiser</a>
+    </div>
+
+    <script>
+        $(function () {
+            new DedalusWeb({
+                domSource         : $('#story'),
+                domTarget         : $('#host'),
+                titleTarget       : $('#title'),
+                inventoryTarget   : $('#inventoryHost'),
+                interactionTarget : $('#interactionHost'),
+                undoTarget        : $('#undoHost'),
+                undoStageTarget   : $('#undoStageHost'),
+                saveTarget        : $('#saveHost'),
+                restoreTarget     : $('#restoreHost'),
+                resetTarget       : $('#reseteHost'),
+            });
+        });
+
+    </script>
+</body>
+</html>
