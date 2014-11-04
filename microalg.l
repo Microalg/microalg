@@ -15,7 +15,7 @@ Voir <http://microalg.info>.")
 "Booleen?"
 "Concatener"
 "Definir" "Demander"
-"Et"
+"En_position" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
@@ -222,16 +222,21 @@ Si vous ne l’avez pas déjà fait, commencez par le
                              Rien  # Pas de valeur de retour
                         ))
 (put 'Affecter_a 'doc
-"Commande qui permet d’affecter une valeur à une variable.")
+"Commande qui permet d’affecter une valeur à une variable.
+
+Si la variable contient un texte ou une liste et qu’une position est fournie,
+comme par exemple dans :  
+`(Affecter_a var val En_position idx)`  
+alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
+ `val`.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de Affecter_a arg_lst
-    (let (preums (car arg_lst)
-          deuz   (eval (cadr arg_lst))
-          troiz  (eval (caddr arg_lst))
-          var    preums
-          val    (ifn troiz deuz troiz)
-          idx    troiz)
-         (ifn idx
+    (let (var (car arg_lst)
+          val (eval (cadr arg_lst))
+          kw  (caddr arg_lst)
+          idx (eval (cadddr arg_lst))
+          evaled_var (eval var))
+         (ifn kw
               (prog
                  # Affectation au symbole dans `var`.
                  (ifn (get var 'type)
@@ -247,11 +252,22 @@ Si vous ne l’avez pas déjà fait, commencez par le
               )
               (prog
                  # Affectation à l’élément `idx` du symbole dans `var`.
+                 (cond
+                   ((!boolM2P (Liste? evaled_var)) (put> evaled_var val idx))
+                   ((str? evaled_var)
+                    (let (chopped (chop evaled_var))
+                         (set var (pack (head (- idx 1) chopped)
+                                        val
+                                        (tail (- idx) chopped) )) ))
+                   (T (quit "Affectation positionnelle impossible." (Type evar)))
+                 )
               )
          )
          Rien  # Pas de valeur de retour
     )
 )
+(put 'En_position 'doc "Mot-clef intermédiaire pour la commande `Affecter_a`.")
+(setq En_position 'En_position)
 
 # Tirages pseudo-aléatoires.
 (put 'Decimal@ 'doc
@@ -319,6 +335,13 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 )
 (dm push> (elt)
     (=: elts (conc (: elts) (list elt)))
+)
+(dm put> (elt idx)
+    (=: elts (append (head (- idx 1) (: elts))
+                     (list elt)
+                     (tail (- idx) (: elts))
+             )
+    )
 )
 # Interface MicroAlg des listes
 (put 'Liste 'doc

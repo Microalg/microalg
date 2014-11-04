@@ -46,6 +46,11 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "salut" (prog (Initialiser x "") (Affecter_a x "salut") x)))
             '(or (put 'x 'type NIL) T)
+            # Affectation à un élément d’une variable de type liste ou texte
+            '(let (x NIL) (= "salut" (prog (Initialiser x "saluz") (Affecter_a x "t" En_position 5) x)))
+            '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= "(Liste 2 4 6)" (prog (Initialiser x (Liste 2 4 0)) (Affecter_a x 6 En_position 3) (!text x))))
+            '(or (put 'x 'type NIL) T)
             # Types et conversions
             '(= "texte" (Type "bonjour"))
             '(= "nombre" (Type 0))
