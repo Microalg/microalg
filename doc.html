@@ -231,9 +231,11 @@ valeur qui est parfois fournie :
 
 * Commande `Faire` sans mot-clé `Tant_que`.
     * `Tant_que` est peut-être mal orthographié, il manque peut-être le « _ ».
-    * Le `Faire` correspondant a pu être fermé prématurément.
+    * Le `Faire` correspondant a pu être fermé prématurément.  
+      `(Faire (=/ n 1)) <- une parenthèse fermante en trop`
 * Commande `Tant_que` sans mot-clé `Faire`.
-    * Le `Tant_que` correspondant a pu être fermé prématurément.
+    * Le `Tant_que` correspondant a pu être fermé prématurément.  
+      `(Tant_que (=/ n 1)) <- une parenthèse fermante en trop`
 * `Entier@` prend 2 paramètres. Vous en donnez X.
 * Il manque le deuxième paramètre : l’indice.
 * Indice négatif ou nul.
