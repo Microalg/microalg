@@ -154,7 +154,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
                               val (eval (cadr arg_lst))
                               type_var (get var 'type)
                               type_val (Type val))
-                             (if (and type_var (<> type_val type_var))
+                             (if (and (<> "rien" type_val) type_var (<> type_val type_var))
                                  (quit (pack "Valeur de type " type_val ", ne peut initialiser "
                                              var " qui est de type " type_var "."))
                              )
