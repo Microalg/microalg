@@ -23,7 +23,7 @@ Voir <http://microalg.info>.")
 "Nieme" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
-"Retourner" "Rien"
+"Retirer_de" "Retourner" "Rien"
 "Si" "Sinon"
 "Tant_que" "Tete" "Texte" "Texte?" "Type"
 "Vide?" "Vrai" "Vrai?"
@@ -336,6 +336,12 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (dm push> (elt)
     (=: elts (conc (: elts) (list elt)))
 )
+(dm pop> ()
+    (let (!return_val (last (: elts)))
+         (=: elts (head (- (length (: elts)) 1) (: elts)))
+         !return_val
+    )
+)
 (dm put> (elt idx)
     (=: elts (append (head (- idx 1) (: elts))
                      (list elt)
@@ -423,6 +429,27 @@ La numérotation commence à 1.")
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
          ((or (not !evaled_sym) (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         (T Rien)
+       )
+  )
+)
+(put 'Retirer_de 'doc
+"Commande qui, si `sym` contient un texte ou une liste, retire le dernier
+élément à la fin de ce texte ou de cette liste et le retourne.")
+(put 'Retirer_de 'text "Commande `Retirer_de`.")
+(de Retirer_de arg_lst
+  (let (!sym (car arg_lst)
+        !evaled_sym (eval !sym))
+       # Quelques vérifications
+       # Le calcul
+       (cond
+         ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
+         ((or (not !evaled_sym) (str? !evaled_sym))
+             (let (!chopped (chop !evaled_sym)
+                   !return_val (last !chopped))
+                  (set !sym (pack (head (- (length !evaled_sym) 1) !chopped)))
+                  !return_val
+             ))
          (T Rien)
        )
   )
