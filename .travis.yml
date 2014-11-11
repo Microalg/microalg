@@ -4,5 +4,4 @@ install:
   - npm install readline-sync
   - sudo pip install pexpect
   - sudo pip install lettuce
-  - sudo ./install_scripts/fix_lettuce.sh
-script: sh microalg_tests.sh
+script: sh microalg_tests_features.sh
