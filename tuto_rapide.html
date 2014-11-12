@@ -299,9 +299,17 @@
     });</script>
 
     <h2 id="calculs-nombres-demandes"><a href="#calculs-nombres-demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
-    <p>La commande <code>Demander</code> renvoie du texte. Les opérations
+    <p>La commande <code>Demander</code> renvoie du texte, mais les opérations
     <code>+</code>, <code>-</code>, <code>*</code> et <code>/</code> ne
-    travaillent qu'avec des nombres.</p>
+    travaillent qu'avec des nombres. En voici la preuve (le programme génère une
+    erreur) :</p>
+    <div id="script-un-plus-un"></div>
+    <script>inject_microalg_editor_in('script-un-plus-un', {
+     src:
+        '(Afficher (+ 1 "1"))'
+    });</script>
+    <p>Ainsi, le programme suivant ne peut pas fonctionner, même en répondant
+    par exemple « 1 » pour calculer « 1 + 1 » :</p>
     <div id="script-pas-nombre"></div>
     <script>inject_microalg_editor_in('script-pas-nombre', {
      src:

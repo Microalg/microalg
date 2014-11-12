@@ -380,17 +380,26 @@
 
     <h2 id="calculs-nombres-demandes"><a href="#calculs-nombres-demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
     <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
-    l’utilisateur. Mais les opérations <code>+</code>, <code>-</code>,
+    l’utilisateur. Même s’il n’est constitué que de chiffres, MicroAlg le
+    considère comme étant du texte.</p>
+    <p>Le problème ici est que les opérations <code>+</code>, <code>-</code>,
     <code>*</code> et <code>/</code> ne travaillent qu'avec des nombres et non
-    avec du texte. Essayons avec l’exemple ci-dessous, en répondant par exemple
-    « 1 » pour calculer « 1 + 1 » :</p>
+    avec du texte. En voici la preuve (le programme génère une erreur) :</p>
+    <div id="script-un-plus-un"></div>
+    <script>inject_microalg_editor_in('script-un-plus-un', {
+     src:
+        '(Afficher (+ 1 "1"))'
+    });</script>
+    <p>Ainsi, le programme suivant ne peut pas fonctionner, même en répondant
+    par exemple « 1 » pour calculer « 1 + 1 » :</p>
     <div id="script-pas-nombre"></div>
     <script>inject_microalg_editor_in('script-pas-nombre', {
      src:
         '(Afficher (+ 1 (Demander)))'
     });</script>
-    </p>C'est la première fois que dans ce tutoriel nous faisons cette
-    distinction. On dira que :</p>
+    </p>C'est la première fois que dans ce tutoriel nous évoquons la
+    distinction entre <code>1</code> et <code>"1"</code>. C’est la notion de
+    <em>type</em>. On dira que :</p>
     <ul>
         <li><code>0</code>, <code>1</code> ou <code>2</code>… sont de
             <em>type</em> « nombre »</li>
