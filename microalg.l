@@ -118,7 +118,7 @@ les appelle.")
                         text (if (num? first) first (get first 'text))
                         a_afficher (if text text (eval first)))
                        (if second (quit (pack "`Afficher` n’a qu’un paramètre, "
-                                              "faîtes plusieurs affichages ou "
+                                              "faites plusieurs affichages ou "
                                               "utilisez `Concaténer`." )))
                        (setq *LastStdOut (if a_afficher a_afficher "?"))
                        (ifn !testing
