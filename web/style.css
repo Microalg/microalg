@@ -49,6 +49,12 @@ body.microalg {
     background-color: #ddd;
     width: 100%;
 }
+.malg-error {
+    color: red;
+}
+.malg-freq-error {
+    color: black;
+}
 .malg-display {
     border-color: black;
     border-style: solid;

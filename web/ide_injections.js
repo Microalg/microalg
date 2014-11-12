@@ -92,7 +92,8 @@ function ide_action(editor_elt, store) {
         error_elt.text('');
         EMULISP_CORE.eval(src);
     } catch(e) {
-        error_elt.text(e.message);
+        var link = '<a target="_blank" href="http://microalg.info/doc.html#erreursfrquentes">Voir les erreurs fréquentes.</a>';
+        error_elt.html(e.message + ' <span class="malg-freq-error">' + link + '</span>');
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
     if (store && typeof(Storage) !== "undefined") {
@@ -157,7 +158,7 @@ function inject_microalg_editor_in(elt_id, config) {
                                       'spellcheck="false">' + src + '</textarea></div>' +
         '<input type="button" value="OK" class="malg-ok" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' + config.localStorage + ')" />' +
-        '<div class="malg-error" style="color: red;"></div>' +
+        '<div class="malg-error"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     script_container.html(script_string);
     if (config.blockly || config.blockly_only) {
