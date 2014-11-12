@@ -113,22 +113,22 @@ comportements différents suivant qu’on les évalue, qu’on les affiche ou qu
 les appelle.")
 (put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
-(de Afficher args (let (first (car args)
-                        second (cadr args)
-                        text (if (num? first) first (get first 'text))
-                        a_afficher (if text text (eval first)))
-                       (if second (quit (pack "`Afficher` n’a qu’un paramètre, "
-                                              "faites plusieurs affichages ou "
-                                              "utilisez `Concaténer`." )))
-                       (setq *LastStdOut (if a_afficher a_afficher "?"))
-                       (ifn !testing
-                            (println (ifn a_afficher
-                                          (if (<> *EMUENV "browser")
-                                              " "
-                                              "&nbsp;")
-                                          a_afficher)))
-                       Rien  # Pas de valeur de retour
-                  )
+(de Afficher args
+  (let (first (car args)
+         second (cadr args)
+         text (if (num? first) first (get first 'text))
+         a_afficher (if text text (eval first)))
+        (if second (quit (pack "`Afficher` n’accepte qu’un paramètre, faites "
+                               "plusieurs affichages ou utilisez `Concaténer`." )))
+        (setq *LastStdOut (if a_afficher a_afficher "?"))
+        (ifn !testing
+             (println (ifn a_afficher
+                           (if (<> *EMUENV "browser")
+                               " "
+                               "&nbsp;")
+                           a_afficher)))
+        Rien  # Pas de valeur de retour
+  )
 )
 
 # Concatener
