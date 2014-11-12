@@ -34,6 +34,7 @@
     l’introduction.</p>
     <p>Aller directement à :
     <a href="#prise-en-main-et-affichage">Prise en main et affichage</a>,
+    <a href="#commentaires">Commentaires</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs-nombres">Calculs avec des nombres</a>,
@@ -107,6 +108,20 @@
     <code>"..."</code> dans les catégories <code>Commandes</code> ou
     <code>Autres</code> pour réécrire le même programme (ou à peu près), puis
     testez-le.</p>
+
+    <h2 id="commentaires"><a href="#commentaires">: </a>Commentaires</h2>
+    <p>Pour expliquer certains passages délicats d’un programme, on peut écrire
+    des instructions qui n’ont aucun effet. C’est le rôle de la commande
+    <code>!!!</code>. Il faut, comme pour la commande <code>Afficher</code>,
+    mettre le message entre guillemets.</p>
+    <div id="script-commentaires"></div>
+    <script>inject_microalg_editor_in('script-commentaires', {
+     blockly_only: true,
+     src:
+        '(!!! "Ce programme explique le rôle des commentaires.")\n' +
+        '(!!! "Il est constitué de trois commentaires.")\n' +
+        '(!!! "Et ne comporte aucune instruction qui fasse quelque chose.")'
+    });</script>
 
     <h2 id="texte-et-concatenation"><a href="#texte-et-concatenation">: </a>Texte et concaténation</h2>
     <p>Dans un des exemples précédents, pour afficher du texte, nous avons
