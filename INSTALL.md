@@ -7,8 +7,13 @@ Cette page est accessible
 Aller directement à :
 
 * Windows :
-    * [avec Java](#avec-java)
-    * [avec NodeJS](#avec-nodejs)
+    * édition avec SciTE :
+        * [exécution avec Java](#scite-avec-java)
+    * édition avec Notepad++ :
+        * [exécution avec Java](#notepad-avec-java)
+        * [exécution avec NodeJS](#notepad-avec-nodejs)
+* Autre (sauf Mac) :
+    * [édition avec SciTE](#scite) (exécution au choix et facilement configurable)
 * Développeur :
     * [tout sauf Windows](#développeur)
 * Utilisation en ligne (rien à installer !) :
@@ -45,8 +50,9 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * Windows
         * simple utilisateur
             * dans un navigateur, mais utilisation possible sans connexion
-            * [avec Java](#avec-java)
-            * [avec NodeJS](#avec-nodejs)
+            * [édition avec SciTE, exécution avec Java](#scite-avec-java)
+            * [édition avec NotePad++, exécution avec Java](#notepad-avec-java)
+            * [édition avec NotePad++, exécution avec NodeJS](#notepad-avec-nodejs)
         * utilisateur avancé
             * les mêmes
             * le vrai PicoLisp dans Cygwin
@@ -57,6 +63,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
         * En cours de développement (mensonge)
     * Autre
         * dans un navigateur, mais utilisation possible sans connexion
+        * [édition avec SciTE, exécution avec PicoLisp](#scite)
         * avec le vrai PicoLisp (C et assembleur)
         * avec Ersatz (Java)
         * avec EmuLisp (NodeJS)
@@ -132,7 +139,28 @@ par
 
 avec le bon numéro de `version` bien sûr.
 
-#### Avec Java
+#### SciTE avec Java
+
+* MicroAlg
+    * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+    * Extraire l’archive quelque part, puis supprimer cette archive.
+    * Obtenir un dossier contenant les différents fichiers de l’archive (et non
+      contenant un dossier seul contenant ces fichiers).
+    * Renommer ce dernier dossier `microalg` et le déplacer dans votre espace
+      de travail. Par exemple un lecteur amovible devrait faire l’affaire.
+* SciTE
+    * Télécharger le « single file executable called Sc1 » sur
+      [la page de téléchargement](http://www.scintilla.org/SciTEDownload.html)
+      de SciTE, puis le déposer dans le dossier `microalg/editeurs/scite`
+      (`microalg` est bien sûr le dossier de l’étape précédente).
+* Si votre ordinateur ne dispose pas de Java, il faut l’installer (si vous
+  n’avez aucune idée de la marche à suivre, essayez
+  [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
+* Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`.  
+  Pour plus d’informations sur l’utilisation en elle-même, voir
+  [la documentation](http://microalg.info/doc.html#scite).
+
+#### Notepad++ avec Java
 
 * Notepad++
     * Installer [Notepad++](http://www.notepad-plus-plus.org/), qui servira
@@ -171,9 +199,10 @@ avec le bon numéro de `version` bien sûr.
       pour ne pas avoir à refaire cette manipulation et d’associer à cette
       commande un nom (comme `malg`) et un raccourci clavier (différent de
       `F5`, par exemple `Ctrl`+`F5`).
-* Et voilà.
+* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
+  [la documentation](http://microalg.info/doc.html#notepad).
 
-#### Avec NodeJS
+#### Notepad++ avec NodeJS
 
 * Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
   gestionnaire de modules pour NodeJS).
@@ -220,7 +249,8 @@ asynchrone :
     * Valider avec `Entrée` ou le bouton `Run`.
     * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
       enregistrer cette commande et même lui associer un raccourci clavier.
-* Et voilà.
+* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
+  [la documentation](http://microalg.info/doc.html#notepad).
 
 ### Autre
 
@@ -257,15 +287,59 @@ par
 
 avec le bon numéro de `version` bien sûr.
 
-#### Avec PicoLisp
+#### SciTE
+
+* MicroAlg
+    * `git clone http://github.com/Microalg/Microalg.git microalg` pour rester synchro.
+    * Sinon à partir d’une archive inerte :
+       * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+       * Extraire l’archive quelque part, puis supprimer cette archive.
+       * Obtenir un répertoire contenant les différents fichiers de l’archive (et
+         non contenant un répertoire seul contenant ces fichiers).
+       * Renommer ce dernier répertoire `microalg` et le déplacer dans votre espace
+         de travail. Par exemple un lecteur amovible devrait faire l’affaire.
+       * Disons que ce dernier répertoire a pour chemin :  
+         `/chemin/absolu/vers/microalg`.
+       * Ajuster la valeur de `microalg_path` dans le fichier
+         `/chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties`
+         en lui donnant justement la valeur `/chemin/absolu/vers/microalg`
+         (sans le dernier `/`).
+* SciTE
+    * Utiliser le gestionnaire de paquets de votre distribution (le paquet
+      s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
+      [la page de téléchargements de SciTE](http://www.scintilla.org/SciTEDownload.html).
+    * Le fichier `SciTEGlobal.properties` fourni dans le dépôt MicroAlg est
+      prévu pour vivre dans le même répertoire que l’exécutable `scite`, mais le
+      plus simple est de faire :  
+      `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
+   * Pour exécuter un programme, il faudra utiliser `F5.`
+* Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez installer
+  au choix (un seul suffit) :
+    * PicoLisp (il faut pour l’instant une installation « à la main », voir le
+      fichier `install_scripts/install_picolisp.sh`),
+    * Java,
+    * NodeJS.
+* Une fois l’implémentation choisie, il faudra ajuster le fichier `editeurs/scite/microalg.lua` en conséquence.
+  Il suffit de commenter ou décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
+  vers :
+  <pre><code>if uname_s == "Linux" then
+    props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
+    -- props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
+    -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"</code></pre>
+* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
+  [la documentation](http://microalg.info/doc.html#scite).
+
+#### En ligne de commande
+
+##### Avec PicoLisp
 
 Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
 
-#### Avec Java
+##### Avec Java
 
 Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
 
-#### Avec NodeJS
+##### Avec NodeJS
 
 Penser à utiliser `rlwrap` de `readline` pour un terminal plus pratique.
 

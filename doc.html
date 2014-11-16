@@ -42,7 +42,10 @@ Aller directement à :
 * [Feuille de route](#feuillederoute)
 * [Contribuer](#contribuer)
 * [Architecture](#architecture)
-* [Intégrations](#intgrations) ([Blockly](#blockly), …)
+* [Intégrations](#intgrations)
+    * [SciTE](#scite)
+    * [NotePad++](#notepad)
+    * [Blockly](#blockly)
 * [Remerciements](#remerciements)
 
 ## Avertissement
@@ -118,6 +121,8 @@ qu’elle ne soit considérée comme complète :
   que les instructions de
   [programmation orientée objet](http://software-lab.de/doc/tut.html#oop)
   soient implémentées dans EmuLisp.
+* Si vous utilisez SciTE sous autre chose que Windows, pas moyen de faire
+  en sorte que `(Demander)` attende l’utilisateur.
 
 ## Syntaxe
 
@@ -404,9 +409,29 @@ sont définies.
 
 # Intégrations
 
-MicroAlg s’intègre à d’autres systèmes. Pour l’instant, uniquement avec Blockly,
+MicroAlg s’intègre à d’autres systèmes. Pour l’instant, à part l’intégration
+avec des éditeurs de texte, MicroAlg s’intègre uniquement avec Blockly,
 mais il est prévu de travailler sur Processing et ProcessingJS, Mario, NetLogo,
 GeoGebra, GeoTortue…
+
+## SciTE
+
+Moins populaire que NotePad++, il est pourtant très souple et intéressant,
+notamment pour mettre en place un nouveau langage.
+
+`F5` pour lancer le programme. La sortie apparaît dans le panneau de droite
+(à tirer à la souris si jamais il est caché).
+
+**Bug connu**(si vous utilisez autre chose que Windows) : pas moyen de faire
+en sorte que `(Demander)` attende l’utilisateur.
+
+## NotePad++
+
+L’intégration est bien moins poussée qu’avec SciTE (pas de parenthèses
+colorées, pas d’indication de signature de commande…).
+
+`Ctrl`+`F5` pour lancer le programme (suivant le raccourci choisi). La sortie
+apparaît dans une fenêtre identique à celle de `cmd.exe`.
 
 ## Blockly
 
@@ -495,6 +520,7 @@ et [`>=`](#cmd->=).
 * **jQuery-term**, par Jakub T. Jankiewicz &mdash; [site officiel](http://terminal.jcubic.pl/)
 * **parenedit**, &mdash; [basé sur cette réponse](http://stackoverflow.com/questions/14043727/auto-resizing-textarea-is-bumpy-highlighting-parentheses)
 * **Blockly**, par Neil Fraser et la communauté &mdash; [site officiel](http://code.google.com/p/blockly/)
+* **Scite**, par Neil Hodgson &mdash; [site officiel](http://www.scintilla.org/SciTE.html)
 
 <a name="annexes"/>Pour les parties annexes du site :
 
