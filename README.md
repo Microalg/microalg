@@ -43,6 +43,22 @@ Fichiers
 
 Listés dans l’ordre où ils apparaissent sur GitHub.
 
+* `editeurs` : fichiers pour l’intégration avec différents éditeurs
+    * `npp` : pour [NotePad++](http://notepad-plus-plus.org/fr/)
+        * `malgj_npp.bat` : exécutable permettant d’exécuter un `.malg`
+          avec Ersatz (Java) sous Windows et depuis NotePad++
+        * `malgjs_npp.bat` : exécutable permettant d’exécuter un `.malg`
+          avec Node et Emulisp sous Windows et depuis NotePad++
+    * `scite` : pour [SciTE](http://www.scintilla.org/SciTE.html)
+        * `SciTEGlobal.properties` : configuration recommandée et/ou obligatoire
+          pour l’intégration
+        * `malg_abbrev.properties` : permettra de mettre en place une structure
+          en trois ou quatre touches (juste pour voir, relativement vide pour
+          l’instant)
+        * `malg.api` : contient les signatures des commandes pour les
+          infos-bulles
+        * `microalg.lua` : le cœur de l’intégration avec l’éditeur (lexer,
+          couleurs, commande pour l’exécution du fichier en cours…)
 * `emulisp` : implémentation de Picolisp en JS
     * voir [le site semi-officiel](https://github.com/grahack/emulisp)
     * la version utilisée ici est une version expérimentale, qui guide le
@@ -85,10 +101,8 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `malg` : exécutable permettant d’exécuter un `.malg` avec PicoLisp (ASM/C)
 * `malgj` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java)
 * `malgj.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows
-* `malgj_npp.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows et depuis NotePad++
 * `malgjs` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp
 * `malgjs.bat` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp sous Windows
-* `malgjs_npp.bat` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp sous Windows et depuis NotePad++
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * `microalg_export*`
     * `microalg_export.l` : fonctions PicoLisp préparant l’export en général
