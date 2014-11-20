@@ -188,7 +188,7 @@ avec le bon numéro de `version` bien sûr.
         * cliquer sur « parcourir » (le bouton `...`),
         * faire apparaître tous les fichiers en choisissant :  
           `Tous les fichiers : (*.*)`,
-        * choisir `microalg/malgj_npp.bat`.
+        * choisir `microalg/editeurs/npp/malgj_npp.bat`.
     * Ajouter à la main (si possible avec un copier/coller) :  
       `"$(FULL_CURRENT_PATH)"`  
       de façon à obtenir dans la petite boîte :  
@@ -241,7 +241,7 @@ asynchrone :
         * cliquer sur « parcourir » (le bouton `...`),
         * faire apparaître tous les fichiers en choisissant :  
           `Tous les fichiers : (*.*)`,
-        * choisir `microalg/malgjs_npp.bat`.
+        * choisir `microalg/editeurs/npp/malgjs_npp.bat`.
     * Ajouter à la main (si possible avec un copier/coller) :  
       `"$(FULL_CURRENT_PATH)"`  
       de façon à obtenir dans la petite boîte :  
