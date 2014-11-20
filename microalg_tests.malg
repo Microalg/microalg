@@ -14,7 +14,7 @@
             )
         )
         (list
-            '(= "0.2.0" version)
+            '(= "0.2.1" version)
             # Affichage
             '(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *LastStdOut))
             '(= "Deux" (prog (Afficher "Un") (Afficher "Deux") *LastStdOut))
