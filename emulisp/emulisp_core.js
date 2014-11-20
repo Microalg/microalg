@@ -1047,7 +1047,15 @@ var coreFunctions = {
 				var _stdPrompt = window.prompt;
 			}
 		}
-		return newTransSymbol(_stdPrompt());
+		var user_input = _stdPrompt();
+		if (emuEnv() == 'nodejs') {
+			readlinesync.setPrompt(": ");
+		}
+		if (user_input === "") {
+			return NIL;
+		} else {
+			return newTransSymbol(user_input);
+		}
 	},
 	"rest": function(c) { return cst.evFrames.car.cdr; },
 	"reverse": function(c) { var lst = evalLisp(c.car), r = NIL;
