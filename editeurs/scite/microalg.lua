@@ -23,6 +23,8 @@ props["lexer.*.malg"] = "script_malg"
 props["style.script_malg.0"] = "fore:#000000"
 -- TXT
 props["style.script_malg.1"] = "fore:#009f00"
+-- CMD
+props["style.script_malg.2"] = "fore:#00009f"
 -- Rainbow parens
 props["style.script_malg.11"] = "back:#ffaabb"
 props["style.script_malg.12"] = "back:#ffddbb"
@@ -69,35 +71,46 @@ function OnStyle(styler)
         -- S: State
         S_NORMAL = 0
         S_TXT = 1
+        S_CMD = 2
         S_PAREN_base = 10
         
         paren_level = 0
         styler:StartStyling(0, styler.startPos + styler.lengthDoc, styler.initStyle)
         
         while styler:More() do
-                -- malg_debug(styler:State())
+                -- malg_debug(styler:Current() .. " (" .. styler:State() .. ")")
                 
-                -- When to get back to S_NORMAL
                 if styler:State() >= S_PAREN_base then
                         styler:SetState(S_NORMAL)
-                elseif styler:State() == S_TXT then
+                elseif styler:State() == S_TXT then  -- here we 'forward' (see *)
                         if styler:Match('"') then
                                 styler:ForwardSetState(S_NORMAL)
                         else
                                 styler:Forward()
                         end
-                        
+                elseif styler:State() == S_CMD then
+                        if styler:Match(' ') or styler:Match(')') then
+                                styler:SetState(S_NORMAL)
+                        end
+                end
                 -- Where to go from S_NORMAL
-                elseif styler:State() == S_NORMAL then
+                if styler:State() == S_NORMAL then
                         if styler:Match('"') then
                                 styler:SetState(S_TXT)
+                                styler:Forward()
                         elseif styler:Match('(') then
                                 paren_level = (paren_level + 1) % 7
                                 styler:SetState(S_PAREN_base + paren_level)
+                                styler:ForwardSetState(S_CMD)
                         elseif styler:Match(')') then
-                                styler:SetState(S_PAREN_base + paren_level)
+                                old_level = paren_level
                                 paren_level = (paren_level - 1) % 7
+                                styler:SetState(S_PAREN_base + old_level)
+                                styler:Forward()
+                        else
+                                styler:Forward()
                         end
+                elseif styler:State() ~= S_TXT then  -- * fixes the 'forward' in S_TXT
                         styler:Forward()
                 end
         end
