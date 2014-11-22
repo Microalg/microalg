@@ -3,11 +3,8 @@
 print("Running microalg.lua...")
 
 -- Debug proc:
-props["microalg_debug"] = 0
 function malg_debug(str)
-    if props["microalg_debug"] == 1 then
-        print(str)
-    end
+        -- print(str)
 end
 
 -- Detect the platform:
