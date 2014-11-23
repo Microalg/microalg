@@ -36,7 +36,7 @@ props["style.script_malg.10"] = "back:#bbbbee"
 -- Paren at current char (OK vs not OK)
 props["braces.check"] = "1"
 props["style.script_malg.34"] = "fore:#000000,back:#999999"
-props["style.script_malg.35"] = "fore:#ff0000,back:#999999"
+props["style.script_malg.35"] = "fore:#000000,back:#ff0000"
 -- Other props
 props["api.*.malg"] = "$(microalg_path)/editeurs/scite/malg.api"
 props["calltip.script_malg.parameters.start"] = " "
@@ -73,6 +73,7 @@ function OnStyle(styler)
         S_TXT = 1
         S_CMD = 2
         S_PAREN_base = 10
+        S_PAREN_bad = 35
         
         paren_level = 0
         styler:StartStyling(0, styler.startPos + styler.lengthDoc, styler.initStyle)
@@ -80,7 +81,7 @@ function OnStyle(styler)
         while styler:More() do
                 -- malg_debug(styler:Current() .. " (" .. styler:State() .. ")")
                 
-                if styler:State() >= S_PAREN_base then
+                if styler:State() >= S_PAREN_base then  -- also resets S_PAREN_bad
                         styler:SetState(S_NORMAL)
                 elseif styler:State() == S_TXT then  -- here we 'forward' (see *)
                         if styler:Match('"') then
@@ -91,6 +92,8 @@ function OnStyle(styler)
                 elseif styler:State() == S_CMD then
                         if styler:Match(' ') or styler:Match(')') then
                                 styler:SetState(S_NORMAL)
+                        elseif styler:Match('(') then
+                                styler:SetState(S_PAREN_bad)
                         end
                 end
                 -- Where to go from S_NORMAL
