@@ -18,7 +18,7 @@ Alors: Mot-clef intermédiaire d'un `Si`.
 Booleen? val: Teste si `val` est un booléen.
 Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
 Definir: Permet de définir des commandes.
-Demander: Retourne le texte tapé par l¿utilisateur.
+Demander: Retourne le texte tapé par l'utilisateur.
 Et b1 b2 ...: Opération logique.
 Faire instructions Tant_que test: Boucle.
 Faux: Booléen.
