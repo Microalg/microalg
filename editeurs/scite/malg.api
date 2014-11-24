@@ -17,11 +17,11 @@ Aide sym: Aide sur le symbole `sym`.
 Alors: Mot-clef intermédiaire d'un `Si`.
 Booleen? val: Teste si `val` est un booléen.
 Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
-Definir: Permet de définir des commandes.
-Demander: Retourne le texte tapé par l'utilisateur.
+Definir ...: Permet de définir des commandes.
+Demander : Retourne le texte tapé par l'utilisateur.
 Et b1 b2 ...: Opération logique.
 Faire instructions Tant_que test: Boucle.
-Faux: Booléen.
+Faux : Booléen.
 Faux?: Teste si `val` est Faux.
 Initialiser var val: Initialise la variable `var` avec la valeur `val`.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
@@ -33,7 +33,7 @@ Ou b1 b2 ...: Opération logique.
 Queue val: Retourne `val` (liste ou texte), privé de son premier élément.
 Retourner: À utiliser à la fin de la définition d'une commande.
 Rien: Valeur représentant l'absence de valeur.
-Si test Alors instructions1 (Sinon instructions2): Exécution conditionnelle.
+Si test Alors instructions1 [Sinon instructions2]: Exécution conditionnelle.
 Sinon: Mot-clef intermédiaire d'un `Si`.
 Tant_que test Faire instructions: Boucle.
 Tete val: Retourne le premier élément de `val` (liste ou texte).
@@ -41,5 +41,5 @@ Texte val: Convertit `val` en texte.
 Texte? val: Teste si `val` est un texte.
 Type val: Retourne le type de la valeur `val`.
 Vide? val: Teste si `val` est vide.
-Vrai: Booléen.
+Vrai : Booléen.
 Vrai? val: Teste si `val` est Vrai.
