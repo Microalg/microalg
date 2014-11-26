@@ -18,6 +18,7 @@ end
 
 -- Set some properties (.properties are not used because they need to be in the same dir)
 props["lexer.*.malg"] = "script_malg"
+props["indent.size.*.malg"]="4"
 -- Styles for the lexer states:
 -- NORMAL
 props["style.script_malg.0"] = "fore:#000000"
