@@ -85,7 +85,7 @@ function OnStyle(styler)
                 if styler:State() >= S_PAREN_base then  -- also resets S_PAREN_bad
                         styler:SetState(S_NORMAL)
                 elseif styler:State() == S_TXT then  -- here we 'forward' (see *)
-                        if styler:Match('"') then
+                        if styler:Match('"') and styler:Previous() ~= '\\' then
                                 styler:ForwardSetState(S_NORMAL)
                         else
                                 styler:Forward()
