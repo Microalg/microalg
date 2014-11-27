@@ -235,13 +235,17 @@ Les messages sont classés par ordre alphabétique, sans tenir compte de la
 valeur qui est parfois fournie :
 
 * Commande `Faire` sans mot-clé `Tant_que`.
-    * `Tant_que` est peut-être mal orthographié, il manque peut-être le « _ ».
+    * `Tant_que` est peut-être mal orthographié, ou il manque peut-être le « _ »
+      ou la majuscule.
     * Le `Faire` correspondant a pu être fermé prématurément.  
       `(Faire (=/ n 1)) <- une parenthèse fermante en trop`
 * Commande `Tant_que` sans mot-clé `Faire`.
+    * `Faire` est peut-être mal orthographié, n’oubliez pas la majuscule.
     * Le `Tant_que` correspondant a pu être fermé prématurément.  
       `(Tant_que (=/ n 1)) <- une parenthèse fermante en trop`
 * `Entier@` prend 2 paramètres. Vous en donnez X.
+* `X -- Executable or Number expected`.
+    * Il y a une parenthèse en trop devant `X`.
 * Il manque le deuxième paramètre : l’indice.
 * Indice négatif ou nul.
 * Indice non entier.
