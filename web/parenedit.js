@@ -67,6 +67,11 @@ function colorize(text, pos) {
         if(pos > j) p2 += entities[x].length - 1;
         return entities[x];
     });
+    converted = converted.replace(
+        /([^=])(")([^"]*)(")/g,
+        function(match, prev, q1, txt, q2) {
+            return prev + q1 + '<span class="text">' + txt + '</span>' + q2;
+        });
 
     pos += p2;
     var parens = [], indices = [], o = {};
