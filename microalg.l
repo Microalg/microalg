@@ -107,10 +107,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
 # surchargée par stdPrint dans piljs ou ide_injection.js
 # On garde une trace du dernier affichage dans la variable globale *LastStdOut.
 (put 'Afficher 'doc
-"Commande qui évalue son premier argument et l’affiche.  
-Attention, certains symboles particuliers comme `aide` ou `version` ont des
-comportements différents suivant qu’on les évalue, qu’on les affiche ou qu’on
-les appelle.")
+"Commande qui affiche son unique argument, si besoin après l’avoir évalué.")
 (put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
 (de Afficher args
