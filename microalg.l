@@ -399,7 +399,7 @@ La numérotation commence à 1.")
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
-         ((str? !evaled_sym) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         ((or (not !evaled_sym) (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
          (T Rien)
        )
   )
