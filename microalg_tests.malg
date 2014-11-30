@@ -107,6 +107,7 @@
             '(= "alut" (Queue "salut"))
             '(= "x" (Tete "x"))
             '(= "" (Queue "x"))
+            '(let (x NIL) (= '(Rien "a") (prog (Initialiser x "") (list (Ajouter_a x "a") x))))
             '(let (x NIL) (= '(Rien "abcd") (prog (Initialiser x "abc") (list (Ajouter_a x "d") x))))
             '(or (put 'x 'type NIL) T)
             # Structure conditionnelle
