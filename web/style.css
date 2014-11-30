@@ -100,3 +100,11 @@ body.microalg {
     z-index: 120;
     background-color: #eee;
 }
+.microalg dt span {
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid black;
+    padding: 0.5em;
+    -webkit-border-top-left-radius: 1em;
+    -moz-border-top-left-radius: 1em;
+    border-top-left-radius: 1em;
+}
