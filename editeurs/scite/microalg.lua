@@ -13,7 +13,7 @@ if uname_s == "Linux" then
         malg_debug("MicroAlg: " .. props["microalg_path"])
 else
         malg_debug("Windows...")
-        props["microalg_path"] = "$(SciteDefaultHome)\\..\\..\\"
+        props["microalg_path"] = "$(SciteDefaultHome)\\..\\.."
 end
 
 -- Set some properties (.properties are not used because they need to be in the same dir)
