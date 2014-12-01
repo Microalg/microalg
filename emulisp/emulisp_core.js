@@ -696,6 +696,7 @@ var coreFunctions = {
 		}
 	},
 	"caar": function(c) { return car(car(evalLisp(c.car))); },
+	"cadddr": function(c) { return car(cdr(cdr(cdr(evalLisp(c.car))))); },
 	"caddr": function(c) { return car(cdr(cdr(evalLisp(c.car)))); },
 	"cadr": function(c) { return car(cdr(evalLisp(c.car))); },
 	"car": function(c) { return car(evalLisp(c.car)); },
