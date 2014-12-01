@@ -44,6 +44,23 @@ Voir <http://microalg.info>.")
     )
   )
 )
+(ifn head
+  (de head (n l acc)
+    (cond
+      ((or (=0 n) (=0 (length l))) (reverse acc))
+      (T (prog (push 'acc (pop 'l)) (head (- n 1) l acc)))
+    )
+  )
+)
+(ifn tail
+  (de tail (n l) (tail_helper n (reverse l)))
+  (de tail_helper (n l acc)
+    (cond
+      ((or (=0 n) (=0 (length l))) acc)
+      (T (prog (push 'acc (pop 'l)) (tail_helper (- n 1) l acc)))
+    )
+  )
+)
 (ifn member
   (de member (elt lst)
     (let (result lst)
@@ -53,6 +70,17 @@ Voir <http://microalg.info>.")
     result)
   )
 )
+(ifn class
+  (prog
+    (de class () NIL)
+    (de new () NIL)
+    (de dm () NIL)
+    (de : () NIL)
+    (de try (x) NIL)  # the x due to a bug in EmuLisp
+  )
+)
+(ifn conc
+  (de conc () NIL) )
 
 # Vérif et conversions de booléens MicroAlg <-> PicoLisp:
 (de !boolM2P (x) (if (<> Faux x) T NIL))
