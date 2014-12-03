@@ -228,7 +228,9 @@ Si la variable contient un texte ou une liste et qu’une position est fournie,
 comme par exemple dans :  
 `(Affecter_a var val En_position idx)`  
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
- `val`.")
+ `val`.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de Affecter_a arg_lst
     (let (var (car arg_lst)
@@ -351,14 +353,17 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 )
 # Interface MicroAlg des listes
 (put 'Liste 'doc
-"Commande qui construit une liste.")
+"**Non disponible dans la version web !**  
+Commande qui construit une liste.")
 (put 'Liste 'text "Commande `Liste`.")
 (de Liste @
     (new '(+Liste) (rest)) )
 
 # Manipulations de texte et de liste
 (put 'Longueur 'doc
-"Commande qui retourne la longueur d’un texte ou d’une liste.")
+"Commande qui retourne la longueur d’un texte ou d’une liste.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Longueur 'text "Commande `Longueur`.")
 (de Longueur (obj)
     (if (!boolM2P (Liste? obj))
@@ -367,9 +372,12 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
     )
 )
 (put 'Nieme 'doc
-"Permet d’accéder en lecture à un des éléments d’une liste (se lit « énième »).
+"Permet d’accéder en lecture à un des éléments d’un texte ou d’une liste
+(se lit « énième »).
 
-La numérotation commence à 1.")
+La numérotation commence à 1.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Nieme 'text "Commande `Nieme`.")
 (de Nieme (obj idx)
     # Quelques vérifications
@@ -388,7 +396,9 @@ La numérotation commence à 1.")
       (T Rien)
     ))
 (put 'Tete 'doc
-"Commande qui retourne le premier élément d’une liste.")
+"Commande qui retourne le premier élément d’un texte ou d’une liste.
+
+**Les listes ne sont pas disponibles dans la version web !**")
 (put 'Tete 'text "Commande `Tete`.")
 (de Tete (obj)
     # Quelques vérifications
@@ -402,7 +412,10 @@ La numérotation commence à 1.")
       (T Rien)
     ))
 (put 'Queue 'doc
-"Commande qui retourne une copie du texte ou de la liste en paramètre `obj`, mais sans son premier élément.")
+"Commande qui retourne une copie du texte ou de la liste en paramètre `obj`,
+mais sans son premier élément.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
@@ -418,7 +431,9 @@ La numérotation commence à 1.")
     ))
 (put 'Ajouter_a 'doc
 "Commande qui, si `sym` contient un texte ou une liste, affecte un nouvel
-élément à la fin de ce texte ou de cette liste (après le dernier élément).")
+élément à la fin de ce texte ou de cette liste (après le dernier élément).
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Ajouter_a 'text "Commande `Ajouter_a`.")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
@@ -435,7 +450,9 @@ La numérotation commence à 1.")
 )
 (put 'Retirer_de 'doc
 "Commande qui, si `sym` contient un texte ou une liste, retire le dernier
-élément à la fin de ce texte ou de cette liste et le retourne.")
+élément à la fin de ce texte ou de cette liste et le retourne.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
@@ -665,7 +682,8 @@ et `Faux` sinon.")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 (put 'Liste? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est une liste,
+"**Non disponible dans la version web !**  
+Prédicat retournant `Vrai` si la valeur de son argument est une liste,
 et `Faux` sinon.")
 (put 'Liste? 'text "Prédicat `Liste?`.")
 (de Liste? (x) (if (or (try 'text> x) (try 'text> (eval x))) Vrai Faux))
@@ -710,7 +728,9 @@ dans l’ordre décroissant.")
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
 
 * **Textes** : le seul texte vide est `\"\"`.
-")
+* **Listes** : la seule liste vide est `(Liste)`.
+
+**Attention, les listes ne sont pas disponibles dans la version web !**")
 (put 'Vide? 'text "Prédicat `Vide?`.")
 (de Vide? (obj)
     (if (<> 0 (Longueur obj)) Faux Vrai))
