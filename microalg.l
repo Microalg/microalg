@@ -11,7 +11,7 @@ Voir <http://microalg.info>.")
 (setq symboles '(
 "+" "-" "*" "/" "%" "**"
 "!!!" "=" "=/" "<" "<=" ">" ">="
-"Affecter_a" "Afficher" "Aide" "Alors"
+"Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
 "Concatener"
 "Definir" "Demander"
@@ -317,6 +317,9 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (dm elts> ()
     (: elts)
 )
+(dm push> (elt)
+    (=: elts (conc (: elts) (list elt)))
+)
 # Interface MicroAlg des listes
 (put 'Liste 'doc
 "Commande qui construit une liste.")
@@ -384,6 +387,23 @@ La numérotation commence à 1.")
       (T (quit "Vous cherchez la queue d’une valeur qui n’est ni un texte ni une liste."
                (list obj (Type obj))))
     ))
+(put 'Ajouter_a 'doc
+"Commande qui, si `sym` contient un texte ou une liste, affecte un nouvel
+élément à la fin de ce texte ou de cette liste (après le dernier élément).")
+(put 'Ajouter_a 'text "Commande `Ajouter_a`.")
+(de Ajouter_a arg_lst
+  (let (!sym (car arg_lst)
+        !evaled_sym (eval !sym)
+        !elt (eval (cadr arg_lst)))
+       # Quelques vérifications
+       # Le calcul
+       (cond
+         ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
+         ((str? !evaled_sym) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         (T Rien)
+       )
+  )
+)
 
 # Types et conversions
 (put 'Type 'doc
