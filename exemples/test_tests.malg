@@ -1,0 +1,21 @@
+(Definir (Double x)
+ "Retourne le double du paramètre `x`."
+ "Profgra"
+ (Retourner (* 2 x))
+)
+(!!! "La commande suivante «attache» à `Double` une liste d’exemples.")
+(!!! "Cette liste contient des appels et les retours correspondants.")
+(!!! "Vous êtes invitée à «casser» les tests, juste pour voir...")
+(Exemples_de Double
+  (Liste
+    (? 1) 2
+    (? 2) 4
+    (? 3) 6
+  )
+)
+(Afficher "Les exemples de `Double` sont :")
+(Afficher (Exemples_de Double))
+(!!! "La commande suivante vérifie que la commande `Double` respecte les exemples.")
+(Tester Double)
+(Afficher "Et les tests se sont bien déroulés.")
+(bye)

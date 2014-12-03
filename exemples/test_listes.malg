@@ -1,0 +1,9 @@
+(Exemples_de Retirer_de
+  (Liste
+    (? (Liste 1 2)) 2
+    (? (Liste 1 2 3)) 3
+  )
+)
+(Tester Retirer_de)
+(!!! "Ajouter_a est intestable car ne retourne rien.")
+(bye)
