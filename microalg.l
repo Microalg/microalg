@@ -19,7 +19,7 @@ Voir <http://microalg.info>.")
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
-"Longueur"
+"Liste" "Longueur"
 "Nieme" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
@@ -140,20 +140,30 @@ Si vous ne l’avez pas déjà fait, commencez par le
 (setq *LastStdOut "?")
 (de Afficher args
   (let (first (car args)
-         second (cadr args)
-         text (if (num? first) first (get first 'text))
-         a_afficher (if text text (eval first)))
-        (if second (quit (pack "`Afficher` n’accepte qu’un paramètre, faites "
-                               "plusieurs affichages ou utilisez `Concaténer`." )))
-        (setq *LastStdOut (if a_afficher a_afficher "?"))
-        (ifn !testing
-             (println (ifn a_afficher
-                           (if (<> *EMUENV "browser")
-                               " "
-                               "&nbsp;")
-                           a_afficher)))
-        Rien  # Pas de valeur de retour
-  )
+        evaled_first (eval first)
+        second (cadr args)
+        text (cond
+               ((num? first) first)
+               ((str? first) first)
+               ((get first 'text) (get first 'text))
+               ((try 'text> evaled_first) (text> evaled_first))
+               ((num? evaled_first) evaled_first)
+               ((str? evaled_first) evaled_first)
+               ((get evaled_first 'text) (get evaled_first 'text))
+               (T (quit "Impossible d’afficher ceci." first))
+             )
+        a_afficher (if text text (eval first)))
+       (if second (quit (pack "`Afficher` n’accepte qu’un paramètre, faites "
+                              "plusieurs affichages ou utilisez `Concaténer`." )))
+       (setq *LastStdOut (if a_afficher a_afficher "?"))
+       (ifn !testing
+            (println (ifn a_afficher
+                          (if (<> *EMUENV "browser")
+                              " "
+                              "&nbsp;")
+                          a_afficher)))
+       Rien  # Pas de valeur de retour
+      )
 )
 
 # Concatener
@@ -262,6 +272,23 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 # https://en.wikipedia.org/wiki/ASCII#ASCII_printable_character_code_chart
 # >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
 # ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'                                       "
+
+# Listes
+# Implémentation interne des listes (POO)
+(class +Liste)
+# elts
+(dm T (ELTS)
+      (=: elts ELTS)
+)
+(dm text> ()
+    (pack "(Liste" (if (: elts) " ") (glue " " (: elts)) ")")
+)
+# Interface MicroAlg des listes
+(put 'Liste 'doc
+"Commande qui construit une liste.")
+(put 'Liste 'text "Commande `Liste`.")
+(de Liste @
+    (new '(+Liste) (rest)) )
 
 # Manipulations de texte
 (put 'Longueur 'doc
