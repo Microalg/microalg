@@ -67,9 +67,14 @@
             # Manipulations de listes
             '(= "(Liste)" (prog (Afficher (Liste)) *LastStdOut))
             '(= "(Liste 1 2 3)" (prog (Afficher (Liste 1 2 3)) *LastStdOut))
-            '(= "(Liste 1 2 3)" (prog (Initialiser x 1) (Afficher (Liste x 2 3)) *LastStdOut))
+            '(let (x NIL) (= "(Liste 1 2 3)" (prog (Initialiser x 1) (Afficher (Liste x 2 3)) *LastStdOut)))
+            '(or (put 'x 'type NIL) T)
             '(= "(Liste 1 2 (Liste 3 4))" (prog (Afficher (Liste 1 2 (Liste 3 4))) *LastStdOut))
-            '(= "(Liste 1 2 (Liste 3 1))" (prog (Initialiser x 1) (Afficher (Liste x 2 (Liste 3 x))) *LastStdOut))
+            '(let (x NIL) (= "(Liste 1 2 (Liste 3 1))" (prog (Initialiser x 1) (Afficher (Liste x 2 (Liste 3 x))) *LastStdOut)))
+            '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= "(Liste 1 2 (Liste 3 4))" (prog (Initialiser x (Liste 3 4)) (Afficher (Liste 1 2 x)) *LastStdOut)))
+            '(or (put 'x 'type NIL) T)
+            '(= "(Liste 1 2 (Liste 3 (Liste 4 5)))" (prog (Afficher (Liste 1 2 (Liste 3 (Liste 4 5)))) *LastStdOut))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))
