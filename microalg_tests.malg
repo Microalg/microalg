@@ -25,6 +25,7 @@
             '(= "" (Concatener "" ""))
             '(= "hello world" (Concatener "hello " "world"))
             '(= "Salut tout le monde!" (Concatener "Salut " "tout " "le " "monde!"))
+            '(= "hello world" (prog (Afficher (Concatener "hello " "world")) *LastStdOut))
             '(= "àéèîïôü" (Concatener "à" "é" "è" "î" "ï" "ô" "ü" ))
             # Gestion des variables
             '(let (x NIL) (= 0 (prog (setq x 0) x)))
