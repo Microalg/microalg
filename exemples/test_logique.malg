@@ -1,0 +1,17 @@
+(Exemples_de Non
+  (Liste
+    (? Faux) Vrai
+    (? Vrai) Faux
+  )
+)
+(Tester Non)
+
+(Exemples_de Ou
+  (Liste
+    (? Faux Faux) Faux
+    (? Faux Vrai) Vrai
+    (? Vrai Faux) Vrai
+  )
+)
+(Tester Ou)
+(bye)

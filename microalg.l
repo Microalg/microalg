@@ -10,7 +10,7 @@ Voir <http://microalg.info>.")
 
 (setq symboles '(
 "+" "-" "*" "/" "%" "**"
-"!!!" "=" "=/" "<" "<=" ">" ">="
+"!!!" "=" "=/" "<" "<=" ">" ">=" "?"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
 "Concatener"
@@ -25,7 +25,7 @@ Voir <http://microalg.info>.")
 "Queue"
 "Retirer_de" "Retourner" "Rien"
 "Si" "Sinon"
-"Tant_que" "Tete" "Texte" "Texte?" "Type"
+"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Type"
 "Vide?" "Vrai" "Vrai?"
 ))
 
@@ -154,6 +154,8 @@ Si vous ne l’avez pas déjà fait, commencez par le
           efirst (eval first)
          )
          (cond
+          ((and (not (atom efirst)) (!boolM2P (= '? (car efirst))))
+           (pack "(" (str efirst) ")"))           # liste commençant par ?
           ((num? first) first)                    # nombre litéral
           ((get first 'text) (get first 'text))   # p.ex. commandes, après num
           ((try 'text> first) (text> first))      # liste évaluée (avec $), avant txt
@@ -653,7 +655,85 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.
 **Attention !** Cette instruction doit être la dernière de la commande créée car
 `Retourner` n’en interrompt pas l’exécution.")
 (put 'Retourner 'text "Commande `Retourner`.")
-(de Retourner (val) val)
+(de Retourner (val)
+  val
+)
+(put 'Exemples_de 'doc
+"**Non disponible dans la version web !**  
+Permet de lire ou écrire les exemples-tests d’une commande.
+
+Exemples :
+
+    (!!! \"Pour écrire les exemples de Double\")
+    (Exemples_de Double
+        (Liste
+            (? 1) 2
+            (? 2) 4
+            (? 3) 6
+        )
+    )
+    -> Rien
+
+    (!!! \"Pour lire les exemples de Double\")
+    (Exemples_de Double)
+    -> (Liste (? 1) 2 (? 2) 4 (? 3) 6)
+
+    (!!! \"Pour recopier les exemples de Cmd_1 dans Cmd_2.\")
+    (Exemples de Cmd_2 (Exemples de Cmd_1))
+")
+(put 'Exemples_de 'text "Commande `Exemples_de`.")
+(de Exemples_de arg_lst
+  (let (commande (car arg_lst)
+        exemples (eval (cadr arg_lst)))
+       (ifn exemples (get commande 'exemples)
+                     (prog
+                       (ifn (!boolM2P (Liste? exemples))
+                            (quit "Les exemples fournis ne forment pas une liste."))
+                       (put commande 'exemples exemples)
+                     )
+       )
+  )
+)
+(put 'Tester 'doc
+"**Non disponible dans la version web !**  
+Vérifie que les exemples de la commande passée en paramètre sont conformes.
+
+Voir la commande `Exemples_de`.")
+(put '? 'text "Symbole remplaçant la commande à tester dans `Exemples_de`.")
+# Éviter le message « redefined »
+(setq ? NIL)
+(de ? @ (apply list (conc (list '?) (rest))))
+(put 'Tester 'text "Commande `Tester`.")
+(de !paires (!list !acc)
+    (cond
+      ((!boolM2P (= 0 (length !list))) (reverse !acc))
+      (T (push '!acc (cut 2 '!list))
+         (!paires !list !acc))
+    )
+)
+(de Tester arg_lst
+  (let (!commande (car arg_lst)
+        !exemples (get !commande 'exemples))
+       (cond
+         ((not (eval !commande))
+            (Afficher (pack "Il faut définir la commande " !commande " avant de la tester.")))
+         ((not !exemples)
+            (Afficher (pack "La commande " !commande " n’a pas d’exemples.")))
+         ((!boolM2P (Non (Liste? !exemples)))
+            (Afficher (pack "La commande " !commande " n’a pas d’exemples valables.")))
+         (T (mapcar '((!paire) (let (!args (cdr (car !paire))
+                                     !got (apply (eval !commande) !args)
+                                     !expected (cadr !paire))
+                                    (if (<> !got !expected)
+                                        (Afficher (pack "Erreur: (" !commande " "
+                                                        (glue " " (mapcar '!text !args)) ")"
+                                                        " donne " !got
+                                                        " au lieu de " !expected ".")))
+                               )
+                     ) (!paires (elts> !exemples))))
+       )
+  )
+)
 
 # Prédicats
 (put 'Vrai? 'doc
