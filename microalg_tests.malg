@@ -61,6 +61,10 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "booleen" (prog (Initialiser x Faux) (Type x))))
             '(or (put 'x 'type NIL) T)
+            # Manipulations de listes
+            '(= "(Liste)" (prog (Afficher (Liste)) *LastStdOut))
+            '(= "(Liste 1 2 3)" (prog (Afficher (Liste 1 2 3)) *LastStdOut))
+            '(= "(Liste 1 2 3)" (prog (Initialiser x 1) (Afficher (Liste x 2 3)) *LastStdOut))
             # Manipulations de texte
             '(= 0 (Longueur ""))
             '(= 5 (Longueur "salut"))
