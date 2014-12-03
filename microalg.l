@@ -370,9 +370,11 @@ en minuscule).")
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
        (cond
-         ((<> Faux (Texte?   !evaled_x)) "texte")
-         ((<> Faux (Booleen? !evaled_x)) "booleen")
          ((<> Faux (Nombre?  !evaled_x)) "nombre")
+         ((<> Faux (Liste?   !x))        "liste")
+         ((<> Faux (Texte?   !evaled_x)) "texte")
+         ((<> Faux (Liste?   !evaled_x)) "liste")
+         ((<> Faux (Booleen? !evaled_x)) "booleen")
          ((<> Faux (== Rien  !evaled_x)) "rien")
          ((sym? x) (get !x 'type))
          (T Rien)
@@ -568,6 +570,11 @@ et `Faux` sinon.")
 et `Faux` sinon.")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
+(put 'Liste? 'doc
+"Prédicat retournant `Vrai` si la valeur de son argument est une liste,
+et `Faux` sinon.")
+(put 'Liste? 'text "Prédicat `Liste?`.")
+(de Liste? (x) (if (or (try 'text> x) (try 'text> (eval x))) Vrai Faux))
 # Sans le suffixe '?'
 # Éviter le message « redefined »
 (setq = NIL)

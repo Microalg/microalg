@@ -51,6 +51,7 @@
             '(= "nombre" (Type 0))
             '(= "booleen" (Type Vrai))
             '(= "booleen" (Type Faux))
+            '(= "liste" (Type (Liste)))
             '(= "0" (Texte "0"))
             '(= "0" (Texte 0))
             '(= 0 (Nombre 0))
