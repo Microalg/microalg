@@ -79,6 +79,7 @@ function OnStyle(styler)
         paren_level = 0
         styler:StartStyling(0, styler.startPos + styler.lengthDoc, styler.initStyle)
         
+        styler:SetState(S_NORMAL)
         while styler:More() do
                 -- malg_debug(styler:Current() .. " (" .. styler:State() .. ")")
                 
