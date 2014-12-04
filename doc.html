@@ -425,16 +425,11 @@ notamment pour mettre en place un nouveau langage.
 
 ### Exécution
 
-`F5` pour lancer le programme. La sortie apparaît dans le panneau de droite.
+`F5` pour lancer le programme. Si c’est un nouveau fichier, il faudra tout
+d’abord l’enregistrer, sans oublier l’extension `.malg`.
 
-Ce panneau de droite sert aussi à interagir avec le programme. Les valeurs
-demandées par le programme doivent y être tapées.
-
-### Problèmes connus
-
-Si SciTE ne réagit pas, c’est peut-être parce que le précédent programme ne
-s’est pas terminé correctement. Dans ce cas, cliquer sur :
-`Tools` puis `Stop Executing` puis réessayer.
+La sortie apparaît dans le panneau de droite. Ce panneau sert aussi à interagir
+avec le programme. Les valeurs demandées par le programme doivent y être tapées.
 
 ### Panneau de sortie
 
@@ -444,6 +439,23 @@ s’est pas terminé correctement. Dans ce cas, cliquer sur :
 
 **Bug connu** (si vous utilisez autre chose que Windows) : pas moyen de faire
 en sorte que `(Demander)` attende l’utilisateur.
+
+### Problèmes connus
+
+#### Pas de réaction
+
+Si SciTE ne réagit pas, c’est peut-être parce que le précédent programme ne
+s’est pas terminé correctement. Dans ce cas, plusieurs solutions :
+
+* taper `(bye)` dans le panneau de droite, après le `?` ou le `:` ;
+* cliquer sur `Tools` puis `Stop Executing` ;
+
+puis réessayer. Attention, dans certains cas, un processus `java.exe` peut
+continuer de tourner.
+
+#### Unable to access jarfile
+
+Merci d’éviter les espaces dans les différents chemins.
 
 ## NotePad++
 
