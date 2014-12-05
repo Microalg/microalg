@@ -76,7 +76,7 @@ Voir <http://microalg.info>.")
     (de new () NIL)
     (de dm () NIL)
     (de : () NIL)
-    (de try (x) NIL)  # the x due to a bug in EmuLisp
+    (de try () NIL)
   )
 )
 (ifn conc
