@@ -1310,7 +1310,7 @@ function evalDef(def, inExprLst) {
 		if (def.car === A1) {
 			evFrame = new Cell(NIL, evalArgs(inExprLst));
 			cst.evFrames = new Cell(evFrame, cst.evFrames);	// pushing evFrame onto cst.evFrames
-		} else {
+		} else if (! def.car.lock) {
 			locSym = def.car;
 			locSym.pushValue(inExprLst);	// Binding unevaluated list to a single symbol
 		}
