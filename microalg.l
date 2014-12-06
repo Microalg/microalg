@@ -232,7 +232,8 @@ comme par exemple dans :
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
  `val`.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de Affecter_a arg_lst
     (let (var (car arg_lst)
@@ -355,7 +356,8 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 )
 # Interface MicroAlg des listes
 (put 'Liste 'doc
-"**Non disponible dans la version web !**  
+"**Non disponible dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))  
 Commande qui construit une liste.")
 (put 'Liste 'text "Commande `Liste`.")
 (de Liste @
@@ -365,7 +367,8 @@ Commande qui construit une liste.")
 (put 'Longueur 'doc
 "Commande qui retourne la longueur d’un texte ou d’une liste.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Longueur 'text "Commande `Longueur`.")
 (de Longueur (obj)
     (if (!boolM2P (Liste? obj))
@@ -379,7 +382,8 @@ Commande qui construit une liste.")
 
 La numérotation commence à 1.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Nieme 'text "Commande `Nieme`.")
 (de Nieme (obj idx)
     # Quelques vérifications
@@ -400,7 +404,8 @@ La numérotation commence à 1.
 (put 'Tete 'doc
 "Commande qui retourne le premier élément d’un texte ou d’une liste.
 
-**Les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Tete 'text "Commande `Tete`.")
 (de Tete (obj)
     # Quelques vérifications
@@ -417,7 +422,8 @@ La numérotation commence à 1.
 "Commande qui retourne une copie du texte ou de la liste en paramètre `obj`,
 mais sans son premier élément.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
@@ -435,7 +441,8 @@ mais sans son premier élément.
 "Commande qui, si `sym` contient un texte ou une liste, affecte un nouvel
 élément à la fin de ce texte ou de cette liste (après le dernier élément).
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Ajouter_a 'text "Commande `Ajouter_a`.")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
@@ -454,7 +461,8 @@ mais sans son premier élément.
 "Commande qui, si `sym` contient un texte ou une liste, retire le dernier
 élément à la fin de ce texte ou de cette liste et le retourne.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
@@ -659,7 +667,8 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.
   val
 )
 (put 'Exemples_de 'doc
-"**Non disponible dans la version web !**  
+"**Non disponible dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))  
 Permet de lire ou écrire les exemples-tests d’une commande.
 
 Exemples :
@@ -695,7 +704,8 @@ Exemples :
   )
 )
 (put 'Tester 'doc
-"**Non disponible dans la version web !**  
+"**Non disponible dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))  
 Vérifie que les exemples de la commande passée en paramètre sont conformes.
 
 Voir la commande `Exemples_de`.")
@@ -762,7 +772,8 @@ et `Faux` sinon.")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 (put 'Liste? 'doc
-"**Non disponible dans la version web !**  
+"**Non disponible dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))  
 Prédicat retournant `Vrai` si la valeur de son argument est une liste,
 et `Faux` sinon.")
 (put 'Liste? 'text "Prédicat `Liste?`.")
@@ -810,7 +821,8 @@ dans l’ordre décroissant.")
 * **Textes** : le seul texte vide est `\"\"`.
 * **Listes** : la seule liste vide est `(Liste)`.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**")
+**Attention, les listes ne sont pas disponibles dans la version web !**
+([voir plus d’infos](doc.html#listesetjavascript))")
 (put 'Vide? 'text "Prédicat `Vide?`.")
 (de Vide? (obj)
     (if (<> 0 (Longueur obj)) Faux Vrai))
