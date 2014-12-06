@@ -80,7 +80,7 @@ input, textarea, .richtext > pre {
     background: #999 !important;
 }
 .text {
-    border-bottom: 2px solid green;
+    border-bottom: 1px solid #aaa;
 }
 .richtext textarea, .richtext pre {
     resize: none !important;
