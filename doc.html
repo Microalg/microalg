@@ -104,25 +104,42 @@ MicroAlg se veut :
 MicroAlg est encore jeune et il manque encore des choses importantes avant
 qu’elle ne soit considérée comme complète :
 
-* Dans sa version Javascript, c’est-à-dire principalement dans le navigateur,
-  MicroAlg peut pour l’instant travailler avec des flottants. C’est plutôt
-  appréciable, sauf que dans les autres versions, ça ne sera pas possible
-  (voir la documentation officielle de PicoLisp sur les nombres :
-  [ici](http://www.software-lab.de/doc/ref.html#number) et
-  [là](http://www.software-lab.de/doc/ref.html#num-io)).  
-  L’idée est de trouver un moyen de présenter à l’utilisateur les nombres en
-  virgule fixe de PicoLisp.
-* Les messages d’erreurs ne sont pas encore tous très clairs, voire même pas
-  encore tous en français. J’attends que les instructions `throw` et `catch`
-  soient implémentées dans EmuLisp.
-* La commande `Retourner` n’interrompt pas la commande en cours. Voir
-  [ici](tuto.html#script-bug-retourner) une illustration du problème.
-* Il n’y a pas encore de structure de type *liste* dans MicroAlg. J’attends
-  que les instructions de
-  [programmation orientée objet](http://software-lab.de/doc/tut.html#oop)
-  soient implémentées dans EmuLisp.
-* Si vous utilisez SciTE sous autre chose que Windows, pas moyen de faire
-  en sorte que `(Demander)` attende l’utilisateur.
+### Nombres
+
+Dans sa version Javascript, c’est-à-dire principalement dans le navigateur,
+MicroAlg peut pour l’instant travailler avec des flottants. C’est plutôt
+appréciable, sauf que dans les autres versions, ça ne sera pas possible
+(voir la documentation officielle de PicoLisp sur les nombres :
+[ici](http://www.software-lab.de/doc/ref.html#number) et
+[là](http://www.software-lab.de/doc/ref.html#num-io)).  
+L’idée est de trouver un moyen de présenter à l’utilisateur les nombres en
+virgule fixe de PicoLisp.
+
+### Erreurs non traduites
+
+Les messages d’erreurs ne sont pas encore tous très clairs, voire même pas
+encore tous en français. J’attends que les instructions `throw` et `catch`
+soient implémentées dans EmuLisp.
+
+### Retour de fonction non interruptif
+
+La commande `Retourner` n’interrompt pas la commande en cours. Voir
+[ici](tuto.html#script-bug-retourner) une illustration du problème.
+
+### Listes et Javascript
+
+Les commandes `Liste`, `Liste?`, `Exemples_de` et `Tester` ne sont pas encore
+disponibles avec MicroAlg en version Javascript (en particulier dans le
+navigateur). Pour les utiliser, il faut installer MicroAlg sur votre machine (voir
+[les instructions d’installation](https://github.com/Microalg/Microalg/blob/latest/INSTALL.md)).
+
+La situation se débloquera quand EmuLisp implémentera la
+[programmation orientée objet](http://software-lab.de/doc/tut.html#oop).
+
+### Saisie utilisateur avec SciTE
+
+Si vous utilisez SciTE sous autre chose que Windows, pas moyen de faire
+en sorte que `(Demander)` attende l’utilisateur.
 
 ## Syntaxe
 
