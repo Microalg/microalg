@@ -17,6 +17,10 @@ body.microalg {
 .microalg h6 a {
     text-decoration: none;
 }
+.microalg h2 {
+    border-top: 1px solid black;
+    padding-top: 0.5em;
+}
 .microalg code {
     margin: 0 2px;
     padding: 0px 5px;
