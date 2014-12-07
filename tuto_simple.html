@@ -377,6 +377,14 @@
      src:
         '(Afficher (/ 6 (+ 1 1 1)))'
     });</script>
+    <p>Pour calculer l’opposé d’un nombre, on peut toujours de retirer ce
+    nombre à 0, c’est-à-dire écrire <code>(- 0 x)</code>. Mais on peut aussi
+    passer un seul paramètre à la commande <code>-</code>.</p>
+    <div id="script-oppose"></div>
+    <script>inject_microalg_editor_in('script-oppose', {
+     src:
+        '(Afficher (- 7))'
+    });</script>
 
     <h2 id="calculs-nombres-demandes"><a href="#calculs-nombres-demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
     <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
