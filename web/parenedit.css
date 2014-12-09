@@ -37,6 +37,11 @@ input, textarea, .richtext > pre {
     font-family: 'Courier New', Courier, monospace;
     font-size: 100%;
     line-height: 1.5;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    -webkit-tab-size: 4;
+
 }
 #test:focus, input:focus, .fake_focus {
     border: 1px solid #85B6DA;
