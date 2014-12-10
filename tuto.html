@@ -1032,6 +1032,26 @@
         '(Afficher (Nieme txt 4))\n' +
         ''
     });</script>
+    Affectation positionnelle
+    <div id="script-affect-pos"></div>
+    <script>inject_microalg_editor_in('script-affect-pos', {
+     src:
+        '(!!! "Cela fonctionne aussi avec une variable contenant du texte.")\n' +
+        '(Initialiser txt "bonjour")\n' +
+        '(Afficher (Nieme txt 4))\n' +
+    (Affecter_a txt "z" En_position 4)
+    (Afficher txt)
+    besoin de ref pour voir la modif
+        '(Afficher (Nieme "salut" 1))\n' +
+        '(Afficher (Nieme "salut" 2))\n' +
+        '(!!! "Attention, il faut que l’indice soit\n' +
+        '      un entier strictement positif,\n' +
+        '      inférieur ou égal à la longueur du texte.")\n' +
+        '(!!! "Essayez de modifier le code ci-dessus pour qu’il génère une erreur.")\n' +
+        '\n' +
+        ''
+    });</script>
+
     <p>Nous aurons parfois besoin de couper la tête d’un texte, pour
     travailler de proche en proche.</p>
     <div id="script-tete-queue"></div>
