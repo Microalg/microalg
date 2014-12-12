@@ -197,7 +197,7 @@
 )
 (let (Goods 0 Bads 0)
     (mapc
-        '((BoolExpr)
+        '((BoolExpr)  # (println BoolExpr)
             (if (<> (eval BoolExpr) Faux)
                 (if (<> 'or (car BoolExpr)) (inc 'Goods))
                 (inc 'Bads)
