@@ -275,6 +275,10 @@ valeur qui est parfois fournie :
 * Indice non entier.
 * Indice trop grand.
 * `Initialiser` prend 2 paramètres. Vous en donnez X.
+* `java.lang.NullPointerException`
+    * Il y a peut-être dans votre code une commande de la forme `(x)` ou `x`
+      est une variable contenant un nombre. Dans ce cas, vous voulez peut-être
+      juste écrire la valeur de `x`, car `x` n’est pas une commande.
 * X -- La condition n’est pas un booléen.
     * Voir la sous-section [booléens](#boolens).
 * Le premier paramètre de `Entier@` doit être un nombre.
