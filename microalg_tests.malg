@@ -145,10 +145,6 @@
             '(= Faux (Booleen? 0))
             '(= Vrai (Vide? ""))
             '(= Faux (Vide? "salut"))
-        ) )
-
-(setq tests_non_emulisp
-        (list
             '(= "liste" (Type (Liste)))
             # Manipulations de listes
             '(let (x NIL) (= "(Liste 2 4 6)" (prog (Initialiser x (Liste 2 4 0)) (Affecter_a x 6 En_position 3) (!text x))))
@@ -193,8 +189,6 @@
             '(or (put 'x 'type NIL) T)
         ) )
 
-(ifn *EMUENV (conc tests tests_non_emulisp)  # tfaçons conc est inactif en js
-)
 (let (Goods 0 Bads 0)
     (mapc
         '((BoolExpr)  # (println BoolExpr)

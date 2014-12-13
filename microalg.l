@@ -70,8 +70,6 @@ Voir <http://microalg.info>.")
     result)
   )
 )
-(ifn conc
-  (de conc () NIL) )
 
 # 26oct14jk
 # extracts from PicoLisp lib.l, (c) Software Lab. Alexander Burger
