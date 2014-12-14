@@ -868,6 +868,23 @@ var coreFunctions = {
 		if (cv instanceof Symbol) return cachedTextParse(cv.valueOf()).car;
 		throw new Error(newErrMsg(SYM_EXP, cv));
 	},
+	"append": function(c, ex) {
+		for (ex = ex.cdr; (z = ex.Cdr) instanceof Cell; ex = z) {
+			if ((x = evalLisp(ex.car)) instanceof Cell) {
+				z = y = new Cell(x.car, x.cdr);
+				while ((x = y.cdr) instanceof Cell)
+					y = y.cdr = new Cell(x.car, x.cdr);
+				while ((ex = ex.cdr).cdr instanceof Cell) {
+					for (x = evalLisp(ex.car); x instanceof Cell; x = y.cdr)
+						y = y.cdr = new cell(x.car, x.cdr);
+					y.cdr = x;
+				}
+				y.cdr = evalLisp(ex.car);
+				return z;
+			}
+		}
+		return evalLisp(ex.car);
+	},
 	"apply": function(c) { return applyFn(c.car, evalLisp(c.cdr.car), c.cdr.cdr); },
 	"arg": function(c) { var n = 0, f = cst.evFrames.car;
 		if (c !== NIL) {
@@ -904,6 +921,21 @@ var coreFunctions = {
 		var arr = s.split(""), v = NIL;
 		while (arr.length > 0) v = new Cell(newTransSymbol(arr.pop()), v);
 		return v;
+	},
+	"conc": function(c, ex) {
+		var z = evalLisp((ex = ex.cdr).car);
+		var x = z;
+		var y;
+		while ((ex = ex.cdr) instanceof Cell) {
+			if (!(x instanceof Cell)) {
+				z = x = evalLisp(ex.car);
+			} else {
+				while ((y = x.cdr) instanceof Cell)
+					x = y;
+				x.cdr = evalLisp(ex.car);
+			}
+		}
+		return z;
 	},
 	"cond": function(c) {
 		while (c.car instanceof Cell) {
@@ -1104,6 +1136,12 @@ var coreFunctions = {
 	},
 	"index": function(c) { var i = indx(evalLisp(c.car), evalLisp(c.cdr.car));
 		return (i === 0) ? NIL : new Number(i);
+	},
+	"last": function(c, ex) {
+		if (!((x = evalLisp(ex.cdr.car)) instanceof Cell)) return x;
+		while (x.cdr instanceof Cell)
+			x = x.cdr;
+		return x.car;
 	},
 	"le0": function(c) { var cv = evalLisp(c.car);
 		return ((cv instanceof Number) && (cv <= 0)) ? cv : NIL; },
