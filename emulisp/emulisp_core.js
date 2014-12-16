@@ -1,4 +1,4 @@
-/* 12dec14jk
+/* 15dec14jk
  * (c) Jon Kleiser
  */
 
@@ -1480,6 +1480,13 @@ var coreFunctions = {
 				new Cell(A1, new Cell(new Cell(cst.iSym["pass"], new Cell(box(f), NIL)), NIL)))), NIL)));
 		}
 		return s;
+	},
+	"try": function(c, ex) { var x = evalLisp((ex = ex.cdr).car), y;
+		if ((y = evalLisp((ex = ex.cdr).car)) instanceof Symbol) {
+			TheKey = x;	TheCls = null;
+			if ((x = method(y)) !== null) return evMethod(y, x, ex.cdr);
+		}
+		return NIL;
 	},
 	"untrace": function(c) {
 		var s = evalLisp(c.car), f = cdr(cdr(car(cdr(evalLisp(s))))), b = car(cdr(f));
