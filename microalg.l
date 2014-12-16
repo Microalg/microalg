@@ -35,6 +35,16 @@ Voir <http://microalg.info>.")
      (car (car (cdr arg)))
   )
 )
+(ifn cut
+  (de cut (n sym acc)
+    (let esym (eval sym)
+      (cond
+        ((not (<> 0 n)) (reverse acc))
+        (T              (let elt (pop sym) (push 'acc elt) (cut (- n 1) sym acc)))
+      )
+    )
+  )
+)
 (ifn glue
   (de glue (c l)
     (cond
