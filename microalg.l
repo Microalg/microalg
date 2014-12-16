@@ -52,15 +52,6 @@ Voir <http://microalg.info>.")
     )
   )
 )
-(ifn tail
-  (de tail (n l) (tail_helper n (reverse l)))
-  (de tail_helper (n l acc)
-    (cond
-      ((or (=0 n) (=0 (length l))) acc)
-      (T (prog (push 'acc (pop 'l)) (tail_helper (- n 1) l acc)))
-    )
-  )
-)
 (ifn member
   (de member (elt lst)
     (let (result lst)
