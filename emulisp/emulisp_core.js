@@ -975,13 +975,13 @@ var coreFunctions = {
 		if (! ((x = c).car instanceof Cell)) {
 			s = x.car;
 			t = Class.car;
-			console.log("dm #1: %s", lispToStr(t));
+			// console.log("dm #1: %s", lispToStr(t));
 		} else {
 			console.log("dm #2, TODO");	// TODO
 		}
 		if (s !== T) {
 			setSymbolValue(s, Meth.car);
-			console.log("dm #3, %s", lispToStr(s));	// TODO: msg. when redefined
+			// console.log("dm #3, %s", lispToStr(s));	// TODO: msg. when redefined
 		}
 		if (x.cdr instanceof Symbol) {
 			console.log("dm #4, TODO: %s", lispToStr(x));	// TODO
