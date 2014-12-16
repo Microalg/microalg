@@ -113,10 +113,6 @@ Voir <http://microalg.info>.")
     (ifn (!boolCheck x) (quit msg x))
     (!boolM2P x) )
 
-# Helpers
-(de compose (F G)  # http://rosettacode.org/wiki/First-class_functions#PicoLisp
-   (curry (F G) (X)
-         (F (G X)) ) )
 (de !add_quotes (x) (pack "\"" x "\""))
 (de !quote_txt (x) (if (and (str? x)
                             (not (try 'text> x)))  # car (str? (Liste)) -> not NIL
@@ -351,7 +347,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (dm text> ()
     (pack "(Liste"
           (if (: elts) " ")
-          (glue " " (mapcar (compose '!text '!quote_txt) (: elts)))
+          (glue " " (mapcar '((!txt) (!text (!quote_txt !txt))) (: elts)))
           ")"
     )
 )
