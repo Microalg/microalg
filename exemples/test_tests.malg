@@ -17,10 +17,11 @@
 (Afficher (Exemples_de Double))
 (!!! "Vérifions que la commande `Double` respecte les exemples.")
 (Tester Double)
-(Afficher "Voilà, c’est fait.")
+(Afficher "Voilà, c’est testé.")
 
 (!!! "Attention, utilisation avancée !")
 (!!! "Une commande peut récupérer les exemples d’une autre commande.")
 (Exemples_de Plus_un (Exemples_de Double))
+(Afficher "Les exemples de `Plus_un` sont :")
 (Afficher (Exemples_de Plus_un))
 (bye)
