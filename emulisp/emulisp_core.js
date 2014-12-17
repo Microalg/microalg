@@ -568,9 +568,9 @@ function newErrMsg(msg, badValue, ex) {
 
 function aTrue(val) { if (val !== NIL) { A1.setVal(val); return true; } else return false; }
 
-function car(c) { if (c.car) return c.car; else throw new Error(newErrMsg(LIST_EXP)); }
+function car(c) { if (c.car) return c.car; else throw new Error(newErrMsg(LIST_EXP, c)); }
 function cdr(c) { if ((c instanceof Cell) || (c === NIL)) return c.cdr;
-						else throw new Error(newErrMsg(LIST_EXP)); }
+						else throw new Error(newErrMsg(LIST_EXP, c)); }
 
 function numeric(val) {
 	if (val instanceof Number) return val;
