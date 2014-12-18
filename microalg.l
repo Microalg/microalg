@@ -569,6 +569,11 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     (!boolP2M (or (!boolM2P P) (!boolM2P Q))) )
 
 # Structures itératives
+(setq credit_iterations 1000)
+(setq credit_iterations_message
+      (pack "Crédit d’itérations épuisé (1 000 par défaut). Vous pouvez "
+            "recharger votre crédit en affectant une valeur à la variable "
+            "`credits_iterations`."))
 (put 'Tant_que 'doc
 "Structure itérative de type « tant que ... faire ... ».")
 (put 'Tant_que 'text "Commande `Tant_que`.")
@@ -577,6 +582,8 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                            Corps (cddr arg_lst))
                           (if (<> 'Faire Mot-Clef) (quit "Commande `Tant_que` sans mot-clé `Faire`."))
                           (while (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
+                                 (if (=0 (dec 'credit_iterations))
+                                     (quit credit_iterations_message))
                                  (run Corps))
                           Rien
                      )
@@ -594,6 +601,8 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                        (run Corps)
                        (if (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
                            (while (!boolCheckM2P (eval Bool) "La condition n’est pas un booléen.")
+                                  (if (=0 (dec 'credit_iterations))
+                                      (quit credit_iterations_message))
                                   (run Corps)))
                        Rien
                   )

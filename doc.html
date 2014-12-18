@@ -261,6 +261,12 @@ valeur qui est parfois fournie :
     * `Faire` est peut-être mal orthographié, n’oubliez pas la majuscule.
     * Le `Tant_que` correspondant a pu être fermé prématurément.  
       `(Tant_que (=/ n 1)) <- une parenthèse fermante en trop`
+* Crédit d’itérations épuisé (1 000 par défaut). Vous pouvez recharger votre
+  crédit en affectant une valeur à la variable `credits_iterations`.
+    * Peut-être que vous gérez mal la condition ou le compteur d’une des
+      boucles de votre programme. Sinon, si votre programme a vraiment besoin
+      de plus d’itérations, vous pouvez recharger votre crédit en affectant
+      une valeur à la variable `credits_iterations`.
 * `Entier@` prend 2 paramètres. Vous en donnez X.
 * `X -- Executable or Number expected`.
     * Il y a une parenthèse en trop devant `X`.
