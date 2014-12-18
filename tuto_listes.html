@@ -126,6 +126,9 @@
         '(Afficher (Longueur (Liste Vrai "avantage" 42)))\n' +
         ''
     });</script>
+    <p><strong>Rappel</strong> : <code>Nieme</code> se prononce
+    « énième » et permet d’obtenir un élément dans une liste en donnant une
+    position.</p>
     <div id="script-cmds-nieme"></div>
     <script>inject_microalg_editor_in('script-cmds-nieme', {
      src:
@@ -190,19 +193,42 @@
         ')\n' +
         ''
     });</script>
+    Saurez-vous parcourir la liste à l’envers ?
 
     <h2 id="algo-parcours"><a href="#algo-parcours">: </a>Algorithmes de parcours en lecture</h2>
     <p>Tous les outils sont maintenant entre vos mains pour mettre en place
     des algorithmes basés sur le simple parcours d’une liste.</p>
     <p>À vous de <a href="doc.html#cmd-Exemples_de">faire passer les tests</a>
     suivants !</p>
+    <div id="script-somme"></div>
+    <script>inject_microalg_editor_in('script-somme', {
+     src:
+        '(Definir (Somme liste valeur)\n' +
+        '    "Retourne la somme des valeurs de la `liste`."\n' +
+        '    "auteur inconnu"\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
+        ')\n' +
+        '(Exemples_de Somme\n' +
+        '    (Liste\n' +
+        '        (? (Liste 1 3 5)) 9\n' +
+        '        (? (Liste 5 10 20)) 35\n' +
+        '        (? (Liste)) 0\n' +
+        '    )\n' +
+        ')\n' +
+        '(Tester Somme)\n' +
+        ''
+    });</script>
     <div id="script-trouver-position"></div>
     <script>inject_microalg_editor_in('script-trouver-position', {
      src:
         '(Definir (Trouver_dans liste valeur)\n' +
         '    "Retourne la position de la `valeur` dans la `liste`, 0 si non présente."\n' +
         '    "auteur inconnu"\n' +
-        '    (Retourner 1)\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
         ')\n' +
         '(Exemples_de Trouver_dans\n' +
         '    (Liste\n' +
@@ -220,7 +246,9 @@
         '(Definir (Maximum_dans liste)\n' +
         '    "Retourne la valeur maximale dans la `liste`."\n' +
         '    "auteur inconnu"\n' +
-        '    (Retourner 1)\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
         ')\n' +
         '(Exemples_de Maximum_dans\n' +
         '    (Liste\n' +
