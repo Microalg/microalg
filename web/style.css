@@ -60,6 +60,7 @@ body.microalg {
     color: black;
 }
 .malg-display {
+    margin-bottom: 2em;
     border-color: black;
     border-style: solid;
     border-width: 1px;
