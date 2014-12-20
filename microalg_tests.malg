@@ -1,7 +1,7 @@
 (setq !testing T)
 (setq tests
         (list
-            '(= "0.2.2" version)
+            '(= "0.2.3" version)
             # Affichage
             '(= "Bonjour tout le monde !" (prog (Afficher "Bonjour tout le monde !") *LastStdOut))
             '(= "Deux" (prog (Afficher "Un") (Afficher "Deux") *LastStdOut))
