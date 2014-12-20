@@ -67,11 +67,6 @@ function colorize(text, pos) {
         if(pos > j) p2 += entities[x].length - 1;
         return entities[x];
     });
-    converted = converted.replace(
-        /([^=])(")([^"]*)(")/g,
-        function(match, prev, q1, txt, q2) {
-            return prev + q1 + '<span class="text">' + txt + '</span>' + q2;
-        });
 
     pos += p2;
     var parens = [], indices = [], o = {};
@@ -103,6 +98,11 @@ function colorize(text, pos) {
         (o[i].selected ? " selected_paren": "") + "'>" + o[i].type + "</span>" +
         newtext.substr(i + 1 + o[i].extra.length)
     });
+    newtext = newtext.replace(
+        /([^=])(")([^"]*)(")/g,
+        function(match, prev, q1, txt, q2) {
+            return prev + q1 + '<span class="text">' + txt + '</span>' + q2;
+        });
     return newtext;
 }
 
