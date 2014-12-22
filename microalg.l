@@ -700,6 +700,8 @@ Exemples :
 
     (!!! \"Pour recopier les exemples de Cmd_1 dans Cmd_2.\")
     (Exemples de Cmd_2 (Exemples de Cmd_1))
+
+Pour lancer les tests, utiliser la commande `Tester`.
 ")
 (put 'Exemples_de 'text "Commande `Exemples_de`.")
 (de Exemples_de arg_lst
