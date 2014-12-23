@@ -63,10 +63,53 @@ function stdPrompt() {
     else throw new Error("Opération 'Demander' annulée.")
 }
 
-function onCtrlEnter(elt, f) {
+function onCtrl(elt, f) {
     elt.keydown(function (e) {
-        if ((e.keyCode == 10 || e.keyCode == 13) && e.ctrlKey) {
-            f(elt);
+        if (e.ctrlKey) {
+            if (e.keyCode == 10 || e.keyCode == 13) {
+                f(elt);
+            } else if (e.keyCode == 66) {
+                e.preventDefault();
+                var abbrevs = {
+                  "(Af": "(Affecter_a |)",
+                  "(Afe": "(Affecter_a | En_position )",
+                  "(A": "(Afficher |)",
+                  "(Aj": "(Ajouter_a |)",
+                  "(Co": "(Concatener |)",
+                  "(D": "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
+                  "(Dm": "(Demander)|",
+                  "(E": "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
+                  "(F": "(Faire (|)\n       ()\n Tant_que ()\n)",
+                  "(I": "(Initialiser |)",
+                  "(Li": "(Liste |)",
+                  "(Lo": "(Longueur |)",
+                  "(Ni": "(Nieme |)",
+                  "(No": "(Nombre |)",
+                  "(Rd": "(Retirer_de |)",
+                  "(R": "(Retourner |)",
+                  "(S": "(Si (|) Alors\n    ()\n)",
+                  "(Ss": "(Si (|)\n Alors ()\n Sinon ()\n)",
+                  "(Tq": "(Tant_que (|) Faire\n    ()\n    ()\n)"
+                };
+                // Grab content and split in 'before' and 'after' caret.
+                var src = elt.val();
+                var current_pos = elt.getCursorPosition();
+                var before = src.substring(0, current_pos);
+                var after = src.substring(current_pos, src.length);
+                // Detect a possible abbreviation: look for the previous '('.
+                var last_paren_pos = before.lastIndexOf("(");
+                if (last_paren_pos >= 0) {
+                    var key = before.substring(last_paren_pos, before.length);
+                    var abbrev = abbrevs[key];
+                    if (typeof abbrev != 'undefined') {
+                        var before_wo_abbrev = before.substring(0, before.length - key.length);
+                        elt.val(before_wo_abbrev + abbrev.replace("|", "") + after);
+                        // Restore caret position, according to abbrev.
+                        var pos = elt.val().length + abbrev.lastIndexOf("|") + 1 - abbrev.length - after.length;
+                        elt.selectRange(pos, pos);
+                    }
+                }
+            }
         }
     });
 }
@@ -233,7 +276,7 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
-    onCtrlEnter(editor, ide_action);
+    onCtrl(editor, ide_action);
 }
 
 function repl_action(repl_elt) {
@@ -279,7 +322,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
     createRichInput(repl);
-    onCtrlEnter(repl, repl_action);
+    onCtrl(repl, repl_action);
     EMULISP_CORE.currentState().old_src = malg_prompt;
 }
 
