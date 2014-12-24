@@ -570,6 +570,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 
 # Structures itératives
 (setq credit_iterations 1000)
+(put 'credit_iterations 'type "nombre")
 (setq credit_iterations_message
       (pack "Crédit d’itérations épuisé (1 000 par défaut). Vous pouvez "
             "recharger votre crédit en affectant une valeur à la variable "
