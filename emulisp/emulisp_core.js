@@ -1093,7 +1093,7 @@ var coreFunctions = {
 	"format": function(c) { var cv = evalLisp(c.car);
 		// Decimal and thousands separators not implemented yet:
 		// http://www.software-lab.de/doc/refF.html#format
-		if (cv instanceof Number) return newTransSymbol(cv);
+		if (cv instanceof Number) return newTransSymbol(cv.toString());
 		if (cv.trans) {
 			return isNaN(cv.name)? NIL : new Number(parseFloat(cv.name));
 		}
