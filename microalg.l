@@ -624,6 +624,10 @@ La syntaxe de cette commande est :
         (Retourner la_valeur_de_retour)
     )
 
+**Attention** : La commande `Retourner` n’interrompt pas l’exécution des
+commandes que vous définissez. Il faut donc pour l’instant la mettre en
+dernière position.
+
 Il peut être intéressant de signer ses créations avec le pseudo utilisé sur
 [les questions/réponses](http://qr.microalg.info).
 
