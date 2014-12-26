@@ -917,7 +917,6 @@ var coreFunctions = {
 	"chop": function(c) { var cv = evalLisp(c.car);
 		if ((cv === NIL) || (cv instanceof Cell)) return cv;
 		var s = (cv instanceof Symbol) ? cv.valueOf() : cv.toString();
-		if (s.TYPEVAL == NUMBERTYPE) s = s.toString();
 		if (s === null) return NIL;
 		var arr = s.split(""), v = NIL;
 		while (arr.length > 0) v = new Cell(newTransSymbol(arr.pop()), v);
