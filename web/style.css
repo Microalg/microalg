@@ -60,6 +60,7 @@ body.microalg {
     color: black;
 }
 .malg-display {
+    font-family: "Courier New",Courier,monospace;
     margin-bottom: 2em;
     border-color: black;
     border-style: solid;
