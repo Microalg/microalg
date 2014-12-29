@@ -501,6 +501,9 @@ en minuscule).")
 "Commande qui retourne le texte correspondant à son paramètre.")
 (put 'Texte 'text "Commande `Texte`.")
 (de Texte (x) (cond
+                ((not (<> x 'Vrai)) "Vrai")
+                ((not (<> x 'Faux)) "Faux")
+                ((not (<> x 'Rien)) "Rien")
                 ((!boolM2P (Liste? x)) (!text x))  # mettre avant str?
                 ((str? x) x)
                 ((num? x) (format x))
