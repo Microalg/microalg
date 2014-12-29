@@ -507,7 +507,7 @@ en minuscule).")
                 ((!boolM2P (Liste? x)) (!text x))  # mettre avant str?
                 ((str? x) x)
                 ((num? x) (format x))
-                (T NIL)
+                (T "???")
               ))
 (put 'Nombre 'doc
 "Commande qui retourne le nombre correspondant à son paramètre textuel.")
