@@ -99,7 +99,9 @@ function colorize(text, pos) {
         newtext.substr(i + 1 + o[i].extra.length)
     });
     newtext = newtext.replace(
-        /([^=])(")([^"]*)(")/g,
+        // First parens prevent catching html attributes. The rest is from
+        // http://stackoverflow.com/questions/249791/regex-for-quoted-string-with-escaping-quotes#answer-249937
+        /([^=])(")((?:[^"\\]|\\.)*)(")/g,
         function(match, prev, q1, txt, q2) {
             return prev + q1 + '<span class="text">' + txt + '</span>' + q2;
         });
