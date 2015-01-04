@@ -45,7 +45,14 @@
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
+    <a href="#construction-affichage">Construction et affichage de listes</a>,
+    <a href="#structure">Listes : structure et lien avec le texte</a>,
+    <a href="#parcours-lecture">Parcours de listes</a>,
+    <a href="#type-affectation">Listes : type et affectation</a>,
+    <a href="#algo-parcours">Algorithmes de parcours de listes</a>,
+    <!-- <a href="#modifier-liste">Modifier une liste</a>, -->
     <a href="#definir">Définir ses commandes</a>,
+    <a href="#exemples-et-tests">Exemples et tests</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -857,6 +864,186 @@
         ''
     });</script>
 
+    <h2 id="construction-affichage"><a href="#construction-affichage">: </a>Construction et affichage de listes</h2>
+    <div id="script-afficher1"></div>
+    <script>inject_microalg_editor_in('script-afficher1', {
+     src:
+        '(Liste "Impossible" "de" "voir" "celle-ci" "sans" "affichage.")\n' +
+        '(Afficher (Liste 1 3 5 7 9 11))\n' +
+        '(Afficher (Liste "banane" "pomme" "fraise"))\n' +
+        '(Afficher (Liste Vrai Faux Faux Faux Vrai))\n' +
+        ''
+    });</script>
+    <p>On remarque que l’affichage d’une liste est identique à la commande qui
+    aurait pu servir à la construire.</p>
+    <p>Quelques cas particuliers :</p>
+    <div id="script-afficher2"></div>
+    <script>inject_microalg_editor_in('script-afficher2', {
+     src:
+        '(!!! "La liste vide.")\n' +
+        '(Afficher (Liste))\n' +
+        '(!!! "Une liste à un seul élément.")\n' +
+        '(Afficher (Liste "Je suis le seul élément."))\n' +
+        '(!!! "Une liste de listes.")\n' +
+        '(Afficher (Liste (Liste 1 3 5) (Liste 2 4 6) (Liste 3 5 7)))\n' +
+        '(!!! "Une liste hétérogène (contenant des valeurs de types différents).")\n' +
+        '(Afficher (Liste Vrai "avantage" 42))\n' +
+        ''
+    });</script>
+
+    <h2 id="structure"><a href="#structure">: </a>Listes: structure et lien avec le texte</h2>
+    <p>Comme les chaînes de caractères (ce qu’on appelle ici parfois le
+    <em>texte</em> en MicroAlg), les listes sont numérotées à partir de 1 et
+    peuvent être passées aux commandes <code>Longueur</code>, <code>Nieme</code>,
+    <code>Tete</code> et <code>Queue</code>.</p>
+    <div id="script-cmds-longueur"></div>
+    <script>inject_microalg_editor_in('script-cmds-longueur', {
+     src:
+        '(Afficher (Longueur (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Longueur (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Longueur (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Longueur (Liste)))\n' +
+        '(Afficher (Longueur (Liste "Je suis le seul élément.")))\n' +
+        '(Afficher (Longueur (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
+        '(Afficher (Longueur (Liste Vrai "avantage" 42)))\n' +
+        ''
+    });</script>
+    <p><strong>Rappel</strong> : <code>Nieme</code> se prononce
+    « énième » et permet d’obtenir un élément dans une liste en donnant une
+    position.</p>
+    <div id="script-cmds-nieme"></div>
+    <script>inject_microalg_editor_in('script-cmds-nieme', {
+     src:
+        '(Afficher (Nieme (Liste 1 3 5 7 9 11) 3))\n' +
+        '(Afficher (Nieme (Liste "banane" "pomme" "fraise") 3))\n' +
+        '(Afficher (Nieme (Liste Vrai Faux Faux Faux Vrai) 1))\n' +
+        '(Afficher (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2))\n' +
+        '(Afficher (Nieme (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2) 3))\n' +
+        ''
+    });</script>
+
+    <h2 id="parcours-lecture"><a href="#parcours-lecture">: </a>Parcours de listes</h2>
+    <p>Dans certains langages, il existe les instructions <code>Pour</code> ou
+    <code>Pour_chaque</code>, mais pas dans MicroAlg. Dans MicroAlg, le parcours
+    d’une liste se fera « à la main » avec un compteur dans un
+    <code>Tant_que</code>, <code>Nieme</code> étant appelée avec ce compteur
+    comme deuxième argument.</p>
+    <div id="script-parcours"></div>
+    <script>inject_microalg_editor_in('script-parcours', {
+     src:
+        '(Initialiser index 1)\n' +
+        '(Tant_que (<= index 3)\n' +
+        ' Faire\n' +
+        '    (Afficher (Nieme (Liste "banane" "pomme" "fraise") index))\n' +
+        '    (Affecter_a index (+ index 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="type-affectation"><a href="#type-affectation">: </a>Listes: type et affectation</h2>
+    <div id="script-type"></div>
+    <script>inject_microalg_editor_in('script-type', {
+     src:
+        '(Afficher (Type (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Type (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Type (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Type (Liste)))\n' +
+        ''
+    });</script>
+    <p>Affecter une liste à une variable est indispensable pour un parcours de
+    liste dont on ne connaît pas à l’avance la longueur.</p>
+    <div id="script-parcours-affectation"></div>
+    <script>inject_microalg_editor_in('script-parcours-affectation', {
+     src:
+        '(Initialiser ma_liste (Liste 1 4 9 16 25))\n' +
+        '(Initialiser index 1)\n' +
+        '(Tant_que (<= index (Longueur ma_liste))\n' +
+        ' Faire\n' +
+        '    (Afficher (Nieme ma_liste index))\n' +
+        '    (Affecter_a index (+ index 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="algo-parcours"><a href="#algo-parcours">: </a>Algorithmes de parcours de listes</h2>
+    <p>À vous de <a href="doc.html#cmd-Exemples_de">faire passer les tests</a>
+    suivants !</p>
+    <p><strong>Rappel</strong> : l’instruction <code>Retourner</code>
+    n’interrompt pas l’exécution des commandes que vous définissez (voir
+    <a href="doc.html#cmd-Definir">la documentation</a> ou
+    <a href="tuto.html#script-bug-retourner">cet exemple</a>).</p>
+    <div id="script-somme"></div>
+    <script>inject_microalg_editor_in('script-somme', {
+     src:
+        '(Definir (Somme liste valeur)\n' +
+        '    "Retourne la somme des valeurs de la `liste`."\n' +
+        '    "auteur inconnu"\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
+        ')\n' +
+        '(Exemples_de Somme\n' +
+        '    (Liste\n' +
+        '        (? (Liste 1 3 5)) 9\n' +
+        '        (? (Liste 5 10 20)) 35\n' +
+        '        (? (Liste)) 0\n' +
+        '    )\n' +
+        ')\n' +
+        '(Tester Somme)\n' +
+        ''
+    });</script>
+    <div id="script-trouver-position"></div>
+    <script>inject_microalg_editor_in('script-trouver-position', {
+     src:
+        '(Definir (Trouver_dans liste valeur)\n' +
+        '    "Retourne la position de la `valeur` dans la `liste`, 0 si non présente."\n' +
+        '    "auteur inconnu"\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
+        ')\n' +
+        '(Exemples_de Trouver_dans\n' +
+        '    (Liste\n' +
+        '        (? (Liste 1 3 5) 3) 2\n' +
+        '        (? (Liste 1 3 5) 5) 3\n' +
+        '        (? (Liste 1 3 5) 4) 0\n' +
+        '    )\n' +
+        ')\n' +
+        '(Tester Trouver_dans)\n' +
+        ''
+    });</script>
+    <div id="script-max"></div>
+    <script>inject_microalg_editor_in('script-max', {
+     src:
+        '(Definir (Maximum_dans liste)\n' +
+        '    "Retourne la valeur maximale dans la `liste`."\n' +
+        '    "auteur inconnu"\n' +
+        '    (Initialiser resultat 42)\n' +
+        '    (!!! "... ici du code ...")\n' +
+        '    (Retourner resultat)\n' +
+        ')\n' +
+        '(Exemples_de Maximum_dans\n' +
+        '    (Liste\n' +
+        '        (? (Liste   1  3 5))  5\n' +
+        '        (? (Liste  42 31 5)) 42\n' +
+        '        (? (Liste -42  7 5))  7\n' +
+        '    )\n' +
+        ')\n' +
+        '(Tester Maximum_dans)\n' +
+        ''
+    });</script>
+
+    <!--
+    <h2 id="modifier-liste"><a href="#modifier-liste">: </a>Modifier une liste</h2>
+    <p></p>
+    <div id="script-afficher"></div>
+    <script>inject_microalg_editor_in('script-afficher', {
+     src:
+        '(Afficher )\n' +
+        ''
+    });</script>
+    -->
+
     <h2 id="definir"><a href="#definir">: </a>Définir ses commandes</h2>
     <p>En plus des <a href="doc.html#listedessymbolesprdfinis">symboles prédéfinis</a>
     dans MicroAlg, vous pouvez créer vos propres commandes, grâce à la commande
@@ -895,6 +1082,73 @@
         '(Afficher (Bug_Retourner))\n' +
         ''
     });</script>
+
+    <h2 id="exemples-et-tests"><a href="#exemples-et-tests">: </a>Exemples et tests</h2>
+    <div id="script-exemples"></div>
+    <script>inject_microalg_editor_in('script-exemples', {
+     src:
+        '(Definir (Double x)\n' +
+        '    "Retourne le double du nombre (paramètre `x`)."\n' +
+        '    "anonyme"\n' +
+        '    (Retourner (* 2 x))\n' +
+        ')\n' +
+        '\n' +
+        '(!!! "La commande suivante «attache» à `Double` une liste d’exemples.")\n' +
+        '(!!! "Cette liste contient des appels et les retours correspondants.")\n' +
+        '(Exemples_de Double\n' +
+        '  (Liste\n' +
+        '    (? 1) 2\n' +
+        '    (? 2) 4\n' +
+        '    (? 3) 6\n' +
+        '  )\n' +
+        ')\n' +
+        '(Afficher "Les exemples de `Double` sont :")\n' +
+        '(Afficher (Exemples_de Double))\n' +
+        ''
+    });</script>
+    <p>Ce qu’il faut retenir ici est que :</p>
+    <ul>
+        <li>le premier paramètre de <code>Exemples_de</code> est la commande en
+            question ;</li>
+        <li>s’il n’y a pas de second paramètre, on récupère les exemples de la
+            commande ;</li>
+        <li>s’il y a un second paramètre, ce doit être une liste, qui contient
+            les exemples à attribuer à la commande ;</li>
+        <li>une liste d’exemples est de la forme
+            <code>(Liste (? arg_1) val_1 (? arg_2) val_2 ...)</code>, avec la
+            possibilité d’indiquer plusieurs arguments ;</li>
+        <li>on ne peut donner des exemples intéressants que pour des commandes
+            qui retournent une valeur.</li>
+    </ul>
+    <p>Il est possible de mettre en place du
+    <a href="https://fr.wikipedia.org/wiki/Test_Driven_Development"
+    class="wp">développement dirigé par les tests</a> en utilisant la commande
+    <code>Tester</code>.</p>
+    <div id="script-tests"></div>
+    <script>inject_microalg_editor_in('script-tests', {
+     src:
+        '(Definir (Double x)\n' +
+        '    "Retourne le double du nombre (paramètre `x`)."\n' +
+        '    "anonyme"\n' +
+        '    (Retourner (* 2 x))\n' +
+        ')\n' +
+        '\n' +
+        '(Exemples_de Double\n' +
+        '  (Liste\n' +
+        '    (? 1) 2\n' +
+        '    (? 2) 4\n' +
+        '    (? 3) 6\n' +
+        '  )\n' +
+        '(Tester Double)\n' +
+        ''
+    });</script>
+    <p>Si rien ne se passe, c’est que tout va bien. Essayez de « casser »
+    exprès les tests pour voir ce qu’il se passe, soit en changeant un exemple,
+    soit en changeant la commande <code>Double</code>.</p>
+    <p>Sachez pour finir qu’il est possible de « copier » les exemples d’une
+    commande dans une autre. Pour copier les exemples de <code>cmd_1</code> dans
+    <code>cmd_2</code>, on utilise :
+    <code>(Exemples_de cmd_2 (Exemples_de cmd_1))</code>.</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si désormais vous cherchez une information, allez
