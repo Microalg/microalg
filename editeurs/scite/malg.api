@@ -19,16 +19,16 @@ Ajouter_a obj: Affecte un nouvel élément à la fin de `obj` (après le dernier
 Alors : Mot-clef intermédiaire d'un `Si`.
 Booleen? val: Teste si `val` est un booléen.
 Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
-Definir ...: Permet de définir des commandes.
+Definir (commande args) doc auteur instructions : Permet de définir des commandes.
 Demander : Retourne le texte tapé par l'utilisateur.
 En_position : Mot-clef intermédiaire pour la commande `Affecter_a`.
 Et b1 b2 ...: Opération logique.
-Exemples_de : Permet de lire ou écrire les exemples-tests d’une commande.
+Exemples_de commande [liste d’exemples]: Permet de lire ou écrire les exemples-tests d’une commande.
 Faire instructions Tant_que test: Boucle.
 Faux : Booléen.
 Faux? val: Teste si `val` est Faux.
 Initialiser var val: Initialise la variable `var` avec la valeur `val`.
-Liste : Construit une liste avec les paramètres fournis.
+Liste [élements] : Construit une liste avec les paramètres fournis.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
 Nieme val pos: Retourne l'élément à la position `pos` dans la valeur `val`.
 Nombre val: Convertit `val` en nombre.
