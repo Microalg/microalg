@@ -59,7 +59,7 @@ input, textarea, .richtext > pre {
 @keyframes blink { 50% { background: red; } }
 @-webkit-keyframes blink { 50% { background: red; } }
 
-/* paren_0 is after paren_5*/
+/* paren_0 is after paren_6 */
 .paren_1 {
     background: #fab;
 }
