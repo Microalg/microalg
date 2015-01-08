@@ -258,6 +258,14 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
           kw  (caddr arg_lst)
           idx (eval (cadddr arg_lst))
           evaled_var (eval var))
+         (setq !onppauv "On ne peut pas affecter une valeur ")
+         (cond
+             ((num? var) (quit (pack !onppauv "à un nombre.") var))
+             ((str? var) (quit (pack !onppauv "à un texte.") var))
+             ((== var 'Vrai) (quit (pack !onppauv "au booléen Vrai.")))
+             ((== var 'Faux) (quit (pack !onppauv "au booléen Faux.")))
+             ((== var 'Rien) (quit (pack !onppauv "à Rien.")))
+         )
          (ifn kw
               (prog
                  # Affectation au symbole dans `var`.
