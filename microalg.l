@@ -411,6 +411,13 @@ La numérotation commence à 1.")
 (put 'Nieme 'text "Commande `Nieme`.")
 (de Nieme (obj idx)
     # Quelques vérifications
+    (setq !onppeuv "`Nieme` ne peut pas extraire une valeur ")
+    (cond
+        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
+        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
+        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
+        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
+    )
     (let (len (Longueur obj))
       (cond
         ((not idx) (quit "Il manque le deuxième paramètre : l’indice."))
