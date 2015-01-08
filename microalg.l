@@ -282,6 +282,13 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
               )
               (prog
                  # Affectation à l’élément `idx` du symbole dans `var`.
+                 (let (len (Longueur evaled_var))
+                   (cond
+                     ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
+                     ((le0 idx) (quit "Indice négatif ou nul." idx))
+                     ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
+                   )
+                 )
                  (cond
                    ((!boolM2P (Liste? evaled_var)) (put> evaled_var val idx))
                    ((str? evaled_var)
