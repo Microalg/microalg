@@ -1,0 +1,98 @@
+(Initialiser chars
+    (Concatener
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789+/"
+    )
+)
+(Definir (dec_bin n)
+    "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte)."
+    "ProfGra"
+    (Initialiser n n)
+    (!!! "`b` est le texte à retourner.")
+    (Initialiser b "")
+    (Initialiser r 0)
+    (Faire
+        (Affecter_a r (% n 2))
+        (Affecter_a b (Concatener (Texte r) b))
+        (Affecter_a n (/ (- n r) 2))
+     Tant_que (=/ n 0)
+    )
+    (Retourner b)
+)
+(Definir (bin_dec txt)
+    "Convertit `txt` (texte) depuis le binaire vers la base 10 (nombre)."
+    "ProfGra"
+    (!!! "`n` est le nombre à retourner.")
+    (Initialiser n 0)
+    (Initialiser i (Longueur txt))
+    (Initialiser poids 1)
+    (Tant_que (> i 0) Faire
+        (Affecter_a n (+ n (* poids (Nombre (Nieme txt i)))))
+        (Affecter_a poids (* poids 2))
+        (Affecter_a i (- i 1))
+    )
+    (Retourner n)
+)
+(Definir (base64 txt)
+    "Convertit une chaîne d’octets `txt` en base64."
+    "ProfGra"
+    (Initialiser txt txt)
+    (!!! "r est la variable à retourner.")
+    (Initialiser retour_base64 "")
+    (Tant_que (>= (Longueur txt) 6) Faire
+        (Initialiser char_bin "")
+        (Initialiser i 1)
+        (Tant_que (<= i 6) Faire
+            (Ajouter_a char_bin (Tete txt))
+            (Affecter_a txt (Queue txt))
+            (Affecter_a i (+ i 1))
+        )
+        (Ajouter_a retour_base64 (Nieme chars (+ (bin_dec char_bin) 1)))
+    )
+    (Si (Non (Vide? txt)) Alors
+        (Tant_que (< (Longueur txt) 6) Faire
+            (Ajouter_a txt "0")
+        )
+        (Ajouter_a retour_base64 (Nieme chars (+ (bin_dec txt) 1)))
+    )
+    (Tant_que (=/ (% (Longueur retour_base64) 4) 0) Faire
+        (Ajouter_a retour_base64 "=")
+    )
+    (Retourner retour_base64)
+)
+(Exemples_de base64
+    (Liste
+        (? "010010000110100100100001") "SGkh"
+        (? "00110001") "MQ=="
+
+    )
+)
+(Tester base64)
+(!!! "* pour hexa little endian (il y a d’autres lignes dans le genre.)")
+(Initialiser data (base64 (Concatener
+    (dec_bin 66) (dec_bin 77) # (!!! "Pour B et M.")
+    #num_file_bytes            # (!!! "Taille du fichier en octets.")
+    "00000000" "00000000"     # (!!! "reserved")
+    "00000000" "00000000"     # (!!! "reserved")
+    "00110110" "00000000" "00000000" "00000000" # (!!! "offset of where BMP data lives (54 bytes)")
+    "00101000" "00000000" "00000000" "00000000" # (!!! "number of remaining bytes in header from here (40 bytes)")
+    #width               // the width of the bitmap in pixels*
+    #height              // the height of the bitmap in pixels*
+    "00000001" "00000000" # (!!! "the number of color planes (1)")
+    "00011000" "00000000" # (!!! "24 bits / pixel")
+    "00000000" "00000000" "00000000" "00000000" # (!!! "No compression (0)")
+    #num_data_bytes +     // size of the BMP data (bytes)*
+    "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - horiz res")
+    "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - vert res")
+    "00000000" "00000000" "00000000" "00000000" # (!!! "number of colors in the palette (keep 0 for 24-bit)")
+    "00000000" "00000000" "00000000" "00000000" # (!!! "0 important colors (means all colors are important)")
+    #_collapseData(rows, row_padding)
+)))
+(Afficher (Concatener
+    "<img src=\""
+    "data:image/bmp;base64,"
+    data
+    "\" />"
+))
+(bye)
