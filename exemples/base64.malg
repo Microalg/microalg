@@ -69,7 +69,42 @@
     )
 )
 (Tester base64)
-(!!! "* pour hexa little endian (il y a d’autres lignes dans le genre.)")
+(Definir (petit_bout n)
+    (Concatener "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte)."
+    "Si le nombre dépasse 255, on passe les octets forts à droite."
+    "http://fr.wikipedia.org/wiki/Endianness")
+    "ProfGra"
+    (!!! "Tout d’abord la conversion grand-boutiste.")
+    (Initialiser bin (dec_bin n))
+    (!!! "Ensuite on complète jusqu’à un multiple de 8 de bits.")
+    (Tant_que (=/ (% (Longueur bin) 8) 0) Faire
+        (Affecter_a bin (Concatener "0" bin))
+    )
+    (!!! "Puis on inverse l’ordre des octets.")
+    (Initialiser octet "")
+    (Initialiser retour_petit_bout "")
+    (Initialiser i 1)
+    (Tant_que (Non (Vide? bin)) Faire
+        (Affecter_a octet (Concatener octet (Tete bin)))
+        (Affecter_a bin (Queue bin))
+        (Affecter_a i (+ i 1))
+        (Si (= i 9) Alors
+            (Affecter_a retour_petit_bout (Concatener octet retour_petit_bout))
+            (Affecter_a octet "")
+            (Affecter_a i 1)
+        )
+    )
+    (Retourner retour_petit_bout)
+)
+(Exemples_de petit_bout
+    (Liste
+        (?   0) "00000000"
+        (?  33) "00100001"
+        (? 256) "0000000000000001"
+    )
+)
+(Tester petit_bout)
+
 (Initialiser data (base64 (Concatener
     (dec_bin 66) (dec_bin 77) # (!!! "Pour B et M.")
     #num_file_bytes            # (!!! "Taille du fichier en octets.")
@@ -77,12 +112,12 @@
     "00000000" "00000000"     # (!!! "reserved")
     "00110110" "00000000" "00000000" "00000000" # (!!! "offset of where BMP data lives (54 bytes)")
     "00101000" "00000000" "00000000" "00000000" # (!!! "number of remaining bytes in header from here (40 bytes)")
-    #width               // the width of the bitmap in pixels*
-    #height              // the height of the bitmap in pixels*
+    (petit_bout largeur)
+    (petit_bout hauteur)
     "00000001" "00000000" # (!!! "the number of color planes (1)")
     "00011000" "00000000" # (!!! "24 bits / pixel")
     "00000000" "00000000" "00000000" "00000000" # (!!! "No compression (0)")
-    #num_data_bytes +     // size of the BMP data (bytes)*
+    (petit_bout nb_octets)
     "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - horiz res")
     "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - vert res")
     "00000000" "00000000" "00000000" "00000000" # (!!! "number of colors in the palette (keep 0 for 24-bit)")
