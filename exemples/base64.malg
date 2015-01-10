@@ -68,15 +68,18 @@
     )
 )
 (Tester base64)
-(Definir (petit_bout n)
-    (Concatener "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte)."
-    "Si le nombre dépasse 255, on passe les octets forts à droite."
-    "http://fr.wikipedia.org/wiki/Endianness")
+
+(Definir (petit_bout n longueur)
+    "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte).
+
+    Si le nombre dépasse 255, on passe les octets forts à droite (voir
+    http://fr.wikipedia.org/wiki/Endianness ).  
+    On complète le mot (sur la droite) pour qu’il soit de longueur `longueur`."
     "ProfGra"
-    (!!! "Tout d’abord la conversion grand-boutiste.")
+    (!!! "Tout d’abord, la conversion grand-boutiste.")
     (Initialiser bin (dec_bin n))
-    (!!! "Ensuite on complète jusqu’à un multiple de 8 de bits.")
-    (Tant_que (=/ (% (Longueur bin) 8) 0) Faire
+    (!!! "Ensuite on complète jusqu’à la longueur voulue.")
+    (Tant_que (< (Longueur bin) (* 8 longueur)) Faire
         (Affecter_a bin (Concatener "0" bin))
     )
     (!!! "Puis on inverse l’ordre des octets.")
@@ -97,9 +100,10 @@
 )
 (Exemples_de petit_bout
     (Liste
-        (?   0) "00000000"
-        (?  33) "00100001"
-        (? 256) "0000000000000001"
+        (?   0 1) "00000000"
+        (?  33 1) "00100001"
+        (? 256 2) "0000000000000001"
+        (? 256 3) "000000000000000100000000"
     )
 )
 (Tester petit_bout)
@@ -111,12 +115,12 @@
     "00000000" "00000000"     # (!!! "reserved")
     "00110110" "00000000" "00000000" "00000000" # (!!! "offset of where BMP data lives (54 bytes)")
     "00101000" "00000000" "00000000" "00000000" # (!!! "number of remaining bytes in header from here (40 bytes)")
-    (petit_bout largeur)
-    (petit_bout hauteur)
+    (petit_bout largeur 4)
+    (petit_bout hauteur 4)
     "00000001" "00000000" # (!!! "the number of color planes (1)")
     "00011000" "00000000" # (!!! "24 bits / pixel")
     "00000000" "00000000" "00000000" "00000000" # (!!! "No compression (0)")
-    (petit_bout nb_octets)
+    (petit_bout nb_octets 4)
     "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - horiz res")
     "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - vert res")
     "00000000" "00000000" "00000000" "00000000" # (!!! "number of colors in the palette (keep 0 for 24-bit)")
