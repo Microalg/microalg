@@ -1,10 +1,3 @@
-(Initialiser chars
-    (Concatener
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz"
-        "0123456789+/"
-    )
-)
 (Definir (dec_bin n)
     "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte)."
     "ProfGra"
@@ -20,6 +13,7 @@
     )
     (Retourner b)
 )
+
 (Definir (bin_dec txt)
     "Convertit `txt` (texte) depuis le binaire vers la base 10 (nombre)."
     "ProfGra"
@@ -34,12 +28,17 @@
     )
     (Retourner n)
 )
+
 (Definir (base64 txt)
     "Convertit une chaîne d’octets `txt` en base64."
     "ProfGra"
     (Initialiser txt txt)
-    (!!! "r est la variable à retourner.")
     (Initialiser retour_base64 "")
+    (!!! "Liste des caractères possibles.")
+    (Initialiser chars (Concatener
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789+/"))
     (Tant_que (>= (Longueur txt) 6) Faire
         (Initialiser char_bin "")
         (Initialiser i 1)
