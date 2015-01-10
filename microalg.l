@@ -599,7 +599,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (setq credit_iterations_message
       (pack "Crédit d’itérations épuisé (1 000 par défaut). Vous pouvez "
             "recharger votre crédit en affectant une valeur à la variable "
-            "`credits_iterations`."))
+            "`credit_iterations`."))
 (put 'Tant_que 'doc
 "Structure itérative de type « tant que ... faire ... ».")
 (put 'Tant_que 'text "Commande `Tant_que`.")
