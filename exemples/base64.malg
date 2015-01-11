@@ -180,8 +180,6 @@
     image_bin
 ))
 (Initialiser data (base64 bitmap))
-(Afficher data)
-(bye)
 (Afficher (Concatener
     "<img src=\""
     "data:image/bmp;base64,"
