@@ -284,7 +284,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  # Affectation à l’élément `idx` du symbole dans `var`.
                  (let (len (Longueur evaled_var))
                    (cond
-                     ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
+                     ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
                      ((le0 idx) (quit "Indice négatif ou nul." idx))
                      ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
                    )
@@ -421,7 +421,7 @@ La numérotation commence à 1.")
     (let (len (Longueur obj))
       (cond
         ((not idx) (quit "Il manque le deuxième paramètre : l’indice."))
-        ((<> idx (format (round idx 0))) (quit "Indice non entier." idx))
+        ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
         ((le0 idx) (quit "Indice négatif ou nul." idx))
         ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
       )
