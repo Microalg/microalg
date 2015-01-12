@@ -575,27 +575,30 @@ en minuscule).")
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 (put 'Non 'text "Commande `Non`.")
-(de Non (P)
-    (ifn (!boolCheck P) (quit "`Non` prend un paramètre booléen."))
-    (!boolP2M (not (!boolM2P P))) )
+(de Non (!P !rien_ici)
+    (if !rien_ici (quit "`Non` ne prend qu’un paramètre (booléen)."))
+    (ifn (!boolCheck !P) (quit "`Non` prend un paramètre booléen."))
+    (!boolP2M (not (!boolM2P !P))) )
 (put 'Et 'doc
 "Et logique.
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 (put 'Et 'text "Commande `Et`.")
-(de Et (P Q)
-    (ifn (!boolCheck P) (quit "Le premier paramètre de `Et` doit être un booléen."))
-    (ifn (!boolCheck Q) (quit "Le second paramètre de `Et` doit être un booléen."))
-    (!boolP2M (and (!boolM2P P) (!boolM2P Q))) )
+(de Et (!P !Q !rien_ici)
+    (if !rien_ici (quit "`Et` ne prend que deux paramètres (booléens)."))
+    (ifn (!boolCheck !P) (quit "Le premier paramètre de `Et` doit être un booléen."))
+    (ifn (!boolCheck !Q) (quit "Le second paramètre de `Et` doit être un booléen."))
+    (!boolP2M (and (!boolM2P !P) (!boolM2P !Q))) )
 (put 'Ou 'doc
 "Ou logique.
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Ou 'text "Commande `Ou`.")
-(de Ou (P Q)
-    (ifn (!boolCheck P) (quit "Le premier paramètre de `Ou` doit être un booléen."))
-    (ifn (!boolCheck Q) (quit "Le second paramètre de `Ou` doit être un booléen."))
-    (!boolP2M (or (!boolM2P P) (!boolM2P Q))) )
+(de Ou (!P !Q !rien_ici)
+    (if !rien_ici (quit "`Ou` ne prend que deux paramètres (booléens)."))
+    (ifn (!boolCheck !P) (quit "Le premier paramètre de `Ou` doit être un booléen."))
+    (ifn (!boolCheck !Q) (quit "Le second paramètre de `Ou` doit être un booléen."))
+    (!boolP2M (or (!boolM2P !P) (!boolM2P !Q))) )
 
 # Structures itératives
 (setq credit_iterations 1000)
