@@ -745,7 +745,7 @@ Pour lancer les tests, utiliser la commande `Tester`.
   (let (commande (car arg_lst)
         exemples (eval (cadr arg_lst))
         troize (caddr arg_lst))
-       (if troize (quit (pack "`Exemples_de` n’a pas de troisième paramètre.")))
+       (if troize (quit "`Exemples_de` n’a pas de troisième paramètre."))
        (ifn exemples (get commande 'exemples)
                      (prog
                        (ifn (!boolM2P (Liste? exemples))
@@ -775,7 +775,7 @@ Voir la commande `Exemples_de`.")
   (let (!commande (car arg_lst)
         deuze (cadr arg_lst)
         !exemples (get !commande 'exemples))
-       (if deuze (quit (pack "`Tester` n’a qu’un paramètre.")))
+       (if deuze (quit "`Tester` n’a qu’un paramètre."))
        (cond
          ((not (eval !commande))
             (Afficher (pack "Il faut définir la commande " !commande " avant de la tester.")))
