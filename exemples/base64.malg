@@ -148,6 +148,39 @@
     (Retourner retour_pixels_bmp)
 )
 
+(Definir (image_vers_bmp img)
+    "Retourne le bitmap (texte binaire) d’une liste de liste de pixels (`img`)."
+    "ProfGra"
+    (Initialiser image_bin (pixels_bmp img))
+    (Initialiser nb_octets (/ (Longueur image_bin) 8))
+    (Retourner (Concatener
+        (petit_bout 66 1) (petit_bout 77 1) # (!!! "Pour B et M.")
+        (petit_bout (+ 54 nb_octets) 4)
+        "00000000" "00000000"     # (!!! "reserved")
+        "00000000" "00000000"     # (!!! "reserved")
+        # (!!! "offset of where BMP data lives (54 bytes)")
+        "00110110" "00000000" "00000000" "00000000"
+        # (!!! "number of remaining bytes in header from here (40 bytes)")
+        "00101000" "00000000" "00000000" "00000000"
+        (petit_bout (Longueur (Nieme img 1)) 4) # largeur
+        (petit_bout (Longueur img) 4)           # hauteur
+        "00000001" "00000000" # (!!! "the number of color planes (1)")
+        "00011000" "00000000" # (!!! "24 bits / pixel")
+        # (!!! "number of remaining bytes in header from here (40 bytes)")
+        "00000000" "00000000" "00000000" "00000000"
+        (petit_bout nb_octets 4)
+        # (!!! "2835 pixels/meter - horiz res")
+        "00010011" "00001011" "00000000" "00000000"
+        # (!!! "2835 pixels/meter - vert res")
+        "00010011" "00001011" "00000000" "00000000"
+        # (!!! "number of colors in the palette (keep 0 for 24-bit)")
+        "00000000" "00000000" "00000000" "00000000"
+        # (!!! "0 important colors (means all colors are important)")
+        "00000000" "00000000" "00000000" "00000000"
+        image_bin
+    ))
+)
+
 (Affecter_a credit_iterations 10000)
 (Initialiser R (Liste 255 0 0))
 (Initialiser V (Liste 0 255 0))
@@ -155,35 +188,11 @@
 (Initialiser image (Liste (Liste R V)
                           (Liste B R)
                           (Liste V B)))
-
-(Initialiser image_bin (pixels_bmp image))
-(Initialiser largeur (Longueur (Nieme image 1)))
-(Initialiser hauteur (Longueur image))
-(Initialiser nb_octets (/ (Longueur image_bin) 8))
-(Initialiser bitmap (Concatener
-    (petit_bout 66 1) (petit_bout 77 1) # (!!! "Pour B et M.")
-    (petit_bout (+ 54 nb_octets) 4)
-    "00000000" "00000000"     # (!!! "reserved")
-    "00000000" "00000000"     # (!!! "reserved")
-    "00110110" "00000000" "00000000" "00000000" # (!!! "offset of where BMP data lives (54 bytes)")
-    "00101000" "00000000" "00000000" "00000000" # (!!! "number of remaining bytes in header from here (40 bytes)")
-    (petit_bout largeur 4)
-    (petit_bout hauteur 4)
-    "00000001" "00000000" # (!!! "the number of color planes (1)")
-    "00011000" "00000000" # (!!! "24 bits / pixel")
-    "00000000" "00000000" "00000000" "00000000" # (!!! "No compression (0)")
-    (petit_bout nb_octets 4)
-    "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - horiz res")
-    "00010011" "00001011" "00000000" "00000000" # (!!! "2835 pixels/meter - vert res")
-    "00000000" "00000000" "00000000" "00000000" # (!!! "number of colors in the palette (keep 0 for 24-bit)")
-    "00000000" "00000000" "00000000" "00000000" # (!!! "0 important colors (means all colors are important)")
-    image_bin
-))
-(Initialiser data (base64 bitmap))
+(Initialiser bmp (image_vers_bmp image))
 (Afficher (Concatener
     "<img src=\""
     "data:image/bmp;base64,"
-    data
-    "\" />"
+    (base64 bmp)
+    "\" width=\"100\" />"
 ))
 (bye)
