@@ -469,8 +469,10 @@ mais sans son premier élément.")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
         !evaled_sym (eval !sym)
-        !elt (eval (cadr arg_lst)))
+        !elt (eval (cadr arg_lst))
+        !troize (caddr arg_lst))
        # Quelques vérifications
+       (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
@@ -485,8 +487,10 @@ mais sans son premier élément.")
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
-        !evaled_sym (eval !sym))
+        !evaled_sym (eval !sym)
+        !deuze (cadr arg_lst))
        # Quelques vérifications
+       (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
