@@ -73,7 +73,7 @@
     "Convertit `n` (nombre) depuis la base 10 vers le binaire (texte).
 
     Si le nombre dépasse 255, on passe les octets forts à droite (voir
-    http://fr.wikipedia.org/wiki/Endianness ).  
+    http:fr.wikipedia.org/wiki/Endianness ).  
     On complète le mot (sur la droite) pour qu’il soit de longueur `longueur`."
     "ProfGra"
     (!!! "Tout d’abord, la conversion grand-boutiste.")
@@ -109,7 +109,7 @@
 (Tester petit_bout)
 
 (Definir (pixels_bmp pixels)
-    "Convertit une liste de listes de listes (`pix`) en binaire (texte).
+    "Convertit une liste de listes de listes (`pixels`) en binaire (texte).
     La liste contient les lignes (partant du haut), qui sont des listes de
     pixels (partant de la gauche), qui sont des listes à trois éléments (RVB)."
     "ProfGra"
