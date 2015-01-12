@@ -790,6 +790,18 @@ Voir la commande `Exemples_de`.")
   )
 )
 
+(put 'Ecrire_dans 'doc "Écrit `contenu` (texte ou liste d’octets) dans `fichier` (texte).")
+(put 'Ecrire_dans 'text "Commande `Ecrire_dans`.")
+(de Ecrire_dans (!fichier !contenu !rien_ici)
+    (if *EMUENV (quit "`Ecrire_dans` ne fonctionne pas encore dans le navigateur."))
+    (if !rien_ici (quit "`Ecrire_dans` ne prend que deux paramètres."))
+    (cond
+        ((!boolM2P (Liste? !contenu)) (prog (out !fichier (apply wr (elts> !contenu))) Rien))
+        ((or (not !contenu) (str? !contenu)) (prog (out !fichier (pr !contenu)) Rien))
+        (T (quit "Le second argument de `Ecrire_dans` doit être du texte ou une liste." !sym))
+    )
+)
+
 # Prédicats
 (put 'Vrai? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
