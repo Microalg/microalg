@@ -15,12 +15,12 @@ Voir <http://microalg.info>.")
 "Booleen?"
 "Concatener"
 "Definir" "Demander"
-"En_position" "Et" "Exemples_de"
+"En_position" "Entier@" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
 "Initialiser"
 "Liste" "Liste?" "Longueur"
-"Nieme" "Nombre" "Nombre?" "Non"
+"Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
 "Retirer_de" "Retourner" "Rien"
@@ -397,29 +397,63 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 (setq En_position 'En_position)
 
 # Tirages pseudo-aléatoires.
-(put 'Decimal@ 'doc
-"Retourne un nombre décimal pseudo-aléatoire dans [0;1[.
-
-Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
-(put 'Decimal@ 'text "Commande `Decimal@`.")
-(de Decimal@ () (/ (+ 2147483648 (rand)) 4294967296))
 (put 'Entier@ 'doc
-"Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`].
+"Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
+paramètres entiers).
+
+    : (Entier@ 1 6)
+    -> 2
+    : (Entier@ 1 6)
+    -> 6
 
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 (put 'Entier@ 'text "Commande `Entier@`.")
-(de Entier@ arg_lst (let (nbr_args (length arg_lst))
-                         (if (<> 2 nbr_args)
-                             (quit (pack "`Entier@` prend 2 paramètres. "
-                                         "Vous en donnez " nbr_args ".") )
-                         )
-                    )
-                    (let (min (eval (car arg_lst))
-                          max (eval (cadr arg_lst)))
-                         (ifn (num? min) (quit "Le premier paramètre de `Entier@` doit être un nombre."))
-                         (ifn (num? max) (quit "Le second paramètre de `Entier@` doit être un nombre."))
-                         (rand min max)
-                    )
+(de Entier@ (!min !max !rien_ici)
+    # Quelques vérifications
+    (ifn (and !min !max) (quit "`Entier@` prend deux paramètres (entiers)."))
+    (if !rien_ici (quit "`Entier@` ne prend que deux paramètres (entiers)."))
+    (cond
+        ((<> !min (format (round !min 0) 0 "." ","))
+         (quit "Le minimum de `Entier@` n’est pas entier." !min))
+        ((<> !max (format (round !max 0) 0 "." ","))
+         (quit "Le maximum de `Entier@` n’est pas entier." !max))
+        ((!boolM2P (> !min !max))
+         (quit "Le minimum et le maximum de `Entier@` ne sont pas dans l’ordre."))
+    )
+    # Le calcul
+    (rand !min !max)
+)
+(put 'Nieme@ 'doc
+"Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
+ fourni en paramètre.
+
+    : (Nieme@ (Liste 13 666 2015))
+    -> 2015
+    : (Nieme@ (Liste 13 666 2015))
+    -> 666
+    : (Nieme@ \"bonjour\")
+    -> n
+    : (Nieme@ \"bonjour\")
+    -> o
+
+Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
+(put 'Nieme@ 'text "Commande `Nieme@`.")
+(de Nieme@ (obj !rien_ici)
+    # Quelques vérifications
+    (setq !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
+    (cond
+        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
+        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
+        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
+        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
+    )
+    (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
+    # Le calcul
+    (cond
+        ((!boolM2P (Liste? obj)) (nth> obj (rand 1 (length> obj))))
+        ((str? obj) (car (nth (chop obj) (rand 1 (length obj)))))
+        (T Rien)
+    )
 )
 
 # Demander.

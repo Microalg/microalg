@@ -210,6 +210,10 @@
             '(let (x NIL) (= '("a" "") (prog (Initialiser x "a") (list (Retirer_de x) x))))
             '(let (x NIL) (= '("d" "abc") (prog (Initialiser x "abcd") (list (Retirer_de x) x))))
             '(or (put 'x 'type NIL) T)
+            # Pseudo-aléatoire
+            '(= 0 (Entier@ 0 0))
+            '(= 0 (Nieme@ (Liste 0)))
+            '(= "a" (Nieme@ "a"))
         ) )
 
 (let (Goods 0 Bads 0)
