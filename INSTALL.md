@@ -290,20 +290,24 @@ avec le bon numéro de `version` bien sûr.
 #### SciTE
 
 * MicroAlg
-    * `git clone http://github.com/Microalg/Microalg.git microalg` pour rester synchro.
-    * Sinon à partir d’une archive inerte :
-       * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
-       * Extraire l’archive quelque part, puis supprimer cette archive.
-       * Obtenir un répertoire contenant les différents fichiers de l’archive (et
-         non contenant un répertoire seul contenant ces fichiers).
-       * Renommer ce dernier répertoire `microalg` et le déplacer dans votre espace
-         de travail. Par exemple un lecteur amovible devrait faire l’affaire.
-       * Disons que ce dernier répertoire a pour chemin :  
+    * Récupérer les fichiers
+        * Si vous voulez utiliser git et pouvoir récupérer les dernières
+          versions :  
+          `git clone http://github.com/Microalg/Microalg.git microalg`
+        * Sinon à partir d’une archive inerte :
+           * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+           * Extraire l’archive quelque part, puis supprimer cette archive.
+           * Obtenir un répertoire contenant les différents fichiers de l’archive (et
+             non contenant un répertoire seul contenant ces fichiers).
+           * Renommer ce dernier répertoire `microalg` et le déplacer dans votre espace
+             de travail. Par exemple un lecteur amovible devrait faire l’affaire.
+    * Configuration
+       * Disons que la récupération des fichiers vous a donné :  
          `/chemin/absolu/vers/microalg`.
-       * Ajuster la valeur de `microalg_path` dans le fichier
-         `/chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties`
-         en lui donnant justement la valeur `/chemin/absolu/vers/microalg`
-         (sans le dernier `/`).
+       * Dans le fichier
+         `/chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties`,  
+         ajuster la valeur de `microalg_path` en lui donnant justement la
+         valeur `/chemin/absolu/vers/microalg` (sans le dernier `/`).
 * SciTE
     * Utiliser le gestionnaire de paquets de votre distribution (le paquet
       s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
@@ -312,22 +316,26 @@ avec le bon numéro de `version` bien sûr.
       prévu pour vivre dans le même répertoire que l’exécutable `scite`, mais le
       plus simple est de faire :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
-   * Pour exécuter un programme, il faudra utiliser `F5.`
-* Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez installer
-  au choix (un seul suffit) :
-    * PicoLisp (il faut pour l’instant une installation « à la main », voir le
-      fichier `install_scripts/install_picolisp.sh`),
-    * Java,
-    * NodeJS.
-* Une fois l’implémentation choisie, il faudra ajuster le fichier `editeurs/scite/microalg.lua` en conséquence.
-  Il suffit de commenter ou décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
-  vers :
-  <pre><code>if uname_s == "Linux" then
-    props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
-    -- props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
-    -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"</code></pre>
+* Relier les deux
+    * Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez
+      installer au choix (un seul suffit) :
+        * Java, la solution la plus facile car Java devrait déjà être installé.
+          Taper `which java` pour le vérifier.  Si ça répond, c’est que c’est
+          bon. Sinon, il faut [installer Java](https://www.java.com/fr/download/).
+        * PicoLisp (il faut pour l’instant une installation « à la main », voir
+          le fichier `install_scripts/install_picolisp.sh`).
+        * NodeJS.
+    * Une fois l’implémentation choisie, il faudra ajuster le fichier
+      `editeurs/scite/microalg.lua` en conséquence. Il suffit de commenter ou
+      décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
+      vers :
+      <pre><code>if uname_s == "Linux" then
+        props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"</code></pre>
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
-  [la documentation](http://microalg.info/doc.html#scite).
+  [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
+  programme, il faudra taper sur `F5`.
 
 #### En ligne de commande
 
