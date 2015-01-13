@@ -123,16 +123,22 @@ Voir <http://microalg.info>.")
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
 "Commande qui ajoute tous ses paramètres et retourne le résultat.")
+(put '+ 'text "Commande somme.")
 (put '- 'doc
 "Commande qui soustrait son second paramètre à son premier paramètre et retourne le résultat.")
+(put '- 'text "Commande différence.")
 (put '* 'doc
 "Commande qui multiplie tous ses paramètres et retourne le résultat.")
+(put '* 'text "Commande produit.")
 (put '/ 'doc
 "Commande qui divise son premier paramètre par son second paramètre et retourne le résultat.")
+(put '/ 'text "Commande quotient.")
 (put '% 'doc
 "Commande qui retourne le reste de la division euclidienne de son premier paramètre par son second paramètre.")
+(put '% 'text "Commande reste.")
 (put '** 'doc
 "Commande qui retourne son premier paramètre à la puissance du second paramètre.")
+(put '** 'text "Commande puissance.")
 
 # Commentaires
 (put '!!! 'doc
