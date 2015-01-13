@@ -35,6 +35,7 @@
     <a href="#commentaires">Commentaires</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
     <a href="#parentheses">Parenthèses</a>,
+    <a href="#nbres-pseudo-aleatoires">Nombres pseudo-aléatoires</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs-nombres">Calculs avec des nombres</a>,
     <a href="#calculs-nombres-demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
@@ -209,6 +210,19 @@
     <p>Les commandes qui sont « les plus à l’intérieur des parenthèses » seront
     exécutées en premier, en commençant par la gauche.</p>
 
+    <h2 id="nbres-pseudo-aleatoires"><a href="#nbres-pseudo-aleatoires">: </a>Nombres pseudo-aléatoires</h2>
+    <p>Il est possible d’obtenir un nombre entier
+    <a href="http://fr.wikipedia.org/wiki/Pseudo-al%C3%A9atoire"
+    class="wp">pseudo-aléatoire</a> grâce à la commande <code>Entier@</code>.
+    Il faut lui passer les valeurs minimale et maximale possibles. Lancer
+    plusieurs fois de suite le programme suivant :</p>
+    <div id="script-nbres-pseudo-aleatoires"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires', {
+     src:
+        '(Afficher (Entier@ 1900 2015))'
+    });</script>
+    <p>Comment changer ce programme pour simuler un dé à six faces ?</p>
+
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <div id="script-ex-demander"></div>
     <script>inject_microalg_editor_in('script-ex-demander', {
@@ -311,6 +325,9 @@
      src:
         '(Afficher (- (+ 2 2)))'
     });</script>
+    <p>Un exercice pour finir : écrire un programme qui tire au hasard une
+    année qui a commencé un siècle entre le dixième et le vingt-et-unième
+    siècle.</p>
 
     <h2 id="calculs-nombres-demandes"><a href="#calculs-nombres-demandes">: </a>Calculs avec des nombres demandés à l’utilisateur</h2>
     <p>La commande <code>Demander</code> renvoie du texte, mais les opérations
@@ -795,6 +812,14 @@
         '(Afficher (Nieme txt 4))\n' +
         ''
     });</script>
+    <p>La commande <code>Nieme@</code> se prononce « énième aléatoire »
+    (ou <em>pseudo</em>-aléatoire pour les puristes).</p>
+    <div id="script-nieme"></div>
+    <script>inject_microalg_editor_in('script-nieme-aleatoire', {
+     src:
+        '(Afficher (Nieme@ "salut"))\n' +
+        ''
+    });</script>
     <div id="script-tete-queue"></div>
     <script>inject_microalg_editor_in('script-tete-queue', {
      src:
@@ -895,7 +920,7 @@
     <p>Comme les chaînes de caractères (ce qu’on appelle ici parfois le
     <em>texte</em> en MicroAlg), les listes sont numérotées à partir de 1 et
     peuvent être passées aux commandes <code>Longueur</code>, <code>Nieme</code>,
-    <code>Tete</code> et <code>Queue</code>.</p>
+    <code>Nieme@</code>, <code>Tete</code> et <code>Queue</code>.</p>
     <div id="script-cmds-longueur"></div>
     <script>inject_microalg_editor_in('script-cmds-longueur', {
      src:
@@ -919,6 +944,19 @@
         '(Afficher (Nieme (Liste Vrai Faux Faux Faux Vrai) 1))\n' +
         '(Afficher (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2))\n' +
         '(Afficher (Nieme (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2) 3))\n' +
+        ''
+    });</script>
+    <p><strong>Rappel</strong> : <code>Nieme@</code> se prononce
+    « énième aléatoire » (ou <em>pseudo</em>-aléatoire), n’a pas besoin de
+    position et tire un élément au hasard dans la liste.</p>
+    <div id="script-cmds-nieme-aleatoire"></div>
+    <script>inject_microalg_editor_in('script-cmds-nieme-aleatoire', {
+     src:
+        '(Afficher (Nieme@ (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Nieme@ (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Nieme@ (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Nieme@ (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
+        '(Afficher (Nieme@ (Nieme@ (Liste (Liste 2 4 6) (Liste 3 5 7)))))\n' +
         ''
     });</script>
 
