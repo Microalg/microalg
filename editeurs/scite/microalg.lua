@@ -52,8 +52,8 @@ props["abbreviations.*.malg"] = "$(microalg_path)/editeurs/scite/malg_abbrev.pro
 
 -- Configure F5 action
 if uname_s == "Linux" then
-        props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
+        props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
         -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"
 else
         props["command.go.*.malg"] = "$(SciteDefaultHome)\\malgj_scite.bat $(FilePath)"
