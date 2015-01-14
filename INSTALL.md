@@ -289,6 +289,42 @@ avec le bon numéro de `version` bien sûr.
 
 #### SciTE
 
+##### Version courte pour les apprentis
+
+* MicroAlg
+    * Récupérer les fichiers
+       * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+       * Extraire l’archive quelque part, puis supprimer cette archive.
+       * Obtenir un répertoire contenant les différents fichiers de l’archive (et
+         non contenant un répertoire seul contenant ces fichiers).
+       * Renommer ce dernier répertoire `microalg` et le déplacer dans votre espace
+         de travail. Par exemple un lecteur amovible devrait faire l’affaire.
+    * Configuration
+       * Disons que la récupération des fichiers vous a donné :  
+         `/chemin/absolu/vers/microalg`.
+       * Dans le fichier
+         `/chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties`,  
+         ajuster la valeur de `microalg_path` en lui donnant justement la
+         valeur `/chemin/absolu/vers/microalg` (sans le dernier `/`).
+* SciTE
+    * Utiliser le gestionnaire de paquets de votre distribution (le paquet
+      s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
+      [la page de téléchargements de SciTE](http://www.scintilla.org/SciTEDownload.html).
+    * Faire un lien symbolique du fichier `SciTEGlobal.properties` fourni vers
+      votre répertoire personnel. Taper dans un terminal :  
+      `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
+* Relier les deux
+    * Java devrait déjà être installé sur votre machine.  
+      Taper `which java` dans un terminal pour le vérifier.  Si ça répond,
+      c’est que c’est bon. Sinon, il faut
+      [installer Java](https://www.java.com/fr/download/) ou passer à la
+      version longue des instructions.
+* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
+  [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
+  programme, il faudra taper sur `F5`.
+
+##### Version longue pour les confirmés
+
 * MicroAlg
     * Récupérer les fichiers
         * Si vous voulez utiliser git et pouvoir récupérer les dernières
@@ -313,8 +349,8 @@ avec le bon numéro de `version` bien sûr.
       s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
       [la page de téléchargements de SciTE](http://www.scintilla.org/SciTEDownload.html).
     * Le fichier `SciTEGlobal.properties` fourni dans le dépôt MicroAlg est
-      prévu pour vivre dans le même répertoire que l’exécutable `scite`, mais le
-      plus simple est de faire :  
+      prévu pour vivre dans le même répertoire que l’exécutable `scite`. Faire
+      un lien symbolique vers votre répertoire personnel avec :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
 * Relier les deux
     * Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez
@@ -330,8 +366,8 @@ avec le bon numéro de `version` bien sûr.
       décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
       vers :
       <pre><code>if uname_s == "Linux" then
-        props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
+        props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
         -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"</code></pre>
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
