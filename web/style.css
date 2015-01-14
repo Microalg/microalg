@@ -130,3 +130,7 @@ a.email:after {
     -moz-border-top-left-radius: 1em;
     border-top-left-radius: 1em;
 }
+.microalg dt span a {
+    color: black !important;
+    text-decoration: none;
+}

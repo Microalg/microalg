@@ -662,7 +662,8 @@ nom digne de ce nom.
             $.each(cmds_as_strings, function(i, cmd) {
                 $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
                 var dt = $('<dt/>').appendTo(dl);
-                $('<span/>').html(cmd).appendTo(dt);
+                var span = $('<span/>').appendTo(dt);
+                $('<a/>').attr("href", "#cmd-" + cmd).html(cmd).appendTo(span);
                 var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
                 cmd_doc = cmd_doc.replace(/\^J/g,'\n');  // PicoLisp control char
                 cmd_doc = cmd_doc.replace(/\\"/g,'"');   // PicoLisp quoted quote
