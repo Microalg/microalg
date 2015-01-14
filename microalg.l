@@ -143,6 +143,7 @@ Voir <http://microalg.info>.")
 # Commentaires
 (put '!!! 'doc
 "Commande qui ne fait rien et sert pour les commentaires.")
+(put '!!! 'text "Commande commentaire.")
 (de !!! () Rien)
 
 # Aide
