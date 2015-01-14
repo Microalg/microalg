@@ -810,12 +810,12 @@ Voir la commande `Exemples_de`.")
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
 et `Faux` sinon.")
 (put 'Vrai? 'text "Prédicat `Vrai?`.")
-(de Vrai? (x) (if (<> x Faux) Vrai Faux))
+(de Vrai? (x) (if (!boolM2P (= x Vrai)) Vrai Faux))
 (put 'Faux? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
 et `Faux` sinon.")
 (put 'Faux? 'text "Prédicat `Faux?`.")
-(de Faux? (x) (if (<> x Vrai) Vrai Faux))
+(de Faux? (x) (if (!boolM2P (= x Faux)) Vrai Faux))
 (put 'Texte? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est du texte,
 et `Faux` sinon.")
