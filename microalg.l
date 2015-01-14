@@ -767,6 +767,7 @@ Pour lancer les tests, utiliser la commande `Tester`.
 
 Voir la commande `Exemples_de`.")
 (put '? 'text "Symbole remplaçant la commande à tester dans `Exemples_de`.")
+(put '? 'doc "Symbole remplaçant la commande à tester dans `Exemples_de`.")
 # Éviter le message « redefined »
 (setq ? NIL)
 (de ? @ (apply list (conc (list '?) (rest))))
