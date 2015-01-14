@@ -122,27 +122,70 @@ Voir <http://microalg.info>.")
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
-"Commande qui ajoute tous ses paramètres et retourne le résultat.")
+"Commande qui ajoute tous ses paramètres et retourne le résultat.
+
+    : (+ 2 2)
+    -> 4
+    : (+ 1 2 3 4)
+    -> 10
+")
 (put '+ 'text "Commande somme.")
 (put '- 'doc
-"Commande qui soustrait son second paramètre à son premier paramètre et retourne le résultat.")
+"Commande qui soustrait son second paramètre à son premier paramètre et retourne le résultat.
+
+    : (- 7 3)
+    -> 4
+")
 (put '- 'text "Commande différence.")
 (put '* 'doc
-"Commande qui multiplie tous ses paramètres et retourne le résultat.")
+"Commande qui multiplie tous ses paramètres et retourne le résultat.
+
+    : (* 2 3)
+    -> 6
+    : (* 2 3 4)
+    -> 24
+")
 (put '* 'text "Commande produit.")
 (put '/ 'doc
-"Commande qui divise son premier paramètre par son second paramètre et retourne le résultat.")
+"Commande qui divise son premier paramètre par son second paramètre et retourne le résultat.
+
+    : (/ 8 2)
+    -> 4
+
+Attention, suivant la version que vous utilisez, les divisions non entières
+donnent des résultats différents. En version web (avec Javascript) :
+
+    : (/ 9 2)
+    -> 4.5
+
+Sinon :
+
+    : (/ 9 2)
+    -> 4
+")
 (put '/ 'text "Commande quotient.")
 (put '% 'doc
-"Commande qui retourne le reste de la division euclidienne de son premier paramètre par son second paramètre.")
+"Commande qui retourne le reste de la division euclidienne de son premier paramètre par son second paramètre.
+
+    : (% 7 3)
+    -> 1
+")
 (put '% 'text "Commande reste.")
 (put '** 'doc
-"Commande qui retourne son premier paramètre à la puissance du second paramètre.")
+"Commande qui retourne son premier paramètre à la puissance du second paramètre.
+
+    : (** 2 3)
+    -> 8
+")
 (put '** 'text "Commande puissance.")
 
 # Commentaires
 (put '!!! 'doc
-"Commande qui ne fait rien et sert pour les commentaires.")
+"Commande qui ne fait rien et sert pour les commentaires.
+
+    : (!!! \"Ceci est un commentaire.\")
+    -> Rien
+")
 (put '!!! 'text "Commande commentaire.")
 (de !!! () Rien)
 
@@ -172,7 +215,12 @@ Si vous ne l’avez pas déjà fait, commencez par le
 # surchargée par stdPrint dans piljs ou ide_injection.js
 # On garde une trace du dernier affichage dans la variable globale *LastStdOut.
 (put 'Afficher 'doc
-"Commande qui affiche son unique argument, si besoin après l’avoir évalué.")
+"Commande qui affiche son unique argument, si besoin après l’avoir évalué.
+
+    : (Afficher \"Bonjour !\")
+    Bonjour !
+    -> Rien
+")
 (put 'Afficher 'text "Commande `Afficher`.")
 (setq *LastStdOut "?")
 (de !text (truc)
@@ -218,7 +266,11 @@ Si vous ne l’avez pas déjà fait, commencez par le
 
 # Concatener
 (put 'Concatener 'doc
-"Commande qui concatène les textes passés en paramètre.")
+"Commande qui concatène les textes passés en paramètre.
+
+    : (Concatener \"ici\" \" et là\")
+    -> \"ici et là\"
+")
 (put 'Concatener 'text "Commande `Concatener`.")
 (de Concatener @ (let (
                        result (pack (rest))
@@ -230,7 +282,14 @@ Si vous ne l’avez pas déjà fait, commencez par le
 
 # Gestion des variables
 (put 'Initialiser 'doc
-"Commande qui permet d’initialiser une variable avec une valeur.")
+"Commande qui permet d’initialiser une variable avec une valeur.
+
+    : (Initialiser x 2)
+    -> Rien
+    : (Afficher x)
+    2
+    -> Rien
+")
 (put 'Initialiser 'text "Commande `Initialiser`.")
 (de Initialiser arg_lst (let (nbr_args (length arg_lst))
                              (if (<> 2 nbr_args)
@@ -252,6 +311,17 @@ Si vous ne l’avez pas déjà fait, commencez par le
                         ))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.
+
+    : (Initialiser x 2)
+    -> Rien
+    : (Afficher x)
+    2
+    -> Rien
+    : (Affecter_a x 3)
+    -> Rien
+    : (Afficher x)
+    3
+    -> Rien
 
 Si la variable contient un texte ou une liste et qu’une position est fournie,
 comme par exemple dans :  
@@ -345,7 +415,13 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 # ligne ayant été affichée précédemment est réutilisée lors de l’appel à
 # window.prompt.
 (put 'Demander 'doc
-"Commande qui permet de demander une valeur à l’utilisateur.")
+"Commande qui permet de demander une valeur à l’utilisateur.
+
+    : (Afficher (Demander))
+    salut  <--- Ici, c’est l’utilisateur qui tape ;
+    salut  <--- là, c’est MicroAlg qui affiche.
+    -> Rien
+")
 (put 'Demander 'text "Commande `Demander`.")
 (de Demander () (in NIL (read " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")))
 # Références:
@@ -395,14 +471,25 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 )
 # Interface MicroAlg des listes
 (put 'Liste 'doc
-"Commande qui construit une liste.")
+"Commande qui construit une liste.
+
+    : (Afficher (Liste 1 3 5))
+    \"(Liste 1 3 5)\"
+    -> Rien
+")
 (put 'Liste 'text "Commande `Liste`.")
 (de Liste @
     (new '(+Liste) (rest)) )
 
 # Manipulations de texte et de liste
 (put 'Longueur 'doc
-"Commande qui retourne la longueur d’un texte ou d’une liste.")
+"Commande qui retourne la longueur d’un texte ou d’une liste.
+
+    : (Longueur \"bonjour\")
+    -> 7
+    : (Longueur (Liste 1 3 5 7))
+    -> 4
+")
 (put 'Longueur 'text "Commande `Longueur`.")
 (de Longueur (obj)
     (if (!boolM2P (Liste? obj))
@@ -414,7 +501,13 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 "Permet d’accéder en lecture à un des éléments d’un texte ou d’une liste
 (se lit « énième »).
 
-La numérotation commence à 1.")
+La numérotation commence à 1.
+
+    : (Nieme \"salut\" 2)
+    -> \"a\"
+    : (Nieme (Liste 1 3 5 7) 2
+    -> 3
+")
 (put 'Nieme 'text "Commande `Nieme`.")
 (de Nieme (obj idx)
     # Quelques vérifications
@@ -440,7 +533,13 @@ La numérotation commence à 1.")
       (T Rien)
     ))
 (put 'Tete 'doc
-"Commande qui retourne le premier élément d’un texte ou d’une liste.")
+"Commande qui retourne le premier élément d’un texte ou d’une liste.
+
+    : (Tete \"salut\")
+    -> \"s\"
+    : (Tete (Liste 1 3 5 7))
+    -> 1
+")
 (put 'Tete 'text "Commande `Tete`.")
 (de Tete (obj)
     # Quelques vérifications
@@ -454,8 +553,14 @@ La numérotation commence à 1.")
       (T Rien)
     ))
 (put 'Queue 'doc
-"Commande qui retourne une copie du texte ou de la liste en paramètre `obj`,
-mais sans son premier élément.")
+"Commande qui retourne une copie du texte ou de la liste en paramètre,
+ mais sans son premier élément.
+
+    : (Queue \"salut\")
+    -> \"alut\"
+    : (Afficher (Queue (Liste 1 3 5 7)))
+    -> \"(Liste 3 5 7)\"
+")
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
@@ -470,8 +575,29 @@ mais sans son premier élément.")
                (list obj (Type obj))))
     ))
 (put 'Ajouter_a 'doc
-"Commande qui, si `sym` contient un texte ou une liste, affecte un nouvel
-élément à la fin de ce texte ou de cette liste (après le dernier élément).")
+"Commande qui, si le premier argument est un texte ou une liste, affecte un
+nouvel élément à la fin de ce texte ou de cette liste (après le dernier élément).
+
+Avec du texte :
+
+    : (Initialiser mot \"bonjour\")
+    -> Rien
+    : (Ajouter_a mot \"!\")
+    -> Rien
+    : (Afficher mot)
+    \"bonjour!\"
+    -> Rien
+
+Avec une liste :
+
+    : (Initialiser v (Liste 1 3 5 7))
+    -> Rien
+    : (Ajouter_a v 9)
+    -> Rien
+    : (Afficher v)
+    \"(Liste 1 3 5 7 9)\"
+    -> Rien
+")
 (put 'Ajouter_a 'text "Commande `Ajouter_a`.")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
@@ -489,8 +615,29 @@ mais sans son premier élément.")
   )
 )
 (put 'Retirer_de 'doc
-"Commande qui, si `sym` contient un texte ou une liste, retire le dernier
-élément à la fin de ce texte ou de cette liste et le retourne.")
+"Commande qui, si le premier paramètre contient un texte ou une liste, retire
+ le dernier élément à la fin de ce texte ou de cette liste et le retourne.
+
+Avec du texte :
+
+    : (Initialiser mot \"bonjour\")
+    -> Rien
+    : (Retirer_de mot)
+    -> \"r\"
+    : (Afficher mot)
+    \"bonjou\"
+    -> Rien
+
+Avec une liste :
+
+    : (Initialiser v (Liste 1 3 5 7))
+    -> Rien
+    : (Retirer_de v)
+    -> 7
+    : (Afficher v)
+    \"(Liste 1 3 5)\"
+    -> Rien
+")
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
@@ -515,7 +662,17 @@ mais sans son premier élément.")
 # Types et conversions
 (put 'Type 'doc
 "Commande qui retourne le type de son paramètre (sous forme de texte et
-en minuscule).")
+en minuscule).
+
+    : (Type \"salut\")
+    -> \"texte\"
+    : (Type 42)
+    -> \"nombre\"
+    : (Type Faux)
+    -> \"booleen\"
+    : (Type (Liste 1 3 5 7))
+    -> \"liste\"
+")
 (put 'Type 'text "Commande `Type`.")
 (de Type arg_lst
   (let (!x (car arg_lst)
@@ -531,7 +688,11 @@ en minuscule).")
          (T Rien)
        ) ) )
 (put 'Texte 'doc
-"Commande qui retourne le texte correspondant à son paramètre.")
+"Commande qui retourne le texte correspondant à son paramètre.
+
+    : (Texte 42)
+    -> \"42\"
+")
 (put 'Texte 'text "Commande `Texte`.")
 (de Texte (x) (cond
                 ((not (<> x 'Vrai)) "Vrai")
@@ -543,7 +704,11 @@ en minuscule).")
                 (T "???")
               ))
 (put 'Nombre 'doc
-"Commande qui retourne le nombre correspondant à son paramètre textuel.")
+"Commande qui retourne le nombre correspondant à son paramètre textuel.
+
+    : (Nombre \"42\")
+    -> 42
+")
 (put 'Nombre 'text "Commande `Nombre`.")
 (de Nombre (x) (cond
                 ((num? x) x)
@@ -562,7 +727,25 @@ en minuscule).")
 (setq Sinon 'Sinon)
 (put 'Si 'doc
 "Structure conditionnelle, de la forme `Si ... Alors ... Sinon ...` où le
-`Sinon` est facultatif.")
+`Sinon` est facultatif.
+
+    (Si booleen
+     Alors instruction_si_Vrai_1
+           instruction_si_Vrai_2
+           ...
+     Sinon instruction_si_Faux_1
+           instruction_si_Faux_2
+           ...
+    )
+
+Ou :
+
+    (Si booleen
+     Alors instruction_si_Vrai_1
+           instruction_si_Vrai_2
+           ...
+    )
+")
 (put 'Si 'text "Commande `Si`.")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
@@ -580,6 +763,11 @@ en minuscule).")
 (put 'Non 'doc
 "Non logique.
 
+    : (Non Vrai)
+    -> Faux
+    : (Non Faux)
+    -> Vrai
+
 Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 (put 'Non 'text "Commande `Non`.")
 (de Non (!P !rien_ici)
@@ -588,6 +776,11 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
     (!boolP2M (not (!boolM2P !P))) )
 (put 'Et 'doc
 "Et logique.
+
+    : (Et Vrai Faux)
+    -> Faux
+    : (Et Vrai Vrai)
+    -> Vrai
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 (put 'Et 'text "Commande `Et`.")
@@ -598,6 +791,11 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
     (!boolP2M (and (!boolM2P !P) (!boolM2P !Q))) )
 (put 'Ou 'doc
 "Ou logique.
+
+    : (Ou Vrai Faux)
+    -> Vrai
+    : (Ou Faux Faux)
+    -> Faux
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Ou 'text "Commande `Ou`.")
@@ -615,7 +813,21 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
             "recharger votre crédit en affectant une valeur à la variable "
             "`credit_iterations`."))
 (put 'Tant_que 'doc
-"Structure itérative de type « tant que ... faire ... ».")
+"Structure itérative de type « tant que ... faire ... ».
+
+    : (Initialiser i 3)
+    -> Rien
+    : (Tant_que (>= i 0)
+       Faire
+           (Afficher i)
+           (Affecter_a i (- i 1))
+    )
+    3
+    2
+    1
+    0
+    -> Rien
+")
 (put 'Tant_que 'text "Commande `Tant_que`.")
 (de Tant_que arg_lst (let (Bool (car arg_lst)
                            Mot-Clef (cadr arg_lst)
@@ -629,7 +841,21 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                      )
 )
 (put 'Faire 'doc
-"Structure itérative de type « faire ... tant que ... ».")
+"Structure itérative de type « faire ... tant que ... ».
+
+    : (Initialiser i 3)
+    -> Rien
+    : (Faire
+          (Afficher i)
+          (Affecter_a i (- i 1))
+       Tant_que (>= i 0)
+    )
+    3
+    2
+    1
+    0
+    -> Rien
+")
 (put 'Faire 'text "Commande `Faire`.")
 (de Faire arg_lst (let (Splitted (split arg_lst 'Tant_que)
                         Corps (car Splitted)
@@ -808,32 +1034,70 @@ Voir la commande `Exemples_de`.")
 # Prédicats
 (put 'Vrai? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Vrai? Vrai)
+    Vrai
+    : (Vrai? 1)
+    Faux
+")
 (put 'Vrai? 'text "Prédicat `Vrai?`.")
 (de Vrai? (x) (if (!boolM2P (= x Vrai)) Vrai Faux))
 (put 'Faux? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Faux? Faux)
+    Vrai
+    : (Faux? 0)
+    Faux
+")
 (put 'Faux? 'text "Prédicat `Faux?`.")
 (de Faux? (x) (if (!boolM2P (= x Faux)) Vrai Faux))
 (put 'Texte? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est du texte,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Texte? 42)
+    -> Faux
+    : (Texte? \"42\")
+    -> Vrai
+")
 (put 'Texte? 'text "Prédicat `Texte?`.")
 (de Texte? (x) (if (str? x) Vrai Faux))
 (put 'Nombre? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Nombre? \"42\")
+    -> Faux
+    : (Nombre? 42)
+    -> Vrai
+")
 (put 'Nombre? 'text "Prédicat `Nombre?`.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
 (put 'Booleen? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Booleen? Faux)
+    -> Vrai
+    : (Booleen? 1)
+    -> Faux
+")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 (put 'Liste? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est une liste,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (Liste? (Liste 1 3 5 7))
+    -> Vrai
+    : (Liste? 0)
+    -> Faux
+    : (Liste? \"salut\")
+    -> Faux
+")
 (put 'Liste? 'text "Prédicat `Liste?`.")
 (de Liste? (x) (if (or (try 'text> x) (try 'text> (eval x))) Vrai Faux))
 # Sans le suffixe '?'
@@ -845,39 +1109,92 @@ et `Faux` sinon.")
 (setq >= NIL)
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
-et `Faux` sinon.")
+et `Faux` sinon.
+
+    : (= 42 42)
+    -> Vrai
+")
 (put '= 'text "Prédicat `=`.")
 (de = (x y) (ifn (<> x y) Vrai Faux))
 (put '=/ 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-différentes, et `Faux` sinon.")
+différentes, et `Faux` sinon.
+
+    : (=/ 42 42)
+    -> Faux
+")
 (put '=/ 'text "Prédicat `=/`.")
 (de =/ (x y) (if (<> x y) Vrai Faux))
 (put '< 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-dans l’ordre croissant (strictement), et `Faux` sinon.")
+dans l’ordre croissant (strictement), et `Faux` sinon.
+
+    : (< 42 42)
+    -> Faux
+    : (< 42 43)
+    -> Vrai
+")
 (put '< 'text "Prédicat `<`.")
 (de < (x y) (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-dans l’ordre croissant.")
+dans l’ordre croissant.
+
+    : (<= 42 42)
+    -> Vrai
+    : (<= 42 43)
+    -> Vrai
+    : (<= 43 42)
+    -> Faux
+")
 (put '<= 'text "Prédicat `<=`.")
 (de <= (x y) (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-dans l’ordre décroissant (strictement), et `Faux` sinon.")
+dans l’ordre décroissant (strictement), et `Faux` sinon.
+
+    : (> 42 42)
+    -> Faux
+    : (> 43 42)
+    -> Vrai
+")
 (put '> 'text "Prédicat `>`.")
 (de > (x y) (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
-dans l’ordre décroissant.")
+dans l’ordre décroissant.
+
+    : (>= 42 42)
+    -> Vrai
+    : (>= 43 42)
+    -> Vrai
+    : (<= 42 43)
+    -> Faux
+")
 (put '>= 'text "Prédicat `>=`.")
 (de >= (x y) (if (ge0 (- x y)) Vrai Faux))
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
 
 * **Textes** : le seul texte vide est `\"\"`.
-* **Listes** : la seule liste vide est `(Liste)`.")
+* **Listes** : la seule liste vide est `(Liste)`.
+* Les valeurs des autres types se sont jamais vide.
+
+Exemples :
+
+    : (Vide? 0)
+    -> Faux
+    : (Vide? Faux)
+    -> Faux
+    : (Vide? \"a\")
+    -> Faux
+    : (Vide? \"\")
+    -> Vrai
+    : (Vide? (Liste 0))
+    -> Faux
+    : (Vide? (Liste))
+    -> Vrai
+")
 (put 'Vide? 'text "Prédicat `Vide?`.")
 (de Vide? (obj)
     (if (<> 0 (Longueur obj)) Faux Vrai))
