@@ -145,6 +145,8 @@
             '(= 0 (Si (Faux? 0) Alors 1 Sinon 0))
             '(= Vrai (Texte? "0"))
             '(= Faux (Texte? 0))
+            '(= Vrai (Texte? ""))
+            '(= Faux (Texte? (Liste)))
             '(= Vrai (Nombre? 0))
             '(= Faux (Nombre? "0"))
             '(= Vrai (Booleen? Vrai))

@@ -1064,7 +1064,20 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put 'Texte? 'text "Prédicat `Texte?`.")
-(de Texte? (x) (if (str? x) Vrai Faux))
+(de Texte? arg_lst
+  (let (!obj (car arg_lst)
+        !evaled_obj (eval !obj)
+        !deuze (cadr arg_lst))
+       (cond
+        ((not !obj) Vrai)                       # Possiblement "" en direct.
+        ((num? !obj) Faux)                      # Un nombre en direct.
+        ((!boolM2P (Liste? !evaled_obj)) Faux)  # Liste.
+        ((and (== (get !evaled_obj 'type) "texte")) Vrai)  # Un sym textuel.
+        ((str? !evaled_obj) Vrai)               # Texte.
+        (T Faux)                                # Le reste.
+       )
+  )
+)
 (put 'Nombre? 'doc
 "Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
 et `Faux` sinon.
