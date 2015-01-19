@@ -943,10 +943,10 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.
 **Attention !** Cette instruction doit être la dernière de la commande créée car
 `Retourner` n’en interrompt pas l’exécution.")
 (put 'Retourner 'text "Commande `Retourner`.")
-(de Retourner (val deuze)
-  (if deuze (quit (pack "`Retourner` n’a qu’un paramètre. Si vous voulez "
-                        "vraiment retourner plusieurs valeurs, vous pouvez "
-                        "essayer de retourner une liste." )))
+(de Retourner (val !deuze)
+  (if !deuze (quit (pack "`Retourner` n’a qu’un paramètre. Si vous voulez "
+                         "vraiment retourner plusieurs valeurs, vous pouvez "
+                         "essayer de retourner une liste." )))
   val
 )
 (put 'Exemples_de 'doc
@@ -1007,9 +1007,9 @@ Voir la commande `Exemples_de`.")
 )
 (de Tester arg_lst
   (let (!commande (car arg_lst)
-        deuze (cadr arg_lst)
+        !deuze (cadr arg_lst)
         !exemples (get !commande 'exemples))
-       (if deuze (quit "`Tester` n’a qu’un paramètre."))
+       (if !deuze (quit "`Tester` n’a qu’un paramètre."))
        (cond
          ((not (eval !commande))
             (Afficher (pack "Il faut définir la commande " !commande " avant de la tester.")))
