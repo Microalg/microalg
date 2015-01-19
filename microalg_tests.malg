@@ -38,6 +38,7 @@
             '(or (put 'x 'type NIL) T)
             # Types et conversions
             '(= "texte" (Type "bonjour"))
+            '(= "texte" (Type ""))
             '(= "nombre" (Type 0))
             '(= "booleen" (Type Vrai))
             '(= "booleen" (Type Faux))

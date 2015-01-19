@@ -677,6 +677,7 @@ en minuscule).
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
        (cond
+         ((not !x) "texte")  # Possiblement "" en direct.
          ((<> Faux (Nombre?  !evaled_x)) "nombre")
          ((<> Faux (Liste?   !x))        "liste")
          ((<> Faux (Texte?   !evaled_x)) "texte")
@@ -1070,6 +1071,7 @@ et `Faux` sinon.
        (cond
         ((not !obj) Vrai)                       # Possiblement "" en direct.
         ((num? !obj) Faux)                      # Un nombre en direct.
+        ((num? !evaled_obj) Faux)               # Un sym numérique.
         ((!boolM2P (Liste? !evaled_obj)) Faux)  # Liste.
         ((and (== (get !evaled_obj 'type) "texte")) Vrai)  # Un sym textuel.
         ((str? !evaled_obj) Vrai)               # Texte.
