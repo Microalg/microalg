@@ -943,11 +943,11 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.
 **Attention !** Cette instruction doit être la dernière de la commande créée car
 `Retourner` n’en interrompt pas l’exécution.")
 (put 'Retourner 'text "Commande `Retourner`.")
-(de Retourner (val !deuze)
+(de Retourner (!val !deuze)
   (if !deuze (quit (pack "`Retourner` n’a qu’un paramètre. Si vous voulez "
                          "vraiment retourner plusieurs valeurs, vous pouvez "
                          "essayer de retourner une liste." )))
-  val
+  !val
 )
 (put 'Exemples_de 'doc
 "Permet de lire ou écrire les exemples-tests d’une commande.
