@@ -115,8 +115,7 @@ Voir <http://microalg.info>.")
     (!boolM2P x) )
 
 (de !add_quotes (x) (pack "\"" x "\""))
-(de !quote_txt (x) (if (and (str? x)
-                            (not (try 'text> x)))  # car (str? (Liste)) -> not NIL
+(de !quote_txt (x) (if (!boolM2P (Texte? x))
                        (!add_quotes x)
                        x))
 
@@ -609,7 +608,7 @@ Avec une liste :
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
-         ((or (not !evaled_sym) (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         ((!boolM2P (Texte? !sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
          (T (quit "Le premier argument de `Ajouter_a` doit être du texte ou une liste." !sym))
        )
   )
@@ -648,7 +647,7 @@ Avec une liste :
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
-         ((or (not !evaled_sym) (str? !evaled_sym))
+         ((!boolM2P (Texte? !evaled_sym))
              (let (!chopped (chop !evaled_sym)
                    !return_val (last !chopped))
                   (set !sym (pack (head (- (length !evaled_sym) 1) !chopped)))
