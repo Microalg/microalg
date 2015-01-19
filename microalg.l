@@ -678,12 +678,12 @@ en minuscule).
         !evaled_x (eval !x))
        (cond
          ((not !x) "texte")  # Possiblement "" en direct.
-         ((<> Faux (Nombre?  !evaled_x)) "nombre")
-         ((<> Faux (Liste?   !x))        "liste")
-         ((<> Faux (Texte?   !evaled_x)) "texte")
-         ((<> Faux (Liste?   !evaled_x)) "liste")
-         ((<> Faux (Booleen? !evaled_x)) "booleen")
-         ((<> Faux (== Rien  !evaled_x)) "rien")
+         ((!boolM2P (Nombre?  !evaled_x)) "nombre")
+         ((!boolM2P (Liste?   !x))        "liste")
+         ((!boolM2P (Texte?   !evaled_x)) "texte")
+         ((!boolM2P (Liste?   !evaled_x)) "liste")
+         ((!boolM2P (Booleen? !evaled_x)) "booleen")
+         ((!boolM2P (== Rien  !evaled_x)) "rien")
          ((sym? x) (get !x 'type))
          (T Rien)
        ) ) )
