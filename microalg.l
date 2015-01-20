@@ -119,6 +119,10 @@ Voir <http://microalg.info>.")
                        (!add_quotes x)
                        x))
 
+# Vérif qu’une variable est bien initialisée :
+(de !inited (!sym)
+    (or (eval !sym) (get !sym 'type)) )
+
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
 "Commande qui ajoute tous ses paramètres et retourne le résultat.
@@ -605,6 +609,7 @@ Avec une liste :
         !troize (caddr arg_lst))
        # Quelques vérifications
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
+       (ifn (!inited !sym) (quit "`Ajouter_a` : la variable n’est pas initialisée." !sym))
        (if (!boolM2P (!texte? !sym))
            (if (or (not (!boolM2P (Texte? !elt)))
                    (!boolM2P (> (Longueur !elt) 1)) )
@@ -648,6 +653,7 @@ Avec une liste :
         !deuze (cadr arg_lst))
        # Quelques vérifications
        (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
+       (ifn (!inited !sym) (quit "`Retirer_de` : la variable n’est pas initialisée." !sym))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
