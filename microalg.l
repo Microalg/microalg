@@ -605,10 +605,14 @@ Avec une liste :
         !troize (caddr arg_lst))
        # Quelques vérifications
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
+       (if (!boolM2P (!texte? !sym))
+           (if (or (not (!boolM2P (Texte? !elt)))
+                   (!boolM2P (> (Longueur !elt) 1)) )
+               (quit "On peut `Ajouter_a` un texte qu’un caractère." !elt) ))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
-         ((!boolM2P (Texte? !sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         ((!boolM2P (!texte? !sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
          (T (quit "Le premier argument de `Ajouter_a` doit être du texte ou une liste." !sym))
        )
   )
@@ -680,6 +684,7 @@ en minuscule).
          ((not !x) "texte")  # Possiblement "" en direct.
          ((!boolM2P (Nombre?  !evaled_x)) "nombre")
          ((!boolM2P (Liste?   !x))        "liste")
+         ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
          ((!boolM2P (Texte?   !evaled_x)) "texte")
          ((!boolM2P (Liste?   !evaled_x)) "liste")
          ((!boolM2P (Booleen? !evaled_x)) "booleen")
@@ -1064,19 +1069,25 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put 'Texte? 'text "Prédicat `Texte?`.")
-(de Texte? arg_lst
-  (let (!obj (car arg_lst)
-        !evaled_obj (eval !obj)
-        !deuze (cadr arg_lst))
+(de !texte? (!obj)  # helper évaluant son arg
        (cond
         ((not !obj) Vrai)                       # Possiblement "" en direct.
         ((num? !obj) Faux)                      # Un nombre en direct.
         ((num? !evaled_obj) Faux)               # Un sym numérique.
         ((!boolM2P (Liste? !evaled_obj)) Faux)  # Liste.
-        ((and (== (get !evaled_obj 'type) "texte")) Vrai)  # Un sym textuel.
+        ((if (sym? !obj) (== (get !obj 'type) "texte")) Vrai)  # Un sym textuel.
+        ((== (get !obj 'type) "texte") Vrai)    # Un sym textuel.
         ((str? !evaled_obj) Vrai)               # Texte.
         (T Faux)                                # Le reste.
        )
+  )
+(de Texte? arg_lst
+  (let (!obj (car arg_lst)
+        !evaled_obj (eval !obj)
+        !deuze (cadr arg_lst))
+       # Quelques vérifications:
+       (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
+       (!texte? !obj)
   )
 )
 (put 'Nombre? 'doc
