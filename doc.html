@@ -254,6 +254,10 @@ valeur qui est parfois fournie :
 * Indice non entier.
 * Indice trop grand.
 * `Initialiser` prend 2 paramètres. Vous en donnez X.
+* `java.lang.ClassCastException: PicoLisp$Symbol cannot be cast to PicoLisp$Number`
+    * Une commande qui concerne uniquement les nombres (comme `+`, `-`, `*`,
+    `/`, `%` ou `**`) a été écrite avec autre chose qu’un nombre en argument
+    (peut-être du texte, un booléen, une liste ou `Rien`).
 * `java.lang.NullPointerException`
     * Il y a peut-être dans votre code une commande de la forme `(x)` ou `x`
       est une variable contenant un nombre. Dans ce cas, vous voulez peut-être
