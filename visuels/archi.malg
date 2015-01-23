@@ -27,7 +27,7 @@
     # lignes
     (apply <xml> (list (append text_conf_small '(x malgj_x_pos y 25 (prin "résultat dans la console")))))
     (<xmlq> line x1 malgj_x_pos y1 35 x2 malgj_x_pos y2 50 stroke-width 5 stroke N)
-    (apply <xml> (list (append text_conf_small '(x malgj_x_pos y 70 (prin "malg* fichier.malg (ou NP++)")))))
+    (apply <xml> (list (append text_conf_small '(x malgj_x_pos y 70 (prin "`malg* fichier.malg` (ou depuis éditeur)")))))
     (apply <xml> (list (append text_conf_small '(x malgjs_browser_x_pos y 25 (prin "HTML")))))
     (<xmlq> line x1 malgjs_browser_x_pos y1 35 x2 malgjs_browser_x_pos y2 50 stroke-width 5 stroke N)
     (apply <xml> (list (append text_conf_small '(x malgjs_browser_x_pos y 70 (prin "formulaire")))))
