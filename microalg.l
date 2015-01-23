@@ -106,6 +106,9 @@ Voir <http://microalg.info>.")
 (de var: X
    (apply meta X This) )
 
+# En cas d’erreur, pas de prompt ? par défaut.
+(setq *Err '((bye)))
+
 # Vérif et conversions de booléens MicroAlg <-> PicoLisp:
 (de !boolM2P (x) (if (<> Faux x) T NIL))
 (de !boolP2M (x) (if x Vrai Faux))
