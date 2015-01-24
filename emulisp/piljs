@@ -49,6 +49,7 @@ while (true) {
         EMULISP_CORE.eval(src);
     } catch(e) {
         console.log(e.message)
+        EMULISP_CORE.eval("(run *Err)");
         console.log("? (" + NO_DEBUG + ")");
     }
 }
@@ -64,6 +65,7 @@ while (true) {
     } catch(e) {
         console.log("!? " + user_input)
         console.log(e.message)
+        EMULISP_CORE.eval("(run *Err)");
         console.log("? (" + NO_DEBUG + ")");
     }
 }
