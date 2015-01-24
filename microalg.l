@@ -515,29 +515,37 @@ La numérotation commence à 1.
     -> 3
 ")
 (put 'Nieme 'text "Commande `Nieme`.")
-(de Nieme (obj idx)
+(de Nieme arg_lst
+  (let (!obj (car arg_lst)
+        !evaled_obj (eval !obj)
+        !idx (cadr arg_lst)
+        !troize (caddr arg_lst))
     # Quelques vérifications
+    (if !troize (quit "`Nieme` n’a que deux paramètres."))
+    (ifn (!inited !obj) (quit "`Nieme` : la variable n’est pas initialisée." !obj))
     (setq !onppeuv "`Nieme` ne peut pas extraire une valeur ")
     (cond
-        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
-        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
-        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
-        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
+        ((num? !evaled_obj) (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
+        ((==   !evaled_obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
+        ((==   !evaled_obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
+        ((==   !evaled_obj 'Rien) (quit (pack !onppeuv "de Rien.")))
     )
-    (let (len (Longueur obj))
+    (let (len (Longueur !evaled_obj))
       (cond
-        ((not idx) (quit "Il manque le deuxième paramètre : l’indice."))
-        ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
-        ((le0 idx) (quit "Indice négatif ou nul." idx))
-        ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
+        ((not !idx) (quit "Il manque le deuxième paramètre : l’indice."))
+        ((<> !idx (format (round !idx 0) 0 "." ",")) (quit "Indice non entier." !idx))
+        ((le0 !idx) (quit "Indice négatif ou nul." !idx))
+        ((lt0 (- len !idx)) (quit "Indice trop grand." (list !idx '> len)))
       )
     )
     # Le calcul
     (cond
-      ((!boolM2P (Liste? obj)) (nth> obj idx))
-      ((str? obj) (car (nth (chop obj) idx)))
+      ((!boolM2P (Liste? !evaled_obj)) (nth> !evaled_obj !idx))
+      ((!boolM2P (Texte? !evaled_obj)) (car (nth (chop !evaled_obj) !idx)))
       (T Rien)
-    ))
+    )
+  )
+)
 (put 'Tete 'doc
 "Commande qui retourne le premier élément d’un texte ou d’une liste.
 
