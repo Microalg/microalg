@@ -165,8 +165,6 @@
             '(= Vrai (Booleen? Vrai))
             '(= Vrai (Booleen? Faux))
             '(= Faux (Booleen? 0))
-            '(= Vrai (Vide? ""))
-            '(= Faux (Vide? "salut"))
             # Manipulations de listes
             '(let (x NIL) (= "(Liste 2 4 6)" (prog (Initialiser x (Liste 2 4 0)) (Affecter_a x 6 En_position 3) (!text x))))
             '(or (put 'x 'type NIL) T)
