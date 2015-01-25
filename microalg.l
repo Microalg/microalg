@@ -497,11 +497,31 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
     -> 4
 ")
 (put 'Longueur 'text "Commande `Longueur`.")
-(de Longueur (obj)
-    (if (!boolM2P (Liste? obj))
-        (length> obj)
-        (length obj)
+(de !longueur (!obj)
+    (if (!boolM2P (Liste? !obj))
+        (length> !obj)
+        (length  !obj)
     )
+)
+(de Longueur arg_lst
+  (let (!obj (car arg_lst)
+        !evaled_obj (eval !obj)
+        !deuze (cadr arg_lst))
+    # Quelques vérifications
+    (if !deuze (quit "`Longueur` n’a qu’un paramètre."))
+    (ifn !obj 0  # pour gérer texte vide
+      (ifn (!inited !obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
+    )
+    (setq !npdl " n’a pas de `Longueur`.")
+    (cond
+        ((num? !evaled_obj) (quit (pack "Un nombre" !npdl) !evaled_obj))
+        ((==   !evaled_obj 'Vrai) (quit (pack "Vrai" !npdl)))
+        ((==   !evaled_obj 'Faux) (quit (pack "Faux" !npdl)))
+        ((==   !evaled_obj 'Rien) (quit (pack "Rien" !npdl)))
+    )
+    # Le calcul
+    (!longueur !evaled_obj)
+  )
 )
 (put 'Nieme 'doc
 "Permet d’accéder en lecture à un des éléments d’un texte ou d’une liste
@@ -1238,8 +1258,27 @@ Exemples :
     -> Vrai
 ")
 (put 'Vide? 'text "Prédicat `Vide?`.")
-(de Vide? (obj)
-    (if (<> 0 (Longueur obj)) Faux Vrai))
+(de Vide? arg_lst
+  (let (!obj (car arg_lst)
+        !evaled_obj (eval !obj)
+        !deuze (cadr arg_lst))
+    # Quelques vérifications
+    (ifn arg_lst (quit "`Vide?` prend un paramètre."))
+    (if !deuze (quit "`Vide?` n’a qu’un paramètre."))
+    (ifn !obj Vrai
+      (ifn (!inited !obj) (quit "`Vide?` : la variable n’est pas initialisée." !obj))
+    )
+    (setq !ctnaass "`Vide?` : ce test n’a aucun sens sur ")
+    (cond
+        ((num? !evaled_obj) (quit (pack !ctnaass "un nombre.") !evaled_obj))
+        ((==   !evaled_obj 'Vrai) (quit (pack !ctnaass "Vrai.")))
+        ((==   !evaled_obj 'Faux) (quit (pack !ctnaass "Faux.")))
+        ((==   !evaled_obj 'Rien) (quit (pack !ctnaass "Rien.")))
+    )
+    # Le calcul
+    (if (<> 0 (!longueur !evaled_obj)) Faux Vrai)
+  )
+)
 
 # Rien
 (put 'Rien 'doc
