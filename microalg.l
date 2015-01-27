@@ -118,7 +118,7 @@ Voir <http://microalg.info>.")
     (!boolM2P x) )
 
 (de !add_quotes (x) (pack "\"" x "\""))
-(de !quote_txt (x) (if (!boolM2P (Texte? x))
+(de !quote_txt (x) (if (or (not x) (!boolM2P (Texte? x)))
                        (!add_quotes x)
                        x))
 
