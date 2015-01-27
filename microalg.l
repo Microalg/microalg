@@ -235,6 +235,9 @@ Si vous ne l’avez pas déjà fait, commencez par le
           efirst (eval first)
          )
          (cond
+          ((!boolM2P (= Vrai efirst)) "Vrai")
+          ((!boolM2P (= Faux efirst)) "Faux")
+          ((!boolM2P (= Rien efirst)) "Rien")
           ((and (not (atom efirst)) (!boolM2P (= '? (car efirst))))
            (pack "(" (str efirst) ")"))           # liste commençant par ?
           ((num? first) first)                    # nombre litéral
@@ -1177,7 +1180,14 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put '= 'text "Prédicat `=`.")
-(de = (x y) (ifn (<> x y) Vrai Faux))
+(de = (x y) (ifn (<> x y)
+                 (if (or (== x Vrai) (== x Faux) (== x Rien)
+                         (== y Vrai) (== y Faux) (== y Rien))
+                     (if (== x y) Vrai Faux)  # test == pour les vals ci-dessus
+                     Vrai                     # pour les autres, c’est not <>
+                 )
+                 Faux)  # ici, ils sont <>
+)
 (put '=/ 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 différentes, et `Faux` sinon.
