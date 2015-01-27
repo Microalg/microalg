@@ -260,8 +260,11 @@ Si vous ne l’avez pas déjà fait, commencez par le
    second (cadr args)
    a_afficher (!text first)
   )
+  # Quelques vérifications
+  (ifn (!inited first) (quit "`Afficher` : la variable n’est pas initialisée." first))
   (if second (quit (pack "`Afficher` n’a qu’un paramètre, faites plusieurs "
                          "affichages ou utilisez `Concatener`." )))
+  # Le boulot
   (setq *LastStdOut (if a_afficher a_afficher "?"))
   (ifn !testing
        (println (ifn a_afficher
