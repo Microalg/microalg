@@ -581,14 +581,17 @@ La numérotation commence à 1.
 (put 'Tete 'text "Commande `Tete`.")
 (de Tete (obj)
     # Quelques vérifications
-    (if (!boolM2P (Vide? obj))
-        (quit "Un objet vide n’a pas de tête.")
+    (cond ((num? obj)
+           (quit "Un nombre n’a pas de tête, il faut un texte ou une liste." obj))
+          ((!boolM2P (Vide? obj))
+           (quit "Un objet vide n’a pas de tête." obj))
     )
     # Le calcul
     (cond
       ((!boolM2P (Liste? obj)) (nth> obj 1))
       ((str? obj) (car (chop obj)))
-      (T Rien)
+      (T (quit "Vous cherchez la tete d’une valeur qui n’est ni un texte ni une liste."
+               (list obj (Type obj))))
     ))
 (put 'Queue 'doc
 "Commande qui retourne une copie du texte ou de la liste en paramètre,
@@ -602,8 +605,10 @@ La numérotation commence à 1.
 (put 'Queue 'text "Commande `Queue`.")
 (de Queue (obj)
     # Quelques vérifications
-    (if (!boolM2P (Vide? obj))
-        (quit "Un objet vide n’a pas de queue.")
+    (cond ((num? obj)
+           (quit "Un nombre n’a pas de queue, il faut un texte ou une liste." obj))
+          ((!boolM2P (Vide? obj))
+           (quit "Un objet vide n’a pas de queue." obj))
     )
     # Le calcul
     (cond
