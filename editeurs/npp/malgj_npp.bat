@@ -6,5 +6,5 @@ SET SRC_PATH="%1"
 SET MICROALG_DIR=%~dp0\..\..
 SET ERSATZ_DIR=%MICROALG_DIR%\ersatz
 java -DPID=42 -jar %ERSATZ_DIR%\picolisp.jar ^
-     %ERSATZ_DIR%\lib.l %MICROALG_DIR%\microalg.l %SRC_PATH%
+     %ERSATZ_DIR%\lib.l %MICROALG_DIR%\microalg.l %SRC_PATH% -bye
      pause>nul|set/p="Une touche pour quitter."&echo(
