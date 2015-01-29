@@ -545,7 +545,7 @@ La numérotation commence à 1.
 (de Nieme arg_lst
   (let (!obj (car arg_lst)
         !evaled_obj (eval !obj)
-        !idx (cadr arg_lst)
+        !idx (eval (cadr arg_lst))
         !troize (caddr arg_lst))
     # Quelques vérifications
     (if !troize (quit "`Nieme` n’a que deux paramètres."))
