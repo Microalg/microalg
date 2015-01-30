@@ -261,12 +261,15 @@
     <p>Ce n’est pas très pratique. Quand vous saurez taper votre code sans les
     blocs, il suffira de taper : <code>(+ 2 2 2)</code>.</p>
     <p>De même, pour calculer l’opposé d’un nombre, il suffit de retirer ce
-    nombre à 0. Sans les blocs, il suffira d’écrire <code>(- 7)</code>.</p>
+    nombre à 0 ou de multiplier par -1. Sans les blocs, il suffira d’écrire
+    <code>(- (+ 2 2))</code>.</p>
     <div id="script-oppose"></div>
     <script>inject_microalg_editor_in('script-oppose', {
      blockly_only: true,
      src:
-        '(Afficher (- 0 7))'
+        '(Afficher (- 0 (+ 2 2)))\n' +
+        '(Afficher (* -1 (+ 2 2)))\n' +
+        ''
     });</script>
     <p>Autres exemples avec <code>+</code>, <code>-</code>, <code>*</code> et
     <code>/</code> (papier crayon ou calculatrice autorisés si vous n’êtes pas
