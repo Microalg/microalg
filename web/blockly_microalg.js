@@ -31,10 +31,13 @@ Blockly.Msg.RENAME_VARIABLE_TITLE = "Renommer toutes les variables '%1' en :";
 Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
-    '=, =/, <, <=, >, >=, ' +
-    'Affecter_a, Afficher, Aide, Bloc, Booleen?, Concatener, ' +
-    'Demander, Faire, Faux, Faux?, Initialiser, Nombre, Nombre?, ' +
-    'Rien, Si, Tant_que, Texte, Texte?, Type, Vrai, Vrai?');
+    'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Booleen?, Concatener, ' +
+    'Definir, Demander, En_position, Entier@, Et, Exemples_de, ' +
+    'Faire, Faux, Faux?, Initialiser, Initialiser@, ' +
+    'Liste, Liste?, Longueur, Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
+    'Queue, Retirer_de, Retourner, Rien, Si, Sinon, ' +
+    'Tant_que, Tester, Tete, Texte, Texte?, Type, ' +
+    'Vide?, Vrai, Vrai?');
 
 // La suite, jusqu’au commentaire de fin, n’a pas été modifiée.
 
