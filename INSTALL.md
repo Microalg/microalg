@@ -10,7 +10,7 @@ Aller directement à :
     * édition avec SciTE :
         * exécution avec Java
             * [instructions](#scite-avec-java)
-            * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.2.4/microalg_0.2.4.zip)
+            * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.2.5/microalg_0.2.5.zip)
               correspondant aux instructions
     * édition avec Notepad++ :
         * [exécution avec Java](#notepad-avec-java)
@@ -145,7 +145,7 @@ avec le bon numéro de `version` bien sûr.
 #### SciTE avec Java
 
 Vous pouvez télécharger le résultat des instructions suivantes
-[directement ici](https://github.com/Microalg/Microalg/releases/download/v0.2.4/microalg_0.2.4.zip).
+[directement ici](https://github.com/Microalg/Microalg/releases/download/v0.2.5/microalg_0.2.5.zip).
 
 * MicroAlg
     * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
