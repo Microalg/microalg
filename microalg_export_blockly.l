@@ -10,7 +10,7 @@
   ))
 (de insertion_next (src) (car (insertion_next_aux (reverse src))))
 (de insertion_next_aux (src)
-  (ifn (and (<> (length src) 0) (<> (length src) 1)) src  # (if (<= len 1)
+  (ifn (and (<> (length src) 0) (<> (length src) 1)) src  # if (<= len 1)
                           # Déplacement de la tête, enfermée dans un (Next ),
                           # À la fin du deuxième élément.
                           # La queue restant inchangée.
