@@ -357,7 +357,8 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          )
          (ifn kw
               (prog
-                 (if (!boolM2P (Liste? var)) (quit (pack !onppauv "à une liste, utiliser `Affecter_a … … En_position …`.") var))
+                 (if (and (!boolM2P (Liste? (eval var))) (not (!boolM2P (Liste? val))))
+                     (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
                  # Affectation au symbole dans `var`.
                  (ifn (get var 'type)
                       (quit "Variable non initialisée." var)
