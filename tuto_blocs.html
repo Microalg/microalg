@@ -36,6 +36,7 @@
     <a href="#prise-en-main-et-affichage">Prise en main et affichage</a>,
     <a href="#commentaires">Commentaires</a>,
     <a href="#texte-et-concatenation">Texte et concaténation</a>,
+    <a href="#nbres-pseudo-aleatoires">Nombres pseudo-aléatoires</a>,
     <a href="#demander">Demander à l’utilisateur</a>,
     <a href="#calculs-nombres">Calculs avec des nombres</a>,
     <a href="#calculs-nombres-demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
@@ -176,6 +177,20 @@
     un bloc supplémentaire, ou en supprimant un bloc pour faire apparaître ou
     disparaître des emplacements. Recliquer sur l’étoile quand le compte est
     bon.</p>
+
+    <h2 id="nbres-pseudo-aleatoires"><a href="#nbres-pseudo-aleatoires">: </a>Nombres pseudo-aléatoires</h2>
+    <p>Il est possible d’obtenir un nombre entier
+    <a href="http://fr.wikipedia.org/wiki/Pseudo-al%C3%A9atoire"
+    class="wp">pseudo-aléatoire</a> grâce à la commande <code>Entier@</code>.
+    Il faut lui passer les valeurs minimale et maximale possibles. Lancer
+    plusieurs fois de suite le programme suivant :</p>
+    <div id="script-nbres-pseudo-aleatoires"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires', {
+     blockly_only: true,
+     src:
+        '(Afficher (Entier@ 1900 2015))'
+    });</script>
+    <p>Comment changer ce programme pour simuler un dé à six faces ?</p>
 
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <p>Il est possible de demander une valeur à l’utilisateur, pour ensuite
