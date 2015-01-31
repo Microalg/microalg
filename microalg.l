@@ -18,7 +18,7 @@ Voir <http://microalg.info>.")
 "En_position" "Entier@" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
-"Initialiser"
+"Initialiser" "Initialiser@"
 "Liste" "Liste?" "Longueur"
 "Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
 "Ou"
@@ -397,6 +397,38 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 (setq En_position 'En_position)
 
 # Tirages pseudo-aléatoires.
+(put 'Initialiser@ 'doc
+"Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
+
+Cette commande est à appeler une seule fois au début de votre programme et est
+inutile si vous utilisez la version Javascript de MicroAlg (en particulier dans
+le navigateur). Elle résout le problème suivant :
+
+Dans une session :
+
+    : (Entier@ 0 1000)
+    -> 0
+    : (Entier@ 0 1000)
+    -> 648
+
+Puis dans une autre, plus tard :
+
+    : (Entier@ 0 1000)
+    -> 0
+    : (Entier@ 0 1000)
+    -> 648
+
+Alors que :
+
+    : (Initialiser@)
+    -> Rien
+    : (Entier@ 0 1000)
+    -> 422  # Cette valeur sera différente à chaque seconde de la journée.
+")
+(put 'Initialiser@ 'text "Commande `Initialiser@`.")
+(de Initialiser@ ()
+    (seed (time))
+    Rien)
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
 paramètres entiers).
