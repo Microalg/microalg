@@ -1349,6 +1349,7 @@ var coreFunctions = {
 	"run": function(c) { var cv = evalLisp(c.car);
 		return (cv instanceof Cell) ? prog(cv) : cv;	// TODO: binding env. offset cnt
 	},
+	"seed": function(c) { return rand(NIL, 2147483648); },  // not std. PicoLisp
 	"send": function(c) { var m = evalLisp(c.car), t = evalLisp(c.cdr.car);
 		TheKey = m; TheCls = null;
 		console.log("send #1: %s, %s", lispToStr(t), lispToStr(m));
