@@ -1,7 +1,0 @@
-*.swp
-*.pyc
-/editeurs/scite/*.exe
-/pde/microalg.out
-/picolisp/
-/visuels/logo_microalg.svg
-/visuels/archi.svg

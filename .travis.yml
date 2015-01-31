@@ -1,8 +1,0 @@
-install:
-  - sudo apt-get update -qq
-  - sudo apt-get install gcc-multilib
-  - npm install readline-sync
-  - sudo pip install pexpect
-  - sudo pip install lettuce
-  - sudo ./install_scripts/fix_lettuce.sh
-script: sh microalg_tests.sh
