@@ -399,6 +399,37 @@ Blockly.MicroAlg['demander'] = function(block) {
   return '(Demander)';
 };
 
+// Bloc Entier@
+Blockly.Blocks['entier_pseudo_aleatoire'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Entier@');
+    this.setColour(250);
+    this.appendValueInput('MIN')
+        .setCheck('Number')
+        .appendField('Entier@');
+    this.appendValueInput('MAX')
+        .setCheck('Number');
+    this.setInputsInline(true);
+    this.setOutput(true, 'Number');
+    this.setTooltip('Nombre pseudo-aléatoire entre les valeurs fournies.');
+  }
+};
+
+// Gen Entier@
+Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
+  var min = Blockly.MicroAlg.statementToCode(block, 'MIN') || '';
+  var max = Blockly.MicroAlg.statementToCode(block, 'MAX') || '';
+  if (min + max === '') return '(Entier@)';
+  var num_lines = (min + max).split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Entier@ ' + min.substring(Blockly.MicroAlg.INDENT.length) +
+                   ' ' + max.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Entier@\n' + min + '\n' + max + '\n)';
+  }
+};
+
 // Bloc Faire
 // Gen Faire
 // Bloc Initialiser
