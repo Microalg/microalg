@@ -473,7 +473,7 @@ Blockly.Blocks['si'] = {
         .appendField('Alors');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setMutator(new Blockly.Mutator(['si_alors_sinon']));
+    this.setMutator(new Blockly.Mutator(['si_alors_sinon_sinon']));
     this.setTooltip('Structure conditionnelle');
     this.elseCount_ = 0;
     },
@@ -491,7 +491,7 @@ Blockly.Blocks['si'] = {
         this.elseCount_ = parseInt(xmlElement.getAttribute('else'), 10);
         if (this.elseCount_) {
             this.appendStatementInput('SINON')
-            .appendField(Blockly.Msg.CONTROLS_IF_MSG_ELSE);
+            .appendField('Sinon');
         }
     },
     decompose: function(workspace) {
@@ -516,7 +516,7 @@ Blockly.Blocks['si'] = {
                 case 'si_alors_sinon_sinon':
                     this.elseCount_++;
                     var elseInput = this.appendStatementInput('SINON');
-                    elseInput.appendField(Blockly.Msg.CONTROLS_IF_MSG_ELSE);
+                    elseInput.appendField('Sinon');
                     if (clauseBlock.statementConnection_) {
                         elseInput.connection.connect(clauseBlock.statementConnection_);
                     }
@@ -547,25 +547,27 @@ Blockly.Blocks['si'] = {
     }
 };
 
-// Conteneur pour le mutator de Si
+// Conteneur pour le mutator de Si (Si… Alors…)
 Blockly.Blocks['si_alors_sinon_si'] = {
     init: function() {
         this.setColour(10);
         this.appendDummyInput()
-            .appendField('Si');
+            .appendField('Si…');
+        this.appendDummyInput()
+            .appendField('Alors…');
         this.appendStatementInput('STACK');
-        this.setTooltip('Si tooltip');
+        this.setTooltip('Peut accueillir un bloc Sinon');
         this.contextMenu = false;
     }
 };
-// Conteneur pour le mutator de Si
+// Conteneur pour le mutator de Si (Sinon)
 Blockly.Blocks['si_alors_sinon_sinon'] = {
     init: function() {
         this.setColour(10);
         this.appendDummyInput()
-            .appendField(Blockly.Msg.CONTROLS_IF_ELSE_TITLE_ELSE);
+            .appendField('Sinon');
         this.setPreviousStatement(true);
-        this.setTooltip('Sinon tooltip');
+        this.setTooltip('Glisser pour ajouter un bloc Sinon');
         this.contextMenu = false;
     }
 };
@@ -573,26 +575,16 @@ Blockly.Blocks['si_alors_sinon_sinon'] = {
 // Gen Si
 // https://github.com/google/blockly/blob/master/generators/python/logic.js#L32
 Blockly.MicroAlg['si'] = function(block) {
-// If/elseif/else condition.
-var n = 0;
-var argument = Blockly.MicroAlg.valueToCode(block, 'IF' + n,
-Blockly.MicroAlg.ORDER_NONE) || 'False';
-var branch = Blockly.MicroAlg.statementToCode(block, 'DO' + n) ||
-Blockly.MicroAlg.PASS;
-var code = 'if ' + argument + ':\n' + branch;
-for (n = 1; n <= block.elseifCount_; n++) {
-argument = Blockly.MicroAlg.valueToCode(block, 'IF' + n,
-Blockly.MicroAlg.ORDER_NONE) || 'False';
-branch = Blockly.MicroAlg.statementToCode(block, 'DO' + n) ||
-Blockly.MicroAlg.PASS;
-code += 'elif ' + argument + ':\n' + branch;
-}
-if (block.elseCount_) {
-branch = Blockly.MicroAlg.statementToCode(block, 'ELSE') ||
-Blockly.Python.PASS;
-code += 'else:\n' + branch;
-}
-return code;
+    var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    var branch = Blockly.MicroAlg.statementToCode(block, 'ALORS') || '';
+    var code = '(Si ' + cond.substring(Blockly.MicroAlg.INDENT.length) +
+               ' Alors ' + branch.substring(Blockly.MicroAlg.INDENT.length);
+    if (block.elseCount_) {
+        branch = Blockly.MicroAlg.statementToCode(block, 'SINON') || 'pass';
+        code += ' Sinon ' + branch;
+    }
+    code += ')'
+    return code;
 };
 
 // Bloc Tant_que
