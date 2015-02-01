@@ -123,11 +123,25 @@
         "</value>"
         "</block>"))
 (de Si inputs
-  (pack "<block type=\"si\">"
-        "<value name=\"COND\">"
-        (eval (car inputs))
-        "</value>"
-        "</block>"))
+  (let (condition (car inputs)
+        kw_alors  (cadr inputs)
+        splitted  (split (cddr inputs) 'Sinon)
+        bloc_vrai (car splitted)
+        bloc_faux (cadr splitted))
+       (pack "<block type=\"si\">"
+             (if (n0 (length bloc_faux)) "<mutation else=\"1\"></mutation>")
+             "<value name=\"COND\">"
+             (eval condition)
+             "</value>"
+             "<statement name=\"ALORS\">"
+             (eval (insertion_next bloc_vrai))
+             "</statement>"
+             (if bloc_faux (pack
+                 "<statement name=\"SINON\">"
+                 (eval (insertion_next bloc_faux))
+                 "</statement>"))
+             "</block>")
+))
 (de Texte (content)
   (pack "<block type=\"texte\">"
         "<value name=\"VALUE\">"
