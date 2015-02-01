@@ -41,6 +41,7 @@
     <a href="#calculs-nombres">Calculs avec des nombres</a>,
     <a href="#calculs-nombres-demandes">Calculs avec des nombres demandés à l’utilisateur</a>,
     <a href="#booleens">Booléens</a>,
+    <a href="#si">Si</a>,
     <a href="#taper-du-code">Taper du code</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -506,6 +507,142 @@
         '(Afficher (< 0 1))\n' +
         ''
     });</script>
+
+    <h2 id="si"><a href="#si">: </a>Si</h2>
+    <p>Les booléens servent surtout à décider quelle instruction exécuter
+    plutôt qu’une autre.</p>
+    Par exemple, lorsque l’on discute avec quelqu’un, on peut commencer par :
+    « Salut, ça va ? ».<br>
+    <strong>Si</strong> la personne répond « oui » (qui correspondrait à
+    <code>Vrai</code>), <strong>alors</strong> on lui répond « Tant mieux ! ».<br>
+    <strong>Sinon</strong> (ce qui correspondrait à <code>Faux</code>), on lui
+    répond « Ah, qu’y a-t-il ? ».</p>
+    <p>Avec MicroAlg, pour programmer ce genre de situation, on utilisera la
+    commande <code>Si</code>.</p>
+    <p>Attention, dans l’exemple suivant, seul le mot « oui » en minuscule est
+    reconnu comme une réponse positive.</p>
+    <div id="script-si"></div>
+    <script>inject_microalg_editor_in('script-si', {
+     blockly: true,      
+     src:
+        '(Afficher "Salut, ça va ?")\n' +
+        '(Si (= (Demander) "oui")\n' +
+        ' Alors (Afficher "Tant mieux !")\n' +
+        ' Sinon (Afficher "Ah, qu’y a-t-il ?")\n' +
+        ')'
+    });</script>
+    <p>Le code ci-dessus peut se lire :</p>
+    <ul>
+        <li>Afficher la question.</li>
+        <li><strong>Si</strong> l’utilisateur répond « oui »,</li>
+        <li><strong>Alors</strong> afficher « Tant mieux ! »,</li>
+        <li><strong>Sinon</strong> afficher « Ah, qu’y a-t-il ? ».</li>
+    </ul>
+    <p>On peut donc résumer la commande <code>Si</code> ainsi :<br>
+    <code>(Si booléen Alors commande-si-vrai Sinon commande-si-faux)</code></p>
+    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
+    <pre><code>(Si booléen
+ Alors commande-si-vrai
+ Sinon commande-si-faux
+)</code></pre></p>
+    <p>Si on veut détailler, la commande <code>Si</code> possède cinq
+    paramètres :</p>
+    <ul>
+        <li>un booléen,</li>
+        <li>le mot-clef intermédiaire <code>Alors</code></li>
+        <li>l’instruction à exécuter si le booléen est <code>Vrai</code>,</li>
+        <li>le mot-clef intermédiaire <code>Sinon</code></li>
+        <li>l’instruction à exécuter si le booléen est <code>Faux</code>,</li>
+    </ul>
+    <p>Cette commande agit comme un aiguillage pour les rails des trains. En
+    actionnant l’aiguillage, on décide sur quelle voie va rouler le train.</p>
+    <p>L’analogie de l’arbre est aussi possible : le déroulement du programme
+    peut suivre une des deux branches, la branche du « alors » ou la branche du
+    « sinon ».</p>
+    <p>Voici d’autres exemples :</p>
+    <div id="script-si-mdp"></div>
+    <script>inject_microalg_editor_in('script-si-mdp', {
+     src:
+        '(Afficher "Quel est le mot de passe ?")\n' +
+        '(Si (= (Demander) "funambule")\n' +
+        ' Alors (Afficher "Accès autorisé.")\n' +
+        ' Sinon (Afficher "Accès refusé.")\n' +
+        ')'
+    });</script>
+    <div id="script-si-calcul"></div>
+    <script>inject_microalg_editor_in('script-si-calcul', {
+     src:
+        '(Afficher "Combien font deux et deux ?")\n' +
+        '(Si (= (Demander) "quatre")\n' +
+        ' Alors (Afficher "Bravo !")\n' +
+        ' Sinon (Afficher "Perdu, c’était « quatre ».")\n' +
+        ')'
+    });</script>
+    <div id="script-si-majeur-mineur"></div>
+    <script>inject_microalg_editor_in('script-si-majeur-mineur', {
+     src:
+        '(Afficher "Quel âge as-tu ?")\n' +
+        '(Si (< (Nombre (Demander)) 18)\n' +
+        ' Alors (Afficher "Tu es mineur.")\n' +
+        ' Sinon (Afficher "Tu es majeur.")\n' +
+        ')'
+    });</script>
+    <p>Après avoir vu les bases de la commande <code>Si</code>, voyons quelques
+    variantes :</p>
+    <ul>
+        <li><a href="#si-sans-sinon">Si sans « sinon »</a>,</li>
+        <li><a href="#si-blocs">Si avec plusieurs commandes</a>,</li>
+        <li><a href="#si-emboites">Si(s) emboîtés</a>,</li>
+        <li><a href="#si-valeurs">Si avec des valeurs uniquement</a>,</li>
+    </ul>
+    <h3 id="si-sans-sinon"><a href="#si-sans-sinon">: </a>Si sans « sinon »</h3>
+    <p>Il est possible d’ommettre la commande correspondant au « sinon » :</p>
+    <div id="script-si-sans-sinon"></div>
+    <script>inject_microalg_editor_in('script-si-sans-sinon', {
+     src:
+        '(Si Vrai\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
+        ')\n' +
+        '(Si Faux\n' +
+        ' Alors (Afficher "Au revoir !")\n' +
+        ')\n' +
+        '(Afficher "Voilà.")\n' +
+        ''
+    });</script>
+    <h3 id="si-blocs"><a href="#si-blocs">: </a>Si avec plusieurs commandes</h3>
+    <p>On peut parfois avoir besoin d’exécuter plusieurs instructions dans une
+    même branche. Il suffit de bien placer le mot-clef <code>Sinon</code> (si
+    besoin) et la parenthèse finale.</p>
+    <div id="script-si-blocs"></div>
+    <script>inject_microalg_editor_in('script-si-blocs', {
+     src:
+        '(Si Vrai\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
+        '       (Afficher "Et rebonjour !")\n' +
+        ' Sinon (Afficher "Au revoir !")\n' +
+        '       (Afficher "Et au revoir encore !")\n' +
+        ')\n' +
+        '(!!! "Le même code, mais avec l’autre booléen :")\n' +
+        '(Si Faux\n' +
+        ' Alors (Afficher "Bonjour !")\n' +
+        '       (Afficher "Et rebonjour !")\n' +
+        ' Sinon (Afficher "Au revoir !")\n' +
+        '       (Afficher "Et au revoir encore !")\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p>Avec plusieurs commandes, la commande <code>Si</code> est finalement
+    de la forme :<br>
+    <code>(Si booléen Alors commandes-si-vrai Sinon commandes-si-faux)</code></p>
+    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
+    <pre><code>(Si booléen
+ Alors commande-si-vrai
+       commande-si-vrai
+       ...
+ Sinon commande-si-faux
+       commande-si-faux
+       ...
+)</code></pre></p>
 
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,

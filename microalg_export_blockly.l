@@ -122,6 +122,12 @@
         content
         "</value>"
         "</block>"))
+(de Si inputs
+  (pack "<block type=\"si\">"
+        "<value name=\"COND\">"
+        (eval (car inputs))
+        "</value>"
+        "</block>"))
 (de Texte (content)
   (pack "<block type=\"texte\">"
         "<value name=\"VALUE\">"
