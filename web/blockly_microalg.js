@@ -461,7 +461,132 @@ Blockly.MicroAlg['nombre'] = function(block) {
 };
 
 // Bloc Si
+// https://github.com/google/blockly/blob/master/blocks/logic.js#L34
+Blockly.Blocks['si'] = {
+    init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Si');
+    this.setColour(10);
+    this.appendValueInput('COND')
+        .setCheck('Boolean')
+        .appendField('Si');
+    this.appendStatementInput('ALORS')
+        .appendField('Alors');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setMutator(new Blockly.Mutator(['si_alors_sinon_sinon']));
+    this.setTooltip('Structure conditionnelle');
+    this.elseCount_ = 0;
+    },
+    mutationToDom: function() {
+        if (!this.elseCount_) {
+            return null;
+        }
+        var container = document.createElement('mutation');
+        if (this.elseCount_) {
+            container.setAttribute('sinon', 1);
+        }
+        return container;
+    },
+    domToMutation: function(xmlElement) {
+        this.elseCount_ = parseInt(xmlElement.getAttribute('else'), 10);
+        if (this.elseCount_) {
+            this.appendStatementInput('SINON')
+            .appendField('Sinon');
+        }
+    },
+    decompose: function(workspace) {
+        var containerBlock = Blockly.Block.obtain(workspace, 'si_alors_sinon_si');
+        containerBlock.initSvg();
+        var connection = containerBlock.getInput('STACK').connection;
+        if (this.elseCount_) {
+            var elseBlock = Blockly.Block.obtain(workspace, 'si_alors_sinon_sinon');
+            elseBlock.initSvg();
+            connection.connect(elseBlock.previousConnection);
+        }
+        return containerBlock;
+    },
+    compose: function(containerBlock) {
+        if (this.elseCount_) {
+            this.removeInput('SINON');
+        }
+        this.elseCount_ = 0;
+        var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+        while (clauseBlock) {
+            switch (clauseBlock.type) {
+                case 'si_alors_sinon_sinon':
+                    this.elseCount_++;
+                    var elseInput = this.appendStatementInput('SINON');
+                    elseInput.appendField('Sinon');
+                    if (clauseBlock.statementConnection_) {
+                        elseInput.connection.connect(clauseBlock.statementConnection_);
+                    }
+                    break;
+                default:
+                    throw 'Unknown block type.';
+            }
+        clauseBlock = clauseBlock.nextConnection &&
+                      clauseBlock.nextConnection.targetBlock();
+        }
+    },
+    saveConnections: function(containerBlock) {
+        var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+        var i = 1;
+        while (clauseBlock) {
+            switch (clauseBlock.type) {
+                case 'si_alors_sinon_si':
+                    var inputDo = this.getInput('SINON');
+                    clauseBlock.statementConnection_ =
+                        inputDo && inputDo.connection.targetConnection;
+                    break;
+                default:
+                    throw 'Unknown block type.';
+            }
+            clauseBlock = clauseBlock.nextConnection &&
+            clauseBlock.nextConnection.targetBlock();
+        }
+    }
+};
+
+// Conteneur pour le mutator de Si (Si… Alors…)
+Blockly.Blocks['si_alors_sinon_si'] = {
+    init: function() {
+        this.setColour(10);
+        this.appendDummyInput()
+            .appendField('Si…');
+        this.appendDummyInput()
+            .appendField('Alors…');
+        this.appendStatementInput('STACK');
+        this.setTooltip('Peut accueillir un bloc Sinon');
+        this.contextMenu = false;
+    }
+};
+// Conteneur pour le mutator de Si (Sinon)
+Blockly.Blocks['si_alors_sinon_sinon'] = {
+    init: function() {
+        this.setColour(10);
+        this.appendDummyInput()
+            .appendField('Sinon');
+        this.setPreviousStatement(true);
+        this.setTooltip('Glisser pour ajouter un bloc Sinon');
+        this.contextMenu = false;
+    }
+};
+
 // Gen Si
+// https://github.com/google/blockly/blob/master/generators/python/logic.js#L32
+Blockly.MicroAlg['si'] = function(block) {
+    var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    var branch = Blockly.MicroAlg.statementToCode(block, 'ALORS') || '';
+    var code = '(Si ' + cond.substring(Blockly.MicroAlg.INDENT.length) +
+               ' Alors ' + branch.substring(Blockly.MicroAlg.INDENT.length);
+    if (block.elseCount_) {
+        branch = Blockly.MicroAlg.statementToCode(block, 'SINON') || 'pass';
+        code += ' Sinon ' + branch;
+    }
+    code += ')'
+    return code;
+};
+
 // Bloc Tant_que
 // Gen Tant_que
 
