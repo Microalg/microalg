@@ -154,6 +154,18 @@ Blockly.MicroAlg.scrub_ = function(block, code) {
 
 // Commentaire de fin (de section non modifiée).
 
+// https://groups.google.com/forum/#!searchin/blockly/indentation/blockly/siVJ3OQQpQU/lYf6jqdTERMJ
+Blockly.Generator.prototype.prefixLines = function(text, prefix) {
+    var splitted = text.split('/n');
+    var indented = splitted.map(function (line) {
+        if (line.indexOf(' Alors') == 0) return "a"+line;
+        if (line.indexOf(' Sinon') == 0) return "b"+line;
+        if (line.indexOf(')') == 0) return line;
+        return prefix + line;
+    });
+    return indented.join('');
+};
+
 // Blocs et générateurs (groupés, pas comme dans l’original).
 // Basés sur:
 // http://code.google.com/p/blockly/source/browse/trunk/blocks
@@ -577,13 +589,15 @@ Blockly.Blocks['si_alors_sinon_sinon'] = {
 Blockly.MicroAlg['si'] = function(block) {
     var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
     var branch = Blockly.MicroAlg.statementToCode(block, 'ALORS') || '';
+    branch = branch.replace(/\)\(/gm, ')\n(');
     var code = '(Si ' + cond.substring(Blockly.MicroAlg.INDENT.length) +
-               ' Alors ' + branch.substring(Blockly.MicroAlg.INDENT.length);
+               '\n Alors\n' + Blockly.Generator.prototype.prefixLines(branch, Blockly.MicroAlg.INDENT);
     if (block.elseCount_) {
-        branch = Blockly.MicroAlg.statementToCode(block, 'SINON') || 'pass';
-        code += ' Sinon ' + branch;
+        branch = Blockly.MicroAlg.statementToCode(block, 'SINON') || '';
+        branch = branch.replace(/\)\(/gm, ')\n(');
+        code += '\n Sinon\n' + Blockly.Generator.prototype.prefixLines(branch, Blockly.MicroAlg.INDENT);
     }
-    code += ')'
+    code += '\n)'
     return code;
 };
 
