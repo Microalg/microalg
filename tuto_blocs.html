@@ -523,7 +523,7 @@
     reconnu comme une réponse positive.</p>
     <div id="script-si"></div>
     <script>inject_microalg_editor_in('script-si', {
-     blockly: true,                                         
+     blockly_only: true,
      src:
         '(Afficher "Salut, ça va ?")\n' +
         '(Si (= (Demander) "oui")\n' +
@@ -562,6 +562,7 @@
     <p>Voici d’autres exemples :</p>
     <div id="script-si-mdp"></div>
     <script>inject_microalg_editor_in('script-si-mdp', {
+     blockly_only: true,
      src:
         '(Afficher "Quel est le mot de passe ?")\n' +
         '(Si (= (Demander) "funambule")\n' +
@@ -571,6 +572,7 @@
     });</script>
     <div id="script-si-calcul"></div>
     <script>inject_microalg_editor_in('script-si-calcul', {
+     blockly_only: true,
      src:
         '(Afficher "Combien font deux et deux ?")\n' +
         '(Si (= (Demander) "quatre")\n' +
@@ -580,6 +582,7 @@
     });</script>
     <div id="script-si-majeur-mineur"></div>
     <script>inject_microalg_editor_in('script-si-majeur-mineur', {
+     blockly_only: true,
      src:
         '(Afficher "Quel âge as-tu ?")\n' +
         '(Si (< (Nombre (Demander)) 18)\n' +
@@ -599,6 +602,7 @@
     <p>Il est possible d’ommettre la commande correspondant au « sinon » :</p>
     <div id="script-si-sans-sinon"></div>
     <script>inject_microalg_editor_in('script-si-sans-sinon', {
+     blockly_only: true,
      src:
         '(Si Vrai\n' +
         ' Alors (Afficher "Bonjour !")\n' +
@@ -615,6 +619,7 @@
     besoin) et la parenthèse finale.</p>
     <div id="script-si-blocs"></div>
     <script>inject_microalg_editor_in('script-si-blocs', {
+     blockly_only: true,
      src:
         '(Si Vrai\n' +
         ' Alors (Afficher "Bonjour !")\n' +
