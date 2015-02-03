@@ -129,17 +129,19 @@
         bloc_vrai (car splitted)
         bloc_faux (cadr splitted))
        (pack "<block type=\"si\">"
+             (if (n0 (length bloc_faux)) "<mutation else=\"1\"></mutation>")
              "<value name=\"COND\">"
              (eval condition)
              "</value>"
-             "<value name=\"ALORS\">"
-             (run bloc_vrai)
-             "</value>"
-             (if bloc_faux
-                 (pack "<value name=\"SINON\">"
-                       (run bloc_faux)
-                       "</value>"))
-             "</block>")))
+             "<statement name=\"ALORS\">"
+             (eval (insertion_next bloc_vrai))
+             "</statement>"
+             (if bloc_faux (pack
+                 "<statement name=\"SINON\">"
+                 (eval (insertion_next bloc_faux))
+                 "</statement>"))
+             "</block>")
+))
 (de Texte (content)
   (pack "<block type=\"texte\">"
         "<value name=\"VALUE\">"
