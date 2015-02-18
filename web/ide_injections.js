@@ -16,6 +16,8 @@ var microalg_export_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
+var lib_json_src =
+    EMULISP_CORE.getFileSync(root_path + 'lib/json.l');
 
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
