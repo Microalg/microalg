@@ -37,9 +37,14 @@
     <script type="text/javascript">
     EMULISP_CORE.eval(lib_json_src);
     //var opt_data = cleanTransient(EMULISP_CORE.eval('(picolisp_to_json (quote ("name" . "Smith") ("age" . 25) ("address" ("street" . "21 2nd Street") ("city" . "New York") ("state" . "NY") ("zip" . "10021") ) ("phone" T "212 555-1234" "646 555-4567") ) ) *JSON'));
-    var trace_as_lisp = '("name" . "Smith") ("age" . 25) ("address" ("street" . "21 2nd Street") ("city" . "New York") ("state" . "NY") ("zip" . "10021") ) ("phone" T "212 555-1234" "646 555-4567")';
+    var trace_as_lisp =
+      '("code" . "(Afficher \\"salut\\")")' + 
+      '("trace" . (T ' + 
+        '(("ordered_globals" . T) ("stdout" . " ") ("func_name" . "<module>"))' + 
+      '))';
     var lisp_to_eval = '(picolisp_to_json (quote ' + trace_as_lisp + ')) *JSON';
     var opt_data = cleanTransient(EMULISP_CORE.eval(lisp_to_eval));
+    console.log(opt_data);
     var opt_data2 = {
 "code": "def fact(n):\n    print(\"on me demande fact de\", n)\n    resultat = 1\n    facteur = 1\n    while facteur <= n:\n        resultat = resultat * facteur\n        print(\"facteur =\", facteur)\n        print(\"resultat =\", resultat)\n        facteur = facteur + 1\n    return resultat\n\nprint(fact(4))\n",
 "trace": [
