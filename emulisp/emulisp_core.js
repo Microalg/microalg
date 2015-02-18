@@ -1192,6 +1192,14 @@ var coreFunctions = {
 	"lt0": function(c) { var cv = evalLisp(c.car);
 		return ((cv instanceof Number) && (cv < 0)) ? cv : NIL; },
 	"make": function(c) { mkNew(); prog(c); return mkResult(); },
+	"map": function(c) { var r = NIL, fn = evalLisp(c.car), ci = evalArgs(c.cdr);
+		if (! (fn instanceof Symbol)) fn = box(fn);
+		while (ci.car !== NIL) { var cj = ci, a = new List();
+			while (cj !== NIL) { a.link(cj.car); cj.car = cj.car.cdr; cj = cj.cdr; }
+			r = evalLisp(new Cell(fn, unevalArgs(a.list)));
+		}
+		return r;
+	},
 	"mapc": function(c) { var r = NIL, fn = evalLisp(c.car), ci = evalArgs(c.cdr);
 		if (! (fn instanceof Symbol)) fn = box(fn);
 		while (ci.car !== NIL) { var cj = ci, a = new List();
