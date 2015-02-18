@@ -24,12 +24,17 @@
     <link type="text/css" href="web/opt/jquery-ui-1.8.24.custom.css" rel="stylesheet" />
     <script type="text/javascript" src="web/opt/pytutor.js"></script>
     <link rel="stylesheet" href="web/opt/pytutor.css"/>
-
 </head>
-<body>
-<div id="opt_div"></div>
-
-<script type="text/javascript">
+<body class="microalg">
+    <h1>Visualisation de l’exécution</h2>
+    <p>bla</p>
+    <div id="script-test-opt"></div>
+    <script>inject_microalg_editor_in('script-test-opt', {
+     src:
+        '(Afficher "Bonjour tout le monde !")'
+    });</script>
+    <div id="opt_div" style="background-color: #fff;"></div>
+    <script type="text/javascript">
 
 var opt_data = {
 "code": "def fact(n):\n    print(\"on me demande fact de\", n)\n    resultat = 1\n    facteur = 1\n    while facteur <= n:\n        resultat = resultat * facteur\n        print(\"facteur =\", facteur)\n        print(\"resultat =\", resultat)\n        facteur = facteur + 1\n    return resultat\n\nprint(fact(4))\n",
