@@ -1,4 +1,16 @@
 # See https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-trace-format.md
+(de step (ordered_globals stdout func_name stack_to_render globals heap line event)
+   (list
+       ("ordered_globals" . (T))
+       ("stdout" . " ")
+       ("func_name" . "<module>")
+       ("stack_to_render" . (T))
+       ("globals" . ())
+       ("heap" . ())
+       ("line" . 1)
+       ("event" . "step_line")
+   )
+)
 (de malg_to_opt_trace ()
    (quote ("code" . "(Afficher \"salut\")")
           ("trace" T
