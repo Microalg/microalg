@@ -123,8 +123,8 @@ Voir <http://microalg.info>.")
                        x))
 
 # Vérif qu’une variable est bien initialisée :
-(de !inited (!sym)
-    (or (eval !sym) (get !sym 'type)) )
+(de !inited (!sym !evaled_sym)
+    (or !evaled_sym (get !sym 'type)) )
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -261,7 +261,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
    a_afficher (!text first)
   )
   # Quelques vérifications
-  (ifn (!inited first) (quit "`Afficher` : la variable n’est pas initialisée." first))
+  (ifn (!inited first a_afficher) (quit "`Afficher` : la variable n’est pas initialisée." first))
   (if second (quit (pack "`Afficher` n’a qu’un paramètre, faites plusieurs "
                          "affichages ou utilisez `Concatener`." )))
   # Le boulot
@@ -584,7 +584,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
     # Quelques vérifications
     (if !deuze (quit "`Longueur` n’a qu’un paramètre."))
     (ifn !obj 0  # pour gérer texte vide
-      (ifn (!inited !obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
+      (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
     )
     (setq !npdl " n’a pas de `Longueur`.")
     (cond
@@ -616,7 +616,7 @@ La numérotation commence à 1.
         !troize (caddr arg_lst))
     # Quelques vérifications
     (if !troize (quit "`Nieme` n’a que deux paramètres."))
-    (ifn (!inited !obj) (quit "`Nieme` : la variable n’est pas initialisée." !obj))
+    (ifn (!inited !obj !evaled_obj) (quit "`Nieme` : la variable n’est pas initialisée." !obj))
     (setq !onppeuv "`Nieme` ne peut pas extraire une valeur ")
     (cond
         ((num? !evaled_obj) (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
@@ -719,7 +719,7 @@ Avec une liste :
         !troize (caddr arg_lst))
        # Quelques vérifications
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
-       (ifn (!inited !sym) (quit "`Ajouter_a` : la variable n’est pas initialisée." !sym))
+       (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’est pas initialisée." !sym))
        (if (!boolM2P (!texte? !sym))
            (if (or (not (!boolM2P (Texte? !elt)))
                    (!boolM2P (> (Longueur !elt) 1)) )
@@ -763,7 +763,7 @@ Avec une liste :
         !deuze (cadr arg_lst))
        # Quelques vérifications
        (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
-       (ifn (!inited !sym) (quit "`Retirer_de` : la variable n’est pas initialisée." !sym))
+       (ifn (!inited !sym !evaled_sym) (quit "`Retirer_de` : la variable n’est pas initialisée." !sym))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
@@ -1351,8 +1351,8 @@ Exemples :
     # Quelques vérifications
     (ifn arg_lst (quit "`Vide?` prend un paramètre."))
     (if !deuze (quit "`Vide?` n’a qu’un paramètre."))
-    (ifn !obj Vrai
-      (ifn (!inited !obj) (quit "`Vide?` : la variable n’est pas initialisée." !obj))
+    (ifn !obj Vrai  # Pour le texte vide "".
+      (ifn (!inited !obj !evaled_obj) (quit "`Vide?` : la variable n’est pas initialisée." !obj))
     )
     (setq !ctnaass "`Vide?` : ce test n’a aucun sens sur ")
     (cond

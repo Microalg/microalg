@@ -9,6 +9,8 @@
             '(= "Rien" (prog (setq *LastStdOut "") (Afficher Rien) *LastStdOut))
             '(= "Vrai" (prog (setq *LastStdOut "") (Afficher Vrai) *LastStdOut))
             '(= "Faux" (prog (setq *LastStdOut "") (Afficher Faux) *LastStdOut))
+            # Afficher ne doit évaluer qu’une fois
+            '(let (x NIL) (= 1 (prog (setq x 0) (Afficher (setq x (+ x 1))) x)))
             # Concaténation
             '(= "" (Concatener))
             '(= "" (Concatener ""))
