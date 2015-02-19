@@ -36,13 +36,8 @@
     <div id="opt_div" style="background-color: #fff;"></div>
     <script type="text/javascript">
     EMULISP_CORE.eval(lib_json_src);
-    var trace_as_lisp =
-      '("code" . "(Afficher \\"salut\\")")' +
-      '("trace" T ' +
-        '(("ordered_globals" . (T)) ("stdout" . " ") ("func_name" . "<module>") ("stack_to_render" . (T)) ("globals" . ()) ("heap" . ()) ("line" . 1) ("event" . "step_line"))' +
-        '(("ordered_globals" . (T)) ("stdout" . "salut") ("func_name" . "<module>") ("stack_to_render" . (T)) ("globals" . ()) ("heap" . ()) ("line" . 1) ("event" . "step_line"))' +
-      ')';
-    var lisp_to_eval = '(picolisp_to_json (quote ' + trace_as_lisp + ')) *JSON';
+    EMULISP_CORE.eval(microalg_export_opt_src);
+    var lisp_to_eval = '(picolisp_to_json (malg_to_opt_trace)) *JSON';
     var json_as_str = cleanTransient(EMULISP_CORE.eval(lisp_to_eval));
     var opt_data = JSON.parse(json_as_str);
     $(document).ready(function() {

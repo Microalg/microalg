@@ -16,6 +16,8 @@ var microalg_export_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
+var microalg_export_opt_src =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_opt.l');
 var lib_json_src =
     EMULISP_CORE.getFileSync(root_path + 'lib/json.l');
 
