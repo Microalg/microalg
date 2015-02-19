@@ -156,6 +156,8 @@ Blockly.MicroAlg.scrub_ = function(block, code) {
 
 // https://groups.google.com/forum/#!searchin/blockly/indentation/blockly/siVJ3OQQpQU/lYf6jqdTERMJ
 Blockly.Generator.prototype.prefixLines = function(text, prefix) {
+    // Original was:
+    // return prefix + text.replace(/\n(.)/g, '\n' + prefix + '$1');
     var splitted = text.split('\n');
     if (splitted.length == 1) return prefix + text;
     var indented = splitted.map(function (line) {
