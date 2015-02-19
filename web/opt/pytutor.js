@@ -1139,7 +1139,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
       vcrControls.find("#curInstr").html("Instruction limit reached");
     }
     else {
-      vcrControls.find("#curInstr").html("Program terminated");
+      vcrControls.find("#curInstr").html("Programe terminé");
     }
   }
   else {
