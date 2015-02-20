@@ -531,31 +531,28 @@
         ' Sinon (Afficher "Ah, qu’y a-t-il ?")\n' +
         ')'
     });</script>
-    <p>Le code ci-dessus peut se lire :</p>
+    <p>Le programme ci-dessus peut se lire :</p>
     <ul>
         <li>Afficher la question.</li>
-        <li><strong>Si</strong> l’utilisateur répond « oui »,</li>
+        <li><strong>Si</strong> ce que l’utilisateur tape et « oui » sont égaux
+            (l’utilisateur répond « oui »),</li>
         <li><strong>Alors</strong> afficher « Tant mieux ! »,</li>
         <li><strong>Sinon</strong> afficher « Ah, qu’y a-t-il ? ».</li>
     </ul>
     <p>On peut donc résumer la commande <code>Si</code> ainsi :<br>
-    <code>(Si booléen Alors commande-si-vrai Sinon commande-si-faux)</code></p>
-    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
-    <pre><code>(Si booléen
- Alors commande-si-vrai
- Sinon commande-si-faux
-)</code></pre></p>
-    <p>Si on veut détailler, la commande <code>Si</code> possède cinq
-    paramètres :</p>
+    <pre><code>Si booléen
+Alors bloc-si-vrai
+Sinon bloc-si-faux</code></pre></p>
+    <p>Si on veut détailler, le bloc <code>Si</code> possède ici trois
+    entrées :</p>
     <ul>
-        <li>un booléen,</li>
-        <li>le mot-clef intermédiaire <code>Alors</code></li>
-        <li>l’instruction à exécuter si le booléen est <code>Vrai</code>,</li>
-        <li>le mot-clef intermédiaire <code>Sinon</code></li>
-        <li>l’instruction à exécuter si le booléen est <code>Faux</code>,</li>
+        <li>en face de <code>Si</code>, un booléen,</li>
+        <li>en face de <code>Alors</code>, le bloc à exécuter si le booléen est <code>Vrai</code>,</li>
+        <li>en face de <code>Sinon</code>, le bloc à exécuter si le booléen est <code>Faux</code>,</li>
     </ul>
-    <p>Cette commande agit comme un aiguillage pour les rails des trains. En
-    actionnant l’aiguillage, on décide sur quelle voie va rouler le train.</p>
+    <p>Le bloc <code>Si</code> agit comme un aiguillage pour les rails des
+    trains. En actionnant l’aiguillage, on décide sur quelle voie va rouler le
+    train.</p>
     <p>L’analogie de l’arbre est aussi possible : le déroulement du programme
     peut suivre une des deux branches, la branche du « alors » ou la branche du
     « sinon ».</p>
@@ -590,7 +587,7 @@
         ' Sinon (Afficher "Tu es majeur.")\n' +
         ')'
     });</script>
-    <p>Après avoir vu les bases de la commande <code>Si</code>, voyons quelques
+    <p>Après avoir vu les bases du bloc <code>Si</code>, voyons quelques
     variantes :</p>
     <ul>
         <li><a href="#si-sans-sinon">Si sans « sinon »</a>,</li>
@@ -599,7 +596,12 @@
         <li><a href="#si-valeurs">Si avec des valeurs uniquement</a>,</li>
     </ul>
     <h3 id="si-sans-sinon"><a href="#si-sans-sinon">: </a>Si sans « sinon »</h3>
-    <p>Il est possible d’ommettre la commande correspondant au « sinon » :</p>
+    <p>Il est possible de ne rien mettre en face de <code>Sinon</code> si on
+    n’a rien à y faire. Dans ce cas, on peut même cacher cette partie du bloc
+    <code>Si</code>, comme ci-dessous. Pour faire apparaître ou disparaître
+    le <code>Sinon</code>, il suffit de cliquer sur l’étoile devant le
+    <code>Si</code>, puis d’ajouter ou de supprimer le bloc <code>Sinon</code>
+    en le faisant glisser dans l’encadré.</p>
     <div id="script-si-sans-sinon"></div>
     <script>inject_microalg_editor_in('script-si-sans-sinon', {
      blockly_only: true,
@@ -614,9 +616,8 @@
         ''
     });</script>
     <h3 id="si-blocs"><a href="#si-blocs">: </a>Si avec plusieurs commandes</h3>
-    <p>On peut parfois avoir besoin d’exécuter plusieurs instructions dans une
-    même branche. Il suffit de bien placer le mot-clef <code>Sinon</code> (si
-    besoin) et la parenthèse finale.</p>
+    <p>On a parfois besoin d’exécuter plusieurs instructions dans une même
+    branche. Il suffit simplement d’empiler les blocs au bon endroit.</p>
     <div id="script-si-blocs"></div>
     <script>inject_microalg_editor_in('script-si-blocs', {
      blockly_only: true,
@@ -636,18 +637,15 @@
         ')\n' +
         ''
     });</script>
-    <p>Avec plusieurs commandes, la commande <code>Si</code> est finalement
-    de la forme :<br>
-    <code>(Si booléen Alors commandes-si-vrai Sinon commandes-si-faux)</code></p>
-    <p>Ou en arrangeant le code sur plusieurs lignes :<br>
-    <pre><code>(Si booléen
- Alors commande-si-vrai
-       commande-si-vrai
+    <p>Avec plusieurs commandes dans les branches, la commande <code>Si</code>
+    est finalement de la forme :<br>
+    <pre><code>Si booléen
+Alors commande-1-si-vrai
+      commande-2-si-vrai
        ...
- Sinon commande-si-faux
-       commande-si-faux
-       ...
-)</code></pre></p>
+Sinon commande-1-si-faux
+      commande-2-si-faux
+       ...</code></pre></p>
 
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,
