@@ -127,7 +127,9 @@
         kw_alors  (cadr inputs)
         splitted  (split (cddr inputs) 'Sinon)
         bloc_vrai (car splitted)
-        bloc_faux (cadr splitted))
+        bloc_faux (cadr splitted)
+        # !next est le dernier de la liste inputs, si son car vaut Next.
+        !next (let !last (last inputs) (if (= (car !last) 'Next) !last)))
        (pack "<block type=\"si\">"
              (if (n0 (length bloc_faux)) "<mutation else=\"1\"></mutation>")
              "<value name=\"COND\">"
@@ -140,6 +142,7 @@
                  "<statement name=\"SINON\">"
                  (eval (insertion_next bloc_faux))
                  "</statement>"))
+             (eval !next)
              "</block>")
 ))
 (de Texte (content)
