@@ -646,6 +646,64 @@ Alors commande-1-si-vrai
 Sinon commande-1-si-faux
       commande-2-si-faux
        ...</code></pre></p>
+    <h3 id="si-emboites"><a href="#si-emboites">: </a>Si(s) emboîtés</h3>
+    <p>Un arbre a parfois plus de deux branches !</p>
+    <p>Qu’affiche le programme suivant ? Comment lui faire afficher
+    les autres textes du programme en ne changeant que la valeur des
+    booléens ?</p>
+    <div id="script-si-emboites"></div>
+    <script>inject_microalg_editor_in('script-si-emboites', {
+     src:
+        '(Si Vrai\n' +
+        ' Alors (Si Vrai\n' +
+        '           Alors (Afficher "premier")\n' +
+        '           Sinon (Afficher "deuxième")\n' +
+        '       )\n' +
+        ' Sinon (Si Vrai\n' +
+        '           Alors (Afficher "troisième")\n' +
+        '           Sinon (Afficher "quatrième")\n' +
+        '       )\n' +
+        ')'
+    });</script>
+    <p>Voici une application concrète d’une structure avec des <code>Si</code>
+    emboîtés :</p>
+    <div id="script-si-emboites-appli"></div>
+    <script>inject_microalg_editor_in('script-si-emboites-appli', {
+     src:
+        '(Afficher "Veuillez taper un nombre.")\n' +
+        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Si (>= nbre 0)\n' +
+        ' Alors (Si (>= nbre 1000)\n' +
+        '        Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '        Sinon (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
+        '       )\n' +
+        ' Sinon (Si (<= nbre -1000)\n' +
+        '        Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '        Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        '       )\n' +
+        ')'
+    });</script>
+    <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
+    <p>Comme une valeur peut être considérée comme une instruction (et
+    inversement), on peut utiliser <code>Si</code> ainsi :</p>
+    <div id="script-si-valeurs"></div>
+    <script>inject_microalg_editor_in('script-si-valeurs', {
+     src:
+        '(Afficher (Si Vrai Alors "ici" Sinon "là"))\n' +
+        '(Afficher (Si Faux Alors "ici" Sinon "là"))\n' +
+        ''
+    });</script>
+    <p>Attention, si le booléen est <code>Faux</code> et s’il n’y a pas de
+    valeur correspondant au « sinon », la commande <code>Si</code> retournera
+    <code>Rien</code>, qui est un symbole spécial qui représente une absence
+    de valeur.</p>
+    <div id="script-si-valeurs-sans-sinon"></div>
+    <script>inject_microalg_editor_in('script-si-valeurs-sans-sinon', {
+     src:
+        '(Afficher (Si Faux Alors "ici"))\n' +
+        ''
+    });</script>
+
 
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,
