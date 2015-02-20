@@ -1,8 +1,8 @@
 Microalg
 ========
 
-<a href="https://travis-ci.org/Microalg/Microalg" style="float:right;">
-<img src="https://travis-ci.org/Microalg/Microalg.svg?branch=master"></a>
+<a href="https://travis-ci.org/Microalg/microalg" style="float:right;">
+<img src="https://travis-ci.org/Microalg/microalg.svg?branch=master"></a>
 
 Langage et environnements dédiés à l’algorithmique.
 
