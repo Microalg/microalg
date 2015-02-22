@@ -19,6 +19,7 @@ Aller directement à :
     * [édition avec SciTE](#scite) (exécution au choix et facilement configurable)
 * Android :
     * [page Google Play](https://play.google.com/store/apps/details?id=info.microalg.android)
+* [Installer sur son site](#installer-sur-son-site)
 * Développeur :
     * [tout sauf Windows](#développeur)
 * Utilisation en ligne (rien à installer !) :
@@ -77,6 +78,15 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
 * Extraire quelque part dans l’arborescence de votre site.
+* Ajuster des URLS codées en dur (un jour, elles seront configurables) dans
+  `web/ide_injections.js` :
+    * si vous déplacez les `*.l` par rapport à `web/ide_injections.js`, il
+      faut donner à `this_script_path` le chemin allant des `*.l` vers ce
+      fichier JS ;
+    * dans le fichier HTML virtuel commençant à  
+      `var content = '<!DOCTYPE html>'...`  
+      il faut indiquer le chemin allant de la racine de votre site vers les
+      fichiers concernant Blockly.
 * Ouvrir `microalg/ide.html`.
     * Si tout fonctionne, vous pouvez essayer d’injecter MicroAlg dans la page
       de votre choix.
