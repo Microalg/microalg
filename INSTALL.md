@@ -17,6 +17,8 @@ Aller directement à :
         * [exécution avec NodeJS](#notepad-avec-nodejs)
 * Autre (sauf Mac) :
     * [édition avec SciTE](#scite) (exécution au choix et facilement configurable)
+* Android :
+    * [page Google Play](https://play.google.com/store/apps/details?id=info.microalg.android)
 * Développeur :
     * [tout sauf Windows](#développeur)
 * Utilisation en ligne (rien à installer !) :
