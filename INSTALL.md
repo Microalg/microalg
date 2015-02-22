@@ -39,7 +39,7 @@ d’installation, merci de (au choix) :
 ## Table des matières
 
 Cette page peut paraître longue, mais c’est uniquement parce qu’il y a
-plusieurs façons d’installer MicroAlg. À vous de choisir celle qui vous
+beaucoup de façons d’installer MicroAlg. À vous de choisir celle qui vous
 convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 * Utiliser [MicroAlg en ligne](http://microalg.info/ide.html) :
