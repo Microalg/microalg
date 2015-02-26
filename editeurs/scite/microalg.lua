@@ -27,6 +27,8 @@ props["style.script_malg.0"] = "fore:#000000"
 props["style.script_malg.1"] = "fore:#009f00"
 -- CMD
 props["style.script_malg.2"] = "fore:#00009f"
+-- COMZ
+props["style.script_malg.3"] = "fore:#999999"
 -- Rainbow parens
 props["style.script_malg.11"] = "back:#ffaabb"
 props["style.script_malg.12"] = "back:#ffddbb"
@@ -46,6 +48,8 @@ props["style.script_pico.0"] = props["style.script_malg.0"]
 props["style.script_pico.1"] = props["style.script_malg.1"]
 -- CMD
 props["style.script_pico.2"] = props["style.script_malg.2"]
+-- COMZ
+props["style.script_pico.3"] = props["style.script_malg.3"]
 -- Rainbow parens
 props["style.script_pico.11"] = props["style.script_malg.11"]
 props["style.script_pico.12"] = props["style.script_malg.12"]
@@ -95,6 +99,7 @@ function OnStyle(styler)
         S_NORMAL = 0
         S_TXT = 1
         S_CMD = 2
+        S_COMZ = 3
         S_PAREN_base = 10
         S_PAREN_bad = 35
         
@@ -123,6 +128,11 @@ function OnStyle(styler)
                                         styler:SetState(S_NORMAL)
                                 end
                         end
+                elseif styler:State() == S_COMZ then
+                        if styler:Match('\n') then
+                                styler:SetState(S_NORMAL)
+                                styler:Forward()
+                        end
                 end
                 -- Where to go from S_NORMAL
                 if styler:State() == S_NORMAL then
@@ -137,6 +147,9 @@ function OnStyle(styler)
                                 old_level = paren_level
                                 paren_level = (paren_level - 1) % 7
                                 styler:SetState(S_PAREN_base + old_level)
+                                styler:Forward()
+                        elseif styler.language == 'script_pico' and styler:Match('#') then
+                                styler:SetState(S_COMZ)
                                 styler:Forward()
                         else
                                 styler:Forward()
