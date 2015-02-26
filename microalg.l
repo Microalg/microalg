@@ -999,6 +999,20 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 )
 
 # Procédures utilisateur
+# Tout d’abord les générateurs d’initialisation
+(de !liste_inits_type (!syms)
+    (mapcar '((!sym) (list 'put (cons 'quote !sym) ''type (list 'Type !sym))) !syms)
+)
+(de !liste_inits_val (!syms)
+    (mapcar '((!sym) (list 'Initialiser !sym !sym)) !syms)
+)
+(de !liste_resets_type (!syms)
+    (mapcar '((!sym) (list 'put (cons 'quote !sym) ''type NIL)) !syms)
+)
+(de !liste_resets_val (!syms)
+    (mapcar '((!sym) (list 'setq !sym NIL)) !syms)
+)
+# Ensuite le boulot :
 (put 'Definir 'doc
 "Permet de définir une nouvelle commande (fonction mathématique ou procédure).
 
@@ -1043,6 +1057,14 @@ Exemple 2 :
         nom       (car signature)
         params    (cdr signature)
         corps     (cdr arg_lst)
+        aug_corps (conc
+                    (!liste_inits_type params)
+                    (!liste_inits_val params)
+                    (list (list 'let (list '!result (list 'run (cons 'quote corps)))
+                      (list 'run (cons 'quote (!liste_resets_type params)))
+                      (list 'run (cons 'quote (!liste_resets_val params)))
+                      '!result))
+                  )
         doc       (car corps)
         auteur    (cadr corps))
        (ifn (str? doc)
@@ -1054,7 +1076,7 @@ Exemple 2 :
                             "`, définie par *"
                             auteur
                             "*."))
-       (set nom (list params (list 'run (cons 'quote corps))))
+       (set nom (list params (list 'run (cons 'quote aug_corps))))
        Rien  # Pas de valeur de retour
   )
 )
