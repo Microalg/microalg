@@ -18,6 +18,7 @@ end
 
 -- Set some properties (.properties are not used because they need to be in the same dir)
 props["lexer.*.malg"] = "script_malg"
+props["lexer.*.l"] = "script_pico"
 props["indent.size.*.malg"]="4"
 -- Styles for the lexer states:
 -- NORMAL
@@ -38,6 +39,25 @@ props["style.script_malg.10"] = "back:#bbbbee"
 props["braces.check"] = "1"
 props["style.script_malg.34"] = "fore:#000000,back:#999999"
 props["style.script_malg.35"] = "fore:#000000,back:#ff0000"
+-- Copy microalg props to picolisp props.
+-- NORMAL
+props["style.script_pico.0"] = props["style.script_malg.0"]
+-- TXT
+props["style.script_pico.1"] = props["style.script_malg.1"]
+-- CMD
+props["style.script_pico.2"] = props["style.script_malg.2"]
+-- Rainbow parens
+props["style.script_pico.11"] = props["style.script_malg.11"]
+props["style.script_pico.12"] = props["style.script_malg.12"]
+props["style.script_pico.13"] = props["style.script_malg.13"]
+props["style.script_pico.14"] = props["style.script_malg.14"]
+props["style.script_pico.15"] = props["style.script_malg.15"]
+props["style.script_pico.16"] = props["style.script_malg.16"]
+props["style.script_pico.10"] = props["style.script_malg.10"]
+-- Paren at current char (OK vs not OK)
+props["style.script_pico.34"] = props["style.script_malg.34"]
+props["style.script_pico.35"] = props["style.script_malg.34"]
+-- Back to MicroAlg
 -- Other props
 props["api.*.malg"] = "$(microalg_path)/editeurs/scite/malg.api"
 props["calltip.script_malg.parameters.start"] = " "
@@ -63,6 +83,8 @@ end
 function OnStyle(styler)
         if styler.language == 'script_malg' then
                 malg_debug("Styling a MicroAlg file...")
+        elseif styler.language == 'script_pico' then
+                malg_debug("Styling a PicoLisp file...")
         else
                 malg_debug("Language: " .. styler.language)
                 styler:EndStyling()
@@ -95,7 +117,11 @@ function OnStyle(styler)
                         if styler:Match(' ') or styler:Match(')') then
                                 styler:SetState(S_NORMAL)
                         elseif styler:Match('(') then
-                                styler:SetState(S_PAREN_bad)
+                                if styler.language == 'script_malg' then
+                                        styler:SetState(S_PAREN_bad)
+                                elseif styler.language == 'script_pico' then
+                                        styler:SetState(S_NORMAL)
+                                end
                         end
                 end
                 -- Where to go from S_NORMAL
