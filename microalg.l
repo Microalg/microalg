@@ -796,18 +796,21 @@ en minuscule).
 (de Type arg_lst
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
-       (cond
-         ((not !x) "texte")  # Possiblement "" en direct.
-         ((!boolM2P (Nombre?  !evaled_x)) "nombre")
-         ((!boolM2P (Liste?   !x))        "liste")
-         ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
-         ((!boolM2P (Texte?   !evaled_x)) "texte")
-         ((!boolM2P (Liste?   !evaled_x)) "liste")
-         ((!boolM2P (Booleen? !evaled_x)) "booleen")
-         ((!boolM2P (== Rien  !evaled_x)) "rien")
-         ((sym? x) (get !x 'type))
-         (T Rien)
-       ) ) )
+        embedded_type (ifn (num? !x) (get !x 'type))
+       (if embedded_type
+           embedded_type
+           (cond
+             ((not !x) "texte")  # Possiblement "" en direct.
+             ((!boolM2P (Nombre?  !evaled_x)) "nombre")
+             ((!boolM2P (Liste?   !x))        "liste")
+             ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
+             ((!boolM2P (Texte?   !evaled_x)) "texte")
+             ((!boolM2P (Liste?   !evaled_x)) "liste")
+             ((!boolM2P (Booleen? !evaled_x)) "booleen")
+             ((!boolM2P (== Rien  !evaled_x)) "rien")
+             ((sym? x) (get !x 'type))
+             (T Rien)
+           ) ) ) )
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.
 
