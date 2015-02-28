@@ -358,10 +358,16 @@ avec le bon numéro de `version` bien sûr.
     * Configuration
        * Disons que la récupération des fichiers vous a donné :  
          `/chemin/absolu/vers/microalg`.
-       * Dans le fichier
+       * Par défaut, dans le fichier
          `/chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties`,  
-         ajuster la valeur de `microalg_path` en lui donnant justement la
-         valeur `/chemin/absolu/vers/microalg` (sans le dernier `/`).
+         la valeur de `microalg_path` est `/opt/microalg`. Deux possibilités :  
+           **1)** lui donner la valeur `/chemin/absolu/vers/microalg` (sans le
+             dernier `/`), mais à chaque mise à jour, il faudra refaire cette
+             modification ;  
+           **2)** laisser `/opt/microalg`, mais créer un lien symbolique de
+             `/opt/microalg` vers `/chemin/absolu/vers/microalg` (la commande
+             ressemblera à :  
+             `ln -s /chemin/absolu/vers/microalg /opt/microalg`).
 * SciTE
     * Utiliser le gestionnaire de paquets de votre distribution (le paquet
       s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
