@@ -860,6 +860,29 @@ CompExpr.prototype.evalTrue = function(a, b) {
 
 function lispFnOrder(a, b) { return cst.compExprArr[0].evalTrue(a, b) ? -1 : 1; }
 
+function emuprompt(c) { // No support (yet) for the two parameters (non-split chars and comment char).
+    if (emuEnv() == 'nodejs') {
+        var readlinesync = require('readline-sync');
+        readlinesync.setPrompt("");
+        _stdPrompt = readlinesync.prompt;
+    } else {
+        if (typeof stdPrompt != "undefined") {
+            var _stdPrompt = stdPrompt;
+        } else {
+            var _stdPrompt = window.prompt;
+        }
+    }
+    var user_input = _stdPrompt();
+    if (emuEnv() == 'nodejs') {
+        readlinesync.setPrompt(": ");
+    }
+    if (user_input === "") {
+        return NIL;
+    } else {
+        return newTransSymbol(user_input);
+    }
+}
+
 var coreFunctions = {
 	"and": function(c) { var v = NIL; while (c instanceof Cell) { v = evalLisp(c.car);
 			if (!aTrue(v)) return NIL; c = c.cdr; } return v;
@@ -1169,6 +1192,7 @@ var coreFunctions = {
 		while (symArr.length > 0) { symArr.pop().popValue(); }
 		return v;
 	},
+	"line": emuprompt,
 	"link": linkc,
 	"list": function(c) { return (c !== NIL) ? evalArgs(c) : new Cell(NIL, NIL); },
 	"load": function(c) { var r = NIL;
@@ -1319,28 +1343,7 @@ var coreFunctions = {
 		var r = new List(); do { r.link(n); n = new Number(n + s); } while ((s > 0) ? (n <= n2) : (n >= n2));
 		return r.list;
 	},
-	"read": function(c) { // No support (yet) for the two parameters (non-split chars and comment char).
-		if (emuEnv() == 'nodejs') {
-			var readlinesync = require('readline-sync');
-			readlinesync.setPrompt("");
-			_stdPrompt = readlinesync.prompt;
-		} else {
-			if (typeof stdPrompt != "undefined") {
-				var _stdPrompt = stdPrompt;
-			} else {
-				var _stdPrompt = window.prompt;
-			}
-		}
-		var user_input = _stdPrompt();
-		if (emuEnv() == 'nodejs') {
-			readlinesync.setPrompt(": ");
-		}
-		if (user_input === "") {
-			return NIL;
-		} else {
-			return newTransSymbol(user_input);
-		}
-	},
+	"read": emuprompt,
 	"rest": function(c) { return cst.evFrames.car.cdr; },
 	"reverse": function(c) { var lst = evalLisp(c.car), r = NIL;
 		if (!(lst instanceof Cell)) return NIL;
