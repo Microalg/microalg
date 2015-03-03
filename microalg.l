@@ -503,12 +503,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
     -> Rien
 ")
 (put 'Demander 'text "Commande `Demander`.")
-(de Demander () (in NIL (line " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~")))
-# Références:
-# https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange#Table_des_128_caract.C3.A8res_ASCII
-# https://en.wikipedia.org/wiki/ASCII#ASCII_printable_character_code_chart
-# >>> ''.join([chr(i) for i in range(32, 127) if not chr(i).isalnum()])
-# ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'                                       "
+(de Demander () (in NIL (line T)))
 
 # Listes
 # Implémentation interne des listes (POO)
