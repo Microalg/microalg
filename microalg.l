@@ -648,8 +648,8 @@ La numérotation commence à 1.
     # Quelques vérifications
     (cond ((num? obj)
            (quit "Un nombre n’a pas de tête, il faut un texte ou une liste." obj))
-          ((!boolM2P (Vide? obj))
-           (quit "Un objet vide n’a pas de tête." obj))
+          ((not (<> 0 (!longueur obj)))
+           (quit "Un objet vide n’a pas de tête."))
     )
     # Le calcul
     (cond
@@ -672,8 +672,8 @@ La numérotation commence à 1.
     # Quelques vérifications
     (cond ((num? obj)
            (quit "Un nombre n’a pas de queue, il faut un texte ou une liste." obj))
-          ((!boolM2P (Vide? obj))
-           (quit "Un objet vide n’a pas de queue." obj))
+          ((not (<> 0 (!longueur obj)))
+           (quit "Un objet vide n’a pas de queue."))
     )
     # Le calcul
     (cond
