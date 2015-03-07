@@ -20,6 +20,11 @@ end
 props["lexer.*.malg"] = "script_malg"
 props["lexer.*.l"] = "script_pico"
 props["indent.size.*.malg"]="4"
+-- Disable diff syntax highlighting in output pane:
+-- http://www.scintilla.org/SciTEFAQ.html#OutputColour
+props["style.errorlist.11"]="fore:#000000"
+props["style.errorlist.12"]="fore:#000000"
+
 -- Styles for the lexer states:
 -- NORMAL
 props["style.script_malg.0"] = "fore:#000000"
