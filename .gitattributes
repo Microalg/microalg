@@ -6,3 +6,4 @@ web/jquery.terminal*   linguist-vendored
 web/parenedit*         linguist-vendored
 web/showdown.js        linguist-vendored
 web/showup*            linguist-vendored
+tuto*                  linguist-vendored
