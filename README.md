@@ -57,6 +57,8 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
         * `malg_abbrev.properties` : permettra de mettre en place une structure
           en trois ou quatre touches (juste pour voir, relativement vide pour
           l’instant)
+        * `malgj_scite.bat` : exécutable permettant d’interpréter un `.malg`
+          avec Ersatz (Java) sous Windows et depuis SciTE
         * `microalg.lua` : le cœur de l’intégration avec l’éditeur (lexer,
           couleurs, commande pour l’exécution du fichier en cours…)
 * `emulisp` : implémentation de Picolisp en JS
@@ -90,6 +92,8 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `showdown.*` : ([github](https://github.com/coreyti/showdown))
     * `showup.*` : ([github](https://github.com/upstage/showup))
     * `style.css` : la feuille de style
+* `.gitattributes` : fichier de configuration du dépôt `git`, surtout utilisé
+  pour GitHub
 * `.gitignore` : spécification des fichiers non versionnés intentionnellement
 * `.travis.yml` : spécification des tests automatisés via [Travis](http://travis-ci.org/)
 * `INSTALL.md` : documentation complète concernant les différentes manières
@@ -114,6 +118,7 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
       PicoLisp/MicroAlg seulement
     * `microalg_tests.sh` :  de quoi lancer les tests sur toutes les
                              plateformes possibles, features non comprises
+    * `microalg_tests_emulisp.bat` :  de quoi lancer les tests avec Node et EmuLisp sous Windows
     * `microalg_tests_emulisp.sh` :  de quoi lancer les tests avec Node et EmuLisp
     * `microalg_tests_ersatz.bat` :   de quoi lancer les tests avec Ersatz sous Windows
     * `microalg_tests_ersatz.sh` :   de quoi lancer les tests avec Ersatz
