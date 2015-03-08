@@ -45,9 +45,9 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 
 * `editeurs` : fichiers pour l’intégration avec différents éditeurs
     * `npp` : pour [NotePad++](http://notepad-plus-plus.org/fr/)
-        * `malgj_npp.bat` : exécutable permettant d’exécuter un `.malg`
+        * `malgj_npp.bat` : exécutable permettant d’interpréter un `.malg`
           avec Ersatz (Java) sous Windows et depuis NotePad++
-        * `malgjs_npp.bat` : exécutable permettant d’exécuter un `.malg`
+        * `malgjs_npp.bat` : exécutable permettant d’interpréter un `.malg`
           avec Node et Emulisp sous Windows et depuis NotePad++
     * `scite` : pour [SciTE](http://www.scintilla.org/SciTE.html)
         * `SciTEGlobal.properties` : configuration recommandée et/ou obligatoire
@@ -98,11 +98,13 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `README.md` : ce fichier (j’ai toujours rêvé d’écrire ça)
 * `doc.html` : la documentation de MicroAlg
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
-* `malg` : exécutable permettant d’exécuter un `.malg` avec PicoLisp (ASM/C)
-* `malgj` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java)
-* `malgj.bat` : exécutable permettant d’exécuter un `.malg` avec Ersatz (Java) sous Windows
-* `malgjs` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp
-* `malgjs.bat` : exécutable permettant d’exécuter un `.malg` avec Node et Emulisp sous Windows
+* `malg` : exécutable permettant d’interpréter un `.malg` avec PicoLisp (ASM/C)
+* `malgj` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
+* `malgj.bat` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
+  sous Windows
+* `malgjs` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
+* `malgjs.bat` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
+  sous Windows
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * `microalg_export*`
     * `microalg_export.l` : fonctions PicoLisp préparant l’export en général
