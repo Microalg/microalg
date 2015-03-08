@@ -58,6 +58,18 @@ class Turtle {
     }
 }
 
-void interact(cmp) {
-    turtle.forward(40);
+void interact(cmd, param) {
+    if (false) {
+        // pas de switch sur les strings !!!
+    } else if (cmd == "AV") {
+        turtle.forward(param);
+    } else if (cmd == "TD") {
+        turtle.right(param);
+    } else if (cmd == "TG") {
+        turtle.left(param);
+    } else if (cmd == "BC") {
+        turtle.pendown();
+    } else if (cmd == "LC") {
+        turtle.penup();
+    }
 }
