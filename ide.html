@@ -37,15 +37,14 @@
         <div style="text-align:center;"><canvas id="processing-canvas" data-processing-sources="pde/turtle.pde"></canvas></div>
         <script>
             var canvas_id = "processing-canvas";
-            var processing_sketches[canvas_id] = Processing.getInstanceById(canvas_id);
-            var tId, cnt = 0;
+            var processing_sketches = {};
+            var tId = 0;
             $(document).ready(function() {
                 if (!processing_sketches[canvas_id]) {
                     tId = setInterval(function() {
-                        processing_sketches[canvas_id] = Processing.getInstanceById("processing-canvas");
-                        if (pjs) {
+                        processing_sketches[canvas_id] = Processing.getInstanceById(canvas_id);
+                        if (processing_sketches[canvas_id]) {
                             clearInterval(tId);
-                            processing_sketches[canvas_id].interact("bla");
                         }
                     }, 500);
                 }
