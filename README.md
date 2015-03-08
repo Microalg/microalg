@@ -78,6 +78,8 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
       l’implémentation de Javascript en Java par Mozilla
 * `lib` : quelques fichiers mi-`.l` mi-`.malg`
     * `xml.l` : bibliothèque en PicoLisp pour la génération de XML
+* `pde` : quelques fichiers `.pde` pour le travail avec
+  [Processing](http://processing.org/) ou [Processing.js](http://processingjs.org/)
 * `visuels` : divers fichiers graphiques comme par exemple le logo
 * `web` : des fichiers de complément pour les `.html` de ce projet
     * `blockly` : un extrait des fichiers du projet permettant de programmer
