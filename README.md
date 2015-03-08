@@ -52,11 +52,11 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `scite` : pour [SciTE](http://www.scintilla.org/SciTE.html)
         * `SciTEGlobal.properties` : configuration recommandée et/ou obligatoire
           pour l’intégration
+        * `malg.api` : contient les signatures des commandes pour les
+          infos-bulles
         * `malg_abbrev.properties` : permettra de mettre en place une structure
           en trois ou quatre touches (juste pour voir, relativement vide pour
           l’instant)
-        * `malg.api` : contient les signatures des commandes pour les
-          infos-bulles
         * `microalg.lua` : le cœur de l’intégration avec l’éditeur (lexer,
           couleurs, commande pour l’exécution du fichier en cours…)
 * `emulisp` : implémentation de Picolisp en JS
