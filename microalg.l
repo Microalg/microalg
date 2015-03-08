@@ -1587,3 +1587,9 @@ le premier étant stocké dans une variable.
         (pack "L’instruction `(/MicroAlg)` est une instruction fantôme.  ^J"
               "Merci de la supprimer, elle ne sert que pour la galerie  ^J"
               "(<http://galerie.microalg.info>).") ) )
+
+(de AV (l)
+  (if (!boolM2P (= *EMUENV "browser"))
+      (js:eval "processing_sketches[canvas_id].interact('bla');")
+  )
+)
