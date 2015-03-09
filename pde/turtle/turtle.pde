@@ -1,15 +1,24 @@
 // From http://www.openprocessing.org/sketch/26896
 
+// Usage: /opt/processing-2.2.1/processing-java --run --force --sketch=turtle --output=/tmp/turtleout
+// malgj lib/http.l
+// (de tortue (cmd) (client "127.0.0.1" 12345 NIL (println cmd)))
+// (tortue "AV 40")
+
+import processing.net.Server; 
+import processing.net.Client; 
+
 Turtle turtle;
+
+Server s;
+Client c;
+String data;
 
 void setup() {
     size(400, 400);
     turtle = new Turtle();
     background(#FFFFFF);
-}
-
-void draw() {
-    noLoop();
+    s = new Server(this, 12345);
 }
 
 class Turtle {
@@ -58,7 +67,7 @@ class Turtle {
     }
 }
 
-void interact(cmd, param) {
+void interact(String cmd, int param) {
     if (false) {
         // pas de switch sur les strings !!!
     } else if (cmd == "AV") {
@@ -72,4 +81,17 @@ void interact(cmd, param) {
     } else if (cmd == "LC") {
         turtle.penup();
     }
+}
+
+void draw() {
+  c = s.available();
+  if (c != null) {
+    data = c.readString(); 
+    // Keep what is inside the two first double quotes, then split at spaces.
+    String[] src = data.split("\"")[1].split(" ");
+    String cmd = src[0];
+    int param = int(src[1]);
+    interact(cmd, param);
+    background(param);
+  }
 }
