@@ -12,6 +12,7 @@ String data;
 void setup() {
     size(400, 400);
     turtle = new Turtle();
+    fill(#000000);
     background(#FFFFFF);
     s = new Server(this, 12345);
 }
