@@ -62,7 +62,24 @@ class Turtle {
     }
 }
 
-void interact(String cmd, int param) {
+void interact(String data) {
+    String[] src_array = data.split(" ");
+    String cmd = "";
+    int param = 0;
+    switch (src_array.length) {
+        case 0:
+            cmd = data;
+            break;
+        case 1:
+            cmd = src_array[0];
+            break;
+        case 2:
+            cmd = src_array[0];
+            param = int(src_array[1]);
+            break;
+        default:
+            println("Too much spaces!");
+    }
     if (false) {
         // pas de switch sur les strings !!!
     } else if (cmd == "AV") {
@@ -81,12 +98,7 @@ void interact(String cmd, int param) {
 void draw() {
   c = s.available();
   if (c != null) {
-    data = c.readString(); 
-    // Keep what is inside the two first double quotes, then split at spaces.
-    String[] src = data.split("\"")[1].split(" ");
-    String cmd = src[0];
-    int param = int(src[1]);
-    interact(cmd, param);
-    background(param);
+    data = trim(c.readString());
+    interact(data);
   }
 }
