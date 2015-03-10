@@ -1,12 +1,7 @@
 // From http://www.openprocessing.org/sketch/26896
 
-// Usage: /opt/processing-2.2.1/processing-java --run --force --sketch=turtle --output=/tmp/turtleout
-// malgj lib/http.l
-// (de tortue (cmd) (client "127.0.0.1" 12345 NIL (println cmd)))
-// (tortue "AV 40")
-
-import processing.net.Server; 
-import processing.net.Client; 
+import processing.net.Server;
+import processing.net.Client;
 
 Turtle turtle;
 
