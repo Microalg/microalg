@@ -621,10 +621,10 @@ La numérotation commence à 1.
     )
     (let (len (Longueur !evaled_obj))
       (cond
-        ((not !idx) (quit "Il manque le deuxième paramètre : l’indice."))
+        ((not !idx) (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
         ((<> !idx (format (round !idx 0) 0 "." ",")) (quit "Indice non entier." !idx))
-        ((le0 !idx) (quit "Indice négatif ou nul." !idx))
-        ((lt0 (- len !idx)) (quit "Indice trop grand." (list !idx '> len)))
+        ((le0 !idx) (quit "`Nieme` : Indice négatif ou nul." !idx))
+        ((lt0 (- len !idx)) (quit "`Nieme` : Indice trop grand." (list !idx '> len)))
       )
     )
     # Le calcul
