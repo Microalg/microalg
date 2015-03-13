@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ -n "${1+x}" ]
+then
+    # Un arg est reçu.
+    if [ -f "$1" ]
+    then
+        # Si l’arg est un nom valide de fichier, on lit ce fichier.
+        pilr microalg.l $1
+    else
+        # Sinon, erreur.
+        echo "$1: ce fichier n'existe pas."
+    fi
+else
+    # Sans arg, on lance le REPL.
+    pilr microalg.l
+fi
