@@ -862,26 +862,31 @@ CompExpr.prototype.evalTrue = function(a, b) {
 function lispFnOrder(a, b) { return cst.compExprArr[0].evalTrue(a, b) ? -1 : 1; }
 
 function emuprompt(c) { // No support (yet) for the two parameters (non-split chars and comment char).
-    if (emuEnv() == 'nodejs') {
-        var readlinesync = require('readline-sync');
-        readlinesync.setPrompt("");
-        _stdPrompt = readlinesync.prompt;
-    } else {
-        if (typeof stdPrompt != "undefined") {
-            var _stdPrompt = stdPrompt;
-        } else {
-            var _stdPrompt = window.prompt;
-        }
-    }
-    var user_input = _stdPrompt();
-    if (emuEnv() == 'nodejs') {
-        readlinesync.setPrompt(": ");
-    }
-    if (user_input === "") {
-        return NIL;
-    } else {
-        return newTransSymbol(user_input);
-    }
+	if (emuEnv() == 'nodejs') {
+		var readlinesync = require('readline-sync');
+		readlinesync.setPrompt("");
+		_stdPrompt = readlinesync.prompt;
+	} else if (emuEnv() == 'rhino') {
+		importPackage(java.io);
+		importPackage(java.lang);
+		var stdin = new BufferedReader(new InputStreamReader(System['in']));
+		_stdPrompt = function () { return stdin.readLine(); }
+	} else {
+		if (typeof stdPrompt != "undefined") {
+			var _stdPrompt = stdPrompt;
+		} else {
+			var _stdPrompt = window.prompt;
+		}
+	}
+	var user_input = _stdPrompt();
+	if (emuEnv() == 'nodejs') {
+		readlinesync.setPrompt(": ");
+	}
+	if (user_input === "") {
+		return NIL;
+	} else {
+		return newTransSymbol(user_input);
+	}
 }
 
 var coreFunctions = {
