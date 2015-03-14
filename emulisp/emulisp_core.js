@@ -507,9 +507,10 @@ var gEmptyObj = {}, TheCls, TheKey;
 var cst, QUOTE;
 
 function emuEnv() {
-	if (typeof window != "undefined") return "browser";
-	if (typeof process != "undefined") return "nodejs";
-	return NIL;
+		if (typeof window != 'undefined') return "browser";
+		if (typeof process != 'undefined') return "nodejs";
+		if (typeof print != 'undefined') return "rhino";
+		return NIL;
 }
 
 function prepareNewState(optionalState) {
