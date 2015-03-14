@@ -931,7 +931,11 @@ var coreFunctions = {
 	"box": function(c) { return box(evalLisp(c.car)); },
 	"bye": function(c) { prog(getSymbol("*Bye").getVal());
 		if (emuEnv() == "nodejs") { var prv = evalLisp(c.car);
-			process.exit((prv instanceof Number) ? prv : 0); } else {
+			process.exit((prv instanceof Number) ? prv : 0);
+		} else if (emuEnv() == "rhino") { var prv = evalLisp(c.car);
+			importPackage(java.lang);
+			System.exit((prv instanceof Number) ? prv : 0);
+		} else {
 			throw new Error(newErrMsg("Function 'bye' not supported"));
 		}
 	},
