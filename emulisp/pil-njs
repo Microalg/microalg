@@ -1,26 +1,30 @@
-// Rhino file, to be merged with piljs
+#!/bin/sh
+':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
+
+// Helper file to run EmuLisp on NodeJS.
+
+fs = require('fs')
+path = require('path')
 
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
-	print(text.replace(/\n$/g,''));
+	console.log(text.replace(/\n$/g,''));
 }
 // Override _warn with the official mechanism.
 function warn(msg) {
-	print(msg);
+	console.log(msg);
 }
 
 var NO_DEBUG = "piljs -> no debug yet";
 
 // Load EmuLisp.
-// Trick to give Rhino the MicroAlg path:
-var before_rhino_regex = new RegExp('^(.*)js\.jar.*');
-var matches = before_rhino_regex.exec(environment["sun.java.command"]);
-var abs_path = matches[1] + "../";
-load(abs_path + 'emulisp/emulisp_core.js');
+var emulisp_src = fs.readFileSync(
+    path.resolve(__dirname, 'emulisp_core.js')).toString();
+eval(emulisp_src);
 
 // Process command line args.
 // TODO http://www.software-lab.de/doc/refL.html#load
-var arglist = arguments;
+var arglist = process.argv.slice(2);
 while (true) {
     var arg = arglist.shift();
     if (typeof arg == 'undefined') {
@@ -33,43 +37,39 @@ while (true) {
         src = '(' + arg.slice(1) + ')';
     } else {
         // Interpret arg as a file to read.
-        var f = new java.io.File(arg)
-        if(f.exists()) {
-            src = readFile(arg);
+        if(fs.existsSync(arg)) {
+            src = fs.readFileSync(arg).toString();
         } else {
             if (arg == '+') {
-                print("+ not supported (yet)");
+                console.log("+ not supported (yet)");
             } else {
-                print(arg + " not found.");
+                console.log(arg + " not found.");
             }
         }
     }
     try {
         EMULISP_CORE.eval(src);
     } catch(e) {
-        print(e.message)
+        console.log(e.message)
         EMULISP_CORE.eval("(run *Err)");
-        print("? (" + NO_DEBUG + ")");
+        console.log("? (" + NO_DEBUG + ")");
     }
 }
-
-EMULISP_CORE.eval('(Afficher "salut MicroAlg !!!!!!!!")');
 
 // REPL
-importPackage(java.io);
-importPackage(java.lang);
-var stdin = new BufferedReader(new InputStreamReader(System['in']));
-var user_input;
+var readlinesync = require('readline-sync');
+readlinesync.setPrompt(": ");
 while (true) {
-    print(': ');
-    user_input = stdin.readLine();
+    var user_input = readlinesync.prompt();
     try {
         var result = EMULISP_CORE.eval(user_input);
-        print('-> ' + result);
+        console.log('-> ' + result);
     } catch(e) {
-        print("!? " + user_input)
-        print(e.message)
+        console.log("!? " + user_input)
+        console.log(e.message)
         EMULISP_CORE.eval("(run *Err)");
-        print("? (" + NO_DEBUG + ")");
+        console.log("? (" + NO_DEBUG + ")");
     }
 }
+
+// vim: filetype=javascript
