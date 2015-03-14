@@ -233,6 +233,7 @@ Symbol.prototype.setVal = function(val) {
 // by escaping them with a backslash '\'.
 Symbol.prototype.escName = function() {
 	if (this.name instanceof Number) return this.name;
+	this.name = this.name + "";  // Cast to String for Rhino.
 	var eName = this.name.replace(/\\/g, "\\\\");
 	eName = eName.replace(/\"/g, "\\\"");
 	eName = eName.replace(/\^/g, "\\^");
