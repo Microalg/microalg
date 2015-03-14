@@ -1,16 +1,21 @@
 #!/bin/sh
+
+# http://stackoverflow.com/questions/242538/unix-shell-script-find-out-which-directory-the-script-file-resides#1638397
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+
 if [ -n "${1+x}" ]
 then
     # Un arg est reçu.
     if [ -f "$1" ]
     then
         # Si l’arg est un nom valide de fichier, on lit ce fichier.
-        pil-rjs microalg.l $1
+        pil-rjs $SCRIPTPATH/microalg.l $1 -bye
     else
         # Sinon, erreur.
         echo "$1: ce fichier n'existe pas."
     fi
 else
     # Sans arg, on lance le REPL.
-    pil-rjs microalg.l
+    pil-rjs $SCRIPTPATH/microalg.l
 fi
