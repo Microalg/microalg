@@ -1,5 +1,5 @@
 #!/bin/sh
-':' //; exec java -jar jar/js.jar "$0" "$@"
+':' //; exec java -jar $(dirname "$(readlink -f "$0")")/../jar/js.jar "$0" "$@"
 
 // Helper file to run EmuLisp on RhinoJS.
 
