@@ -419,20 +419,21 @@ Javascript.
   [dépôt semi-officiel](https://github.com/grahack/emulisp).
 
 Chaque implémentation posséde un programme principal, nommés respectivement
-`pil`, `pilj` et `piljs`. Ces programmes ont deux missions :
+`pil`, `pil-j`, `pil-rjs` et `pil-njs`. Ces programmes ont deux missions :
 
 * lancés sans argument, ils offrent un interpréteur interactif,
 * lancés avec un nom de fichier en argument, ils interprètent ce fichier et
   passent en mode interactif, sauf si on les arrête avant.
 
-Attention, `pilj` n’est pas le nom officiel de l’exécutable d’Ersatz (c’est
+Attention, `pil-j` n’est pas le nom officiel de l’exécutable d’Ersatz (c’est
 `pil`). De plus, les versions officielles et semi-officielles d’EmuLisp n’ont
-pas de `piljs`. `piljs` n’existe (pour l’instant) que dans MicroAlg.
+pas de `pil-Xjs`. `pil-rjs` et `pil-njs` n’existent (pour l’instant) que dans
+MicroAlg.
 
-MicroAlg offre donc naturellement les programmes `malg`, `malgj` et `malgjs`.
-Ils ont les mêmes missions que leurs homologues, la seule différence est qu’ils
-chargent `microalg.l`, le cœur du projet MicroAlg, où les commandes du langage
-sont définies.
+MicroAlg offre donc naturellement les programmes `malg`, `malg-j`, `malg-rjs`
+et `malg-njs`. Ils ont les mêmes missions que leurs homologues, la seule
+différence est qu’ils chargent `microalg.l`, le cœur du projet MicroAlg, où les
+commandes du langage sont définies.
 
 <img id="diagramme" alt="Diagramme d’architecture" src="visuels/archi.svg" />
 
@@ -442,6 +443,9 @@ sont définies.
 * JVM : pour <a href="http://fr.wikipedia.org/wiki/Machine_virtuelle_Java"
   class="wp">Java Virtual Machine</a>,
   exécute du byte-code Java
+* Rhino : plateforme en Java pur permettant d’interpréter du code Javascript
+  (voir <a href="http://fr.wikipedia.org/wiki/Rhino_%28moteur_JavaScript%29"
+  class="wp">l’article Wikipedia</a>)
 * NodeJS : plateforme permettant d’interpréter du code Javascript
   (voir <a href="http://fr.wikipedia.org/wiki/Nodejs"
   class="wp">l’article Wikipedia</a>)
@@ -449,9 +453,10 @@ sont définies.
 * PicoLisp : la version officielle du langage hôte, PicoLisp
 * Ersatz : implémentation en Java de PicoLisp
 * EmuLisp : implémentation en Javascript de PicoLisp
-* `pil`, `pilj` et `piljs` : les interpréteurs des implémentations de PicoLisp
+* `pil`, `pil-j`, `pil-rjs` et `pil-njs` : les interpréteurs des
+  implémentations de PicoLisp
 * `microalg.l` : le fichier définissant le langage MicroAlg
-* `malg`, `malgj` et `malgjs` : les interpréteurs de MicroAlg,
+* `malg`, `malg-j`, `malg-rjs` et `malg-njs` : les interpréteurs de MicroAlg,
   correspondants aux implémentations de PicoLisp
 * « depuis éditeur » concerne par exemple [SciTE](doc.html#scite)
 * web IDE : interface permettant de manipuler MicroAlg depuis un navigateur
