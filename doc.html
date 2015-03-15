@@ -76,20 +76,6 @@ du projet, est créé fin mars 2014. Suivront :
 MicroAlg est encore jeune et il manque encore des choses importantes avant
 qu’elle ne soit considérée comme complète :
 
-### Nombres
-
-Dans sa version Javascript, c’est-à-dire principalement dans le navigateur,
-MicroAlg peut pour l’instant travailler avec des
-<a href="http://fr.wikipedia.org/wiki/Virgule_flottante" class="wp">nombres
-flottants</a>. C’est plutôt appréciable, sauf que dans les autres versions,
-ça ne sera pas possible (voir la documentation officielle de PicoLisp sur les
-nombres :
-[ici](http://www.software-lab.de/doc/ref.html#number) et
-[là](http://www.software-lab.de/doc/ref.html#num-io)).  
-L’idée est de trouver un moyen de présenter à l’utilisateur les nombres en
-<a href="http://fr.wikipedia.org/wiki/Virgule_fixe" class="wp">virgule fixe</a>
-de PicoLisp.
-
 ### Erreurs non traduites
 
 Les messages d’erreurs ne sont pas encore tous très clairs, voire même pas
@@ -100,6 +86,28 @@ soient implémentées dans EmuLisp.
 
 La commande `Retourner` n’interrompt pas la commande en cours. Voir
 [ici](tuto.html#script-bug-retourner) une illustration du problème.
+
+### Nombres
+
+*EN BREF*  
+Les nombres sont gérés différemments selon la façon dont vous utilisez
+MicroAlg. Par défaut cependant, que ce soit dans le navigateur ou après
+installation, MicroAlg travaille avec des
+<a href="http://fr.wikipedia.org/wiki/Virgule_flottante" class="wp">nombres
+flottants</a>.
+
+*EN DÉTAILS*  
+Dans les versions reposant sur Javascript, c’est-à-dire dans le navigateur mais
+aussi hors web grâce à
+<a href="https://developer.mozilla.org/fr/docs/Rhino" class="offi">Rhino</a> ou
+<a href="http://fr.wikipedia.org/wiki/Node.js" class="wp">NodeJS</a>,
+MicroAlg travaille avec des
+<a href="http://fr.wikipedia.org/wiki/Virgule_flottante" class="wp">nombres
+flottants</a>. C’est plutôt appréciable, sauf que dans les autres versions
+(celles reposant sur PicoLisp ou Ersatz), ça ne sera pas possible directement
+(voir la documentation officielle de PicoLisp sur les nombres :
+[ici](http://www.software-lab.de/doc/ref.html#number) et
+[là](http://www.software-lab.de/doc/ref.html#num-io)).
 
 ### Saisie utilisateur avec SciTE
 
