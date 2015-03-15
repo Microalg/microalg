@@ -57,15 +57,18 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
         * `malg_abbrev.properties` : permettra de mettre en place une structure
           en trois ou quatre touches (juste pour voir, relativement vide pour
           l’instant)
-        * `malgj_scite.bat` : exécutable permettant d’interpréter un `.malg`
-          avec Ersatz (Java) sous Windows et depuis SciTE
+        * `malg-*-scite.bat` : exécutables permettant d’interpréter un `.malg`
+           sous Windows et depuis SciTE
         * `microalg.lua` : le cœur de l’intégration avec l’éditeur (lexer,
           couleurs, commande pour l’exécution du fichier en cours…)
-* `emulisp` : implémentation de Picolisp en JS
-    * voir [le site semi-officiel](https://github.com/grahack/emulisp)
-    * la version utilisée ici est une version expérimentale, qui guide le
-      développement de la version semie-officielle
+* `emulisp` : implémentation de Picolisp en JS (voir
+  [le dépôt semi-officiel](https://github.com/grahack/emulisp), mais attention,
+  la version utilisée ici est une version expérimentale, qui guide le
+  développement de la version semie-officielle)
+    * `pil-njs*` script pour lancer EmuLisp sur Node
+    * `pil-rjs*` script pour lancer EmuLisp sur Rhino
 * `ersatz` : implémentation de Picolisp en Java, par le créateur de PicoLisp
+    * `pil-j*` script pour lancer Ersatz
 * `exemples` : quelques fichiers `.malg` (MicroAlg) ou `.l` (PicoLisp) en
   exemples, qui servent aussi pour les tests
 * `features` : tests de fonctionnalité pour les interpréteurs, rédigés en
@@ -78,6 +81,9 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `install_picolisp.sh` : pour l’interpréteur officiel de PicoLisp écrit en
       assembleur et C
       (d’où peut-être le répertoire `picolisp` qui traîne)
+* `jar` contient quelques archives Java
+    * `js.jar` [Rhino](https://developer.mozilla.org/fr/docs/Rhino),
+      l’implémentation de Javascript en Java par Mozilla
 * `lib` : quelques fichiers mi-`.l` mi-`.malg`
     * `xml.l` : bibliothèque en PicoLisp pour la génération de XML
 * `visuels` : divers fichiers graphiques comme par exemple le logo
@@ -103,11 +109,14 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `doc.html` : la documentation de MicroAlg
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
 * `malg` : exécutable permettant d’interpréter un `.malg` avec PicoLisp (ASM/C)
-* `malgj` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
-* `malgj.bat` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
+* `malg-j` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
+* `malg-j.bat` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
   sous Windows
-* `malgjs` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
-* `malgjs.bat` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
+* `malg-njs` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
+* `malg-njs.bat` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
+  sous Windows
+* `malg-rjs` : exécutable permettant d’interpréter un `.malg` avec Rhino et Emulisp
+* `malg-rjs.bat` : exécutable permettant d’interpréter un `.malg` avec Rhino et Emulisp
   sous Windows
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * `microalg_export*`
@@ -118,12 +127,9 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
       PicoLisp/MicroAlg seulement
     * `microalg_tests.sh` :  de quoi lancer les tests sur toutes les
                              plateformes possibles, features non comprises
-    * `microalg_tests_emulisp.bat` :  de quoi lancer les tests avec Node et EmuLisp sous Windows
-    * `microalg_tests_emulisp.sh` :  de quoi lancer les tests avec Node et EmuLisp
-    * `microalg_tests_ersatz.bat` :   de quoi lancer les tests avec Ersatz sous Windows
-    * `microalg_tests_ersatz.sh` :   de quoi lancer les tests avec Ersatz
+    * `microalg_tests_*.bat` : de quoi lancer les tests avec Windows
+    * `microalg_tests_*.sh` :  de quoi lancer les tests autrement qu’avec Windows
     * `microalg_tests_features.sh` : de quoi lancer les tests de fonctionnalité
-    * `microalg_tests_picolisp.sh` : de quoi lancer les tests avec Ersatz
 * `tuto*.html` : pages web interactives pour apprendre MicroAlg, et plus
   généralement à faire ses premiers pas en algorithmique et en programmation
     * `tuto.html` : le tuto historique
