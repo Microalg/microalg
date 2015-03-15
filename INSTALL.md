@@ -101,15 +101,15 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 > Désolé, il n’y a pas d’environnement de développement pour Windows.
 
-Il faut installer les trois versions : le vrai PicoLisp, la version Java et la
-version Javascript (via NodeJS). Plus précisément, installer :
+Il faut pouvoir tester les quatre versions : le vrai PicoLisp, la version Java
+et les versions Javascript (via Rhino et NodeJS). Plus précisément, installer :
 
 * PicoLisp, pour cela voir le fichier `install_picolisp.sh` (vous aurez par
   exemple besoin d’une chaîne d’outils de base pour la compilation de projets
   en C).
-* Pas besoin d’installer les deux autres implémentations de PicoLisp (Java et
+* Pas besoin d’installer les trois autres implémentations de PicoLisp (Java et
   NodeJS), mais besoin des plateformes sous-jacentes :
-    * Java (pas besoin de `javac`).
+    * Java (pas besoin de `javac`), pour faire tourner Ersatz et Rhino ;
     * [NodeJS](http://nodejs.org/download/) (`npm` compris, le gestionnaire de
       modules pour NodeJS).
 * Différents outils, listés dans le fichier `.travis.yml`.
@@ -177,6 +177,15 @@ Vous pouvez télécharger le résultat des instructions suivantes
 * Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`.  
   Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite).
+* L’implémentation par défaut est lente. Si vous n’utilisez que des nombres
+  entiers, allez dans `editeurs/scite/microalg.lua` changer
+  <pre><code>-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
+-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
+props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
+    en
+  <pre><code>props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
+-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
+-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
 
 #### Notepad++ avec Java
 
@@ -390,9 +399,10 @@ avec le bon numéro de `version` bien sûr.
       décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
       vers :
       <pre><code>if uname_s == "Linux" then
-        -- props["command.go.*.malg"] = "$(microalg_path)/picolisp/pil $(microalg_path)/microalg.l $(FilePath)"
-        props["command.go.*.malg"] = "$(microalg_path)/ersatz/pilj $(microalg_path)/microalg.l $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/emulisp/piljs $(microalg_path)/microalg.l $(FilePath)"</code></pre>
+        -- props["command.go.*.malg"] = "$(microalg_path)/malg $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/malg-j $(FilePath)"
+        -- props["command.go.*.malg"] = "$(microalg_path)/malg-njs $(FilePath)"
+        props["command.go.*.malg"] = "$(microalg_path)/malg-rjs $(FilePath)"</code></pre>
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
   programme, il faudra taper sur `F5`.
