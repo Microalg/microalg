@@ -86,7 +86,9 @@ if uname_s == "Linux" then
         -- props["command.go.*.malg"] = "$(microalg_path)/malg-njs $(FilePath)"
         props["command.go.*.malg"] = "$(microalg_path)/malg-rjs $(FilePath)"
 else
-        props["command.go.*.malg"] = "$(SciteDefaultHome)\\malgj_scite.bat $(FilePath)"
+        -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
+        -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
+        props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"
 end
 
 -- Definition of the lexer:
