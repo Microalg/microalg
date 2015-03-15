@@ -2,5 +2,5 @@
 
 PATH=$PATH:`pwd`/ersatz
 echo "Testing with Ersatz..."
-./malgj microalg_tests.malg
+./malg-j microalg_tests.malg
 
