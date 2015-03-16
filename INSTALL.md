@@ -8,15 +8,11 @@ Aller directement à :
 
 * Windows :
     * édition avec SciTE :
-        * exécution avec Java
-            * [instructions](#scite-avec-java)
-            * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.2.6/microalg_0.2.6.zip)
-              correspondant aux instructions
-    * édition avec Notepad++ :
-        * [exécution avec Java](#notepad-avec-java)
-        * [exécution avec NodeJS](#notepad-avec-nodejs)
+        * [instructions](#scite)
+        * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.2.6/microalg_0.2.6.zip)
+          correspondant aux instructions
 * Autre (sauf Mac) :
-    * [édition avec SciTE](#scite) (exécution au choix et facilement configurable)
+    * [édition avec SciTE](#scite)
 * Android :
     * [page Google Play](https://play.google.com/store/apps/details?id=info.microalg.android)
 * [Installer sur son site](#installer-sur-son-site)
@@ -57,8 +53,6 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
         * simple utilisateur
             * dans un navigateur, mais utilisation possible sans connexion
             * [édition avec SciTE, exécution avec Java](#scite-avec-java)
-            * [édition avec NotePad++, exécution avec Java](#notepad-avec-java)
-            * [édition avec NotePad++, exécution avec NodeJS](#notepad-avec-nodejs)
         * utilisateur avancé
             * les mêmes
             * le vrai PicoLisp dans Cygwin
@@ -153,7 +147,7 @@ par
 
 avec le bon numéro de `version` bien sûr.
 
-#### SciTE avec Java
+#### SciTE
 
 Vous pouvez télécharger le résultat des instructions suivantes
 [directement ici](https://github.com/Microalg/Microalg/releases/download/v0.2.6/microalg_0.2.6.zip).
@@ -170,14 +164,30 @@ Vous pouvez télécharger le résultat des instructions suivantes
       [la page de téléchargement](http://www.scintilla.org/SciTEDownload.html)
       de SciTE, puis le déposer dans le dossier `microalg/editeurs/scite`
       (`microalg` est bien sûr le dossier de l’étape précédente).
-* Si votre ordinateur ne dispose pas de Java, il faut l’installer (si vous
-  n’avez aucune idée de la marche à suivre, essayez
+* Si vous ne voulez pas utiliser NodeJS, ou si vous ne savez pas ce que c’est,
+  il vous faut Java. Et si votre ordinateur ne dispose pas de Java (cliquer
+  [ici](https://www.java.com/en/download/installed.jsp) pour vérifier), il faut
+  l’installer (si vous n’avez aucune idée de la marche à suivre, essayez
   [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
-* Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`.  
+* Si vous voulez utiliser NodeJS, il faut :
+    * l’installer ([page téléchargements](http://nodejs.org/download/))
+      (`npm` compris, le gestionnaire de modules pour NodeJS).
+    * Installer le module `readline-sync`
+      ([npm](https://www.npmjs.com/package/readline-sync),
+      [github](https://github.com/anseki/readline-sync))
+      en tapant dans une console DOS :  
+      `npm install -g readline-sync`  
+      Vous devriez obtenir :
+      <pre><code>    D:\microalg>npm install -g readline-sync
+        npm http GET https://registry.npmjs.org/readline-sync
+        npm http 304 https://registry.npmjs.org/readline-sync
+        readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync</code></pre>
+* Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`
+  (ou sur `00_SciTE.bat` si vous avez téléchargé l’archive).  
   Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite).
 * L’implémentation par défaut est lente. Si vous n’utilisez que des nombres
-  entiers, allez dans `editeurs/scite/microalg.lua` changer
+  entiers, allez dans `editeurs/scite/microalg.lua` et changez
   <pre><code>-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
 props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
@@ -185,98 +195,6 @@ props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath
   <pre><code>props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
-
-#### Notepad++ avec Java
-
-* Notepad++
-    * Installer [Notepad++](http://www.notepad-plus-plus.org/), qui servira
-      d’éditeur de fichiers et qui lancera leur exécution d’un simple `F5` (une
-      sorte d’environnement de développement intégré,
-      ou [IDE](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement_int%C3%A9gr%C3%A9)).
-    * Il est tout à fait possible de l’installer sur un disque amovible. Ainsi,
-      vous pouvez garder votre environnement de travail avec vous.
-* MicroAlg
-    * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
-    * Extraire l’archive quelque part, puis supprimer cette archive.
-    * Obtenir un dossier contenant les différents fichiers de l’archive (et non
-      contenant un dossier seul contenant ces fichiers).
-    * Renommer ce dernier dossier `microalg`.
-    * Déplacer ce dossier `microalg` afin de ne pas avoir d’espaces dans son
-      chemin. Le lecteur amovible devrait faire l’affaire.
-* Si votre ordinateur ne dispose pas de Java, il faut l’installer (si vous
-  n’avez aucune idée de la marche à suivre, essayez
-  [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
-* Configurer Notepad++ :
-    * Ouvrir un fichier donné en exemple dans l’archive de MicroAlg, par
-      exemple `microalg/exemples/test_demander.malg`.
-    * Appuyer sur `F5` ou choisir le menu `Run` puis l’action `Run…`.
-    * Choisir le fichier qui va exécuter le code :
-        * cliquer sur « parcourir » (le bouton `...`),
-        * faire apparaître tous les fichiers en choisissant :  
-          `Tous les fichiers : (*.*)`,
-        * choisir `microalg/editeurs/npp/malgj_npp.bat`.
-    * Ajouter à la main (si possible avec un copier/coller) :  
-      `"$(FULL_CURRENT_PATH)"`  
-      de façon à obtenir dans la petite boîte :  
-      `chemin\vers\malgj_npp.bat "$(FULL_CURRENT_PATH)"`
-    * Valider avec `Entrée` ou le bouton `Run`.
-    * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
-      enregistrer cette commande. Il est très conseillé de cliquer sur `Save…`
-      pour ne pas avoir à refaire cette manipulation et d’associer à cette
-      commande un nom (comme `malg`) et un raccourci clavier (différent de
-      `F5`, par exemple `Ctrl`+`F5`).
-* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
-  [la documentation](http://microalg.info/doc.html#notepad).
-
-#### Notepad++ avec NodeJS
-
-* Installer [NodeJS](http://nodejs.org/download/) (`npm` compris, le
-  gestionnaire de modules pour NodeJS).
-* Installer le module `readline-sync` (<https://github.com/anseki/readline-sync>)
-  en tapant dans une console DOS :  
-  `npm install -g readline-sync`  
-  Vous devriez obtenir :
-  <pre><code>    D:\microalg>npm install -g readline-sync
-    npm http GET https://registry.npmjs.org/readline-sync
-    npm http 304 https://registry.npmjs.org/readline-sync
-    readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync</code></pre>
-
-<!--
-Pour les archives, voici une liste d’autre modules candidats à un prompt
-asynchrone :
-
-* `sync-prompt` <https://github.com/shovon/sync-prompt/>  
-  A besoin de Python lors de l’installation (et encore, foire sous Windows).
-* `ask` est pour CoffeeScript.
-* avec callback :
-    * <http://nodejs.org/api/readline.html>
-    * <https://github.com/flatiron/prompt>
-    * <https://github.com/carlos8f/node-cli-prompt>
-    * [doc sur nodejitsu](http://docs.nodejitsu.com/articles/command-line/how-to-prompt-for-command-line-input)
-* rien à voir :
-    * `commander` <https://github.com/visionmedia/commander.js> (parse args)
-    * `prompter` <https://github.com/substack/node-prompter> (créer des JSON)
-    * `promzard` <https://github.com/isaacs/promzard> (spécifique à un truc)
--->
-
-* Configurer Notepad++ :
-    * Ouvrir un fichier donné en exemple dans l’archive de MicroAlg, par
-      exemple `microalg/exemples/test_demander.malg`.
-    * Appuyer sur `F5` ou choisir le menu `Run` puis l’action `Run…`.
-    * Choisir le fichier qui va exécuter le code :
-        * cliquer sur « parcourir » (le bouton `...`),
-        * faire apparaître tous les fichiers en choisissant :  
-          `Tous les fichiers : (*.*)`,
-        * choisir `microalg/editeurs/npp/malgjs_npp.bat`.
-    * Ajouter à la main (si possible avec un copier/coller) :  
-      `"$(FULL_CURRENT_PATH)"`  
-      de façon à obtenir dans la petite boîte :  
-      `chemin\vers\malgjs_npp.bat "$(FULL_CURRENT_PATH)"`
-    * Valider avec `Entrée` ou le bouton `Run`.
-    * Si cela fonctionne, vous pouvez rappuyer sur `F5` et cette fois-ci
-      enregistrer cette commande et même lui associer un raccourci clavier.
-* Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
-  [la documentation](http://microalg.info/doc.html#notepad).
 
 ### Autre
 

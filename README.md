@@ -44,11 +44,6 @@ Fichiers
 Listés dans l’ordre où ils apparaissent sur GitHub.
 
 * `editeurs` : fichiers pour l’intégration avec différents éditeurs
-    * `npp` : pour [NotePad++](http://notepad-plus-plus.org/fr/)
-        * `malgj_npp.bat` : exécutable permettant d’interpréter un `.malg`
-          avec Ersatz (Java) sous Windows et depuis NotePad++
-        * `malgjs_npp.bat` : exécutable permettant d’interpréter un `.malg`
-          avec Node et Emulisp sous Windows et depuis NotePad++
     * `scite` : pour [SciTE](http://www.scintilla.org/SciTE.html)
         * `SciTEGlobal.properties` : configuration recommandée et/ou obligatoire
           pour l’intégration
