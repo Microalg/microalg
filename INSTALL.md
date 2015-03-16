@@ -45,7 +45,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 * Utiliser [MicroAlg en ligne](http://microalg.info/ide.html) :
   rien à installer !
-* Installer MicroAlg sur son site
+* Installer [MicroAlg sur son site](#installer-sur-son-site)
 * Installation pour développeur/contributeur…
     * …au [cœur de MicroAlg](#développeur) (attention, il n’y a pas
       d’environnement de développement pour Windows ou Android),
