@@ -65,8 +65,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * Mac
         * dans un navigateur, mais utilisation possible sans connexion
         * Pour le reste, aucune idée, voir peut-être les instructions pour « Autre ».
-    * Android
-        * En cours de développement (mensonge)
+    * [Application Android](https://play.google.com/store/apps/details?id=info.microalg.android)
     * Autre
         * dans un navigateur, mais utilisation possible sans connexion
         * [édition avec SciTE, exécution avec PicoLisp](#scite)
