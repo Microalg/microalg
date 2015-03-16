@@ -69,7 +69,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 ## Installer sur son site
 
-* Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+* Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.2.6.zip)
 * Extraire quelque part dans l’arborescence de votre site.
 * Ajuster des URLS codées en dur (un jour, elles seront configurables) dans
   `web/ide_injections.js` :
@@ -118,7 +118,7 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
 #### Hors ligne
 
 * MicroAlg
-    * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+    * Télécharger [ce zip](https://github.com/Microalg/Microalg/releases/download/v0.2.6/microalg_0.2.6.zip).
     * Extraire l’archive quelque part, disons dans un dossier `microalg` de
       façon à avoir `microalg\INSTALL.md`, puis supprimer cette archive.
 * Un serveur (au choix)
@@ -153,7 +153,7 @@ Vous pouvez télécharger le résultat des instructions suivantes
 [directement ici](https://github.com/Microalg/Microalg/releases/download/v0.2.6/microalg_0.2.6.zip).
 
 * MicroAlg
-    * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+    * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.2.6.zip)
     * Extraire l’archive quelque part, puis supprimer cette archive.
     * Obtenir un dossier contenant les différents fichiers de l’archive (et non
       contenant un dossier seul contenant ces fichiers).
@@ -237,7 +237,7 @@ avec le bon numéro de `version` bien sûr.
 
 * MicroAlg
     * Récupérer les fichiers
-       * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+       * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.2.6.zip)
        * Extraire l’archive quelque part, puis supprimer cette archive.
        * Obtenir un répertoire contenant les différents fichiers de l’archive (et
          non contenant un répertoire seul contenant ces fichiers).
@@ -275,7 +275,7 @@ avec le bon numéro de `version` bien sûr.
           versions :  
           `git clone http://github.com/Microalg/Microalg.git microalg`
         * Sinon à partir d’une archive inerte :
-           * Télécharger <https://github.com/Microalg/Microalg/archive/latest.zip>.
+           * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.2.6.zip)
            * Extraire l’archive quelque part, puis supprimer cette archive.
            * Obtenir un répertoire contenant les différents fichiers de l’archive (et
              non contenant un répertoire seul contenant ces fichiers).
