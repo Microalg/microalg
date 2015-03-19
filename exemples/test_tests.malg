@@ -24,4 +24,3 @@
 (Exemples_de Plus_un (Exemples_de Double))
 (Afficher "Les exemples de `Plus_un` sont :")
 (Afficher (Exemples_de Plus_un))
-(bye)

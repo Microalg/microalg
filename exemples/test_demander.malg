@@ -1,3 +1,2 @@
 (Afficher "Votre nom ?")
 (Afficher (Concatener "Salut " (Demander)))
-(bye)
