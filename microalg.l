@@ -346,6 +346,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
           val (eval (cadr arg_lst))
           kw  (caddr arg_lst)
           idx (eval (cadddr arg_lst))
+          cinquieme (cadddr (cdr arg_lst))
           evaled_var (eval var))
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
@@ -377,6 +378,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  (if (<> 'En_position kw)
                      (quit "Le mot-clef intermédiaire avant l’indice doit être `En_position`.")
                  )
+                 (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
                  (let (len (Longueur evaled_var))
                    (cond
                      ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
