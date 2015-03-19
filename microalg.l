@@ -373,6 +373,10 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
               )
               (prog
                  # Affectation à l’élément `idx` du symbole dans `var`.
+                 # Tout d’abord quelques vérifications:
+                 (if (<> 'En_position kw)
+                     (quit "Le mot-clef intermédiaire avant l’indice doit être `En_position`.")
+                 )
                  (let (len (Longueur evaled_var))
                    (cond
                      ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
@@ -380,6 +384,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
                    )
                  )
+                 # Puis le travail:
                  (cond
                    ((!boolM2P (Liste? evaled_var)) (put> evaled_var val idx))
                    ((str? evaled_var)
