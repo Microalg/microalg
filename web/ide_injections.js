@@ -70,6 +70,7 @@ function onCtrl(elt, f) {
                 f(elt);
             } else if (e.keyCode == 66) {
                 e.preventDefault();
+                // Voir aussi dans editeurs/scite/malg_abbrev.properties.
                 var abbrevs = {
                   "(Af": "(Affecter_a |)",
                   "(Afe": "(Affecter_a | En_position )",
