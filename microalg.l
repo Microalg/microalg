@@ -510,7 +510,9 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
     -> Rien
 ")
 (put 'Demander 'text "Commande `Demander`.")
-(de Demander () (in NIL (line T)))
+(de Demander (!rien_ici)
+  (if !rien_ici (quit "Demander ne prend pas de paramètre."))
+  (in NIL (line T)) )
 
 # Listes
 # Implémentation interne des listes (POO)
