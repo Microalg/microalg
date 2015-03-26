@@ -76,6 +76,8 @@ function onCtrl(elt, f) {
                   "(Afe": "(Affecter_a | En_position )",
                   "(A": "(Afficher |)",
                   "(Aj": "(Ajouter_a |)",
+                  "(Al": "(!!! \"Algo |\")\n(!!! \"Fin algo \")",
+                  "(At": "(Afficher \"|\")",
                   "(Co": "(Concatener |)",
                   "(D": "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
                   "(Dm": "(Demander)|",
@@ -90,6 +92,7 @@ function onCtrl(elt, f) {
                   "(R": "(Retourner |)",
                   "(S": "(Si (|) Alors\n    ()\n)",
                   "(Ss": "(Si (|)\n Alors ()\n Sinon ()\n)",
+                  "(Te": "(Tester |)",
                   "(Tq": "(Tant_que (|) Faire\n    ()\n    ()\n)"
                 };
                 // Grab content and split in 'before' and 'after' caret.
