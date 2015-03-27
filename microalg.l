@@ -20,6 +20,7 @@ Voir <http://microalg.info>.")
 "Faux" "Faux?"
 "Initialiser" "Initialiser@"
 "Liste" "Liste?" "Longueur"
+"Millisecondes"
 "Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
@@ -1399,6 +1400,25 @@ Exemples :
 (put 'Rien 'doc
 "Valeur de contenant aucune information, représentant l’absence de valeur.")
 (setq Rien 'Rien)
+
+# Mesure du temps d’exécution
+(put 'Millisecondes 'doc
+"Retourne le nombre de millisecondes écoulées depuis le début du programme.
+
+Exemples :
+
+    : (Millisecondes)
+    -> 4167
+    : (Millisecondes)
+    -> 9511
+
+Cette commande s’utilise surtout en calculant la différence entre deux appels,
+le premier étant stocké dans une variable.
+
+")
+(de Millisecondes (!rien_ici)
+  (if !rien_ici (quit "`Millisecondes` ne prend pas de paramètre."))
+  (/ (usec) 1000) )
 
 # Ignorer les balises de la galerie (http://galerie.microalg.info) si utilisées
 # par inadvertance, ou une fois de trop dans la galerie.

@@ -87,6 +87,7 @@ function onCtrl(elt, f) {
                   "(I@":"(Initialiser@)\n|",
                   "(Li": "(Liste |)",
                   "(Lo": "(Longueur |)",
+                  "(M": "(Millisecondes)|",
                   "(Ni": "(Nieme |)",
                   "(N@": "(Nieme@ |)",
                   "(No": "(Nombre |)",

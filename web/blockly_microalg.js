@@ -34,7 +34,8 @@ Blockly.MicroAlg.addReservedWords(
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Booleen?, Concatener, ' +
     'Definir, Demander, En_position, Entier@, Et, Exemples_de, ' +
     'Faire, Faux, Faux?, Initialiser, Initialiser@, ' +
-    'Liste, Liste?, Longueur, Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
+    'Liste, Liste?, Longueur, Millisecondes, ' +
+    'Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
     'Queue, Retirer_de, Retourner, Rien, Si, Sinon, ' +
     'Tant_que, Tester, Tete, Texte, Texte?, Type, ' +
     'Vide?, Vrai, Vrai?');

@@ -1,0 +1,42 @@
+(Affecter_a credit_iterations 2000)
+(Initialiser depart (Millisecondes))
+(Afficher (Concatener
+            depart
+            " millisecondes écoulées avant l’exécution de la première ligne."
+          ))
+(Initialiser i 0)
+(Initialiser texte "")
+(Tant_que (< i 500)
+ Faire
+    (Ajouter_a texte "a")
+    (Affecter_a i (+ i 1))
+)
+(Initialiser apres_la_boucle (Millisecondes))
+(Afficher (Concatener
+            "Nous en sommes à "
+            apres_la_boucle
+            " millisecondes après 500 Ajouter_a."
+          ))
+(Afficher (Concatener
+            "Soit "
+            (- apres_la_boucle depart)
+            " millisecondes pour 2ème la boucle."
+          ))
+(Initialiser i 0)
+(Initialiser texte "")
+(Tant_que (< i 500)
+ Faire
+    (Ajouter_a texte "a")
+    (Affecter_a i (+ i 1))
+)
+(Initialiser apres_la_2eme_boucle (Millisecondes))
+(Afficher (Concatener
+            "Nous en sommes à "
+            apres_la_2eme_boucle
+            " millisecondes après 500 autres Ajouter_a."
+          ))
+(Afficher (Concatener
+            "Soit "
+            (- apres_la_2eme_boucle apres_la_boucle)
+            " millisecondes pour 2ème la boucle."
+          ))

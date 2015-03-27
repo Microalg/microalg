@@ -30,6 +30,7 @@ Faux? val: Teste si `val` est Faux.
 Initialiser var val: Initialise la variable `var` avec la valeur `val`.
 Liste [élements] : Construit une liste avec les paramètres fournis.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
+Millisecondes: Donne le nombre de millisecondes écoulées depuis le début de l’exécution du programme.
 Nieme val pos: Retourne l'élément à la position `pos` dans la valeur `val`.
 Nombre val: Convertit `val` en nombre.
 Nombre? val: Teste si `val` est un nombre.
