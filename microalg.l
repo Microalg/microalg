@@ -511,7 +511,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.")
 ")
 (put 'Demander 'text "Commande `Demander`.")
 (de Demander (!rien_ici)
-  (if !rien_ici (quit "Demander ne prend pas de paramètre."))
+  (if !rien_ici (quit "`Demander` ne prend pas de paramètre."))
   (in NIL (line T)) )
 
 # Listes
