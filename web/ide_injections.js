@@ -82,6 +82,7 @@ function onCtrl(elt, f) {
                   "(D": "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
                   "(Dm": "(Demander)|",
                   "(E": "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
+                  "(E@": "(Entie@ |)\n",
                   "(F": "(Faire (|)\n       ()\n Tant_que ()\n)",
                   "(I": "(Initialiser |)",
                   "(I@":"(Initialiser@)\n|",
