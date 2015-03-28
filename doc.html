@@ -399,6 +399,36 @@ Pour cela, il y a plusieurs méthodes :
 
 ## Architecture
 
+### Diagramme
+
+<img alt="Diagramme d’architecture" src="visuels/archi.svg" />
+
+**Légende**
+
+* MACHINE : l’ordinateur, le smartphone, la tablette, la machine virtuelle…
+* JVM : pour <a href="http://fr.wikipedia.org/wiki/Machine_virtuelle_Java"
+  class="wp">Java Virtual Machine</a>,
+  exécute du byte-code Java
+* Rhino : plateforme en Java pur permettant d’interpréter du code Javascript
+  (voir <a href="http://fr.wikipedia.org/wiki/Rhino_%28moteur_JavaScript%29"
+  class="wp">l’article Wikipedia</a>)
+* NodeJS : plateforme permettant d’interpréter du code Javascript
+  (voir <a href="http://fr.wikipedia.org/wiki/Nodejs"
+  class="wp">l’article Wikipedia</a>)
+* browser : le navigateur (Internet) installé sur la MACHINE
+* PicoLisp : la version officielle du langage hôte, PicoLisp
+* Ersatz : implémentation en Java de PicoLisp
+* EmuLisp : implémentation en Javascript de PicoLisp
+* `pil`, `pil-j`, `pil-rjs` et `pil-njs` : les interpréteurs des
+  implémentations de PicoLisp
+* `microalg.l` : le fichier définissant le langage MicroAlg
+* `malg`, `malg-j`, `malg-rjs` et `malg-njs` : les interpréteurs de MicroAlg,
+  correspondants aux implémentations de PicoLisp
+* « depuis éditeur » concerne par exemple [SciTE](doc.html#scite)
+* web IDE : interface permettant de manipuler MicroAlg depuis un navigateur
+
+### Composants
+
 Cette section explique les relations entre les différents composants de
 MicroAlg et les composants sur lequels elle repose.
 
@@ -429,38 +459,71 @@ Attention, `pil-j` n’est pas le nom officiel de l’exécutable d’Ersatz (c�
 pas de `pil-Xjs`. `pil-rjs` et `pil-njs` n’existent (pour l’instant) que dans
 MicroAlg.
 
-MicroAlg offre donc naturellement les programmes `malg`, `malg-j`, `malg-rjs`
-et `malg-njs`. Ils ont les mêmes missions que leurs homologues, la seule
-différence est qu’ils chargent `microalg.l`, le cœur du projet MicroAlg, où les
-commandes du langage sont définies.
+### Interpréteurs
 
-<img id="diagramme" alt="Diagramme d’architecture" src="visuels/archi.svg" />
+MicroAlg offre les programmes `malg`, `malg-j`, `malg-rjs` et `malg-njs`, qui
+correspondent à leur `pil*` respectif. Ils ont les mêmes missions que leurs
+homologues, à ces différences près :
 
-**Légende**
+* ils chargent `microalg.l`, le cœur du projet MicroAlg, où les commandes du
+  langage sont définies ;
+* ils n’acceptent qu’un argument : le fichier à exécuter ;
+* ils n’entrent pas en mode interactif si un fichier est exécuté.
 
-* MACHINE : l’ordinateur, le smartphone, la tablette, la machine virtuelle…
-* JVM : pour <a href="http://fr.wikipedia.org/wiki/Machine_virtuelle_Java"
-  class="wp">Java Virtual Machine</a>,
-  exécute du byte-code Java
-* Rhino : plateforme en Java pur permettant d’interpréter du code Javascript
-  (voir <a href="http://fr.wikipedia.org/wiki/Rhino_%28moteur_JavaScript%29"
-  class="wp">l’article Wikipedia</a>)
-* NodeJS : plateforme permettant d’interpréter du code Javascript
-  (voir <a href="http://fr.wikipedia.org/wiki/Nodejs"
-  class="wp">l’article Wikipedia</a>)
-* browser : le navigateur (Internet) installé sur la MACHINE
-* PicoLisp : la version officielle du langage hôte, PicoLisp
-* Ersatz : implémentation en Java de PicoLisp
-* EmuLisp : implémentation en Javascript de PicoLisp
-* `pil`, `pil-j`, `pil-rjs` et `pil-njs` : les interpréteurs des
-  implémentations de PicoLisp
-* `microalg.l` : le fichier définissant le langage MicroAlg
-* `malg`, `malg-j`, `malg-rjs` et `malg-njs` : les interpréteurs de MicroAlg,
-  correspondants aux implémentations de PicoLisp
-* « depuis éditeur » concerne par exemple [SciTE](doc.html#scite)
-* web IDE : interface permettant de manipuler MicroAlg depuis un navigateur
+### Performances
 
-# Intégrations
+Concernant les performances, la commande [`Millisecondes`](#cmd-Millisecondes)
+nous permet d’avoir les valeurs suivantes (sur la machine de développement du
+patron, et sans moyenne sur plusieurs exécutions) :
+
+    $ malg exemples/test_millisecondes.malg
+    MicroAlg (PicoLisp)
+    "39 millisecondes écoulées avant l’exécution de la première ligne."
+    "Nous en sommes à 48 millisecondes après 500 Ajouter_a."
+    "Soit 9 millisecondes pour 2ème la boucle."
+    "Nous en sommes à 60 millisecondes après 500 autres Ajouter_a."
+    "Soit 12 millisecondes pour 2ème la boucle."
+
+    $ malg-njs exemples/test_millisecondes.malg
+    MicroAlg (NodeJS + EmuLisp)
+    "41 millisecondes écoulées avant l’exécution de la première ligne."
+    "Nous en sommes à 181 millisecondes après 500 Ajouter_a."
+    "Soit 140 millisecondes pour 2ème la boucle."
+    "Nous en sommes à 289 millisecondes après 500 autres Ajouter_a."
+    "Soit 108 millisecondes pour 2ème la boucle."
+
+    $ malg-j exemples/test_millisecondes.malg
+    MicroAlg (Ersatz)
+    "211 millisecondes écoulées avant l’exécution de la première ligne."
+    "Nous en sommes à 371 millisecondes après 500 Ajouter_a."
+    "Soit 160 millisecondes pour 2ème la boucle."
+    "Nous en sommes à 454 millisecondes après 500 autres Ajouter_a."
+    "Soit 83 millisecondes pour 2ème la boucle."
+
+    $ malg-rjs exemples/test_millisecondes.malg
+    MicroAlg (RhinoJS + EmuLisp)
+    "748 millisecondes écoulées avant l’exécution de la première ligne."
+    "Nous en sommes à 1861 millisecondes après 500 Ajouter_a."
+    "Soit 1113 millisecondes pour 2ème la boucle."
+    "Nous en sommes à 2748 millisecondes après 500 autres Ajouter_a."
+    "Soit 887 millisecondes pour 2ème la boucle."
+
+En résumé :
+
+* La version avec PicoLisp (`malg`) est de loin la plus rapide. Attention,
+  elle ne peut travailler qu’avec les nombres entiers.
+* Ensuite vient la version NodeJS+EmuLisp (`malg-njs`), qui démarre très vite
+  et est sensiblement aussi rapide que la version Ersatz (`malg-j`).
+* La version Ersatz (`malg-j`), qui est sans doute longue à démarrer à cause de
+  Java (sans compter le démarrage de Java lui-même, qui n’est pas mesuré),
+  peut rattraper la précédente version à moyen terme. Attention, elle ne peut
+  travailler qu’avec les nombres entiers.
+* Pour finir, la version Rhino+EmuLisp (`malg-rjs`) est bonne dernière. En
+  effet, elle est à la fois pénalisée par Java et par l’interprétation avec
+  Javascript. Néanmoins, elle permet de travailler avec les nombres flottants
+  avec le minimum d’installation de la part de l’utilisateur.
+
+## Intégrations
 
 MicroAlg s’intègre à d’autres systèmes. Pour l’instant, à part l’intégration
 avec des éditeurs de texte, MicroAlg s’intègre uniquement avec Blockly,
