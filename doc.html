@@ -228,7 +228,7 @@ En cours de rédaction.
 
 En cours de rédaction.
 
-# Erreurs fréquentes
+## Erreurs fréquentes
 
 Les messages sont classés par ordre alphabétique, sans tenir compte de la
 valeur ou de la commande qui est parfois fournie :
@@ -320,13 +320,13 @@ le signaler en :
 * envoyant un <a href="mailto:profgra.org@gmail.com" class="email">email au
   créateur de MicroAlg</a>.
 
-## Booléens
+### Booléens
 
 *  Si un comparateur est utilisé pour produire un booléen, penser à le mettre
    en premier car c’est une commande comme les autres. Par exemple `(n > 1)`
    ne fonctionnera pas, il faut écrire `(> n 1)`.
 
-## Récursion
+### Récursion
 
 * Il est possible que vos appels récursifs (appel d’une commande depuis sa
   définition) ne trouvent pas de point d’appui. Votre test est-il bon ?  
@@ -334,7 +334,7 @@ le signaler en :
   MicroAlg arrête ce qui lui semble être un travail infini. La limite est
   variable et ne peut que très rarement être modifiée.
 
-# Feuille de route
+## Feuille de route
 
 Voici les directions que le projet va prendre :
 
@@ -355,7 +355,7 @@ Voici les directions que le projet va prendre :
 À un niveau moins général, des rapports de bugs ou idées d’amélioration sont
 régulièrement [reportées sur Github](https://github.com/Microalg/Microalg/issues?state=open).
 
-# Contribuer
+## Contribuer
 
 Toutes les bonnes volontés sont les bienvenues pour contribuer à MicroAlg. Il
 y aura de la place pour tout le monde. Voici une liste non exhaustive suivant
@@ -397,7 +397,7 @@ Pour cela, il y a plusieurs méthodes :
 * envoyer un <a href="mailto:profgra.org@gmail.com" class="email">email au
   créateur de MicroAlg</a>.
 
-# Architecture
+## Architecture
 
 Cette section explique les relations entre les différents composants de
 MicroAlg et les composants sur lequels elle repose.
@@ -467,12 +467,12 @@ avec des éditeurs de texte, MicroAlg s’intègre uniquement avec Blockly,
 mais il est prévu de travailler sur Processing et ProcessingJS, Mario, NetLogo,
 GeoGebra, GeoTortue…
 
-## SciTE
+### SciTE
 
 Moins populaire que NotePad++, il est pourtant très souple et intéressant,
 notamment pour mettre en place un nouveau langage.
 
-### Exécution
+#### Exécution
 
 `F5` pour lancer le programme. Si c’est un nouveau fichier, il faudra tout
 d’abord l’enregistrer, sans oublier l’extension `.malg`.
@@ -480,7 +480,7 @@ d’abord l’enregistrer, sans oublier l’extension `.malg`.
 La sortie apparaît dans le panneau de droite. Ce panneau sert aussi à interagir
 avec le programme. Les valeurs demandées par le programme doivent y être tapées.
 
-### Panneau de sortie
+#### Panneau de sortie
 
 * S’il est caché, il suffit de tirer la poignée à la souris.
 * Si vous le trouvez encombré, vous pouvez supprimer son contenu comme si
@@ -489,7 +489,7 @@ avec le programme. Les valeurs demandées par le programme doivent y être tapé
 **Bug connu** (si vous utilisez autre chose que Windows) : pas moyen de faire
 en sorte que `(Demander)` attende l’utilisateur.
 
-### Abbréviations
+#### Abbréviations
 
 Après avoir tapé les préfixes ci-dessous, un appui sur `Ctrl`+`B` vous
 donnera la suite.
@@ -516,9 +516,9 @@ donnera la suite.
     # Pour Tant_que, deux lignes vides pour aider à penser au compteur.
     (Tq  ->  (Tant_que (|) Faire...
 
-### Problèmes connus
+#### Problèmes connus
 
-#### Pas de réaction
+##### Pas de réaction
 
 Si SciTE ne réagit pas, c’est peut-être parce que le précédent programme ne
 s’est pas terminé correctement. Dans ce cas, plusieurs solutions :
@@ -529,11 +529,11 @@ s’est pas terminé correctement. Dans ce cas, plusieurs solutions :
 puis réessayer. Attention, si vous utilisez la seconde méthode, un processus
 `java.exe` peut continuer de tourner.
 
-#### Unable to access jarfile
+##### Unable to access jarfile
 
 Merci d’éviter les espaces dans les différents chemins.
 
-## Vim
+### Vim
 
 Voici ce que vous pouvez mettre dans votre `.vimrc` si vous avez un fond
 sombre. Si vous avez un fond clair, dîtes-moi ce qui fonctionne en envoyant
@@ -553,7 +553,7 @@ une copie d’écran.
     hi def hlLevel5   ctermfg=blue
     hi def hlLevel6   ctermfg=darkmagenta
 
-## Blockly
+### Blockly
 
 C’est un système de blocs à glisser et déposer, très souple, utilisé ici pour
 rédiger des programmes de façon visuelle. Blockly ne peut s’utiliser qu’au
@@ -565,25 +565,25 @@ ou [l’installation hors ligne pour les autres OS](https://github.com/Microalg/
 Voir [le site officiel](https://code.google.com/p/blockly/) et
 [les démos](https://blockly-demo.appspot.com/static/apps/index.html) de Blockly.
 
-### Bloc Programme
+#### Bloc Programme
 
 Le bloc `Programme` ne fait rien en lui-même, mais seuls les blocs contenus
 dans le bloc `Programme` seront pris en compte.
 
-### Nombres avec Blockly
+#### Nombres avec Blockly
 
 Il faut taper un nombre dans un bloc nombre, sinon la valeur par défaut est 0.
 
 Voir aussi [cette section](#nombre).
 
-### Textes avec Blockly
+#### Textes avec Blockly
 
 Il faut taper du texte dans un bloc de texte, sinon la valeur par défaut est
 le texte vide `""`.
 
 Voir aussi [cette section](#texte).
 
-### Opérations avec Blockly
+#### Opérations avec Blockly
 
 Un même bloc permet d’obtenir différentes opérations. Pour choisir, cliquer sur
 le menu déroulant, qui contient par défaut l’opération `+`.
@@ -591,7 +591,7 @@ le menu déroulant, qui contient par défaut l’opération `+`.
 Voir aussi les commandes 
 [`+`](#cmd-+), [`-`](#cmd--), [`*`](#cmd-*) et [`/`](#cmd-/).
 
-### Comparaisons avec Blockly
+#### Comparaisons avec Blockly
 
 Un même bloc permet d’obtenir différentes comparaisons. Pour choisir, cliquer sur
 le menu déroulant, qui contient par défaut la comparaison `=`.
@@ -600,7 +600,7 @@ Voir aussi les commandes 
 [`=`](#cmd-=), [`=/`](#cmd-=/), [`<`](#cmd-<), [`>`](#cmd-\>), [`<=`](#cmd-<=)
 et [`>=`](#cmd->=).
 
-# Remerciements
+## Remerciements
 
 <a name="testeurs"/>Relecteurs, testeurs et commentateurs :
 
