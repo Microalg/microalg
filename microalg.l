@@ -159,16 +159,22 @@ Voir <http://microalg.info>.")
     : (/ 8 2)
     -> 4
 
-Attention, suivant la version que vous utilisez, les divisions non entières
-donnent des résultats différents. En version web (avec Javascript) :
+**Attention** : le comportement de cette commande diffère suivant les
+implémentations.  
+
+* Avec `malg` et `malg-j`, la division donnera toujours un entier.
+* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
+  navigateur, un nombre à virgule flottante sera retourné.
+
+Dans le premier cas :
 
     : (/ 9 2)
-    -> 4.5
+    -> 4
 
 Sinon :
 
     : (/ 9 2)
-    -> 4
+    -> 4.5
 ")
 (put '/ 'text "Commande quotient.")
 (put '% 'doc
