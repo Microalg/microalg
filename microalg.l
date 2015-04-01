@@ -535,6 +535,11 @@ implémentations.
     salut  <--- Ici, c’est l’utilisateur qui tape ;
     salut  <--- là, c’est MicroAlg qui affiche.
     -> Rien
+
+On peut s’en servir pour marquer une pause dans un programme :
+
+    (Afficher \"Pause, appuyez sur Entrée.\")
+    (Demander)
 ")
 (put 'Demander 'text "Commande `Demander`.")
 (de Demander (!rien_ici)
