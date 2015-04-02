@@ -198,6 +198,9 @@ Sinon :
 
     : (!!! \"Ceci est un commentaire.\")
     -> Rien
+
+Notez bien que l’argument passé à `!!!` doit être un texte et doit donc être
+entre guillemets.
 ")
 (put '!!! 'text "Commande commentaire.")
 (de !!! () Rien)
