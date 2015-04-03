@@ -22,6 +22,7 @@ Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
 Definir (commande args) doc auteur instructions : Permet de définir des commandes.
 Demander : Retourne le texte tapé par l'utilisateur.
 En_position : Mot-clef intermédiaire pour la commande `Affecter_a`.
+Entier@ min max : Retourne un entier pseudo-aléatoire entre `min` et `max`.
 Et b1 b2 ...: Opération logique.
 Exemples_de commande [liste d’exemples]: Permet de lire ou écrire les exemples-tests d’une commande.
 Faire instructions Tant_que test: Boucle.
@@ -32,6 +33,7 @@ Liste [élements] : Construit une liste avec les paramètres fournis.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
 Millisecondes: Donne le nombre de millisecondes écoulées depuis le début de l’exécution du programme.
 Nieme val pos: Retourne l'élément à la position `pos` dans la valeur `val`.
+Nieme@ val : Retourne un élément pseudo-aléatoire dans `val`.
 Nombre val: Convertit `val` en nombre.
 Nombre? val: Teste si `val` est un nombre.
 Non b: Opération logique.
