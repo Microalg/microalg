@@ -25,7 +25,7 @@ En_position : Mot-clef intermédiaire pour la commande `Affecter_a`.
 Entier@ min max : Retourne un entier pseudo-aléatoire entre `min` et `max`.
 Et b1 b2 ...: Opération logique.
 Exemples_de commande [liste d’exemples]: Permet de lire ou écrire les exemples-tests d’une commande.
-Faire instructions Tant_que test: Boucle.
+Faire instructions Tant_que test: Boucle où `instructions` s’exécutent tant que `test` est `Vrai`.
 Faux : Booléen.
 Faux? val: Teste si `val` est Faux.
 Initialiser var val: Initialise la variable `var` avec la valeur `val`.
@@ -44,7 +44,7 @@ Retourner val: À utiliser à la fin de la définition d'une commande.
 Rien : Valeur représentant l'absence de valeur.
 Si test Alors instructions1 [Sinon instructions2]: Exécution conditionnelle.
 Sinon : Mot-clef intermédiaire d'un `Si`.
-Tant_que test Faire instructions: Boucle.
+Tant_que test Faire instructions: Boucle où `instructions` s’exécutent tant que `test` est `Vrai`.
 Tester cmd: Vérifie que les exemples de la commande passée en argument sont conformes.
 Tete val: Retourne le premier élément de `val` (liste ou texte).
 Texte val: Convertit `val` en texte.
