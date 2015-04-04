@@ -125,7 +125,9 @@ Voir <http://microalg.info>.")
 
 # Vérif qu’une variable est bien initialisée :
 (de !inited (!sym !evaled_sym)
-    (or !evaled_sym (get !sym 'type)) )
+    (or (not !sym)
+        !evaled_sym
+        (get !sym 'type) ) )
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -238,7 +240,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
     -> Rien
 ")
 (put 'Afficher 'text "Commande `Afficher`.")
-(setq *LastStdOut "?")
+(setq *LastStdOut "")
 (de !text (truc)
     (let (
           first truc
@@ -275,7 +277,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
   (if second (quit (pack "`Afficher` n’a qu’un paramètre, faites plusieurs "
                          "affichages ou utilisez `Concatener`." )))
   # Le boulot
-  (setq *LastStdOut (if a_afficher a_afficher "?"))
+  (setq *LastStdOut (if a_afficher a_afficher ""))
   (ifn !testing
        (println (ifn a_afficher
                      (if (<> *EMUENV "browser")

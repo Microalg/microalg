@@ -57,7 +57,10 @@ function stdPrint(text, state) {
 }
 
 function stdPrompt() {
+    // Since the prompt appears in the little usual modal window, we need
+    // to show the user the last thing displayed (it should be a question).
     var last_line_displayed = cleanTransient(EMULISP_CORE.eval('*LastStdOut'));
+    if (last_line_displayed == "NIL") last_line_displayed = "?";
     var user_input = window.prompt(last_line_displayed);
     if (user_input !== null) return user_input;
     else throw new Error("Commande `Demander` annulée.")
