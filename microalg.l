@@ -624,9 +624,7 @@ On peut s’en servir pour marquer une pause dans un programme :
         !deuze (cadr arg_lst))
     # Quelques vérifications
     (if !deuze (quit "`Longueur` n’a qu’un paramètre."))
-    (ifn !obj 0  # pour gérer texte vide
-      (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
-    )
+    (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
     (setq !npdl " n’a pas de `Longueur`.")
     (cond
         ((num? !evaled_obj) (quit (pack "Un nombre" !npdl) !evaled_obj))
