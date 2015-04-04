@@ -391,7 +391,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      (quit "Le mot-clef intermédiaire avant l’indice doit être `En_position`.")
                  )
                  (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
-                 (let (len (Longueur evaled_var))
+                 (let (len (!longueur evaled_var))
                    (cond
                      ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
                      ((le0 idx) (quit "Indice négatif ou nul." idx))
@@ -663,7 +663,7 @@ La numérotation commence à 1.
         ((==   !evaled_obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
         ((==   !evaled_obj 'Rien) (quit (pack !onppeuv "de Rien.")))
     )
-    (let (len (Longueur !evaled_obj))
+    (let (len (!longueur !evaled_obj))
       (cond
         ((not !idx) (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
         ((<> !idx (format (round !idx 0) 0 "." ",")) (quit "Indice non entier." !idx))
@@ -761,7 +761,7 @@ Avec une liste :
        (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’est pas initialisée." !sym))
        (if (!boolM2P (!texte? !sym))
            (if (or (not (!boolM2P (Texte? !elt)))
-                   (!boolM2P (> (Longueur !elt) 1)) )
+                   (!boolM2P (> (!longueur !elt) 1)) )
                (quit "On peut `Ajouter_a` un texte qu’un caractère." !elt) ))
        # Le calcul
        (cond
