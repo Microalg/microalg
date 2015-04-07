@@ -1434,6 +1434,11 @@ Exemples :
 (put 'Rien 'doc
 "Valeur de contenant aucune information, représentant l’absence de valeur.")
 (setq Rien 'Rien)
+(put '... 'text "Commande `...`.")
+(put '... 'doc "Commande permettant de présenter les exercices à trous.")
+(de ... ()
+  (quit (pack "Les trois points et/ou les parenthèses `(...)` doivent être "
+              "remplacés pour que le programme fonctionne.")) )
 
 # Mesure du temps d’exécution
 (put 'Millisecondes 'doc
