@@ -13,6 +13,7 @@
         <link type="text/css" href="web/showup.css" rel="stylesheet" />
         <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="web/style.css" />
+        <link rel="stylesheet" type="text/css" href="web/parenedit.css" />
     </head>
     <body class="microalg doc">
         <div class="navbar">
@@ -140,7 +141,9 @@ en sorte que `(Demander)` attende l’utilisateur.
   *instruction* :  
   `(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`  
   Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
-  premier.
+  premier. Un environnement MicroAlg doit colorer les parenthèses selon leur
+  profondeur :
+  <span class="paren_1">(</span> <span class="paren_2">(</span> <span class="paren_3">(</span> <span class="paren_4">(</span> <span class="paren_5">(</span> <span class="paren_6">(</span> <span class="paren_0">(</span> <span class="paren_0">)</span> <span class="paren_6">)</span> <span class="paren_5">)</span> <span class="paren_4">)</span> <span class="paren_3">)</span> <span class="paren_2">)</span> <span class="paren_1">)</span>
 * On ne trouvera jamais deux parenthèses ouvrantes de suite.
 * Les symboles (noms de variables ou commandes) ne peuvent pas contenir les
   caractères suivants : `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
