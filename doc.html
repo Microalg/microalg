@@ -260,10 +260,10 @@ valeur ou de la commande qui est parfois fournie :
       de plus d’itérations, vous pouvez recharger votre crédit en affectant
       une valeur à la variable `credits_iterations`.
 * `Entier@` prend 2 paramètres. Vous en donnez X.
-* `EOF Overrun`
+* EOF Overrun
     * Il manque une parenthèse fermante quelque part. La ligne indiquée est
       celle de la parenthèse ouvrante isolée.
-* `X -- Executable or Number expected`.
+* X -- Executable or Number expected.
     * Vous avez ouvert deux parenthèses de suite.
     * Il y a une parenthèse en trop devant `X`.
 * Il manque le deuxième paramètre : l’indice.
@@ -271,15 +271,15 @@ valeur ou de la commande qui est parfois fournie :
 * Indice non entier.
 * Indice trop grand.
 * `Initialiser` prend 2 paramètres. Vous en donnez X.
-* `java.lang.ClassCastException: PicoLisp$Symbol cannot be cast to PicoLisp$Number`
+* java.lang.ClassCastException: PicoLisp$Symbol cannot be cast to PicoLisp$Number
     * Une commande qui concerne uniquement les nombres (comme `+`, `-`, `*`,
     `/`, `%` ou `**`) a été écrite avec autre chose qu’un nombre en argument
     (peut-être du texte, un booléen, une liste ou `Rien`).
-* `java.lang.NullPointerException`
+* java.lang.NullPointerException
     * Il y a peut-être dans votre code une commande de la forme `(x)` ou `x`
       est une variable contenant un nombre. Dans ce cas, vous voulez peut-être
       juste écrire la valeur de `x`, car `x` n’est pas une commande.
-* `java.lang.StackOverflowError`
+* java.lang.StackOverflowError
     * Voir la sous-section [récursion](#rcursion).
 * X -- La condition n’est pas un booléen.
     * Voir la sous-section [booléens](#boolens).
