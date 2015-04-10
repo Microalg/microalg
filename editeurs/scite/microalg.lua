@@ -80,15 +80,11 @@ props["abbreviations.*.malg"] = "$(microalg_path)/editeurs/scite/malg_abbrev.pro
 -- props["command.scite.help.subsystem"] = ""
 
 -- Configure F5 action
+props["1"] = "malg-rjs"
 if uname_s == "Linux" then
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg-j $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg-njs $(FilePath)"
-        props["command.go.*.malg"] = "$(microalg_path)/malg-rjs $(FilePath)"
+        props["command.go.*.malg"] = "$(microalg_path)/$(1) $(FilePath)"
 else
-        -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
-        -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
-        props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"
+        props["command.go.*.malg"] = "$(SciteDefaultHome)\\$(1)-scite.bat $(FilePath)"
 end
 
 -- Definition of the lexer:
