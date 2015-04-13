@@ -4,6 +4,7 @@ body.microalg {
     font-family: Verdana, Arial, sans-serif;
     color: black;
     background-color: #D1D1D1;
+    line-height: 1.3em;
 }
 .microalg a:link {color:#337;}
 .microalg a:visited {color:#333;}
@@ -16,6 +17,7 @@ body.microalg {
 .microalg h5 a,
 .microalg h6 a {
     text-decoration: none;
+    border: 0 none;
 }
 .microalg.doc h2 {
     border-top: 1px solid black;
@@ -106,6 +108,11 @@ a.offi:after {
 a.email:after {
     content:"(email)";
 }
+.microalg a {
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid;
+}
 #bla {
     width: 60%;
     margin: 0px auto;
@@ -125,12 +132,11 @@ a.email:after {
 .microalg dt span {
     font-family: 'Courier New', Courier, monospace;
     border: 1px solid black;
-    padding: 0.5em;
+    padding: 0.3em 0.5em 1px 0.7em;
     -webkit-border-top-left-radius: 1em;
     -moz-border-top-left-radius: 1em;
     border-top-left-radius: 1em;
 }
 .microalg dt span a {
     color: black !important;
-    text-decoration: none;
 }
