@@ -1,10 +1,10 @@
-/* 15dec14jk
+/* 13apr15jk
  * (c) Jon Kleiser
  */
 
 var EMULISP_CORE = (function () {
 
-var VERSION = [2, 0, 3, 0],
+var VERSION = [2, 0, 4, 0],
 	MONLEN = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 	BOXNAT_EXP = "Boxed native object expected",
 	BOOL_EXP = "Boolean expected", CELL_EXP = "Cell expected", LIST_EXP = "List expected",
@@ -409,11 +409,21 @@ Source.prototype.EOF = null;
 
 Source.prototype.unescMap = {I: "\t", i: "\t", J: "\n", j: "\n", M: "\r", m: "\r"};
 
+Source.prototype.more = function() { return this.pos < this.src.length; }
+
 Source.prototype.getNextSignificantChar = function() {
-	while (this.pos < this.src.length) {
+	while (this.more()) {
 		while (this.src.charAt(this.pos) == "#") {
-			var ch;
-			do { ch = this.src.charAt(this.pos++); } while ((ch != "\n") && (this.pos < this.src.length));
+			var ch = this.src.charAt(++this.pos);
+			if (ch == "{") {
+				// Multi-line comment
+				while (this.more()) {
+					ch = this.src.charAt(this.pos++);
+					if ((ch == "}") && (this.src.charAt(this.pos++) == "#")) break;
+				}
+			} else {
+				while ((ch != "\n") && this.more()) ch = this.src.charAt(this.pos++);
+			}
 		}
 		if (this.src.charAt(this.pos) == "\\") this.pos++;
 		if (" \t\r\n".indexOf(this.src.charAt(this.pos)) == -1) return this.src.charAt(this.pos++);
@@ -423,7 +433,7 @@ Source.prototype.getNextSignificantChar = function() {
 }
 
 Source.prototype.getNextStringChar = function() {
-	while (this.pos < this.src.length) {
+	while (this.more()) {
 		var ch = this.src.charAt(this.pos++);
 		if (ch == "\"") return this.QUOTE2;
 		if (ch == "\\") return this.src.charAt(this.pos++);
@@ -759,12 +769,8 @@ function parseList(src, evaluate, editMode) {
 			quotes++;
 		} else if (ch == ")") {
 			break;
-		} else if ((ch == ".") && (items.length > 0)) {
-			if (dotPos > 0) throw new Error(newErrMsg(BAD_DOT,
-												"(" + lispToStr(items[items.length-1]) + " . \\.)"));
-			dotPos = items.length;
 		} else if (ch !== src.EOF) {
-			var item;
+			var item = null;
 			if (ch == "(") {
 				var tmp = parseList(src, false, editMode);
 				if (evaluate && (tmp !== NIL)) evRes = evalLisp(tmp);
@@ -777,14 +783,19 @@ function parseList(src, evaluate, editMode) {
 			} else {
 				s = ch;
 				while (typeof (ch = src.getNextSymbolChar()) === "string") s += ch;
-				item = isNaN(s) ? getSymbol(s, editMode) : new Number(s);
-				src.traceItemEnd(item);		// in case we would like to know item's position
+				if (s == ".") {
+					dotPos = items.length;
+				} else {
+					item = (isNaN(s) || s.match(/^[+-]?\./)) ? getSymbol(s, editMode) : new Number(s);
+					src.traceItemEnd(item);		// in case we would like to know item's position
+				}
 			}
 			if (evaluate && (item === NIL)) return evRes;
-			if ((dotPos > 0) && (items.length > dotPos)) throw new Error(newErrMsg(BAD_DOT));
-			// TODO: provide a 'badValue' param for newErrMsg(BAD_DOT) above. Case: (1 (2 3) . 4 5)
+			if ((dotPos > 0) && (items.length > dotPos)) {
+				throw new Error(newErrMsg(BAD_DOT, lispToStr(new Cell(items[dotPos - 1], items[dotPos]))));
+			}
 			while (quotes > 0) { item = new Cell(QUOTE, item); quotes--; }
-			items.push(item);
+			if (item !== null) items.push(item);
 		}
 	} while ((ch !== src.CLOSEPAREN) && (ch !== src.EOF));
 	if (evaluate) return evRes;
