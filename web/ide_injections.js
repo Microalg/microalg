@@ -250,8 +250,8 @@ function inject_microalg_editor_in(elt_id, config) {
             '<html>\n' +
             '  <head>\n' +
             '    <meta charset="utf-8">\n' +
-            '    <script type="text/javascript" src="web/blockly/blockly_compressed.js"></script>\n' +
-            '    <script type="text/javascript" src="web/blockly_microalg.js"></script>\n' +
+            '    <script type="text/javascript" src="' + root_path + 'web/blockly/blockly_compressed.js"></script>\n' +
+            '    <script type="text/javascript" src="' + root_path + 'web/blockly_microalg.js"></script>\n' +
             '    <style>\n' +
             '      html, body {\n' +
             '        background-color: #fff;\n' +
@@ -268,7 +268,7 @@ function inject_microalg_editor_in(elt_id, config) {
             '    <script>\n' +
             '      function init() {\n' +
             '        Blockly.inject(document.body,\n' +
-            '            {path: "../web/blockly/",\n' +
+            '            {path: "' + root_path + 'web/blockly/",\n' +
             '             comments: false,\n' +
             '             disable: false,\n' +
             '             toolbox: document.getElementById("' + elt_id + '-toolbox")});\n' +
