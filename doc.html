@@ -77,11 +77,22 @@ du projet, est créé fin mars 2014. Suivront :
 MicroAlg est encore jeune et il manque encore des choses importantes avant
 qu’elle ne soit considérée comme complète :
 
-### Erreurs non traduites
+### Messages d’erreur
+
+#### Non traduits
 
 Les messages d’erreurs ne sont pas encore tous très clairs, voire même pas
 encore tous en français. J’attends que les instructions `throw` et `catch`
 soient implémentées dans EmuLisp.
+
+#### Numéro de ligne
+
+Dans les versions JavaScript (et donc dans le navigateur), le numéro de la ligne
+où l’erreur a eu lieu n’est pour l’instant pas connu.
+
+Dans les autres versions, le numéro de ligne donné en cas d’erreur pointe vers
+l’expression la plus extérieure, ce qui est insuffisant quand par exemple
+l’erreur a eu lieu dans un `Tant_que` assez volumineux.
 
 ### Retour de fonction non interruptif
 
