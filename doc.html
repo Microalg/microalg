@@ -154,11 +154,20 @@ en sorte que `(Demander)` attende l’utilisateur.
   Dans ce cas, c’est la commande qui est à l’intérieur qui est exécutée en
   premier. Un environnement MicroAlg doit colorer les parenthèses selon leur
   profondeur :
-  <span class="paren_1">(</span> <span class="paren_2">(</span> <span class="paren_3">(</span> <span class="paren_4">(</span> <span class="paren_5">(</span> <span class="paren_6">(</span> <span class="paren_0">(</span> <span class="paren_0">)</span> <span class="paren_6">)</span> <span class="paren_5">)</span> <span class="paren_4">)</span> <span class="paren_3">)</span> <span class="paren_2">)</span> <span class="paren_1">)</span>
-* On ne trouvera jamais deux parenthèses ouvrantes de suite.
+  <span class="paren_1">(</span> <span class="paren_2">(</span> <span class="paren_3">(</span> <span class="paren_4">(</span> <span class="paren_5">(</span> <span class="paren_6">(</span> <span class="paren_0">(</span> <span class="paren_0">)</span> <span class="paren_6">)</span> <span class="paren_5">)</span> <span class="paren_4">)</span> <span class="paren_3">)</span> <span class="paren_2">)</span> <span class="paren_1">)</span>.
 * Les symboles (noms de variables ou commandes) ne peuvent pas contenir les
-  caractères suivants : `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
+  caractères suivants :  
+  `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
   Le point peut être utilisé dans un symbole, mais pas tout seul.
+
+<div id="trucs-syntaxe"></div>
+Quelques « trucs » :
+
+* Si l’indentation est respectée :
+    * les parenthèses en début de ligne (ouvrantes ou fermantes) seront toujours rouges ;
+    * les parenthèses correspondantes n’étant pas sur la même ligne mais
+      alignées verticalement seront de la même couleur.
+* On ne trouvera jamais deux parenthèses ouvrantes de suite.
 
 ### Symboles
 
