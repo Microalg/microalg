@@ -706,6 +706,19 @@ Avec une liste :
 )
 
 # Tirages pseudo-aléatoires.
+(setq sequence_tirages@ (Liste))
+(put 'sequence_tirages@ 'type "liste")
+(de !rand (!min !max)
+  (if (!boolM2P (> (!longueur sequence_tirages@) 0))
+      (let !val (car (elts> sequence_tirages@))
+        (setq sequence_tirages@ (apply Liste (cdr (elts> sequence_tirages@))))
+        (push> sequence_tirages@ !val)
+        !val
+      )
+      (rand !min !max)
+  )
+)
+# Définition des commandes.
 (put 'Initialiser@ 'doc
 "Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
 
@@ -772,7 +785,7 @@ implémentations.
          (quit "Le minimum et le maximum de `Entier@` ne sont pas dans l’ordre."))
     )
     # Le calcul
-    (rand !min !max)
+    (!rand !min !max)
 )
 (put 'Nieme@ 'doc
 "Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
@@ -811,8 +824,8 @@ implémentations.
     (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
     # Le calcul
     (cond
-        ((!boolM2P (Liste? obj)) (nth> obj (rand 1 (length> obj))))
-        ((str? obj) (car (nth (chop obj) (rand 1 (length obj)))))
+        ((!boolM2P (Liste? obj)) (nth> obj (!rand 1 (length> obj))))
+        ((str? obj) (car (nth (chop obj) (!rand 1 (length obj)))))
         (T Rien)
     )
 )

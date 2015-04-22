@@ -1,0 +1,16 @@
+(Definir (Afficher_10_des_de_6)
+    "Affiche dix tirages de dés à 6 faces."
+    "ProfGra"
+    (Initialiser i 0)
+    (Tant_que (< i 10) Faire
+        (Afficher (Entier@ 1 6))
+        (Affecter_a i (+ i 1))
+    )
+)
+(Afficher_10_des_de_6)
+(Afficher "---------")
+(Affecter_a sequence_tirages@ (Liste 1 2 3 4))
+(Afficher_10_des_de_6)
+(Afficher "---------")
+(Affecter_a sequence_tirages@ (Liste))
+(Afficher_10_des_de_6)
