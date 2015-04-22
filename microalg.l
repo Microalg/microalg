@@ -421,7 +421,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 "Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
 
 Cette commande est à appeler une seule fois au début de votre programme et est
-inutile si vous utilisez la version Javascript de MicroAlg (en particulier dans
+inutile si vous utilisez la version JavaScript de MicroAlg (en particulier dans
 le navigateur). Elle résout le problème suivant :
 
 Dans une session :
