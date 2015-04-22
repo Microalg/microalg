@@ -711,6 +711,10 @@ Avec une liste :
 (de !rand (!min !max)
   (if (!boolM2P (> (!longueur sequence_tirages@) 0))
       (let !val (car (elts> sequence_tirages@))
+        (if (or (gt0 (- !min !val)) (gt0 (- !val !max)))
+          (quit (pack "Mauvais tirage forcé : " !val " n’est pas compris entre "
+                      !min " et " !max "."))
+        )
         (setq sequence_tirages@ (apply Liste (cdr (elts> sequence_tirages@))))
         (push> sequence_tirages@ !val)
         !val
