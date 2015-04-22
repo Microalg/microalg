@@ -416,118 +416,6 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 (put 'En_position 'doc "Mot-clef intermédiaire pour la commande `Affecter_a`.")
 (setq En_position 'En_position)
 
-# Tirages pseudo-aléatoires.
-(put 'Initialiser@ 'doc
-"Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
-
-Cette commande est à appeler une seule fois au début de votre programme et est
-inutile si vous utilisez la version JavaScript de MicroAlg (en particulier dans
-le navigateur). Elle résout le problème suivant :
-
-Dans une session :
-
-    : (Entier@ 0 1000)
-    -> 0
-    : (Entier@ 0 1000)
-    -> 648
-
-Puis dans une autre, plus tard :
-
-    : (Entier@ 0 1000)
-    -> 0
-    : (Entier@ 0 1000)
-    -> 648
-
-Alors que :
-
-    : (Initialiser@)
-    -> Rien
-    : (Entier@ 0 1000)
-    -> 422  # Cette valeur sera différente à chaque seconde de la journée.
-")
-(put 'Initialiser@ 'text "Commande `Initialiser@`.")
-(de Initialiser@ ()
-    (seed (time))
-    Rien)
-(put 'Entier@ 'doc
-"Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
-paramètres entiers).
-
-    : (Entier@ 1 6)
-    -> 2
-    : (Entier@ 1 6)
-    -> 6
-
-Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
-
-**Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
-
-* Avec `malg` et `malg-j`, la séquence des valeurs retournées sera toujours la
-  même à chaque exécution d’un programme. Si ce n’est pas le comportement
-  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
-* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
-  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
-")
-(put 'Entier@ 'text "Commande `Entier@`.")
-(de Entier@ (!min !max !rien_ici)
-    # Quelques vérifications
-    (ifn (and !min !max) (quit "`Entier@` prend deux paramètres (entiers)."))
-    (if !rien_ici (quit "`Entier@` ne prend que deux paramètres (entiers)."))
-    (cond
-        ((<> !min (format (round !min 0) 0 "." ","))
-         (quit "Le minimum de `Entier@` n’est pas entier." !min))
-        ((<> !max (format (round !max 0) 0 "." ","))
-         (quit "Le maximum de `Entier@` n’est pas entier." !max))
-        ((!boolM2P (> !min !max))
-         (quit "Le minimum et le maximum de `Entier@` ne sont pas dans l’ordre."))
-    )
-    # Le calcul
-    (rand !min !max)
-)
-(put 'Nieme@ 'doc
-"Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
- fourni en paramètre.
-
-    : (Nieme@ (Liste 13 666 2015))
-    -> 2015
-    : (Nieme@ (Liste 13 666 2015))
-    -> 666
-    : (Nieme@ \"bonjour\")
-    -> n
-    : (Nieme@ \"bonjour\")
-    -> o
-
-Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
-
-**Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
-
-* Avec `malg` et `malg-j`, la séquence des positions utilisées sera toujours la
-  même à chaque exécution d’un programme. Si ce n’est pas le comportement
-  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
-* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
-  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
-")
-(put 'Nieme@ 'text "Commande `Nieme@`.")
-(de Nieme@ (obj !rien_ici)
-    # Quelques vérifications
-    (setq !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
-    (cond
-        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
-        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
-        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
-        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
-    )
-    (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
-    # Le calcul
-    (cond
-        ((!boolM2P (Liste? obj)) (nth> obj (rand 1 (length> obj))))
-        ((str? obj) (car (nth (chop obj) (rand 1 (length obj)))))
-        (T Rien)
-    )
-)
-
 # Demander.
 # Avec EmuLisp, les entrées utilisateur se font au travers de la fonction
 # _stdPrompt, surchargée dans ide_injection.js. Dans un navigateur, la dernière
@@ -815,6 +703,118 @@ Avec une liste :
          (T (quit "Le premier argument de `Retirer_de` doit être du texte ou une liste." !sym))
        )
   )
+)
+
+# Tirages pseudo-aléatoires.
+(put 'Initialiser@ 'doc
+"Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
+
+Cette commande est à appeler une seule fois au début de votre programme et est
+inutile si vous utilisez la version JavaScript de MicroAlg (en particulier dans
+le navigateur). Elle résout le problème suivant :
+
+Dans une session :
+
+    : (Entier@ 0 1000)
+    -> 0
+    : (Entier@ 0 1000)
+    -> 648
+
+Puis dans une autre, plus tard :
+
+    : (Entier@ 0 1000)
+    -> 0
+    : (Entier@ 0 1000)
+    -> 648
+
+Alors que :
+
+    : (Initialiser@)
+    -> Rien
+    : (Entier@ 0 1000)
+    -> 422  # Cette valeur sera différente à chaque seconde de la journée.
+")
+(put 'Initialiser@ 'text "Commande `Initialiser@`.")
+(de Initialiser@ ()
+    (seed (time))
+    Rien)
+(put 'Entier@ 'doc
+"Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
+paramètres entiers).
+
+    : (Entier@ 1 6)
+    -> 2
+    : (Entier@ 1 6)
+    -> 6
+
+Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
+
+**Attention** : le comportement de cette commande diffère suivant les
+implémentations.  
+
+* Avec `malg` et `malg-j`, la séquence des valeurs retournées sera toujours la
+  même à chaque exécution d’un programme. Si ce n’est pas le comportement
+  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
+* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
+  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
+")
+(put 'Entier@ 'text "Commande `Entier@`.")
+(de Entier@ (!min !max !rien_ici)
+    # Quelques vérifications
+    (ifn (and !min !max) (quit "`Entier@` prend deux paramètres (entiers)."))
+    (if !rien_ici (quit "`Entier@` ne prend que deux paramètres (entiers)."))
+    (cond
+        ((<> !min (format (round !min 0) 0 "." ","))
+         (quit "Le minimum de `Entier@` n’est pas entier." !min))
+        ((<> !max (format (round !max 0) 0 "." ","))
+         (quit "Le maximum de `Entier@` n’est pas entier." !max))
+        ((!boolM2P (> !min !max))
+         (quit "Le minimum et le maximum de `Entier@` ne sont pas dans l’ordre."))
+    )
+    # Le calcul
+    (rand !min !max)
+)
+(put 'Nieme@ 'doc
+"Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
+ fourni en paramètre.
+
+    : (Nieme@ (Liste 13 666 2015))
+    -> 2015
+    : (Nieme@ (Liste 13 666 2015))
+    -> 666
+    : (Nieme@ \"bonjour\")
+    -> n
+    : (Nieme@ \"bonjour\")
+    -> o
+
+Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
+
+**Attention** : le comportement de cette commande diffère suivant les
+implémentations.  
+
+* Avec `malg` et `malg-j`, la séquence des positions utilisées sera toujours la
+  même à chaque exécution d’un programme. Si ce n’est pas le comportement
+  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
+* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
+  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
+")
+(put 'Nieme@ 'text "Commande `Nieme@`.")
+(de Nieme@ (obj !rien_ici)
+    # Quelques vérifications
+    (setq !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
+    (cond
+        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
+        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
+        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
+        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
+    )
+    (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
+    # Le calcul
+    (cond
+        ((!boolM2P (Liste? obj)) (nth> obj (rand 1 (length> obj))))
+        ((str? obj) (car (nth (chop obj) (rand 1 (length obj)))))
+        (T Rien)
+    )
 )
 
 # Types et conversions
