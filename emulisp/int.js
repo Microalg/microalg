@@ -386,7 +386,7 @@ Int.prototype.valueOf = Int.prototype.toString = function(radix){
         return NaN;
     }
 
-    if (!radix || radix === 10) {
+    if (radix === 'number' || !radix || radix === 10) {
         return (self._s && self._d.length ? '-' : '') + ((self._d.length) ? self._d.join('') : '0');
     }
 
