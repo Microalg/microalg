@@ -463,5 +463,5 @@ function trim_zeros(int) {
     return int;
 }
 
-module.exports = Int;
+// module.exports = Int;
 
