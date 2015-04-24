@@ -17,6 +17,11 @@ function warn(msg) {
 
 var NO_DEBUG = "piljs -> no debug yet";
 
+// Load int.js.
+var int_src = fs.readFileSync(
+    path.resolve(__dirname, 'int.js')).toString();
+eval(int_src);
+
 // Load EmuLisp.
 var emulisp_src = fs.readFileSync(
     path.resolve(__dirname, 'emulisp_core.js')).toString();

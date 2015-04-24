@@ -19,6 +19,7 @@ var NO_DEBUG = "piljs -> no debug yet";
 var before_rhino_regex = new RegExp('^(.*)js\.jar.*');
 var matches = before_rhino_regex.exec(environment["sun.java.command"]);
 var abs_path = matches[1] + "../";
+load(abs_path + 'emulisp/int.js');
 load(abs_path + 'emulisp/emulisp_core.js');
 
 // Process command line args.
