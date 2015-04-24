@@ -247,10 +247,10 @@ Int.prototype.div = function(num) {
     // copy since we change sign of num
     var num = Int(num);
 
-    if(num == '0') {
+    if(num.eq0()) {
         throw new Error('Division by 0');
     }
-    else if(self == '0') {
+    else if(self.eq0()) {
         return Int();
     }
 
