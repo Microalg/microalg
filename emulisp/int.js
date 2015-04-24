@@ -428,6 +428,10 @@ Int.prototype.eq = function (num) {
     return this.cmp(num) === 0;
 };
 
+Int.prototype.eq0 = function () {
+    return this._d.length === 0;
+};
+
 Int.prototype.ne = function (num) {
     return this.cmp(num) !== 0;
 };
