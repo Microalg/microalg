@@ -533,7 +533,8 @@ function prepareNewState(optionalState) {
 		compExprArr: [],	// sort expression stack
 		evFrames: NIL,
 		trcIndent: "",
-		startupMillis: Date.now()
+		startupMillis: Date.now(),
+		seed: Int(0)
 	};
 	QUOTE = getSymbol("quote");
 	getSymbol("*EMUENV").setVal(new Symbol(emuEnv()));
@@ -840,6 +841,24 @@ function printx(c, x) { var arr = [];
 	c = evalArgs(c); arr.push(lispToStr(c.car));
 	while (c.cdr !== NIL) { c = c.cdr; arr.push(lispToStr(c.car)); }
 	_stdPrint(arr.join(" ") + x); return c.car;
+}
+
+function initSeed(c) {
+	var n = Int(0);
+	while (c instanceof Cell) {
+		n = n.add(initSeed(c.car));
+		c = c.cdr;
+	}
+	if (c != NIL) {
+		if (c instanceof Number || c instanceof Int) {
+			n = n.add(c);
+		} else {
+			// initSeed with something other than a number
+			// is not implemented yet.
+		}
+	}
+	n = n.gte(0)? n.mul(2) : n.neg().mul(2).add(1);
+	return n;
 }
 
 function rand(c, picoSize) {
@@ -1356,8 +1375,25 @@ var coreFunctions = {
 		if (value == NIL) throw new Error(newErrMsg(evalLisp(c.car)));
 		else throw new Error(newErrMsg(evalLisp(c.car), value));
 	},
-	"rand": function(c) { return rand(c, 2147483648); },
+	"rand": function(c) {
+		cst.seed = cst.seed.mul(Int("6364136223846793005")).add(1).mod("18446744073709551616");
+		var x = evalLisp(c.car)
+		var shiftedSeed = cst.seed.div(4294967296);
+		if (x == NIL) return new Number(shiftedSeed);
+		if (x == T) return (shiftedSeed.mod(2).eq0())? NIL : T;
+		// x is now the min, n will be the max
+		x = numeric(x);
+		var n = numeric(evalLisp(c.cdr.car));
+		n = n + 1 - x;
+		if (n != 0) {
+			// A last shift to conform to Ersatz (>>> 33)
+			shiftedSeed = shiftedSeed.div(2);
+			n = shiftedSeed.mod(n);
+		}
+		return new Number(n.add(x));
+	},
 	"randfloat": function(c) { return rand(c); },	// not std. PicoLisp
+	"randjs": function(c) { return rand(c, 2147483648); },  // idem
 	"range": function(c) {
 		var n = numeric(evalLisp(c.car)), n2 = numeric(evalLisp(c.cdr.car)), s = evalLisp(c.cdr.cdr.car);
 		if (s === NIL) { s = 1; } else if (numeric(s) <= 0) throw new Error(newErrMsg(BAD_ARG, s));
@@ -1382,7 +1418,11 @@ var coreFunctions = {
 	"run": function(c) { var cv = evalLisp(c.car);
 		return (cv instanceof Cell) ? prog(cv) : cv;	// TODO: binding env. offset cnt
 	},
-	"seed": function(c) { return rand(NIL, 2147483648); },  // not std. PicoLisp
+	"seed": function(c) {
+		var n = initSeed(evalLisp(c.car)).mul("6364136223846793005");
+		cst.seed = n;
+		return new Number(n + "");
+	},
 	"send": function(c) { var m = evalLisp(c.car), t = evalLisp(c.cdr.car);
 		TheKey = m; TheCls = null;
 		console.log("send #1: %s, %s", lispToStr(t), lispToStr(m));
