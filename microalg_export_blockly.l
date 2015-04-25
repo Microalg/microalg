@@ -104,6 +104,10 @@
         "<value name=\"MIN\">" MIN "</value>"
         "<value name=\"MAX\">" MAX "</value>"
         "</block>"))
+(de Initialiser@ (next)
+  (pack "<block type=\"initialiser_pseudo_aleatoire\">"
+        next
+        "</block>"))
 (de Type (content)
   (pack "<block type=\"type\">"
         "<value name=\"VALUE\">"

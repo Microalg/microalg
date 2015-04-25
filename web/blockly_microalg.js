@@ -452,6 +452,24 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
 // Bloc Initialiser
 // Gen Initialiser
 
+// Bloc Initialiser@
+Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#cmd-Initialiser@');
+    this.setColour(250);
+    this.appendDummyInput()
+        .appendField('Initialiser@');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Initialiser la séquence des nombres pseudo-aléatoire.');
+  }
+};
+
+// Gen Initialiser@
+Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
+  return '(Initialiser@)';
+};
+
 // Bloc Nombre
 Blockly.Blocks['nombre'] = {
   init: function() {

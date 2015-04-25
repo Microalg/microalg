@@ -223,6 +223,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Cmdes sans retour">' +
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
+                '  <block type="initialiser_pseudo_aleatoire"></block>' +
                 '  <block type="si"></block>' +
                 ' </category>' +
                 ' <category name="Cmdes avec retour">' +
