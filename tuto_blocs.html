@@ -191,9 +191,34 @@
     <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires', {
      blockly_only: true,
      src:
+        '(Initialiser@)\n' +
         '(Afficher (Entier@ 1900 2015))'
     });</script>
     <p>Comment changer ce programme pour simuler un dé à six faces ?</p>
+    <p><strong>Note</strong> : sans la commande <code>Initialiser@</code>,
+    un même programme donnera toujours les mêmes tirages. Ce n’est bien sûr pas
+    souhaitable pour un jeu de hasard comme un jeu de cartes. Néanmoins, pour
+    certaines applications artistiques ou scientifiques, la
+    <a href="http://fr.wikipedia.org/wiki/Reproductibilit%C3%A9"
+    class="wp">reproductibilité</a> (le fait de pouvoir garder certaines
+    séquences de tirages) peut être intéressante. On peut par exemple vouloir
+    générer un même labyrinthe pour tous les joueurs, on peut vouloir vérifier
+    si un programme est correct en comparant avec un autre que l’on sait être
+    correct…</p>
+    <p>Voici par exemple un programme qui affichera toujours les mêmes cinq
+    tirages :</p>
+    <div id="script-nbres-pseudo-aleatoires-init"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires-init', {
+     blockly_only: true,
+     src:
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        ''
+    });</script>
+    <!-- TODO: sequence_tirages@ -->
 
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <p>Il est possible de demander une valeur à l’utilisateur, pour ensuite

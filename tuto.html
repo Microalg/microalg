@@ -294,9 +294,46 @@
     <div id="script-nbres-pseudo-aleatoires"></div>
     <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires', {
      src:
+        '(Initialiser@)\n' +
         '(Afficher (Entier@ 1900 2015))'
     });</script>
     <p>Comment changer ce programme pour simuler un dé à six faces ?</p>
+    <p><strong>Note</strong> : sans la commande <code>Initialiser@</code>,
+    un même programme donnera toujours les mêmes tirages. Ce n’est bien sûr pas
+    souhaitable pour un jeu de hasard comme un jeu de cartes. Néanmoins, pour
+    certaines applications artistiques ou scientifiques, la
+    <a href="http://fr.wikipedia.org/wiki/Reproductibilit%C3%A9"
+    class="wp">reproductibilité</a> (le fait de pouvoir garder certaines
+    séquences de tirages) peut être intéressante. On peut par exemple vouloir
+    générer un même labyrinthe pour tous les joueurs, on peut vouloir vérifier
+    si un programme est correct en comparant avec un autre que l’on sait être
+    correct…</p>
+    <p>Voici par exemple un programme qui affichera toujours les mêmes cinq
+    tirages :</p>
+    <div id="script-nbres-pseudo-aleatoires-init"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires-init', {
+     src:
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        ''
+    });</script>
+    <p>Il est même possible de fournir une séquence de nombres entiers qui
+    sera utilisée pour les tirages (les commandes
+    <code>Affecter_a</code> et <code>Liste</code> seront vues plus loin).</p>
+    <div id="script-nbres-pseudo-aleatoires-seq"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires-seq', {
+     src:
+        '(Affecter_a sequence_tirages@ (Liste 1 3 5 7 9))\n' +
+        '(Afficher (Entier@ 1 10))\n' +
+        '(Afficher (Entier@ 1 10))\n' +
+        '(Afficher (Entier@ 1 10))\n' +
+        '(Afficher (Entier@ 1 10))\n' +
+        '(Afficher (Entier@ 1 10))\n' +
+        ''
+    });</script>
 
     <h2 id="demander"><a href="#demander">: </a>Demander à l’utilisateur</h2>
     <p>Il est possible de demander une valeur à l’utilisateur :</p>
