@@ -749,11 +749,13 @@ Alors que :
     : (Initialiser@)
     -> Rien
     : (Entier@ 0 1000)
-    -> 422  # Cette valeur sera différente à chaque seconde de la journée.
+    -> 422  # Cette valeur dépendra du moment où la commande `Initialiser@`
+            # aura été exécutée, au moins à la milliseconde près.
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
 (de Initialiser@ ()
-    (seed (time))
+    # Avec EmuLisp, seed ne supporte que les entiers 32 bits signés.
+    (seed (- (% (+ (time) (usec)) (** 2 32)) (** 2 31)))
     Rien)
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
