@@ -1566,6 +1566,9 @@ var coreFunctions = {
 		if (cl === NIL) return NIL;
 		throw new Error(newErrMsg(NUM_EXP, cl));
 	},
+	"time": function(c) { // Doesn't accept args for now.
+		var d = new Date();
+		return new Number(d.getSeconds() + 60*d.getMinutes() + 3600*d.getHours()); },
 	"trace": function(c) { var s = evalLisp(c.car), f = evalLisp(s);
 		if (f instanceof Cell) {
 			setSymbolValue(s, new Cell(f.car, new Cell(new Cell(cst.iSym["$"], new Cell(s, f)), NIL)));
