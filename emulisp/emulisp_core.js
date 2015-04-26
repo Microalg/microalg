@@ -1423,7 +1423,11 @@ var coreFunctions = {
 		return (cv instanceof Cell) ? prog(cv) : cv;	// TODO: binding env. offset cnt
 	},
 	"seed": function(c) {
+		// The seed is correctly set,
+		// but the number returned is the seed rounded to a JS number.
 		var n = initSeed(evalLisp(c.car)).mul("6364136223846793005");
+		// Convert unsigned 64 bit number to 64 bit signed number.
+		n = n.lt("9223372036854775808") ? n : n.sub("18446744073709551616");
 		cst.seed = n;
 		return new Number(n + "");
 	},
