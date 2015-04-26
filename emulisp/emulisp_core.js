@@ -1383,7 +1383,19 @@ var coreFunctions = {
 		cst.seed = cst.seed.mul(Int("6364136223846793005")).add(1).mod("18446744073709551616");
 		var x = evalLisp(c.car)
 		var shiftedSeed = cst.seed.div(4294967296);
-		if (x == NIL) return new Number(shiftedSeed);
+		if (x == NIL) {
+			var ersatz = true;
+			if (ersatz) {
+				var seed_bits = cst.seed.mod(4294967296); // lower bits
+				// Convert unsigned 32 bit number to 32 bit signed number.
+				var converted = seed_bits.lt(2147483648) ?  seed_bits : seed_bits.sub(4294967296);
+				return new Number(converted);
+			} else {
+				var seed_bits = shiftedSeed; // higher bits
+				var converted = seed_bits.mod(2).eq0() ? seed_bits.div(2) : seed_bits.sub(1).div(2).neg() ;
+				return new Number(converted);
+			}
+		}
 		if (x == T) return (shiftedSeed.mod(2).eq0())? NIL : T;
 		// x is now the min, n will be the max
 		x = numeric(x);
