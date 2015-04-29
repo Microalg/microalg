@@ -13,7 +13,7 @@ Voir <http://microalg.info>.")
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
-"Concatener"
+"Concatener" "credit_iterations"
 "Definir" "Demander"
 "En_position" "Entier@" "Et" "Exemples_de"
 "Faire"
@@ -25,6 +25,7 @@ Voir <http://microalg.info>.")
 "Ou"
 "Queue"
 "Retirer_de" "Retourner" "Rien"
+"sequence_tirages@"
 "Si" "Sinon"
 "Tant_que" "Tester" "Tete" "Texte" "Texte?" "Type"
 "Vide?" "Vrai" "Vrai?"
@@ -706,6 +707,31 @@ Avec une liste :
 )
 
 # Tirages pseudo-aléatoires.
+(put 'sequence_tirages@ 'doc
+"Liste contenant les nombres entiers qui seront « tirés au sort » par les
+commandes `Entier@` et `Nieme@`, dans cet ordre.
+
+    : (Affecter_a sequence_tirages@ (Liste 1 3 5 7))
+    -> Rien
+    : (Afficher (Entier@ 1 10))
+    1
+    -> Rien
+    : (Afficher (Nieme@ (Liste \"bonjour\" \"tout\" \"le\" \"monde\")))
+    \"le\"
+    -> Rien
+    : (Afficher (Entier@ 1 10))
+    5
+    -> Rien
+    : (Afficher (Entier@ 1 10))
+    7
+    -> Rien
+    : (Afficher (Entier@ 1 10))
+    1
+    -> Rien
+    : (Afficher (Entier@ 1 10))
+    3
+    -> Rien
+")
 (setq sequence_tirages@ (Liste))
 (put 'sequence_tirages@ 'type "liste")
 (de !rand (!min !max)
@@ -988,6 +1014,22 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     (!boolP2M (or (!boolM2P !P) (!boolM2P !Q))) )
 
 # Structures itératives
+(put 'credit_iterations 'doc
+"Variable stockant le nombre d’itérations possibles restantes.
+
+    : (Tant_que Vrai Faire (Afficher credit_iterations))
+    999
+    998
+    997
+    [...]
+    3
+    2
+    1
+    Erreur :
+    Crédit d’itérations épuisé (1 000 par défaut).
+    Vous pouvez recharger votre crédit en affectant une valeur
+    à la variable `credit_iterations`.
+")
 (setq credit_iterations 1000)
 (put 'credit_iterations 'type "nombre")
 (setq credit_iterations_message
