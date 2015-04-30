@@ -806,18 +806,13 @@ paramètres entiers).
     : (Entier@ 1 6)
     -> 2
     : (Entier@ 1 6)
-    -> 6
+    -> 3
 
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 
-**Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
-
-* Avec `malg` et `malg-j`, la séquence des valeurs retournées sera toujours la
-  même à chaque exécution d’un programme. Si ce n’est pas le comportement
-  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
-* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
-  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
+**Attention** : La séquence des valeurs retournées sera toujours la même à
+chaque exécution d’un programme. Si ce n’est pas le comportement désiré, il
+faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Entier@ 'text "Commande `Entier@`.")
 (de Entier@ (!min !max !rien_ici)
@@ -840,24 +835,19 @@ implémentations.
  fourni en paramètre.
 
     : (Nieme@ (Liste 13 666 2015))
-    -> 2015
-    : (Nieme@ (Liste 13 666 2015))
     -> 666
+    : (Nieme@ (Liste 13 666 2015))
+    -> 2015
+    : (Nieme@ \"bonjour\")
+    -> b
     : (Nieme@ \"bonjour\")
     -> n
-    : (Nieme@ \"bonjour\")
-    -> o
 
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 
-**Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
-
-* Avec `malg` et `malg-j`, la séquence des positions utilisées sera toujours la
-  même à chaque exécution d’un programme. Si ce n’est pas le comportement
-  désiré, il faut ajouter `(Initialiser@)` au début du programme.  
-* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
-  navigateur, pas besoin d’utiliser la commande `Initialiser@`.
+**Attention** : La séquence des valeurs retournées sera toujours la même à
+chaque exécution d’un programme. Si ce n’est pas le comportement désiré, il
+faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Nieme@ 'text "Commande `Nieme@`.")
 (de Nieme@ (obj !rien_ici)
