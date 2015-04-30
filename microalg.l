@@ -783,12 +783,23 @@ Alors que :
     : (Entier@ 0 1000)
     -> 422  # Cette valeur dépendra du moment où la commande `Initialiser@`
             # aura été exécutée, au moins à la milliseconde près.
+
+**Utilisation avancée** : en passant une valeur à `Initialiser@` comprise entre
+0 (inclus) et 2 puissance 32 (exclus), on initialise l’état du générateur à
+cette valeur.
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
-(de Initialiser@ ()
-    # Avec EmuLisp, seed ne supporte que les entiers 32 bits signés.
-    (seed (- (% (+ (time) (usec)) (** 2 32)) (** 2 31)))
+(de Initialiser@ (x)
+  (let 2^32 (** 2 32)
+    (ifn x (setq !etat@ (% (+ (time) (usec)) 2^32))
+           (if (or (lt0 (- x 0)) (le0 (- 2^32 x)))
+               (quit (pack "Initialiser@ n’accepte que des valeurs entre "
+                           "0 (inclus) et 2 puissance 32 (exclus).") x)
+               (setq !etat@ x)
+           )
+    )
     Rien)
+  )
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
 paramètres entiers).
