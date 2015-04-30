@@ -215,6 +215,7 @@
             '(or (put 'x 'type NIL) T)
             # Pseudo-aléatoire
             '(= 0 (Entier@ 0 0))
+            '(= 332 (prog (Initialiser@ 0) (Entier@ 0 1000)))
             '(= 0 (Nieme@ (Liste 0)))
             '(= "a" (Nieme@ "a"))
         ) )
