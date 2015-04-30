@@ -766,14 +766,14 @@ Dans une session :
     : (Entier@ 0 1000)
     -> 0
     : (Entier@ 0 1000)
-    -> 648
+    -> 332
 
 Puis dans une autre, plus tard :
 
     : (Entier@ 0 1000)
     -> 0
     : (Entier@ 0 1000)
-    -> 648
+    -> 332
 
 Alors que :
 
