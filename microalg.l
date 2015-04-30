@@ -707,6 +707,10 @@ Avec une liste :
 )
 
 # Tirages pseudo-aléatoires.
+(de !prochain_etat@ ()
+  (ifn !etat@ (setq !etat@ 0))
+  # http://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
+  (setq !etat@ (% (+ (* !etat@ 1664525) 1013904223) 4294967296)) )
 (put 'sequence_tirages@ 'doc
 "Liste contenant les nombres entiers qui seront « tirés au sort » par les
 commandes `Entier@` et `Nieme@`, dans cet ordre.
@@ -745,7 +749,9 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
         (push> sequence_tirages@ !val)
         !val
       )
-      (rand !min !max)
+      (let !mod (- (+ !max 1) !min)
+        (+ !min (% (!prochain_etat@) !mod))
+      )
   )
 )
 # Définition des commandes.
