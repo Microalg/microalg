@@ -756,11 +756,10 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 )
 # Définition des commandes.
 (put 'Initialiser@ 'doc
-"Permet d’obtenir une séquence de nombres pseudo-aléatoires différente.
+"Permet d’initialiser la séquence des nombres pseudo-aléatoires.
 
-Cette commande est à appeler une seule fois au début de votre programme et est
-inutile si vous utilisez la version JavaScript de MicroAlg (en particulier dans
-le navigateur). Elle résout le problème suivant :
+Cette commande est à appeler une seule fois au début de votre programme. Elle
+résout le problème suivant :
 
 Dans une session :
 
