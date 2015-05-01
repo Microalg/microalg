@@ -29,6 +29,7 @@ Faire instructions Tant_que test: Boucle où `instructions` s’exécutent tant 
 Faux : Booléen.
 Faux? val: Teste si `val` est Faux.
 Initialiser var val: Initialise la variable `var` avec la valeur `val`.
+Initialiser@ [val]: Initialise le générateur de valeurs pseudo-aléatoires.
 Liste [élements] : Construit une liste avec les paramètres fournis.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
 Millisecondes: Donne le nombre de millisecondes écoulées depuis le début de l’exécution du programme.
