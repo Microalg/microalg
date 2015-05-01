@@ -470,6 +470,9 @@ Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
   return '(Initialiser@)';
 };
 
+// Bloc Millisecondes
+// Gen Millisecondes
+
 // Bloc Nombre
 Blockly.Blocks['nombre'] = {
   init: function() {
