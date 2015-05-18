@@ -1832,6 +1832,14 @@ function evalLisp(lst) {
 		if (typeof lst.car.car === "function") {
 			return lst.car.car(lst.cdr, lst);	// should have been only lst in the first place
 		}
+		if (lst.car instanceof Cell) {
+			var s = evalLisp(lst.car);
+			if (typeof s.car === "function") {
+				return s.car(lst.cdr, lst);
+			}
+			if (s.car === NIL) throw new Error(newErrMsg(UNDEF, s));
+			return (s.car === Meth.car) ? evalMeth(s, lst.cdr) : evalDef(s.car, lst);
+		}
 		if (lst.car instanceof Symbol) {
 			var s = lst.car;
 			if (s.car === NIL) throw new Error(newErrMsg(UNDEF, s));
