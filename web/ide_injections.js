@@ -26,6 +26,7 @@ var malg_prompt = ": ";
 function cleanTransient(text) {
     text = text.replace(/\^J/g,'\n');  // PicoLisp control char
     text = text.replace(/\\"/g,'"');   // unescape double quotes
+    text = text.replace(/\\\^/g,'^');  // unescape hat char
     text = text.replace(/\n$/,'');     // remove last newline
     if (text.charAt(0) == '"' && text.charAt(text.length-1) == '"') {
         text = text.slice(1, -1);      // remove enclosing quotes

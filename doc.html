@@ -797,7 +797,7 @@ nom digne de ce nom.</p>
             var cmds_as_strings = cmds_as_list
                 .slice(1, -1)
                 .split(' ')
-                .map(function (x) {return x.slice(1, -1);});
+                .map(function (x) {return x.slice(1, -1).replace(/\\\^/g, "^");});
             // TOC
             var toc = $('<div/>').addClass('cmds-list toc').appendTo($('#cmds'));
             $.each(cmds_as_strings, function(i, cmd) {
