@@ -204,7 +204,7 @@ Blockly.MicroAlg['programme'] = function(block) {
 // Bloc Commentaire
 Blockly.Blocks['commentaire'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-!!!');
+    this.setHelpUrl(malg_url + '#sym-!!!');
     this.setColour(160);
     this.appendDummyInput()
         .appendField('!!!')
@@ -238,7 +238,7 @@ Blockly.MicroAlg['commentaire'] = function(block) {
 // Bloc Afficher
 Blockly.Blocks['afficher'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Afficher');
+    this.setHelpUrl(malg_url + '#sym-Afficher');
     this.setColour(160);
     this.appendValueInput('VALUE')
         .appendField('Afficher');
@@ -267,7 +267,7 @@ Blockly.MicroAlg['afficher'] = function(block) {
 // Bloc Concatener
 Blockly.Blocks['concatener'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Concatener');
+    this.setHelpUrl(malg_url + '#sym-Concatener');
     this.setColour(160);
     this.appendValueInput('ADD0')
         .appendField('Concaténer');
@@ -402,7 +402,7 @@ Blockly.MicroAlg['concatener'] = function(block) {
 // Bloc Demander
 Blockly.Blocks['demander'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Demander');
+    this.setHelpUrl(malg_url + '#sym-Demander');
     this.setColour(0);
     this.appendDummyInput()
         .appendField('Demander');
@@ -419,7 +419,7 @@ Blockly.MicroAlg['demander'] = function(block) {
 // Bloc Entier@
 Blockly.Blocks['entier_pseudo_aleatoire'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Entier@');
+    this.setHelpUrl(malg_url + '#sym-Entier@');
     this.setColour(250);
     this.appendValueInput('MIN')
         .setCheck('Number')
@@ -455,7 +455,7 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
 // Bloc Initialiser@
 Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Initialiser@');
+    this.setHelpUrl(malg_url + '#sym-Initialiser@');
     this.setColour(250);
     this.appendDummyInput()
         .appendField('Initialiser@');
@@ -476,7 +476,7 @@ Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
 // Bloc Nombre
 Blockly.Blocks['nombre'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Nombre');
+    this.setHelpUrl(malg_url + '#sym-Nombre');
     this.setColour(80);
     this.appendValueInput('VALUE')
         .appendField('Nombre');
@@ -502,7 +502,7 @@ Blockly.MicroAlg['nombre'] = function(block) {
 // https://github.com/google/blockly/blob/master/blocks/logic.js#L34
 Blockly.Blocks['si'] = {
     init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Si');
+    this.setHelpUrl(malg_url + '#sym-Si');
     this.setColour(10);
     this.appendValueInput('COND')
         .setCheck('Boolean')
@@ -633,7 +633,7 @@ Blockly.MicroAlg['si'] = function(block) {
 // Bloc Texte
 Blockly.Blocks['texte'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Texte');
+    this.setHelpUrl(malg_url + '#sym-Texte');
     this.setColour(80);
     this.appendValueInput('VALUE')
         .appendField('Texte');
@@ -658,7 +658,7 @@ Blockly.MicroAlg['texte'] = function(block) {
 // Bloc Type
 Blockly.Blocks['type'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Type');
+    this.setHelpUrl(malg_url + '#sym-Type');
     this.setColour(20);
     this.appendValueInput('VALUE')
         .appendField('Type');
@@ -688,7 +688,7 @@ Blockly.MicroAlg['type'] = function(block) {
 // Bloc Nombre?
 Blockly.Blocks['nombre?'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Nombre?');
+    this.setHelpUrl(malg_url + '#sym-Nombre?');
     this.setColour(40);
     this.appendValueInput('VALUE')
         .appendField('Nombre?');
@@ -713,7 +713,7 @@ Blockly.MicroAlg['nombre?'] = function(block) {
 // Bloc Texte?
 Blockly.Blocks['texte?'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-Texte?');
+    this.setHelpUrl(malg_url + '#sym-Texte?');
     this.setColour(40);
     this.appendValueInput('VALUE')
         .appendField('Texte?');
@@ -896,7 +896,7 @@ Blockly.MicroAlg['comparaisons'] = function(block) {
 // Bloc Faux
 Blockly.Blocks['faux'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-faux');
+    this.setHelpUrl(malg_url + '#sym-faux');
     this.setColour(0);
     this.appendDummyInput()
         .appendField('Faux');
@@ -916,7 +916,7 @@ Blockly.MicroAlg['faux'] = function(block) {
 // Bloc Vrai
 Blockly.Blocks['vrai'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#cmd-vrai');
+    this.setHelpUrl(malg_url + '#sym-vrai');
     this.setColour(0);
     this.appendDummyInput()
         .appendField('Vrai');
