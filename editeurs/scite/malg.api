@@ -4,6 +4,7 @@
 / x1 x2: Divise x1 par x2.
 % n1 n2: Reste de la division euclidienne de n1 par n2.
 ** x1 x2: Met x1 à la puissance x2.
+^ x1 x2: Met x1 à la puissance x2.
 !!! "texte": Commentaire.
 = val1 val2 ...: Comparaison : val1 = val2.
 =/ val1 val2 ...: Comparaison : val1 =/ val2.

@@ -9,7 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq symboles '(
-"+" "-" "*" "/" "%" "**"
+"+" "-" "*" "/" "%" "**" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
@@ -188,12 +188,20 @@ Sinon :
 ")
 (put '% 'text "Commande reste.")
 (put '** 'doc
-"Commande qui retourne son premier paramètre à la puissance du second paramètre.
+"**Abandonnée dans 0.4.** Commande qui retourne son premier paramètre à la puissance du second paramètre.
 
     : (** 2 3)
     -> 8
 ")
-(put '** 'text "Commande puissance.")
+(put '** 'text "Commande puissance, abandonnée dans la version 0.4.")
+(put '^ 'doc
+"Commande qui retourne son premier paramètre à la puissance du second paramètre.
+
+    : (\^ 2 3)
+    -> 8
+")
+(put '^ 'text "Commande puissance.")
+(de ^ (!x !y) (** !x !y))
 
 # Commentaires
 (put '!!! 'doc

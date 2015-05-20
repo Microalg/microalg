@@ -83,6 +83,9 @@
             '(= Rien (Si Faux Alors 1))
             '(= 1 (Si Vrai Alors (setq x 0) (setq x (+ x 1))))
             '(= 1 (Si Faux Alors Rien Sinon (setq x 0) (setq x (+ x 1))))
+            # Opérations mathématiques
+            '(= 1 (^ 2 0))
+            '(= 8 (^ 2 3))
             # Opérations logiques
             '(= Vrai (Non Faux))
             '(= Faux (Non Vrai))

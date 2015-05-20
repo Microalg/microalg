@@ -812,6 +812,8 @@ Blockly.Blocks['operations'] = {
         'MINUS'   : "Retourne le quotient des deux nombres.",
         'MULTIPLY': "Retourne la différence des deux nombres.",
         'DIVIDE'  : "Retourne le produit des deux nombres.",
+        'MOD'  : "Retourne le reste de la div. euclidienne des deux nombres.",
+        'POW'  : "Retourne le premier nombre à la puissance du deuxième.",
       };
       return TOOLTIPS[mode];
     });
@@ -824,7 +826,9 @@ Blockly.MicroAlg['operations'] = function(block) {
     'ADD':      '+',
     'MINUS':    '-',
     'MULTIPLY': '*',
-    'DIVIDE':   '/'
+    'DIVIDE':   '/',
+    'MOD':      '%',
+    'POW':      '^',
   };
   var operator = OPERATORS[block.getFieldValue('OP')];
   var inputA = Blockly.MicroAlg.statementToCode(block, 'A');
