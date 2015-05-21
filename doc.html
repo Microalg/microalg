@@ -205,7 +205,7 @@ vous pouvez trouver [ici](microalg.l).
 
 Aller directement à :
 
-<div id="cmds"></div>
+<div id="syms"></div>
 
 ## Types
 
@@ -515,7 +515,7 @@ homologues, à ces différences près :
 
 ### Performances
 
-Concernant les performances, la commande [`Millisecondes`](#cmd-Millisecondes)
+Concernant les performances, la commande [`Millisecondes`](#sym-Millisecondes)
 nous permet d’avoir les valeurs suivantes (sur la machine de développement du
 patron, et sans moyenne sur plusieurs exécutions) :
 
@@ -700,7 +700,7 @@ Un même bloc permet d’obtenir différentes opérations. Pour choisir, cliquer
 le menu déroulant, qui contient par défaut l’opération `+`.
 
 Voir aussi les commandes 
-[`+`](#cmd-+), [`-`](#cmd--), [`*`](#cmd-*) et [`/`](#cmd-/).
+[`+`](#sym-+), [`-`](#sym--), [`*`](#sym-*) et [`/`](#sym-/).
 
 #### Comparaisons avec Blockly
 
@@ -708,8 +708,8 @@ Un même bloc permet d’obtenir différentes comparaisons. Pour choisir, clique
 le menu déroulant, qui contient par défaut la comparaison `=`.
 
 Voir aussi les commandes 
-[`=`](#cmd-=), [`=/`](#cmd-=/), [`<`](#cmd-<), [`>`](#cmd-\>), [`<=`](#cmd-<=)
-et [`>=`](#cmd->=).
+[`=`](#sym-=), [`=/`](#sym-=/), [`<`](#sym-<), [`>`](#sym-\>), [`<=`](#sym-<=)
+et [`>=`](#sym->=).
 
 ## Remerciements
 
@@ -796,35 +796,35 @@ nom digne de ce nom.</p>
         }
         </script>
         <script>
-            var cmds_as_list = EMULISP_CORE.eval("symboles").toString();
-            var cmds_as_strings = cmds_as_list
+            var syms_as_list = EMULISP_CORE.eval("symboles").toString();
+            var syms_as_strings = syms_as_list
                 .slice(1, -1) // les parenthèses
                 .split(' ')
                 .map(cleanTransient);
             // TOC
-            var toc = $('<div/>').addClass('cmds-list toc').appendTo($('#cmds'));
-            $.each(cmds_as_strings, function(i, cmd) {
+            var toc = $('<div/>').appendTo($('#syms'));
+            $.each(syms_as_strings, function(i, sym) {
                 var span = $('<span/>').appendTo(toc);
                 var code = $('<code/>').appendTo(span);
-                $("<a/>").attr("href", "#cmd-" + cmd)
-                    .attr("title", "Voir la doc de la commande " + cmd)
-                    .html(cmd)
+                $("<a/>").attr("href", "#sym-" + sym)
+                    .attr("title", "Voir la doc de la commande " + sym)
+                    .html(sym)
                     .appendTo(code);
                 span.html((i==0? "" : " ") + span.html());
             });
             // Defs
-            var defs = $('<div/>').addClass('cmds-list defs').appendTo($('#cmds'));
-            var dl = $('<dl/>').addClass('cmds-list').appendTo(defs);
-            $.each(cmds_as_strings, function(i, cmd) {
-                $('<a/>').attr("name", "cmd-" + cmd).appendTo(dl);
+            var defs = $('<div/>').appendTo($('#syms'));
+            var dl = $('<dl/>').appendTo(defs);
+            $.each(syms_as_strings, function(i, sym) {
+                $('<a/>').attr("name", "sym-" + sym).appendTo(dl);
                 var dt = $('<dt/>').appendTo(dl);
                 var span = $('<span/>').appendTo(dt);
-                $('<a/>').attr("href", "#cmd-" + cmd).html(cmd).appendTo(span);
-                var cmd_doc = EMULISP_CORE.eval("(get '" + cmd + " 'doc)");
-                cmd_doc = cleanTransient(cmd_doc);
-                cmd_doc = new Showdown.converter().makeHtml(cmd_doc);
-                $("<dd/>").html(cmd_doc).appendTo(dl);
-                // corps fonction $("<dd/>").html(lisp_cmd.props.car.car.name).appendTo(dl);
+                $('<a/>').attr("href", "#sym-" + sym).html(sym).appendTo(span);
+                var sym_doc = EMULISP_CORE.eval("(get '" + sym + " 'doc)");
+                sym_doc = cleanTransient(sym_doc);
+                sym_doc = new Showdown.converter().makeHtml(sym_doc);
+                $("<dd/>").html(sym_doc).appendTo(dl);
+                // corps fonction $("<dd/>").html(lisp_sym.props.car.car.name).appendTo(dl);
             });
         </script>
         <script>
