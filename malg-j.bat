@@ -1,5 +1,6 @@
 @echo off
-echo MicroAlg (Ersatz)
+echo MicroAlg 0.3.15 (Ersatz)
+echo
 SET MICROALG_DIR=%~dp0
 SET ERSATZ_DIR=%MICROALG_DIR%\ersatz
 java -DPID=42 -jar %ERSATZ_DIR%\picolisp.jar %ERSATZ_DIR%\lib.l %MICROALG_DIR%microalg.l %1 -bye

@@ -1,6 +1,7 @@
 #!/bin/sh
 
-echo "MicroAlg (PicoLisp)"
+echo "MicroAlg 0.3.15 (PicoLisp)"
+echo
 
 # http://stackoverflow.com/questions/242538/unix-shell-script-find-out-which-directory-the-script-file-resides#1638397
 SCRIPT=$(readlink -f "$0")
