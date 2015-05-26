@@ -85,7 +85,7 @@ if uname_s == "Linux" then
         sed = " | sed -r "
         enclosing_quotes =  sed .. "'s/^\"(.*)\"$/\\1/'"
         escaped_dble_quotes = sed .. "'s/\\\\\"/\"/g'"
-        escaped_hat_char = sed .. "'s/\\\\\^/^/g'"
+        escaped_hat_char = sed .. "'s/\\\\\\\^/^/g'"
         hat_J = sed .. "'s/\\\^J/\\n/g'"
         props["command.go.*.malg"] = "$(microalg_path)/$(1) $(FilePath)"
                                      .. enclosing_quotes
