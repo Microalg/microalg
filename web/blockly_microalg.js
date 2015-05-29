@@ -501,7 +501,7 @@ Blockly.MicroAlg['nombre'] = function(block) {
 // Bloc Si
 // https://github.com/google/blockly/blob/master/blocks/logic.js#L34
 Blockly.Blocks['si'] = {
-    init: function() {
+  init: function() {
     this.setHelpUrl(malg_url + '#sym-Si');
     this.setColour(10);
     this.appendValueInput('COND')
@@ -587,27 +587,27 @@ Blockly.Blocks['si'] = {
 
 // Conteneur pour le mutator de Si (Si… Alors…)
 Blockly.Blocks['si_alors_sinon_si'] = {
-    init: function() {
-        this.setColour(10);
-        this.appendDummyInput()
-            .appendField('Si…');
-        this.appendDummyInput()
-            .appendField('Alors…');
-        this.appendStatementInput('STACK');
-        this.setTooltip('Peut accueillir un bloc Sinon');
-        this.contextMenu = false;
-    }
+  init: function() {
+    this.setColour(10);
+    this.appendDummyInput()
+        .appendField('Si…');
+    this.appendDummyInput()
+        .appendField('Alors…');
+    this.appendStatementInput('STACK');
+    this.setTooltip('Peut accueillir un bloc Sinon');
+    this.contextMenu = false;
+  }
 };
 // Conteneur pour le mutator de Si (Sinon)
 Blockly.Blocks['si_alors_sinon_sinon'] = {
-    init: function() {
-        this.setColour(10);
-        this.appendDummyInput()
-            .appendField('Sinon');
-        this.setPreviousStatement(true);
-        this.setTooltip('Glisser pour ajouter un bloc Sinon');
-        this.contextMenu = false;
-    }
+  init: function() {
+    this.setColour(10);
+    this.appendDummyInput()
+        .appendField('Sinon');
+    this.setPreviousStatement(true);
+    this.setTooltip('Glisser pour ajouter un bloc Sinon');
+    this.contextMenu = false;
+  }
 };
 
 // Gen Si
