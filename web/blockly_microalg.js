@@ -1,4 +1,5 @@
 var malg_url = 'http://microalg.info/doc.html';
+var colour = 160;
 
 // Un extrait des messages originaux:
 // http://code.google.com/p/blockly/source/browse/trunk/msg/js/fr.js
@@ -180,7 +181,7 @@ Blockly.Generator.prototype.prefixLines = function(text, prefix) {
 Blockly.Blocks['programme'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#blocprogramme');
-    this.setColour(160);
+    this.setColour(colour);
     this.appendStatementInput('VALUE')
         .appendField('Programme');
     this.setPreviousStatement(false);
@@ -205,7 +206,7 @@ Blockly.MicroAlg['programme'] = function(block) {
 Blockly.Blocks['commentaire'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-!!!');
-    this.setColour(160);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('!!!')
         .appendField(this.newQuote_(true))
@@ -239,7 +240,7 @@ Blockly.MicroAlg['commentaire'] = function(block) {
 Blockly.Blocks['afficher'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Afficher');
-    this.setColour(160);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Afficher');
     this.setPreviousStatement(true);
@@ -268,7 +269,7 @@ Blockly.MicroAlg['afficher'] = function(block) {
 Blockly.Blocks['concatener'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Concatener');
-    this.setColour(160);
+    this.setColour(colour);
     this.appendValueInput('ADD0')
         .appendField('Concaténer');
     this.appendValueInput('ADD1');
@@ -357,7 +358,7 @@ Blockly.Blocks['concatener'] = {
 // Conteneur pour le mutator de Concatener
 Blockly.Blocks['text_create_join_container'] = {
   init: function() {
-    this.setColour(160);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Nbre de paramètres');
     this.appendStatementInput('STACK');
@@ -369,7 +370,7 @@ Blockly.Blocks['text_create_join_container'] = {
 // Élément pour le mutator de Concatener
 Blockly.Blocks['text_create_join_item'] = {
   init: function() {
-    this.setColour(160);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('un paramètre');
     this.setPreviousStatement(true);
@@ -403,7 +404,7 @@ Blockly.MicroAlg['concatener'] = function(block) {
 Blockly.Blocks['demander'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Demander');
-    this.setColour(0);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Demander');
     this.setOutput(true, 'String');
@@ -420,7 +421,7 @@ Blockly.MicroAlg['demander'] = function(block) {
 Blockly.Blocks['entier_pseudo_aleatoire'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Entier@');
-    this.setColour(250);
+    this.setColour(colour);
     this.appendValueInput('MIN')
         .setCheck('Number')
         .appendField('Entier@');
@@ -456,7 +457,7 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
 Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Initialiser@');
-    this.setColour(250);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Initialiser@');
     this.setPreviousStatement(true);
@@ -477,7 +478,7 @@ Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
 Blockly.Blocks['nombre'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Nombre');
-    this.setColour(80);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Nombre');
     this.setOutput(true, 'Number');
@@ -503,7 +504,7 @@ Blockly.MicroAlg['nombre'] = function(block) {
 Blockly.Blocks['si'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Si');
-    this.setColour(10);
+    this.setColour(colour);
     this.appendValueInput('COND')
         .setCheck('Boolean')
         .appendField('Si');
@@ -588,7 +589,7 @@ Blockly.Blocks['si'] = {
 // Conteneur pour le mutator de Si (Si… Alors…)
 Blockly.Blocks['si_alors_sinon_si'] = {
   init: function() {
-    this.setColour(10);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Si…');
     this.appendDummyInput()
@@ -601,7 +602,7 @@ Blockly.Blocks['si_alors_sinon_si'] = {
 // Conteneur pour le mutator de Si (Sinon)
 Blockly.Blocks['si_alors_sinon_sinon'] = {
   init: function() {
-    this.setColour(10);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Sinon');
     this.setPreviousStatement(true);
@@ -634,7 +635,7 @@ Blockly.MicroAlg['si'] = function(block) {
 Blockly.Blocks['texte'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Texte');
-    this.setColour(80);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Texte');
     this.setOutput(true, 'String');
@@ -659,7 +660,7 @@ Blockly.MicroAlg['texte'] = function(block) {
 Blockly.Blocks['type'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Type');
-    this.setColour(20);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Type');
     this.setOutput(true, 'String');
@@ -689,7 +690,7 @@ Blockly.MicroAlg['type'] = function(block) {
 Blockly.Blocks['nombre?'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Nombre?');
-    this.setColour(40);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Nombre?');
     this.setOutput(true, 'Boolean');
@@ -714,7 +715,7 @@ Blockly.MicroAlg['nombre?'] = function(block) {
 Blockly.Blocks['texte?'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Texte?');
-    this.setColour(40);
+    this.setColour(colour);
     this.appendValueInput('VALUE')
         .appendField('Texte?');
     this.setOutput(true, 'Boolean');
@@ -742,7 +743,7 @@ Blockly.MicroAlg['texte?'] = function(block) {
 Blockly.Blocks['texte_litteral'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#textesavecblockly');
-    this.setColour(160);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField(this.newQuote_(true))
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
@@ -771,7 +772,7 @@ Blockly.MicroAlg['texte_litteral'] = function(block) {
 Blockly.Blocks['nombre_litteral'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#nombresavecblockly');
-    this.setColour(230);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput('0',
         Blockly.FieldTextInput.numberValidator), 'NUM');
@@ -794,7 +795,7 @@ Blockly.Blocks['operations'] = {
          ['×', 'MULTIPLY'],
          ['÷', 'DIVIDE']];
     this.setHelpUrl(malg_url + '#oprationsavecblockly');
-    this.setColour(230);
+    this.setColour(colour);
     this.setOutput(true, 'Number');
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP');
@@ -850,7 +851,7 @@ Blockly.Blocks['comparaisons'] = {
          ['≤', 'INFEQ'],
          ['≥', 'SUPEQ']];
     this.setHelpUrl(malg_url + '#comparaisonsavecblockly');
-    this.setColour(200);
+    this.setColour(colour);
     this.setOutput(true, 'Boolean');
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(OPERATORS), 'COMP');
@@ -897,7 +898,7 @@ Blockly.MicroAlg['comparaisons'] = function(block) {
 Blockly.Blocks['faux'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-faux');
-    this.setColour(0);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Faux');
     this.setOutput(true);
@@ -917,7 +918,7 @@ Blockly.MicroAlg['faux'] = function(block) {
 Blockly.Blocks['vrai'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-vrai');
-    this.setColour(0);
+    this.setColour(colour);
     this.appendDummyInput()
         .appendField('Vrai');
     this.setOutput(true);
