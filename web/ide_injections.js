@@ -238,15 +238,15 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="concatener"></block>' +
                 '  <block type="demander"></block>' +
                 '  <block type="operations"></block>' +
-                '  <block type="entier_pseudo_aleatoire"></block>' +
-                '  <block type="type"></block>' +
-                '  <block type="texte"></block>' +
-                '  <block type="nombre"></block>' +
-                ' </category>' +
-                ' <category name="Prédicats">' +
                 '  <block type="comparaisons"></block>' +
+                '  <block type="entier_pseudo_aleatoire"></block>' +
+                ' </category>' +
+                ' <category name="Types et conversions">' +
+                '  <block type="type"></block>' +
                 '  <block type="texte?"></block>' +
                 '  <block type="nombre?"></block>' +
+                '  <block type="texte"></block>' +
+                '  <block type="nombre"></block>' +
                 ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
