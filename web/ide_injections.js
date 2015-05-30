@@ -221,6 +221,12 @@ function inject_microalg_editor_in(elt_id, config) {
         // http://stackoverflow.com/questions/13214419/alternatives-to-iframe-srcdoc
         var toolbox_string =
                 '<xml id="' + elt_id + '-toolbox" style="display: none">' +
+                ' <category name="Valeurs">' +
+                '  <block type="texte_litteral"></block>' +
+                '  <block type="nombre_litteral"></block>' +
+                '  <block type="vrai"></block>' +
+                '  <block type="faux"></block>' +
+                ' </category>' +
                 ' <category name="Cmdes sans retour">' +
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
@@ -240,12 +246,6 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="comparaisons"></block>' +
                 '  <block type="texte?"></block>' +
                 '  <block type="nombre?"></block>' +
-                ' </category>' +
-                ' <category name="Autres">' +
-                '  <block type="texte_litteral"></block>' +
-                '  <block type="nombre_litteral"></block>' +
-                '  <block type="vrai"></block>' +
-                '  <block type="faux"></block>' +
                 ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
