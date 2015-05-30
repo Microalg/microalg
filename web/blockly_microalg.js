@@ -911,23 +911,6 @@ Blockly.MicroAlg['faux'] = function(block) {
   return 'Faux';
 };
 
-// Bloc Rien
-Blockly.Blocks['rien'] = {
-  init: function() {
-    this.setHelpUrl(malg_url + '#sym-Rien');
-    this.setColour(colour);
-    this.appendDummyInput()
-        .appendField('Rien');
-    this.setOutput(true);
-    this.setTooltip('Valeur n’ayant pas vraiment de valeur.');
-  }
-};
-
-// Gen Rien
-Blockly.MicroAlg['rien'] = function(block) {
-  return 'Rien';
-};
-
 // Bloc Vrai
 Blockly.Blocks['vrai'] = {
   init: function() {
@@ -943,4 +926,21 @@ Blockly.Blocks['vrai'] = {
 // Gen Vrai
 Blockly.MicroAlg['vrai'] = function(block) {
   return 'Vrai';
+};
+
+// Bloc Rien
+Blockly.Blocks['rien'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Rien');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Rien');
+    this.setOutput(true);
+    this.setTooltip('Valeur n’ayant pas vraiment de valeur.');
+  }
+};
+
+// Gen Rien
+Blockly.MicroAlg['rien'] = function(block) {
+  return 'Rien';
 };
