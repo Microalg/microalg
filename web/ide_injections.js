@@ -226,6 +226,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="nombre_litteral"></block>' +
                 '  <block type="vrai"></block>' +
                 '  <block type="faux"></block>' +
+                '  <block type="rien"></block>' +
                 ' </category>' +
                 ' <category name="Cmdes sans retour">' +
                 '  <block type="commentaire"></block>' +

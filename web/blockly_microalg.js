@@ -912,7 +912,21 @@ Blockly.MicroAlg['faux'] = function(block) {
 };
 
 // Bloc Rien
+Blockly.Blocks['rien'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-rien');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Rien');
+    this.setOutput(true);
+    this.setTooltip('Valeur n’ayant pas vraiment de valeur.');
+  }
+};
+
 // Gen Rien
+Blockly.MicroAlg['rien'] = function(block) {
+  return 'Rien';
+};
 
 // Bloc Vrai
 Blockly.Blocks['vrai'] = {
