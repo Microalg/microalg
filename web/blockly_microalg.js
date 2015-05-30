@@ -897,7 +897,7 @@ Blockly.MicroAlg['comparaisons'] = function(block) {
 // Bloc Faux
 Blockly.Blocks['faux'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#sym-faux');
+    this.setHelpUrl(malg_url + '#sym-Faux');
     this.setColour(colour);
     this.appendDummyInput()
         .appendField('Faux');
@@ -914,7 +914,7 @@ Blockly.MicroAlg['faux'] = function(block) {
 // Bloc Rien
 Blockly.Blocks['rien'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#sym-rien');
+    this.setHelpUrl(malg_url + '#sym-Rien');
     this.setColour(colour);
     this.appendDummyInput()
         .appendField('Rien');
@@ -931,7 +931,7 @@ Blockly.MicroAlg['rien'] = function(block) {
 // Bloc Vrai
 Blockly.Blocks['vrai'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#sym-vrai');
+    this.setHelpUrl(malg_url + '#sym-Vrai');
     this.setColour(colour);
     this.appendDummyInput()
         .appendField('Vrai');
