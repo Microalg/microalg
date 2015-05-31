@@ -523,7 +523,8 @@ Blockly.Blocks['initialiser'] = {
 // https://github.com/google/blockly/blob/master/generators/javascript/variables.js
 Blockly.MicroAlg['initialiser'] = function(block) {
   var value = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
-  return '(Initialiser ' + this.getFieldValue('VAR') + ' ' + value + ')';
+  var value_cleaned = value.toString().trim();
+  return '(Initialiser ' + this.getFieldValue('VAR') + ' ' + value_cleaned + ')';
 };
 
 // Bloc Initialiser@
