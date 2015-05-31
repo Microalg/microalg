@@ -106,8 +106,8 @@
         "</block>"))
 (de Initialiser inputs
   (let (!var (car inputs)
-        !val (cadr inputs)
-        !next (caddr inputs))
+        !val (eval (cadr inputs))
+        !next (eval (caddr inputs)))
        (pack "<block type=\"initialiser\">"
              "<field name=\"VAR\">" !var "</field>"
              "<value name=\"VALUE\">" !val "</value>"
