@@ -222,6 +222,7 @@ function inject_microalg_editor_in(elt_id, config) {
         var toolbox_string =
                 '<xml id="' + elt_id + '-toolbox" style="display: none">' +
                 ' <category name="Valeurs">' +
+                '  <block type="variables_get"></block>' +
                 '  <block type="texte_litteral"></block>' +
                 '  <block type="nombre_litteral"></block>' +
                 '  <block type="vrai"></block>' +
@@ -231,6 +232,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Cmdes sans retour">' +
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
+                '  <block type="initialiser"></block>' +
                 '  <block type="initialiser_pseudo_aleatoire"></block>' +
                 '  <block type="si"></block>' +
                 ' </category>' +

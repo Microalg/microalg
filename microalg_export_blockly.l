@@ -104,6 +104,15 @@
         "<value name=\"MIN\">" MIN "</value>"
         "<value name=\"MAX\">" MAX "</value>"
         "</block>"))
+(de Initialiser inputs
+  (let (!var (car inputs)
+        !val (cadr inputs)
+        !next (caddr inputs))
+       (pack "<block type=\"initialiser\">"
+             "<field name=\"VAR\">" !var "</field>"
+             "<value name=\"VALUE\">" !val "</value>"
+             !next
+             "</block>")))
 (de Initialiser@ (next)
   (pack "<block type=\"initialiser_pseudo_aleatoire\">"
         next

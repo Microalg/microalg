@@ -450,8 +450,81 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
 
 // Bloc Faire
 // Gen Faire
+
+// Bloc Variable
+// https://github.com/google/blockly/blob/master/blocks/variables.js
+Blockly.Blocks['variables_get'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#variables');
+    this.setColour(colour);
+    this.appendDummyInput()
+    .appendField(new Blockly.FieldVariable('ma_variable'), 'VAR');
+    this.setOutput(true);
+    this.setTooltip("Donne la valeur de la variable.");
+    this.contextMenuMsg_ = Blockly.Msg.VARIABLES_GET_CREATE_SET;
+    this.contextMenuType_ = 'variables_set';
+  },
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+      this.setFieldValue(newName, 'VAR');
+    }
+  },
+  customContextMenu: function(options) {
+    var option = {enabled: true};
+    var name = this.getFieldValue('VAR');
+    option.text = name;
+    var xmlField = goog.dom.createDom('field', null, name);
+    xmlField.setAttribute('name', 'VAR');
+    var xmlBlock = goog.dom.createDom('block', null, xmlField);
+    xmlBlock.setAttribute('type', this.contextMenuType_);
+    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+    options.push(option);
+  }
+};
+
+// Gen Variable
+// https://github.com/google/blockly/blob/master/generators/javascript/variables.js
+Blockly.MicroAlg['variables_get'] = function(block) {
+  return block.getFieldValue('VAR');
+};
+
 // Bloc Initialiser
+// https://github.com/google/blockly/blob/master/blocks/variables.js
+Blockly.Blocks['initialiser'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Initialiser');
+    this.setColour(colour);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Initialiser une variable avec une valeur.');
+    this.interpolateMsg(
+      'Initialiser' + ' %1 ' + ' %2',
+      ['VAR', new Blockly.FieldVariable("ma_variable")],
+      ['VALUE', null],
+      Blockly.ALIGN_RIGHT);
+    this.contextMenuMsg_ = "Créer truc"; // ???
+    this.contextMenuType_ = 'variables_get';
+  },
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+        this.setFieldValue(newName, 'VAR');
+    }
+  },
+  customContextMenu: Blockly.Blocks['variables_get'].customContextMenu
+};
+
 // Gen Initialiser
+// https://github.com/google/blockly/blob/master/generators/javascript/variables.js
+Blockly.MicroAlg['initialiser'] = function(block) {
+  var value = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  return '(Initialiser ' + this.getFieldValue('VAR') + ' ' + value + ')';
+};
 
 // Bloc Initialiser@
 Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
