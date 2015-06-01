@@ -399,9 +399,9 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 function malg2blockly(src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_export_src);
-    var litteraux_proteges = EMULISP_CORE.eval("(proteger_litteraux  " + src + ")");
+    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")");
     EMULISP_CORE.eval(microalg_export_blockly_src);
-    var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + litteraux_proteges + ")");
+    var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")");
     // Le car pour récupérer l’unique élément de la liste finale.
     var xml = cleanTransient(EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')'));
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="programme"><value name="VALUE">' +
