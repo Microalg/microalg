@@ -222,7 +222,7 @@ function inject_microalg_editor_in(elt_id, config) {
         var toolbox_string =
                 '<xml id="' + elt_id + '-toolbox" style="display: none">' +
                 ' <category name="Valeurs">' +
-                '  <block type="variables_get"></block>' +
+                '  <block type="variable"></block>' +
                 '  <block type="texte_litteral"></block>' +
                 '  <block type="nombre_litteral"></block>' +
                 '  <block type="vrai"></block>' +

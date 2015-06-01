@@ -453,7 +453,7 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
 
 // Bloc Variable
 // https://github.com/google/blockly/blob/master/blocks/variables.js
-Blockly.Blocks['variables_get'] = {
+Blockly.Blocks['variable'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#variables');
     this.setColour(colour);
@@ -487,7 +487,7 @@ Blockly.Blocks['variables_get'] = {
 
 // Gen Variable
 // https://github.com/google/blockly/blob/master/generators/javascript/variables.js
-Blockly.MicroAlg['variables_get'] = function(block) {
+Blockly.MicroAlg['variable'] = function(block) {
   return block.getFieldValue('VAR');
 };
 
@@ -506,7 +506,7 @@ Blockly.Blocks['initialiser'] = {
       ['VALUE', null],
       Blockly.ALIGN_RIGHT);
     this.contextMenuMsg_ = "Créer truc"; // ???
-    this.contextMenuType_ = 'variables_get';
+    this.contextMenuType_ = 'variable';
   },
   getVars: function() {
     return [this.getFieldValue('VAR')];
@@ -516,7 +516,7 @@ Blockly.Blocks['initialiser'] = {
         this.setFieldValue(newName, 'VAR');
     }
   },
-  customContextMenu: Blockly.Blocks['variables_get'].customContextMenu
+  customContextMenu: Blockly.Blocks['variable'].customContextMenu
 };
 
 // Gen Initialiser
