@@ -8,6 +8,9 @@
                           "</field></block>"))
     (T "Littéral de type inconnu.")
   ))
+(de Variable nom_var (pack "<block type=\"variable\"><field name=\"VAR\">"
+                           nom_var
+                           "</field></block>") )
 (de insertion_next (src) (car (insertion_next_aux (reverse src))))
 (de insertion_next_aux (src)
   (ifn (and (<> (length src) 0) (<> (length src) 1)) src  # if (<= len 1)
@@ -105,7 +108,7 @@
         "<value name=\"MAX\">" MAX "</value>"
         "</block>"))
 (de Initialiser inputs
-  (let (!var (car inputs)
+  (let (!var (cadr (car inputs))  # var name is in (Variable ...)
         !val (eval (cadr inputs))
         !next (eval (caddr inputs)))
        (pack "<block type=\"initialiser\">"
