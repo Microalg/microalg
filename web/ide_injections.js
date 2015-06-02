@@ -233,6 +233,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
                 '  <block type="initialiser"></block>' +
+                '  <block type="affecter_a"></block>' +
                 '  <block type="initialiser_pseudo_aleatoire"></block>' +
                 '  <block type="si"></block>' +
                 ' </category>' +

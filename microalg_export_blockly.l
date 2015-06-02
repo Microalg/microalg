@@ -95,6 +95,15 @@
         "</value>"
         next
         "</block>"))
+(de Affecter_a inputs
+  (let (!var (cadr (car inputs))  # var name is in (Variable ...)
+        !val (eval (cadr inputs))
+        !next (eval (caddr inputs)))
+       (pack "<block type=\"affecter_a\">"
+             "<field name=\"VAR\">" !var "</field>"
+             "<value name=\"VALUE\">" !val "</value>"
+             !next
+             "</block>")))
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
