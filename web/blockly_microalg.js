@@ -791,7 +791,30 @@ Blockly.MicroAlg['type'] = function(block) {
 };
 
 // Bloc Booleen?
+Blockly.Blocks['booleen?'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Booleen?');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Booleen?');
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Teste si une valeur est un booleen.');
+  }
+};
+
 // Gen Booleen?
+Blockly.MicroAlg['booleen?'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Booleen?)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Booleen? ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Booleen?\n' + arg + '\n)';
+  }
+};
+
 // Bloc Faux?
 // Gen Faux?
 

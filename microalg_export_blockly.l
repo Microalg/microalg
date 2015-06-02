@@ -104,6 +104,12 @@
              "<value name=\"VALUE\">" !val "</value>"
              !next
              "</block>")))
+(de Booleen? (content)
+  (pack "<block type=\"booleen?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"

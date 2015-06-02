@@ -248,6 +248,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="type"></block>' +
                 '  <block type="texte?"></block>' +
                 '  <block type="nombre?"></block>' +
+                '  <block type="booleen?"></block>' +
                 '  <block type="texte"></block>' +
                 '  <block type="nombre"></block>' +
                 ' </category>' +
