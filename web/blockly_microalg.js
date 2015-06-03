@@ -348,7 +348,7 @@ Blockly.Blocks['concatener'] = {
         .appendField('Concaténer');
     this.appendValueInput('ADD1');
     this.setOutput(true, 'String');
-    this.setMutator(new Blockly.Mutator(['text_create_join_item']));
+    this.setMutator(new Blockly.Mutator(['nb_params_item']));
     this.setTooltip('Mettre des textes bout à bout.');
     this.itemCount_ = 2;
   },
@@ -374,12 +374,11 @@ Blockly.Blocks['concatener'] = {
     }
   },
   decompose: function(workspace) {
-    var containerBlock = Blockly.Block.obtain(workspace,
-                                           'text_create_join_container');
+    var containerBlock = Blockly.Block.obtain(workspace, 'nb_params_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
     for (var x = 0; x < this.itemCount_; x++) {
-      var itemBlock = Blockly.Block.obtain(workspace, 'text_create_join_item');
+      var itemBlock = Blockly.Block.obtain(workspace, 'nb_params_item');
       itemBlock.initSvg();
       connection.connect(itemBlock.previousConnection);
       connection = itemBlock.nextConnection;
@@ -429,8 +428,8 @@ Blockly.Blocks['concatener'] = {
   }
 };
 
-// Conteneur pour le mutator de Concatener
-Blockly.Blocks['text_create_join_container'] = {
+// Conteneur pour le mutator du nombre de paramètres
+Blockly.Blocks['nb_params_container'] = {
   init: function() {
     this.setColour(colour);
     this.appendDummyInput()
@@ -441,8 +440,8 @@ Blockly.Blocks['text_create_join_container'] = {
   }
 };
 
-// Élément pour le mutator de Concatener
-Blockly.Blocks['text_create_join_item'] = {
+// Élément pour le mutator du nombre de paramètres
+Blockly.Blocks['nb_params_item'] = {
   init: function() {
     this.setColour(colour);
     this.appendDummyInput()
