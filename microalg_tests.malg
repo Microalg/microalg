@@ -97,6 +97,12 @@
             '(= Vrai (Ou Faux Vrai))
             '(= Vrai (Ou Vrai Faux))
             '(= Vrai (Ou Vrai Vrai))
+            '(= Faux (Et Faux Faux Faux))
+            '(= Faux (Et Vrai Faux Faux))
+            '(= Vrai (Et Vrai Vrai Vrai))
+            '(= Faux (Ou Faux Faux Faux))
+            '(= Vrai (Ou Vrai Faux Faux))
+            '(= Vrai (Ou Vrai Vrai Vrai))
             # Structures itératives
             '(= Rien (Tant_que Faux Faire (quit "bug dans Tant_que")))
             '(let (x 3) (= 0 (prog (Tant_que (=/ x 0) Faire (setq x (- x 1))) x)))

@@ -1006,11 +1006,20 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 (put 'Et 'text "Commande `Et`.")
-(de Et (!P !Q !rien_ici)
-    (if !rien_ici (quit "`Et` ne prend que deux paramètres (booléens)."))
-    (ifn (!boolCheck !P) (quit "Le premier paramètre de `Et` doit être un booléen."))
-    (ifn (!boolCheck !Q) (quit "Le second paramètre de `Et` doit être un booléen."))
-    (!boolP2M (and (!boolM2P !P) (!boolM2P !Q))) )
+(de Et !arg_lst
+    # Quelques vérifications :
+    (for (!arg_num . !arg) !arg_lst
+        (let (!evaled_arg (eval !arg)
+              !error_prefix "`Et` : l’argument n°")
+             (ifn (!inited !arg !evaled_arg)
+                  (quit (pack !error_prefix !arg_num " n’est pas initialisé." !arg)) )
+             (ifn (!boolCheck !evaled_arg)
+                  (quit (pack !error_prefix !arg_num " doit être un booléen." !arg)) )
+        )
+    )
+    # Le calcul :
+    (!boolP2M (apply 'and (mapcar '((x) (!boolM2P (eval x))) !arg_lst)))
+)
 (put 'Ou 'doc
 "Ou logique.
 
@@ -1021,11 +1030,20 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Ou 'text "Commande `Ou`.")
-(de Ou (!P !Q !rien_ici)
-    (if !rien_ici (quit "`Ou` ne prend que deux paramètres (booléens)."))
-    (ifn (!boolCheck !P) (quit "Le premier paramètre de `Ou` doit être un booléen."))
-    (ifn (!boolCheck !Q) (quit "Le second paramètre de `Ou` doit être un booléen."))
-    (!boolP2M (or (!boolM2P !P) (!boolM2P !Q))) )
+(de Ou !arg_lst
+    # Quelques vérifications :
+    (for (!arg_num . !arg) !arg_lst
+        (let (!evaled_arg (eval !arg)
+              !error_prefix "`Ou` : l’argument n°")
+             (ifn (!inited !arg !evaled_arg)
+                  (quit (pack !error_prefix !arg_num " n’est pas initialisé." !arg)) )
+             (ifn (!boolCheck !evaled_arg)
+                  (quit (pack !error_prefix !arg_num " doit être un booléen." !arg)) )
+        )
+    )
+    # Le calcul :
+    (!boolP2M (apply 'or (mapcar '((x) (!boolM2P (eval x))) !arg_lst)))
+)
 
 # Structures itératives
 (put 'credit_iterations 'doc
