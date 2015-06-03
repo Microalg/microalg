@@ -217,6 +217,31 @@ Blockly.MicroAlg['variable'] = function(block) {
   return block.getFieldValue('VAR');
 };
 
+// Conteneur pour le mutator du nombre de paramètres
+Blockly.Blocks['nb_params_container'] = {
+  init: function() {
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Nbre de paramètres');
+    this.appendStatementInput('STACK');
+    this.setTooltip('Mettre ici le bon nombre de paramètres.');
+    this.contextMenu = false;
+  }
+};
+
+// Élément pour le mutator du nombre de paramètres
+Blockly.Blocks['nb_params_item'] = {
+  init: function() {
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('un paramètre');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('À placer autant de fois que nécessaire.');
+    this.contextMenu = false;
+  }
+};
+
 // Bloc Programme
 Blockly.Blocks['programme'] = {
   init: function() {
@@ -425,31 +450,6 @@ Blockly.Blocks['concatener'] = {
       itemBlock = itemBlock.nextConnection &&
           itemBlock.nextConnection.targetBlock();
     }
-  }
-};
-
-// Conteneur pour le mutator du nombre de paramètres
-Blockly.Blocks['nb_params_container'] = {
-  init: function() {
-    this.setColour(colour);
-    this.appendDummyInput()
-        .appendField('Nbre de paramètres');
-    this.appendStatementInput('STACK');
-    this.setTooltip('Mettre ici le bon nombre de paramètres.');
-    this.contextMenu = false;
-  }
-};
-
-// Élément pour le mutator du nombre de paramètres
-Blockly.Blocks['nb_params_item'] = {
-  init: function() {
-    this.setColour(colour);
-    this.appendDummyInput()
-        .appendField('un paramètre');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('À placer autant de fois que nécessaire.');
-    this.contextMenu = false;
   }
 };
 
