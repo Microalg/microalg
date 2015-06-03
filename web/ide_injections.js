@@ -252,6 +252,11 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="texte"></block>' +
                 '  <block type="nombre"></block>' +
                 ' </category>' +
+                ' <category name="Opérat. logiques">' +
+                '  <block type="et"></block>' +
+                '  <block type="ou"></block>' +
+                '  <block type="non"></block>' +
+                ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
             '<html>\n' +

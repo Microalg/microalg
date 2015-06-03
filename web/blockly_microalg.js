@@ -521,6 +521,115 @@ Blockly.MicroAlg['entier_pseudo_aleatoire'] = function(block) {
   }
 };
 
+// Bloc Et
+Blockly.Blocks['et'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Et');
+    this.setColour(colour);
+    this.appendValueInput('BOOL0')
+        .appendField('Et');
+    this.appendValueInput('BOOL1');
+    this.setOutput(true, 'Boolean');
+    this.setMutator(new Blockly.Mutator(['nb_params_item']));
+    this.setTooltip('Retourne Vrai si tous les arguments sont vrais.');
+    this.itemCount_ = 2;
+  },
+  mutationToDom: function() {
+    var container = document.createElement('mutation');
+    container.setAttribute('items', this.itemCount_);
+    return container;
+  },
+  domToMutation: function(xmlElement) {
+    for (var x = 0; x < this.itemCount_; x++) {
+      this.removeInput('BOOL' + x);
+    }
+    this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+    for (var x = 0; x < this.itemCount_; x++) {
+      var input = this.appendValueInput('BOOL' + x);
+      if (x == 0) {
+        input.appendField('Et');
+      }
+    }
+    if (this.itemCount_ == 0) {
+      this.appendDummyInput('EMPTY')
+          .appendField('Et');
+    }
+  },
+  decompose: function(workspace) {
+    var containerBlock = Blockly.Block.obtain(workspace, 'nb_params_container');
+    containerBlock.initSvg();
+    var connection = containerBlock.getInput('STACK').connection;
+    for (var x = 0; x < this.itemCount_; x++) {
+      var itemBlock = Blockly.Block.obtain(workspace, 'nb_params_item');
+      itemBlock.initSvg();
+      connection.connect(itemBlock.previousConnection);
+      connection = itemBlock.nextConnection;
+    }
+    return containerBlock;
+  },
+  compose: function(containerBlock) {
+    // Disconnect all input blocks and remove all inputs.
+    if (this.itemCount_ == 0) {
+      this.removeInput('EMPTY');
+    } else {
+      for (var x = this.itemCount_ - 1; x >= 0; x--) {
+        this.removeInput('BOOL' + x);
+      }
+    }
+    this.itemCount_ = 0;
+    // Rebuild the block's inputs.
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    while (itemBlock) {
+      var input = this.appendValueInput('BOOL' + this.itemCount_);
+      if (this.itemCount_ == 0) {
+        input.appendField('Et');
+      }
+      // Reconnect any child blocks.
+      if (itemBlock.valueConnection_) {
+        input.connection.connect(itemBlock.valueConnection_);
+      }
+      this.itemCount_++;
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
+    }
+    if (this.itemCount_ == 0) {
+      this.appendDummyInput('EMPTY')
+          .appendField('Et');
+    }
+  },
+  saveConnections: function(containerBlock) {
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    var x = 0;
+    while (itemBlock) {
+      var input = this.getInput('BOOL' + x);
+      itemBlock.valueConnection_ = input && input.connection.targetConnection;
+      x++;
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
+    }
+  }
+};
+
+// Gen Et
+Blockly.MicroAlg['et'] = function(block) {
+  var cmd = 'Et';
+  var code;
+  if (block.itemCount_ == 0) {
+    code ='(' + cmd + ')';
+  } else if (block.itemCount_ == 1) {
+    var argument0 = Blockly.MicroAlg.statementToCode(block, 'BOOL0') || 'Rien';
+    code = '(' + cmd + ' ' + argument0 + ')';
+  } else {
+    var args = [];
+    for (var n = 0; n < block.itemCount_; n++) {
+      args[n] = Blockly.MicroAlg.statementToCode(block, 'BOOL' + n) ||
+             Blockly.MicroAlg.INDENT + 'Rien';
+    }
+    code = '(' + cmd + '\n' + args.join('\n') + '\n)';
+  }
+  return code;
+};
+
 // Bloc Faire
 // Gen Faire
 
@@ -605,6 +714,140 @@ Blockly.MicroAlg['nombre'] = function(block) {
   } else {
     return '(Nombre\n' + arg + '\n)';
   }
+};
+
+// Bloc Non
+Blockly.Blocks['non'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Non');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Non');
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Retourne la valeur contraire du booléen.');
+  }
+};
+
+// Gen Non
+Blockly.MicroAlg['non'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Non)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Non ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Non\n' + arg + '\n)';
+  }
+};
+
+// Bloc Ou
+Blockly.Blocks['ou'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Ou');
+    this.setColour(colour);
+    this.appendValueInput('BOOL0')
+        .appendField('Ou');
+    this.appendValueInput('BOOL1');
+    this.setOutput(true, 'Boolean');
+    this.setMutator(new Blockly.Mutator(['nb_params_item']));
+    this.setTooltip('Retourne Vrai si tous les arguments sont vrais.');
+    this.itemCount_ = 2;
+  },
+  mutationToDom: function() {
+    var container = document.createElement('mutation');
+    container.setAttribute('items', this.itemCount_);
+    return container;
+  },
+  domToMutation: function(xmlElement) {
+    for (var x = 0; x < this.itemCount_; x++) {
+      this.removeInput('BOOL' + x);
+    }
+    this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+    for (var x = 0; x < this.itemCount_; x++) {
+      var input = this.appendValueInput('BOOL' + x);
+      if (x == 0) {
+        input.appendField('Ou');
+      }
+    }
+    if (this.itemCount_ == 0) {
+      this.appendDummyInput('EMPTY')
+          .appendField('Ou');
+    }
+  },
+  decompose: function(workspace) {
+    var containerBlock = Blockly.Block.obtain(workspace, 'nb_params_container');
+    containerBlock.initSvg();
+    var connection = containerBlock.getInput('STACK').connection;
+    for (var x = 0; x < this.itemCount_; x++) {
+      var itemBlock = Blockly.Block.obtain(workspace, 'nb_params_item');
+      itemBlock.initSvg();
+      connection.connect(itemBlock.previousConnection);
+      connection = itemBlock.nextConnection;
+    }
+    return containerBlock;
+  },
+  compose: function(containerBlock) {
+    // Disconnect all input blocks and remove all inputs.
+    if (this.itemCount_ == 0) {
+      this.removeInput('EMPTY');
+    } else {
+      for (var x = this.itemCount_ - 1; x >= 0; x--) {
+        this.removeInput('BOOL' + x);
+      }
+    }
+    this.itemCount_ = 0;
+    // Rebuild the block's inputs.
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    while (itemBlock) {
+      var input = this.appendValueInput('BOOL' + this.itemCount_);
+      if (this.itemCount_ == 0) {
+        input.appendField('Ou');
+      }
+      // Reconnect any child blocks.
+      if (itemBlock.valueConnection_) {
+        input.connection.connect(itemBlock.valueConnection_);
+      }
+      this.itemCount_++;
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
+    }
+    if (this.itemCount_ == 0) {
+      this.appendDummyInput('EMPTY')
+          .appendField('Ou');
+    }
+  },
+  saveConnections: function(containerBlock) {
+    var itemBlock = containerBlock.getInputTargetBlock('STACK');
+    var x = 0;
+    while (itemBlock) {
+      var input = this.getInput('BOOL' + x);
+      itemBlock.valueConnection_ = input && input.connection.targetConnection;
+      x++;
+      itemBlock = itemBlock.nextConnection &&
+          itemBlock.nextConnection.targetBlock();
+    }
+  }
+};
+
+// Gen Ou
+Blockly.MicroAlg['ou'] = function(block) {
+  var cmd = 'Ou';
+  var code;
+  if (block.itemCount_ == 0) {
+    code ='(' + cmd + ')';
+  } else if (block.itemCount_ == 1) {
+    var argument0 = Blockly.MicroAlg.statementToCode(block, 'BOOL0') || 'Rien';
+    code = '(' + cmd + ' ' + argument0 + ')';
+  } else {
+    var args = [];
+    for (var n = 0; n < block.itemCount_; n++) {
+      args[n] = Blockly.MicroAlg.statementToCode(block, 'BOOL' + n) ||
+             Blockly.MicroAlg.INDENT + 'Rien';
+    }
+    code = '(' + cmd + '\n' + args.join('\n') + '\n)';
+  }
+  return code;
 };
 
 // Bloc Si

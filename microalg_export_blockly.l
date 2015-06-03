@@ -122,6 +122,11 @@
         "<value name=\"MIN\">" MIN "</value>"
         "<value name=\"MAX\">" MAX "</value>"
         "</block>"))
+(de Et inputs
+  (pack "<block type=\"et\">"
+        "<mutation items=\"" (length inputs) "\"></mutation>"
+        (mapcar '((i input) (pack "<value name=\"BOOL" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
+        "</block>"))
 (de Initialiser inputs
   (let (!var (cadr (car inputs))  # var name is in (Variable ...)
         !val (eval (cadr inputs))
@@ -149,6 +154,17 @@
         "</block>"))
 (de Nombre? (content)
   (pack "<block type=\"nombre?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Ou inputs
+  (pack "<block type=\"ou\">"
+        "<mutation items=\"" (length inputs) "\"></mutation>"
+        (mapcar '((i input) (pack "<value name=\"BOOL" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
+        "</block>"))
+(de Non (content)
+  (pack "<block type=\"non\">"
         "<value name=\"VALUE\">"
         content
         "</value>"
