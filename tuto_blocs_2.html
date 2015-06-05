@@ -286,6 +286,73 @@
         ''
     });</script>
 
+    <h2 id="manipulation-de-texte"><a href="#manipulation-de-texte">: </a>Manipulation de texte</h2>
+    <p>Un texte, ou <em>chaîne de caractères</em> n’est qu’une liste de lettres.</p>
+    <p>La commande <code>Longueur</code> retourne le nombre de lettres d’un
+    texte.</p>
+    <p>Le prédicat <code>Vide?</code> permet d’écrire <code>(Vide? texte)</code>
+    au lieu de <code>(= 0 (Longueur texte))</code>.</p>
+    <div id="script-longueur-vide"></div>
+    <script>inject_microalg_editor_in('script-longueur-vide', {
+     blockly_only: true,
+     src:
+        '(Afficher (Longueur "salut"))\n' +
+        '(Afficher (Vide? "salut"))\n' +
+        '(Afficher (Longueur ""))\n' +
+        '(Afficher (Vide? ""))\n' +
+        '\n' +
+        '(!!! "Cela fonctionne aussi avec une variable contenant du texte.")\n' +
+        '(Initialiser txt "bonjour")\n' +
+        '(Afficher (Longueur txt))\n' +
+        '(Afficher (Vide? txt))\n' +
+        '(Affecter_a txt "")\n' +
+        '(Afficher (Longueur txt))\n' +
+        '(Afficher (Vide? txt))\n' +
+        ''
+    });</script>
+    <p>La commande <code>Nieme</code>, prononcée « énième », retourne une des
+    lettres du texte, en fonction de l’indice que l’on fournit (deuxième
+    argument).</p>
+    <div id="script-nieme"></div>
+    <script>inject_microalg_editor_in('script-nieme', {
+     blockly_only: true,
+     src:
+        '(Afficher (Nieme "salut" 1))\n' +
+        '(Afficher (Nieme "salut" 2))\n' +
+        '(!!! "Attention, il faut que l’indice soit")\n' +
+        '(!!! "un entier strictement positif,")\n' +
+        '(!!! "inférieur ou égal à la longueur du texte.")\n' +
+        '(!!! "Essayez de modifier le code ci-dessus pour qu’il génère une erreur.")\n' +
+        '\n' +
+        '(!!! "Cela fonctionne aussi avec une variable contenant du texte.")\n' +
+        '(Initialiser txt "bonjour")\n' +
+        '(Afficher (Nieme txt 4))\n' +
+        ''
+    });</script>
+    <p>La commande <code>Nieme@</code>, prononcée « énième aléatoire »
+    (<em>pseudo</em>-aléatoire pour les puristes), retourne une des lettres du
+    texte, prise au hasard. Lancez plusieurs fois de suite le programme
+    suivant :</p>
+    <div id="script-nieme-aleatoire"></div>
+    <script>inject_microalg_editor_in('script-nieme-aleatoire', {
+     blockly_only: true,
+     src:
+        '(Afficher (Nieme@ "salut"))\n' +
+        ''
+    });</script>
+    <p>Nous aurons parfois besoin de couper la tête d’un texte, pour
+    travailler de proche en proche.</p>
+    <div id="script-tete-queue"></div>
+    <script>inject_microalg_editor_in('script-tete-queue', {
+     blockly_only: true,
+     src:
+        '(Afficher (Tete "salut" ))\n' +
+        '(Afficher (Queue "salut" ))\n' +
+        '(Afficher (Tete "y" ))\n' +
+        '(Afficher (Queue "y" ))\n' +
+        ''
+    });</script>
+
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,
     c’est mieux. Voici un espace de travail qui vous permet de voir à quoi
