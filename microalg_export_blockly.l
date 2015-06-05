@@ -152,6 +152,27 @@
         content
         "</value>"
         "</block>"))
+(de Longueur (content)
+  (pack "<block type=\"longueur\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Nieme (value index)
+  (pack "<block type=\"nieme\">"
+        "<value name=\"VALUE\">"
+        value
+        "</value>"
+        "<value name=\"INDEX\">"
+        index
+        "</value>"
+        "</block>"))
+(de Nieme@ (value)
+  (pack "<block type=\"nieme@\">"
+        "<value name=\"VALUE\">"
+        value
+        "</value>"
+        "</block>"))
 (de Nombre (content)
   (pack "<block type=\"nombre\">"
         "<value name=\"VALUE\">"
@@ -171,6 +192,12 @@
         "</block>"))
 (de Non (content)
   (pack "<block type=\"non\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Queue (content)
+  (pack "<block type=\"queue\">"
         "<value name=\"VALUE\">"
         content
         "</value>"
@@ -198,6 +225,12 @@
              (eval !next)
              "</block>")
 ))
+(de Tete (content)
+  (pack "<block type=\"tete\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
 (de Texte (content)
   (pack "<block type=\"texte\">"
         "<value name=\"VALUE\">"
@@ -206,6 +239,12 @@
         "</block>"))
 (de Texte? (content)
   (pack "<block type=\"texte?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Vide? (content)
+  (pack "<block type=\"vide?\">"
         "<value name=\"VALUE\">"
         content
         "</value>"

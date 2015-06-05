@@ -688,8 +688,88 @@ Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
   return '(Initialiser@)';
 };
 
+// Bloc Longueur
+Blockly.Blocks['longueur'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Longueur');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Longueur');
+    this.setOutput(true, 'Number');
+    this.setTooltip('Retourne la longueur du texte ou de la liste.');
+  }
+};
+
+// Gen Longueur
+Blockly.MicroAlg['longueur'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Longueur)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Longueur ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Longueur\n' + arg + '\n)';
+  }
+};
+
 // Bloc Millisecondes
 // Gen Millisecondes
+
+// Bloc Nieme
+Blockly.Blocks['nieme'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Nieme');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Nieme');
+    this.appendValueInput('INDEX')
+        .setCheck('Number')
+    this.setOutput(true);
+    this.setTooltip('Retourne un certain élément du texte ou de la liste.');
+  }
+};
+
+// Gen Nieme
+Blockly.MicroAlg['nieme'] = function(block) {
+  var val = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  var idx = Blockly.MicroAlg.statementToCode(block, 'INDEX') || '';
+  if (val === '' && idx === '') return '(Nieme)';
+  var num_lines_val = val.split('\n').length;
+  var num_lines_idx = idx.split('\n').length;
+  if (num_lines_val == 1 && num_lines_idx == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Nieme ' + val.substring(Blockly.MicroAlg.INDENT.length) +
+                 ' ' + idx.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Nieme\n' + val + '\n' + idx + '\n)';
+  }
+};
+
+// Bloc Nieme@
+Blockly.Blocks['nieme@'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Nieme@');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Nieme@');
+    this.setOutput(true);
+    this.setTooltip('Retourne un élément du texte ou de la liste au harard.');
+  }
+};
+
+// Gen Nieme@
+Blockly.MicroAlg['nieme@'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Nieme@)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Nieme@ ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Nieme@\n' + arg + '\n)';
+  }
+};
 
 // Bloc Nombre
 Blockly.Blocks['nombre'] = {
@@ -850,6 +930,31 @@ Blockly.MicroAlg['ou'] = function(block) {
   return code;
 };
 
+// Bloc Queue
+Blockly.Blocks['queue'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Queue');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Queue');
+    this.setOutput(true);
+    this.setTooltip('Retourne tout sauf la tête (c-à-d sauf le premier élément).');
+  }
+};
+
+// Gen Queue
+Blockly.MicroAlg['queue'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Queue)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Queue ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Queue\n' + arg + '\n)';
+  }
+};
+
 // Bloc Si
 // https://github.com/google/blockly/blob/master/blocks/logic.js#L34
 Blockly.Blocks['si'] = {
@@ -982,6 +1087,31 @@ Blockly.MicroAlg['si'] = function(block) {
 // Bloc Tant_que
 // Gen Tant_que
 
+// Bloc Tete
+Blockly.Blocks['tete'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Tete');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Tete');
+    this.setOutput(true);
+    this.setTooltip('Retourne le premier élément d’un texte ou d’une liste.');
+  }
+};
+
+// Gen Tete
+Blockly.MicroAlg['tete'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Tete)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Tete ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Tete\n' + arg + '\n)';
+  }
+};
+
 // Bloc Texte
 Blockly.Blocks['texte'] = {
   init: function() {
@@ -1107,6 +1237,31 @@ Blockly.MicroAlg['texte?'] = function(block) {
     return '(Texte? ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
   } else {
     return '(Texte?\n' + arg + '\n)';
+  }
+};
+
+// Bloc Vide?
+Blockly.Blocks['vide?'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Vide?');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Vide?');
+    this.setOutput(true, 'Boolean');
+    this.setTooltip('Teste si un texte ou une liste est vide.');
+  }
+};
+
+// Gen Vide?
+Blockly.MicroAlg['vide?'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Vide?)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Vide? ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Vide?\n' + arg + '\n)';
   }
 };
 

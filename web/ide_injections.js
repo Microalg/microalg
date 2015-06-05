@@ -243,6 +243,12 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="operations"></block>' +
                 '  <block type="comparaisons"></block>' +
                 '  <block type="entier_pseudo_aleatoire"></block>' +
+                '  <block type="longueur"></block>' +
+                '  <block type="vide?"></block>' +
+                '  <block type="nieme"></block>' +
+                '  <block type="nieme@"></block>' +
+                '  <block type="tete"></block>' +
+                '  <block type="queue"></block>' +
                 ' </category>' +
                 ' <category name="Types et conversions">' +
                 '  <block type="type"></block>' +
