@@ -8,9 +8,15 @@
                           "</field></block>"))
     (T "Littéral de type inconnu.")
   ))
-(de Variable nom_var (pack "<block type=\"variable\"><field name=\"VAR\">"
-                           nom_var
-                           "</field></block>") )
+(de Variable inputs
+  (let (nom_var (car inputs))
+    (if nom_var (pack "<block type=\"variable\"><field name=\"VAR\">"
+                               nom_var
+                               "</field></block>")
+                "<block type=\"texte_litteral\"><field name=\"TEXT\"></field></block>"
+    )
+  )
+)
 (de insertion_next (src) (car (insertion_next_aux (reverse src))))
 (de insertion_next_aux (src)
   (ifn (and (<> (length src) 0) (<> (length src) 1)) src  # if (<= len 1)
