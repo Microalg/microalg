@@ -119,7 +119,7 @@
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
-        (mapcar '((i input) (pack "<value name=\"ADD" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
+        (mapcar '((i input) (pack "<value name=\"ITEM" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
@@ -162,6 +162,11 @@
         "<value name=\"VALUE\">"
         content
         "</value>"
+        "</block>"))
+(de Liste inputs
+  (pack "<block type=\"liste\">"
+        "<mutation items=\"" (length inputs) "\"></mutation>"
+        (mapcar '((i input) (pack "<value name=\"ITEM" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
         "</block>"))
 (de Longueur (content)
   (pack "<block type=\"longueur\">"
