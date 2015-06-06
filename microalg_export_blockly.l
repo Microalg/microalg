@@ -163,12 +163,6 @@
   (pack "<block type=\"initialiser_pseudo_aleatoire\">"
         next
         "</block>"))
-(de Type (content)
-  (pack "<block type=\"type\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        "</block>"))
 (de Liste inputs
   (pack "<block type=\"liste\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
@@ -274,6 +268,12 @@
         "</block>"))
 (de Texte? (content)
   (pack "<block type=\"texte?\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
+(de Type (content)
+  (pack "<block type=\"type\">"
         "<value name=\"VALUE\">"
         content
         "</value>"
