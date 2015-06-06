@@ -720,6 +720,7 @@ Blockly.Blocks['liste'] = {
     this.appendValueInput('ITEM0')
         .appendField('Liste');
     this.appendValueInput('ITEM1');
+    this.setInputsInline(true);
     this.setOutput(true);
     this.setMutator(new Blockly.Mutator(['nb_params_item']));
     this.setTooltip('Construire une liste.');
