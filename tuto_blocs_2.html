@@ -40,6 +40,10 @@
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
     <a href="#tant-que-faire">Tant que… faire…</a>,
+    <a href="#construction-affichage">Construction et affichage de listes</a>,
+    <a href="#structure">Listes : structure et lien avec le texte</a>,
+    <a href="#parcours-lecture">Parcours de listes</a>,
+    <a href="#type-affectation">Listes : type et affectation</a>,
     <a href="#taper-du-code">Taper du code</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -463,6 +467,149 @@
         ')\n' +
         ''
     });</script>
+
+    <h2 id="construction-affichage"><a href="#construction-affichage">: </a>Construction et affichage de listes</h2>
+    <p>Pour construire une liste, on utilise la commande <code>Liste</code>.
+    <p>Il est possible de changer la façon dont les éléments s’emboîtent. Par
+    défaut, les entrées sont « en ligne », mais elles peuvent être « externes »
+    (vous pouvez essayer tout de suite en cliquant droit sur le bloc
+    <code>Liste</code> puis en choisissant <code>Entrées externes</code>).
+    </p>
+    <div id="script-afficher1"></div>
+    <script>inject_microalg_editor_in('script-afficher1', {
+     blockly_only: true,
+     src:
+        '(Afficher (Liste 1 3 5 7 9 11))\n' +
+        '(Afficher (Liste "banane" "pomme" "fraise"))\n' +
+        '(Afficher (Liste Vrai Faux Faux Faux Vrai))\n' +
+        ''
+    });</script>
+    <p>Quelques cas particuliers :</p>
+    <div id="script-afficher2"></div>
+    <script>inject_microalg_editor_in('script-afficher2', {
+     blockly_only: true,
+     src:
+        '(!!! "La liste vide.")\n' +
+        '(Afficher (Liste))\n' +
+        '(!!! "Une liste à un seul élément.")\n' +
+        '(Afficher (Liste "Je suis le seul élément."))\n' +
+        '(!!! "Une liste de listes.")\n' +
+        '(Afficher (Liste (Liste 1 3 5) (Liste 2 4 6) (Liste 3 5 7)))\n' +
+        '(!!! "Une liste hétérogène (contenant des valeurs de types différents).")\n' +
+        '(Afficher (Liste Vrai "avantage" 42))\n' +
+        ''
+    });</script>
+    <p>Attention, contrairement aux listes, les <em>tableaux</em> doivent
+    contenir des valeurs homogènes.</p>
+
+    <h2 id="structure"><a href="#structure">: </a>Listes : structure et lien avec le texte</h2>
+    <p>La <em>liste</em> est une des
+    <a href="http://fr.wikipedia.org/wiki/Structure_de_donn%C3%A9es" class="wp">
+    structures de données</a> les plus simples. Elle est <em>linéaire</em>, un
+    peu comme des perles sur un fil et est très semblable à une chaîne de
+    caractères (où chaque maillon est un caractère).</p>
+    <p>Comme les chaînes de caractères (ce qu’on appelle ici parfois le
+    <em>texte</em> en MicroAlg), les listes sont numérotées à partir de 1 et
+    peuvent être passées aux commandes <code>Longueur</code>, <code>Nieme</code>,
+    <code>Nieme@</code>, <code>Tete</code> et <code>Queue</code>.</p>
+    <div id="script-cmds-longueur"></div>
+    <script>inject_microalg_editor_in('script-cmds-longueur', {
+     blockly_only: true,
+     src:
+        '(Afficher (Longueur (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Longueur (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Longueur (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Longueur (Liste)))\n' +
+        '(Afficher (Longueur (Liste "Je suis le seul élément.")))\n' +
+        '(Afficher (Longueur (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
+        '(Afficher (Longueur (Liste Vrai "avantage" 42)))\n' +
+        ''
+    });</script>
+    <p><strong>Rappel</strong> : <code>Nieme</code> se prononce
+    « énième » et permet d’obtenir un élément dans une liste en donnant une
+    position.</p>
+    <div id="script-cmds-nieme"></div>
+    <script>inject_microalg_editor_in('script-cmds-nieme', {
+     blockly_only: true,
+     src:
+        '(Afficher (Nieme (Liste 1 3 5 7 9 11) 3))\n' +
+        '(Afficher (Nieme (Liste "banane" "pomme" "fraise") 3))\n' +
+        '(Afficher (Nieme (Liste Vrai Faux Faux Faux Vrai) 1))\n' +
+        '(Afficher (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2))\n' +
+        '(Afficher (Nieme (Nieme (Liste (Liste 2 4 6) (Liste 3 5 7)) 2) 3))\n' +
+        ''
+    });</script>
+    <p><strong>Rappel</strong> : <code>Nieme@</code> se prononce
+    « énième aléatoire » (ou <em>pseudo</em>-aléatoire), n’a pas besoin de
+    position et tire un élément au hasard dans la liste.</p>
+    <div id="script-cmds-nieme-aleatoire"></div>
+    <script>inject_microalg_editor_in('script-cmds-nieme-aleatoire', {
+     blockly_only: true,
+     src:
+        '(Initialiser@)\n' +
+        '(Afficher (Nieme@ (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Nieme@ (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Nieme@ (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Nieme@ (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
+        '(Afficher (Nieme@ (Nieme@ (Liste (Liste 2 4 6) (Liste 3 5 7)))))\n' +
+        ''
+    });</script>
+
+    <h2 id="parcours-lecture"><a href="#parcours-lecture">: </a>Parcours de listes</h2>
+    <p>Dans certains langages, il existe les instructions <code>Pour</code> ou
+    <code>Pour_chaque</code>, mais pas avec MicroAlg. Avec MicroAlg, le parcours
+    d’une liste se fera « à la main » avec un compteur dans un
+    <code>Tant_que</code>, <code>Nieme</code> étant appelée avec ce compteur
+    comme deuxième argument.</p>
+    <p>Dans l’exemple suivant, le compteur est la variable <code>index</code>.</p>
+    <div id="script-parcours"></div>
+    <script>inject_microalg_editor_in('script-parcours', {
+     blockly_only: true,
+     src:
+        '(Initialiser index 1)\n' +
+        '(Tant_que (<= index 3)\n' +
+        ' Faire\n' +
+        '    (Afficher (Nieme (Liste "banane" "pomme" "fraise") index))\n' +
+        '    (Affecter_a index (+ index 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p>Pourrez-vous modifier le programme précédent pour parcourir la liste
+    à l’envers ?</p>
+
+    <h2 id="type-affectation"><a href="#type-affectation">: </a>Listes : Type et affectation</h2>
+    <p>Une liste peut être stockée dans une variable. Le type correspondant est
+    <code>"liste"</code>, quel que soit le type des valeurs contenues dans la
+    liste, comme on peut le voir ci-dessous :</p>
+    <div id="script-type"></div>
+    <script>inject_microalg_editor_in('script-type', {
+     blockly_only: true,
+     src:
+        '(Afficher (Type (Liste 1 3 5 7 9 11)))\n' +
+        '(Afficher (Type (Liste "banane" "pomme" "fraise")))\n' +
+        '(Afficher (Type (Liste Vrai Faux Faux Faux Vrai)))\n' +
+        '(Afficher (Type (Liste)))\n' +
+        ''
+    });</script>
+    <p>Affecter une liste à une variable est indispensable pour un parcours de
+    liste dont on ne connaît pas à l’avance la longueur.</p>
+    <p>Dans l’exemple suivant, vous pourrez changer la première liste comme bon
+    vous semble, le parcours se fera toujours du premier élément jusqu’au
+    dernier. Comment est-ce possible ? Grâce à quelle instruction ?</p>
+    <div id="script-parcours-affectation"></div>
+    <script>inject_microalg_editor_in('script-parcours-affectation', {
+     blockly_only: true,
+     src:
+        '(Initialiser ma_liste (Liste 1 4 9 16 25))\n' +
+        '(Initialiser index 1)\n' +
+        '(Tant_que (<= index (Longueur ma_liste))\n' +
+        ' Faire\n' +
+        '    (Afficher (Nieme ma_liste index))\n' +
+        '    (Affecter_a index (+ index 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p>Saurez-vous parcourir la liste à l’envers ?</p>
 
     <h2 id="taper-du-code"><a href="#taper-du-code">: </a>Taper du code</h2>
     <p>Bouger des blocs à la souris, c’est bien. Mais taper son code soi-même,
