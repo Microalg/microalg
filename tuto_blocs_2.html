@@ -38,6 +38,8 @@
     <a href="#variables">Variables</a>,
     <a href="#operations-logiques">Opérations logiques</a>,
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
+    <a href="#faire-tant-que">Faire… tant que…</a>,
+    <a href="#tant-que-faire">Tant que… faire…</a>,
     <a href="#taper-du-code">Taper du code</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -352,6 +354,113 @@
         '(Afficher (Queue "salut" ))\n' +
         '(Afficher (Tete "y" ))\n' +
         '(Afficher (Queue "y" ))\n' +
+        ''
+    });</script>
+
+    <h2 id="faire-tant-que"><a href="#faire-tant-que">: </a>Faire… tant que…</h2>
+    <p>Les derniers exemples peuvent nous laisser frustrés. Frustrés de devoir
+    savoir à l’avance combien de valeurs doivent être demandées. Comment faire
+    si l’utilisateur ne veut pas additionner trois nombres, mais deux ou
+    quatre ? ou concaténer plus ou moins de trois mots ? <br>
+    C’est le rôle des instructions <code>Faire... Tant_que...</code> et
+    <code>Tant_que... Faire...</code>.</p>
+    <p>Commençons par l’instruction <code>Faire... Tant_que</code> avec un
+    exemple très simple, mais très important :</p>
+    <div id="script-faire-tq"></div>
+    <script>inject_microalg_editor_in('script-faire-tq', {
+     blockly_only: true,
+     src:
+        '(Initialiser valeur 3)\n' +
+        '(Faire (Afficher valeur)\n' +
+        '       (Affecter_a valeur (- valeur 1))\n' +
+        ' Tant_que (=/ valeur 0)\n' +
+        ')\n' +
+        '(Afficher "Zéro !")\n' +
+        ''
+    });</script>
+    <p>Voici comment se déroule ce programme :</p>
+    <ol>
+        <li>Les deux instructions qui suivent <code>Faire</code> sont exécutées :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire 3 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> diminue la valeur de
+                <code>valeur</code> d’une unité (voir
+                <a href="#script-accu-nombres-ex">cet exemple</a>) et la fait
+                donc passer à 2.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et pour cette
+            première fois, elle vaut <code>Vrai</code> (car 2≠0) et donc on
+            exécute à nouveau les instructions dans le <code>Faire</code>.</li>
+        <li>Comme lors du premier tour :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire maintenant 2 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> fait passer
+                <code>valeur</code> à 1.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et lors de ce
+            deuxième tour, elle vaut encore <code>Vrai</code> (car 1≠0) et donc on
+            exécute à nouveau les instructions dans le <code>Faire</code>.</li>
+        <li>Comme lors des deux premiers tours :<br>
+            <code>(Afficher valeur)</code> affiche le contenu de <code>valeur</code>,
+                c’est-à-dire maintenant 1 ;<br>
+            <code>(Affecter_a valeur (- valeur 1))</code> fait passer
+                <code>valeur</code> à 0.</li>
+        <li>La condition du <code>Tant_que</code> est évaluée, et lors de ce
+            tour, elle vaut <code>Faux</code> (valeur de 0≠0). C’est le signal
+            qui annonce la sortie du <code>Faire... Tant_que...</code>.</li>
+        <li>La dernière ligne est exécutée.</li>
+    </ol>
+    <p>Voici deux exemples plus complets :</p>
+    <div id="script-accu-nombres-tq"></div>
+    <script>inject_microalg_editor_in('script-accu-nombres-tq', {
+     blockly_only: true,
+     src:
+        '(Initialiser somme 0)\n' +
+        '(Initialiser valeur 0)\n' +
+        '(Faire (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
+        '       (Affecter_a valeur (Nombre (Demander)))\n' +
+        '       (Affecter_a somme (+ somme valeur))\n' +
+        ' Tant_que (=/ valeur 0)\n' +
+        ')\n' +
+        '(Afficher "La somme des nombres vaut :")\n' +
+        '(Afficher somme)\n' +
+        ''
+    });</script>
+    <p>Idem en accumulant du texte (en ajoutant au passage des espaces) :</p>
+    <div id="script-accu-textes-tq"></div>
+    <script>inject_microalg_editor_in('script-accu-textes-tq', {
+     blockly_only: true,
+     src:
+        '(Initialiser mots " ")\n' +
+        '(Initialiser mot " ")\n' +
+        '(Faire (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
+        '       (Affecter_a mot (Demander))\n' +
+        '       (Affecter_a mots (Concatener mots " " mot))\n' +
+        ' Tant_que (=/ mot "STOP")\n' +
+        ')\n' +
+        '(Afficher "Vous avez tapé :")\n' +
+        '(Afficher mots)\n' +
+        ''
+    });</script>
+    <p>Dans ce dernier programme, il y a au moins un bug. Quel est ce bug et
+    comment le faire disparaître ?</p>
+
+    <h2 id="tant-que-faire"><a href="#tant-que-faire">: </a>Tant que… faire…</h2>
+    <p>Parfois, on veut que la condition soit testée avant même que la première
+    action ne se réalise. Dans ce cas, on peut utiliser <code>Faire</code> et
+    <code>Tant_que</code>, mais dans l’autre sens : d’abord
+    <code>Tant_que</code>, et ensuite <code>Faire</code>.</p>
+    <p>C’est le cas par exemple si l’on veut répéter une action un certain
+    nombre de fois. Ainsi, l’utilisateur peut répéter l’action zéro fois :</p>
+    <div id="script-tq-affichage"></div>
+    <script>inject_microalg_editor_in('script-tq-affichage', {
+     blockly_only: true,
+     src:
+        '(Initialiser repetitions 0)\n' +
+        '(Afficher "Combien de fois voulez-vous afficher « Bonjour ! » ?")\n' +
+        '(Affecter_a repetitions (Nombre (Demander)))\n' +
+        '(Tant_que (=/ repetitions 0)\n' +
+        ' Faire (Afficher "Bonjour !")\n' +
+        '       (Affecter_a repetitions (- repetitions 1))\n' +
+        ')\n' +
         ''
     });</script>
 
