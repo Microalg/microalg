@@ -631,7 +631,31 @@ Blockly.MicroAlg['et'] = function(block) {
 };
 
 // Bloc Faire
+Blockly.Blocks['faire'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Faire');
+    this.setColour(colour);
+    this.appendStatementInput('INSTR')
+        .appendField('Faire');
+    this.appendValueInput('COND')
+        //.setCheck('Boolean')
+        .appendField('Tant_que');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Structure itérative');
+    },
+};
+
 // Gen Faire
+Blockly.MicroAlg['faire'] = function(block) {
+    var instr = Blockly.MicroAlg.statementToCode(block, 'INSTR') || '';
+    var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    instr = instr.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
+    var code = '(Faire \n' + instr +
+               '\nTant_que ' + cond.trim();
+    code += '\n)'
+    return code;
+};
 
 // Bloc Initialiser
 // https://github.com/google/blockly/blob/master/blocks/variables.js
@@ -1085,7 +1109,31 @@ Blockly.MicroAlg['si'] = function(block) {
 };
 
 // Bloc Tant_que
+Blockly.Blocks['tant_que'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Tant_que');
+    this.setColour(colour);
+    this.appendValueInput('COND')
+        .setCheck('Boolean')
+        .appendField('Tant_que');
+    this.appendStatementInput('INSTR')
+        .appendField('Faire');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Structure itérative');
+    },
+};
+
 // Gen Tant_que
+Blockly.MicroAlg['tant_que'] = function(block) {
+    var instr = Blockly.MicroAlg.statementToCode(block, 'INSTR') || '';
+    var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    instr = instr.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
+    var code = '(Tant_que ' + cond.trim() +
+               '\nFaire\n' + instr;
+    code += '\n)'
+    return code;
+};
 
 // Bloc Tete
 Blockly.Blocks['tete'] = {

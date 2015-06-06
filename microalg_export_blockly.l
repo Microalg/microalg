@@ -133,6 +133,17 @@
         "<mutation items=\"" (length inputs) "\"></mutation>"
         (mapcar '((i input) (pack "<value name=\"BOOL" i "\">" (eval input) "</value>")) (range 0 (dec (length inputs))) inputs)
         "</block>"))
+(de Faire inputs
+  (let (!splitted (split inputs 'Tant_que)
+        !corps    (car !splitted)
+        !cond     (car (cadr !splitted))
+        # !next est le dernier de la liste inputs, si son car vaut Next.
+        !next (let !last (last inputs) (if (= (car !last) 'Next) !last)))
+       (pack "<block type=\"faire\">"
+             "<statement name=\"INSTR\">" (eval (insertion_next !corps)) "</statement>"
+             "<value name=\"COND\">" (eval !cond) "</value>"
+             (eval !next)
+             "</block>") ))
 (de Initialiser inputs
   (let (!var (cadr (car inputs))  # var name is in (Variable ...)
         !val (eval (cadr inputs))
@@ -225,6 +236,16 @@
              (eval !next)
              "</block>")
 ))
+(de Tant_que inputs
+  (let (!cond  (car inputs)
+        !corps (cddr inputs)
+        # !next est le dernier de la liste inputs, si son car vaut Next.
+        !next (let !last (last inputs) (if (= (car !last) 'Next) !last)))
+       (pack "<block type=\"tant_que\">"
+             "<value name=\"COND\">" (eval !cond) "</value>"
+             "<statement name=\"INSTR\">" (eval (insertion_next !corps)) "</statement>"
+             (eval !next)
+             "</block>") ))
 (de Tete (content)
   (pack "<block type=\"tete\">"
         "<value name=\"VALUE\">"
