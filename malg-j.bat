@@ -1,5 +1,5 @@
 @echo off
-echo MicroAlg 0.3.15 (Ersatz)
+echo MicroAlg 0.3.16 (Ersatz)
 echo.
 SET MICROALG_DIR=%~dp0
 SET ERSATZ_DIR=%MICROALG_DIR%\ersatz
