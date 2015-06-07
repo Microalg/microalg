@@ -96,7 +96,7 @@ else
         jrepl = " | $(SciteDefaultHome)\\jrepl.bat "
         jrepl_opts = " /X"
         enclosing_quotes = jrepl .. '"^\\q(.*)\\q$" $1' .. jrepl_opts
-        escaped_dble_quotes = jrepl .. '"\\\\\\q" ""' .. jrepl_opts
+        escaped_dble_quotes = jrepl .. '"\\\\\\q" "\\q"' .. jrepl_opts
         escaped_hat_char = jrepl .. '"\\\\\\^" "\^"' .. jrepl_opts
         hat_J = jrepl .. '"\\^J" \\n' .. jrepl_opts
         props["command.go.*.malg"] = "$(SciteDefaultHome)\\$(1)-scite.bat $(FilePath)"
