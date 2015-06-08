@@ -126,9 +126,11 @@ Voir <http://microalg.info>.")
 
 # Vérif qu’une variable est bien initialisée :
 (de !inited (!sym !evaled_sym)
-    (or (not !sym)
-        !evaled_sym
-        (get !sym 'type) ) )
+    (or
+        !evaled_sym  # une valeur non NIL, donc initialisée
+        (not !sym)   # le symbole non évalué est NIL, donc forcément ""
+        (get !sym 'type)  # un symbole contenant une valeur typée
+    ) )
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
