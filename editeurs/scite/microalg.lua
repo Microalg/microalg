@@ -83,11 +83,11 @@ props["abbreviations.*.malg"] = "$(microalg_path)/editeurs/scite/malg_abbrev.pro
 props["1"] = "malg-rjs"
 if uname_s == "Linux" then
         sed = " | sed -r "
-        enclosing_quotes =  sed .. "'s/^\"(.*)\"$/\\1/'"
-        escaped_dble_quotes = sed .. "'s/\\\\\"/\"/g'"
-        escaped_hat_char = sed .. "'s/\\\\\\\^/^/g'"
-        escaped_backslash = sed .. "'s/\\\\\\\\/\\\\/g'"
-        hat_J = sed .. "'s/\\\^J/\\n/g'"
+        enclosing_quotes =  sed ..   [['s/^"(.*)"$/\1/']]
+        escaped_dble_quotes = sed .. [['s/\\"/"/g']]
+        escaped_hat_char = sed ..    [['s/\\\^/\^/g']]
+        escaped_backslash = sed ..   [['s/\\\\/\\/g']]
+        hat_J = sed ..               [['s/\^J/\n/g']]
         props["command.go.*.malg"] = "$(microalg_path)/$(1) $(FilePath)"
                                      .. enclosing_quotes
                                      .. escaped_dble_quotes
