@@ -13,7 +13,7 @@ if uname_s == "Linux" then
         malg_debug("MicroAlg: " .. props["microalg_path"])
 else
         malg_debug("Windows...")
-        props["microalg_path"] = "$(SciteDefaultHome)\\..\\.."
+        props["microalg_path"] = [[$(SciteDefaultHome)\..\..]]
 end
 
 -- Set some properties (.properties are not used because they need to be in the same dir)
@@ -95,14 +95,14 @@ if uname_s == "Linux" then
                                      .. escaped_backslash
                                      .. hat_J
 else
-        jrepl = " | $(SciteDefaultHome)\\jrepl.bat "
+        jrepl = [[ | $(SciteDefaultHome)\jrepl.bat ]]
         jrepl_opts = " /X"
         enclosing_quotes = jrepl ..    [["^\q(.*)\q$" $1]] .. jrepl_opts
         escaped_dble_quotes = jrepl .. [["\\\q" "\q"]] .. jrepl_opts
         escaped_hat_char = jrepl ..    [["\\\^" "\^"]] .. jrepl_opts
         escaped_backslash = jrepl ..   [["\\\\" "\"]] .. jrepl_opts
         hat_J = jrepl ..               [["\^J" "\n"]] .. jrepl_opts
-        props["command.go.*.malg"] = "$(SciteDefaultHome)\\$(1)-scite.bat $(FilePath)"
+        props["command.go.*.malg"] = [[$(SciteDefaultHome)\$(1)-scite.bat $(FilePath)]]
                                      .. enclosing_quotes
                                      .. escaped_dble_quotes
                                      .. escaped_hat_char
@@ -140,7 +140,7 @@ function OnStyle(styler)
                 if styler:State() >= S_PAREN_base then  -- also resets S_PAREN_bad
                         styler:SetState(S_NORMAL)
                 elseif styler:State() == S_TXT then  -- here we 'forward' (see *)
-                        if styler:Match('"') and styler:Previous() ~= '\\' then
+                        if styler:Match('"') and styler:Previous() ~= [[\]] then
                                 styler:ForwardSetState(S_NORMAL)
                         else
                                 styler:Forward()
