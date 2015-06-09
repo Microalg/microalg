@@ -34,6 +34,8 @@ props["style.script_malg.1"] = "fore:#009f00"
 props["style.script_malg.2"] = "fore:#00009f"
 -- COMZ
 props["style.script_malg.3"] = "fore:#999999"
+-- ESC
+props["style.script_malg.4"] = "fore:#006600,back:#e0efe0"
 -- Rainbow parens
 props["style.script_malg.11"] = "back:#ffaabb"
 props["style.script_malg.12"] = "back:#ffddbb"
@@ -127,6 +129,7 @@ function OnStyle(styler)
         S_TXT = 1
         S_CMD = 2
         S_COMZ = 3
+        S_ESC = 4
         S_PAREN_base = 10
         S_PAREN_bad = 35
         
@@ -139,8 +142,13 @@ function OnStyle(styler)
                 
                 if styler:State() >= S_PAREN_base then  -- also resets S_PAREN_bad
                         styler:SetState(S_NORMAL)
+                elseif styler:State() == S_ESC then
+                        styler:SetState(S_TXT)
                 elseif styler:State() == S_TXT then  -- here we 'forward' (see *)
-                        if styler:Match('"') and styler:Previous() ~= [[\]] then
+                        if styler:Match([[\]]) or styler:Match([[^]]) then
+                                styler:SetState(S_ESC)
+                                styler:Forward()
+                        elseif styler:Match('"') then
                                 styler:ForwardSetState(S_NORMAL)
                         else
                                 styler:Forward()
