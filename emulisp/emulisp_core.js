@@ -1,10 +1,10 @@
-/* 13apr15jk
+/* 07jun15jk
  * (c) Jon Kleiser
  */
 
 var EMULISP_CORE = (function () {
 
-var VERSION = [2, 0, 4, 0],
+var VERSION = [2, 0, 5, 0],
 	MONLEN = [31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 	BOXNAT_EXP = "Boxed native object expected",
 	BOOL_EXP = "Boolean expected", CELL_EXP = "Cell expected", LIST_EXP = "List expected",
@@ -22,8 +22,12 @@ function getFileSync(fileUrl) {
 	req.open("GET", fileUrl, false);		// synchronous
 	if (req.overrideMimeType) req.overrideMimeType("text/plain; charset=utf-8");
 	req.send(null);
-	//console.log("getFileSync: %s -> %s", fileUrl, req.status);
+	//console.log("getFileSync: %s -> %s, %s", fileUrl, req.status, req.responseText.length);
 	if (req.status == OK) {
+		if (req.responseText === null || req.responseText.length == 0) {
+			// Safari (7.1 & 8.0) fails to throw an exception when file not found
+			throw new Error(newErrMsg("The URL was not found (or file was empty): " + fileUrl));
+		}
 		return req.responseText;
 	}
 	throw new Error("XMLHttpRequest status: " + req.status);
@@ -189,6 +193,16 @@ Cell.prototype.func = function(ex) {	// Ersatz-like
 	Env.Bind = bnd.Link;
 	return x;
 	//throw new Error(newErrMsg("Cell.prototype.func not yet fully implemented"));
+}
+
+Cell.prototype.length = function() {	// not quite Ersatz-like
+	var n = 0, seen = [];
+	for (var x = this;;) {
+		++n;
+		seen.push(x);
+		if (!((x = x.cdr) instanceof Cell)) return n;
+		if (seen.indexOf(x) > -1) return -1;
+	}
 }
 
 function Symbol(name, val) {
@@ -408,6 +422,7 @@ Source.prototype.QUOTE2 = -3;
 Source.prototype.EOF = null;
 
 Source.prototype.unescMap = {I: "\t", i: "\t", J: "\n", j: "\n", M: "\r", m: "\r"};
+Source.prototype.unslashMap = {t: "\t", n: "\n", r: "\r"};
 
 Source.prototype.more = function() { return this.pos < this.src.length; }
 
@@ -434,9 +449,18 @@ Source.prototype.getNextSignificantChar = function() {
 
 Source.prototype.getNextStringChar = function() {
 	while (this.more()) {
-		var ch = this.src.charAt(this.pos++);
+		var ch = this.src.charAt(this.pos++), unch;
 		if (ch == "\"") return this.QUOTE2;
-		if (ch == "\\") return this.src.charAt(this.pos++);
+		if (ch == "\\") {
+			ch = this.src.charAt(this.pos++);
+			if ((unch = this.unslashMap[ch]) !== undefined) return unch;
+			if (isNaN(ch)) return ch;
+			for (var digs = ch; (ch = this.src.charAt(this.pos++)) != "\\";) {
+				if (isNaN(ch)) throw new Error(newErrMsg(BAD_INPUT + " '" + ch + "'"));
+				digs += ch;
+			}
+			return String.fromCharCode(digs);
+		}
 		if (ch != "^") return ch;
 		ch = this.unescMap[this.src.charAt(this.pos++)];
 		if (ch != null) return ch;
@@ -1217,8 +1241,7 @@ var coreFunctions = {
 		if (cv instanceof Number) { v = cv.toString().length; }
 		else if (cv instanceof Symbol) { v = cv.lock ? cv.toValueString().length :
 			(cv.name === null) ? 0 : cv.name.length; }
-		else if (cv instanceof Cell) { var cs = cv;
-			while (cs !== NIL) { v++; cs = cs.cdr; if (cs === cv) return T; }}
+		else if (cv instanceof Cell) { v = cv.length(); if (v == -1) return T; }
 		return new Number(v);
 	},
 	"let": function(c) {
@@ -1289,6 +1312,27 @@ var coreFunctions = {
 		return ((m = method(t)) === null) ? NIL : m;
 	},
 	"n0": function(c) { return eqVal(evalLisp(c.car), ZERO) ? NIL : T; },
+	"need": function(c, ex) { var x, y, z, n = numeric(evalLisp((ex = ex.cdr).car));
+		if ((z = evalLisp((ex = ex.cdr).car)) instanceof Cell || (z === NIL)) {
+			y = evalLisp(ex.cdr.car);
+		} else {
+			y = z;
+			z = NIL;
+		}
+		x = z;
+		if (n > 0) {
+			//console.log("need: n=%s, x=%s", n.toString(), x.toString());
+			for (n -= (x instanceof Cell) ? x.length() : 0; n > 0; --n) { z = new Cell(y, z); }
+		} else if (n !== 0) {
+			if (!(x instanceof Cell)) {
+				z = x = new Cell(y, NIL);
+			} else {
+				while (x.cdr instanceof Cell) { ++n; x = x.cdr; }
+			}
+			while (++n < 0) { x = x.cdr = new Cell(y, NIL); }
+		}
+		return z;
+	},
 	"new": function(c) { var x, s = box(evalLisp(c.car)); TheKey = T; TheCls = null;
 		if ((x = method(s)) !== null) {
 			evMethod(s, x, c.cdr);
@@ -1826,27 +1870,29 @@ function evalMeth(m, lst) {
 	return evMethod(t, m, lst.cdr);
 }
 
+function evalSym(s, lst) {
+	if (s.car === NIL) throw new Error(newErrMsg(UNDEF, s));
+	return (s.car === Meth.car) ? evalMeth(s, lst.cdr) : evalDef(s.car, lst);
+}
+
 function evalLisp(lst) {
 	if (lst instanceof Symbol) return lst.car;
 	if (lst instanceof Cell) {
 		if (typeof lst.car.car === "function") {
 			return lst.car.car(lst.cdr, lst);	// should have been only lst in the first place
 		}
+		if (lst.car instanceof Symbol) {
+			return evalSym(lst.car, lst);
+		}
 		if (lst.car instanceof Cell) {
+			if ((lst.car.car === QUOTE) && (lst.car.cdr instanceof Cell)) {
+				return evalDef(lst.car.cdr, lst);
+			}
 			var s = evalLisp(lst.car);
 			if (typeof s.car === "function") {
 				return s.car(lst.cdr, lst);
 			}
-			if (s.car === NIL) throw new Error(newErrMsg(UNDEF, s));
-			return (s.car === Meth.car) ? evalMeth(s, lst.cdr) : evalDef(s.car, lst);
-		}
-		if (lst.car instanceof Symbol) {
-			var s = lst.car;
-			if (s.car === NIL) throw new Error(newErrMsg(UNDEF, s));
-			return (s.car === Meth.car) ? evalMeth(s, lst.cdr) : evalDef(s.car, lst);
-		}
-		if ((lst.car.car === QUOTE) && (lst.car.cdr instanceof Cell)) {
-			return evalDef(lst.car.cdr, lst);
+			return evalSym(s, lst);
 		}
 		if (lst.car instanceof Number) return lst;
 		throw new Error(newErrMsg(EXEC_OR_NUM_EXP, lst.car));
@@ -1884,7 +1930,7 @@ function loadLisp(fileUrl) {
 
 function loadJavaScript(fileUrl) {
 	var res = eval(getFileSync(fileUrl));
-	return (res !== undefined) ? newTransSymbol(res.toString()) : NIL;
+	return (res === undefined) || (res === null) ? NIL : newTransSymbol(res.toString());
 }
 
 function _stdPrint(text) {
@@ -1997,18 +2043,23 @@ var pub = {
 	isCell: function(obj) { return (obj instanceof Cell); },
 	isSymbol: function(obj) { return (obj instanceof Symbol); },
 
-	evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr, loadLisp: loadLisp,
-	loadLispStr: loadLispStr, newErrMsg: newErrMsg,
-	newTransSymbol: newTransSymbol, prog: prog, valueToStr: valueToStr, Params: Params,
+	cachedTextParse: cachedTextParse, evalArgs: evalArgs, evalLisp: evalLisp, lispToStr: lispToStr,
+	loadLisp: loadLisp, loadLispStr: loadLispStr, newErrMsg: newErrMsg, newTransSymbol: newTransSymbol,
+	numeric: numeric, parseList: parseList, prog: prog, symbolRefUrl: symbolRefUrl,
+	valueToStr: valueToStr, Params: Params,
 	NIL: NIL, T: T,
 
 	getFileSync: getFileSync,
 	
-	eval: function(code) {
-		var result = prog(parseList(new Source(code)));
+	// Use .toString() for a plain text version of the result
+	// See function parseList for meaning of 'evaluate'
+	eval: function(code, evaluate) {
+		var result = prog(parseList(new Source(code), evaluate));
 		A3.setVal(A2.getVal()); A2.setVal(A1.getVal()); A1.setVal(result);
-		return result.toString();
-	}
+		return result;
+	},
+	
+	newSource: function(code) { return new Source(code); }
 }
 
 function testExports() {
