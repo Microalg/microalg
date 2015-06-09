@@ -60,7 +60,7 @@ function stdPrint(text, state) {
 function stdPrompt() {
     // Since the prompt appears in the little usual modal window, we need
     // to show the user the last thing displayed (it should be a question).
-    var last_line_displayed = cleanTransient(EMULISP_CORE.eval('*LastStdOut'));
+    var last_line_displayed = cleanTransient(EMULISP_CORE.eval('*LastStdOut').toString());
     if (last_line_displayed == "NIL") last_line_displayed = "?";
     var user_input = window.prompt(last_line_displayed);
     if (user_input !== null) return user_input;
@@ -325,7 +325,7 @@ function repl_action(repl_elt) {
     var src = repl_content.slice(EMULISP_CORE.currentState().old_src.length,
                                  repl_content.length);
     try {
-        result = EMULISP_CORE.eval(src);
+        result = EMULISP_CORE.eval(src).toString();
     } catch(e) {
         if (e.message == "Function 'bye' not supported") {
             // Destroy the textarea (parent.parent is because of parenedit).
@@ -370,7 +370,7 @@ function inject_microalg_jrepl_in(elt_id, msg) {
             // Fetch the relevant state.
             EMULISP_CORE.init(emulisp_states[elt_id]);
             try {
-                var result = EMULISP_CORE.eval(command);
+                var result = EMULISP_CORE.eval(command).toString();
                 if (result != '""') {
                     term.echo('-> ' + cleanTransient(result.toString()));
                 }
@@ -415,11 +415,11 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 function malg2blockly(src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_export_src);
-    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")");
+    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
     EMULISP_CORE.eval(microalg_export_blockly_src);
-    var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")");
+    var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")").toString();
     // Le car pour récupérer l’unique élément de la liste finale.
-    var xml = cleanTransient(EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')'));
+    var xml = cleanTransient(EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')').toString());
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="programme"><value name="VALUE">' +
           xml +
           '</value></block></xml>';
