@@ -110,10 +110,11 @@ Blockly.MicroAlg.scrubNakedValue = function(line) {
  */
 Blockly.MicroAlg.quote_ = function(string) {
   // TODO: This is a quick hack.  Replace with goog.string.quote
-  string = string.replace(/\\/g, '\\\\')
-                 .replace(/\n/g, '\\\n')
-                 .replace(/\%/g, '\\%')
-                 .replace(/'/g, '\\\'');
+  string = string
+                 // Échapper les guillemets, sauf le premier et le dernier
+                 // (il faut qu’il y ait un caractère avant et un après).
+                 .replace(/(.)"(.)/g, '$1\\"$2')
+          ;
   return '"' + string + '"';
 };
 
