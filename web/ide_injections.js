@@ -197,7 +197,10 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     if (config.blockly || config.blockly_only) {
         // Le source doit être sur une ligne pour passer dans le js généré:
-        blockly_src = src.replace(/(\r\n|\n|\r)/gm, "");
+        blockly_src = src.replace(/(\r\n|\n|\r)/gm, "")
+        // On contre-échappe les backslashes car ce code sera inséré dans
+        // une iframe.
+                         .replace(/\\/g, "\\\\");
     }
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
