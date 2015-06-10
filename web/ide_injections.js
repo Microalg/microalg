@@ -422,9 +422,9 @@ function malg2blockly(src) {
     EMULISP_CORE.eval(microalg_export_blockly_src);
     var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")").toString();
     // Le car pour récupérer l’unique élément de la liste finale.
-    var xml = cleanTransient(EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')').toString());
+    var xml = EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')').toString();
     xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="programme"><value name="VALUE">' +
-          xml +
+          xml.slice(1,-1).replace(/\\"/g, '"') +
           '</value></block></xml>';
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_l_src);
