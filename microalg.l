@@ -302,10 +302,12 @@ Si vous ne l’avez pas déjà fait, commencez par le
 
 # Concatener
 (put 'Concatener 'doc
-"Commande qui concatène les textes passés en paramètre.
+"Commande qui concatène les textes passés en paramètre (deux ou plus).
 
-    : (Concatener \"ici\" \" et là\")
-    -> \"ici et là\"
+    : (Concatener \"abra\" \"cadabra\")
+    -> \"abracadabra\"
+    : (Concatener \"bonjour \" \"tout \" \"le \" \"monde\")
+    -> \"bonjour tout le monde\"
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
 (de Concatener @ (let (
