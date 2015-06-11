@@ -441,7 +441,16 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
     salut  <--- là, c’est MicroAlg qui affiche.
     -> Rien
 
-On peut s’en servir pour marquer une pause dans un programme :
+Comme `Demander` retourne un texte, il est nécessaire de convertir la valeur
+avant de la stocker dans une variable. Exemple :
+
+    : (Initialiser x (Nombre (Demander)))
+    42   <--- Ici, c’est l’utilisateur qui tape.
+    -> Rien
+    : x
+    -> 42
+
+**Remarque** : On peut s’en servir pour marquer une pause dans un programme :
 
     (Afficher \"Pause, appuyez sur Entrée.\")
     (Demander)
