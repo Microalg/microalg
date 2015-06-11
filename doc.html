@@ -829,7 +829,7 @@ nom digne de ce nom.</p>
                 var dt = $('<dt/>').appendTo(dl);
                 var span = $('<span/>').appendTo(dt);
                 $('<a/>').attr("href", "#sym-" + sym).html(sym).appendTo(span);
-                var sym_doc = EMULISP_CORE.eval("(get '" + sym + " 'doc)");
+                var sym_doc = EMULISP_CORE.eval("(get '" + sym + " 'doc)").toString();
                 sym_doc = cleanTransient(sym_doc);
                 sym_doc = new Showdown.converter().makeHtml(sym_doc);
                 $("<dd/>").html(sym_doc).appendTo(dl);
