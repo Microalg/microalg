@@ -310,13 +310,22 @@ Si vous ne l’avez pas déjà fait, commencez par le
     -> \"bonjour tout le monde\"
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
-(de Concatener @ (let (
-                       result (pack (rest))
-                      )
-                      (if result
-                          result
-                          ""
-                      )))
+(de Concatener !arg_lst
+    # Quelques vérifications :
+    (for (!arg_num . !arg) !arg_lst
+        (let (!evaled_arg (eval !arg)
+              !error_prefix "`Concatener` : l’argument n°")
+             (ifn (!inited !arg !evaled_arg)
+                  (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg) )
+        )
+    )
+    # Le calcul :
+    (let (result (apply 'pack (mapcar 'eval !arg_lst)))
+         (if result
+             result
+             ""
+         )
+    ))
 
 # Gestion des variables
 (put 'Initialiser 'doc
