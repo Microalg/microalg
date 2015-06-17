@@ -1,5 +1,3 @@
-*.l linguist-language=lisp
-
 emulisp/*              linguist-vendored
 web/blockly/*          linguist-vendored
 web/jquery.terminal*   linguist-vendored
