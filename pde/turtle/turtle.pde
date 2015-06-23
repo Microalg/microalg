@@ -14,10 +14,8 @@ void setup() {
     fill(#000000);
     try {
         s = new Server(this, 12345);
-    } catch (ReferenceError e) {
-	// processing.js n'a pas de Server
-    } catch (ReferenceError e) {
-	e.printStackTrace();
+    } catch (Exception e) {
+	// processing.js n'a pas de Server.
     }
     reset();
 }
