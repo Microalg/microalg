@@ -1,0 +1,12 @@
+(Initialiser longueur 100)
+(TD 30)
+(AV longueur)
+(TD 120)
+(AV longueur)
+(TD 30)
+(Initialiser i 0)
+(Tant_que (<= i 4) Faire
+    (AV longueur)
+    (TD 90)
+    (Affecter_a i (+ i 1))
+)
