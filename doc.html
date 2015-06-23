@@ -50,6 +50,8 @@ Aller directement à :
     * [SciTE](#scite)
     * [Vim](#vim)
     * [Blockly](#blockly)
+    * [Processing](#processing)
+    * [Tortue](#tortue)
 * [Remerciements](#remerciements)
 
 ## Avertissement
@@ -719,6 +721,68 @@ le menu déroulant, qui contient par défaut la comparaison `=`.
 Voir aussi les commandes 
 [`=`](#sym-=), [`=/`](#sym-=/), [`<`](#sym-<), [`>`](#sym-\>), [`<=`](#sym-<=)
 et [`>=`](#sym->=).
+
+## Processing
+
+Cette section est divisée en deux sous-sections, elles-mêmes subdivisées :
+
+* [documentation utilisateur](#utilisationdeprocessing),
+    * [dans le navigateur](#danslenavigateur),
+    * [hors navigateur](#horsnavigateur),
+        * [vous utilisez Windows](#vousutilisezwindows),
+        * [vous n’utilisez pas Windows](#vousnutilisezpaswindows),
+* [documentation technique](#documentationtechniquepourprocessing).
+    * [dans le navigateur](#doctechniquedanslenavigateur),
+    * [hors navigateur](#doctechniquehorsnavigateur),
+
+Pas encore par blocs.
+
+### Utilisation de Processing
+
+#### Dans le navigateur
+
+Tous les échantillons interactifs n’ont pas de fenêtre Processing.
+
+#### Hors navigateur
+
+##### Vous utilisez Windows
+
+processing win: installer tque microalg/processing_win/processing-java
+SciTE win: view/parameters malg-j
+
+Avec SciTE, il faut démarrer processing avec `start_processing.bat`.
+
+##### Vous n’utilisez pas Windows
+
+Avec SciTE, il faut démarrer processing (`start_processing.bat` ou
+`start_processing.sh`).
+
+processing linux: installer processing qque part et ajouter processing-java au PATH
+si pas JDK Sun: mv java java-from-processing,
+puis ln -s /usr/lib/jvm/j2sdk1.7-oracle java
+
+SciTE linux: view/parameters malg ou malg-j
+
+Attention : pas de nombres flottants pour l’instant.
+
+### Documentation technique pour Processing
+
+#### Documentation technique dans le navigateur
+
+#### Documentation technique hors navigateur
+
+
+
+## Tortue
+
+L’affichage de la tortue est basé sur l’intégration de MicroAlg avec
+<a href="http://processing.org/" class="offi">Processing</a>, détaillée dans
+[la section précédente](#processing). Il est donc indispensable de maîtriser
+la sous-section [utilisation de Processing]
+
+Tout passe par le même `pde/turtle.pde`, que ce soit avec l’interface web ou SciTE.
+
+(cmd arg1 arg2) proxy (tortue cmd_as_text)
 
 ## Remerciements
 
