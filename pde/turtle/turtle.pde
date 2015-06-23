@@ -11,7 +11,6 @@ String data;
 
 void setup() {
     size(400, 400);
-    turtle = new Turtle();
     fill(#000000);
     try {
         s = new Server(this, 12345);
@@ -22,6 +21,9 @@ void setup() {
     }
     reset();
 }
+
+void reset() {
+    turtle = new Turtle();
     background(#FFFFFF);
 }
 

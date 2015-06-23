@@ -1613,3 +1613,6 @@ le premier étant stocké dans une variable.
 (de LC ()
   (tortue "LC")
 )
+(de RAZ ()
+  (tortue "RAZ")
+)
