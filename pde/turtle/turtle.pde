@@ -109,11 +109,13 @@ void interact(String data) {
 }
 
 void draw() {
-  if (s != null) {
-    c = s.available();
-    if (c != null) {
-      data = trim(c.readString());
-      interact(data);
+    if (s == null) {
+	// Sans doute la version processing.js.
+    } else {
+        c = s.available();
+        if (c != null) {
+            data = trim(c.readString());
+            interact(data);
+        }
     }
-  }
 }
