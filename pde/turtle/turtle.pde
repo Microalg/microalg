@@ -83,15 +83,15 @@ void interact(String data) {
     }
     if (false) {
         // pas de switch sur les strings !!!
-    } else if (cmd == "AV") {
+    } else if (cmd.equals("AV")) {
         turtle.forward(param);
-    } else if (cmd == "TD") {
+    } else if (cmd.equals("TD")) {
         turtle.right(param);
-    } else if (cmd == "TG") {
+    } else if (cmd.equals("TG")) {
         turtle.left(param);
-    } else if (cmd == "BC") {
+    } else if (cmd.equals("BC")) {
         turtle.pendown();
-    } else if (cmd == "LC") {
+    } else if (cmd.equals("LC")) {
         turtle.penup();
     }
 }
