@@ -13,8 +13,16 @@ void setup() {
     size(400, 400);
     turtle = new Turtle();
     fill(#000000);
+    try {
+        s = new Server(this, 12345);
+    } catch (ReferenceError e) {
+	// processing.js n'a pas de Server
+    } catch (ReferenceError e) {
+	e.printStackTrace();
+    }
+    reset();
+}
     background(#FFFFFF);
-    s = new Server(this, 12345);
 }
 
 class Turtle {
@@ -93,13 +101,17 @@ void interact(String data) {
         turtle.pendown();
     } else if (cmd.equals("LC")) {
         turtle.penup();
+    } else if (cmd.equals("RAZ")) {
+        reset();
     }
 }
 
 void draw() {
-  c = s.available();
-  if (c != null) {
-    data = trim(c.readString());
-    interact(data);
+  if (s != null) {
+    c = s.available();
+    if (c != null) {
+      data = trim(c.readString());
+      interact(data);
+    }
   }
 }
