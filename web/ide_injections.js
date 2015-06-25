@@ -171,6 +171,9 @@ according to `config` which may have these keys :
 * `blockly_only` is a boolean telling to not display the textual editor but
   only blocks,  
   false if not provided,
+* `processing` is a boolean telling to load processing.js in the page and
+  to display a processing window,  
+  false if not provided,
 
 */
 function inject_microalg_editor_in(elt_id, config) {
