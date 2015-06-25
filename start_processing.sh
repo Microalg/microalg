@@ -1,1 +1,1 @@
-processing-java --run --force --sketch=pde/turtle --output=pde/turtleout
+processing-java --run --force --sketch=pde/microalg --output=pde/microalg.out
