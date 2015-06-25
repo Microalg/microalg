@@ -166,9 +166,10 @@ according to `config` which may have these keys :
   empty if not provided,
 * `localStorage` is a boolean telling to remember last program if possible,  
   false if not provided,
-* `blockly` is a boolean telling to display code as blocks,  
+* `blockly` is a boolean telling to also display code as blocks,  
   false if not provided,
-* `blockly_only` is a boolean telling to not display the textual editor,  
+* `blockly_only` is a boolean telling to not display the textual editor but
+  only blocks,  
   false if not provided,
 
 */
