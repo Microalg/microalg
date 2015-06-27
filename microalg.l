@@ -1599,12 +1599,16 @@ le premier étant stocké dans une variable.
   )
 )
 (put 'RAZ 'doc
-"Dans la sortie graphique, efface l’écran et repositionne la tortue.")
+"Dans la sortie graphique, efface l’écran et repositionne la tortue.
+
+Exemple : `(RAZ)`")
 (de RAZ ()
   (!processing "RAZ")
 )
 (put 'Contour 'doc
-"Dans la sortie graphique, permet de choisir la couleur du contour des tracés.")
+"Dans la sortie graphique, permet de choisir la couleur du contour des tracés.
+
+Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1616,7 +1620,9 @@ le premier étant stocké dans une variable.
   ))
 )
 (put 'Remplissage 'doc
-"Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.")
+"Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.
+
+Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))`")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1628,7 +1634,9 @@ le premier étant stocké dans une variable.
   ))
 )
 (put 'Epaisseur 'doc
-"Dans la sortie graphique, permet de choisir l’épaisseur des tracés.")
+"Dans la sortie graphique, permet de choisir l’épaisseur des tracés, en pixels.
+
+Exemple : `(Epaisseur 5)`")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
 )
@@ -1636,7 +1644,9 @@ le premier étant stocké dans une variable.
 "Dans la sortie graphique, trace un segment.
 
 Les deux paramètres sont les listes des coordonnées des deux extrémités
-du segment.")
+du segment.
+
+Exemple : `(Segment (Liste 300 300) (Liste 450 600))`")
 (de Segment (point1 point2)
   (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
                                 (Nieme point2 1) " " (Nieme point2 2)))
@@ -1645,7 +1655,9 @@ du segment.")
 "Dans la sortie graphique, trace un cercle.
 
 Le premier paramètre est la liste des coordonnées du centre du cercle,  
-le second paramètre est le rayon du cercle.")
+le second paramètre est le rayon du cercle.
+
+Exemple : `(Cercle (Liste 300 300) 100)`")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon))
@@ -1654,7 +1666,9 @@ le second paramètre est le rayon du cercle.")
 "Dans la sortie graphique, trace une ellipse.
 
 Le premier paramètre est la liste des coordonnées du centre de l’ellipse,  
-le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.")
+le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.
+
+Exemple : `(Ellipse (Liste 300 300) 200 100)`")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon1 " " rayon2))
@@ -1662,7 +1676,9 @@ le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical
 (put 'Rectangle 'doc
 "Dans la sortie graphique, trace un rectangle.
 
-Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.")
+Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.
+
+Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`")
 (de Rectangle (point1 point2)
   (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                   (Nieme point2 1) " " (Nieme point2 2)))
@@ -1670,7 +1686,9 @@ Les deux paramètres sont les listes des coordonnées des deux coins du rectangl
 (put 'Triangle 'doc
 "Dans la sortie graphique, trace un triangle.
 
-Les trois paramètres sont les listes des coordonnées des sommets du triangle.")
+Les trois paramètres sont les listes des coordonnées des sommets du triangle.
+
+Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`")
 (de Triangle (point1 point2 point3)
   (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                  (Nieme point2 1) " " (Nieme point2 2) " "
@@ -1681,31 +1699,41 @@ Les trois paramètres sont les listes des coordonnées des sommets du triangle."
 (put 'AV 'doc
 "Dans la sortie graphique, fait avancer la tortue.
 
-Le paramètre est le nombre de pixels que la tortue parcourt.")
+Le paramètre est le nombre de pixels que la tortue parcourt.
+
+Exemple : `(AV 100)`")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
 (put 'TD 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la droite.
 
-Le paramètre est l’angle de rotation en degrés.")
+Le paramètre est l’angle de rotation en degrés.
+
+Exemple : `(TD 45)`")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
 (put 'TG 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la gauche.
 
-Le paramètre est l’angle de rotation en degrés.")
+Le paramètre est l’angle de rotation en degrés.
+
+Exemple : `(TG 45)`")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
 (put 'BC 'doc
-"Dans la sortie graphique, baisse le crayon de la tortue.")
+"Dans la sortie graphique, baisse le crayon de la tortue.
+
+Exemple : `(BC)`")
 (de BC ()
   (!processing "BC")
 )
 (put 'LC 'doc
-"Dans la sortie graphique, lève le crayon de la tortue.")
+"Dans la sortie graphique, lève le crayon de la tortue.
+
+Exemple : `(LC)`")
 (de LC ()
   (!processing "LC")
 )
