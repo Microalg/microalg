@@ -1601,14 +1601,18 @@ le premier étant stocké dans une variable.
 (put 'RAZ 'doc
 "Dans la sortie graphique, efface l’écran et repositionne la tortue.
 
-Exemple : `(RAZ)`")
+Exemple : `(RAZ)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de RAZ ()
   (!processing "RAZ")
 )
 (put 'Contour 'doc
 "Dans la sortie graphique, permet de choisir la couleur du contour des tracés.
 
-Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`")
+Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1622,7 +1626,9 @@ Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`")
 (put 'Remplissage 'doc
 "Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.
 
-Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))`")
+Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1636,7 +1642,9 @@ Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))
 (put 'Epaisseur 'doc
 "Dans la sortie graphique, permet de choisir l’épaisseur des tracés, en pixels.
 
-Exemple : `(Epaisseur 5)`")
+Exemple : `(Epaisseur 5)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
 )
@@ -1646,7 +1654,9 @@ Exemple : `(Epaisseur 5)`")
 Les deux paramètres sont les listes des coordonnées des deux extrémités
 du segment.
 
-Exemple : `(Segment (Liste 300 300) (Liste 450 600))`")
+Exemple : `(Segment (Liste 300 300) (Liste 450 600))`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Segment (point1 point2)
   (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
                                 (Nieme point2 1) " " (Nieme point2 2)))
@@ -1657,7 +1667,9 @@ Exemple : `(Segment (Liste 300 300) (Liste 450 600))`")
 Le premier paramètre est la liste des coordonnées du centre du cercle,  
 le second paramètre est le rayon du cercle.
 
-Exemple : `(Cercle (Liste 300 300) 100)`")
+Exemple : `(Cercle (Liste 300 300) 100)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon))
@@ -1668,7 +1680,9 @@ Exemple : `(Cercle (Liste 300 300) 100)`")
 Le premier paramètre est la liste des coordonnées du centre de l’ellipse,  
 le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.
 
-Exemple : `(Ellipse (Liste 300 300) 200 100)`")
+Exemple : `(Ellipse (Liste 300 300) 200 100)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon1 " " rayon2))
@@ -1678,7 +1692,9 @@ Exemple : `(Ellipse (Liste 300 300) 200 100)`")
 
 Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.
 
-Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`")
+Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Rectangle (point1 point2)
   (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                   (Nieme point2 1) " " (Nieme point2 2)))
@@ -1688,7 +1704,9 @@ Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`")
 
 Les trois paramètres sont les listes des coordonnées des sommets du triangle.
 
-Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`")
+Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de Triangle (point1 point2 point3)
   (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                  (Nieme point2 1) " " (Nieme point2 2) " "
@@ -1701,7 +1719,9 @@ Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`")
 
 Le paramètre est le nombre de pixels que la tortue parcourt.
 
-Exemple : `(AV 100)`")
+Exemple : `(AV 100)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
@@ -1710,7 +1730,9 @@ Exemple : `(AV 100)`")
 
 Le paramètre est l’angle de rotation en degrés.
 
-Exemple : `(TD 45)`")
+Exemple : `(TD 45)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
@@ -1719,21 +1741,27 @@ Exemple : `(TD 45)`")
 
 Le paramètre est l’angle de rotation en degrés.
 
-Exemple : `(TG 45)`")
+Exemple : `(TG 45)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
 (put 'BC 'doc
 "Dans la sortie graphique, baisse le crayon de la tortue.
 
-Exemple : `(BC)`")
+Exemple : `(BC)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de BC ()
   (!processing "BC")
 )
 (put 'LC 'doc
 "Dans la sortie graphique, lève le crayon de la tortue.
 
-Exemple : `(LC)`")
+Exemple : `(LC)`
+
+Voir <http://microalg.info/doc.html#processing>.")
 (de LC ()
   (!processing "LC")
 )
