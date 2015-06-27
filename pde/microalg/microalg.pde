@@ -9,8 +9,11 @@ Server s;
 Client c;
 String data;
 
+int w = 600;
+int h = 600;
+
 void setup() {
-    size(400, 400);
+    size(w, h);
     fill(#000000);
     try {
         s = new Server(this, 12345);
@@ -72,31 +75,30 @@ class Turtle {
 }
 
 void interact(String data) {
-    String[] src_array = data.split(" ");
+    String[] params = data.split(" ");
     String cmd = "";
-    int param = 0;
-    switch (src_array.length) {
+    switch (params.length) {
         case 0:
             cmd = data;
             break;
-        case 1:
-            cmd = src_array[0];
-            break;
-        case 2:
-            cmd = src_array[0];
-            param = int(src_array[1]);
-            break;
         default:
-            println("Too much spaces!");
+            cmd = params[0];
+            break;
     }
     if (false) {
         // pas de switch sur les strings !!!
+    } else if (cmd.equals("Contour")) {
+        stroke(color(int(params[1]), int(params[2]), int(params[3])));
+    } else if (cmd.equals("Remplissage")) {
+        fill(color(int(params[1]), int(params[2]), int(params[3])));
+    } else if (cmd.equals("Disque")) {
+        ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[3]));
     } else if (cmd.equals("AV")) {
-        turtle.forward(param);
+        turtle.forward(int(params[1]));
     } else if (cmd.equals("TD")) {
-        turtle.right(param);
+        turtle.right(int(params[1]));
     } else if (cmd.equals("TG")) {
-        turtle.left(param);
+        turtle.left(int(params[1]));
     } else if (cmd.equals("BC")) {
         turtle.pendown();
     } else if (cmd.equals("LC")) {
