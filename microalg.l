@@ -11,11 +11,12 @@ Voir <http://microalg.info>.")
 (setq symboles '(
 "+" "-" "*" "/" "%" "**" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
+"AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
-"Concatener" "credit_iterations"
+"Cercle" "Concatener" "Contour" "credit_iterations"
 "Definir" "Demander"
-"En_position" "Entier@" "Et" "Exemples_de"
+"Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
 "Initialiser" "Initialiser@"
@@ -24,10 +25,10 @@ Voir <http://microalg.info>.")
 "Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
-"Retirer_de" "Retourner" "Rien"
+"Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
-"Si" "Sinon"
-"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Type"
+"Segment" "Si" "Sinon"
+"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Triangle" "Type"
 "Vide?" "Vrai" "Vrai?"
 ))
 
@@ -1597,6 +1598,8 @@ le premier étant stocké dans une variable.
     (js:eval (pack "processing_sketches[canvas_id].interact('" cmd "');"))
   )
 )
+(put 'Contour 'doc
+"Dans la sortie visuelle, permet de choisir la couleur du contour des tracés.")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1607,6 +1610,8 @@ le premier étant stocké dans une variable.
                       Sinon "")
   ))
 )
+(put 'Remplissage 'doc
+"Dans la sortie visuelle, permet de choisir la couleur du remplissage des tracés.")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1617,26 +1622,84 @@ le premier étant stocké dans une variable.
                       Sinon "")
   ))
 )
-(de Disque (centre rayon)
-  (!processing (pack "Disque " (Nieme centre 1) " " (Nieme centre 2) " " rayon))
+(put 'Epaisseur 'doc
+"Dans la sortie visuelle, permet de choisir l’épaisseur des tracés.")
+(de Epaisseur (epaisseur)
+  (!processing (pack "Epaisseur " epaisseur))
+)
+(put 'Segment 'doc
+"Dans la sortie visuelle, trace un segment.
+
+Les deux paramètres sont les listes des coordonnées des deux extrémités
+du segment.")
+(de Segment (point1 point2)
+  (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
+                                (Nieme point2 1) " " (Nieme point2 2)))
+)
+(put 'Cercle 'doc
+"Dans la sortie visuelle, trace un cercle.
+
+Le premier paramètre est la liste des coordonnées du centre du cercle,  
+le second paramètre est le rayon du cercle.")
+(de Cercle (centre rayon)
+  (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
+                     " " rayon))
+)
+(put 'Ellipse 'doc
+"Dans la sortie visuelle, trace une ellipse.
+
+Le premier paramètre est la liste des coordonnées du centre de l’ellipse,  
+le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.")
+(de Ellipse (centre rayon1 rayon2)
+  (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
+                     " " rayon1 " " rayon2))
+)
+(put 'Rectangle 'doc
+"Dans la sortie visuelle, trace un rectangle.
+
+Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.")
+(de Rectangle (point1 point2)
+  (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
+                                  (Nieme point2 1) " " (Nieme point2 2)))
+)
+(put 'Triangle 'doc
+"Dans la sortie visuelle, trace un triangle.
+
+Les trois paramètres sont les listes des coordonnées des sommets du triangle.")
+(de Triangle (point1 point2 point3)
+  (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
+                                 (Nieme point2 1) " " (Nieme point2 2) " "
+                                 (Nieme point3 1) " " (Nieme point3 2)))
 )
 
 # Tortue
+(put 'AV 'doc
+"Dans la sortie visuelle, ")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
+(put 'TD 'doc
+"Dans la sortie visuelle, ")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
+(put 'TG 'doc
+"Dans la sortie visuelle, ")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
+(put 'BC 'doc
+"Dans la sortie visuelle, ")
 (de BC ()
   (!processing "BC")
 )
+(put 'LC 'doc
+"Dans la sortie visuelle, ")
 (de LC ()
   (!processing "LC")
 )
+(put 'RAZ 'doc
+"Dans la sortie visuelle, ")
 (de RAZ ()
   (!processing "RAZ")
 )

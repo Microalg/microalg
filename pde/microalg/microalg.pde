@@ -21,6 +21,7 @@ void setup() {
 	// processing.js n'a pas de Server.
     }
     reset();
+    rectMode(CORNERS);
 }
 
 void reset() {
@@ -99,8 +100,20 @@ void interact(String data) {
             alpha = int(params[4]);
         }
         fill(color(int(params[1]), int(params[2]), int(params[3]), alpha));
-    } else if (cmd.equals("Disque")) {
+    } else if (cmd.equals("Epaisseur")) {
+        strokeWeight(int(params[1]));
+    } else if (cmd.equals("Segment")) {
+        line(int(params[1]), h - int(params[2]), int(params[3]), h - int(params[4]));
+    } else if (cmd.equals("Cercle")) {
         ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[3]));
+    } else if (cmd.equals("Ellipse")) {
+        ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[4]));
+    } else if (cmd.equals("Rectangle")) {
+        rect(int(params[1]), h - int(params[2]), int(params[3]), h - int(params[4]));
+    } else if (cmd.equals("Triangle")) {
+        triangle(int(params[1]), h - int(params[2]),
+                 int(params[3]), h - int(params[4]),
+                 int(params[5]), h - int(params[6]));
     } else if (cmd.equals("AV")) {
         turtle.forward(int(params[1]));
     } else if (cmd.equals("TD")) {
@@ -113,6 +126,8 @@ void interact(String data) {
         turtle.penup();
     } else if (cmd.equals("RAZ")) {
         reset();
+    } else {
+        println("Commande non reconnue : " + data);
     }
 }
 
