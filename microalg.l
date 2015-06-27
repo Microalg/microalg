@@ -1604,7 +1604,7 @@ le premier étant stocké dans une variable.
   (!processing "RAZ")
 )
 (put 'Contour 'doc
-"Dans la sortie visuelle, permet de choisir la couleur du contour des tracés.")
+"Dans la sortie graphique, permet de choisir la couleur du contour des tracés.")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1616,7 +1616,7 @@ le premier étant stocké dans une variable.
   ))
 )
 (put 'Remplissage 'doc
-"Dans la sortie visuelle, permet de choisir la couleur du remplissage des tracés.")
+"Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1628,12 +1628,12 @@ le premier étant stocké dans une variable.
   ))
 )
 (put 'Epaisseur 'doc
-"Dans la sortie visuelle, permet de choisir l’épaisseur des tracés.")
+"Dans la sortie graphique, permet de choisir l’épaisseur des tracés.")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
 )
 (put 'Segment 'doc
-"Dans la sortie visuelle, trace un segment.
+"Dans la sortie graphique, trace un segment.
 
 Les deux paramètres sont les listes des coordonnées des deux extrémités
 du segment.")
@@ -1642,7 +1642,7 @@ du segment.")
                                 (Nieme point2 1) " " (Nieme point2 2)))
 )
 (put 'Cercle 'doc
-"Dans la sortie visuelle, trace un cercle.
+"Dans la sortie graphique, trace un cercle.
 
 Le premier paramètre est la liste des coordonnées du centre du cercle,  
 le second paramètre est le rayon du cercle.")
@@ -1651,7 +1651,7 @@ le second paramètre est le rayon du cercle.")
                      " " rayon))
 )
 (put 'Ellipse 'doc
-"Dans la sortie visuelle, trace une ellipse.
+"Dans la sortie graphique, trace une ellipse.
 
 Le premier paramètre est la liste des coordonnées du centre de l’ellipse,  
 le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.")
@@ -1660,7 +1660,7 @@ le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical
                      " " rayon1 " " rayon2))
 )
 (put 'Rectangle 'doc
-"Dans la sortie visuelle, trace un rectangle.
+"Dans la sortie graphique, trace un rectangle.
 
 Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.")
 (de Rectangle (point1 point2)
@@ -1668,7 +1668,7 @@ Les deux paramètres sont les listes des coordonnées des deux coins du rectangl
                                   (Nieme point2 1) " " (Nieme point2 2)))
 )
 (put 'Triangle 'doc
-"Dans la sortie visuelle, trace un triangle.
+"Dans la sortie graphique, trace un triangle.
 
 Les trois paramètres sont les listes des coordonnées des sommets du triangle.")
 (de Triangle (point1 point2 point3)
@@ -1679,27 +1679,33 @@ Les trois paramètres sont les listes des coordonnées des sommets du triangle."
 
 # Tortue
 (put 'AV 'doc
-"Dans la sortie visuelle, ")
+"Dans la sortie graphique, fait avancer la tortue.
+
+Le paramètre est le nombre de pixels que la tortue parcourt.")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
 (put 'TD 'doc
-"Dans la sortie visuelle, ")
+"Dans la sortie graphique, fait tourner la tortue vers la droite.
+
+Le paramètre est l’angle de rotation en degrés.")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
 (put 'TG 'doc
-"Dans la sortie visuelle, ")
+"Dans la sortie graphique, fait tourner la tortue vers la gauche.
+
+Le paramètre est l’angle de rotation en degrés.")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
 (put 'BC 'doc
-"Dans la sortie visuelle, ")
+"Dans la sortie graphique, baisse le crayon de la tortue.")
 (de BC ()
   (!processing "BC")
 )
 (put 'LC 'doc
-"Dans la sortie visuelle, ")
+"Dans la sortie graphique, lève le crayon de la tortue.")
 (de LC ()
   (!processing "LC")
 )
