@@ -94,7 +94,7 @@ void interact(String data) {
         }
         stroke(color(int(params[1]), int(params[2]), int(params[3]), alpha));
     } else if (cmd.equals("Remplissage")) {
-        int alpha = 255;
+        int alpha = 0;
         if (params.length == 5) {
             alpha = int(params[4]);
         }
