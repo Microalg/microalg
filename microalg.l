@@ -1598,6 +1598,11 @@ le premier étant stocké dans une variable.
     (js:eval (pack "processing_sketches[canvas_id].interact('" cmd "');"))
   )
 )
+(put 'RAZ 'doc
+"Dans la sortie graphique, efface l’écran et repositionne la tortue.")
+(de RAZ ()
+  (!processing "RAZ")
+)
 (put 'Contour 'doc
 "Dans la sortie visuelle, permet de choisir la couleur du contour des tracés.")
 (de Contour (couleur)
@@ -1697,9 +1702,4 @@ Les trois paramètres sont les listes des coordonnées des sommets du triangle."
 "Dans la sortie visuelle, ")
 (de LC ()
   (!processing "LC")
-)
-(put 'RAZ 'doc
-"Dans la sortie visuelle, ")
-(de RAZ ()
-  (!processing "RAZ")
 )
