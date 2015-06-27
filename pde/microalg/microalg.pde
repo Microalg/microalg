@@ -88,9 +88,17 @@ void interact(String data) {
     if (false) {
         // pas de switch sur les strings !!!
     } else if (cmd.equals("Contour")) {
-        stroke(color(int(params[1]), int(params[2]), int(params[3])));
+        int alpha = 255;
+        if (params.length == 5) {
+            alpha = int(params[4]);
+        }
+        stroke(color(int(params[1]), int(params[2]), int(params[3]), alpha));
     } else if (cmd.equals("Remplissage")) {
-        fill(color(int(params[1]), int(params[2]), int(params[3])));
+        int alpha = 255;
+        if (params.length == 5) {
+            alpha = int(params[4]);
+        }
+        fill(color(int(params[1]), int(params[2]), int(params[3]), alpha));
     } else if (cmd.equals("Disque")) {
         ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[3]));
     } else if (cmd.equals("AV")) {
