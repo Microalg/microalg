@@ -14,7 +14,7 @@ int h = 600;
 
 void setup() {
     size(w, h);
-    fill(color(0, 0, 0, 0));
+    fill(color(1, 0, 0, 0));  // color(0, 0, 0, 0) non transparent!!!
     try {
         s = new Server(this, 12345);
     } catch (Exception e) {
