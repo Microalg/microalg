@@ -14,7 +14,7 @@ int h = 600;
 
 void setup() {
     size(w, h);
-    fill(#000000);
+    fill(color(0, 0, 0, 0));
     try {
         s = new Server(this, 12345);
     } catch (Exception e) {
