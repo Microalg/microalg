@@ -18,7 +18,7 @@ void setup() {
     try {
         s = new Server(this, 12345);
     } catch (Exception e) {
-	// processing.js n'a pas de Server.
+        // processing.js n'a pas de Server.
     }
     reset();
     rectMode(CORNERS);
@@ -133,7 +133,7 @@ void interact(String data) {
 
 void draw() {
     if (s == null) {
-	// Sans doute la version processing.js.
+    // Sans doute la version processing.js.
     } else {
         c = s.available();
         if (c != null) {
