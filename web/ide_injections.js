@@ -130,11 +130,16 @@ function ide_action(editor_elt, store) {
     // Compute the target HTML elt.
     var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
     var display_target_id = elt_id + '-displaytarget';
+    var processing_id = elt_id + '-processing';
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_l_src);
     // Custom state for a custom display in the page.
-    EMULISP_CORE.currentState().context = {type: 'editor', display_elt: display_target_id};
+    EMULISP_CORE.currentState().context = {
+        type: 'editor',
+        display_elt: display_target_id,
+        processing_elt: processing_id,
+        };
     // Process src.
     var src = editor_elt.val();
     // The editor is in a hiddable div,
@@ -171,6 +176,9 @@ according to `config` which may have these keys :
 * `blockly_only` is a boolean telling to not display the textual editor but
   only blocks,  
   false if not provided,
+* `processing` is a boolean telling to load processing.js in the page and
+  to display a processing window,  
+  false if not provided,
 
 */
 function inject_microalg_editor_in(elt_id, config) {
@@ -178,6 +186,7 @@ function inject_microalg_editor_in(elt_id, config) {
     var editor_id = elt_id + '-malg-editor';
     var display_target_id = elt_id + '-displaytarget';
     var blockly_id = elt_id + '-blockly';
+    var processing_id = elt_id + '-processing';
     var src = '';
     var blockly_src = '';
     // According to config.localStorage, load source code (if any) from local
@@ -219,6 +228,26 @@ function inject_microalg_editor_in(elt_id, config) {
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' + config.localStorage + ')" />' +
         '<div class="malg-error"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
+    if (config.processing) {
+        script_string = script_string +
+        '<div style="text-align:center;"><canvas id="' + processing_id + '" data-processing-sources="pde/microalg/microalg.pde"></canvas></div>' + "\n" +
+        '<script>' + "\n" +
+        '    if (typeof processing_sketches == "undefined") {console.log("init");processing_sketches = {};}' + "\n" +
+        '    console.log(processing_sketches);' + "\n" +
+        '    var tId = 0;' + "\n" +
+        '    $(document).ready(function() {' + "\n" +
+        '        if (!processing_sketches["' + processing_id + '"]) {' + "\n" +
+        '            tId = setInterval(function() {' + "\n" +
+        '                processing_sketches["' + processing_id + '"] = Processing.getInstanceById("' + processing_id + '");' + "\n" +
+        '                if (processing_sketches["' + processing_id + '"]) {' + "\n" +
+        '                    clearInterval(tId);' + "\n" +
+        '                }' + "\n" +
+        '            }, 500);' + "\n" +
+        '        }' + "\n" +
+        '    });' + "\n" +
+        '</script>' + "\n" +
+        '<script src="web/processing-1.4.8.min.js"></script>';
+    }
     script_container.html(script_string);
     if (config.blockly || config.blockly_only) {
         // Injection de HTML dans une iframe car besoin de plusieurs Blockly.
