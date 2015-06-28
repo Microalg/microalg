@@ -232,15 +232,15 @@ function inject_microalg_editor_in(elt_id, config) {
         script_string = script_string +
         '<div style="text-align:center;"><canvas id="' + processing_id + '" data-processing-sources="pde/microalg/microalg.pde"></canvas></div>' + "\n" +
         '<script>' + "\n" +
-        '    if (typeof processing_sketches == "undefined") {console.log("init");processing_sketches = {};}' + "\n" +
-        '    console.log(processing_sketches);' + "\n" +
-        '    var tId = 0;' + "\n" +
+        '    if (typeof processing_sketches == "undefined") processing_sketches = {};' + "\n" +
+        '    if (typeof processing_tIds == "undefined") processing_tIds = {};' + "\n" +
+        '    processing_tIds["' + processing_id + '"] = 0;' + "\n" +
         '    $(document).ready(function() {' + "\n" +
         '        if (!processing_sketches["' + processing_id + '"]) {' + "\n" +
-        '            tId = setInterval(function() {' + "\n" +
+        '            processing_tIds["' + processing_id + '"] = setInterval(function() {' + "\n" +
         '                processing_sketches["' + processing_id + '"] = Processing.getInstanceById("' + processing_id + '");' + "\n" +
         '                if (processing_sketches["' + processing_id + '"]) {' + "\n" +
-        '                    clearInterval(tId);' + "\n" +
+        '                    clearInterval(processing_tIds["' + processing_id + '"]);' + "\n" +
         '                }' + "\n" +
         '            }, 500);' + "\n" +
         '        }' + "\n" +
