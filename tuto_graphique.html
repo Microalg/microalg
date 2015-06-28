@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tuto graphique - MicroAlg</title>
+    <meta name="description"
+          content="Tutoriel en ligne pour MicroAlg." />
+    <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="web/jquery.min.js"><\/script>')</script>
+    <script src="emulisp/int.js" type="text/javascript"></script>
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+    <script type="text/javascript" src="web/ide_injections.js"></script>
+    <script type="text/javascript" src="web/parenedit.js"></script>
+    <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
+    <script src="web/showdown.js"></script>
+    <script src="web/showup.js"></script>
+    <link type="text/css" href="web/showup.css" rel="stylesheet" />
+    <link rel="icon" href="visuels/logo_microalg.ico" />
+</head>
+<body class="microalg">
+    <noscript>
+        <div style="color:#CC0000; text-align:center">
+        Besoin de JavaScript pour les exercices interactifs.
+        </div>
+    </noscript>
+    <div class="navbar">
+        <a href="./">accueil</a> :
+        <a href="#top">haut de page</a>
+    </div>
+    <h1 id="top">MicroAlg - Tutoriel graphique</h1>
+    <p><a href="#cercles">Commencer tout de suite</a>, sans lire
+    l’introduction.</p>
+    <p>Aller directement à :
+    <a href="#cercles">Cercles</a>,
+    <a href="#epaisseur">Épaisseur du trait</a>,
+    <a href="#couleurs">Couleurs</a>,
+    <a href="#autres-formes">Autres Formes</a>,
+    <a href="#tortue">La tortue</a>,
+    <a href="#contact">Contact</a>.
+    </p>
+
+    <h2 id="questce">Qu’est-ce ?</h2>
+    <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel"
+    class="wp">tutoriel</a>
+    pour les <strong>commandes graphiques</strong> de
+    <a href="http://microalg.info" class="offi">MicroAlg</a>.</p>
+    <p>Au cours de ce tutoriel, on vous proposera des petits programmes à
+    exécuter directement dans le navigateur. N’hésitez pas à les modifier afin
+    d’être sûre de comprendre le principe (si possible une modification
+    rigolote).</p>
+    <p>Avant de les exécuter, essayez de deviner ce qu’ils vont faire.</p>
+    <p><strong>Attention</strong> : Seules les commandes graphiques sont
+    étudiées ici. Pour faire de jolies choses, vous aurez sans doute besoin
+    de structures répétitives ou conditionnelles, de variables… Vous pouvez
+    les apprendres en suivant le <a href="tuto_blocs.html">premier
+    tutoriel</a>.</p>
+
+    <h2 id="contact">Contact</h2>
+    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
+    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
+    une idée lumineuse, merci de (au choix) :</p>
+    <ul>
+        <li>proposer une « pull request » en éditant directement
+            <a href="https://github.com/Microalg/Microalg/edit/master/tuto_graphique.html">ce fichier sur Github</a> ;</li>
+        <li>poster une « issue » sur
+            <a href="https://github.com/Microalg/Microalg/issues/new">Github</a> ;</li>
+        <li>poser une question dans
+            <a href="http://qr.microalg.info">la section Questions/Réponses</a> ;</li>
+        <li>envoyer <a href="mailto:profgra.org@gmail.com" class="email">un email
+            au créateur de MicroAlg</a>.</li>
+    </ul>
+
+    <h2 id="cercles"><a href="#cercles">: </a>Cercles</a></h2>
+    <p>Pourquoi ne pas commencer tout de suite ! Cliquez sur <code>OK</code>
+    et observez la zone blanche juste en dessous.</p>
+    <div id="script-cercle"></div>
+    <script>inject_microalg_editor_in('script-cercle', {
+     processing: true,
+     src:
+        '(Cercle (Liste 300 300) 100)'
+    });</script>
+    <p>Après avoir cliqué sur <code>OK</code>, un cercle devrait s’être affiché
+    dans la zone ci-dessus (sinon, suivre les instructions de
+    <a href="#contact">cette section</a>).</p>
+    <p>Expliquons maintenant cette ligne de code. Tout d’abord, si vous n’êtes
+    pas familier avec les parenthèses, il faut suivre
+    <a href="tuto.html">ce tutoriel</a>.</p>
+    <ul>
+      <li><code>(</code> commence une nouvelle instruction.</li>
+      <li><code>Cercle</code> définit le type de forme à dessiner.</li>
+      <li><code>(Liste 300 300)</code> définit le centre du cercle. Vous pouvez
+      modifier ces valeurs et recliquer sur <code>OK</code> pour voir où le
+      nouveau cercle va être dessiné. Notez que l’origine est dans le coin en
+      bas à gauche et que la taille de la fenêtre est 600×600.</li>
+      <li><code>100</code> définit le rayon du cercle à dessiner.</li>
+      <li><code>)</code> ferme l’instruction que la première parenthèse avait
+      ouverte.</li>
+    </ul>
+    <p>Dans un même programme, on peut dessiner plusieurs cercles :</p>
+    <div id="script-deux-cercles"></div>
+    <script>inject_microalg_editor_in('script-deux-cercles', {
+     processing: true,
+     src:
+        '(RAZ)\n' +
+        '(Cercle (Liste 300 300) 100)\n' +
+        '(Cercle (Liste 300 300) 200)\n' +
+        ''
+    });</script>
+    <p>La commande <code>(RAZ)</code> permet de <strong>R</strong>emettre
+    <strong>À</strong> <strong>Z</strong>éro la fenêtre graphique.</p>
+    <p>À vous de jouer : essayer de modifier le programme précédent pour qu’il
+    dessine votre visage avec des cercles.</p>
+    <p>Et avec quelques connaissances en algorithmique, il est déjà possible de
+    dessiner de jolies choses. Ça peut vous motiver à suivre
+    <a href="tuto.html">ce tutoriel</a> !</p>
+    <div id="script-des-cercles"></div>
+    <script>inject_microalg_editor_in('script-des-cercles', {
+     processing: true,
+     src:
+        '(Initialiser i 0)\n' +
+        '(Tant_que (<= i 250)\n' +
+        ' Faire\n' +
+        '    (Cercle (Liste (+ i 50) (+ i 50)) (* 2 i))\n' +
+        '    (Affecter_a i (+ i 5))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="epaisseur"><a href="#epaisseur">: </a>Épaisseur du trait</a></h2>
+    <p>Régler l’épaisseur du trait est très simple, il faut utiliser la
+    commande <code>Epaisseur</code> (sans accent). L’épaisseur sera définie
+    pour tous les traits qui seront tracés aprés son utilisation (ajoutez des
+    cercles avant et après pour le vérifier).</p>
+    <div id="script-epaisseur"></div>
+    <script>inject_microalg_editor_in('script-epaisseur', {
+     processing: true,
+     src:
+        '(Cercle (Liste 300 300) 100)\n' +
+        '(Epaisseur 5)\n' +
+        '(Cercle (Liste 300 300) 200)\n' +
+        ''
+    });</script>
+    <p>Encore une fois, avec un peu d’algorithmique, on peut dessiner vingt
+    cercles avec vingt épaisseurs différentes :</p>
+    <div id="script-epaisseurs-algo"></div>
+    <script>inject_microalg_editor_in('script-epaisseurs-algo', {
+     processing: true,
+     src:
+        '(Initialiser i 1)\n' +
+        '(Tant_que (<= i 20)\n' +
+        ' Faire\n' +
+        '    (Epaisseur i)\n' +
+        '    (Cercle (Liste 300 300) (^ (+ i 4) 2))\n' +
+        '    (Affecter_a i (+ i 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="couleurs"><a href="#couleurs">: </a>Couleurs</a></h2>
+    <p>Une couleur est une liste de trois ou quatre entiers pouvant aller de
+    0 à 255. Les trois premiers correspondent au <a class="wp"
+    href="https://fr.wikipedia.org/wiki/Rouge_vert_bleu">système RVB</a>, et
+    le quatrième correspond <a class="wp"
+    href="https://fr.wikipedia.org/wiki/Canal_alpha">au canal alpha</a>
+    (opacité). En résumé :</p>
+    <ul>
+      <li>le premier entier définit la quantité de <strong>rouge</strong>,</li>
+      <li>le deuxième de <strong>vert</strong>,</li>
+      <li>le troisième de <strong>bleu</strong>,</li>
+      <li>le quatrième (facultatif) définit <strong>l’opacité</strong> de la
+        couleur. Une opacité de zéro rendra la couleur totalement transparente.</li>
+    </ul>
+    <p>Pour gérer les couleurs, on utilise les commandes <code>Contour</code>
+    et <code>Remplissage</code>. Pourrez-vous deviner ce que va faire le
+    programme suivant ?</p>
+    <div id="script-couleurs"></div>
+    <script>inject_microalg_editor_in('script-couleurs', {
+     processing: true,
+     src:
+        '(Contour (Liste 255 0 0))\n' +
+        '(Remplissage (Liste 0 255 0))\n' +
+        '(Cercle (Liste 300 300) 100)\n' +
+        ''
+    });</script>
+    <p>Jouons maintenant avec la transparence. Dans le programme suivant, le
+    deuxième cercle (ou plutôt « disque » puisqu’il est rempli), avec sa
+    couleur opaque, va cacher le premier. En ajoutant une opacité de 127
+    (environ la moitié de 255) dans la liste donnée à la commande
+    <code>Remplissage</code>, nous pouvons rendre le rouge à moitié opaque
+    seulement, et le premier cercle va apparaître.</p>
+    <p>Cliquez sur <code>OK</code> pour observer l’opacité du rouge, puis
+    réessayez en remplaçant la deuxième ligne par :<br>
+    <code>(Remplissage (Liste 255 0 0 127))</code></p>
+    <div id="script-deux-cercles-alpha"></div>
+    <script>inject_microalg_editor_in('script-deux-cercles-alpha', {
+     processing: true,
+     src:
+        '(RAZ)\n' +
+        '(Cercle (Liste 300 300) 100)\n' +
+        '(Remplissage (Liste 255 0 0))\n' +
+        '(Cercle (Liste 300 300) 200)\n' +
+        ''
+    });</script>
+    <p>D’un autre côté, si le petit cercle avait été dessiné après, il aurait
+    été visible.</p>
+    <div id="script-deux-cercles-ordre"></div>
+    <script>inject_microalg_editor_in('script-deux-cercles-ordre', {
+     processing: true,
+     src:
+        '(Remplissage (Liste 255 0 0))\n' +
+        '(Cercle (Liste 300 300) 200)\n' +
+        '(Cercle (Liste 300 300) 100)\n' +
+        ''
+    });</script>
+    <p>Vous attendiez avec impatience une démonstration mettant en jeu des
+    couleurs et de l’algorithmique, la voici ! Cette triple boucle imbriquée
+    permet d’afficher 27 couleurs. Sur la sortie textuelle s’afficheront les
+    niveaux de couleurs en tant que listes d’entiers, et sur la sortie
+    graphique s’afficheront les couleurs en elles-mêmes.</p>
+    <div id="script-couleurs-algo"></div>
+    <script>inject_microalg_editor_in('script-couleurs-algo', {
+     processing: true,
+     src:
+        '(Definir (Position rouge vert bleu)\n' +
+        '    "Coordonnées du centre en fonction de la couleur."\n' +
+        '    "ProfGra"\n' +
+        '    (Retourner (Liste\n' +
+        '                   (+ (/ vert 2.5) (* rouge 1.3) 100)\n' +
+        '                   (+ (/ bleu 2.5) (* rouge 1.3) 100)\n' +
+        '               ))\n' +
+        ')\n' +
+        '(Contour (Liste 255 255 255))\n' +
+        '(Initialiser r 0)\n' +
+        '(Initialiser v 0)\n' +
+        '(Initialiser b 0)\n' +
+        '(Tant_que (<= r 255) Faire\n' +
+        '    (Tant_que (<= v 255) Faire\n' +
+        '        (Tant_que (<= b 255) Faire\n' +
+        '            (Afficher (Liste r v b))\n' +
+        '            (Remplissage (Liste r v b))\n' +
+        '            (Cercle (Position r v b) 50)\n' +
+        '            (Affecter_a b (+ b 127))\n' +
+        '        )\n' +
+        '        (Affecter_a b 0)\n' +
+        '        (Affecter_a v (+ v 127))\n' +
+        '    )\n' +
+        '    (Affecter_a v 0)\n' +
+        '    (Affecter_a r (+ r 127))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="autres-formes"><a href="#autres-formes">: </a>Autres formes</a></h2>
+    <div id="script-autres-formes"></div>
+    <script>inject_microalg_editor_in('script-autres-formes', {
+     processing: true,
+     src:
+        '(RAZ)\n' +
+        '(Cercle (Liste 200 400) 60)\n' +
+        '(Ellipse (Liste 200 400) 180 80)\n' +
+        '(Cercle (Liste 400 400) 60)\n' +
+        '(Ellipse (Liste 400 400) 180 80)\n' +
+        '(Rectangle (Liste 150 150) (Liste 450 170))\n' +
+        '(Segment (Liste 100 500) (Liste 280 480))\n' +
+        '(Segment (Liste 320 480) (Liste 500 500))\n' +
+        '(Triangle (Liste 250 250) (Liste 350 250) (Liste 300 350))\n' +
+        ''
+    });</script>
+    <p>Saurez-vous rajouter des instructions pour colorier ce visage ? Ou
+    même rajouter des éléments ?</p>
+    <p>Notez qu’un rectangle dessiné en premier et s’étendant sur toute la
+    fenêtre graphique permet de changer la couleur du fond.</p>
+
+    <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
+    <p>Une <a class="wp" href="https://fr.wikipedia.org/wiki/Logo_%28langage%29#Interface_graphique_:_la_tortue">tortue</a>
+    est disponible dans l’interface graphique, directement en utilisant les
+    cinq commandes :</p>
+    <ul>
+      <li><code>AV</code> pour avancer d’un certain nombre de pixels,</li>
+      <li><code>TG</code> pour tourner à gauche d’un certain angle en degrés,</li>
+      <li><code>TD</code> idem à droite,</li>
+      <li><code>LC</code> pour lever le crayon (et ne plus laisser de trace),</li>
+      <li><code>BC</code> pour baisser le crayon.</li>
+    </ul>
+    <p>Tant que la commande <code>RAZ</code> n’est pas appelée, la tortue
+    repart où elle s’était arrétée, et le dessin n’est pas effacé. Appuyez
+    plusieurs fois (au moins 12 !) sur le bouton <code>OK</code> ci-dessous et
+    observez la fenêtre graphique correspondante.</p>
+    <div id="script-tortue"></div>
+    <script>inject_microalg_editor_in('script-tortue', {
+     processing: true,
+     src:
+        '(AV 60)\n' +
+        '(TD 120)\n' +
+        '(AV 30)\n' +
+        '(LC)\n' +
+        '(AV 60)\n' +
+        '(TG 23)\n' +
+        '(BC)\n' +
+        ''
+    });</script>
+
+    <h2 id="fin">Fin</h2>
+    <p>Voilà, c’est fini. Si désormais vous cherchez une information, allez
+    voir directement la <a href="doc.html">documentation</a>.</p>
+    <p>Si cela vous a plu et que vous avez envie de créer votre propre
+    tutoriel, vous pouvez utiliser <a href="http://galerie.microalg.info">la galerie</a>.
+    Pour mettre MicroAlg en place sur votre propre site, voir
+    <a href="https://github.com/Microalg/Microalg/blob/latest/INSTALL.md">cette page</a>.</p>
+    <p>Si vous avez une remarque à faire, ou envie de contribuer, suivre les
+    instructions de <a href="#contact">cette section</a>.</p>
+    <p>Bonne continuation !</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+        $().showUp('.navbar', {
+            upClass: 'navbar-show',
+            downClass: 'navbar-hide'
+        });
+    </script>
+</body>
+</html>
