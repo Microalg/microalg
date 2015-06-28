@@ -245,8 +245,10 @@ function inject_microalg_editor_in(elt_id, config) {
         '            }, 500);' + "\n" +
         '        }' + "\n" +
         '    });' + "\n" +
-        '</script>' + "\n" +
-        '<script src="web/processing-1.4.8.min.js"></script>';
+        '</script>' + "\n";
+        if (typeof Processing == "undefined") {
+            script_string += '<script src="web/processing-1.4.8.min.js"></script>';
+        }
     }
     script_container.html(script_string);
     if (config.blockly || config.blockly_only) {
