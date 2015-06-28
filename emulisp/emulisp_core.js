@@ -1229,16 +1229,7 @@ var coreFunctions = {
 	"index": function(c) { var i = indx(evalLisp(c.car), evalLisp(c.cdr.car));
 		return (i === 0) ? NIL : new Number(i);
 	},
-	"js:eval": function(c) {
-        ////eval("console.log(cst.context.processing_elt);");
-        ////eval("console.log(processing_sketches);");
-        ////eval("console.log(processing_sketches[cst.context.processing_elt]);");
-        var src = valueToStr(evalLisp(c.car));
-        eval(src);
-        //console.log(src);
-        //window.eval.call(window, src);
-        return NIL;
-    },
+	"js:eval": function(c) { eval(valueToStr(evalLisp(c.car))); return NIL; },
 	"last": function(c, ex) {
 		if (!((x = evalLisp(ex.cdr.car)) instanceof Cell)) return x;
 		while (x.cdr instanceof Cell)
