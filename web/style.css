@@ -5,7 +5,7 @@ body.microalg {
     color: black;
     background-color: #D1D1D1;
 }
-.microalg p {
+.microalg p, li {
     line-height: 1.3em;
 }
 .microalg a:link {color:#337;}
