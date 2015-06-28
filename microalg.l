@@ -1595,7 +1595,7 @@ le premier étant stocké dans une variable.
     (let? Sock (connect "127.0.0.1" 12345)
       (out Sock (prinl cmd))
       (close Sock) )
-    (js:eval (pack "processing_sketches[canvas_id].interact('" cmd "');"))
+    (js:eval (pack "processing_sketches[cst.context.processing_elt].interact('" cmd "');"))
   )
 )
 (put 'RAZ 'doc
