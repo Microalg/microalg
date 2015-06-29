@@ -16,6 +16,7 @@
     <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
     <script src="web/showdown.js"></script>
     <script src="web/jquery.terminal-min.js"></script>
+    <script src="web/processing-1.4.8.min.js"></script>
     <link href="web/jquery.terminal.css" rel="stylesheet"/>
 </head>
 <body class="microalg">
@@ -33,6 +34,22 @@
         </div>
         <br>
         <div id="script-container" class="malg-container"></div>
+        <div style="text-align:center;"><canvas id="processing-canvas" data-processing-sources="pde/microalg/microalg.pde"></canvas></div>
+        <script>
+            var canvas_id = "processing-canvas";
+            var processing_sketches = {};
+            var tId = 0;
+            $(document).ready(function() {
+                if (!processing_sketches[canvas_id]) {
+                    tId = setInterval(function() {
+                        processing_sketches[canvas_id] = Processing.getInstanceById(canvas_id);
+                        if (processing_sketches[canvas_id]) {
+                            clearInterval(tId);
+                        }
+                    }, 500);
+                }
+            });
+        </script>
         &nbsp;
         <div id="repl-container" class="malg-container"></div>
         &nbsp;

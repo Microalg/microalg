@@ -11,11 +11,12 @@ Voir <http://microalg.info>.")
 (setq symboles '(
 "+" "-" "*" "/" "%" "**" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
+"AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
-"Concatener" "credit_iterations"
+"Cercle" "Concatener" "Contour" "credit_iterations"
 "Definir" "Demander"
-"En_position" "Entier@" "Et" "Exemples_de"
+"Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
 "Initialiser" "Initialiser@"
@@ -24,10 +25,10 @@ Voir <http://microalg.info>.")
 "Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
 "Ou"
 "Queue"
-"Retirer_de" "Retourner" "Rien"
+"Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
-"Si" "Sinon"
-"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Type"
+"Segment" "Si" "Sinon"
+"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Triangle" "Type"
 "Vide?" "Vrai" "Vrai?"
 ))
 
@@ -1587,3 +1588,180 @@ le premier étant stocké dans une variable.
         (pack "L’instruction `(/MicroAlg)` est une instruction fantôme.  ^J"
               "Merci de la supprimer, elle ne sert que pour la galerie  ^J"
               "(<http://galerie.microalg.info>).") ) )
+
+# Processing
+(de !processing (cmd)
+  (if (<> *EMUENV "browser")
+    (let? Sock (connect "127.0.0.1" 12345)
+      (out Sock (prinl cmd))
+      (close Sock) )
+    (js:eval (pack "processing_sketches[canvas_id].interact('" cmd "');"))
+  )
+)
+(put 'RAZ 'doc
+"Dans la sortie graphique, efface l’écran et repositionne la tortue.
+
+Exemple : `(RAZ)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de RAZ ()
+  (!processing "RAZ")
+)
+(put 'Contour 'doc
+"Dans la sortie graphique, permet de choisir la couleur du contour des tracés.
+
+Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Contour (couleur)
+  (!processing (pack "Contour "
+                     (Nieme couleur 1)
+                     " " (Nieme couleur 2)
+                     " " (Nieme couleur 3)
+                     (Si (= (Longueur couleur) 4)
+                      Alors (pack " " (Nieme couleur 4))
+                      Sinon "")
+  ))
+)
+(put 'Remplissage 'doc
+"Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.
+
+Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Remplissage (couleur)
+  (!processing (pack "Remplissage "
+                     (Nieme couleur 1)
+                     " " (Nieme couleur 2)
+                     " " (Nieme couleur 3)
+                     (Si (= (Longueur couleur) 4)
+                      Alors (pack " " (Nieme couleur 4))
+                      Sinon "")
+  ))
+)
+(put 'Epaisseur 'doc
+"Dans la sortie graphique, permet de choisir l’épaisseur des tracés, en pixels.
+
+Exemple : `(Epaisseur 5)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Epaisseur (epaisseur)
+  (!processing (pack "Epaisseur " epaisseur))
+)
+(put 'Segment 'doc
+"Dans la sortie graphique, trace un segment.
+
+Les deux paramètres sont les listes des coordonnées des deux extrémités
+du segment.
+
+Exemple : `(Segment (Liste 300 300) (Liste 450 600))`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Segment (point1 point2)
+  (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
+                                (Nieme point2 1) " " (Nieme point2 2)))
+)
+(put 'Cercle 'doc
+"Dans la sortie graphique, trace un cercle.
+
+Le premier paramètre est la liste des coordonnées du centre du cercle,  
+le second paramètre est le rayon du cercle.
+
+Exemple : `(Cercle (Liste 300 300) 100)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Cercle (centre rayon)
+  (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
+                     " " rayon))
+)
+(put 'Ellipse 'doc
+"Dans la sortie graphique, trace une ellipse.
+
+Le premier paramètre est la liste des coordonnées du centre de l’ellipse,  
+le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical.
+
+Exemple : `(Ellipse (Liste 300 300) 200 100)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Ellipse (centre rayon1 rayon2)
+  (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
+                     " " rayon1 " " rayon2))
+)
+(put 'Rectangle 'doc
+"Dans la sortie graphique, trace un rectangle.
+
+Les deux paramètres sont les listes des coordonnées des deux coins du rectangle.
+
+Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Rectangle (point1 point2)
+  (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
+                                  (Nieme point2 1) " " (Nieme point2 2)))
+)
+(put 'Triangle 'doc
+"Dans la sortie graphique, trace un triangle.
+
+Les trois paramètres sont les listes des coordonnées des sommets du triangle.
+
+Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de Triangle (point1 point2 point3)
+  (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
+                                 (Nieme point2 1) " " (Nieme point2 2) " "
+                                 (Nieme point3 1) " " (Nieme point3 2)))
+)
+
+# Tortue
+(put 'AV 'doc
+"Dans la sortie graphique, fait avancer la tortue.
+
+Le paramètre est le nombre de pixels que la tortue parcourt.
+
+Exemple : `(AV 100)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de AV (longueur)
+  (!processing (pack "AV " longueur))
+)
+(put 'TD 'doc
+"Dans la sortie graphique, fait tourner la tortue vers la droite.
+
+Le paramètre est l’angle de rotation en degrés.
+
+Exemple : `(TD 45)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de TD (angle)
+  (!processing (pack "TD " angle))
+)
+(put 'TG 'doc
+"Dans la sortie graphique, fait tourner la tortue vers la gauche.
+
+Le paramètre est l’angle de rotation en degrés.
+
+Exemple : `(TG 45)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de TG (angle)
+  (!processing (pack "TG " angle))
+)
+(put 'BC 'doc
+"Dans la sortie graphique, baisse le crayon de la tortue.
+
+Exemple : `(BC)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de BC ()
+  (!processing "BC")
+)
+(put 'LC 'doc
+"Dans la sortie graphique, lève le crayon de la tortue.
+
+Exemple : `(LC)`
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(de LC ()
+  (!processing "LC")
+)
