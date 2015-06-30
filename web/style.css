@@ -137,6 +137,9 @@ a.email:after {
     z-index: 120;
     background-color: #eee;
 }
+.microalg dt {
+    padding-top: 2em;
+}
 .microalg dt span {
     font-family: 'Courier New', Courier, monospace;
     border: 1px solid black;
