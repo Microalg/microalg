@@ -27,7 +27,7 @@ void reset() {
     background(#FFFFFF);
     strokeWeight(1);
     stroke(color(0, 0, 0));
-    fill(color(1, 0, 0, 0));  // color(0, 0, 0, 0) non transparent!!!
+    fill(0, 0, 0, 0);
     turtle = new Turtle();
 }
 
@@ -101,7 +101,7 @@ void interact(String data) {
         if (params.length == 5) {
             alpha = int(params[4]);
         }
-        fill(color(int(params[1]), int(params[2]), int(params[3]), alpha));
+        fill(int(params[1]), int(params[2]), int(params[3]), alpha);
     } else if (cmd.equals("Epaisseur")) {
         strokeWeight(int(params[1]));
     } else if (cmd.equals("Segment")) {
