@@ -50,7 +50,7 @@ Aller directement à :
     * [SciTE](#scite)
     * [Vim](#vim)
     * [Blockly](#blockly)
-    * [Sortie graphique](#sortiegraphique) et [Tortue](#tortue)
+    * [Sortie graphique](#sortiegraphique) et [Tortue](#tortue) (merci Processing)
 * [Remerciements](#remerciements)
 
 ## Avertissement
@@ -714,15 +714,12 @@ et [`>=`](#sym->=).
 
 ## Sortie graphique
 
-**Attention** : Cette fonctionnalité est encore expérimentale. Pour l’instant,
-
-* elle n’est pas disponible dans la galerie ;
-* les programmes qui permettent une sortie graphique ne peuvent pas être codés
-  avec les blocs de Blockly.
-
 Pour sa sortie graphique, MicroAlg utilise
 <a href="http://processing.org/" class="offi">Processing</a> et
 <a href="http://processingjs.org/" class="offi">Processing.js</a>.
+
+**Attention** : Pour l’instant, les programmes qui permettent une sortie
+graphique ne peuvent pas être codés avec les blocs de Blockly.
 
 Cette section est divisée en trois sous-sections, elles-mêmes subdivisées :
 
@@ -732,9 +729,6 @@ Cette section est divisée en trois sous-sections, elles-mêmes subdivisées :
         * [vous utilisez Windows](#vousutilisezwindows),
         * [vous n’utilisez pas Windows](#vousnutilisezpaswindows),
 * [utilisation des commandes graphiques](#utilisationdescommandesgraphiques),
-* [documentation technique](#documentationtechniquepourprocessing).
-    * [dans le navigateur](#documentationtechniquedanslenavigateur),
-    * [hors navigateur](#documentationtechniquehorsnavigateur),
 
 ### Mise en place de la sortie graphique
 
@@ -742,12 +736,12 @@ Cette section est divisée en trois sous-sections, elles-mêmes subdivisées :
 
 Tous les échantillons interactifs n’ont pas de fenêtre Processing. Suivant le
 contrôle que vous avez sur la page, vous pouvez ou non faire apparaître cette
-fenêtre, appelée la « sortie graphique ».
+fenêtre, appelée la « sortie graphique ». Deux possibilités :
 
-Dans la galerie, ce n’est pas encore possible.
-
-Sur votre propre site, il faut ajouter `processing: true` à l’appel de
-`inject_microalg_editor_in`.
+* Sur la galerie, il faut ajouter `"processing": true` à la configuration. Voir
+  [cette page](http://galerie.microalg.info/microalg:config_echantillons#processing).
+* Sur votre propre site, il faut ajouter `processing: true` à l’appel de
+  `inject_microalg_editor_in`.
 
 #### Hors navigateur
 
@@ -792,38 +786,83 @@ Avant de lire cette partie, assurez-vous d’avoir suivi le
 documentation d’une commande précise, une liste des symboles prédéfinis est
 disponible [ici](#listedessymbolesprdfinis).
 
-600×600
+**Attention** : les nombres flottants ne sont pas disponibles si vous
+lancez les commandes avec SciTE configuré sur `malg` ou `malg-j`.
 
-prévoir lien vers « sortie graphique », couleur, épaisseur
+#### Généralités
 
-Commandes spéciales :
+La fenêtre graphique est un carré de 600 pixels de côté. L’origine des
+coordonnées est dans le coin en bas à gauche.
 
-* BC LC AV TD TG (tortue section suivante)
-* couleurs et épaisseur
-* formes
+Les commandes dédiées à la sortie graphique sont :
 
-`Cercle` au lieu de `Disque` car pas de terme pour rectangle plein ou
-ellipse pleine.
+* formes géométriques
+    * `Segment`
+    * `Cercle` (et non `Disque` par soucis de cohérence avec les autres formes
+      qui n’ont pas de nom pour les formes correspondantes pleines)
+    * `Ellipse`
+    * `Rectangle`
+    * `Triangle`
+* couleurs
+    * `Contour`
+    * `Remplissage`
+* épaisseur
+    * `Epaisseur` (sans accent sur le E)
+* pour la tortue : `BC` `LC` `AV` `TD` `TG` (voir plus loin la
+  [section tortue](#tortue))
+* remise à zéro : `RAZ`
 
-Couleur: 4ème est canal alpha et facultatif
+Elles sont chacunes documentées en profondeur dans la
+[liste des symboles prédéfinis](#listedessymbolesprdfinis).
 
-### Documentation technique pour Processing
+#### Couleurs
 
-#### Documentation technique dans le navigateur
+Les deux commandes qui permettent de gérer les couleurs sont `Contour` et
+`Remplissage`, à qui on passe une couleur en paramètre. À partir de la ligne
+où une de ces commandes est utilisée, toutes les formes seront dessinées avec
+les couleurs choisies, jusqu’à un autre appel à `Contour` ou à `Remplissage`.
 
-#### Documentation technique hors navigateur
+Une couleur est une liste de trois ou quatre entiers pouvant aller de 0 à 255.
+Les trois premiers correspondent au système <a class="wp"
+href="https://fr.wikipedia.org/wiki/Rouge_vert_bleu">système RVB</a>, et
+le quatrième correspond au <a class="wp"
+href="https://fr.wikipedia.org/wiki/Canal_alpha">canal alpha</a> (opacité). 
+En résumé :
+
+* le premier entier définit la quantité de rouge,
+* le deuxième de vert,
+* le troisième de bleu,
+* le quatrième (facultatif) définit l’opacité de la couleur. Une opacité de
+  zéro rendra la couleur totalement transparente.
+
+Quelques exemples :
+
+* Le vert pur s’écrira `(Liste 0 255 0)`.
+* Le rouge pur semi-transparent s’écrira `(Liste 255 0 0 127)`
+
+#### Épaisseur
+
+L’épaisseur du tracé est gérée avec la commande `Epaisseur` (sans accent) à qui
+on passe un entier en paramètre. C’est le nombre de pixel de la largeur des
+traits.  À partir de la ligne cette commande est utilisée, toutes les formes
+seront dessinées avec l’épaisseur choisie, jusqu’à un autre appel à `Epaisseur`.
 
 ## Tortue
 
-L’affichage de la tortue est basé sur l’intégration de MicroAlg avec
-<a href="http://processing.org/" class="offi">Processing</a>, détaillée dans
-[la section précédente](#processing). Il est donc indispensable de maîtriser
-la sous-section [utilisation de Processing]
+L’affichage de la tortue est bien sûr graphique. Il est donc indispensable
+d’avoir lu la section sur la [mise en place](#miseenplacedelasortiegraphique)
+de la sortie graphique pour pouvoir utiliser la tortue.
 
-Tout passe par le même `pde/microalg.pde`, que ce soit avec l’interface web ou
-SciTE.
+Les commandes sont :
 
-(cmd arg1 arg2) proxy (!processing cmd_as_text)
+* `AV` pour avancer la tortue d’un certain nombre de pixels,
+* `TD` et `TG` pour faire tourner la tortue sur elle-même (angle en degrés),
+* `LC` et `BC` pour lever et baisser le crayon (la tortue ne laissera pas de
+  trace si son crayon est levé),
+* `RAZ` pour effacer le dessin et repositionner la tortue au centre et vers le
+  haut.
+
+Voir [cet exemple](tuto_graphique.html#tortue) dans le tutoriel graphique.
 
 ## Remerciements
 

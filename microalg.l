@@ -1612,7 +1612,8 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 
 Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#couleurs>.")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1628,7 +1629,8 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 
 Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#couleurs>.")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1721,7 +1723,8 @@ Le paramètre est le nombre de pixels que la tortue parcourt.
 
 Exemple : `(AV 100)`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#tortue>.")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
@@ -1732,7 +1735,8 @@ Le paramètre est l’angle de rotation en degrés.
 
 Exemple : `(TD 45)`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#tortue>.")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
@@ -1743,7 +1747,8 @@ Le paramètre est l’angle de rotation en degrés.
 
 Exemple : `(TG 45)`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#tortue>.")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
@@ -1752,7 +1757,8 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 
 Exemple : `(BC)`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#tortue>.")
 (de BC ()
   (!processing "BC")
 )
@@ -1761,7 +1767,8 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 
 Exemple : `(LC)`
 
-Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
+et <http://microalg.info/doc.html#tortue>.")
 (de LC ()
   (!processing "LC")
 )
