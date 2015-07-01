@@ -268,10 +268,24 @@
         '(Triangle (Liste 250 250) (Liste 350 250) (Liste 300 350))\n' +
         ''
     });</script>
-    <p>Saurez-vous rajouter des instructions pour colorier ce visage ? Ou
-    même rajouter des éléments ?</p>
-    <p>Notez qu’un rectangle dessiné en premier et s’étendant sur toute la
-    fenêtre graphique permet de changer la couleur du fond.</p>
+    <p>Saurez-vous rajouter des instructions pour colorier ce visage ?
+    Épaissir les sourcils ? Ou même rajouter des éléments ? Notez qu’un
+    rectangle dessiné en premier et s’étendant sur toute la fenêtre graphique
+    permet de changer la couleur du fond.</p>
+    <p>Un peu d’aide sur les formes :</p>
+    <ul>
+      <li><code>(Liste x y)</code> représente les coordonnées (x;y)</li>
+      <li><code>(Cercle (Liste x y) r)</code> dessine le cercle de centre
+        (x;y) de rayon r</li>
+      <li><code>(Ellipse (Liste x y) r1 r2)</code> dessine l’ellipse de centre
+        (x;y) de rayon horizontal x1 et de rayon vertical r2</li>
+      <li><code>(Rectangle (Liste x1 y1) (Liste x2 y2))</code> où (x1;y1) et
+        (x2;y2) sont les coordonnées de deux coins opposés du rectangle</li>
+      <li><code>(Segment (Liste x1 y1) (Liste x2 y2))</code> où (x1;y1) et
+        (x2;y2) sont les coordonnées des extrémités du segment</li>
+      <li><code>(Triangle (Liste x1 y1) (Liste x2 y2) (Liste x3 y3))</code> où
+      (x1;y1), (x2;y2) et (x3;y3) sont les coordonnées des sommets du triangle</li>
+    </ul>
 
     <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
     <p>Une <a class="wp" href="https://fr.wikipedia.org/wiki/Logo_%28langage%29#Interface_graphique_:_la_tortue">tortue</a>
