@@ -1604,6 +1604,7 @@ le premier étant stocké dans une variable.
 Exemple : `(RAZ)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'RAZ 'text "Commande `RAZ`.")
 (de RAZ ()
   (!processing "RAZ")
 )
@@ -1614,6 +1615,7 @@ Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
+(put 'Contour 'text "Commande `Contour`.")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1631,6 +1633,7 @@ Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
+(put 'Remplissage 'text "Commande `Remplissage`.")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1647,6 +1650,7 @@ et <http://microalg.info/doc.html#couleurs>.")
 Exemple : `(Epaisseur 5)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Epaisseur 'text "Commande `Epaisseur`.")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
 )
@@ -1659,6 +1663,7 @@ du segment.
 Exemple : `(Segment (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Segment 'text "Commande `Segment`.")
 (de Segment (point1 point2)
   (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
                                 (Nieme point2 1) " " (Nieme point2 2)))
@@ -1672,6 +1677,7 @@ le second paramètre est le rayon du cercle.
 Exemple : `(Cercle (Liste 300 300) 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Cercle 'text "Commande `Cercle`.")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon))
@@ -1685,6 +1691,7 @@ le deuxième paramètre est le rayon horizontal, le troisième le rayon vertical
 Exemple : `(Ellipse (Liste 300 300) 200 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Ellipse 'text "Commande `Ellipse`.")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon1 " " rayon2))
@@ -1697,6 +1704,7 @@ Les deux paramètres sont les listes des coordonnées des deux coins du rectangl
 Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Rectangle 'text "Commande `Rectangle`.")
 (de Rectangle (point1 point2)
   (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                   (Nieme point2 1) " " (Nieme point2 2)))
@@ -1709,6 +1717,7 @@ Les trois paramètres sont les listes des coordonnées des sommets du triangle.
 Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Triangle 'text "Commande `Triangle`.")
 (de Triangle (point1 point2 point3)
   (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                  (Nieme point2 1) " " (Nieme point2 2) " "
@@ -1725,6 +1734,7 @@ Exemple : `(AV 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
+(put 'AV 'text "Commande `AV` (avance).")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
 )
@@ -1737,6 +1747,7 @@ Exemple : `(TD 45)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
+(put 'TD 'text "Commande `TD` (tourne à droite).")
 (de TD (angle)
   (!processing (pack "TD " angle))
 )
@@ -1749,6 +1760,7 @@ Exemple : `(TG 45)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
+(put 'TG 'text "Commande `TG` (tourne à gauche).")
 (de TG (angle)
   (!processing (pack "TG " angle))
 )
@@ -1759,6 +1771,7 @@ Exemple : `(BC)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
+(put 'BC 'text "Commande `BC` (baisse crayon).")
 (de BC ()
   (!processing "BC")
 )
@@ -1769,6 +1782,7 @@ Exemple : `(LC)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
+(put 'LC 'text "Commande `LC` (lève crayon).")
 (de LC ()
   (!processing "LC")
 )
