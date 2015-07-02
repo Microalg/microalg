@@ -1336,7 +1336,7 @@ Voir la commande `Exemples_de`.")
 
 # Prédicats
 (put 'Vrai? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
 et `Faux` sinon.
 
     : (Vrai? Vrai)
@@ -1347,7 +1347,7 @@ et `Faux` sinon.
 (put 'Vrai? 'text "Prédicat `Vrai?`.")
 (de Vrai? (x) (if (!boolM2P (= x Vrai)) Vrai Faux))
 (put 'Faux? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
 et `Faux` sinon.
 
     : (Faux? Faux)
@@ -1358,7 +1358,7 @@ et `Faux` sinon.
 (put 'Faux? 'text "Prédicat `Faux?`.")
 (de Faux? (x) (if (!boolM2P (= x Faux)) Vrai Faux))
 (put 'Texte? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est du texte,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est du texte,
 et `Faux` sinon.
 
     : (Texte? 42)
@@ -1389,7 +1389,7 @@ et `Faux` sinon.
   )
 )
 (put 'Nombre? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
 et `Faux` sinon.
 
     : (Nombre? \"42\")
@@ -1400,7 +1400,7 @@ et `Faux` sinon.
 (put 'Nombre? 'text "Prédicat `Nombre?`.")
 (de Nombre? (x) (if (num? x) Vrai Faux))
 (put 'Booleen? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
 et `Faux` sinon.
 
     : (Booleen? Faux)
@@ -1411,7 +1411,7 @@ et `Faux` sinon.
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 (put 'Liste? 'doc
-"Prédicat retournant `Vrai` si la valeur de son argument est une liste,
+"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est une liste,
 et `Faux` sinon.
 
     : (Liste? (Liste 1 3 5 7))
