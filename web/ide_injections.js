@@ -229,6 +229,9 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div class="malg-error"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     if (config.processing) {
+        if (typeof Processing == "undefined") {
+            script_string += '<script src="web/processing-1.4.8.min.js"></script>';
+        }
         script_string = script_string +
         '<div style="text-align:center;"><canvas id="' + processing_id + '" data-processing-sources="pde/microalg/microalg.pde"></canvas></div>' + "\n" +
         '<script>' + "\n" +
@@ -246,9 +249,6 @@ function inject_microalg_editor_in(elt_id, config) {
         '        }' + "\n" +
         '    });' + "\n" +
         '</script>' + "\n";
-        if (typeof Processing == "undefined") {
-            script_string += '<script src="web/processing-1.4.8.min.js"></script>';
-        }
     }
     script_container.html(script_string);
     if (config.blockly || config.blockly_only) {
