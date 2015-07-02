@@ -11,6 +11,7 @@ Voir <http://microalg.info>.")
 (setq symboles '(
 "+" "-" "*" "/" "%" "**" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
+"1000Cosinus" "1000Sinus"
 "AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
@@ -1799,4 +1800,49 @@ et <http://microalg.info/doc.html#tortue>.")
 (de LC ()
   (!processing "LC")
   Rien
+)
+
+# Fonctions numériques
+(setq !valeurs_trigo '(
+  1000 999 999 998 997 996 994 992 990 987 984 981 978 974 970 965 961 956 951
+   945 939 933 927 920 913 906 898 891 882 874 866 857 848 838 829 819 809 798
+   788 777 766 754 743 731 719 707 694 681 669 656 642 629 615 601 587 573 559
+   544 529 515 500 484 469 453 438 422 406 390 374 358 342 325 309 292 275 258
+   241 224 207 190 173 156 139 121 104 87 69 52 34 17 0
+))
+(put '1000Cosinus 'doc
+"Retourne un entier proche de 1000 fois le cosinus de l’angle donné en paramètre.
+
+L’angle doit être fourni en degrés.
+
+    : (1000Cosinus 30)
+    -> 866
+")
+(put '1000Cosinus 'text "Commande `1000Cosinus`.")
+(de 1000Cosinus (!angle)
+  (cond
+    ((lt0 !angle) (1000Cosinus (- angle)))
+    ((gt0 (- !angle 360)) (1000Cosinus (% !angle 360)))
+    ((gt0 (- !angle 180)) (- (1000Cosinus (- !angle 180))))
+    ((gt0 (- !angle 90)) (- (1000Sinus (- !angle 90))))
+    (T (car (nth !valeurs_trigo (+ !angle 1))))
+  )
+)
+(put '1000Sinus 'doc
+"Retourne un entier proche de 1000 fois le sinus de l’angle donné en paramètre.
+
+L’angle doit être fourni en degrés.
+
+    : (1000Sinus 30)
+    -> 500
+")
+(put '1000Sinus 'text "Commande `1000Sinus`.")
+(de 1000Sinus (!angle)
+  (cond
+    ((lt0 !angle) (1000Sinus (- angle)))
+    ((gt0 (- !angle 360)) (1000Sinus (% !angle 360)))
+    ((gt0 (- !angle 180)) (- (1000Sinus (- !angle 180))))
+    ((gt0 (- !angle 90)) (1000Cosinus (- !angle 90)))
+    (T (car (nth !valeurs_trigo (- 91 !angle))))
+  )
 )
