@@ -95,11 +95,11 @@
         </div>
     </div>
     <script>
-        onload = function () {
             // Éditeur:
             inject_microalg_editor_in('script-container',
                 {src: '(Afficher "Bonjour tout le monde !")',
                  blockly: true,
+                 processing: true,
                  localStorage: true});
             // Focus et curseur final dans l’éditeur:
             var txtarea = $('#script-container').find('.malg-editor').first();
@@ -114,7 +114,6 @@
             inject_microalg_jrepl_in('repl-container2',
                 ': # Voici la console interactive de MicroAlg.\n' +
                 ': # <- le # indique que la fin de la ligne est un commentaire.');
-        }
     </script>
 </body>
 </html>
