@@ -1607,6 +1607,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'RAZ 'text "Commande `RAZ`.")
 (de RAZ ()
   (!processing "RAZ")
+  Rien
 )
 (put 'Contour 'doc
 "Dans la sortie graphique, permet de choisir la couleur du contour des tracés.
@@ -1625,6 +1626,7 @@ et <http://microalg.info/doc.html#couleurs>.")
                       Alors (pack " " (Nieme couleur 4))
                       Sinon "")
   ))
+  Rien
 )
 (put 'Remplissage 'doc
 "Dans la sortie graphique, permet de choisir la couleur du remplissage des tracés.
@@ -1643,6 +1645,7 @@ et <http://microalg.info/doc.html#couleurs>.")
                       Alors (pack " " (Nieme couleur 4))
                       Sinon "")
   ))
+  Rien
 )
 (put 'Epaisseur 'doc
 "Dans la sortie graphique, permet de choisir l’épaisseur des tracés, en pixels.
@@ -1653,6 +1656,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Epaisseur 'text "Commande `Epaisseur`.")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
+  Rien
 )
 (put 'Segment 'doc
 "Dans la sortie graphique, trace un segment.
@@ -1667,6 +1671,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (de Segment (point1 point2)
   (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
                                 (Nieme point2 1) " " (Nieme point2 2)))
+  Rien
 )
 (put 'Cercle 'doc
 "Dans la sortie graphique, trace un cercle.
@@ -1681,6 +1686,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon))
+  Rien
 )
 (put 'Ellipse 'doc
 "Dans la sortie graphique, trace une ellipse.
@@ -1695,6 +1701,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
                      " " rayon1 " " rayon2))
+  Rien
 )
 (put 'Rectangle 'doc
 "Dans la sortie graphique, trace un rectangle.
@@ -1708,6 +1715,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (de Rectangle (point1 point2)
   (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                   (Nieme point2 1) " " (Nieme point2 2)))
+  Rien
 )
 (put 'Triangle 'doc
 "Dans la sortie graphique, trace un triangle.
@@ -1722,6 +1730,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
   (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                  (Nieme point2 1) " " (Nieme point2 2) " "
                                  (Nieme point3 1) " " (Nieme point3 2)))
+  Rien
 )
 
 # Tortue
@@ -1737,6 +1746,7 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'AV 'text "Commande `AV` (avance).")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
+  Rien
 )
 (put 'TD 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la droite.
@@ -1750,6 +1760,7 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'text "Commande `TD` (tourne à droite).")
 (de TD (angle)
   (!processing (pack "TD " angle))
+  Rien
 )
 (put 'TG 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la gauche.
@@ -1763,6 +1774,7 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'TG 'text "Commande `TG` (tourne à gauche).")
 (de TG (angle)
   (!processing (pack "TG " angle))
+  Rien
 )
 (put 'BC 'doc
 "Dans la sortie graphique, baisse le crayon de la tortue.
@@ -1774,6 +1786,7 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'BC 'text "Commande `BC` (baisse crayon).")
 (de BC ()
   (!processing "BC")
+  Rien
 )
 (put 'LC 'doc
 "Dans la sortie graphique, lève le crayon de la tortue.
@@ -1785,4 +1798,5 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'LC 'text "Commande `LC` (lève crayon).")
 (de LC ()
   (!processing "LC")
+  Rien
 )
