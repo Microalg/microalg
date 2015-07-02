@@ -1573,6 +1573,7 @@ Cette commande s’utilise surtout en calculant la différence entre deux appels
 le premier étant stocké dans une variable.
 
 ")
+(put 'Millisecondes 'text "Commande `Millisecondes`.")
 (de Millisecondes (!rien_ici)
   (if !rien_ici (quit "`Millisecondes` ne prend pas de paramètre."))
   (/ (usec) 1000) )
