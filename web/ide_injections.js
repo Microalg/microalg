@@ -233,7 +233,11 @@ function inject_microalg_editor_in(elt_id, config) {
             script_string += '<script src="' + root_path + 'web/processing-1.4.8.min.js"></script>';
         }
         script_string = script_string +
-        '<div style="text-align:center;"><canvas id="' + processing_id + '" data-processing-sources="' + root_path + 'pde/microalg/microalg.pde"></canvas></div>' + "\n" +
+        '<div style="text-align:center;">' +
+        '    <canvas id="' + processing_id + '"' +
+        '            data-processing-sources="' + root_path + 'pde/microalg/microalg.pde">' +
+        '    </canvas>' +
+        '</div>' + "\n" +
         '<script>' + "\n" +
         '    if (typeof processing_sketches == "undefined") processing_sketches = {};' + "\n" +
         '    if (typeof processing_tIds == "undefined") processing_tIds = {};' + "\n" +
