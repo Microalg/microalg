@@ -84,6 +84,9 @@ body.microalg {
     margin: 0px;
     margin-left: 3px;
 }
+.malg-sketch {
+    border: solid 1px;
+}
 .microalg .terminal, .microalg .cmd {
     width: 93%;
     margin: 0px auto;

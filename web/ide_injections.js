@@ -235,6 +235,7 @@ function inject_microalg_editor_in(elt_id, config) {
         script_string = script_string +
         '<div style="text-align:center;">' +
         '    <canvas id="' + processing_id + '"' +
+        '            class="malg-sketch"' +
         '            data-processing-sources="' + root_path + 'pde/microalg/microalg.pde">' +
         '    </canvas>' +
         '</div>' + "\n" +
