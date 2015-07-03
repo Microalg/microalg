@@ -1593,11 +1593,16 @@ le premier étant stocké dans une variable.
 
 # Processing
 (de !processing (cmd)
-  (if (<> *EMUENV "browser")
-    (let? Sock (connect "127.0.0.1" 12345)
-      (out Sock (prinl cmd))
-      (close Sock) )
-    (js:eval (pack "processing_sketches[cst.context.processing_elt].interact('" cmd "');"))
+  (cond
+    ((not (<> *EMUENV "browser"))
+       (js:eval
+         (pack "processing_sketches[cst.context.processing_elt].interact('"
+               cmd "');")) )
+    ((not *EMUENV)
+       (let? Sock (connect "127.0.0.1" 12345)
+         (out Sock (prinl cmd))
+         (close Sock) ) )
+    (T (quit "Impossible d’utiliser la sortie graphique avec `malg-njs` ou `malg-rjs`."))
   )
 )
 (put 'RAZ 'doc
