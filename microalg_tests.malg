@@ -227,6 +227,17 @@
             '(= 332 (prog (Initialiser@ 0) (Entier@ 0 1000)))
             '(= 0 (Nieme@ (Liste 0)))
             '(= "a" (Nieme@ "a"))
+            # Fonctions maths
+            '(=  866 (1000Cosinus  30))
+            '(= -866 (1000Cosinus 150))
+            '(= -866 (1000Cosinus 210))
+            '(=  866 (1000Cosinus -30))
+            '(=  866 (1000Cosinus 390))
+            '(=  500 (1000Sinus  30))
+            '(=  500 (1000Sinus 150))
+            '(= -500 (1000Sinus 210))
+            '(= -500 (1000Sinus -30))
+            '(=  500 (1000Sinus 390))
         ) )
 
 (let (Goods 0 Bads 0)
