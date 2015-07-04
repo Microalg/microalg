@@ -1827,7 +1827,7 @@ L’angle doit être fourni en degrés.
 (put '1000Cosinus 'text "Commande `1000Cosinus`.")
 (de 1000Cosinus (!angle)
   (cond
-    ((lt0 !angle) (1000Cosinus (- angle)))
+    ((lt0 !angle) (1000Cosinus (- !angle)))
     ((gt0 (- !angle 360)) (1000Cosinus (% !angle 360)))
     ((gt0 (- !angle 180)) (- (1000Cosinus (- !angle 180))))
     ((gt0 (- !angle 90)) (- (1000Sinus (- !angle 90))))
@@ -1845,7 +1845,7 @@ L’angle doit être fourni en degrés.
 (put '1000Sinus 'text "Commande `1000Sinus`.")
 (de 1000Sinus (!angle)
   (cond
-    ((lt0 !angle) (1000Sinus (- angle)))
+    ((lt0 !angle) (- (1000Sinus (- !angle))))
     ((gt0 (- !angle 360)) (1000Sinus (% !angle 360)))
     ((gt0 (- !angle 180)) (- (1000Sinus (- !angle 180))))
     ((gt0 (- !angle 90)) (1000Cosinus (- !angle 90)))
