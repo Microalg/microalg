@@ -12,7 +12,7 @@ Aller directement à :
         * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.3.16/microalg_0.3.16.zip)
           correspondant aux instructions
 * Autre (sauf Mac) :
-    * [édition avec SciTE](#scite)
+    * [édition avec SciTE](#scite-1)
 * Android :
     * [page Google Play](https://play.google.com/store/apps/details?id=info.microalg.android)
 * [Installer sur son site](#installer-sur-son-site)
@@ -52,7 +52,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * Windows
         * simple utilisateur
             * dans un navigateur, mais utilisation possible sans connexion
-            * [édition avec SciTE, exécution avec Java](#scite-avec-java)
+            * [édition avec SciTE, exécution avec Java](#scite)
         * utilisateur avancé
             * les mêmes
             * le vrai PicoLisp dans Cygwin
@@ -62,7 +62,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * [Application Android](https://play.google.com/store/apps/details?id=info.microalg.android)
     * Autre
         * dans un navigateur, mais utilisation possible sans connexion
-        * [édition avec SciTE, exécution avec PicoLisp](#scite)
+        * [édition avec SciTE, exécution avec PicoLisp](#scite-1)
         * avec le vrai PicoLisp (C et assembleur)
         * avec Ersatz (Java)
         * avec EmuLisp (NodeJS)
