@@ -185,10 +185,42 @@
         '(Cercle (Liste 300 300) 100)\n' +
         ''
     });</script>
+    <p><strong>Attention</strong> : les formes s’empilent au fur et à mesure
+    que le dessin progresse. Ici, le dernier cercle (ou plutôt « disque »
+    puisqu’il est rempli) est le seul à être visible en entier :</p>
+    <div id="script-cercles-sans-alpha"></div>
+    <script>inject_microalg_editor_in('script-cercles-sans-alpha', {
+     processing: true,
+     src:
+        '(RAZ)\n' +
+        '(Remplissage (Liste 255 0 0))\n' +
+        '(Cercle (Liste 300 350) 120)\n' +
+        '(Remplissage (Liste 0 255 0))\n' +
+        '(Cercle (Liste 257 275) 120)\n' +
+        '(Remplissage (Liste 0 0 255))\n' +
+        '(Cercle (Liste 343 275) 120)\n' +
+        ''
+    });</script>
+    <p>Mais si on rend les couleurs à moitié transparentes en ajoutant un
+    quatrième entier comme 127 (environ la moitié de 255) à la liste définissant
+    chaque couleur, on voit ceci :</p>
+    <div id="script-cercles-avec-alpha"></div>
+    <script>inject_microalg_editor_in('script-cercles-avec-alpha', {
+     processing: true,
+     src:
+        '(RAZ)\n' +
+        '(Remplissage (Liste 255 0 0 127))\n' +
+        '(Cercle (Liste 300 350) 120)\n' +
+        '(Remplissage (Liste 0 255 0 127))\n' +
+        '(Cercle (Liste 257 275) 120)\n' +
+        '(Remplissage (Liste 0 0 255 127))\n' +
+        '(Cercle (Liste 343 275) 120)\n' +
+        ''
+    });</script>
     <p>Jouons maintenant avec la transparence. Dans le programme suivant, le
-    deuxième cercle (ou plutôt « disque » puisqu’il est rempli), avec sa
-    couleur opaque, va cacher le premier. En ajoutant une opacité de 127
-    (environ la moitié de 255) dans la liste donnée à la commande
+    deuxième cercle (ou plutôt « disque »), avec sa couleur opaque, va cacher
+    le premier. En ajoutant une opacité de 127 (environ la moitié de 255) dans
+    la liste donnée à la commande
     <code>Remplissage</code>, nous pouvons rendre le rouge à moitié opaque
     seulement, et le premier cercle va apparaître.</p>
     <p>Cliquez sur <code>OK</code> pour observer l’opacité du rouge, puis
