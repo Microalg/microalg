@@ -725,60 +725,25 @@ Pour sa sortie graphique, MicroAlg utilise
 **Attention** : Pour l’instant, les programmes qui permettent une sortie
 graphique ne peuvent pas être codés avec les blocs de Blockly.
 
-Cette section est divisée en trois sous-sections, elles-mêmes subdivisées :
-
-* [mise en place de la sortie graphique](#miseenplacedelasortiegraphique),
-    * [dans le navigateur](#danslenavigateur),
-    * [hors navigateur](#horsnavigateur),
-        * [vous utilisez Windows](#vousutilisezwindows),
-        * [vous n’utilisez pas Windows](#vousnutilisezpaswindows),
-* [utilisation des commandes graphiques](#utilisationdescommandesgraphiques),
-
 ### Mise en place de la sortie graphique
 
-#### Dans le navigateur
+Pour l’installation de Processing sur votre plateforme, se reporter à
+[cette page](https://github.com/Microalg/microalg/blob/latest/INSTALL.md).
+Cette installation est nécessaire uniquement si vous utilisez MicroAlg avec
+l’éditeur de texte SciTE.
+Processing n’a pas besoin d’être installé si vous utilisez la galerie, et est
+fourni dans l’archive si vous installez MicroAlg sur votre site.
 
-Tous les échantillons interactifs n’ont pas de fenêtre Processing. Suivant le
-contrôle que vous avez sur la page, vous pouvez ou non faire apparaître cette
-fenêtre, appelée la « sortie graphique ». Deux possibilités :
+Pour faire apparaître la fenêtre graphique :
 
-* Sur la galerie, il faut ajouter `"processing": true` à la configuration. Voir
-  [cette page](http://galerie.microalg.info/microalg:config_echantillons#processing).
-* Sur votre propre site, il faut ajouter `processing: true` à l’appel de
-  `inject_microalg_editor_in`.
-
-#### Hors navigateur
-
-**Attention** : les nombres flottants ne sont pas disponibles.
-
-##### Vous utilisez Windows
-
-* Télécharger Processing depuis [cette page](https://processing.org/download/)
-  dans la version qui correspond à votre machine (64 ou 32 bits).
-* Désarchiver.
-* Renommer le dossier obtenu en `processing`.
-* Déplacer le dossier obtenu dans votre installation de MicroAlg.
-* Au final, le fichier `processing-java.exe` doit avoir pour chemin relatif :  
-  `microalg/processing/processing-java.exe`.
-* Démarrer la fenêtre graphique en double-cliquant sur  
-  `microalg/start_processing.bat`.
-* Démarrer SciTE, puis dans le menu **View** puis **Parameters**, indiquer
-  `malg-j` au lieu de `malg-njs`.
-* Dans SciTE, ouvrir le fichier `exemples/test_algues.malg` et l’exécuter en
-  appuyant sur `F5`.
-
-##### Vous n’utilisez pas Windows
-
-* Installer Processing quelque part et ajouter `processing-java` au *PATH*.
-    * Si vous n’utilisez pas le JDK de Sun, tapez ceci depuis votre installation
-      de Processing :
-        * `mv java java-from-processing`
-        * `ln -s /usr/lib/jvm/j2sdk1.7-oracle java`
-* Démarrer la fenêtre graphique grâce à `microalg/start_processing.sh`
-* Démarrer SciTE, puis dans le menu **View** puis **Parameters**, indiquer
-  `malg-j` (ou `malg` si vous êtes au top) au lieu de `malg-njs`.
-* Dans SciTE, ouvrir le fichier `exemples/test_algues.malg` et l’exécuter en
-  appuyant sur `F5`.
+* Sur la galerie, ajouter `"processing": true` à la configuration de votre
+  échantillon (voir
+  [cette page](http://galerie.microalg.info/microalg:config_echantillons)).
+* Si vous utilisez MicroAlg avec l’éditeur de texte SciTE, lancer
+    * `start_processing.bat` (Windows)
+    * `start_processing.sh` (le reste)
+* Si vous avez installé MicroAlg sur votre site, ajouter `processing: true` à
+  l’appel de `inject_microalg_editor_in`.
 
 ### Utilisation des commandes graphiques
 

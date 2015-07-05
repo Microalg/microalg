@@ -200,6 +200,22 @@ props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
 
+Pour la sortie graphique :
+
+* Télécharger Processing depuis [cette page](https://processing.org/download/)
+  dans la version qui correspond à votre machine (64 ou 32 bits).
+* Désarchiver.
+* Renommer le dossier obtenu en `processing`.
+* Déplacer le dossier obtenu dans votre installation de MicroAlg.
+* Au final, le fichier `processing-java.exe` doit avoir pour chemin relatif :  
+  `microalg/processing/processing-java.exe`.
+* Démarrer la fenêtre graphique en double-cliquant sur  
+  `microalg/start_processing.bat`.
+* Démarrer SciTE, puis dans le menu **View** puis **Parameters**, indiquer
+  `malg-j` au lieu de `malg-rjs`.
+* Dans SciTE, ouvrir le fichier `exemples/test_algues.malg` et l’exécuter en
+  appuyant sur `F5`.
+
 ### Autre
 
 #### Hors ligne
@@ -271,6 +287,19 @@ avec le bon numéro de `version` bien sûr.
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
   programme, il faudra taper sur `F5`.
 
+Pour la sortie graphique :
+
+* Installer Processing quelque part et ajouter `processing-java` au *PATH*.
+    * Si vous n’utilisez pas le JDK de Sun, tapez ceci depuis votre installation
+      de Processing :
+        * `mv java java-from-processing`
+        * `ln -s /usr/lib/jvm/j2sdk1.7-oracle java`
+* Démarrer la fenêtre graphique grâce à `microalg/start_processing.sh`
+* Démarrer SciTE, puis dans le menu **View** puis **Parameters**, indiquer
+  `malg-j` (ou `malg` si vous êtes au top) au lieu de `malg-njs`.
+* Dans SciTE, ouvrir le fichier `exemples/test_algues.malg` et l’exécuter en
+  appuyant sur `F5`.
+
 ##### Version longue pour les confirmés
 
 * MicroAlg
@@ -330,6 +359,20 @@ avec le bon numéro de `version` bien sûr.
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
   programme, il faudra taper sur `F5`.
+
+Pour la sortie graphique :
+
+* Installer Processing quelque part et ajouter `processing-java` au *PATH*.
+    * Si vous n’utilisez pas le JDK de Sun, tapez ceci depuis votre installation
+      de Processing :
+        * `mv java java-from-processing`
+        * `ln -s /usr/lib/jvm/j2sdk1.7-oracle java`
+* Démarrer la fenêtre graphique grâce à `microalg/start_processing.sh`
+* Démarrer SciTE, puis dans le menu **View** puis **Parameters**, indiquer
+  `malg-j` (ou `malg` si vous êtes au top) au lieu de `malg-njs`.
+* Dans SciTE, ouvrir le fichier `exemples/test_algues.malg` et l’exécuter en
+  appuyant sur `F5`.
+
 
 #### En ligne de commande
 
