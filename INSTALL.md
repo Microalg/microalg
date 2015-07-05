@@ -187,7 +187,11 @@ Vous pouvez télécharger le résultat des instructions suivantes
   Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite).
 * L’implémentation par défaut est lente. Si vous n’utilisez que des nombres
-  entiers, allez dans `editeurs/scite/microalg.lua` et changez
+  entiers, vous pouvez utiliser une version de MicroAlg sans nombres à virgule,
+  mais plus rapide. Pour cela, allez dans le menu **View** puis **Parameters**,
+  indiquer `malg-j` au lieu de `malg-rjs`.  
+  Pour une configuration permanente, allez dans `editeurs/scite/microalg.lua`
+  et changez
   <pre><code>-- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-j-scite.bat $(FilePath)"
 -- props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-njs-scite.bat $(FilePath)"
 props["command.go.*.malg"] = "$(SciteDefaultHome)\\malg-rjs-scite.bat $(FilePath)"</code></pre>
@@ -311,7 +315,10 @@ avec le bon numéro de `version` bien sûr.
         * PicoLisp (il faut pour l’instant une installation « à la main », voir
           le fichier `install_scripts/install_picolisp.sh`).
         * NodeJS.
-    * Une fois l’implémentation choisie, il faudra ajuster le fichier
+    * Une fois l’implémentation choisie, il faut paramétrer SciTE pour qu’il
+      utilise la bonne. Pour cela, allez dans le menu **View** puis
+      **Parameters** et indiquer `malg`, `malg-j`, `malg-njs` ou `malg-rjs`.  
+      Pour une configuration permanente, il faudra ajuster le fichier
       `editeurs/scite/microalg.lua` en conséquence. Il suffit de commenter ou
       décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
       vers :
