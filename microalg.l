@@ -1692,7 +1692,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Cercle 'text "Commande `Cercle`.")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
-                     " " rayon))
+                     " " (* 2 rayon)))
   Rien
 )
 (put 'Ellipse 'doc
@@ -1707,7 +1707,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Ellipse 'text "Commande `Ellipse`.")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
-                     " " rayon1 " " rayon2))
+                     " " (* 2 rayon1) " " (* 2 rayon2)))
   Rien
 )
 (put 'Rectangle 'doc
