@@ -230,7 +230,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     if (config.processing) {
         if (typeof Processing == "undefined") {
-            script_string += '<script src="' + root_path + 'web/processing-1.4.8.min.js"></script>';
+            script_string += '<script src="' + root_path + 'web/processing-1.4.15.min.js"></script>';
         }
         script_string = script_string +
         '<div style="text-align:center;">' +
