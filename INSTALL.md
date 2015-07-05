@@ -69,7 +69,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 ## Installer sur son site
 
-* Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.3.16.zip)
+* Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.3.16.zip).
 * Extraire quelque part dans l’arborescence de votre site.
 * Ajuster des URLS codées en dur (un jour, elles seront configurables) dans
   `web/ide_injections.js` :
