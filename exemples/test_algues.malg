@@ -9,7 +9,7 @@
     (Affecter_a credit_iterations 300)
     (Affecter_a x (+ (* n 50) 150))
     (Initialiser y 200)
-    (Initialiser r 50)
+    (Initialiser r 25)
     (Initialiser decalage 0)
     (Tant_que (>= r 4)
      Faire
