@@ -1,4 +1,4 @@
-(setq version "0.3.16")
+(setq version "0.3.17")
 (put 'version 'text (pack "MicroAlg version " version))
 (setq apropos
 "L’idée de MicroAlg est née lors d’une formation ISN, de la frustration due à

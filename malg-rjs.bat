@@ -1,5 +1,5 @@
 @echo off
-echo MicroAlg 0.3.16 (Rhino + EmuLisp)
+echo MicroAlg 0.3.17 (Rhino + EmuLisp)
 echo.
 SET MICROALG_DIR=%~dp0
 SET EMULISP_DIR=%MICROALG_DIR%\emulisp
