@@ -8,16 +8,16 @@ Aller directement à :
 
 * Windows :
     * édition avec SciTE :
-        * [instructions](#scite)
+        * [instructions](#user-content-scite)
         * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.3.16/microalg_0.3.16.zip)
           correspondant aux instructions
 * Autre (sauf Mac) :
-    * [édition avec SciTE](#scite-1)
+    * [édition avec SciTE](#user-content-scite-1)
 * Android :
     * [page Google Play](https://play.google.com/store/apps/details?id=info.microalg.android)
-* [Installer sur son site](#installer-sur-son-site)
+* [Installer sur son site](#user-content-installer-sur-son-site)
 * Développeur :
-    * [tout sauf Windows](#développeur)
+    * [tout sauf Windows](#user-content-développeur)
 * Utilisation en ligne (rien à installer !) :
     * [Galerie Web](http://galerie.microalg.info/) (wiki avec code exécutable
       dans le navigateur)
@@ -41,9 +41,9 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 * Utiliser [MicroAlg en ligne](http://microalg.info/ide.html) :
   rien à installer !
-* Installer [MicroAlg sur son site](#installer-sur-son-site)
+* Installer [MicroAlg sur son site](#user-content-installer-sur-son-site)
 * Installation pour développeur/contributeur…
-    * …au [cœur de MicroAlg](#développeur) (attention, il n’y a pas
+    * …au [cœur de MicroAlg](#user-content-développeur) (attention, il n’y a pas
       d’environnement de développement pour Windows ou Android),
     * …à la documentation, tutoriels… chercher ci-dessous un lien pour
       « utilisation possible sans connexion » adaptée à votre système
@@ -52,7 +52,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * Windows
         * simple utilisateur
             * dans un navigateur, mais utilisation possible sans connexion
-            * [édition avec SciTE, exécution avec Java](#scite)
+            * [édition avec SciTE, exécution avec Java](#user-content-scite)
         * utilisateur avancé
             * les mêmes
             * le vrai PicoLisp dans Cygwin
@@ -62,7 +62,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
     * [Application Android](https://play.google.com/store/apps/details?id=info.microalg.android)
     * Autre
         * dans un navigateur, mais utilisation possible sans connexion
-        * [édition avec SciTE, exécution avec PicoLisp](#scite-1)
+        * [édition avec SciTE, exécution avec PicoLisp](#user-content-scite-1)
         * avec le vrai PicoLisp (C et assembleur)
         * avec Ersatz (Java)
         * avec EmuLisp (NodeJS)
