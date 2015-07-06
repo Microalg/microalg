@@ -27,7 +27,7 @@ void reset() {
     background(#FFFFFF);
     strokeWeight(1);
     stroke(color(0, 0, 0));
-    fill(0, 0, 0, 0);
+    fill(1, 0, 0, 0);  // 0, 0, 0, 0 n’est pas transparent (bug de Processing)
     turtle = new Turtle();
 }
 
@@ -101,6 +101,8 @@ void interact(String data) {
         if (params.length == 5) {
             alpha = int(params[4]);
         }
+        // 0, 0, 0, 0 n’est pas transparent (bug de Processing)
+        if (alpha == 0) params[1] = "1";
         fill(int(params[1]), int(params[2]), int(params[3]), alpha);
     } else if (cmd.equals("Epaisseur")) {
         strokeWeight(int(params[1]));
