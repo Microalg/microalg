@@ -110,6 +110,7 @@ else
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
+        props["command.build.*.malg"] = [[start $(microalg_path)\start_processing.bat]]
 end
 
 -- Definition of the lexer:
