@@ -1,9 +1,17 @@
+html {
+  font-size: 62.5%;
+}
 body.microalg {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	max-width: 800px;
     width: 95%;
     margin: 0px auto;
-    font-family: Verdana, Arial, sans-serif;
-    color: black;
-    background-color: #D1D1D1;
+}
+.microalg ul {
+    list-style: outside;
 }
 .microalg p, li {
     line-height: 1.3em;
@@ -131,7 +139,7 @@ a.email:after {
 #bla h1 {
     text-align: center;
 }
-.navbar {
+.microalg .navbar {
     position: fixed;
     top: 0;
     right: 0;
