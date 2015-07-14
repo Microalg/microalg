@@ -36,7 +36,7 @@ function createRichInput(original) {
     original.css({
         'background': 'transparent',
         'position': 'absolute',
-        'z-index': 100,
+        'z-index': 98,
         'width': width
     });
 
