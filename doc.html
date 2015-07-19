@@ -127,6 +127,22 @@ flottants</a>. C’est plutôt appréciable, sauf que dans les autres versions
 [ici](http://www.software-lab.de/doc/ref.html#number) et
 [là](http://www.software-lab.de/doc/ref.html#num-io)).
 
+### Boucles POUR
+
+Il n’y a pas de commande `Pour` en MicroAlg. Deux raisons à cela :
+
+1. C’est une façon de penser que l’être humain n’utilise que très rarement.
+   Rares sont les situations de la vie de tous les jours où notre cerveau
+   garde une trace du numéro de l’itération courante. Le `Tant_que` est
+   bien plus naturel.
+2. Ne pas inclure de commande `Pour` permet de simplifier grandement le
+   langage. D’une part, c’est déjà une commande en moins. Et d’autre part,
+   si la commande `Pour` devait exister, il faudrait spécifier **le nombre
+   de départ**, **l’incrément**, et **le nombre d’arrivée** (qui selon le
+   nombre de départ et l’incrément sera passé en revue *ou non*), ce qui
+   peut vite devenir inélégant. Un `Tant_que` muni d’un compteur est bien
+   plus explicite et totalement équivalent.
+
 ### Saisie utilisateur avec SciTE
 
 Si vous utilisez SciTE sous autre chose que Windows, pas moyen de faire
