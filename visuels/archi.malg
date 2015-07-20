@@ -17,8 +17,9 @@
 (setq malg-rjs_cadre_x_pos 280)
 (setq malg-njs_x_pos 465)
 (setq malg-njs_cadre_x_pos 410)
-(setq malg-js_browser_x_pos 645)
-(setq malg-js_cadre_browser_x_pos 570)
+(setq malg-js_browser_x_pos 605)
+(setq malg-js_cadre_browser_x_pos 540)
+(setq largeur_machine 650)
 (setq couche_machine (- H 20))
 (setq couche_1 325)
 (setq couche_2 280)
@@ -38,7 +39,7 @@
     (<xmlq> line x1 malg-js_browser_x_pos y1 35 x2 malg-js_browser_x_pos y2 50 stroke-width 5 stroke N)
     (apply <xml> (list (append text_conf_small '(x malg-js_browser_x_pos y 70 (prin "formulaire")))))
     # microalg.l
-    (<xmlq> rect height H_rects width 700 x malg_cadre_x_pos y (- couche_malg_l 30))
+    (<xmlq> rect height H_rects width largeur_machine x malg_cadre_x_pos y (- couche_malg_l 30))
     (apply <xml> (list (append text_conf_big '(x (/ (+ malg_x_pos malg-js_browser_x_pos) 2) y couche_malg_l (prin "microalg.l")))))
     # malg
     (<xmlq> rect height H_rects width L_rects x malg_cadre_x_pos y (- couche_malg 30))
@@ -75,7 +76,7 @@
     (apply <xml> (list (append text_conf_big '(x malg-njs_x_pos y couche_1 (prin "NodeJS")))))
     (<xmlq> line x1 malg-njs_x_pos y1 335 x2 malg-njs_x_pos y2 (- couche_machine 30) stroke-width 5 stroke N)
     # web IDE
-    (<xmlq> rect height H_rects width 150 x malg-js_cadre_browser_x_pos y (- couche_malg 30) stroke-width 5 stroke N fill W)
+    (<xmlq> rect height H_rects width 130 x malg-js_cadre_browser_x_pos y (- couche_malg 30) stroke-width 5 stroke N fill W)
     (apply <xml> (list (append text_conf_big '(x malg-js_browser_x_pos y couche_malg (prin "web IDE")))))
     (<xmlq> line x1 malg-js_browser_x_pos y1 (- couche_malg_l H_rects) x2 malg-js_browser_x_pos y2 (- couche_malg_l 30) stroke-width 5 stroke N)
     (<xmlq> line x1 malg-js_browser_x_pos y1 (+ couche_malg_l (/ H_rects 3)) x2 malg-js_browser_x_pos y2 250 stroke-width 5 stroke N)
@@ -86,7 +87,7 @@
     (<xmlq> rect fill W stroke N stroke-width 5 x (- malg-j_x_pos 30) y (- couche_machine 80) width (+ (- malg-rjs_x_pos malg-j_x_pos) 60) height 40)
     (apply <xml> (list (append text_conf_big '(x (/ (+ malg-j_x_pos malg-rjs_x_pos) 2) y (- couche_machine 52) (prin "JVM")))))
     # Machine
-    (<xmlq> rect fill W stroke N stroke-width 5 x malg_cadre_x_pos y (- couche_machine 30) width 700 height 40)
+    (<xmlq> rect fill W stroke N stroke-width 5 x malg_cadre_x_pos y (- couche_machine 30) width largeur_machine height 40)
     (apply <xml> (list (append text_conf_big '(x 300 y couche_machine (prin "MACHINE")))))
 )
 (bye)
