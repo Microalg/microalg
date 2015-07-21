@@ -489,10 +489,17 @@ Pour cela, il y a plusieurs méthodes :
 * `pil`, `pil-j`, `pil-rjs` et `pil-njs` : les interpréteurs des
   implémentations de PicoLisp
 * `microalg.l` : le fichier définissant le langage MicroAlg
+* Processing(.js) : langage et plateforme de programmation visuelle et
+  sonore (voir les sites <a href="http://processing.org/" class="offi">processing.org</a>
+  et <a href="http://processingjs.org/" class="offi">processingjs.org</a>)
+* `.pde` (abréviation de `microalg.pde`) : le fichier convertissant les
+  commandes graphiques de MicroAlg en leur équivalent en Processing
 * `malg`, `malg-j`, `malg-rjs` et `malg-njs` : les interpréteurs de MicroAlg,
   correspondants aux implémentations de PicoLisp
 * « depuis éditeur » concerne par exemple [SciTE](doc.html#scite)
 * web IDE : interface permettant de manipuler MicroAlg depuis un navigateur
+* FEP : Fenêtre Externe Processing, la sortie graphique classique de
+  Processing en version Java
 
 ### Composants
 
@@ -525,6 +532,16 @@ Attention, `pil-j` n’est pas le nom officiel de l’exécutable d’Ersatz (c�
 `pil`). De plus, les versions officielles et semi-officielles d’EmuLisp n’ont
 pas de `pil-Xjs`. `pil-rjs` et `pil-njs` n’existent (pour l’instant) que dans
 MicroAlg.
+
+Concernant les commandes graphiques, `microalg.l` envoie des informations à
+`microalg.pde` :
+
+* via TCP/IP dans la version Java avec
+  [`connect`](http://www.software-lab.de/doc/refC.html#connect)
+  côté PicoLisp/Ersatz, et
+  [`Client`](https://processing.org/reference/libraries/net/Client.html)
+  et [`Server`](https://processing.org/reference/libraries/net/Server.html) côté Processing
+* via un bête `eval(interact(…` dans la version JavaScript
 
 ### Interpréteurs
 
