@@ -217,6 +217,7 @@ function inject_microalg_editor_in(elt_id, config) {
     var hidden = config.blockly_only ? ' style="display:none;"' : '';
     var link_snippet =
         '<div class="link-snippet">' +
+        '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
     var script_string =
         link_snippet +
