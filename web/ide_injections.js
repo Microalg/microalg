@@ -183,6 +183,7 @@ according to `config` which may have these keys :
 */
 function inject_microalg_editor_in(elt_id, config) {
     /* Some id suffix hacking. */
+    var export_id = elt_id + '-export';
     var editor_id = elt_id + '-malg-editor';
     var display_target_id = elt_id + '-displaytarget';
     var blockly_id = elt_id + '-blockly';
@@ -217,10 +218,13 @@ function inject_microalg_editor_in(elt_id, config) {
     var hidden = config.blockly_only ? ' style="display:none;"' : '';
     var link_snippet =
         '<div class="link-snippet">' +
+        '<select onchange="export_action(\'' + elt_id + '\', this);">' +
+        '<option>exporter</option><option>Casio</option><option>TI</option></select> ' +
         '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
     var script_string =
         link_snippet +
+        '<div id="' + export_id + '"></div>' +
         ((config.blockly || config.blockly_only) ? '<div id="' + blockly_id + '"></div>' : '') +
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
                                       'class="malg-editor" cols="80" rows="2"' +
@@ -356,6 +360,20 @@ function inject_microalg_editor_in(elt_id, config) {
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
     onCtrl(editor, ide_action);
+}
+
+function export_action(elt_id, select) {
+    if (select.selectedIndex == 0) {
+        $('#' + elt_id + '-export').html('');
+        select.options[0].innerHTML = "exporter";
+    } else {
+        var langs = [undefined, 'casio', 'ti'];
+        var lang = langs[select.selectedIndex];
+        var src = $('#' + elt_id + '-malg-editor').val();
+        $('#' + elt_id + '-export').html($('<pre/>',
+            {text: lang + ": " + src}));
+        select.options[0].innerHTML = "pas d’export";
+    }
 }
 
 function repl_action(repl_elt) {
