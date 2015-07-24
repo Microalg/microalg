@@ -288,3 +288,14 @@
   "<block type=\"vrai\"></block>")
 (de Faux ()
   "<block type=\"faux\"></block>")
+
+(de !sans_bloc (cmd next)
+  (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
+        "La commande `" cmd "` n’a pas de bloc."
+        "</field>"
+        next
+        "</block>"))
+
+(de RAZ (content next) (!sans_bloc "RAZ" next))
+(de AV (content next) (!sans_bloc "AV" next))
+(de TD (content next) (!sans_bloc "TD" next))
