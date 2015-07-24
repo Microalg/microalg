@@ -135,7 +135,8 @@ function OnStyle(styler)
         S_PAREN_base = 10
         S_PAREN_bad = 35
         
-        paren_level = 0
+        local paren_level = 0
+        local old_level
         styler:StartStyling(0, styler.startPos + styler.lengthDoc, styler.initStyle)
         
         styler:SetState(S_NORMAL)
