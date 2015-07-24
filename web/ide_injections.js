@@ -256,7 +256,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '    });' + "\n" +
         '</script>' + "\n";
     }
-    script_container.html(script_string);
+    script_container.html('<div class="microalg">' + script_string + '</div');
     if (config.blockly || config.blockly_only) {
         // Injection de HTML dans une iframe car besoin de plusieurs Blockly.
         // http://stackoverflow.com/questions/13214419/alternatives-to-iframe-srcdoc
