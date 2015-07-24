@@ -110,6 +110,12 @@ body.microalg {
 }
 .link-snippet a {
     text-decoration: none;
+	border-bottom: 0;
+	background-color: #eee;
+	padding: 0 .5em 0 .5em;
+}
+.link-snippet a:hover {
+	background-color: #ddd;
 }
 a.wp:after, a.offi:after, a.email:after {
     color: black;
