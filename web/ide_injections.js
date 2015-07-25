@@ -14,6 +14,11 @@ var microalg_l_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg.l');
 var microalg_export_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export.l');
+var microalg_export_other_src = {};
+microalg_export_other_src['casio'] =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_casio.l');
+microalg_export_other_src['ti'] =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_ti.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
 
@@ -371,9 +376,23 @@ function export_action(elt_id, select) {
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         $('#' + elt_id + '-export').html($('<pre/>',
-            {text: lang + ": " + src}));
+            {text: malg2other(lang, src)}));
         select.options[0].innerHTML = "pas d’export";
     }
+}
+
+function malg2other(lang, src) {
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(microalg_export_src);
+    EMULISP_CORE.eval(microalg_export_other_src[lang]);
+    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
+    // On récupère une liste d’instructions.
+    var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
+    var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(microalg_l_src);
+    exported_src = "Attention, fonctionnalité encore expérimentale !\n\n" + exported_src;
+    return exported_src;
 }
 
 function repl_action(repl_elt) {
