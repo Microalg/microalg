@@ -17,8 +17,8 @@
     )
   )
 )
-# Attention, insertion_next ne plonge pas dans les instruction contenant des
-# blocs, comme Faire, Tant_que et Si. Ce genre d’instructions doivent utiliser
+# Attention, insertion_next ne plonge pas dans les instructions contenant des
+# blocs, comme Faire, Tant_que et Si. Ce genre d’instruction doit utiliser
 # insertion_next sur leurs blocs.
 (de insertion_next (src) (car (insertion_next_aux (reverse src))))
 (de insertion_next_aux (src)
