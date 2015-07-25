@@ -67,6 +67,16 @@
          "<value name=\"A\">" A "</value>"
          "<value name=\"B\">" B "</value>"
          "</block>"))
+(de % (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">MOD</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
+(de ^ (A B)
+   (pack "<block type=\"operations\"><field name=\"OP\">POW</field>"
+         "<value name=\"A\">" A "</value>"
+         "<value name=\"B\">" B "</value>"
+         "</block>"))
 (de = (A B)
    (pack "<block type=\"comparaisons\"><field name=\"COMP\">EQ</field>"
          "<value name=\"A\">" A "</value>"

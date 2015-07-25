@@ -1481,7 +1481,9 @@ Blockly.Blocks['operations'] = {
         [['+', 'ADD'],
          ['-', 'MINUS'],
          ['×', 'MULTIPLY'],
-         ['÷', 'DIVIDE']];
+         ['÷', 'DIVIDE'],
+         ['%', 'MOD'],
+         ['^', 'POW']];
     this.setHelpUrl(malg_url + '#oprationsavecblockly');
     this.setColour(colour);
     this.setOutput(true, 'Number');
@@ -1501,8 +1503,8 @@ Blockly.Blocks['operations'] = {
         'MINUS'   : "Retourne le quotient des deux nombres.",
         'MULTIPLY': "Retourne la différence des deux nombres.",
         'DIVIDE'  : "Retourne le produit des deux nombres.",
-        'MOD'  : "Retourne le reste de la div. euclidienne des deux nombres.",
-        'POW'  : "Retourne le premier nombre à la puissance du deuxième.",
+        'MOD'     : "Retourne le reste de la div. euclidienne des deux nombres.",
+        'POW'     : "Retourne le premier nombre à la puissance du deuxième.",
       };
       return TOOLTIPS[mode];
     });
