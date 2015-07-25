@@ -9,3 +9,19 @@
       (T          (cons (car src) (mapcar 'proteger_source_aux (cdr src))))
     )
 )
+
+(ifn glue
+  (de glue (c l)
+    (cond
+      ((not (<> 0 (length l))) "")
+      ((not (<> 1 (length l))) (car l))
+      (T                       (pack (car l) c  (glue c (cdr l))))
+    )
+  )
+)
+
+(ifn caadr
+  (de caadr (arg)
+     (car (car (cdr arg)))
+  )
+)
