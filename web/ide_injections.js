@@ -392,7 +392,9 @@ function malg2other(lang, src) {
     EMULISP_CORE.eval(microalg_export_src);
     EMULISP_CORE.eval(microalg_export_other_src[lang]);
     if (lang == 'arbretxt') {
-        return cleanTransient(EMULISP_CORE.eval('(arbretxt ' + src + ')').toString());
+        var raw_tree = cleanTransient(EMULISP_CORE.eval('(arbretxt ' + src + ')').toString());
+        var colored = raw_tree.replace(/│/g,'<span class="malg-guide">│</span>');
+        return colored;
     } else {
         var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
         // On récupère une liste d’instructions.

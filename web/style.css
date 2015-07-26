@@ -61,6 +61,9 @@ body.microalg {
     font-family: monospace;
     white-space: pre;
 }
+.malg-guide {
+	color: #eee;
+}
 .malg-blockly-iframe {
     height: 350px;
     width: 100%;
