@@ -224,7 +224,10 @@ function inject_microalg_editor_in(elt_id, config) {
     var link_snippet =
         '<div class="link-snippet">' +
         '<select onchange="export_action(\'' + elt_id + '\', this);">' +
-        '<option>exporter</option><option>Casio</option><option>TI</option></select> ' +
+        '<option>exporter</option>' +
+        '<option>Casio</option>' +
+        '<option>TI</option>' +
+        '</select> ' +
         '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
     var script_string =
