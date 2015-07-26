@@ -43,6 +43,7 @@ Aller directement à :
 * [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
 * [Types](#types)
 * [Erreurs fréquentes](#erreursfrquentes)
+* [Export](#export)
 * [Feuille de route](#feuillederoute)
 * [Contribuer](#contribuer)
 * [Architecture](#architecture)
@@ -406,6 +407,32 @@ le signaler en :
   parce que son nom contient des espaces. Pour le confirmer, observez le nom de
   fichier qui précède ce message d’erreur, il s’arrête sans doute au premier
   espace rencontré.
+
+## Export
+
+Pour l’instant, cette fonctionnalité n’existe que dans l’interface web.
+
+### Limitations de l’export
+
+#### Limitations générales
+
+Suivant le type d’export, toutes les commandes MicroAlg peuvent ne pas être
+exportées. C’est par exemple le cas des commandes graphiques quand la cible est
+un langage de calculatrice.
+
+#### Limitations de l’export vers calculatrices
+
+* L’export ne concerne que les Casio et les Texas-Instrument.
+* `Demander` ne peut être utilisée qu’avec `Initialiser` ou `Affecter_a`, pas
+  au sein d’un calcul. Quatre constructions sont exportables :
+    * `(Initialiser VAR (Demander))`
+    * `(Initialiser VAR (Nombre (Demander)))`
+    * `(Affecter_a VAR (Demander))`
+    * `(Affecter_a VAR (Nombre (Demander)))`
+* Puisque les calculatrices utilisent différentes familles de variables
+  suivant le type de valeur à stocker (contrairement à MicroAlg), les variables
+  seront préfixées brutalement par `Str` ou non, suivant qu’on a utilisé
+  `(Demander)` ou `(Nombre (Demander))`.
 
 ## Feuille de route
 
