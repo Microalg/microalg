@@ -74,7 +74,7 @@
 (de ... () " (...) ")
 
 (de !no_export (cmd)
-  (pack "-- La commande " cmd " ne peut être exportée. --"))
+  (pack "-- La commande " cmd " ne peut être exportée. --^J"))
 
 (de Concatener () (!no_export "Concatener"))  # StrJoin(
 (de Liste () (!no_export "Liste"))
