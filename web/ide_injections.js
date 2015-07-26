@@ -19,6 +19,8 @@ microalg_export_other_src['casio'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_casio.l');
 microalg_export_other_src['ti'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_ti.l');
+microalg_export_other_src['arbretxt'] =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbretxt.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
 
@@ -227,6 +229,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option>exporter</option>' +
         '<option>Casio</option>' +
         '<option>TI</option>' +
+        '<option>Arbre 1</option>' +
         '</select> ' +
         '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
@@ -375,7 +378,7 @@ function export_action(elt_id, select) {
         $('#' + elt_id + '-export').html('');
         select.options[0].innerHTML = "exporter";
     } else {
-        var langs = [undefined, 'casio', 'ti'];
+        var langs = [undefined, 'casio', 'ti', 'arbretxt'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         $('#' + elt_id + '-export').html($('<pre/>',
@@ -388,14 +391,18 @@ function malg2other(lang, src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(microalg_export_src);
     EMULISP_CORE.eval(microalg_export_other_src[lang]);
-    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
-    // On récupère une liste d’instructions.
-    var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
-    var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
-    EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_l_src);
-    exported_src = "Attention, fonctionnalité encore expérimentale !\n\n" + exported_src;
-    return exported_src;
+    if (lang == 'arbretxt') {
+        return cleanTransient(EMULISP_CORE.eval('(arbretxt ' + src + ')').toString());
+    } else {
+        var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
+        // On récupère une liste d’instructions.
+        var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
+        var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
+        EMULISP_CORE.init();
+        EMULISP_CORE.eval(microalg_l_src);
+        exported_src = "Attention, fonctionnalité encore expérimentale !\n\n" + exported_src;
+        return exported_src;
+    }
 }
 
 function repl_action(repl_elt) {
