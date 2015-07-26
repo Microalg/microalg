@@ -379,7 +379,7 @@ function export_action(elt_id, select) {
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         $('#' + elt_id + '-export').html($('<pre/>',
-            {text: malg2other(lang, src)}));
+            {text: malg2other(lang, src), class: 'malg-export'}));
         select.options[0].innerHTML = "pas d’export";
     }
 }
