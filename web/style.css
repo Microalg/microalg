@@ -58,6 +58,8 @@ body.microalg {
 }
 .malg-export {
     line-height: 1.2em;
+    font-family: monospace;
+    white-space: pre;
 }
 .malg-blockly-iframe {
     height: 350px;

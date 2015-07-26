@@ -381,8 +381,8 @@ function export_action(elt_id, select) {
         var langs = [undefined, 'casio', 'ti', 'arbretxt'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
-        $('#' + elt_id + '-export').html($('<pre/>',
-            {text: malg2other(lang, src), class: 'malg-export'}));
+        $('#' + elt_id + '-export').html($('<div/>',
+            {html: malg2other(lang, src), class: 'malg-export'}));
         select.options[0].innerHTML = "pas d’export";
     }
 }
