@@ -1324,7 +1324,7 @@ var coreFunctions = {
 		if (n > 0) {
 			//console.log("need: n=%s, x=%s", n.toString(), x.toString());
 			for (n -= (x instanceof Cell) ? x.length() : 0; n > 0; --n) { z = new Cell(y, z); }
-		} else if (n !== 0) {
+		} else if (n != 0) {
 			if (!(x instanceof Cell)) {
 				z = x = new Cell(y, NIL);
 			} else {
