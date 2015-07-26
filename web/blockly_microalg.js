@@ -1478,10 +1478,10 @@ Blockly.MicroAlg['nombre_litteral'] = function(block) {
 Blockly.Blocks['operations'] = {
   init: function() {
     var OPERATORS =
-        [['+', 'ADD'],
-         ['-', 'MINUS'],
-         ['×', 'MULTIPLY'],
-         ['÷', 'DIVIDE'],
+        [['Somme',      'ADD'],
+         ['Différence', 'MINUS'],
+         ['Produit',    'MULTIPLY'],
+         ['Quotient',   'DIVIDE'],
          ['%', 'MOD'],
          ['^', 'POW']];
     this.setHelpUrl(malg_url + '#oprationsavecblockly');
