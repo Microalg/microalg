@@ -14,8 +14,9 @@
                last_arg (car rev_args)
                length_but_last (length args_but_last))
               (pack cmd "^J"
-                    (mapcar 'arbretxt_rec args_but_last (need length_but_last (inc !indent_level)) (need length_but_last "├─"))
-                    (arbretxt_rec last_arg (inc !indent_level) "└─")
+                    (if rev_args (pack
+                      (mapcar 'arbretxt_rec args_but_last (need length_but_last (inc !indent_level)) (need length_but_last "├─"))
+                      (arbretxt_rec last_arg (inc !indent_level) "└─")))
               )
          )
       )
