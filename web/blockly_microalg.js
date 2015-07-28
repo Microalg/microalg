@@ -1487,13 +1487,11 @@ Blockly.Blocks['operations'] = {
     this.setHelpUrl(malg_url + '#oprationsavecblockly');
     this.setColour(colour);
     this.setOutput(true, 'Number');
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP');
     this.appendValueInput('A')
+        .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP')
         .setCheck('Number');
     this.appendValueInput('B')
         .setCheck('Number')
-    this.setInputsInline(true);
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;
     this.setTooltip(function() {
