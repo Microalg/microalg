@@ -1491,7 +1491,7 @@ Blockly.Blocks['operations'] = {
         .appendField(new Blockly.FieldDropdown(OPERATORS), 'OP')
         .setCheck('Number');
     this.appendValueInput('B')
-        .setCheck('Number')
+        .setCheck('Number');
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;
     this.setTooltip(function() {
