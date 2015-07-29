@@ -742,10 +742,6 @@ Avec une liste :
 )
 
 # Tirages pseudo-aléatoires.
-(de !prochain_etat@ ()
-  (ifn !etat@ (setq !etat@ 0))
-  # http://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
-  (setq !etat@ (% (+ (* !etat@ 1664525) 1013904223) 4294967296)) )
 (put 'sequence_tirages@ 'doc
 "Liste contenant les nombres entiers qui seront « tirés au sort » par les
 commandes `Entier@` et `Nieme@`, dans cet ordre.
@@ -773,6 +769,11 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 ")
 (setq sequence_tirages@ (Liste))
 (put 'sequence_tirages@ 'type "liste")
+(de !prochain_etat@ ()
+  (ifn !etat@ (setq !etat@ 0))
+  # http://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
+  # Dans !rand ci-dessous, on ne garde que le quotient par !shift.
+  (setq !etat@ (% (+ (* !etat@ 1664525) 1013904223) 4294967296)) )
 (de !rand (!min !max)
   (if (!boolM2P (> (!longueur sequence_tirages@) 0))
       (let !val (car (elts> sequence_tirages@))
@@ -784,8 +785,11 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
         (push> sequence_tirages@ !val)
         !val
       )
-      (let !mod (- (+ !max 1) !min)
-        (+ !min (% (!prochain_etat@) !mod))
+      (let (!mod (- (+ !max 1) !min)
+            !etat (!prochain_etat@)
+            !shift 5
+            !shifted_etat (/ (- !etat (% !etat !shift)) !shift))
+            (+ !min (% !shifted_etat !mod))
       )
   )
 )
