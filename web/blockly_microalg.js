@@ -33,7 +33,7 @@ Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Booleen?, Concatener, ' +
-    'Definir, Demander, En_position, Entier@, Et, Exemples_de, ' +
+    'Definir, Demander, Demander_un_nombre, En_position, Entier@, Et, Exemples_de, ' +
     'Faire, Faux, Faux?, Initialiser, Initialiser@, ' +
     'Liste, Liste?, Longueur, Millisecondes, ' +
     'Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
@@ -489,6 +489,23 @@ Blockly.Blocks['demander'] = {
 // Gen Demander
 Blockly.MicroAlg['demander'] = function(block) {
   return '(Demander)';
+};
+
+// Bloc Demander
+Blockly.Blocks['demander_un_nombre'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Demander_un_nombre');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Demander un nombre');
+    this.setOutput(true, 'Number');
+    this.setTooltip('Demander un nombre à l’utilisateur.');
+  }
+};
+
+// Gen Demander
+Blockly.MicroAlg['demander_un_nombre'] = function(block) {
+  return '(Demander_un_nombre)';
 };
 
 // Bloc Entier@

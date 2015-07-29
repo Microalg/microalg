@@ -299,6 +299,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Cmdes avec retour">' +
                 '  <block type="concatener"></block>' +
                 '  <block type="demander"></block>' +
+                '  <block type="demander_un_nombre"></block>' +
                 '  <block type="operations"></block>' +
                 '  <block type="comparaisons"></block>' +
                 '  <block type="entier_pseudo_aleatoire"></block>' +

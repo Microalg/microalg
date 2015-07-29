@@ -16,7 +16,7 @@ Voir <http://microalg.info>.")
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
 "Cercle" "Concatener" "Contour" "credit_iterations"
-"Definir" "Demander"
+"Definir" "Demander" "Demander_un_nombre"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
@@ -474,6 +474,17 @@ avant de la stocker dans une variable. Exemple :
 (de Demander (!rien_ici)
   (if !rien_ici (quit "`Demander` ne prend pas de paramètre."))
   (in NIL (line T)) )
+(put 'Demander_un_nombre 'doc
+"Commande qui permet de demander un nombre à l’utilisateur.
+
+Préférer `(Nombre (Demander))`.
+
+Cette commande est peu documentée et sert uniquement pour faciliter le travail
+avec les plus jeunes.")
+(put 'Demander_un_nombre 'text "Commande `Demander_un_nombre`.")
+(de Demander_un_nombre (!rien_ici)
+  (if !rien_ici (quit "`Demander_un_nombre` ne prend pas de paramètre."))
+  (Nombre (Demander)) )
 
 # Listes
 # Implémentation interne des listes (POO)

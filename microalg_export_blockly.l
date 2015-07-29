@@ -139,6 +139,8 @@
         "</block>"))
 (de Demander ()
   "<block type=\"demander\"></block>")
+(de Demander_un_nombre ()
+  "<block type=\"demander_un_nombre\"></block>")
 (de Entier@ (MIN MAX)
   (pack "<block type=\"entier_pseudo_aleatoire\">"
         "<value name=\"MIN\">" MIN "</value>"
