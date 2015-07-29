@@ -105,11 +105,11 @@
             '(= Vrai (Ou Vrai Vrai Vrai))
             # Structures itératives
             '(= Rien (Tant_que Faux Faire (quit "bug dans Tant_que")))
-            '(let (x 3) (= 0 (prog (Tant_que (=/ x 0) Faire (setq x (- x 1))) x)))
-            '(let (x 3) (= 0 (prog (Faire (setq x (- x 1)) Tant_que (=/ x 0)) x)))
-            '(let (x 3) (= 2 (prog (Faire (setq x (- x 1)) Tant_que Faux) x)))
-            '(let (x 3 y 0) (= 3 (prog (Tant_que (=/ x 0) Faire (setq x (- x 1)) (setq y (+ y 1))) y)))
-            '(let (x 3 y 0) (= 3 (prog (Faire (setq x (- x 1)) (setq y (+ y 1)) Tant_que (=/ x 0)) y)))
+            '(let (x 3) (= 0 (prog (Tant_que (=/ x 0) Faire (dec 'x)) x)))
+            '(let (x 3) (= 0 (prog (Faire (dec 'x) Tant_que (=/ x 0)) x)))
+            '(let (x 3) (= 2 (prog (Faire (dec 'x) Tant_que Faux) x)))
+            '(let (x 3 y 0) (= 3 (prog (Tant_que (=/ x 0) Faire (dec 'x) (inc 'y)) y)))
+            '(let (x 3 y 0) (= 3 (prog (Faire (dec 'x) (inc 'y) Tant_que (=/ x 0)) y)))
             # Commandes utilisateur
             '(let (f NIL) (= 14 (prog
                                   (Definir (f x) (Retourner (* 2 x)))
