@@ -21,6 +21,8 @@ microalg_export_other_src['ti'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_ti.l');
 microalg_export_other_src['arbretxt'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbretxt.l');
+microalg_export_other_src['arbresvg'] =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbresvg.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
 
@@ -230,6 +232,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option>Casio</option>' +
         '<option>TI</option>' +
         '<option>Arbre 1</option>' +
+        '<option>Arbre 2</option>' +
         '</select> ' +
         '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
@@ -379,13 +382,20 @@ function export_action(elt_id, select) {
         $('#' + elt_id + '-export').html('');
         select.options[0].innerHTML = "exporter";
     } else {
-        var langs = [undefined, 'casio', 'ti', 'arbretxt'];
+        var langs = [undefined, 'casio', 'ti', 'arbretxt', 'arbresvg'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         var exported_src = malg2other(lang, src);
         var export_target = $('#' + elt_id + '-export');
-        export_target.html($('<div/>', {html: exported_src,
-                                        class: 'malg-export'}));
+        if (lang == 'arbresvg') {
+            var tree = new TreeDrawer(elt_id + '-export',
+                JSON.parse(exported_src));
+            tree.root.extended = false;
+            tree.draw();
+        } else {
+            export_target.html($('<div/>', {html: exported_src,
+                                            class: 'malg-export'}));
+        }
         select.options[0].innerHTML = "pas d’export";
     }
 }
@@ -398,6 +408,11 @@ function malg2other(lang, src) {
         var raw_tree = cleanTransient(EMULISP_CORE.eval('(arbretxt ' + src + ')').toString());
         var colored = raw_tree.replace(/([│├└─])/g,'<span class="malg-guide">$1</span>');
         return colored;
+    } else if (lang == 'arbresvg') {
+        var raw = EMULISP_CORE.eval('(arbresvg ' + src + ')').toString();
+        var clean = cleanTransient(raw);
+        var json_src = clean.replace(/&quot;/ig, '"');
+        return json_src;
     } else {
         var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
         // On récupère une liste d’instructions.
