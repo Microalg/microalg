@@ -432,7 +432,7 @@ Suivant le type d’export, toutes les commandes MicroAlg peuvent ne pas être
 exportées. C’est par exemple le cas des commandes graphiques quand la cible est
 un langage de calculatrice.
 
-#### Limitations de l’export vers calculatrices
+#### Limitations de l’export vers les langages des calculatrices
 
 * L’export ne concerne que les Casio et les Texas-Instrument.
 * `Demander` ne peut être utilisée qu’avec `Initialiser` ou `Affecter_a`, pas
@@ -445,6 +445,19 @@ un langage de calculatrice.
   suivant le type de valeur à stocker (contrairement à MicroAlg), les variables
   seront préfixées brutalement par `Str` ou non, suivant qu’on a utilisé
   `(Demander)` ou `(Nombre (Demander))`.
+
+#### Précisions sur la visualisation sous forme d’arbre
+
+Pour représenter `(Commande arg1 arg2…)`, on considère que `Commande` est un
+nœud et que ses arguments sont les enfants de ce nœud. Par exemple,  
+`(Afficher (Concatener "du texte" "et encore du texte"))`  
+sera représenté par un arbre ayant cette structure :
+
+    Afficher
+    └─Concatener
+      ├─"du texte"
+      └─"et encore du texte"
+
 
 ## Feuille de route
 
@@ -970,6 +983,7 @@ Voir [cet exemple](tuto_graphique.html#tortue) dans le tutoriel graphique.
 * **parenedit**, &mdash; [basé sur cette réponse](http://stackoverflow.com/questions/14043727/auto-resizing-textarea-is-bumpy-highlighting-parentheses)
 * **Blockly**, par Neil Fraser et la communauté &mdash; [site officiel](http://code.google.com/p/blockly/)
 * **Scite**, par Neil Hodgson &mdash; [site officiel](http://www.scintilla.org/SciTE.html)
+* **svg-tree-drawer**, par Weston Ruter &mdash; [GitHub](https://github.com/westonruter/svg-tree-drawer/)
 
 <p id="annexes">Pour les parties annexes du site :</p>
 

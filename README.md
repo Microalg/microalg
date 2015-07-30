@@ -93,6 +93,7 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `showdown.*` : ([github](https://github.com/coreyti/showdown))
     * `showup.*` : ([github](https://github.com/upstage/showup))
     * `style.css` : la feuille de style
+    * `svg-tree-drawer.js` : pour la visualisation du code sous forme d’arbre
 * `.gitattributes` : fichier de configuration du dépôt `git`, surtout utilisé
   pour GitHub
 * `.gitignore` : spécification des fichiers non versionnés intentionnellement
@@ -117,6 +118,10 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `microalg_export*`
     * `microalg_export.l` : fonctions PicoLisp préparant l’export en général
     * `microalg_export_blockly.l` : reprogrammation de MicroAlg pour la mise en place de blocs correspondant à un programme
+    * `microalg_export_casio.l` : reprogrammation de MicroAlg pour l’export d’un programme vers le langage des Casio
+    * `microalg_export_arbretxt.l` : reprogrammation de MicroAlg pour la visualisation sous forme d’arbre textuel
+    * `microalg_export_arbresvg.l` : reprogrammation de MicroAlg pour la visualisation sous forme d’arbre graphique
+    * `microalg_export_ti.l` :  reprogrammation de MicroAlg pour l’export d’un programme vers le langage des TI
 * `microalg_tests*` :
     * `microalg_tests.malg` : les tests des commandes MicroAlg testables avec
       PicoLisp/MicroAlg seulement
