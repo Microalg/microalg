@@ -22,6 +22,7 @@ Booleen? val: Teste si `val` est un booléen.
 Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
 Definir (commande args) doc auteur instructions : Permet de définir des commandes.
 Demander : Retourne le texte tapé par l'utilisateur.
+Demander_un_nombre : Convertit le texte tapé par l'utilisateur en nombre et le retourne.
 En_position : Mot-clef intermédiaire pour la commande `Affecter_a`.
 Entier@ min max : Retourne un entier pseudo-aléatoire entre `min` et `max`.
 Et b1 b2 ...: Opération logique.
