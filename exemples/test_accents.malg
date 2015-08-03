@@ -1,0 +1,11 @@
+(Afficher (Concatener "uno " "dos"))
+(Initialiser txt1 "")
+(Affecter_a txt1 "uno")
+(Afficher txt1)
+(Afficher (Concatener txt1 "!"))
+
+(Afficher (Concaténer "uno " "dos"))
+(Initialiser txt2 "")
+(Affecter_à txt2 "dos")
+(Afficher txt2)
+(Afficher (Concaténer txt2 "!"))
