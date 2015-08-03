@@ -383,8 +383,10 @@ comme par exemple dans :
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
  `val`.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
-(de !affecter_a (var val kw idx cinquieme)
-    (let (evaled_var (eval var))
+(de !affecter_a (var val_expr kw idx_expr cinquieme)
+    (let (evaled_var (eval var)
+          val (eval val_expr)
+          idx (eval idx_expr))
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
              ((num? var) (quit (pack !onppauv "à un nombre.") var))

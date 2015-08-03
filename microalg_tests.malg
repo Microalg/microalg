@@ -28,6 +28,8 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= 1 (prog (Initialiser x 0) (Affecter_a x 1) x)))
             '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= 1 (prog (Initialiser x 0) (Affecter_a x (+ x 1)) x)))
+            '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "salut" (prog (Initialiser x "salut") x)))
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "" (prog (Initialiser x "") x)))
