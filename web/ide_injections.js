@@ -23,6 +23,8 @@ microalg_export_other_src['arbretxt'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbretxt.l');
 microalg_export_other_src['arbresvg'] =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbresvg.l');
+microalg_export_other_src['arbreninja'] =
+    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbreninja.l');
 var microalg_export_blockly_src =
     EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
 
@@ -233,6 +235,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option>TI</option>' +
         '<option>Arbre 1</option>' +
         '<option>Arbre 2</option>' +
+        '<option>Arbre 3</option>' +
         '</select> ' +
         '<a target="_blank" title="Documentation" href="http://microalg.info/doc.html">doc</a> ' +
         '<a title="Lien vers cet extrait" href="#' + elt_id + '">∞</a></div>';
@@ -382,7 +385,7 @@ function export_action(elt_id, select) {
         $('#' + elt_id + '-export').html('');
         select.options[0].innerHTML = "exporter";
     } else {
-        var langs = [undefined, 'casio', 'ti', 'arbretxt', 'arbresvg'];
+        var langs = [undefined, 'casio', 'ti', 'arbretxt', 'arbresvg', 'arbreninja'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         var exported_src = malg2other(lang, src);
@@ -413,6 +416,10 @@ function malg2other(lang, src) {
         var clean = cleanTransient(raw);
         var json_src = clean.replace(/&quot;/ig, '"');
         return json_src;
+    } else if (lang == 'arbreninja') {
+        var raw = EMULISP_CORE.eval('(arbreninja ' + src + ')').toString();
+        var clean = cleanTransient(raw);
+        return clean;
     } else {
         var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
         // On récupère une liste d’instructions.
