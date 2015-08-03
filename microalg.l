@@ -275,6 +275,8 @@ Si vous ne l’avez pas déjà fait, commencez par le
           ((str? efirst) efirst)                  # expr -> texte
           ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
           ((sym? efirst) efirst)                  # expr -> sym (Rien, bool…)
+          # m’est arrivé avec (Liste (0 255 0)) :
+          ((and lst? (lst? first)) (quit "Parenthèses mal placées." first))
           (T (quit "Pas de représentation textuelle." first))
          )
      )
