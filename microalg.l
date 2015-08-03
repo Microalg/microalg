@@ -312,8 +312,9 @@ Si vous ne l’avez pas déjà fait, commencez par le
     -> \"bonjour tout le monde\"
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
-(de Concatener !arg_lst
-  (let (!evaled_arg_lst (mapcar 'eval !arg_lst)
+(de !concatener @
+  (let (!arg_lst (rest)
+        !evaled_arg_lst (mapcar 'eval !arg_lst)
         !error_prefix "`Concatener` : l’argument n°")
        # Quelques vérifications :
        (for (!arg_num . !arg) !arg_lst
@@ -330,6 +331,8 @@ Si vous ne l’avez pas déjà fait, commencez par le
        )
   )
 )
+(de Concatener !arg_lst (apply '!concatener !arg_lst))
+(de Concaténer !arg_lst (apply '!concatener !arg_lst))
 
 # Gestion des variables
 (put 'Initialiser 'doc
@@ -380,13 +383,8 @@ comme par exemple dans :
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
  `val`.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
-(de Affecter_a arg_lst
-    (let (var (car arg_lst)
-          val (eval (cadr arg_lst))
-          kw  (caddr arg_lst)
-          idx (eval (cadddr arg_lst))
-          cinquieme (cadddr (cdr arg_lst))
-          evaled_var (eval var))
+(de !affecter_a (var val kw idx cinquieme)
+    (let (evaled_var (eval var))
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
              ((num? var) (quit (pack !onppauv "à un nombre.") var))
@@ -439,6 +437,18 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          )
          Rien  # Pas de valeur de retour
     )
+)
+(de Affecter_a arg_lst
+  (ifn (caddr arg_lst)
+    (!affecter_a (car arg_lst) (cadr arg_lst))
+    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst))
+  )
+)
+(de Affecter_à arg_lst
+  (ifn (caddr arg_lst)
+    (!affecter_a (car arg_lst) (cadr arg_lst))
+    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst))
+  )
 )
 (put 'En_position 'doc "Mot-clef intermédiaire pour la commande `Affecter_a`.")
 (setq En_position 'En_position)
