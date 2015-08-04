@@ -364,7 +364,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
   (let (!splitted (split arg_lst 'De_type)
         !vars (car !splitted)
         !kw (eval (cadr (reverse arg_lst)))
-        !type (eval (last arg_lst))
+        !type (eval (caadr !splitted))
         !error_prefix "`Declarer` : la variable n°")
        (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
        (for (!var_num . !var) !vars
