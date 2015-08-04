@@ -16,7 +16,7 @@ Voir <http://microalg.info>.")
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Booleen?"
 "Cercle" "Concatener" "Contour" "credit_iterations"
-"Definir" "Demander" "Demander_un_nombre"
+"Declarer" "Definir" "Demander" "Demander_un_nombre"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
@@ -337,6 +337,52 @@ Si vous ne l’avez pas déjà fait, commencez par le
 (de Concaténer !arg_lst (apply '!concatener !arg_lst))
 
 # Gestion des variables
+(put 'Declarer 'doc
+"Commande qui permet de déclarer une variable, avec son type.
+
+    : (Declarer x De_type \"nombre\")
+    -> Rien
+    : (Type x)
+    -> \"nombre\"
+
+Il est possible de déclarer plusieurs variables en une seule instruction :
+
+    : (Declarer x y z De_type \"texte\")
+    -> Rien
+    : (Type y)
+    -> \"texte\"
+")
+(put 'Declarer 'text "Commande `Declarer`.")
+(setq De_type 'De_type)
+(de Declarer arg_lst
+  (let (nbr_args (length arg_lst))
+       (if (lt0 (- nbr_args 3))
+           (quit (pack "`Declarer` prend au moins 3 paramètres. "
+                       "Vous en donnez " nbr_args ".") )
+       )
+  )
+  (let (!splitted (split arg_lst 'De_type)
+        !vars (car !splitted)
+        !kw (eval (cadr (reverse arg_lst)))
+        !type (eval (last arg_lst))
+        !error_prefix "`Declarer` : la variable n°")
+       (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
+       (for (!var_num . !var) !vars
+         # Les variables ont-elles déjà été déclarées ?
+         (let !type (Type !var)
+           (if (<> "rien" !type)
+               (quit (pack !error_prefix !arg_num " a déjà été déclarée de type "
+                           !type ".") !arg)
+           )
+         )
+         # Typer la variable.
+         (put !var 'type !type)
+         # Initialiser la variable à Rien.
+         (set !var Rien)
+       )
+       Rien  # Pas de valeur de retour
+  )
+)
 (put 'Initialiser 'doc
 "Commande qui permet d’initialiser une variable avec une valeur.
 
@@ -961,8 +1007,8 @@ en minuscule).
              ((!boolM2P (Texte?   !evaled_x)) "texte")
              ((!boolM2P (Liste?   !evaled_x)) "liste")
              ((!boolM2P (Booleen? !evaled_x)) "booleen")
+             ((and (sym? !x) (get !x 'type)) (get !x 'type))
              ((!boolM2P (== Rien  !evaled_x)) "rien")
-             ((sym? !x) (get !x 'type))
              (T Rien)
            ) ) ) )
 (put 'Texte 'doc
