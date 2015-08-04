@@ -962,7 +962,7 @@ en minuscule).
              ((!boolM2P (Liste?   !evaled_x)) "liste")
              ((!boolM2P (Booleen? !evaled_x)) "booleen")
              ((!boolM2P (== Rien  !evaled_x)) "rien")
-             ((sym? x) (get !x 'type))
+             ((sym? !x) (get !x 'type))
              (T Rien)
            ) ) ) )
 (put 'Texte 'doc
