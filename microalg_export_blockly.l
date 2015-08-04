@@ -137,6 +137,15 @@
                     (range 0 (dec (length inputs)))
                     inputs))
         "</block>"))
+(de Declarer inputs
+  (let (!var (cadr (car inputs))  # var name is in (Variable ...)
+        !type (eval (cadr inputs))
+        !next (eval (caddr inputs)))
+       (pack "<block type=\"declarer\">"
+             "<field name=\"VAR\">" !var "</field>"
+             "<value name=\"TYPE\">" !type "</value>"
+             !next
+             "</block>")))
 (de Demander ()
   "<block type=\"demander\"></block>")
 (de Demander_un_nombre ()

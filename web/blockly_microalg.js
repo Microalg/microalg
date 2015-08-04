@@ -33,7 +33,8 @@ Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Booleen?, Concatener, ' +
-    'Definir, Demander, Demander_un_nombre, En_position, Entier@, Et, Exemples_de, ' +
+    'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
+    'En_position, Entier@, Et, Exemples_de, ' +
     'Faire, Faux, Faux?, Initialiser, Initialiser@, ' +
     'Liste, Liste?, Longueur, Millisecondes, ' +
     'Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
@@ -472,6 +473,43 @@ Blockly.MicroAlg['concatener'] = function(block) {
     code = '(' + cmd + '\n' + args.join('\n') + '\n)';
   }
   return code;
+};
+
+// Bloc Declarer
+// https://github.com/google/blockly/blob/master/blocks/variables.js
+Blockly.Blocks['declarer'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Declarer');
+    this.setColour(colour);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Déclarer une variable avec un type.');
+    this.interpolateMsg(
+      'Declarer' + ' %1 ' + 'De_type' + '%2',
+      ['VAR', new Blockly.FieldVariable("ma_variable")],
+      ['TYPE', null],
+      Blockly.ALIGN_RIGHT);
+    this.setInputsInline(false);
+    this.contextMenuMsg_ = "Créer truc"; // ???
+    this.contextMenuType_ = 'variable';
+  },
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+        this.setFieldValue(newName, 'VAR');
+    }
+  },
+  customContextMenu: Blockly.Blocks['variable'].customContextMenu
+};
+
+// Gen Declarer
+// https://github.com/google/blockly/blob/master/generators/javascript/variables.js
+Blockly.MicroAlg['declarer'] = function(block) {
+  var type = Blockly.MicroAlg.statementToCode(block, 'TYPE') || '';
+  var type_cleaned = type.toString().trim();
+  return '(Declarer ' + this.getFieldValue('VAR') + ' De_type ' + type_cleaned + ')';
 };
 
 // Bloc Demander

@@ -295,6 +295,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Cmdes sans retour">' +
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
+                '  <block type="declarer"></block>' +
                 '  <block type="initialiser"></block>' +
                 '  <block type="affecter_a"></block>' +
                 '  <block type="initialiser_pseudo_aleatoire"></block>' +
