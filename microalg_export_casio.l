@@ -23,6 +23,7 @@
         val (cadr !arg_lst))
        (cond
          ((== 'Demander (car val))              (pack "?→Str " var "^J"))
+         ((== 'Demander_un_nombre (car val))    (pack "?→" var "^J"))
          ((and (== 'Nombre (car val))
                (== 'Demander (car (cadr val)))) (pack "?→" var "^J"))
          (T                                     (pack (eval val) "→" var "^J"))
@@ -39,6 +40,8 @@
 (de Affecter_a  !arg_lst (!store !arg_lst))
 (de Demander () (pack "-- La commande `Demander` doit être utilisée avec "
                       "`Initialiser` ou `Affecter_a`. --"))
+(de Demander_un_nombre () (pack "-- La commande `Demander_un_nombre` doit être utilisée avec "
+                                "`Initialiser` ou `Affecter_a`. --"))
 (de Entier@ (A B) (pack "RanInt#(" A "," B ")"))
 (setq Vrai "1")
 (setq Faux "0")
