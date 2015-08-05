@@ -364,15 +364,14 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
   (let (!splitted (split arg_lst 'De_type)
         !vars (car !splitted)
         !kw (eval (cadr (reverse arg_lst)))
-        !type (eval (caadr !splitted))
-        !error_prefix "`Declarer` : la variable n°")
+        !type (eval (caadr !splitted)))
        (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
        (for (!var_num . !var) !vars
          # Les variables ont-elles déjà été déclarées ?
-         (let !type (Type !var)
+         (let (!type (!type_sym !var))
            (if (<> "rien" !type)
-               (quit (pack !error_prefix !arg_num " a déjà été déclarée de type "
-                           !type ".") !arg)
+               (quit (pack "`Declarer` : la variable " !var
+                           " a déjà été déclarée de type \"" !type "\"."))
            )
          )
          # Typer la variable.
@@ -979,6 +978,23 @@ faut ajouter `(Initialiser@)` au début du programme.
 )
 
 # Types et conversions
+(de !type_sym (!x)
+  (let (!evaled_x (eval !x))
+        embedded_type (ifn (num? !x) (get !x 'type))
+       (if embedded_type
+           embedded_type
+           (cond
+             ((not !x) "texte")  # Possiblement "" en direct.
+             ((!boolM2P (Nombre?  !evaled_x)) "nombre")
+             ((!boolM2P (Liste?   !x))        "liste")
+             ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
+             ((!boolM2P (Texte?   !evaled_x)) "texte")
+             ((!boolM2P (Liste?   !evaled_x)) "liste")
+             ((!boolM2P (Booleen? !evaled_x)) "booleen")
+             ((and (sym? !x) (get !x 'type)) (get !x 'type))
+             ((!boolM2P (== Rien  !evaled_x)) "rien")
+             (T Rien)
+           ) ) ) )
 (put 'Type 'doc
 "Commande qui retourne le type de son paramètre (sous forme de texte et
 en minuscule).
