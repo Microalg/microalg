@@ -22,9 +22,9 @@
   (let (var (eval (car !arg_lst))
         val (cadr !arg_lst))
        (cond
-         ((== 'Demander (car val))              (pack "Promt Str" var "^J"))
+         ((== 'Demander (car val))              (pack "Prompt Str" var "^J"))
          ((and (== 'Nombre (car val))
-               (== 'Demander (car (cadr val)))) (pack "Promt " var "^J"))
+               (== 'Demander (car (cadr val)))) (pack "Prompt " var "^J"))
          (T                                     (pack (eval val) "→" var "^J"))
        )
 ))
