@@ -137,15 +137,29 @@
                     (range 0 (dec (length inputs)))
                     inputs))
         "</block>"))
-(de Declarer inputs
-  (let (!var (cadr (car inputs))  # var name is in (Variable ...)
-        !type (eval (cadr inputs))
-        !next (eval (caddr inputs)))
-       (pack "<block type=\"declarer\">"
-             "<field name=\"VAR\">" !var "</field>"
-             "<value name=\"TYPE\">" !type "</value>"
-             !next
-             "</block>")))
+(de Declarer arg_lst
+  (let (!splitted (split arg_lst 'De_type)
+        !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
+        !type (caadr !splitted)
+        !next (last arg_lst))
+       (!declarer_rec !vars !type !next)
+  )
+)
+(de !declarer_rec (!vars !type !next)
+  (ifn !vars
+       (eval !next)
+       (let (!length_vars (length !vars))
+            (pack "<block type=\"declarer\">"
+                  "<field name=\"VAR\">" (car !vars) "</field>"
+                  "<value name=\"TYPE\">" (eval !type) "</value>"
+                  (if (and (<> 0 !length_vars) (<> 1 !length_vars) 2)  # len >= 2
+                      (pack "<next>" (!declarer_rec (cdr !vars) !type !next) "</next>")
+                      (!declarer_rec (cdr !vars) !type !next)
+                  )
+                  "</block>")
+       )
+  )
+)
 (de Demander ()
   "<block type=\"demander\"></block>")
 (de Demander_un_nombre ()
