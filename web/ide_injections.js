@@ -99,6 +99,7 @@ function onCtrl(elt, f) {
                   "(At": "(Afficher \"|\")",
                   "(Co": "(Concatener |)",
                   "(D": "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
+                  "(De": "(Declarer | De_type \"\")",
                   "(Dm": "(Demander)|",
                   "(E": "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
                   "(E@": "(Entie@ |)\n",
