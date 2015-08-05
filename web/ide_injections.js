@@ -46,6 +46,10 @@ function cleanTransient(text) {
 }
 
 function stdPrint(text, state) {
+    if (typeof state.context == 'undefined') {
+        console.log(text);
+        return;
+    }
     var target = $('#' + state.context.display_elt);
     text = cleanTransient(text);
     if (state.context.type == 'editor') {
