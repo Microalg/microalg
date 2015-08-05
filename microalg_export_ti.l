@@ -28,6 +28,13 @@
          (T                                     (pack (eval val) "→" var "^J"))
        )
 ))
+(de Declarer !arg_lst
+  (let (!splitted (split !arg_lst 'De_type)
+        !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
+        !type (caadr !splitted))
+       (pack (glue " " !vars) " de type " (cadr !type) "^J")  # type is in (Litteral ...)
+  )
+)
 (de Initialiser !arg_lst (!store !arg_lst))
 (de Affecter_a  !arg_lst (!store !arg_lst))
 (de Demander () (pack "-- La commande `Demander` doit être utilisée avec "
