@@ -16,6 +16,7 @@
             '(= "" (Concatener))
             '(= "" (Concatener ""))
             '(= "" (Concatener "" ""))
+            '(= "hello" (Concatener "hello"))
             '(= "hello world" (Concatener "hello " "world"))
             '(= "Salut tout le monde!" (Concatener "Salut " "tout " "le " "monde!"))
             '(= "hello world" (prog (Afficher (Concatener "hello " "world")) *LastStdOut))
