@@ -21,6 +21,11 @@
             '(= "Salut tout le monde!" (Concatener "Salut " "tout " "le " "monde!"))
             '(= "hello world" (prog (Afficher (Concatener "hello " "world")) *LastStdOut))
             '(= "àéèîïôü" (Concatener "à" "é" "è" "î" "ï" "ô" "ü" ))
+            '(= "(Liste)" (!text (Concatener (Liste))))
+            '(= "(Liste 1 2 3)" (!text (Concatener (Liste 1 2 3))))
+            '(= "(Liste 1 2)" (!text (Concatener (Liste 1 2) (Liste))))
+            '(= "(Liste 1 2 3 4)" (!text (Concatener (Liste 1 2) (Liste 3 4))))
+            '(= "(Liste 1 2 3 4 5 6)" (!text (Concatener (Liste 1 2) (Liste 3 4) (Liste 5 6))))
             # Gestion des variables
             '(let (x NIL) (= 0 (prog (setq x 0) x)))
             '(let (x NIL) (= 0 (prog (Initialiser x 0) x)))
