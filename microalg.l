@@ -1073,6 +1073,7 @@ en minuscule).
                 ((!boolM2P (Liste? x)) (!text x))  # mettre avant str?
                 ((str? x) x)
                 ((num? x) (format x))
+                ((sym? x) (pack x))
                 (T "???")
               ))
 (put 'Nombre 'doc
