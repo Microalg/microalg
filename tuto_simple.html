@@ -1273,8 +1273,18 @@
     caractères (où chaque maillon est un caractère).</p>
     <p>Comme les chaînes de caractères (ce qu’on appelle ici parfois le
     <em>texte</em> en MicroAlg), les listes sont numérotées à partir de 1 et
-    peuvent être passées aux commandes <code>Longueur</code>, <code>Nieme</code>,
-    <code>Nieme@</code>, <code>Tete</code> et <code>Queue</code>.</p>
+    peuvent être passées aux commandes
+    <code>Longueur</code>,
+    <code>Nieme</code>,
+    <code>Nieme@</code>,
+    <code>Tete</code> et <code>Queue</code>.</p>
+    <p>Voici quelques exemples utilisant la commande <code>Longueur</code>. Vous
+    noterez que :</p>
+    <ul>
+    <li>des valeurs de n’importe type peuvent être « rangées » dans une liste ;</li>
+    <li>les valeurs peuvent être de types différents ;
+    <li>une liste peut contenir d’autres listes !</li>
+    </ul>
     <div id="script-cmds-longueur"></div>
     <script>inject_microalg_editor_in('script-cmds-longueur', {
      src:
@@ -1283,8 +1293,8 @@
         '(Afficher (Longueur (Liste Vrai Faux Faux Faux Vrai)))\n' +
         '(Afficher (Longueur (Liste)))\n' +
         '(Afficher (Longueur (Liste "Je suis le seul élément.")))\n' +
-        '(Afficher (Longueur (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
         '(Afficher (Longueur (Liste Vrai "avantage" 42)))\n' +
+        '(Afficher (Longueur (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
         ''
     });</script>
     <p><strong>Rappel</strong> : <code>Nieme</code> se prononce
