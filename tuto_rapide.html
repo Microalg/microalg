@@ -950,6 +950,7 @@
     <em>texte</em> en MicroAlg), les listes sont numérotées à partir de 1 et
     peuvent être passées aux commandes
     <code>Longueur</code>,
+    <code>Concatener</code>,
     <code>Nieme</code>,
     <code>Nieme@</code>,
     <code>Tete</code> et <code>Queue</code>.</p>
@@ -964,6 +965,26 @@
         '(Afficher (Longueur (Liste "Je suis le seul élément.")))\n' +
         '(Afficher (Longueur (Liste Vrai "avantage" 42)))\n' +
         '(Afficher (Longueur (Liste (Liste 2 4 6) (Liste 3 5 7))))\n' +
+        ''
+    });</script>
+    <p>Voici quelques exemples utilisant la commande <code>Concatener</code> :</p>
+    <div id="script-cmds-concatener"></div>
+    <script>inject_microalg_editor_in('script-cmds-concatener', {
+     src:
+        '(Afficher (Concatener (Liste 1 3 5) (Liste 7 9 11)))\n' +
+        '(Afficher (Concatener (Liste "s") (Liste "a" "l") (Liste "u" "t")))\n' +
+        '(Afficher (Concatener (Liste "Je suis le seul élément.")))\n' +
+        '(Afficher (Concatener (Liste)))\n' +
+        ''
+    });</script>
+    <p>Attention, si on ne lui passe pas d’argument, la commande
+    <code>Concatener</code> retourne plutôt un texte vide qu’une liste vide :</p>
+    <div id="script-concatener-sans-arg"></div>
+    <script>inject_microalg_editor_in('script-concatener-sans-arg', {
+     src:
+        '(Afficher "Avant.")\n' +
+        '(Afficher (Concatener))\n' +
+        '(Afficher "Après.")\n' +
         ''
     });</script>
     <p><strong>Rappel</strong> : <code>Nieme</code> se prononce
