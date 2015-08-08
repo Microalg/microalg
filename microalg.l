@@ -330,14 +330,14 @@ Si vous ne l’avez pas déjà fait, commencez par le
          )
        )
        # Quelques vérifs, puis le calcul :
-       (let (!preumz (car !arg_lst)
+       (let (!preumz (car !evaled_arg_lst)
              !type (!type_sym !preumz))
             # D’abord le type du premier arg :
             (ifn (index !type '("liste" "texte"))
                  (quit (pack "Ce type de valeur : \"" !type
                              "\" , n’est pas concaténable." !preumz)))
             # Ensuite le type des autres :
-            (for (!arg_num . !arg) !arg_lst
+            (for (!arg_num . !arg) !evaled_arg_lst
               (if (<> !type (!type_sym !arg))
                    (quit (pack !error_prefix !arg_num " n’est pas de type \""
                                !type "\".") !arg)))
