@@ -379,14 +379,16 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
 ")
 (put 'Declarer 'text "Commande `Declarer`.")
 (setq De_type 'De_type)
-(de Declarer arg_lst
-  (let (nbr_args (length arg_lst))
+(de !declarer @
+  (let (arg_lst (rest)
+        nbr_args (length arg_lst))
        (if (lt0 (- nbr_args 3))
            (quit (pack "`Declarer` prend au moins 3 paramètres. "
                        "Vous en donnez " nbr_args ".") )
        )
   )
-  (let (!splitted (split arg_lst 'De_type)
+  (let (arg_lst (rest)
+        !splitted (split arg_lst 'De_type)
         !vars (car !splitted)
         !kw (eval (cadr (reverse arg_lst)))
         !type (eval (caadr !splitted)))
@@ -410,6 +412,8 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
        Rien  # Pas de valeur de retour
   )
 )
+(de Declarer !arg_lst (apply '!declarer !arg_lst))
+(de Déclarer !arg_lst (apply '!declarer !arg_lst))
 (put 'Initialiser 'doc
 "Commande qui permet d’initialiser une variable avec une valeur.
 
