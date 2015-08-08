@@ -1338,8 +1338,9 @@ Exemple 2 :
     )
 ")
 (put 'Definir 'text "Commande `Definir`.")
-(de Definir arg_lst
-  (let (signature (car arg_lst)
+(de !definir @
+  (let (arg_lst (rest)
+        signature (car arg_lst)
         nom       (car signature)
         params    (cdr signature)
         corps     (cdr arg_lst)
@@ -1366,6 +1367,8 @@ Exemple 2 :
        Rien  # Pas de valeur de retour
   )
 )
+(de Definir !arg_lst (apply '!definir !arg_lst))
+(de Définir !arg_lst (apply '!definir !arg_lst))
 (put 'Retourner 'doc
 "Dernière instruction du corps d’une commande définie avec `Definir`.
 Indique la valeur que cette commande va retourner.
