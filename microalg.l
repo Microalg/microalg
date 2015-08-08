@@ -322,38 +322,38 @@ Si vous ne l’avez pas déjà fait, commencez par le
        (if (== 0 !arg_nbre)
            ""  # Attention si travail avec listes
            (prog
-       # Quelques vérifications :
-       # Variables initialisées ?
-       (for (!arg_num . !arg) !arg_lst
-         (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
-              (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg)
-         )
-       )
-       # Quelques vérifs, puis le calcul :
-       (let (!preumz (car !evaled_arg_lst)
-             !type (!type_sym !preumz))
-            # D’abord le type du premier arg :
-            (ifn (index !type '("liste" "texte"))
-                 (quit (pack "Ce type de valeur : \"" !type
-                             "\" , n’est pas concaténable." !preumz)))
-            # Ensuite le type des autres :
-            (for (!arg_num . !arg) !evaled_arg_lst
-              (if (<> !type (!type_sym !arg))
-                   (quit (pack !error_prefix !arg_num " n’est pas de type \""
-                               !type "\".") !arg)))
-            # Le calcul :
-            (ifn (<> 1 !arg_nbre)
-                 (car !evaled_arg_lst)  # Légère optimisation
-                 (if (<> "liste" !type)
-                     (apply 'pack !evaled_arg_lst)
-                     (apply 'Liste
-                            (make
-                              (for !arg !evaled_arg_lst
-                                (for !elt (elts> !arg)
-                                  (link !elt)))))
-                 )
-            )
-           )
+             # Quelques vérifications :
+             # Variables initialisées ?
+             (for (!arg_num . !arg) !arg_lst
+               (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
+                    (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg)
+               )
+             )
+             # Quelques vérifs, puis le calcul :
+             (let (!preumz (car !evaled_arg_lst)
+                   !type (!type_sym !preumz))
+                  # D’abord le type du premier arg :
+                  (ifn (index !type '("liste" "texte"))
+                       (quit (pack "Ce type de valeur : \"" !type
+                                   "\" , n’est pas concaténable." !preumz)))
+                  # Ensuite le type des autres :
+                  (for (!arg_num . !arg) !evaled_arg_lst
+                    (if (<> !type (!type_sym !arg))
+                         (quit (pack !error_prefix !arg_num " n’est pas de type \""
+                                     !type "\".") !arg)))
+                  # Le calcul :
+                  (ifn (<> 1 !arg_nbre)
+                       (car !evaled_arg_lst)  # Légère optimisation
+                       (if (<> "liste" !type)
+                           (apply 'pack !evaled_arg_lst)
+                           (apply 'Liste
+                                  (make
+                                    (for !arg !evaled_arg_lst
+                                      (for !elt (elts> !arg)
+                                        (link !elt)))))
+                       )
+                  )
+             )
            )
        )
   )
