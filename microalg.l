@@ -262,7 +262,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
     (let (
           first truc
           efirst (eval first)
-         )
+         )(println "--")(println first)(println efirst)
          (cond
           ((and (not (atom efirst)) (!boolM2P (= '? (car efirst))))
            (pack "(" (str efirst) ")"))           # liste commençant par ?
@@ -275,6 +275,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
           ((str? efirst) efirst)                  # expr -> texte
           ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
           ((sym? efirst) efirst)                  # expr -> sym (Rien, bool…)
+          ((sym? first) (pack first))                  # expr -> sym (Rien, bool…)
           # m’est arrivé avec (Liste (0 255 0)) :
           ((and lst? (lst? first)) (quit "Parenthèses mal placées." first))
           (T (quit "Pas de représentation textuelle." first))
@@ -1975,5 +1976,23 @@ L’angle doit être fourni en degrés.
     ((gt0 (- !angle 180)) (- (1000Sinus (- !angle 180))))
     ((gt0 (- !angle 90)) (1000Cosinus (- !angle 90)))
     (T (car (nth !valeurs_trigo (- 91 !angle))))
+  )
+)
+
+(put 'Gel 'doc
+"Retourne tel quel, sans évaluation, son premier argument.
+
+    : (Gel x)
+    -> x
+
+Nécessaire pour passer des noms de variables ou de commandes en argument à des
+commandes qui sans ça les évalueraient.
+")
+(put 'Gel 'text "Commande `Gel`.")
+(de Gel !arg_lst
+  (let (!arg_nbre (length !arg_lst))
+    (if (<> 1 !arg_nbre)
+        (quit (pack "`Gel` accepte un seul argument. Vous en donnez " !arg_nbre ".")) )
+    (car !arg_lst)
   )
 )
