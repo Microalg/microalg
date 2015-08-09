@@ -339,7 +339,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
                   # D’abord le type du premier arg :
                   (ifn (index !type '("liste" "texte"))
                        (quit (pack "Ce type de valeur : \"" !type
-                                   "\" , n’est pas concaténable." !preumz)))
+                                   "\" , n’est pas concaténable.") !preumz))
                   # Ensuite le type des autres :
                   (for (!arg_num . !arg) !evaled_arg_lst
                     (if (<> !type (!type_sym !arg))
