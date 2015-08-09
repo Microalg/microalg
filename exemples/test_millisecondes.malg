@@ -20,7 +20,7 @@
 (Afficher (Concatener
             "Soit "
             (Texte (- apres_la_boucle depart))
-            " millisecondes pour 2ème la boucle."
+            " millisecondes pour 1ère la boucle."
           ))
 (Initialiser i 0)
 (Initialiser texte "")
