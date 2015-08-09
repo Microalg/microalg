@@ -306,12 +306,16 @@ Si vous ne l’avez pas déjà fait, commencez par le
 
 # Concatener
 (put 'Concatener 'doc
-"Commande qui concatène les textes passés en paramètre (deux ou plus).
+"Commande qui concatène les textes ou les listes passés en paramètre (deux ou plus).
 
     : (Concatener \"abra\" \"cadabra\")
     -> \"abracadabra\"
     : (Concatener \"bonjour \" \"tout \" \"le \" \"monde\")
     -> \"bonjour tout le monde\"
+    : (Afficher (Concatener (Liste 1 2) (Liste 3 4)))
+    \"(Liste 1 2 3 4)\"
+    -> Rien
+
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
 (de !concatener @
