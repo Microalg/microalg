@@ -15,9 +15,8 @@
              args (cdr malg_src))
             (pack "<label for=\"" cmd "\">" cmd "</label>"
                   "<input type=\"checkbox\" id=\"" cmd "\" checked />"
-                  "<ol>"
-                  (mapcar 'arbreninja_rec args)
-                  "</ol>"
+                  (if args
+                      (pack "<ol>" (mapcar 'arbreninja_rec args) "</ol>"))
             )
        )
     )
