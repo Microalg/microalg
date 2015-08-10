@@ -382,6 +382,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
     -> \"texte\"
 ")
 (put 'Declarer 'text "Commande `Declarer`.")
+(put 'De_type 'doc "Mot-clef intermédiaire pour la commande `Declarer`.")
 (setq De_type 'De_type)
 (de !declarer @
   (let (arg_lst (rest)
