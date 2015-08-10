@@ -219,7 +219,10 @@ Notez bien que l’argument passé à `!!!` doit être un texte et doit donc êt
 entre guillemets.
 ")
 (put '!!! 'text "Commande commentaire.")
-(de !!! () Rien)
+(de !!! (!comz !deuze)
+  (ifn (str? !comz) (quit "Un commentaire doit être du texte (entre guillemets)."))
+  (if !deuze (quit "La commande `!!!` n’accepte qu’un argument."))
+  Rien)
 
 # Aide
 (put 'Aide 'doc
