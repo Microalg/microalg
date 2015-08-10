@@ -135,7 +135,8 @@ Voir <http://microalg.info>.")
         (get !sym 'type)   # un symbole contenant une valeur typée
     ) )
 
-# Doc pour les fonctions PicoLisp
+# Doc pour les fonctions PicoLisp pur.
+# Le type est géré dans Type et !type_sym.
 (put '+ 'doc
 "Commande qui ajoute tous ses paramètres et retourne le résultat.
 
@@ -206,6 +207,7 @@ Sinon :
     -> 8
 ")
 (put '^ 'text "Commande puissance.")
+(put '^ 'type "commande")
 (de ^ (!x !y) (** !x !y))
 
 # Commentaires
@@ -244,6 +246,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
 * `(Aide symboles)` pour une liste des symboles prédéfinis,
 * `(Aide «quoi»)` (sans «») pour de l’aide sur quelque chose en particulier,
 * `version` ou `apropos` pour des informations sur MicroAlg.")
+(put 'Aide 'type "commande")
 
 # Afficher.
 # Avec EmuLisp, l’affichage se fait au travers de la fonction _stdPrint,
@@ -257,6 +260,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
     -> Rien
 ")
 (put 'Afficher 'text "Commande `Afficher`.")
+(put 'Afficher 'type "commande")
 (setq *LastStdOut "")
 (de !text (truc)
     (let (
@@ -318,6 +322,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
 
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
+(put 'Concatener 'type "commande")
 (de !concatener @
   (let (!arg_lst (rest)
         !evaled_arg_lst (mapcar 'eval !arg_lst)
@@ -382,6 +387,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
     -> \"texte\"
 ")
 (put 'Declarer 'text "Commande `Declarer`.")
+(put 'Declarer 'type "commande")
 (put 'De_type 'doc "Mot-clef intermédiaire pour la commande `Declarer`.")
 (setq De_type 'De_type)
 (de !declarer @
@@ -439,6 +445,7 @@ comme par exemple dans :
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
  `val`.")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
+(put 'Affecter_a 'type "commande")
 (de !affecter_a (var val_expr kw idx_expr cinquieme)
     (let (evaled_var (eval var)
           val (eval val_expr)
@@ -541,6 +548,7 @@ valeur avant de la stocker dans une variable. Exemple :
     (Demander)
 ")
 (put 'Demander 'text "Commande `Demander`.")
+(put 'Demander 'type "commande")
 (de Demander (!rien_ici)
   (if !rien_ici (quit "`Demander` ne prend pas de paramètre."))
   (in NIL (line T)) )
@@ -552,6 +560,7 @@ Préférer `(Nombre (Demander))`.
 Cette commande est peu documentée et sert uniquement pour faciliter le travail
 avec les plus jeunes.")
 (put 'Demander_un_nombre 'text "Commande `Demander_un_nombre`.")
+(put 'Demander_un_nombre 'type "commande")
 (de Demander_un_nombre (!rien_ici)
   (if !rien_ici (quit "`Demander_un_nombre` ne prend pas de paramètre."))
   (Nombre (Demander)) )
@@ -604,6 +613,7 @@ avec les plus jeunes.")
     -> Rien
 ")
 (put 'Liste 'text "Commande `Liste`.")
+(put 'Liste 'type "commande")
 (de Liste @
     (new '(+Liste) (rest)) )
 
@@ -617,6 +627,7 @@ avec les plus jeunes.")
     -> 4
 ")
 (put 'Longueur 'text "Commande `Longueur`.")
+(put 'Longueur 'type "commande")
 (de !longueur (!obj)
     (if (!boolM2P (Liste? !obj))
         (length> !obj)
@@ -653,6 +664,7 @@ La numérotation commence à 1.
     -> 3
 ")
 (put 'Nieme 'text "Commande `Nieme`.")
+(put 'Nieme 'type "commande")
 (de Nieme arg_lst
   (let (!obj (car arg_lst)
         !evaled_obj (eval !obj)
@@ -693,6 +705,7 @@ La numérotation commence à 1.
     -> 1
 ")
 (put 'Tete 'text "Commande `Tete`.")
+(put 'Tete 'type "commande")
 (de Tete (obj)
     # Quelques vérifications
     (cond ((num? obj)
@@ -717,6 +730,7 @@ La numérotation commence à 1.
     -> \"(Liste 3 5 7)\"
 ")
 (put 'Queue 'text "Commande `Queue`.")
+(put 'Queue 'type "commande")
 (de Queue (obj)
     # Quelques vérifications
     (cond ((num? obj)
@@ -760,6 +774,7 @@ Avec une liste :
     -> Rien
 ")
 (put 'Ajouter_a 'text "Commande `Ajouter_a`.")
+(put 'Ajouter_a 'type "commande")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
         !evaled_sym (eval !sym)
@@ -809,6 +824,7 @@ Avec une liste :
     -> Rien
 ")
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
+(put 'Retirer_de 'type "commande")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
         !evaled_sym (eval !sym)
@@ -916,6 +932,7 @@ Alors que :
 cette valeur.
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
+(put 'Initialiser@ 'type "commande")
 (de Initialiser@ (x)
   (let 2^32 (** 2 32)
     (ifn x (setq !etat@ (% (+ (time) (usec)) 2^32))
@@ -943,6 +960,7 @@ chaque exécution d’un programme. Si ce n’est pas le comportement désiré, 
 faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Entier@ 'text "Commande `Entier@`.")
+(put 'Entier@ 'type "commande")
 (de Entier@ (!min !max !rien_ici)
     # Quelques vérifications
     (ifn (and !min !max) (quit "`Entier@` prend deux paramètres (entiers)."))
@@ -978,6 +996,7 @@ chaque exécution d’un programme. Si ce n’est pas le comportement désiré, 
 faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Nieme@ 'text "Commande `Nieme@`.")
+(put 'Nieme@ 'type "commande")
 (de Nieme@ (obj !rien_ici)
     # Quelques vérifications
     (setq !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
@@ -1027,11 +1046,13 @@ en minuscule).
     -> \"liste\"
 ")
 (put 'Type 'text "Commande `Type`.")
+(put 'Type 'type "commande")
 (de Type arg_lst
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
         embedded_type (ifn (num? !x) (get !x 'type))
        (cond
+             ((index !x '(+ - * ** / %)) "commande")
              (embedded_type embedded_type)
              ((not !x) "texte")  # Possiblement "" en direct.
              ((!boolM2P (Nombre?  !evaled_x)) "nombre")
@@ -1051,6 +1072,7 @@ en minuscule).
     -> \"42\"
 ")
 (put 'Texte 'text "Commande `Texte`.")
+(put 'Texte 'type "commande")
 (de Texte (x) (cond
                 ((not (<> x 'Vrai)) "Vrai")
                 ((not (<> x 'Faux)) "Faux")
@@ -1068,6 +1090,7 @@ en minuscule).
     -> 42
 ")
 (put 'Nombre 'text "Commande `Nombre`.")
+(put 'Nombre 'type "commande")
 (de Nombre (x) (cond
                 ((num? x) x)
                 ((str? x) (or (format x) Rien))
@@ -1107,6 +1130,7 @@ Ou :
     )
 ")
 (put 'Si 'text "Commande `Si`.")
+(put 'Si 'type "commande")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
                      splitted  (split (cddr arg_lst) 'Sinon)
@@ -1130,6 +1154,7 @@ Ou :
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 (put 'Non 'text "Commande `Non`.")
+(put 'Non 'type "commande")
 (de Non (!P !rien_ici)
     (if !rien_ici (quit "`Non` ne prend qu’un paramètre (booléen)."))
     (ifn (!boolCheck !P) (quit "`Non` prend un paramètre booléen."))
@@ -1144,6 +1169,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 (put 'Et 'text "Commande `Et`.")
+(put 'Et 'type "commande")
 (de Et !arg_lst
     # Quelques vérifications :
     (for (!arg_num . !arg) !arg_lst
@@ -1168,6 +1194,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 
 Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Ou 'text "Commande `Ou`.")
+(put 'Ou 'type "commande")
 (de Ou !arg_lst
     # Quelques vérifications :
     (for (!arg_num . !arg) !arg_lst
@@ -1225,6 +1252,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     -> Rien
 ")
 (put 'Tant_que 'text "Commande `Tant_que`.")
+(put 'Tant_que 'type "commande")
 (de Tant_que arg_lst (let (!cond (car arg_lst)
                            !mot-clef (cadr arg_lst)
                            !corps (cddr arg_lst))
@@ -1255,6 +1283,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     -> Rien
 ")
 (put 'Faire 'text "Commande `Faire`.")
+(put 'Faire 'type "commande")
 (de Faire arg_lst (let (!splitted (split arg_lst 'Tant_que)
                         !corps (car !splitted)
                         !cond (caadr !splitted))
@@ -1330,6 +1359,7 @@ Exemple 2 :
     )
 ")
 (put 'Definir 'text "Commande `Definir`.")
+(put 'Definir 'type "commande")
 (de !definir @
   (let (arg_lst (rest)
         signature (car arg_lst)
@@ -1370,6 +1400,7 @@ Utiliser `(Retourner Rien)` pour ne rien retourner.
 **Attention !** Cette instruction doit être la dernière de la commande créée car
 `Retourner` n’en interrompt pas l’exécution.")
 (put 'Retourner 'text "Commande `Retourner`.")
+(put 'Retourner 'type "commande")
 (de Retourner (!val !deuze)
   (if !deuze (quit (pack "`Retourner` n’a qu’un paramètre. Si vous voulez "
                          "vraiment retourner plusieurs valeurs, vous pouvez "
@@ -1401,6 +1432,7 @@ Exemples :
 Pour lancer les tests, utiliser la commande `Tester`.
 ")
 (put 'Exemples_de 'text "Commande `Exemples_de`.")
+(put 'Exemples_de 'type "commande")
 (de Exemples_de arg_lst
   (let (commande (car arg_lst)
         exemples (eval (cadr arg_lst))
@@ -1425,6 +1457,7 @@ Voir la commande `Exemples_de`.")
 (setq ? NIL)
 (de ? @ (apply list (conc (list '?) (rest))))
 (put 'Tester 'text "Commande `Tester`.")
+(put 'Tester 'type "commande")
 (de !paires (!list !acc)
     (cond
       ((!boolM2P (= 0 (length !list))) (reverse !acc))
@@ -1469,6 +1502,7 @@ et `Faux` sinon.
     Faux
 ")
 (put 'Vrai? 'text "Prédicat `Vrai?`.")
+(put 'Vrai? 'type "commande")
 (de Vrai? (x) (if (!boolM2P (= x Vrai)) Vrai Faux))
 (put 'Faux? 'doc
 "**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
@@ -1480,6 +1514,7 @@ et `Faux` sinon.
     Faux
 ")
 (put 'Faux? 'text "Prédicat `Faux?`.")
+(put 'Faux? 'type "commande")
 (de Faux? (x) (if (!boolM2P (= x Faux)) Vrai Faux))
 (put 'Texte? 'doc
 "**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est du texte,
@@ -1491,6 +1526,7 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put 'Texte? 'text "Prédicat `Texte?`.")
+(put 'Texte? 'type "commande")
 (de !texte? (!obj)  # helper évaluant son arg
        (cond
         ((not !obj) Vrai)                       # Possiblement "" en direct.
@@ -1522,6 +1558,7 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put 'Nombre? 'text "Prédicat `Nombre?`.")
+(put 'Nombre? 'type "commande")
 (de Nombre? (x) (if (num? x) Vrai Faux))
 (put 'Booleen? 'doc
 "**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
@@ -1533,6 +1570,7 @@ et `Faux` sinon.
     -> Faux
 ")
 (put 'Booleen? 'text "Prédicat `Booleen?`.")
+(put 'Booleen? 'type "commande")
 (de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
 (put 'Liste? 'doc
 "**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est une liste,
@@ -1546,6 +1584,7 @@ et `Faux` sinon.
     -> Faux
 ")
 (put 'Liste? 'text "Prédicat `Liste?`.")
+(put 'Liste? 'type "commande")
 (de Liste? (x) (if (or (try 'text> x) (try 'text> (eval x))) Vrai Faux))
 # Sans le suffixe '?'
 # Éviter le message « redefined »
@@ -1562,6 +1601,7 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put '= 'text "Prédicat `=`.")
+(put '= 'type "commande")
 (de = (x y) (ifn (<> x y)
                  (if (or (== x Vrai) (== x Faux) (== x Rien)
                          (== y Vrai) (== y Faux) (== y Rien))
@@ -1578,6 +1618,7 @@ différentes, et `Faux` sinon.
     -> Faux
 ")
 (put '=/ 'text "Prédicat `=/`.")
+(put '=/ 'type "commande")
 (de =/ (x y) (if (<> x y) Vrai Faux))
 (put '< 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1589,6 +1630,7 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '< 'text "Prédicat `<`.")
+(put '< 'type "commande")
 (de < (x y) (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1602,6 +1644,7 @@ dans l’ordre croissant.
     -> Faux
 ")
 (put '<= 'text "Prédicat `<=`.")
+(put '<= 'type "commande")
 (de <= (x y) (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1613,6 +1656,7 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '> 'text "Prédicat `>`.")
+(put '> 'type "commande")
 (de > (x y) (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1626,6 +1670,7 @@ dans l’ordre décroissant.
     -> Faux
 ")
 (put '>= 'text "Prédicat `>=`.")
+(put '>= 'type "commande")
 (de >= (x y) (if (ge0 (- x y)) Vrai Faux))
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
@@ -1650,6 +1695,7 @@ Exemples :
     -> Vrai
 ")
 (put 'Vide? 'text "Prédicat `Vide?`.")
+(put 'Vide? 'type "commande")
 (de Vide? arg_lst
   (let (!obj (car arg_lst)
         !evaled_obj (eval !obj)
@@ -1679,6 +1725,7 @@ Exemples :
 (setq Rien 'Rien)
 (put '... 'text "Commande `...`.")
 (put '... 'doc "Commande permettant de présenter les exercices à trous.")
+(put '... 'type "commande")
 (de ... ()
   (quit (pack "Les trois points et/ou les parenthèses `(...)` doivent être "
               "remplacés pour que le programme fonctionne.")) )
@@ -1699,6 +1746,7 @@ le premier étant stocké dans une variable.
 
 ")
 (put 'Millisecondes 'text "Commande `Millisecondes`.")
+(put 'Millisecondes 'type "commande")
 (de Millisecondes (!rien_ici)
   (if !rien_ici (quit "`Millisecondes` ne prend pas de paramètre."))
   (/ (usec) 1000) )
@@ -1737,6 +1785,7 @@ Exemple : `(RAZ)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'RAZ 'text "Commande `RAZ`.")
+(put 'RAZ 'type "commande")
 (de RAZ ()
   (!processing "RAZ")
   Rien
@@ -1749,6 +1798,7 @@ Exemple : `(Contour (Liste 255 0 0))` ou `(Contour (Liste 255 0 0 127))`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
 (put 'Contour 'text "Commande `Contour`.")
+(put 'Contour 'type "commande")
 (de Contour (couleur)
   (!processing (pack "Contour "
                      (Nieme couleur 1)
@@ -1768,6 +1818,7 @@ Exemple : `(Remplissage (Liste 255 0 0))` ou `(Remplissage (Liste 255 0 0 127))
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
 (put 'Remplissage 'text "Commande `Remplissage`.")
+(put 'Remplissage 'type "commande")
 (de Remplissage (couleur)
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
@@ -1786,6 +1837,7 @@ Exemple : `(Epaisseur 5)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Epaisseur 'text "Commande `Epaisseur`.")
+(put 'Epaisseur 'type "commande")
 (de Epaisseur (epaisseur)
   (!processing (pack "Epaisseur " epaisseur))
   Rien
@@ -1800,6 +1852,7 @@ Exemple : `(Segment (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Segment 'text "Commande `Segment`.")
+(put 'Segment 'type "commande")
 (de Segment (point1 point2)
   (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
                                 (Nieme point2 1) " " (Nieme point2 2)))
@@ -1815,6 +1868,7 @@ Exemple : `(Cercle (Liste 300 300) 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Cercle 'text "Commande `Cercle`.")
+(put 'Cercle 'type "commande")
 (de Cercle (centre rayon)
   (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
                      " " (* 2 rayon)))
@@ -1830,6 +1884,7 @@ Exemple : `(Ellipse (Liste 300 300) 200 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Ellipse 'text "Commande `Ellipse`.")
+(put 'Ellipse 'type "commande")
 (de Ellipse (centre rayon1 rayon2)
   (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
                      " " (* 2 rayon1) " " (* 2 rayon2)))
@@ -1844,6 +1899,7 @@ Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Rectangle 'text "Commande `Rectangle`.")
+(put 'Rectangle 'type "commande")
 (de Rectangle (point1 point2)
   (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                   (Nieme point2 1) " " (Nieme point2 2)))
@@ -1858,6 +1914,7 @@ Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Triangle 'text "Commande `Triangle`.")
+(put 'Triangle 'type "commande")
 (de Triangle (point1 point2 point3)
   (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
                                  (Nieme point2 1) " " (Nieme point2 2) " "
@@ -1876,6 +1933,7 @@ Exemple : `(AV 100)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'AV 'text "Commande `AV` (avance).")
+(put 'AV 'type "commande")
 (de AV (longueur)
   (!processing (pack "AV " longueur))
   Rien
@@ -1890,6 +1948,7 @@ Exemple : `(TD 45)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'text "Commande `TD` (tourne à droite).")
+(put 'TD 'type "commande")
 (de TD (angle)
   (!processing (pack "TD " angle))
   Rien
@@ -1904,6 +1963,7 @@ Exemple : `(TG 45)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TG 'text "Commande `TG` (tourne à gauche).")
+(put 'TG 'type "commande")
 (de TG (angle)
   (!processing (pack "TG " angle))
   Rien
@@ -1916,6 +1976,7 @@ Exemple : `(BC)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'BC 'text "Commande `BC` (baisse crayon).")
+(put 'BC 'type "commande")
 (de BC ()
   (!processing "BC")
   Rien
@@ -1928,6 +1989,7 @@ Exemple : `(LC)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'LC 'text "Commande `LC` (lève crayon).")
+(put 'LC 'type "commande")
 (de LC ()
   (!processing "LC")
   Rien
@@ -1950,6 +2012,7 @@ L’angle doit être fourni en degrés.
     -> 866
 ")
 (put '1000Cosinus 'text "Commande `1000Cosinus`.")
+(put '1000Cosinus 'type "commande")
 (de 1000Cosinus (!angle)
   (cond
     ((lt0 !angle) (1000Cosinus (- !angle)))
@@ -1968,6 +2031,7 @@ L’angle doit être fourni en degrés.
     -> 500
 ")
 (put '1000Sinus 'text "Commande `1000Sinus`.")
+(put '1000Sinus 'type "commande")
 (de 1000Sinus (!angle)
   (cond
     ((lt0 !angle) (- (1000Sinus (- !angle))))
