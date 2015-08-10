@@ -1017,9 +1017,8 @@ faut ajouter `(Initialiser@)` au début du programme.
 (de !type_sym (!x)
   (let (!evaled_x (eval !x))
         embedded_type (ifn (num? !x) (get !x 'type))
-       (if embedded_type
-           embedded_type
-           (cond
+       (cond
+             (embedded_type embedded_type)
              ((not !x) "texte")  # Possiblement "" en direct.
              ((!boolM2P (Nombre?  !evaled_x)) "nombre")
              ((!boolM2P (Liste?   !x))        "liste")
@@ -1030,7 +1029,7 @@ faut ajouter `(Initialiser@)` au début du programme.
              ((and (sym? !x) (get !x 'type)) (get !x 'type))
              ((!boolM2P (== Rien  !evaled_x)) "rien")
              (T Rien)
-           ) ) ) )
+       ) ) )
 (put 'Type 'doc
 "Commande qui retourne le type de son paramètre (sous forme de texte et
 en minuscule).
@@ -1049,9 +1048,8 @@ en minuscule).
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
         embedded_type (ifn (num? !x) (get !x 'type))
-       (if embedded_type
-           embedded_type
-           (cond
+       (cond
+             (embedded_type embedded_type)
              ((not !x) "texte")  # Possiblement "" en direct.
              ((!boolM2P (Nombre?  !evaled_x)) "nombre")
              ((!boolM2P (Liste?   !x))        "liste")
@@ -1062,7 +1060,7 @@ en minuscule).
              ((and (sym? !x) (get !x 'type)) (get !x 'type))
              ((!boolM2P (== Rien  !evaled_x)) "rien")
              (T Rien)
-           ) ) ) )
+       ) ) )
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.
 
