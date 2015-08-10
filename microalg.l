@@ -264,9 +264,6 @@ Si vous ne l’avez pas déjà fait, commencez par le
           efirst (eval first)
          )
          (cond
-          ((!boolM2P (= Vrai efirst)) "Vrai")
-          ((!boolM2P (= Faux efirst)) "Faux")
-          ((!boolM2P (= Rien efirst)) "Rien")
           ((and (not (atom efirst)) (!boolM2P (= '? (car efirst))))
            (pack "(" (str efirst) ")"))           # liste commençant par ?
           ((num? first) first)                    # nombre litéral
@@ -1097,8 +1094,10 @@ en minuscule).
 
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
+(put 'Vrai 'text "Vrai")
 (setq Vrai 'Vrai)
 (put 'Faux 'doc "Booléen valant Faux.")
+(put 'Faux 'text "Faux")
 (setq Faux 'Faux)
 (put 'Alors 'doc "Mot-clef intermédiaire pour la commande `Si`.")
 (setq Alors 'Alors)
@@ -1690,6 +1689,7 @@ Exemples :
 # Rien
 (put 'Rien 'doc
 "Valeur de contenant aucune information, représentant l’absence de valeur.")
+(put 'Rien 'text "Rien")
 (setq Rien 'Rien)
 (put '... 'text "Commande `...`.")
 (put '... 'doc "Commande permettant de présenter les exercices à trous.")
