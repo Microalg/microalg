@@ -289,7 +289,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
    a_afficher (!text first)
   )
   # Quelques vérifications
-  (ifn (!inited first a_afficher) (quit "`Afficher` : la variable n’est pas initialisée." first))
+  (ifn (!inited first a_afficher) (quit "`Afficher` : la variable n’a pas été déclarée." first))
   (if second (quit (pack "`Afficher` n’a qu’un paramètre, faites plusieurs "
                          "affichages ou utilisez `Concatener`." )))
   # Le boulot
@@ -330,7 +330,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
              # Variables initialisées ?
              (for (!arg_num . !arg) !arg_lst
                (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
-                    (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg)
+                    (quit (pack !error_prefix !arg_num " n’a pas été déclaré.") !arg)
                )
              )
              # Quelques vérifs, puis le calcul :
@@ -655,7 +655,7 @@ avec les plus jeunes.")
         !deuze (cadr arg_lst))
     # Quelques vérifications
     (if !deuze (quit "`Longueur` n’a qu’un paramètre."))
-    (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’est pas initialisée." !obj))
+    (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’a pas été déclarée." !obj))
     (setq !npdl " n’a pas de `Longueur`.")
     (cond
         ((num? !evaled_obj) (quit (pack "Un nombre" !npdl) !evaled_obj))
@@ -686,7 +686,7 @@ La numérotation commence à 1.
         !troize (caddr arg_lst))
     # Quelques vérifications
     (if !troize (quit "`Nieme` n’a que deux paramètres."))
-    (ifn (!inited !obj !evaled_obj) (quit "`Nieme` : la variable n’est pas initialisée." !obj))
+    (ifn (!inited !obj !evaled_obj) (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
     (setq !onppeuv "`Nieme` ne peut pas extraire une valeur ")
     (cond
         ((num? !evaled_obj) (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
@@ -789,7 +789,7 @@ Avec une liste :
         !troize (caddr arg_lst))
        # Quelques vérifications
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
-       (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’est pas initialisée." !sym))
+       (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’a pas été déclarée." !sym))
        (if (!boolM2P (!texte? !sym))
            (if (or (not (!boolM2P (Texte? !elt)))
                    (!boolM2P (> (!longueur !elt) 1)) )
@@ -833,7 +833,7 @@ Avec une liste :
         !deuze (cadr arg_lst))
        # Quelques vérifications
        (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
-       (ifn (!inited !sym !evaled_sym) (quit "`Retirer_de` : la variable n’est pas initialisée." !sym))
+       (ifn (!inited !sym !evaled_sym) (quit "`Retirer_de` : la variable n’a pas été déclarée." !sym))
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
@@ -1168,7 +1168,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
         (let (!evaled_arg (eval !arg)
               !error_prefix "`Et` : l’argument n°")
              (ifn (!inited !arg !evaled_arg)
-                  (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg) )
+                  (quit (pack !error_prefix !arg_num " n’a pas été déclaré.") !arg) )
              (ifn (!boolCheck !evaled_arg)
                   (quit (pack !error_prefix !arg_num " doit être un booléen.") !arg) )
         )
@@ -1192,7 +1192,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
         (let (!evaled_arg (eval !arg)
               !error_prefix "`Ou` : l’argument n°")
              (ifn (!inited !arg !evaled_arg)
-                  (quit (pack !error_prefix !arg_num " n’est pas initialisé.") !arg) )
+                  (quit (pack !error_prefix !arg_num " n’a pas été déclaré.") !arg) )
              (ifn (!boolCheck !evaled_arg)
                   (quit (pack !error_prefix !arg_num " doit être un booléen.") !arg) )
         )
@@ -1672,7 +1672,7 @@ Exemples :
     (ifn arg_lst (quit "`Vide?` prend un paramètre."))
     (if !deuze (quit "`Vide?` n’a qu’un paramètre."))
     (ifn !obj Vrai  # Pour le texte vide "".
-      (ifn (!inited !obj !evaled_obj) (quit "`Vide?` : la variable n’est pas initialisée." !obj))
+      (ifn (!inited !obj !evaled_obj) (quit "`Vide?` : la variable n’a pas été déclarée." !obj))
     )
     (setq !ctnaass "`Vide?` : ce test n’a aucun sens sur ")
     (cond
