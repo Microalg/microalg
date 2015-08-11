@@ -695,13 +695,15 @@ Sinon commande-1-si-faux
     });</script>
     <!--
     <p>Voici une application concrète d’une structure avec des <code>Si</code>
-    emboîtés :</p>
+    emboîtés (<code>Declarer</code> et <code>Affecter_a</code> seront vues
+    en détail un peu plus loin) :</p>
     <div id="script-si-emboites-appli"></div>
     <script>inject_microalg_editor_in('script-si-emboites-appli', {
      blockly_only: true,
      src:
+        '(Declarer nombre De_type "nombre")\n' +
         '(Afficher "Veuillez taper un nombre.")\n' +
-        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
         ' Alors (Si (>= nbre 1000)\n' +
         '        Alors (Afficher "Ce nombre est positif et assez grand.")\n' +

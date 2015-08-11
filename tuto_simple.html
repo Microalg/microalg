@@ -806,12 +806,14 @@
         ')'
     });</script>
     <p>Voici une application concrète d’une structure avec des <code>Si</code>
-    emboîtés :</p>
+    emboîtés (<code>Declarer</code> et <code>Affecter_a</code> seront vues
+    en détail un peu plus loin) :</p>
     <div id="script-si-emboites-appli"></div>
     <script>inject_microalg_editor_in('script-si-emboites-appli', {
      src:
+        '(Declarer nombre De_type "nombre")\n' +
         '(Afficher "Veuillez taper un nombre.")\n' +
-        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
         ' Alors (Si (>= nbre 1000)\n' +
         '        Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
@@ -858,20 +860,20 @@
     </ul>
     <p>Pour pouvoir utiliser une variable avec MicroAlg, il faut :</p>
     <ol>
-        <li>tout d’abord <em>l’initialiser</em>, c’est-à-dire lui donner une
-            valeur de départ du bon type, en utilisant la commande
-            <code>Initialiser</code>,</li>
-        <li>puis ensuite, si cette variable n’est pas une constante du
-            programme, lui <em>affecter</em> une autre valeur, peut-être
-            plusieurs fois au cours du programme.</li>
+        <li>tout d’abord la <em>déclarer</em>, c’est-à-dire annoncer qu’on veut
+            l’utiliser et qu’elle aura un certain type, en utilisant la commande
+            <code>Declarer</code>,</li>
+        <li>lui <em>affecter</em> une valeur, peut-être plusieurs fois au cours
+            du programme, en utilisant la commande <code>Affecter_a</code>,</li>
+        <li><em>accéder</em> à sa valeur, simplement en donnant son nom dans une
+            instruction.</li>
     </ol>
-    <p>La valeur stockée dans la variable est accessible simplement en donnant
-    son nom dans une instruction. Voici quelques exemples :</p>
+    <p>Voici quelques exemples :</p>
     <div id="script-variable-texte"></div>
     <script>inject_microalg_editor_in('script-variable-texte', {
      src:
         '(!!! "`nom` est le nom de l’utilisateur")\n' +
-        '(Initialiser nom "pas de nom")\n' +
+        '(Declarer nom De_type "texte")\n' +
         '(Afficher "Quel est votre nom ?")\n' +
         '(Affecter_a nom (Demander))\n' +
         '(Afficher\n' +
@@ -891,7 +893,8 @@
     <div id="script-variable-nombre"></div>
     <script>inject_microalg_editor_in('script-variable-nombre', {
      src:
-        '(Initialiser x 0)\n' +
+        '(!!! "x est le nombre fourni par l’utilisateur")\n' +
+        '(Declarer x De_type "nombre")\n' +
         '(Afficher "Donnez une valeur à x, SVP.")\n' +
         '(Affecter_a x (Nombre (Demander)))\n' +
         '(Afficher\n' +
@@ -903,42 +906,34 @@
         ')\n' +
         '(Afficher (* x x))'
     });</script>
-    <p>Attention, les commandes <code>Initialiser</code> et
+    <p><strong>Attention</strong>, les commandes <code>Declarer</code> et
     <code>Affecter_a</code> effectuent des vérifications :</p>
     <ul>
-        <li><code>Initialiser</code>
+        <li><code>Declarer</code>
             <ul>
-                <li>ne peut ré-initialiser une variable qu’avec une valeur du
-                même type,</li>
+                <li>ne peut pas déclarer une même variable deux fois,</li>
+                <li>le type fourni :
+                    <ul>
+                        <li>est un texte et doit donc être entre guillemets,</li>
+                        <li>doit être un type existant, comme
+                          <code>"texte"</code>, <code>"nombre"</code>,
+                          <code>"booleen"</code>…</li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li><code>Affecter_a</code>
             <ul>
                 <li>ne peut pas changer la valeur d’une variable si cette
-                variable n’a pas été initialisée auparavant,</li>
+                variable n’a pas été déclarée auparavant,</li>
                 <li>ne peut pas changer le type d’une variable (la nouvelle
                 valeur doit être du même type que l’ancienne valeur).</li>
             </ul>
         </li>
     </ul>
-    <p>Pour rappel, nous connaissons pour l’instant trois types :</p>
-    <ul>
-        <li><code>texte</code>,</li>
-        <li><code>nombre</code>,</li>
-        <li><code>booléen</code>,</li>
-    </ul>
-    <p>et nous avons vu des commandes permettent de vérifier le type de
-    certaines valeurs, et d’autres d’effectuer des conversions :</p>
-    <div id="script-types-rappels"></div>
-    <script>inject_microalg_editor_in('script-types-rappels', {
-     src:
-        '(Afficher (Texte? "Bonjour !"))\n' +
-        '(Afficher (Nombre? 12345))\n' +
-        '(Afficher (Booleen? Vrai))\n' +
-        '(Afficher (Texte? (Texte 12345)))\n' +
-        '(Afficher (Nombre? (Nombre "12345")))\n' +
-        ''
-    });</script>
+    <p><strong>Astuce</strong> : Il est possible de déclarer plusieurs
+    variables en une seule instruction :<br>
+    <code>(Declarer var1 var2 var3 ... De_type "le_type")</code></p>
     <p><strong>Remarque</strong> : Il n’est pas interdit d’utiliser la valeur
     d’une variable dans une instruction qui sera affectée à cette même
     variable. C’est même parfois utile en vue d’<em>accumuler</em> des
@@ -952,7 +947,8 @@
     <div id="script-accu-nombres-ex"></div>
     <script>inject_microalg_editor_in('script-accu-nombres-ex', {
      src:
-        '(Initialiser valeur 0)\n' +
+        '(Declarer valeur De_type "nombre")\n' +
+        '(Affecter_a valeur 0)\n' +
         '(Affecter_a valeur (+ valeur 1))\n' +
         '(Afficher valeur)\n' +
         ''
@@ -965,7 +961,8 @@
     <div id="script-accu-textes-ex"></div>
     <script>inject_microalg_editor_in('script-accu-textes-ex', {
      src:
-        '(Initialiser texte "Bonjour")\n' +
+        '(Declarer texte De_type "texte")\n' +
+        '(Affecter_a texte "Bonjour")\n' +
         '(Affecter_a texte (Concatener texte " !"))\n' +
         '(Afficher texte)\n' +
         ''
@@ -975,7 +972,8 @@
     <div id="script-accu-nombres"></div>
     <script>inject_microalg_editor_in('script-accu-nombres', {
      src:
-        '(Initialiser somme 0)\n' +
+        '(Declarer somme De_type "nombre")\n' +
+        '(Affecter_a somme 0)\n' +
         '(Afficher "Veuillez taper un nombre SVP.")\n' +
         '(Affecter_a somme (+ somme (Nombre (Demander))))\n' +
         '(Afficher "Veuillez en taper un autre.")\n' +
@@ -990,7 +988,8 @@
     <div id="script-accu-textes"></div>
     <script>inject_microalg_editor_in('script-accu-textes', {
      src:
-        '(Initialiser mots " ")\n' +
+        '(Declarer mots De_type "texte")\n' +
+        '(Affecter_a mots "")\n' +
         '(Afficher "Veuillez taper un mot SVP.")\n' +
         '(Affecter_a mots (Concatener mots (Demander)))\n' +
         '(Affecter_a mots (Concatener mots " "))\n' +
@@ -1010,7 +1009,8 @@
     <script>inject_microalg_editor_in('script-si-emboites-appli2', {
      src:
         '(Afficher "Veuillez taper un nombre.")\n' +
-        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Declarer nbre De_type "nombre")\n' +
+        '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
         '    Alors (Si (>= nbre 1000)\n' +
         '              Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
@@ -1029,7 +1029,8 @@
     <script>inject_microalg_editor_in('script-intervalle', {
      src:
         '(Afficher "Veuillez taper un nombre.")\n' +
-        '(Initialiser nbre (Nombre (Demander)))\n' +
+        '(Declarer nbre De_type "nombre")\n' +
+        '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (Et (>= nbre 1) (<= nbre 6))\n' +
         '    Alors (Afficher "Ce nombre est compris entre 1 et 6.")\n' +
         '    Sinon (Afficher "Ce nombre est n’est pas compris entre 1 et 6.")\n' +
@@ -1079,7 +1080,8 @@
         '(Afficher (Vide? ""))\n' +
         '\n' +
         '(!!! "Cela fonctionne aussi avec une variable contenant du texte.")\n' +
-        '(Initialiser txt "bonjour")\n' +
+        '(Declarer txt De_type "texte")\n' +
+        '(Affecter_a txt "bonjour")\n' +
         '(Afficher (Longueur txt))\n' +
         '(Afficher (Vide? txt))\n' +
         '(Affecter_a txt "")\n' +
@@ -1101,7 +1103,8 @@
         '(!!! "Essayez de modifier le code ci-dessus pour qu’il génère une erreur.")\n' +
         '\n' +
         '(!!! "Cela fonctionne aussi avec une variable contenant du texte.")\n' +
-        '(Initialiser txt "bonjour")\n' +
+        '(Declarer txt De_type "texte")\n' +
+        '(Affecter_a txt "bonjour")\n' +
         '(Afficher (Nieme txt 4))\n' +
         ''
     });</script>
@@ -1140,7 +1143,8 @@
     <div id="script-faire-tq"></div>
     <script>inject_microalg_editor_in('script-faire-tq', {
      src:
-        '(Initialiser valeur 3)\n' +
+        '(Declarer valeur De_type "nombre")\n' +
+        '(Affecter_a valeur 3)\n' +
         '(Faire (Afficher valeur)\n' +
         '       (Affecter_a valeur (- valeur 1))\n' +
         ' Tant_que (=/ valeur 0)\n' +
@@ -1182,8 +1186,9 @@
     <div id="script-accu-nombres-tq"></div>
     <script>inject_microalg_editor_in('script-accu-nombres-tq', {
      src:
-        '(Initialiser somme 0)\n' +
-        '(Initialiser valeur 0)\n' +
+        '(Declarer somme valeur De_type "nombre")\n' +
+        '(Affecter_a somme 0)\n' +
+        '(Affecter_a valeur 0)\n' +
         '(Faire (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
         '       (Affecter_a valeur (Nombre (Demander)))\n' +
         '       (Affecter_a somme (+ somme valeur))\n' +
@@ -1197,8 +1202,9 @@
     <div id="script-accu-textes-tq"></div>
     <script>inject_microalg_editor_in('script-accu-textes-tq', {
      src:
-        '(Initialiser mots " ")\n' +
-        '(Initialiser mot " ")\n' +
+        '(Declarer mots mot De_type "texte")\n' +
+        '(Affecter_a mots "")\n' +
+        '(Affecter_a mot "")\n' +
         '(Faire (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
         '       (Affecter_a mot (Demander))\n' +
         '       (Affecter_a mots (Concatener mots " " mot))\n' +
@@ -1223,7 +1229,8 @@
     <div id="script-tq-affichage"></div>
     <script>inject_microalg_editor_in('script-tq-affichage', {
      src:
-        '(Initialiser repetitions 0)\n' +
+        '(Declarer repetitions De_type "nombre")\n' +
+        '(Affecter_a repetitions)\n' +
         '(Afficher "Combien de fois voulez-vous afficher « Bonjour ! » ?")\n' +
         '(Affecter_a repetitions (Nombre (Demander)))\n' +
         '(Tant_que (=/ repetitions 0)\n' +
@@ -1360,7 +1367,8 @@
     <div id="script-parcours"></div>
     <script>inject_microalg_editor_in('script-parcours', {
      src:
-        '(Initialiser index 1)\n' +
+        '(Declarer index De_type "nombre")\n' +
+        '(Affecter_a index 1)\n' +
         '(Tant_que (<= index 3)\n' +
         ' Faire\n' +
         '    (Afficher (Nieme (Liste "banane" "pomme" "fraise") index))\n' +
@@ -1392,8 +1400,10 @@
     <div id="script-parcours-affectation"></div>
     <script>inject_microalg_editor_in('script-parcours-affectation', {
      src:
-        '(Initialiser ma_liste (Liste 1 4 9 16 25))\n' +
-        '(Initialiser index 1)\n' +
+        '(Declarer ma_liste De_type "liste")\n' +
+        '(Affecter_a ma_liste (Liste 1 4 9 16 25))\n' +
+        '(Declarer index De_type "nombre")\n' +
+        '(Affecter_a index 1)\n' +
         '(Tant_que (<= index (Longueur ma_liste))\n' +
         ' Faire\n' +
         '    (Afficher (Nieme ma_liste index))\n' +
@@ -1450,6 +1460,7 @@
     <div id="script-demandernbre"></div>
     <script>inject_microalg_editor_in('script-demandernbre', {
      src:
+        '(Declarer x De_type "nombre")\n' +
         '(Definir (DemanderNbre)\n' +
         '    "Retourne le nombre tapé par l’utilisateur, ou `Rien` si\n' +
         '     l’utilisateur n’a pas tapé un nombre."\n' +
@@ -1460,7 +1471,7 @@
         '(!!! "Vérifions la valeur, mais surtout le type de la valeur retournée :")\n' +
         '\n' +
         '(Afficher "Veuillez taper un nombre.")\n' +
-        '(Initialiser x (DemanderNbre))\n' +
+        '(Affecter_a x (DemanderNbre))\n' +
         '(Afficher x)\n' +
         '(Afficher (Type x))\n' +
         ''
@@ -1558,10 +1569,11 @@
     <div id="script-somme"></div>
     <script>inject_microalg_editor_in('script-somme', {
      src:
+        '(Declarer resultat De_type "nombre")\n' +
         '(Definir (Somme liste)\n' +
         '    "Retourne la somme des valeurs de la `liste`."\n' +
         '    "auteur inconnu"\n' +
-        '    (Initialiser resultat 42)\n' +
+        '    (Affecter_a resultat 42)\n' +
         '    (!!! "... ici du code ...")\n' +
         '    (Retourner resultat)\n' +
         ')\n' +
@@ -1578,10 +1590,11 @@
     <div id="script-trouver-position"></div>
     <script>inject_microalg_editor_in('script-trouver-position', {
      src:
+        '(Declarer resultat De_type "nombre")\n' +
         '(Definir (Trouver_dans liste valeur)\n' +
         '    "Retourne la position de la `valeur` dans la `liste`, 0 si non présente."\n' +
         '    "auteur inconnu"\n' +
-        '    (Initialiser resultat 42)\n' +
+        '    (Affecter_a resultat 42)\n' +
         '    (!!! "... ici du code ...")\n' +
         '    (Retourner resultat)\n' +
         ')\n' +
@@ -1598,10 +1611,11 @@
     <div id="script-max"></div>
     <script>inject_microalg_editor_in('script-max', {
      src:
+        '(Declarer resultat De_type "nombre")\n' +
         '(Definir (Maximum_dans liste)\n' +
         '    "Retourne la valeur maximale dans la `liste`."\n' +
         '    "auteur inconnu"\n' +
-        '    (Initialiser resultat 42)\n' +
+        '    (Affecter_a resultat 42)\n' +
         '    (!!! "... ici du code ...")\n' +
         '    (Retourner resultat)\n' +
         ')\n' +
