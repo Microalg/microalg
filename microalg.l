@@ -404,7 +404,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
               (quit "Ce type n’existe pas." !type))
          # Les variables ont-elles déjà été déclarées ?
          (let (!type (!type_sym !var))
-           (if (and NIL (<> "rien" !type))
+           (if (<> "rien" !type)
                (quit (pack "`Declarer` : la variable " !var
                            " a déjà été déclarée de type \"" !type "\"."))
            )
