@@ -20,7 +20,7 @@ Voir <http://microalg.info>.")
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire"
 "Faux" "Faux?"
-"Initialiser" "Initialiser@"
+"Initialiser@"
 "Liste" "Liste?" "Longueur"
 "Millisecondes"
 "Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
@@ -419,46 +419,18 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
 )
 (de Declarer !arg_lst (apply '!declarer !arg_lst))
 (de Déclarer !arg_lst (apply '!declarer !arg_lst))
-(put 'Initialiser 'doc
-"Commande qui permet d’initialiser une variable avec une valeur.
-
-    : (Initialiser x 2)
-    -> Rien
-    : (Afficher x)
-    2
-    -> Rien
-")
-(put 'Initialiser 'text "Commande `Initialiser`.")
-(de Initialiser arg_lst (let (nbr_args (length arg_lst))
-                             (if (<> 2 nbr_args)
-                                 (quit (pack "`Initialiser` prend 2 paramètres. "
-                                             "Vous en donnez " nbr_args ".") )
-                             )  # Du coup un deuxième arg NIL ne peut être que "".
-                        )
-                        (let (!var (car arg_lst)
-                              !val (eval (cadr arg_lst))
-                              !type_var (get !var 'type)
-                              !type_val (Type !val))
-                             (if (and (<> "rien" !type_val) !type_var (<> !type_val !type_var))
-                                 (quit (pack "Valeur de type " !type_val ", ne peut initialiser "
-                                             !var " qui est de type " !type_var "."))
-                             )
-                             (set !var !val)
-                             (put !var 'type (ifn !val "texte" !type_val))
-                             Rien  # Pas de valeur de retour
-                        ))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.
 
-    : (Initialiser x 2)
+    : (Declarer x De_type \"nombre\")
     -> Rien
     : (Afficher x)
-    2
+    Rien
     -> Rien
-    : (Affecter_a x 3)
+    : (Affecter_a x 42)
     -> Rien
     : (Afficher x)
-    3
+    42
     -> Rien
 
 Si la variable contient un texte ou une liste et qu’une position est fournie,
@@ -552,10 +524,12 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
     salut  <--- là, c’est MicroAlg qui affiche.
     -> Rien
 
-Comme `Demander` retourne un texte, il est nécessaire de convertir la valeur
-avant de la stocker dans une variable. Exemple :
+Comme `Demander` retourne un texte, il est parfois nécessaire de convertir la
+valeur avant de la stocker dans une variable. Exemple :
 
-    : (Initialiser x (Nombre (Demander)))
+    : (Declarer x De_type \"nombre\")
+    -> Rien
+    : (Affecter_a x (Nombre (Demander)))
     42   <--- Ici, c’est l’utilisateur qui tape.
     -> Rien
     : x
@@ -763,7 +737,9 @@ nouvel élément à la fin de ce texte ou de cette liste (après le dernier él�
 
 Avec du texte :
 
-    : (Initialiser mot \"bonjour\")
+    : (Declarer mot De_type \"texte\")
+    -> Rien
+    : (Affecter_a mot \"bonjour\")
     -> Rien
     : (Ajouter_a mot \"!\")
     -> Rien
@@ -773,7 +749,9 @@ Avec du texte :
 
 Avec une liste :
 
-    : (Initialiser v (Liste 1 3 5 7))
+    : (Declarer v De_type \"liste\")
+    -> Rien
+    : (Affecter_a v (Liste 1 3 5 7))
     -> Rien
     : (Ajouter_a v 9)
     -> Rien
@@ -808,7 +786,9 @@ Avec une liste :
 
 Avec du texte :
 
-    : (Initialiser mot \"bonjour\")
+    : (Declarer mot De_type \"texte\")
+    -> Rien
+    : (Affecter_a mot \"bonjour\")
     -> Rien
     : (Retirer_de mot)
     -> \"r\"
@@ -818,7 +798,9 @@ Avec du texte :
 
 Avec une liste :
 
-    : (Initialiser v (Liste 1 3 5 7))
+    : (Declarer v De_type \"liste\")
+    -> Rien
+    : (Affecter_a v (Liste 1 3 5 7))
     -> Rien
     : (Retirer_de v)
     -> 7
@@ -1227,7 +1209,9 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Tant_que 'doc
 "Structure itérative de type « tant que ... faire ... ».
 
-    : (Initialiser i 3)
+    : (Declarer i De_type \"nombre\")
+    -> Rien
+    : (Affecter_a i 3)
     -> Rien
     : (Tant_que (>= i 0)
        Faire
@@ -1255,7 +1239,9 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».
 
-    : (Initialiser i 3)
+    : (Declarer i De_type \"nombre\")
+    -> Rien
+    : (Affecter_a i 3)
     -> Rien
     : (Faire
           (Afficher i)
