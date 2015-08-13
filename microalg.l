@@ -998,8 +998,8 @@ faut ajouter `(Initialiser@)` au début du programme.
 
 # Types et conversions
 (de !type_sym (!x)
-  (let (!evaled_x (eval !x))
-        embedded_type (ifn (num? !x) (get !x 'type))
+  (let (!evaled_x (eval !x)
+        embedded_type (ifn (num? !x) (get !x 'type)))
        (cond
              (embedded_type embedded_type)
              ((not !x) "texte")  # Possiblement "" en direct.
