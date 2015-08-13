@@ -37,10 +37,17 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= 0 (prog (Declarer x De_type "nombre") (Affecter_a x 0) x)))
             '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= 0 (prog (Declarer x De_type "nombre") (Affecter_a x (+ 0 0)) x)))
+            '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= 1 (prog (Declarer x De_type "nombre") (Affecter_a x 0) (Affecter_a x (+ x 1)) x)))
+            # erreur ci-dessus: x a déja été déclaré
+            '(or (put 'x 'type NIL) T)
             '(let (x NIL y NIL) (= 3 (prog (Declarer x y De_type "nombre")
                                            (Affecter_a x 1) (Affecter_a y 2) (+ x y))))
             '(or (put 'x 'type NIL) (put 'y 'type NIL) T)
             '(let (x NIL) (= "salut" (prog (Declarer x De_type "texte") (Affecter_a x "salut") x)))
+            '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= "" (prog (Declarer x De_type "texte") (Affecter_a x "") x)))
             '(or (put 'x 'type NIL) T)
             # Affectation à un élément d’une variable de type liste ou texte
             '(let (x NIL) (= "salut" (prog (Declarer x De_type "texte") (Affecter_a x "saluz") (Affecter_a x "t" En_position 5) x)))
