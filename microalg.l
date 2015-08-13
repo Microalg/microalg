@@ -775,7 +775,7 @@ Avec une liste :
        # Le calcul
        (cond
          ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
-         ((!boolM2P (!texte? !sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
+         ((!boolM2P (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
          (T (quit "Le premier argument de `Ajouter_a` doit être du texte ou une liste." !sym))
        )
   )
