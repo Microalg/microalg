@@ -175,11 +175,8 @@
             '(let (x NIL) (= Faux (prog (Declarer x De_type "nombre") (Affecter_a x 0) (Texte? x))))
             '(or (put 'x 'type NIL) T)
             '(= Vrai (Texte? ""))
-            '(prog (println "x ici:" x) Vrai)
-            '(or (println (Type x)) T)
             '(or (println (get 'x 'type)) T)
             '(let (x NIL) (= Vrai (prog (Declarer x De_type "texte") (Affecter_a x "") (Texte? x))))
-            '(prog (println "x la:" x) Vrai)
             # probleme ci-dessus
             '(or (put 'x 'type NIL) T)
             '(= Faux (Texte? (Liste)))
