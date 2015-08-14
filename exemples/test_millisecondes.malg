@@ -1,17 +1,22 @@
 (Affecter_a credit_iterations 2000)
-(Initialiser depart (Millisecondes))
+
+(Declarer depart apres_la_boucle apres_la_2eme_boucle De_type "nombre")
+(Declarer i De_type "nombre")
+(Declarer texte De_type "texte")
+
+(Affecter_a depart (Millisecondes))
 (Afficher (Concatener
             (Texte depart)
             " millisecondes écoulées avant l’exécution de la première ligne."
           ))
-(Initialiser i 0)
-(Initialiser texte "")
+(Affecter_a i 0)
+(Affecter_a texte "")
 (Tant_que (< i 500)
  Faire
     (Ajouter_a texte "a")
     (Affecter_a i (+ i 1))
 )
-(Initialiser apres_la_boucle (Millisecondes))
+(Affecter_a apres_la_boucle (Millisecondes))
 (Afficher (Concatener
             "Nous en sommes à "
             (Texte apres_la_boucle)
@@ -22,14 +27,14 @@
             (Texte (- apres_la_boucle depart))
             " millisecondes pour 1ère la boucle."
           ))
-(Initialiser i 0)
-(Initialiser texte "")
+(Affecter_a i 0)
+(Affecter_a texte "")
 (Tant_que (< i 500)
  Faire
     (Ajouter_a texte "a")
     (Affecter_a i (+ i 1))
 )
-(Initialiser apres_la_2eme_boucle (Millisecondes))
+(Affecter_a apres_la_2eme_boucle (Millisecondes))
 (Afficher (Concatener
             "Nous en sommes à "
             (Texte apres_la_2eme_boucle)
