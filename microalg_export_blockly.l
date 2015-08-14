@@ -123,12 +123,6 @@
              "<value name=\"VALUE\">" !val "</value>"
              !next
              "</block>")))
-(de Booleen? (content)
-  (pack "<block type=\"booleen?\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        "</block>"))
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
@@ -224,12 +218,6 @@
         content
         "</value>"
         "</block>"))
-(de Nombre? (content)
-  (pack "<block type=\"nombre?\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        "</block>"))
 (de Ou inputs
   (pack "<block type=\"ou\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
@@ -288,12 +276,6 @@
         "</block>"))
 (de Texte (content)
   (pack "<block type=\"texte\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        "</block>"))
-(de Texte? (content)
-  (pack "<block type=\"texte?\">"
         "<value name=\"VALUE\">"
         content
         "</value>"
