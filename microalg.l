@@ -14,23 +14,21 @@ Voir <http://microalg.info>.")
 "1000Cosinus" "1000Sinus"
 "AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
-"Booleen?"
 "Cercle" "Concatener" "Contour" "credit_iterations"
 "Declarer" "Definir" "Demander" "Demander_un_nombre"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
-"Faire"
-"Faux" "Faux?"
+"Faire" "Faux"
 "Initialiser@"
-"Liste" "Liste?" "Longueur"
+"Liste" "Longueur"
 "Millisecondes"
-"Nieme" "Nieme@" "Nombre" "Nombre?" "Non"
+"Nieme" "Nieme@" "Nombre" "Non"
 "Ou"
 "Queue"
 "Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon"
-"Tant_que" "Tester" "Tete" "Texte" "Texte?" "Triangle" "Type"
-"Vide?" "Vrai" "Vrai?"
+"Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
+"Vide?" "Vrai"
 ))
 
 # picolisp.l shimz
@@ -122,7 +120,7 @@ Voir <http://microalg.info>.")
     (!boolM2P x) )
 
 (de !add_quotes (x) (pack "\"" x "\""))
-(de !quote_txt (x) (if (or (not x) (!boolM2P (Texte? x)))
+(de !quote_txt (x) (if (or (not x) (!boolM2P (!texte? x)))
                        (!add_quotes x)
                        x))
 
@@ -453,7 +451,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          )
          (ifn kw
               (prog
-                 (if (and (!boolM2P (Liste? (eval var))) (not (!boolM2P (Liste? val))))
+                 (if (and (!liste? (eval var)) (not (!liste? val)))
                      (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
                  # Affectation au symbole dans `var`.
                  (ifn (get var 'type)
@@ -483,7 +481,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  )
                  # Puis le travail:
                  (cond
-                   ((!boolM2P (Liste? evaled_var)) (put> evaled_var val idx))
+                   ((!liste? evaled_var) (put> evaled_var val idx))
                    ((str? evaled_var)
                     (let (chopped (chop evaled_var))
                          (set var (pack (head (- idx 1) chopped)
@@ -618,7 +616,7 @@ avec les plus jeunes.")
 ")
 (put 'Longueur 'text "Commande `Longueur`.")
 (de !longueur (!obj)
-    (if (!boolM2P (Liste? !obj))
+    (if (!liste? !obj)
         (length> !obj)
         (length  !obj)
     )
@@ -678,8 +676,8 @@ La numérotation commence à 1.
     )
     # Le calcul
     (cond
-      ((!boolM2P (Liste? !evaled_obj)) (nth> !evaled_obj !idx))
-      ((!boolM2P (Texte? !evaled_obj)) (car (nth (chop !evaled_obj) !idx)))
+      ((!liste? !evaled_obj) (nth> !evaled_obj !idx))
+      ((!boolM2P (!texte? !evaled_obj)) (car (nth (chop !evaled_obj) !idx)))
       (T Rien)
     )
   )
@@ -702,7 +700,7 @@ La numérotation commence à 1.
     )
     # Le calcul
     (cond
-      ((!boolM2P (Liste? obj)) (nth> obj 1))
+      ((!liste? obj) (nth> obj 1))
       ((str? obj) (car (chop obj)))
       (T (quit "Vous cherchez la tete d’une valeur qui n’est ni un texte ni une liste."
                (list obj (Type obj))))
@@ -726,7 +724,7 @@ La numérotation commence à 1.
     )
     # Le calcul
     (cond
-      ((!boolM2P (Liste? obj)) (apply Liste (cdr (elts> obj))))
+      ((!liste? obj) (apply Liste (cdr (elts> obj))))
       ((str? obj) (pack (cdr (chop obj))))
       (T (quit "Vous cherchez la queue d’une valeur qui n’est ni un texte ni une liste."
                (list obj (Type obj))))
@@ -774,7 +772,7 @@ Avec une liste :
                (quit "On peut `Ajouter_a` un texte qu’un caractère." !elt) ))
        # Le calcul
        (cond
-         ((!boolM2P (Liste? !evaled_sym)) (prog (push> !evaled_sym !elt) Rien))
+         ((!liste? !evaled_sym) (prog (push> !evaled_sym !elt) Rien))
          ((!boolM2P (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
          (T (quit "Le premier argument de `Ajouter_a` doit être du texte ou une liste." !sym))
        )
@@ -818,8 +816,8 @@ Avec une liste :
        (ifn (!inited !sym !evaled_sym) (quit "`Retirer_de` : la variable n’a pas été déclarée." !sym))
        # Le calcul
        (cond
-         ((!boolM2P (Liste? !evaled_sym)) (pop> !evaled_sym))
-         ((!boolM2P (Texte? !evaled_sym))
+         ((!liste? !evaled_sym) (pop> !evaled_sym))
+         ((!boolM2P (!texte? !evaled_sym))
              (let (!chopped (chop !evaled_sym)
                    !return_val (last !chopped))
                   (set !sym (pack (head (- (length !evaled_sym) 1) !chopped)))
@@ -990,25 +988,24 @@ faut ajouter `(Initialiser@)` au début du programme.
     (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
     # Le calcul
     (cond
-        ((!boolM2P (Liste? obj)) (nth> obj (!rand 1 (length> obj))))
+        ((!liste? obj) (nth> obj (!rand 1 (length> obj))))
         ((str? obj) (car (nth (chop obj) (!rand 1 (length obj)))))
         (T Rien)
     )
 )
 
 # Types et conversions
+(de !liste? (!x)
+  (or (try 'text> !x) (try 'text> !evaled_x)) )
 (de !type_sym (!x)
   (let (!evaled_x (eval !x)
         embedded_type (ifn (num? !x) (get !x 'type)))
        (cond
              (embedded_type embedded_type)
-             ((not !x) "texte")  # Possiblement "" en direct.
-             ((!boolM2P (Nombre?  !evaled_x)) "nombre")
-             ((!boolM2P (Liste?   !x))        "liste")
+             ((num?  !evaled_x) "nombre")
+             ((!liste? !x) "liste")
              ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
-             ((!boolM2P (Texte?   !evaled_x)) "texte")
-             ((!boolM2P (Liste?   !evaled_x)) "liste")
-             ((!boolM2P (Booleen? !evaled_x)) "booleen")
+             ((or (== Vrai !evaled_x) (== Faux !evaled_x)) "booleen")
              ((and (sym? !x) (get !x 'type)) (get !x 'type))
              ((!boolM2P (== Rien  !evaled_x)) "rien")
              (T Rien)
@@ -1034,12 +1031,11 @@ en minuscule).
        (cond
              (embedded_type embedded_type)
              ((not !x) "texte")  # Possiblement "" en direct.
-             ((!boolM2P (Nombre?  !evaled_x)) "nombre")
-             ((!boolM2P (Liste?   !x))        "liste")
+             ((num?  !evaled_x) "nombre")
+             ((!liste? !x) "liste")
              ((!boolM2P (!texte?  !x))        "texte")  # pour les sym textuels ?
-             ((!boolM2P (Texte?   !evaled_x)) "texte")
-             ((!boolM2P (Liste?   !evaled_x)) "liste")
-             ((!boolM2P (Booleen? !evaled_x)) "booleen")
+             ((!boolM2P (!texte?  !evaled_x)) "texte")
+             ((or (== Vrai !evaled_x) (== Faux !evaled_x)) "booleen")
              ((and (sym? !x) (get !x 'type)) (get !x 'type))
              ((!boolM2P (== Rien  !evaled_x)) "rien")
              (T Rien)
@@ -1055,7 +1051,7 @@ en minuscule).
                 ((not (<> x 'Vrai)) "Vrai")
                 ((not (<> x 'Faux)) "Faux")
                 ((not (<> x 'Rien)) "Rien")
-                ((!boolM2P (Liste? x)) (!text x))  # mettre avant str?
+                ((!liste? x) (!text x))  # mettre avant str?
                 ((str? x) x)
                 ((num? x) (format x))
                 ((sym? x) (pack x))
@@ -1408,7 +1404,7 @@ Pour lancer les tests, utiliser la commande `Tester`.
        (if troize (quit "`Exemples_de` n’a pas de troisième paramètre."))
        (ifn exemples (get commande 'exemples)
                      (prog
-                       (ifn (!boolM2P (Liste? exemples))
+                       (ifn (!liste? exemples)
                             (quit "Les exemples fournis ne forment pas une liste."))
                        (put commande 'exemples exemples)
                      )
@@ -1442,7 +1438,7 @@ Voir la commande `Exemples_de`.")
             (Afficher (pack "Il faut définir la commande " !commande " avant de la tester.")))
          ((not !exemples)
             (Afficher (pack "La commande " !commande " n’a pas d’exemples.")))
-         ((!boolM2P (Non (Liste? !exemples)))
+         ((not (!liste? !exemples))
             (Afficher (pack "La commande " !commande " n’a pas d’exemples valables.")))
          (T (mapcar '((!paire) (let (!args (cdr (car !paire))
                                      !got (apply (eval !commande) !args)
@@ -1459,93 +1455,17 @@ Voir la commande `Exemples_de`.")
 )
 
 # Prédicats
-(put 'Vrai? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est `Vrai`,
-et `Faux` sinon.
-
-    : (Vrai? Vrai)
-    Vrai
-    : (Vrai? 1)
-    Faux
-")
-(put 'Vrai? 'text "Prédicat `Vrai?`.")
-(de Vrai? (x) (if (!boolM2P (= x Vrai)) Vrai Faux))
-(put 'Faux? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est `Faux`,
-et `Faux` sinon.
-
-    : (Faux? Faux)
-    Vrai
-    : (Faux? 0)
-    Faux
-")
-(put 'Faux? 'text "Prédicat `Faux?`.")
-(de Faux? (x) (if (!boolM2P (= x Faux)) Vrai Faux))
-(put 'Texte? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est du texte,
-et `Faux` sinon.
-
-    : (Texte? 42)
-    -> Faux
-    : (Texte? \"42\")
-    -> Vrai
-")
-(put 'Texte? 'text "Prédicat `Texte?`.")
 (de !texte? (!obj)  # helper évaluant son arg
        (cond
         ((not !obj) Vrai)                       # Possiblement "" en direct.
         ((num? !obj) Faux)                      # Un nombre en direct.
-        ((!boolM2P (Liste? !obj)) Faux)         # Liste.
+        ((!liste? !obj) Faux)                   # Liste.
         ((if (sym? !obj) (== (get !obj 'type) "texte")) Vrai)  # Un sym textuel.
         ((== (get !obj 'type) "texte") Vrai)    # Un sym textuel.
         ((str? !obj) Vrai)                      # Texte.
         (T Faux)                                # Le reste.
        )
   )
-(de Texte? arg_lst
-  (let (!obj (car arg_lst)
-        !evaled_obj (eval !obj)
-        !deuze (cadr arg_lst))
-       # Quelques vérifications:
-       (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
-       (!texte? !obj)
-  )
-)
-(put 'Nombre? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est un nombre,
-et `Faux` sinon.
-
-    : (Nombre? \"42\")
-    -> Faux
-    : (Nombre? 42)
-    -> Vrai
-")
-(put 'Nombre? 'text "Prédicat `Nombre?`.")
-(de Nombre? (x) (if (num? x) Vrai Faux))
-(put 'Booleen? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est un booleen,
-et `Faux` sinon.
-
-    : (Booleen? Faux)
-    -> Vrai
-    : (Booleen? 1)
-    -> Faux
-")
-(put 'Booleen? 'text "Prédicat `Booleen?`.")
-(de Booleen? (x) (if (or (== Vrai x) (== Faux x)) Vrai Faux))
-(put 'Liste? 'doc
-"**Abandonnée dans 0.4.** Prédicat retournant `Vrai` si la valeur de son argument est une liste,
-et `Faux` sinon.
-
-    : (Liste? (Liste 1 3 5 7))
-    -> Vrai
-    : (Liste? 0)
-    -> Faux
-    : (Liste? \"salut\")
-    -> Faux
-")
-(put 'Liste? 'text "Prédicat `Liste?`.")
-(de Liste? (x) (if (or (try 'text> x) (try 'text> (eval x))) Vrai Faux))
 # Sans le suffixe '?'
 # Éviter le message « redefined »
 (setq = NIL)
