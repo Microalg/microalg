@@ -120,7 +120,8 @@
     <script>inject_microalg_editor_in('script-des-cercles', {
      processing: true,
      src:
-        '(Initialiser i 0)\n' +
+        '(Declarer i De_type "nombre")\n' +
+        '(Affecter_a i 0)\n' +
         '(Tant_que (<= i 250)\n' +
         ' Faire\n' +
         '    (Cercle (Liste (+ i 50) (+ i 50)) i)\n' +
@@ -149,7 +150,8 @@
     <script>inject_microalg_editor_in('script-epaisseurs-algo', {
      processing: true,
      src:
-        '(Initialiser i 1)\n' +
+        '(Declarer i De_type "nombre")\n' +
+        '(Affecter_a i 1)\n' +
         '(Tant_que (<= i 20)\n' +
         ' Faire\n' +
         '    (Epaisseur i)\n' +
@@ -257,6 +259,11 @@
     <script>inject_microalg_editor_in('script-couleurs-algo', {
      processing: true,
      src:
+        '(Declarer r v b De_type "nombre")\n' +
+        '(Affecter_a r 0)\n' +
+        '(Affecter_a v 0)\n' +
+        '(Affecter_a b 0)\n' +
+        '\n' +
         '(Definir (Position rouge vert bleu)\n' +
         '    "Coordonnées du centre en fonction de la couleur."\n' +
         '    "ProfGra"\n' +
@@ -266,9 +273,6 @@
         '               ))\n' +
         ')\n' +
         '(Contour (Liste 0 0 0 0))\n' +
-        '(Initialiser r 0)\n' +
-        '(Initialiser v 0)\n' +
-        '(Initialiser b 0)\n' +
         '(Tant_que (<= r 255) Faire\n' +
         '    (Tant_que (<= v 255) Faire\n' +
         '        (Tant_que (<= b 255) Faire\n' +
