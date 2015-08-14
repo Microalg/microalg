@@ -35,7 +35,7 @@ Blockly.MicroAlg.addReservedWords(
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Booleen?, Concatener, ' +
     'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
     'En_position, Entier@, Et, Exemples_de, ' +
-    'Faire, Faux, Faux?, Initialiser, Initialiser@, ' +
+    'Faire, Faux, Faux?, Initialiser@, ' +
     'Liste, Liste?, Longueur, Millisecondes, ' +
     'Nieme, Nieme@, Nombre, Nombre?, Non, Ou, ' +
     'Queue, Retirer_de, Retourner, Rien, Si, Sinon, ' +
@@ -711,43 +711,6 @@ Blockly.MicroAlg['faire'] = function(block) {
                '\nTant_que ' + cond.trim();
     code += '\n)'
     return code;
-};
-
-// Bloc Initialiser
-// https://github.com/google/blockly/blob/master/blocks/variables.js
-Blockly.Blocks['initialiser'] = {
-  init: function() {
-    this.setHelpUrl(malg_url + '#sym-Initialiser');
-    this.setColour(colour);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('Initialiser une variable avec une valeur.');
-    this.interpolateMsg(
-      'Initialiser' + ' %1 ' + ' %2',
-      ['VAR', new Blockly.FieldVariable("ma_variable")],
-      ['VALUE', null],
-      Blockly.ALIGN_RIGHT);
-    this.setInputsInline(false);
-    this.contextMenuMsg_ = "Créer truc"; // ???
-    this.contextMenuType_ = 'variable';
-  },
-  getVars: function() {
-    return [this.getFieldValue('VAR')];
-  },
-  renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
-        this.setFieldValue(newName, 'VAR');
-    }
-  },
-  customContextMenu: Blockly.Blocks['variable'].customContextMenu
-};
-
-// Gen Initialiser
-// https://github.com/google/blockly/blob/master/generators/javascript/variables.js
-Blockly.MicroAlg['initialiser'] = function(block) {
-  var value = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
-  var value_cleaned = value.toString().trim();
-  return '(Initialiser ' + this.getFieldValue('VAR') + ' ' + value_cleaned + ')';
 };
 
 // Bloc Initialiser@
