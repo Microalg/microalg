@@ -36,12 +36,11 @@
        (pack (glue " " !vars) " de type " (cadr !type) "^J")  # type is in (Litteral ...)
   )
 )
-(de Initialiser !arg_lst (!store !arg_lst))
 (de Affecter_a  !arg_lst (!store !arg_lst))
 (de Demander () (pack "-- La commande `Demander` doit être utilisée avec "
-                      "`Initialiser` ou `Affecter_a`. --"))
+                      "`Affecter_a`. --"))
 (de Demander_un_nombre () (pack "-- La commande `Demander_un_nombre` doit être utilisée avec "
-                                "`Initialiser` ou `Affecter_a`. --"))
+                                "`Affecter_a`. --"))
 (de Entier@ (A B) (pack "randInt(" A "," B ")"))
 (setq Vrai "1")
 (setq Faux "0")

@@ -185,15 +185,6 @@
              "<value name=\"COND\">" (eval !cond) "</value>"
              (eval !next)
              "</block>") ))
-(de Initialiser inputs
-  (let (!var (cadr (car inputs))  # var name is in (Variable ...)
-        !val (eval (cadr inputs))
-        !next (eval (caddr inputs)))
-       (pack "<block type=\"initialiser\">"
-             "<field name=\"VAR\">" !var "</field>"
-             "<value name=\"VALUE\">" !val "</value>"
-             !next
-             "</block>")))
 (de Initialiser@ (next)
   (pack "<block type=\"initialiser_pseudo_aleatoire\">"
         next
