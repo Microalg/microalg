@@ -767,7 +767,7 @@ Avec une liste :
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
        (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’a pas été déclarée." !sym))
        (if (!boolM2P (!texte? !sym))
-           (if (or (not (!texte? !elt))
+           (if (or (not (!boolM2P (!texte? !elt)))
                    (!boolM2P (> (!longueur !elt) 1)) )
                (quit "On peut `Ajouter_a` un texte qu’un caractère." !elt) ))
        # Le calcul
