@@ -104,7 +104,6 @@ function onCtrl(elt, f) {
                   "(E": "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
                   "(E@": "(Entie@ |)\n",
                   "(F": "(Faire (|)\n       ()\n Tant_que ()\n)",
-                  "(I": "(Initialiser |)",
                   "(I@":"(Initialiser@)\n|",
                   "(Li": "(Liste |)",
                   "(Lo": "(Longueur |)",
