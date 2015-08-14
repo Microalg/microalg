@@ -1495,11 +1495,10 @@ et `Faux` sinon.
        (cond
         ((not !obj) Vrai)                       # Possiblement "" en direct.
         ((num? !obj) Faux)                      # Un nombre en direct.
-        ((num? !evaled_obj) Faux)               # Un sym numérique.
-        ((!boolM2P (Liste? !evaled_obj)) Faux)  # Liste.
+        ((!boolM2P (Liste? !obj)) Faux)         # Liste.
         ((if (sym? !obj) (== (get !obj 'type) "texte")) Vrai)  # Un sym textuel.
         ((== (get !obj 'type) "texte") Vrai)    # Un sym textuel.
-        ((str? !evaled_obj) Vrai)               # Texte.
+        ((str? !obj) Vrai)                      # Texte.
         (T Faux)                                # Le reste.
        )
   )
