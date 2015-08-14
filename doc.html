@@ -341,7 +341,6 @@ valeur ou de la commande qui est parfois fournie :
 * Indice négatif ou nul.
 * Indice non entier.
 * Indice trop grand.
-* `Initialiser` prend 2 paramètres. Vous en donnez X.
 * java.lang.ClassCastException: PicoLisp$Symbol cannot be cast to PicoLisp$Number
     * Une commande qui concerne uniquement les nombres (comme `+`, `-`, `*`,
     `/`, `%` ou `**`) a été écrite avec autre chose qu’un nombre en argument
@@ -441,10 +440,8 @@ un langage de calculatrice.
 #### Limitations de l’export vers les langages des calculatrices
 
 * L’export ne concerne que les Casio et les Texas-Instrument.
-* `Demander` ne peut être utilisée qu’avec `Initialiser` ou `Affecter_a`, pas
-  au sein d’un calcul. Quatre constructions sont exportables :
-    * `(Initialiser VAR (Demander))`
-    * `(Initialiser VAR (Nombre (Demander)))`
+* `Demander` ne peut être utilisée qu’avec `Affecter_a`, pas
+  au sein d’un calcul. Seulement ces constructions sont exportables :
     * `(Affecter_a VAR (Demander))`
     * `(Affecter_a VAR (Nombre (Demander)))`
 * Puisque les calculatrices utilisent différentes familles de variables
@@ -710,11 +707,11 @@ donnera la suite.
     (Aj  ->  (Ajouter_a |)
     (Co  ->  (Concatener |)
     (D   ->  (Definir |...
+    (De  ->  (Declarer | De_type "")
     (Dm  ->  (Demander)
     (E   ->  (Exemples_de |...
     # Pour Faire, deux lignes vides pour aider à penser au compteur.
     (F   ->  (Faire (|)...
-    (I   ->  (Initialiser |)
     (Li  ->  (Liste |)
     (Lo  ->  (Longueur |)
     (Ni  ->  (Nieme |)
