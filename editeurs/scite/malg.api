@@ -18,7 +18,6 @@ Afficher val: Affiche la valeur `val`.
 Aide sym: Aide sur le symbole `sym`.
 Ajouter_a obj: Affecte un nouvel élément à la fin de `obj` (après le dernier élément).
 Alors : Mot-clef intermédiaire d'un `Si`.
-Booleen? val: Teste si `val` est un booléen.
 Concatener val1 val2 ...: Met bout à bout les textes ou valeurs.
 Declarer var1 var2 ... De_type "type" : Déclare les variables `var...` du type `type`.
 Definir (commande args) doc auteur instructions : Permet de définir des commandes.
@@ -30,8 +29,6 @@ Et b1 b2 ...: Opération logique.
 Exemples_de commande [liste d’exemples]: Permet de lire ou écrire les exemples-tests d’une commande.
 Faire instructions Tant_que test: Boucle où `instructions` s’exécutent tant que `test` est `Vrai`.
 Faux : Booléen.
-Faux? val: Teste si `val` est Faux.
-Initialiser var val: Initialise la variable `var` avec la valeur `val`.
 Initialiser@ [val]: Initialise le générateur de valeurs pseudo-aléatoires.
 Liste [élements] : Construit une liste avec les paramètres fournis.
 Longueur val: Donne la longueur d'une liste ou d'un texte.
@@ -39,7 +36,6 @@ Millisecondes: Donne le nombre de millisecondes écoulées depuis le début de l
 Nieme val pos: Retourne l'élément à la position `pos` dans la valeur `val`.
 Nieme@ val : Retourne un élément pseudo-aléatoire dans `val`.
 Nombre val: Convertit `val` en nombre.
-Nombre? val: Teste si `val` est un nombre.
 Non b: Opération logique.
 Ou b1 b2 ...: Opération logique.
 Queue val: Retourne `val` (liste ou texte), privé de son premier élément.
@@ -52,8 +48,6 @@ Tant_que test Faire instructions: Boucle où `instructions` s’exécutent tant 
 Tester cmd: Vérifie que les exemples de la commande passée en argument sont conformes.
 Tete val: Retourne le premier élément de `val` (liste ou texte).
 Texte val: Convertit `val` en texte.
-Texte? val: Teste si `val` est un texte.
 Type val: Retourne le type de la valeur `val`.
 Vide? val: Teste si `val` est vide.
 Vrai : Booléen.
-Vrai? val: Teste si `val` est Vrai.
