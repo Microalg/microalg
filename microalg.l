@@ -24,7 +24,7 @@ Voir <http://microalg.info>.")
 "Nieme" "Nieme@" "Nombre" "Non"
 "Ou"
 "Queue"
-"Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
+"RAZ" "Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon"
 "Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
