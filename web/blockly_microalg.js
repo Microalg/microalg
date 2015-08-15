@@ -529,7 +529,7 @@ Blockly.MicroAlg['demander'] = function(block) {
   return '(Demander)';
 };
 
-// Bloc Demander
+// Bloc Demander un nombre
 Blockly.Blocks['demander_un_nombre'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Demander_un_nombre');
@@ -541,7 +541,7 @@ Blockly.Blocks['demander_un_nombre'] = {
   }
 };
 
-// Gen Demander
+// Gen Demander un nombre
 Blockly.MicroAlg['demander_un_nombre'] = function(block) {
   return '(Demander_un_nombre)';
 };
