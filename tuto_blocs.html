@@ -379,37 +379,27 @@
     <ul>
         <li><code>Type</code> qui retourne un texte en minuscule décrivant le
         type de la valeur,</li>
-        <li><code>Texte?</code> et <code>Nombre?</code>, qui nous
-        permettent de savoir si une valeur est d’un certain type,</li>
         <li><code>Texte</code> et <code>Nombre</code>, qui renvoient une
         nouvelle valeur, convertie avec le bon type.</li>
     </ul>
+    <p>Quelques exemples avec <code>Type</code> :</p>
     <div id="script-type"></div>
     <script>inject_microalg_editor_in('script-type', {
      blockly_only: true,
      src:
         '(Afficher (Type "Bonjour !"))\n' +
         '(Afficher (Type 12345))\n' +
+        '(Afficher (Type "12345"))\n' +
+        ''
+    });</script>
+    <p>Un exemple avec <code>Demander</code> :</p>
+    <div id="script-type-demander"></div>
+    <script>inject_microalg_editor_in('script-type-demander', {
+     blockly_only: true,
+     src:
         '(Afficher "Veuillez taper n’importe quoi.")\n' +
         '(Afficher (Type (Demander)))\n' +
         ''
-    });</script>
-    <div id="script-texte"></div>
-    <script>inject_microalg_editor_in('script-texte', {
-     blockly_only: true,
-     src:
-        '(Afficher (Texte? "2"))\n' +
-        '(Afficher (Texte? 2))\n' +
-        '(Afficher (Texte? (Texte 2)))'
-    });</script>
-    <br>
-    <div id="script-nombre"></div>
-    <script>inject_microalg_editor_in('script-nombre', {
-     blockly_only: true,
-     src:
-        '(Afficher (Nombre? 2))\n' +
-        '(Afficher (Nombre? "2"))\n' +
-        '(Afficher (Nombre? (Nombre "2")))'
     });</script>
     <p>Pour demander un nombre avec lequel faire un calcul, il faut donc
     utiliser une combinaison de <code>Demander</code> et de
