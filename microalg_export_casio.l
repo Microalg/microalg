@@ -108,7 +108,7 @@
 # Rien
 (de Millisecondes () (!no_export "Millisecondes"))
 
-(de AV () (!no_export "BV"))
+(de AV () (!no_export "AV"))
 (de BC () (!no_export "BC"))
 (de LC () (!no_export "LC"))
 (de TD () (!no_export "TD"))
