@@ -1650,6 +1650,40 @@ Blockly.MicroAlg['contour'] = function(block) {
   return '(Contour (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + '))';
 };
 
+// Bloc Contour avec canal alpha
+Blockly.Blocks['contour-alpha'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Contour');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Contour');
+    this.appendValueInput("R")
+        .setCheck('Number')
+        .appendField('R');
+    this.appendValueInput("V")
+        .setCheck('Number')
+        .appendField('V');
+    this.appendValueInput("B")
+        .setCheck('Number')
+        .appendField('B');
+    this.appendValueInput("A")
+        .setCheck('Number')
+        .appendField('A');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur des contours.');
+  }
+};
+
+// Gen Contour avec canal alpha
+Blockly.MicroAlg['contour-alpha'] = function(block) {
+  var r = Blockly.MicroAlg.statementToCode(block, 'R') || '';
+  var v = Blockly.MicroAlg.statementToCode(block, 'V') || '';
+  var b = Blockly.MicroAlg.statementToCode(block, 'B') || '';
+  var a = Blockly.MicroAlg.statementToCode(block, 'A') || '';
+  return '(Contour (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + ' ' + a.trim() + '))';
+};
+
 // Bloc Ellipse
 Blockly.Blocks['ellipse'] = {
   init: function() {
@@ -1768,6 +1802,40 @@ Blockly.MicroAlg['remplissage'] = function(block) {
   var v = Blockly.MicroAlg.statementToCode(block, 'V') || '';
   var b = Blockly.MicroAlg.statementToCode(block, 'B') || '';
   return '(Remplissage (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + '))';
+};
+
+// Bloc Remplissage avec canal alpha
+Blockly.Blocks['remplissage-alpha'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Remplissage');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Remplissage');
+    this.appendValueInput("R")
+        .setCheck('Number')
+        .appendField('R');
+    this.appendValueInput("V")
+        .setCheck('Number')
+        .appendField('V');
+    this.appendValueInput("B")
+        .setCheck('Number')
+        .appendField('B');
+    this.appendValueInput("A")
+        .setCheck('Number')
+        .appendField('A');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur du remplissage des formes.');
+  }
+};
+
+// Gen Remplissage avec canal alpha
+Blockly.MicroAlg['remplissage-alpha'] = function(block) {
+  var r = Blockly.MicroAlg.statementToCode(block, 'R') || '';
+  var v = Blockly.MicroAlg.statementToCode(block, 'V') || '';
+  var b = Blockly.MicroAlg.statementToCode(block, 'B') || '';
+  var a = Blockly.MicroAlg.statementToCode(block, 'A') || '';
+  return '(Remplissage (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + ' ' + a.trim() + '))';
 };
 
 // Bloc Segment

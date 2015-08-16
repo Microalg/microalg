@@ -343,7 +343,9 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="segment"></block>' +
                 '  <block type="epaisseur"></block>' +
                 '  <block type="contour"></block>' +
+                '  <block type="contour-alpha"></block>' +
                 '  <block type="remplissage"></block>' +
+                '  <block type="remplissage-alpha"></block>' +
                 ' </category>' +
                 ' <category name="Cmdes tortue">' +
                 '  <block type="av"></block>' +

@@ -319,12 +319,13 @@
              next
              "</block>")))
 (de Contour inputs
-  (let (couleur (car inputs)
-        r (eval (cadr   couleur))
-        v (eval (caddr  couleur))
-        b (eval (cadddr couleur))
+  (let (couleur (cdar inputs)  # cadr: extraire RVBA de '((Liste R V B A))
+        r (eval (car   couleur))
+        v (eval (cadr  couleur))
+        b (eval (caddr couleur))
+        a (eval (cadddr couleur))
         next (eval (cadr inputs)))
-       (pack "<block type=\"contour\">"
+       (pack "<block type=\"contour" (if a "-alpha") "\">"
              "<value name=\"R\">"
              r
              "</value>"
@@ -334,6 +335,7 @@
              "<value name=\"B\">"
              b
              "</value>"
+             (if a (pack "<value name=\"A\">" a "</value>"))
              next
              "</block>")))
 (de Ellipse inputs
@@ -389,12 +391,13 @@
              next
              "</block>")))
 (de Remplissage inputs
-  (let (couleur (car inputs)
-        r (eval (cadr   couleur))
-        v (eval (caddr  couleur))
-        b (eval (cadddr couleur))
+  (let (couleur (cdar inputs)  # cadr: extraire RVBA de '((Liste R V B A))
+        r (eval (car   couleur))
+        v (eval (cadr  couleur))
+        b (eval (caddr couleur))
+        a (eval (cadddr couleur))
         next (eval (cadr inputs)))
-       (pack "<block type=\"remplissage\">"
+       (pack "<block type=\"remplissage" (if a "-alpha") "\">"
              "<value name=\"R\">"
              r
              "</value>"
@@ -404,6 +407,7 @@
              "<value name=\"B\">"
              b
              "</value>"
+             (if a (pack "<value name=\"A\">" a "</value>"))
              next
              "</block>")))
 (de Segment inputs
