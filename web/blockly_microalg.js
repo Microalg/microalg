@@ -32,6 +32,8 @@ Blockly.Msg.RENAME_VARIABLE_TITLE = "Renommer toutes les variables '%1' en :";
 Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
+    'RAZ, AV, BC, LC, TD, TG, Cercle, Contour, Ellipse, Epaisseur, ' +
+    'Rectangle, Remplissage, Segment, Triangle, ' +
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Concatener, ' +
     'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
     'En_position, Entier@, Et, Exemples_de, ' +
@@ -1568,4 +1570,395 @@ Blockly.Blocks['rien'] = {
 // Gen Rien
 Blockly.MicroAlg['rien'] = function(block) {
   return 'Rien';
+};
+
+// Bloc RAZ
+Blockly.Blocks['raz'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-RAZ');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('RAZ');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Remise À Zéro de la fenêtre graphique.');
+  }
+};
+
+// Gen RAZ
+Blockly.MicroAlg['raz'] = function(block) {
+  return '(RAZ)';
+};
+
+// Bloc Cercle
+Blockly.Blocks['cercle'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Cercle');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Cercle');
+    this.appendValueInput("ORIG_X")
+        .setCheck('Number')
+        .appendField('X');
+    this.appendValueInput("ORIG_Y")
+        .setCheck('Number')
+        .appendField('Y');
+    this.appendValueInput("R")
+        .setCheck('Number')
+        .appendField('R');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Dessine le cercle de centre (X,Y) et de rayon R.');
+  }
+};
+
+// Gen Cercle
+Blockly.MicroAlg['cercle'] = function(block) {
+  var x = Blockly.MicroAlg.statementToCode(block, 'ORIG_X') || '';
+  var y = Blockly.MicroAlg.statementToCode(block, 'ORIG_Y') || '';
+  var r = Blockly.MicroAlg.statementToCode(block, 'R') || '';
+  return '(Cercle (Liste ' + x.trim() + ' ' + y.trim() + ') ' + r.trim() + ')';
+};
+
+// Bloc Contour
+Blockly.Blocks['contour'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Contour');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Contour');
+    this.appendValueInput("R")
+        .setCheck('Number')
+        .appendField('R');
+    this.appendValueInput("V")
+        .setCheck('Number')
+        .appendField('V');
+    this.appendValueInput("B")
+        .setCheck('Number')
+        .appendField('B');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur des contours.');
+  }
+};
+
+// Gen Contour
+Blockly.MicroAlg['contour'] = function(block) {
+  var r = Blockly.MicroAlg.statementToCode(block, 'R') || '';
+  var v = Blockly.MicroAlg.statementToCode(block, 'V') || '';
+  var b = Blockly.MicroAlg.statementToCode(block, 'B') || '';
+  return '(Contour (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + '))';
+};
+
+// Bloc Ellipse
+Blockly.Blocks['ellipse'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Ellipse');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Ellipse');
+    this.appendValueInput("ORIG_X")
+        .setCheck('Number')
+        .appendField('X');
+    this.appendValueInput("ORIG_Y")
+        .setCheck('Number')
+        .appendField('Y');
+    this.appendValueInput("R1")
+        .setCheck('Number')
+        .appendField('R1');
+    this.appendValueInput("R2")
+        .setCheck('Number')
+        .appendField('R2');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Dessine l’ellipse de centre (X,Y) et de rayons R1 et R2.');
+  }
+};
+
+// Gen Ellipse
+Blockly.MicroAlg['ellipse'] = function(block) {
+  var x = Blockly.MicroAlg.statementToCode(block, 'ORIG_X') || '';
+  var y = Blockly.MicroAlg.statementToCode(block, 'ORIG_Y') || '';
+  var r1 = Blockly.MicroAlg.statementToCode(block, 'R1') || '';
+  var r2 = Blockly.MicroAlg.statementToCode(block, 'R2') || '';
+  return '(Ellipse (Liste ' + x.trim() + ' ' + y.trim() + ') ' +
+                              r1.trim() + ' ' + r2.trim() + ')';
+};
+
+// Bloc Epaisseur
+Blockly.Blocks['epaisseur'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Epaisseur');
+    this.setColour(colour);
+    this.appendValueInput("E")
+        .setCheck('Number')
+        .appendField('Epaisseur');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Définit l’épaisseur des contours.');
+  }
+};
+
+// Gen Epaisseur
+Blockly.MicroAlg['epaisseur'] = function(block) {
+  var e = Blockly.MicroAlg.statementToCode(block, 'E') || '';
+  return '(Epaisseur ' + e.trim() + ')';
+};
+
+// Bloc Rectangle
+Blockly.Blocks['rectangle'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Rectangle');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Rectangle');
+    this.appendValueInput("X1")
+        .setCheck('Number')
+        .appendField('X1');
+    this.appendValueInput("Y1")
+        .setCheck('Number')
+        .appendField('Y1');
+    this.appendValueInput("X2")
+        .setCheck('Number')
+        .appendField('X2');
+    this.appendValueInput("Y2")
+        .setCheck('Number')
+        .appendField('Y2');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Dessine le rectangle de sommets opposés (X1,Y1) et (X2,Y2).');
+  }
+};
+
+// Gen Rectangle
+Blockly.MicroAlg['rectangle'] = function(block) {
+  var x1 = Blockly.MicroAlg.statementToCode(block, 'X1') || '';
+  var y1 = Blockly.MicroAlg.statementToCode(block, 'Y1') || '';
+  var x2 = Blockly.MicroAlg.statementToCode(block, 'X2') || '';
+  var y2 = Blockly.MicroAlg.statementToCode(block, 'Y2') || '';
+  return '(Rectangle (Liste ' + x1.trim() + ' ' + y1.trim() + ') ' +
+                    '(Liste ' + x2.trim() + ' ' + y2.trim() + '))';
+};
+
+// Bloc Remplissage
+Blockly.Blocks['remplissage'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Remplissage');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Remplissage');
+    this.appendValueInput("R")
+        .setCheck('Number')
+        .appendField('R');
+    this.appendValueInput("V")
+        .setCheck('Number')
+        .appendField('V');
+    this.appendValueInput("B")
+        .setCheck('Number')
+        .appendField('B');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur du remplissage des formes.');
+  }
+};
+
+// Gen Remplissage
+Blockly.MicroAlg['remplissage'] = function(block) {
+  var r = Blockly.MicroAlg.statementToCode(block, 'R') || '';
+  var v = Blockly.MicroAlg.statementToCode(block, 'V') || '';
+  var b = Blockly.MicroAlg.statementToCode(block, 'B') || '';
+  return '(Remplissage (Liste ' + r.trim() + ' ' + v.trim() + ' ' + b.trim() + '))';
+};
+
+// Bloc Segment
+Blockly.Blocks['segment'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Segment');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Segment');
+    this.appendValueInput("X1")
+        .setCheck('Number')
+        .appendField('X1');
+    this.appendValueInput("Y1")
+        .setCheck('Number')
+        .appendField('Y1');
+    this.appendValueInput("X2")
+        .setCheck('Number')
+        .appendField('X2');
+    this.appendValueInput("Y2")
+        .setCheck('Number')
+        .appendField('Y2');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Dessine le segment d’extrémités (X1,Y1) et (X2,Y2).');
+  }
+};
+
+// Gen Segment
+Blockly.MicroAlg['segment'] = function(block) {
+  var x1 = Blockly.MicroAlg.statementToCode(block, 'X1') || '';
+  var y1 = Blockly.MicroAlg.statementToCode(block, 'Y1') || '';
+  var x2 = Blockly.MicroAlg.statementToCode(block, 'X2') || '';
+  var y2 = Blockly.MicroAlg.statementToCode(block, 'Y2') || '';
+  return '(Segment (Liste ' + x1.trim() + ' ' + y1.trim() + ') ' +
+                  '(Liste ' + x2.trim() + ' ' + y2.trim() + '))';
+};
+
+// Bloc Triangle
+Blockly.Blocks['triangle'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Triangle');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Triangle');
+    this.appendValueInput("X1")
+        .setCheck('Number')
+        .appendField('X1');
+    this.appendValueInput("Y1")
+        .setCheck('Number')
+        .appendField('Y1');
+    this.appendValueInput("X2")
+        .setCheck('Number')
+        .appendField('X2');
+    this.appendValueInput("Y2")
+        .setCheck('Number')
+        .appendField('Y2');
+    this.appendValueInput("X3")
+        .setCheck('Number')
+        .appendField('X3');
+    this.appendValueInput("Y3")
+        .setCheck('Number')
+        .appendField('Y3');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Dessine le triangle de sommets (X1,Y1), (X2,Y2) et (X3,Y3).');
+  }
+};
+
+// Gen Triangle
+Blockly.MicroAlg['triangle'] = function(block) {
+  var x1 = Blockly.MicroAlg.statementToCode(block, 'X1') || '';
+  var y1 = Blockly.MicroAlg.statementToCode(block, 'Y1') || '';
+  var x2 = Blockly.MicroAlg.statementToCode(block, 'X2') || '';
+  var y2 = Blockly.MicroAlg.statementToCode(block, 'Y2') || '';
+  var x3 = Blockly.MicroAlg.statementToCode(block, 'X3') || '';
+  var y3 = Blockly.MicroAlg.statementToCode(block, 'Y3') || '';
+  return '(Triangle (Liste ' + x1.trim() + ' ' + y1.trim() + ') ' +
+                   '(Liste ' + x2.trim() + ' ' + y2.trim() + ') ' +
+                   '(Liste ' + x3.trim() + ' ' + y3.trim() + '))';
+};
+
+// Bloc AV
+Blockly.Blocks['av'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-AV');
+    this.setColour(colour);
+    this.appendValueInput("VALUE")
+        .setCheck('Number')
+        .appendField('AV');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Avance la tortue d’un certain nombre de pixels.');
+  }
+};
+
+// Gen AV
+Blockly.MicroAlg['av'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(AV ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(AV\n' + arg + '\n)';
+  }
+};
+
+// Bloc BC
+Blockly.Blocks['bc'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-BC');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('BC');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Baisse le crayon de la tortue.');
+  }
+};
+
+// Gen BC
+Blockly.MicroAlg['bc'] = function(block) {
+  return '(BC)';
+};
+
+// Bloc LC
+Blockly.Blocks['lc'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-LC');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('LC');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Lève le crayon de la tortue.');
+  }
+};
+
+// Gen LC
+Blockly.MicroAlg['lc'] = function(block) {
+  return '(LC)';
+};
+
+// Bloc TD
+Blockly.Blocks['td'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-TD');
+    this.setColour(colour);
+    this.appendValueInput("VALUE")
+        .setCheck('Number')
+        .appendField('TD');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Tourne la tortue vers la gauche (en degrés).');
+  }
+};
+
+// Gen TD
+Blockly.MicroAlg['td'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(TD ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(TD\n' + arg + '\n)';
+  }
+};
+
+// Bloc TG
+Blockly.Blocks['tg'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-TG');
+    this.setColour(colour);
+    this.appendValueInput("VALUE")
+        .setCheck('Number')
+        .appendField('TG');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Tourne la tortue vers la gauche (en degrés).');
+  }
+};
+
+// Gen TG
+Blockly.MicroAlg['tg'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(TG ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(TG\n' + arg + '\n)';
+  }
 };

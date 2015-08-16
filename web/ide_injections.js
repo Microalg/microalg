@@ -334,6 +334,24 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="ou"></block>' +
                 '  <block type="non"></block>' +
                 ' </category>' +
+                ' <category name="Cmdes graphiques">' +
+                '  <block type="raz"></block>' +
+                '  <block type="cercle"></block>' +
+                '  <block type="ellipse"></block>' +
+                '  <block type="rectangle"></block>' +
+                '  <block type="triangle"></block>' +
+                '  <block type="segment"></block>' +
+                '  <block type="epaisseur"></block>' +
+                '  <block type="contour"></block>' +
+                '  <block type="remplissage"></block>' +
+                ' </category>' +
+                ' <category name="Cmdes tortue">' +
+                '  <block type="av"></block>' +
+                '  <block type="bc"></block>' +
+                '  <block type="lc"></block>' +
+                '  <block type="td"></block>' +
+                '  <block type="tg"></block>' +
+                ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
             '<html>\n' +

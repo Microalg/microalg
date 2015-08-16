@@ -296,6 +296,200 @@
   "<block type=\"vrai\"></block>")
 (de Faux ()
   "<block type=\"faux\"></block>")
+(de RAZ (next)
+  (pack "<block type=\"raz\">"
+        next
+        "</block>"))
+(de Cercle inputs
+  (let (origine (car inputs)
+        orig_x (eval (cadr origine))
+        orig_y (eval (caddr origine))
+        r (eval (cadr inputs))
+        next (eval (caddr inputs)))
+       (pack "<block type=\"cercle\">"
+             "<value name=\"ORIG_X\">"
+             orig_x
+             "</value>"
+             "<value name=\"ORIG_Y\">"
+             orig_y
+             "</value>"
+             "<value name=\"R\">"
+             r
+             "</value>"
+             next
+             "</block>")))
+(de Contour inputs
+  (let (couleur (car inputs)
+        r (eval (cadr   couleur))
+        v (eval (caddr  couleur))
+        b (eval (cadddr couleur))
+        next (eval (cadr inputs)))
+       (pack "<block type=\"contour\">"
+             "<value name=\"R\">"
+             r
+             "</value>"
+             "<value name=\"V\">"
+             v
+             "</value>"
+             "<value name=\"B\">"
+             b
+             "</value>"
+             next
+             "</block>")))
+(de Ellipse inputs
+  (let (origine (car inputs)
+        orig_x (eval (cadr origine))
+        orig_y (eval (caddr origine))
+        r1 (eval (cadr inputs))
+        r2 (eval (caddr inputs))
+        next (eval (cadddr inputs)))
+       (pack "<block type=\"ellipse\">"
+             "<value name=\"ORIG_X\">"
+             orig_x
+             "</value>"
+             "<value name=\"ORIG_Y\">"
+             orig_y
+             "</value>"
+             "<value name=\"R1\">"
+             r1
+             "</value>"
+             "<value name=\"R2\">"
+             r2
+             "</value>"
+             next
+             "</block>")))
+(de Epaisseur (e next)
+  (pack "<block type=\"epaisseur\">"
+        "<value name=\"E\">"
+        e
+        "</value>"
+        next
+        "</block>"))
+(de Rectangle inputs
+  (let (p1 (car inputs)
+        p2 (cadr inputs)
+        x1 (eval (cadr  p1))
+        y1 (eval (caddr p1))
+        x2 (eval (cadr  p2))
+        y2 (eval (caddr p2))
+        next (eval (caddr inputs)))
+       (pack "<block type=\"rectangle\">"
+             "<value name=\"X1\">"
+             x1
+             "</value>"
+             "<value name=\"Y1\">"
+             y1
+             "</value>"
+             "<value name=\"X2\">"
+             x2
+             "</value>"
+             "<value name=\"Y2\">"
+             y2
+             "</value>"
+             next
+             "</block>")))
+(de Remplissage inputs
+  (let (couleur (car inputs)
+        r (eval (cadr   couleur))
+        v (eval (caddr  couleur))
+        b (eval (cadddr couleur))
+        next (eval (cadr inputs)))
+       (pack "<block type=\"remplissage\">"
+             "<value name=\"R\">"
+             r
+             "</value>"
+             "<value name=\"V\">"
+             v
+             "</value>"
+             "<value name=\"B\">"
+             b
+             "</value>"
+             next
+             "</block>")))
+(de Segment inputs
+  (let (p1 (car inputs)
+        p2 (cadr inputs)
+        x1 (eval (cadr  p1))
+        y1 (eval (caddr p1))
+        x2 (eval (cadr  p2))
+        y2 (eval (caddr p2))
+        next (eval (caddr inputs)))
+       (pack "<block type=\"segment\">"
+             "<value name=\"X1\">"
+             x1
+             "</value>"
+             "<value name=\"Y1\">"
+             y1
+             "</value>"
+             "<value name=\"X2\">"
+             x2
+             "</value>"
+             "<value name=\"Y2\">"
+             y2
+             "</value>"
+             next
+             "</block>")))
+(de Triangle inputs
+  (let (p1 (car inputs)
+        p2 (cadr inputs)
+        p3 (caddr inputs)
+        x1 (eval (cadr  p1))
+        y1 (eval (caddr p1))
+        x2 (eval (cadr  p2))
+        y2 (eval (caddr p2))
+        x3 (eval (cadr  p3))
+        y3 (eval (caddr p3))
+        next (eval (cadddr inputs)))
+       (pack "<block type=\"triangle\">"
+             "<value name=\"X1\">"
+             x1
+             "</value>"
+             "<value name=\"Y1\">"
+             y1
+             "</value>"
+             "<value name=\"X2\">"
+             x2
+             "</value>"
+             "<value name=\"Y2\">"
+             y2
+             "</value>"
+             "<value name=\"X3\">"
+             x3
+             "</value>"
+             "<value name=\"Y3\">"
+             y3
+             "</value>"
+             next
+             "</block>")))
+(de AV (content next)
+  (pack "<block type=\"av\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        next
+        "</block>"))
+(de BC (next)
+  (pack "<block type=\"bc\">"
+        next
+        "</block>"))
+(de LC (next)
+  (pack "<block type=\"lc\">"
+        next
+        "</block>"))
+(de TD (content next)
+  (pack "<block type=\"td\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        next
+        "</block>"))
+(de TG (content next)
+  (pack "<block type=\"tg\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        next
+        "</block>"))
 
 (de !sans_bloc (cmd next)
   (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
@@ -304,6 +498,3 @@
         next
         "</block>"))
 
-(de RAZ (content next) (!sans_bloc "RAZ" next))
-(de AV (content next) (!sans_bloc "AV" next))
-(de TD (content next) (!sans_bloc "TD" next))
