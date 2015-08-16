@@ -720,7 +720,8 @@ Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Initialiser@');
     this.setColour(colour);
-    this.appendDummyInput()
+    this.appendValueInput('ETAT')
+        .setCheck('Number')
         .appendField('Initialiser@');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -730,7 +731,8 @@ Blockly.Blocks['initialiser_pseudo_aleatoire'] = {
 
 // Gen Initialiser@
 Blockly.MicroAlg['initialiser_pseudo_aleatoire'] = function(block) {
-  return '(Initialiser@)';
+  var etat = Blockly.MicroAlg.statementToCode(block, 'ETAT') || '';
+  return '(Initialiser@ ' + etat.trim() + ')';
 };
 
 // Bloc Liste

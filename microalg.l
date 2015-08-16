@@ -857,7 +857,7 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 (setq sequence_tirages@ (Liste))
 (put 'sequence_tirages@ 'type "liste")
 (de !prochain_etat@ ()
-  (ifn !etat@ (setq !etat@ 0))
+  (ifn !etat@ (setq !etat@ (% (+ (time) (usec)) 4294967296)))  # 2^32
   # http://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
   # Dans !rand ci-dessous, on ne garde que le quotient par !shift.
   (setq !etat@ (% (+ (* !etat@ 1664525) 1013904223) 4294967296)) )
@@ -882,49 +882,31 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 )
 # Définition des commandes.
 (put 'Initialiser@ 'doc
-"Permet d’initialiser la séquence des nombres pseudo-aléatoires.
+"Initialise la séquence des nombres pseudo-aléatoires.
 
-Cette commande est à appeler une seule fois au début de votre programme. Elle
-résout le problème suivant :
-
-Dans une session :
+En passant une valeur à `Initialiser@` comprise entre 0 (inclus) et 2 puissance
+32 (exclus), on initialise l’état du générateur à cette valeur.
 
     : (Entier@ 0 1000)
-    -> 0
-    : (Entier@ 0 1000)
-    -> 332
-
-Puis dans une autre, plus tard :
-
-    : (Entier@ 0 1000)
-    -> 0
-    : (Entier@ 0 1000)
-    -> 332
-
-Alors que :
-
-    : (Initialiser@)
+    -> 422  # Cette valeur dépendra du moment où un premier tirage aura été
+            # demandé avec `Entier@` ou `Nieme@`, au moins à la milliseconde près.
+    : (Initialiser@ 0)
     -> Rien
     : (Entier@ 0 1000)
-    -> 422  # Cette valeur dépendra du moment où la commande `Initialiser@`
-            # aura été exécutée, au moins à la milliseconde près.
-
-**Utilisation avancée** : en passant une valeur à `Initialiser@` comprise entre
-0 (inclus) et 2 puissance 32 (exclus), on initialise l’état du générateur à
-cette valeur.
+    -> 266  # Cette valeur dépend uniquement du 0 passé à `Initialiser@` ci-dessus.
+            # Avec 0 en argument, MicroAlg retournera toujours 266, puis 104, puis 869…
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
 (de Initialiser@ (x)
-  (let 2^32 (** 2 32)
-    (ifn x (setq !etat@ (% (+ (time) (usec)) 2^32))
-           (if (or (lt0 (- x 0)) (le0 (- 2^32 x)))
+    (ifn x (quit "`Initialiser@` prend un paramètre, mais vous n’en donnez aucun.")
+           (if (or (lt0 (- x 0)) (le0 (- 4294967296 x)))  # 2^32
                (quit (pack "Initialiser@ n’accepte que des valeurs entre "
                            "0 (inclus) et 2 puissance 32 (exclus).") x)
                (setq !etat@ x)
            )
     )
-    Rien)
-  )
+    Rien
+)
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
 paramètres entiers).
@@ -935,10 +917,6 @@ paramètres entiers).
     -> 3
 
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
-
-**Attention** : La séquence des valeurs retournées sera toujours la même à
-chaque exécution d’un programme. Si ce n’est pas le comportement désiré, il
-faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Entier@ 'text "Commande `Entier@`.")
 (de Entier@ (!min !max !rien_ici)
@@ -970,10 +948,6 @@ faut ajouter `(Initialiser@)` au début du programme.
     -> n
 
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
-
-**Attention** : La séquence des valeurs retournées sera toujours la même à
-chaque exécution d’un programme. Si ce n’est pas le comportement désiré, il
-faut ajouter `(Initialiser@)` au début du programme.
 ")
 (put 'Nieme@ 'text "Commande `Nieme@`.")
 (de Nieme@ (obj !rien_ici)

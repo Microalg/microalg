@@ -179,8 +179,9 @@
              "<value name=\"COND\">" (eval !cond) "</value>"
              (eval !next)
              "</block>") ))
-(de Initialiser@ (next)
+(de Initialiser@ (etat next)
   (pack "<block type=\"initialiser_pseudo_aleatoire\">"
+        "<value name=\"ETAT\">" etat "</value>"
         next
         "</block>"))
 (de Liste inputs
