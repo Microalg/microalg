@@ -191,26 +191,46 @@
     <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires', {
      blockly_only: true,
      src:
-        '(Initialiser@)\n' +
         '(Afficher (Entier@ 1900 2015))'
     });</script>
     <p>Comment changer ce programme pour simuler un dé à six faces ?</p>
-    <p><strong>Note</strong> : sans la commande <code>Initialiser@</code>,
+    <p><strong>Utilisation avancée</strong> : si vous n’avez pas besoin de
+    <a href="http://fr.wikipedia.org/wiki/Reproductibilit%C3%A9"
+    class="wp">reproductibilité</a> (le fait de pouvoir obtenir à nouveau
+    certaines séquences de tirages), vous pouvez passer directement à
+    <a href="#demander">la section suivante</a>).</p>
+    <p>Il est possible de contrôler les tirages de deux façons : avec la
+    commande <code>Initialiser@</code> et avec la variable spéciale
+    <code>sequence_tirages@</code>.</p>
+    <p>La commande <code>Initialiser@</code> permet de contrôler l’état
+    initial du générateur de nombres pseudo-aléatoires. Grâce à elle,
     un même programme donnera toujours les mêmes tirages. Ce n’est bien sûr pas
     souhaitable pour un jeu de hasard comme un jeu de cartes. Néanmoins, pour
-    certaines applications artistiques ou scientifiques, la
-    <a href="http://fr.wikipedia.org/wiki/Reproductibilit%C3%A9"
-    class="wp">reproductibilité</a> (le fait de pouvoir garder certaines
-    séquences de tirages) peut être intéressante. On peut par exemple vouloir
+    certaines applications artistiques ou scientifiques, cette reproductibilité
+    peut être intéressante. On peut par exemple vouloir
     générer un même labyrinthe pour tous les joueurs, on peut vouloir vérifier
     si un programme est correct en comparant avec un autre que l’on sait être
     correct…</p>
     <p>Voici par exemple un programme qui affichera toujours les mêmes cinq
-    tirages (1975, 1946, 2005, 1940 et 1955) :</p>
+    tirages (1984, 1932, 1967, 2000 et 1957) :</p>
     <div id="script-nbres-pseudo-aleatoires-init"></div>
     <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires-init', {
      blockly_only: true,
      src:
+        '(Initialiser@ 0)\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        '(Afficher (Entier@ 1900 2015))\n' +
+        ''
+    });</script>
+    <p>Celui-ci affichera toujours 1969, 1921, 1987, 1941 et 1950 :</p>
+    <div id="script-nbres-pseudo-aleatoires-init2"></div>
+    <script>inject_microalg_editor_in('script-nbres-pseudo-aleatoires-init2', {
+     blockly_only: true,
+     src:
+        '(Initialiser@ 1)\n' +
         '(Afficher (Entier@ 1900 2015))\n' +
         '(Afficher (Entier@ 1900 2015))\n' +
         '(Afficher (Entier@ 1900 2015))\n' +
