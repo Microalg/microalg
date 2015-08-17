@@ -1,5 +1,4 @@
 (RAZ)
-(Initialiser@)
 (Epaisseur 2)
 (Remplissage (Liste 255 255 255))
 (Declarer n x y r decalage De_type "nombre")
