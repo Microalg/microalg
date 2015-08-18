@@ -416,7 +416,8 @@ function export_action(elt_id, select) {
         var exported_src = malg2other(lang, src);
         var export_target = $('#' + elt_id + '-export');
         if (lang == 'arbresvg') {
-            var tree = new TreeDrawer(elt_id + '-export',
+            export_target.html($('<div/>', {id: elt_id + '-export-svg'}));
+            var tree = new TreeDrawer(elt_id + '-export-svg',
                 JSON.parse(exported_src));
             tree.root.extended = false;
             tree.draw();
