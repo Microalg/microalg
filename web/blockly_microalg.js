@@ -1991,7 +1991,7 @@ Blockly.Blocks['td'] = {
         .appendField('TD');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip('Tourne la tortue vers la gauche (en degrés).');
+    this.setTooltip('Tourne la tortue vers la droite (en degrés).');
   }
 };
 
