@@ -82,11 +82,11 @@ function stdPrompt() {
     else throw new Error("Commande `Demander` annulée.")
 }
 
-function onCtrl(elt, f) {
+function onCtrl(elt, f, store) {
     elt.keydown(function (e) {
         if (e.ctrlKey) {
             if (e.keyCode == 10 || e.keyCode == 13) {
-                f(elt);
+                f(elt, store);
             } else if (e.keyCode == 66) {
                 e.preventDefault();
                 // Voir aussi dans editeurs/scite/malg_abbrev.properties.
@@ -402,7 +402,7 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
-    onCtrl(editor, ide_action);
+    onCtrl(editor, ide_action, config.localStorage);
 }
 
 function export_action(elt_id, select) {
@@ -501,7 +501,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
     createRichInput(repl);
-    onCtrl(repl, repl_action);
+    onCtrl(repl, repl_action, null);
     EMULISP_CORE.currentState().old_src = malg_prompt;
 }
 
