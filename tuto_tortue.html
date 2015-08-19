@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tuto tortue - MicroAlg</title>
+    <meta name="description"
+          content="Tutoriel en ligne pour MicroAlg." />
+    <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="web/jquery.min.js"><\/script>')</script>
+    <script src="emulisp/int.js" type="text/javascript"></script>
+    <script src="emulisp/emulisp_core.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="web/style.css" />
+    <script type="text/javascript" src="web/ide_injections.js"></script>
+    <script type="text/javascript" src="web/parenedit.js"></script>
+    <link type="text/css" href="web/parenedit.css" rel="stylesheet" />
+    <script src="web/showdown.js"></script>
+    <script src="web/svg-tree-drawer/svg-tree-drawer.js"></script>
+    <link href="web/css-ninja-tree/css-ninja-tree.css" rel="stylesheet"/>
+    <script src="web/showup.js"></script>
+    <link type="text/css" href="web/showup.css" rel="stylesheet" />
+    <link rel="icon" href="visuels/logo_microalg.ico" />
+</head>
+<body class="microalg">
+    <noscript>
+        <div style="color:#CC0000; text-align:center">
+        Besoin de JavaScript pour les exercices interactifs.
+        </div>
+    </noscript>
+    <div class="navbar">
+        <a href="./">accueil</a> :
+        <a href="#top">haut de page</a>
+    </div>
+    <h1 id="top">MicroAlg - Tutoriel tortue</h1>
+    <p><a href="#avancer">Commencer tout de suite</a>, sans lire
+    l’introduction.</p>
+    <p>Aller directement à :
+    <a href="#avancer">Avancer</a>,
+    <a href="#tourner-quart">Tourner d’un quart de tour à droite</a>,
+    <a href="#tourner-gauche">Tourner à gauche</a>,
+    <a href="#contact">Contact</a>.
+    </p>
+
+    <h2 id="questce">Qu’est-ce ?</h2>
+    <p>Cette page est un <a href="https://fr.wikipedia.org/wiki/Tutoriel"
+    class="wp">tutoriel</a>
+    pour <strong>certaines commandes graphiques</strong> de
+    <a href="http://microalg.info" class="offi">MicroAlg</a>.</p>
+    <p>Il est largement inspiré de
+    <a href="https://studio.code.org/s/frozen/">celui-ci</a>.</p>
+    
+    <h2 id="contact">Contact</h2>
+    <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
+    trouvez une faute d’orthographe, ou si vous avez envie de contribuer avec
+    une idée lumineuse, merci de (au choix) :</p>
+    <ul>
+        <li>proposer une « pull request » en éditant directement
+            <a href="https://github.com/Microalg/Microalg/edit/master/tuto_graphique.html">ce fichier sur Github</a> ;</li>
+        <li>poster une « issue » sur
+            <a href="https://github.com/Microalg/Microalg/issues/new">Github</a> ;</li>
+        <li>poser une question dans
+            <a href="http://qr.microalg.info">la section Questions/Réponses</a> ;</li>
+        <li>envoyer <a href="mailto:profgra.org@gmail.com" class="email">un email
+            au créateur de MicroAlg</a>.</li>
+    </ul>
+
+    <h2 id="avancer"><a href="#avancer">: </a>Avancer</a></h2>
+    <p>Pourquoi ne pas commencer tout de suite ! Cliquez sur <code>OK</code>
+    et observez la zone blanche juste en dessous.</p>
+    <div id="script-avancer"></div>
+    <script>inject_microalg_editor_in('script-avancer', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 100)' +
+            '(LC)(TD 180)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+     src:
+        '(AV 0)'
+    });</script>
+    <p>Après avoir cliqué sur <code>OK</code>, un chemin vert devrait s’être
+    affiché. Trouvez quelle valeur il faut mettre à la place du
+    <code>0</code> pour que la tortue le parcourt en entier, mais sans dépasser.</p>
+    <p>Retenez que l’instruction <code>(AV 500)</code> fait avancer la tortue de
+    500 pixels.</p>
+
+    <h2 id="tourner-quart"><a href="#tourner-quart">: </a>Tourner d’un quart de tour à droite</a></h2>
+    <p>La commande <code>TD</code> fait tourner la tortue d’un quart de tour sur
+    la droite (90 degrés).</p>
+    <div id="script-td"></div>
+    <script>inject_microalg_editor_in('script-td', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 100)(TD)(AV 50)' +
+            '(LC)(TD)(AV 100)(TD)(AV 50)(TD)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+     src:
+        '(AV 0)\n(TD)\n(AV 0)'
+    });</script>
+    <p>Cliquer sur <code>OK</code> pour afficher le chemin vert. Comment
+    modifier le programme pour que la tortue le parcourt en entier et sans
+    dépasser ?
+
+    <h2 id="tourner-gauche"><a href="#tourner-gauche">: </a>Tourner à gauche</a></h2>
+    <p>La commande <code>TG</code> fait tourner la tortue sur la gauche d’un
+    certain angle en degrés.</p>
+    <div id="script-tg"></div>
+    <script>inject_microalg_editor_in('script-tg', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 100)(TG 45)(AV 50)' +
+            '(LC)(TG 180)(AV 50)(TD 45)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+     src:
+        '(AV 0)\n(TG 90)\n(AV 0)'
+    });</script>
+    <p>Cliquer sur <code>OK</code> pour afficher le chemin vert. Comment
+    modifier le programme pour que la tortue le parcourt en entier et sans
+    dépasser ?</p>
+    
+    <h2 id="fin">Fin</h2>
+    <p>Voilà, c’est fini. Si désormais vous cherchez une information, allez
+    voir directement la <a href="doc.html">documentation</a>. Dans la galerie,
+    vous trouverez beaucoup d’exemples d’utilisation de ces commandes.
+    <a href="http://galerie.microalg.info/microalg:graphismes">Cette page</a>
+    en contient une liste.</p>
+    <p>Si cela vous a plu et que vous avez envie de créer votre propre
+    tutoriel, vous pouvez utiliser <a href="http://galerie.microalg.info">la galerie</a>.
+    Pour mettre MicroAlg en place sur votre propre site, voir
+    <a href="https://github.com/Microalg/Microalg/blob/latest/INSTALL.md">cette page</a>.</p>
+    <p>Si vous avez une remarque à faire, ou envie de contribuer, suivre les
+    instructions de <a href="#contact">cette section</a>.</p>
+    <p>Bonne continuation !</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script>
+        $().showUp('.navbar', {
+            upClass: 'navbar-show',
+            downClass: 'navbar-hide'
+        });
+    </script>
+</body>
+</html>
