@@ -2007,6 +2007,24 @@ Blockly.MicroAlg['td'] = function(block) {
   }
 };
 
+// Bloc TD 90
+Blockly.Blocks['td90'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-TD');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('TD');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Tourne la tortue vers la gauche (en degrés).');
+  }
+};
+
+// Gen TD 90
+Blockly.MicroAlg['td90'] = function(block) {
+  return '(TD)';
+};
+
 // Bloc TG
 Blockly.Blocks['tg'] = {
   init: function() {
@@ -2031,4 +2049,22 @@ Blockly.MicroAlg['tg'] = function(block) {
   } else {
     return '(TG\n' + arg + '\n)';
   }
+};
+
+// Bloc TG 90
+Blockly.Blocks['tg90'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-TG');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('TG');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Tourne la tortue vers la gauche (en degrés).');
+  }
+};
+
+// Gen TG 90
+Blockly.MicroAlg['tg90'] = function(block) {
+  return '(TG)';
 };

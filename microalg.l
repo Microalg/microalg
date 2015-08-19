@@ -1769,29 +1769,39 @@ et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la droite.
 
-Le paramètre est l’angle de rotation en degrés.
+Le paramètre est l’angle de rotation en degrés. Si l’angle n’est pas fourni, il
+vaudra par défaut 90°.
 
-Exemple : `(TD 45)`
+Exemples :
+
+    (TD 90)  # pour tourner d’un quart de tour vers droite
+    (TD)     # idem
+    (TD 45)  # pour tourner de 45° vers la droite
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'text "Commande `TD` (tourne à droite).")
 (de TD (angle)
-  (!processing (pack "TD " angle))
+  (!processing (pack "TD " (if angle @ 90)))
   Rien
 )
 (put 'TG 'doc
 "Dans la sortie graphique, fait tourner la tortue vers la gauche.
 
-Le paramètre est l’angle de rotation en degrés.
+Le paramètre est l’angle de rotation en degrés. Si l’angle n’est pas fourni, il
+vaudra par défaut 90°.
 
-Exemple : `(TG 45)`
+Exemples :
+
+    (TG 90)  # pour tourner d’un quart de tour vers gauche
+    (TG)     # idem
+    (TG 45)  # pour tourner de 45° vers la gauche
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TG 'text "Commande `TG` (tourne à gauche).")
 (de TG (angle)
-  (!processing (pack "TG " angle))
+  (!processing (pack "TG " (if angle @ 90)))
   Rien
 )
 (put 'BC 'doc

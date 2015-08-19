@@ -481,20 +481,37 @@
   (pack "<block type=\"lc\">"
         next
         "</block>"))
-(de TD (content next)
-  (pack "<block type=\"td\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        next
-        "</block>"))
-(de TG (content next)
-  (pack "<block type=\"tg\">"
-        "<value name=\"VALUE\">"
-        content
-        "</value>"
-        next
-        "</block>"))
+(de !T (inputs type)
+  (let (inputs_num (length inputs))
+       (cond
+         ((not (<> 2 inputs_num))  # 2 args
+            (let (content (eval (car inputs))
+                  next    (eval (cadr inputs)))
+                 (pack "<block type=\"t" type "\">"
+                       "<value name=\"VALUE\">"
+                       content
+                       "</value>"
+                       next
+                       "</block>")))
+         ((not (<> 1 inputs_num))  # 1 arg
+            (if (== 'Next (caar inputs))
+                (let (next (eval (car inputs)))
+                     (pack "<block type=\"t" type "90\">"
+                           next
+                           "</block>"))
+                (let (content (eval (car inputs)))
+                     (pack "<block type=\"t" type "\">"
+                           "<value name=\"VALUE\">"
+                           content
+                           "</value>"
+                           "</block>"))))
+         (T  # 0 arg
+            (pack "<block type=\"t" type "90\"></block>"))
+       )
+  )
+)
+(de TD inputs (!T inputs "d"))
+(de TG inputs (!T inputs "g"))
 
 (de !sans_bloc (cmd next)
   (pack "<block type=\"commentaire\"><field name=\"COMZ\">"
