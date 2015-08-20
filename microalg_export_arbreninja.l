@@ -1,3 +1,4 @@
+(setq *id 0)
 (de arbreninja malg_src
   (pack "<ol class=\"tree\"><li>"
         (mapcar 'arbreninja_rec malg_src)
@@ -13,8 +14,9 @@
                            "</li>"))
     (T (let (cmd  (car malg_src)
              args (cdr malg_src))
-            (pack "<label for=\"" cmd "\">" cmd "</label>"
-                  "<input type=\"checkbox\" id=\"" cmd "\" checked />"
+            (inc '*id)
+            (pack "<label for=\"" cmd "-" *id "\">" cmd "</label>"
+                  "<input type=\"checkbox\" id=\"" cmd "-" *id "\" checked />"
                   (if args
                       (pack "<ol>" (mapcar 'arbreninja_rec args) "</ol>"))
             )
