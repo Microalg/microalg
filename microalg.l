@@ -516,7 +516,8 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 
 Préférer l’utilisation d’une variable classique pour stocker le retour des
 commandes `Demander` et `Demander_un_nombre` (voir `Declarer` et `Affecter_a`).")
-(setq valeur_utilisateur Rien)
+(put 'valeur_utilisateur 'type "rien")
+(setq valeur_utilisateur 'Rien)
 (put 'Demander 'doc
 "Commande qui permet de demander une valeur à l’utilisateur.
 
