@@ -28,7 +28,7 @@ Voir <http://microalg.info>.")
 "sequence_tirages@"
 "Segment" "Si" "Sinon"
 "Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
-"Vide?" "Vrai"
+"valeur_utilisateur" "Vide?" "Vrai"
 ))
 
 # picolisp.l shimz
@@ -507,6 +507,13 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 # _stdPrompt, surchargée dans ide_injection.js. Dans un navigateur, la dernière
 # ligne ayant été affichée précédemment est réutilisée lors de l’appel à
 # window.prompt.
+(put 'valeur_utilisateur 'doc
+"Contient la dernière valeur donnée par l’utilisateur en réponse aux commandes
+`Demander` et `Demander_un_nombre`.
+
+Préférer l’utilisation d’une variable classique pour stocker le retour des
+commandes `Demander` et `Demander_un_nombre` (voir `Declarer` et `Affecter_a`).")
+(setq valeur_utilisateur Rien)
 (put 'Demander 'doc
 "Commande qui permet de demander une valeur à l’utilisateur.
 
@@ -526,6 +533,13 @@ valeur avant de la stocker dans une variable. Exemple :
     : x
     -> 42
 
+Pour simplifier cette commande, deux facilités ont été mises en place :
+
+* La commande `Demander_un_nombre` peut remplacer la combinaison
+  `(Nombre (Demander))`.
+* La variable spéciale `valeur_utilisateur` contient la dernière valeur donnée
+  par l’utilisateur en réponse aux commandes `Demander` et `Demander_un_nombre`.
+
 **Remarque** : On peut s’en servir pour marquer une pause dans un programme :
 
     (Afficher \"Pause, appuyez sur Entrée.\")
@@ -534,7 +548,11 @@ valeur avant de la stocker dans une variable. Exemple :
 (put 'Demander 'text "Commande `Demander`.")
 (de Demander (!rien_ici)
   (if !rien_ici (quit "`Demander` ne prend pas de paramètre."))
-  (in NIL (line T)) )
+  (put 'valeur_utilisateur 'type "texte")
+  (let (!input (in NIL (line T)))
+    (setq valeur_utilisateur !input)
+  )
+)
 (put 'Demander_un_nombre 'doc
 "Commande qui permet de demander un nombre à l’utilisateur.
 
@@ -545,7 +563,13 @@ avec les plus jeunes.")
 (put 'Demander_un_nombre 'text "Commande `Demander_un_nombre`.")
 (de Demander_un_nombre (!rien_ici)
   (if !rien_ici (quit "`Demander_un_nombre` ne prend pas de paramètre."))
-  (Nombre (Demander)) )
+  (put 'valeur_utilisateur 'type "nombre")
+  (let (!input (in NIL (line T))
+        !input_nbre (format !input))
+       (ifn !input_nbre (quit "La valeur entrée n’est pas un nombre."))
+       (setq valeur_utilisateur !input_nbre)
+  )
+)
 
 # Listes
 # Implémentation interne des listes (POO)

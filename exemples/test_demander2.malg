@@ -1,0 +1,3 @@
+(Afficher "Votre nom ?")
+(Demander)
+(Afficher (Concatener "Salut " valeur_utilisateur))
