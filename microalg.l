@@ -1762,10 +1762,10 @@ Exemple : `(AV 100)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'AV 'text "Commande `AV` (avance).")
-(de AV (longueur !deuz)
-  (ifn longueur (quit "`AV` a besoin d’un paramètre, mais vous n’en donnez pas."))
+(de AV (!longueur !deuz)
+  (ifn !longueur (quit "`AV` a besoin d’un paramètre, mais vous n’en donnez pas."))
   (if !deuz (quit "`AV` n’accepte qu’un seul paramètre, pas plus."))
-  (!processing (pack "AV " longueur))
+  (!processing (pack "AV " !longueur))
   Rien
 )
 (put 'TD 'doc
@@ -1783,9 +1783,9 @@ Exemples :
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'text "Commande `TD` (tourne à droite).")
-(de TD (angle !deuz)
+(de TD (!angle !deuz)
   (if !deuz (quit "`TD` accepte au plus un paramètre. Vous en donnez deux."))
-  (!processing (pack "TD " (if angle @ 90)))
+  (!processing (pack "TD " (if !angle @ 90)))
   Rien
 )
 (put 'TG 'doc
@@ -1803,9 +1803,9 @@ Exemples :
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TG 'text "Commande `TG` (tourne à gauche).")
-(de TG (angle !deuz)
+(de TG (!angle !deuz)
   (if !deuz (quit "`TG` accepte au plus un paramètre. Vous en donnez deux."))
-  (!processing (pack "TG " (if angle @ 90)))
+  (!processing (pack "TG " (if !angle @ 90)))
   Rien
 )
 (put 'BC 'doc
