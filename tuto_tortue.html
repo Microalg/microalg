@@ -75,10 +75,10 @@
     <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
     <p>La tortue n’est pas visible à l’écran mais elle laisse un trait noir
     derrière elle. Elle part du centre du grand carré blanc en dessous des blocs
-    de code, tournée vers le haut de l’écran.</p>
+    de code, tournée vers le haut.</p>
     <p>En cliquant sur le bouton <code>OK</code> (gris et très large sous les
     blocs de code), vous afficherez le chemin vert qu’elle doit suivre.
-    Allez-y !</p>
+    Allez-y ! Cliquez sur <code>OK</code> !</p>
     <p>Ensuite, vous devrez modifier ou écrire vous-même un programme pour que
     la tortue suive ce chemin, en entier et sans dépasser. Pour cette
     démonstration, vous n’avez qu’à changer le <code>-1</code> en
@@ -109,7 +109,7 @@
 
     <h2 id="avancer"><a href="#avancer">: </a>Avancer</a></h2>
     <p>Voici le premier défi. Il présente la commande <code>AV</code>, qui fait
-    AV-ancer la tortue du nombre de pixels indiqué.</p>
+    <strong>AV-ancer la tortue</strong> du nombre de pixels indiqué.</p>
     <p>Pour ce défi comme pour tous les autres, il faut :</p>
     <ol>
       <li>cliquer sur <code>OK</code> pour afficher le chemin à suivre ;</li>
@@ -131,8 +131,8 @@
     });</script>
 
     <h2 id="tourner-quart"><a href="#tourner-quart">: </a>Tourner d’un quart de tour à droite</a></h2>
-    <p>La commande <code>TD</code> fait tourner la tortue d’un quart de tour sur
-    elle-même vers sa droite (90 degrés).</p>
+    <p>La commande <code>TD</code> fait <strong>tourner la tortue</strong> d’un
+    quart de tour (90 degrés) <strong>sur elle-même vers sa droite</strong>.</p>
     <div id="script-td-90"></div>
     <script>inject_microalg_editor_in('script-td-90', {
      processing: true,
@@ -165,11 +165,12 @@
 
     <h2 id="tourner-gauche-droite"><a href="#tourner-gauche-droite">: </a>Tourner à gauche et à droite</a></h2>
     <p>La commande <code>TG</code> est la sœur jumelle de la commande
-    <code>TD</code>. Elle fait tourner la tortue sur elle-même vers sa gauche
-    d’un certain angle en degrés, ou d’un quart de tour si on n’indique pas
-    d’angle.</p>
-    <p>Ici, aucune commande n’a été mise en place. À vous de les retrouver dans
-    la boîte à outils. Les blocs <code>AV</code>, <code>TD</code> et
+    <code>TD</code>. Elle fait <strong>tourner la tortue</strong> sur elle-même
+    <strong>vers sa gauche</strong> d’un certain angle en degrés, ou d’un quart
+    de tour si on n’indique pas d’angle.</p>
+    <p>Ici, aucune commande n’a été mise en place. Vous n’aurez besoin que de
+    <code>AV</code>, <code>TD</code> et <code>TG</code>. À vous de les retrouver
+    dans la boîte à outils : les blocs <code>AV</code>, <code>TD</code> et
     <code>TG</code> sont dans la catégorie <code>Cmdes tortue</code>, et le
     bloc des nombres dans la catégorie <code>Valeurs</code>. Aussi, en cliquant
     droit sur les blocs, vous pouvez les dupliquer.</p>
@@ -185,6 +186,8 @@
     });</script>
 
     <h2 id="premier-carre"><a href="#premier-carre">: </a>Premier carré</a></h2>
+    <p>Pour gagner du temps, pensez à utiliser <code>TG</code> plutôt que
+    <code>TG 90</code>.
     <div id="script-carre"></div>
     <script>inject_microalg_editor_in('script-carre', {
      processing: true,
