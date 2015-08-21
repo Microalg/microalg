@@ -64,7 +64,6 @@
             '(= "0" (Texte 0))
             '(= 0 (Nombre 0))
             '(= 0 (Nombre "0"))
-            '(= Rien (Nombre "a"))
             '(= "Vrai" (Texte Vrai))
             '(= "Faux" (Texte Faux))
             '(= "Rien" (Texte Rien))

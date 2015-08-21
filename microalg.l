@@ -1033,7 +1033,8 @@ en minuscule).
 (put 'Nombre 'text "Commande `Nombre`.")
 (de Nombre (x) (cond
                 ((num? x) x)
-                ((str? x) (or (format x) Rien))
+                ((str? x) (or (format x)
+                              (quit "`Nombre` : la valeur ne peut pas être convertie.")))
                 (T NIL)
               ))
 
