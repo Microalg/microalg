@@ -410,6 +410,9 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
 )
 (de Declarer !arg_lst (apply '!declarer !arg_lst))
 (de Déclarer !arg_lst (apply '!declarer !arg_lst))
+(de Initialiser ()
+  (quit (pack "`Initialiser` a été abandonnée dans la version 0.4. "
+              "Merci d’utiliser `Declarer`.")))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.
 
