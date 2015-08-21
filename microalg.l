@@ -1762,7 +1762,9 @@ Exemple : `(AV 100)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'AV 'text "Commande `AV` (avance).")
-(de AV (longueur)
+(de AV (longueur !deuz)
+  (ifn longueur (quit "`AV` a besoin d’un paramètre, mais vous n’en donnez pas."))
+  (if !deuz (quit "`AV` n’accepte qu’un seul paramètre, pas plus."))
   (!processing (pack "AV " longueur))
   Rien
 )
@@ -1781,7 +1783,8 @@ Exemples :
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TD 'text "Commande `TD` (tourne à droite).")
-(de TD (angle)
+(de TD (angle !deuz)
+  (if !deuz (quit "`TD` accepte au plus un paramètre. Vous en donnez deux."))
   (!processing (pack "TD " (if angle @ 90)))
   Rien
 )
@@ -1800,7 +1803,8 @@ Exemples :
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'TG 'text "Commande `TG` (tourne à gauche).")
-(de TG (angle)
+(de TG (angle !deuz)
+  (if !deuz (quit "`TG` accepte au plus un paramètre. Vous en donnez deux."))
   (!processing (pack "TG " (if angle @ 90)))
   Rien
 )
@@ -1812,7 +1816,8 @@ Exemple : `(BC)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'BC 'text "Commande `BC` (baisse crayon).")
-(de BC ()
+(de BC (!primz)
+  (if !primz (quit "`BC` ne prend pas de paramètre."))
   (!processing "BC")
   Rien
 )
@@ -1824,7 +1829,8 @@ Exemple : `(LC)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#tortue>.")
 (put 'LC 'text "Commande `LC` (lève crayon).")
-(de LC ()
+(de LC (!primz)
+  (if !primz (quit "`LC` ne prend pas de paramètre."))
   (!processing "LC")
   Rien
 )
