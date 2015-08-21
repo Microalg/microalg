@@ -2068,3 +2068,54 @@ Blockly.Blocks['tg90'] = {
 Blockly.MicroAlg['tg90'] = function(block) {
   return '(TG)';
 };
+
+// Bloc valeur_utilisateur
+Blockly.Blocks['valeur_utilisateur'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-valeur_utilisateur');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('valeur_utilisateur');
+    this.setOutput(true);
+    this.setTooltip('Dernière valeur entrée par l’utilisateur.');
+  }
+};
+
+// Gen valeur_utilisateur
+Blockly.MicroAlg['valeur_utilisateur'] = function(block) {
+  return 'valeur_utilisateur';
+};
+
+// Bloc credit_iterations
+Blockly.Blocks['credit_iterations'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-credit_iterations');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('credit_iterations');
+    this.setOutput(true);
+    this.setTooltip('Nombre de tours restants pour Tant_que et Faire.');
+  }
+};
+
+// Gen credit_iterations
+Blockly.MicroAlg['credit_iterations'] = function(block) {
+  return 'credit_iterations';
+};
+
+// Bloc sequence_tirages
+Blockly.Blocks['sequence_tirages'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-sequence_tirages');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('sequence_tirages@');
+    this.setOutput(true);
+    this.setTooltip('Liste des entiers utilisés par Entier@ et Nieme@.');
+  }
+};
+
+// Gen sequence_tirages
+Blockly.MicroAlg['sequence_tirages'] = function(block) {
+  return 'sequence_tirages@';
+};

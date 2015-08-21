@@ -10,10 +10,17 @@
   ))
 (de Variable inputs
   (let (nom_var (car inputs))
-    (if nom_var (pack "<block type=\"variable\"><field name=\"VAR\">"
-                               nom_var
-                               "</field></block>")
-                "<block type=\"texte_litteral\"><field name=\"TEXT\"></field></block>"
+    (cond
+      ((== 'valeur_utilisateur nom_var)
+        "<block type=\"valeur_utilisateur\"></block>")
+      ((== 'credit_iterations  nom_var)
+        "<block type=\"credit_iterations\"></block>")
+      ((== 'sequence_tirages@  nom_var)
+        "<block type=\"sequence_tirages\"></block>")
+      ((not nom_var)
+        "<block type=\"texte_litteral\"><field name=\"TEXT\"></field></block>")
+      (T
+        (pack "<block type=\"variable\"><field name=\"VAR\">" nom_var "</field></block>"))
     )
   )
 )
