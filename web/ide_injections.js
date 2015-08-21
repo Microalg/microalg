@@ -299,9 +299,9 @@ function inject_microalg_editor_in(elt_id, config) {
         var toolbox_string =
                 '<xml id="' + elt_id + '-toolbox" style="display: none">' +
                 ' <category name="Valeurs">' +
-                '  <block type="variable"></block>' +
                 '  <block type="texte_litteral"></block>' +
                 '  <block type="nombre_litteral"></block>' +
+                '  <block type="variable"></block>' +
                 '  <block type="vrai"></block>' +
                 '  <block type="faux"></block>' +
                 '  <block type="liste"></block>' +
