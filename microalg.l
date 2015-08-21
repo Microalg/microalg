@@ -1477,13 +1477,14 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put '= 'text "Prédicat `=`.")
-(de = (x y) (ifn (<> x y)
-                 (if (or (== x Vrai) (== x Faux) (== x Rien)
-                         (== y Vrai) (== y Faux) (== y Rien))
-                     (if (== x y) Vrai Faux)  # test == pour les vals ci-dessus
-                     Vrai                     # pour les autres, c’est not <>
-                 )
-                 Faux)  # ici, ils sont <>
+(de = (x y)
+  (ifn (<> x y)
+       (if (or (== x Vrai) (== x Faux) (== x Rien)
+               (== y Vrai) (== y Faux) (== y Rien))
+           (if (== x y) Vrai Faux)  # test == pour les vals ci-dessus
+           Vrai                     # pour les autres, c’est not <>
+       )
+       Faux)  # ici, ils sont <>
 )
 (put '=/ 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1493,7 +1494,8 @@ différentes, et `Faux` sinon.
     -> Faux
 ")
 (put '=/ 'text "Prédicat `=/`.")
-(de =/ (x y) (if (<> x y) Vrai Faux))
+(de =/ (x y)
+  (if (<> x y) Vrai Faux))
 (put '< 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre croissant (strictement), et `Faux` sinon.
@@ -1504,7 +1506,8 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '< 'text "Prédicat `<`.")
-(de < (x y) (ifn (ge0 (- x y)) Vrai Faux))
+(de < (x y)
+  (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre croissant.
@@ -1517,7 +1520,8 @@ dans l’ordre croissant.
     -> Faux
 ")
 (put '<= 'text "Prédicat `<=`.")
-(de <= (x y) (if (le0 (- x y)) Vrai Faux))
+(de <= (x y)
+  (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant (strictement), et `Faux` sinon.
@@ -1528,7 +1532,8 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '> 'text "Prédicat `>`.")
-(de > (x y) (ifn (le0 (- x y)) Vrai Faux))
+(de > (x y)
+  (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant.
@@ -1541,7 +1546,8 @@ dans l’ordre décroissant.
     -> Faux
 ")
 (put '>= 'text "Prédicat `>=`.")
-(de >= (x y) (if (ge0 (- x y)) Vrai Faux))
+(de >= (x y)
+  (if (ge0 (- x y)) Vrai Faux))
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
 
