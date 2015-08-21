@@ -359,10 +359,12 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' </category>' +
                 ' <category name="Cmdes tortue">' +
                 '  <block type="av"></block>' +
+                '  <block type="td90"></block>' +
+                '  <block type="td"></block>' +
+                '  <block type="tg90"></block>' +
+                '  <block type="tg"></block>' +
                 '  <block type="bc"></block>' +
                 '  <block type="lc"></block>' +
-                '  <block type="td"></block>' +
-                '  <block type="tg"></block>' +
                 ' </category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
