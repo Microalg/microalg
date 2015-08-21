@@ -1852,7 +1852,9 @@ L’angle doit être fourni en degrés.
     -> 866
 ")
 (put '1000Cosinus 'text "Commande `1000Cosinus`.")
-(de 1000Cosinus (!angle)
+(de 1000Cosinus (!angle !deuz)
+  (ifn !angle (quit "`1000Cosinus` a besoin d’un paramètre, mais vous n’en donnez pas."))
+  (if !deuz (quit "`1000Cosinus` n’accepte qu’un seul paramètre, pas plus."))
   (cond
     ((lt0 !angle) (1000Cosinus (- !angle)))
     ((gt0 (- !angle 360)) (1000Cosinus (% !angle 360)))
@@ -1870,7 +1872,9 @@ L’angle doit être fourni en degrés.
     -> 500
 ")
 (put '1000Sinus 'text "Commande `1000Sinus`.")
-(de 1000Sinus (!angle)
+(de 1000Sinus (!angle !deuz)
+  (ifn !angle (quit "`1000Sinus` a besoin d’un paramètre, mais vous n’en donnez pas."))
+  (if !deuz (quit "`1000Sinus` n’accepte qu’un seul paramètre, pas plus."))
   (cond
     ((lt0 !angle) (- (1000Sinus (- !angle))))
     ((gt0 (- !angle 360)) (1000Sinus (% !angle 360)))
