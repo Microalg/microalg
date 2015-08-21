@@ -32,12 +32,18 @@
         <a href="#top">haut de page</a>
     </div>
     <h1 id="top">MicroAlg - Tutoriel tortue</h1>
-    <p><a href="#avancer">Commencer tout de suite</a>, sans lire
+    <p><a href="#tortue">Commencer tout de suite</a>, sans lire
     l’introduction.</p>
     <p>Aller directement à :
+    <a href="#tortue">La tortue</a>,
     <a href="#avancer">Avancer</a>,
     <a href="#tourner-quart">Tourner d’un quart de tour à droite</a>,
-    <a href="#tourner-gauche">Tourner à gauche</a>,
+    <a href="#tourner">Tourner à droite</a>,
+    <a href="#tourner-gauche-droite">Tourner à gauche et à droite</a>,
+    <a href="#premier-carre">Premier carré</a>,
+    <a href="#triangle">Triangle</a>,
+    <a href="#autre-carre">Un autre carré</a>,
+    <a href="#polygones">Polygones</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -47,7 +53,9 @@
     pour <strong>certaines commandes graphiques</strong> de
     <a href="http://microalg.info" class="offi">MicroAlg</a>.</p>
     <p>Il est largement inspiré de
-    <a href="https://studio.code.org/s/frozen/">celui-ci</a>.</p>
+    <a href="https://studio.code.org/s/frozen/">celui-ci</a>, lui-même
+    issu d’une longue tradition de système pédagogiques utilisant
+    l’informatique.</p>
     
     <h2 id="contact">Contact</h2>
     <p>Si jamais cette page ne réagit pas comme vous l’attendiez, si vous
@@ -64,9 +72,53 @@
             au créateur de MicroAlg</a>.</li>
     </ul>
 
+    <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
+    <p>La tortue n’est pas visible à l’écran mais elle laisse un trait noir
+    derrière elle. Elle part du centre du grand carré blanc en dessous des blocs
+    de code, tournée vers le haut de l’écran.</p>
+    <p>En cliquant sur le bouton <code>OK</code> (gris et très large sous les
+    blocs de code), vous afficherez le chemin vert qu’elle doit suivre.
+    Allez-y !</p>
+    <p>Ensuite, vous devrez modifier ou écrire vous-même un programme pour que
+    la tortue suive ce chemin, en entier et sans dépasser. Pour cette
+    démonstration, vous n’avez qu’à changer le <code>-1</code> en
+    <code>20</code> puis cliquer à nouveau sur <code>OK</code> pour voir la
+    tortue dessiner. Bon, elle nous fait un joli dessin, mais elle ne suit pas
+    le chemin correctement !</p>
+    <p>Si jamais vous supprimez des blocs par erreur, rafraîchissez la page avec
+    <code>F5</code>.</p>
+    <p>Vous pouvez maintenant passer à <a href="#avancer">la suite</a>.</p>
+    <div id="script-demo"></div>
+    <script>inject_microalg_editor_in('script-demo', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 100)(TD)(AV 50)' +
+            '(LC)(TD)(AV 100)(TD)(AV 50)(TD)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+     src:
+        '(Declarer i De_type "nombre")\n' +
+        '(Affecter_a i -1)\n' +
+        '(Tant_que (> i 0) Faire\n' +
+        '(AV i)\n' +
+        '(TD (* 3 (- 20 i)))\n' +
+        '(Affecter_a i (- i 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p><strong>Note</strong> : il y aura parfois des indices à cet endroit.</p>
+
     <h2 id="avancer"><a href="#avancer">: </a>Avancer</a></h2>
-    <p>Pourquoi ne pas commencer tout de suite ! Cliquez sur <code>OK</code>
-    et observez la zone blanche juste en dessous.</p>
+    <p>Voici le premier défi. Il présente la commande <code>AV</code>, qui fait
+    AV-ancer la tortue du nombre de pixels indiqué.</p>
+    <p>Pour ce défi comme pour tous les autres, il faut :</p>
+    <ol>
+      <li>cliquer sur <code>OK</code> pour afficher le chemin à suivre ;</li>
+      <li>modifier le programme proposé ou en écrire un (ici simplement changer
+          le zéro en une autre valeur) ;</li>
+      <li>cliquer sur <code>OK</code> pour tester le programme ;</li>
+      <li>si la tortue a bien suivi le chemin, passer à la suite. Sinon,
+          réessayer !</li>
+    </ol>
     <div id="script-avancer"></div>
     <script>inject_microalg_editor_in('script-avancer', {
      processing: true,
@@ -77,17 +129,12 @@
      src:
         '(AV 0)'
     });</script>
-    <p>Après avoir cliqué sur <code>OK</code>, un chemin vert devrait s’être
-    affiché. Trouvez quelle valeur il faut mettre à la place du
-    <code>0</code> pour que la tortue le parcourt en entier, mais sans dépasser.</p>
-    <p>Retenez que l’instruction <code>(AV 500)</code> fait avancer la tortue de
-    500 pixels.</p>
 
     <h2 id="tourner-quart"><a href="#tourner-quart">: </a>Tourner d’un quart de tour à droite</a></h2>
     <p>La commande <code>TD</code> fait tourner la tortue d’un quart de tour sur
-    la droite (90 degrés).</p>
-    <div id="script-td"></div>
-    <script>inject_microalg_editor_in('script-td', {
+    elle-même vers sa droite (90 degrés).</p>
+    <div id="script-td-90"></div>
+    <script>inject_microalg_editor_in('script-td-90', {
      processing: true,
      blockly_only:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
@@ -96,27 +143,136 @@
      src:
         '(AV 0)\n(TD)\n(AV 0)'
     });</script>
-    <p>Cliquer sur <code>OK</code> pour afficher le chemin vert. Comment
-    modifier le programme pour que la tortue le parcourt en entier et sans
-    dépasser ?
+    <p><strong>Indice</strong> : Pour suivre le chemin vert, il faut que la tortue :</p>
+    <ol>
+      <li>avance (de combien ?),</li>
+      <li>tourne sur sa droite,</li>
+      <li>avance à nouveau (de combien ?).</li>
+    </ol>
 
-    <h2 id="tourner-gauche"><a href="#tourner-gauche">: </a>Tourner à gauche</a></h2>
-    <p>La commande <code>TG</code> fait tourner la tortue sur la gauche d’un
-    certain angle en degrés.</p>
-    <div id="script-tg"></div>
-    <script>inject_microalg_editor_in('script-tg', {
+    <h2 id="tourner"><a href="#tourner">: </a>Tourner à droite</a></h2>
+    <p>On peut aussi donner un angle en degrés à la commande <code>TD</code>.</p>
+    <div id="script-td"></div>
+    <script>inject_microalg_editor_in('script-td', {
      processing: true,
      blockly_only:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
-            '(AV 100)(TG 45)(AV 50)' +
-            '(LC)(TG 180)(AV 50)(TD 45)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+            '(AV 100)(TD 45)(AV 200)' +
+            '(LC)(TD 180)(AV 200)(TG 45)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
      src:
-        '(AV 0)\n(TG 90)\n(AV 0)'
+        '(AV 0)\n(TD 90)\n(AV 0)'
     });</script>
-    <p>Cliquer sur <code>OK</code> pour afficher le chemin vert. Comment
-    modifier le programme pour que la tortue le parcourt en entier et sans
-    dépasser ?</p>
+
+    <h2 id="tourner-gauche-droite"><a href="#tourner-gauche-droite">: </a>Tourner à gauche et à droite</a></h2>
+    <p>La commande <code>TG</code> est la sœur jumelle de la commande
+    <code>TD</code>. Elle fait tourner la tortue sur elle-même vers sa gauche
+    d’un certain angle en degrés, ou d’un quart de tour si on n’indique pas
+    d’angle.</p>
+    <p>Ici, aucune commande n’a été mise en place. À vous de les retrouver dans
+    la boîte à outils. Les blocs <code>AV</code>, <code>TD</code> et
+    <code>TG</code> sont dans la catégorie <code>Cmdes tortue</code>, et le
+    bloc des nombres dans la catégorie <code>Valeurs</code>. Aussi, en cliquant
+    droit sur les blocs, vous pouvez les dupliquer.</p>
+    <div id="script-tgd"></div>
+    <script>inject_microalg_editor_in('script-tgd', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 50)(TG 45)(AV 50)(TD 45)(AV 50)(TD 45)(AV 50)(TG 90)(AV 50)(TD 135)(AV 100)' +
+            '(LC)(TD 180)(AV (- 100 (* 0.7 50)))(TG)(AV (+ 100 (* 0.7 150)))(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
+     src:
+        ''
+    });</script>
+
+    <h2 id="premier-carre"><a href="#premier-carre">: </a>Premier carré</a></h2>
+    <div id="script-carre"></div>
+    <script>inject_microalg_editor_in('script-carre', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 200)(TG)(AV 200)(TG)(AV 200)(TG)(AV 200)' +
+            '(TG)(Contour (Liste 0 0 0))(Epaisseur 2)',
+     src:
+        ''
+    });</script>
     
+    <h2 id="triangle"><a href="#triangle">: </a>Triangle</a></h2>
+    <div id="script-triangle"></div>
+    <script>inject_microalg_editor_in('script-triangle', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 200)(TG 120)(AV 200)(TG 120)(AV 200)' +
+            '(TG 120)(Contour (Liste 0 0 0))(Epaisseur 2)',
+     src:
+        ''
+    });</script>
+
+    <h2 id="autre-carre"><a href="#autre-carre">: </a>Un autre carré</a></h2>
+    <p>Tout d’abord, modifiez votre programme précédent pour que la tortue
+    dessine un carré d’une autre taille. Vous remarquez que vous ne pouvez pas
+    éviter la modification de quatre nombres. Fastidieux ! Heureusement que ce
+    carré n’a pas 1000 côtés !</p>
+    <p>Le programme qui a été écrit pour vous ci-dessous utilise la commande
+    répétitive <code>Tant_que</code> et la variable <code>i</code> pour aider
+    la tortue à compter jusqu’à 4. Dessinez le carré vert, puis des carrés de
+    différentes taille. Grâce au <code>Tant_que</code>, il n’y a plus qu’un seul
+    nombre à modifier !</p>
+    <div id="script-autre-carre"></div>
+    <script>inject_microalg_editor_in('script-autre-carre', {
+     processing: true,
+     blockly_only:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 200)(TG)(AV 200)(TG)(AV 200)(TG)(AV 200)' +
+            '(TG)(Contour (Liste 0 0 0))(Epaisseur 2)',
+     src:
+        '(Declarer i De_type "nombre")\n' +
+        '(Affecter_a i 1)\n' +
+        '(Tant_que (<= i 4) Faire\n' +
+        '(AV 0)\n' +
+        '(TG)\n' +
+        '(Affecter_a i (+ i 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+
+    <h2 id="polygones"><a href="#polygones">: </a>Polygones</a></h2>
+    <p>Ici, pas de chemin à faire suivre à la tortue. La tortue est libre !</p>
+    <p>Nous allons utiliser une autre variable, <code>n</code>, qui
+    représentera le nombre de côtés à dessiner. Tout ce que vous avez à faire,
+    c’est dire à la tortue quel calcul faire pour tourner du bon angle afin de
+    dessiner un polygone à <code>n</code> côtés. Le calcul n’est pas facile à
+    trouver, mais assez simple. Il suffit de changer l’opération et la valeur
+    90.</p>
+    <p>Si vous voulez <strong>R</strong>emettre <strong>À</strong>
+    <strong>Z</strong>éro le monde de la tortue, utilisez la commande
+    <code>RAZ</code> au début du programme, située dans la catégorie
+    <code>Cmdes graphiques</code>.</p>
+    <p>Une fois que vous avez réussi, la tortue vous demande deux choses :</p>
+    <ul>
+      <li>Plutôt que d’avancer systématiquement de 100 pixels, faire un calcul
+          pour que le polygone soit assez grand mais ne sorte pas du cadre.</li>
+      <li>Dessiner une étoile à 17 branches.</li>
+    </ul>
+    <div id="script-polygones"></div>
+    <script>inject_microalg_editor_in('script-polygones', {
+     processing: true,
+     blockly_only:true,
+     presrc:'',
+     src:
+        '(Declarer n i De_type "nombre")\n' +
+        '(Affecter_a n 8)\n' +
+        '(Affecter_a i 1)\n' +
+        '(Tant_que (<= i n) Faire\n' +
+        '(AV 100)\n' +
+        '(TG (+ 90 n))\n' +
+        '(Affecter_a i (+ i 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p>Pour vous aider à comprendre la calcul à effectuer, reprenez le cas du
+    triangle, puis du carré, puis du pentagone, puis de l’hexagone…</p>
+
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si désormais vous cherchez une information, allez
     voir directement la <a href="doc.html">documentation</a>. Dans la galerie,
