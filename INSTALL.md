@@ -185,7 +185,9 @@ Vous pouvez télécharger le résultat des instructions suivantes
 * Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`
   (ou sur `00_SciTE.bat` si vous avez téléchargé l’archive).  
   Pour plus d’informations sur l’utilisation en elle-même, voir
-  [la documentation](http://microalg.info/doc.html#scite).
+  [la documentation](http://microalg.info/doc.html#scite).  
+  S’il tournait déjà, redémarrer SciTE pour prendre en compte l’installation de
+  NodeJS.
 * L’implémentation par défaut est lente. Si vous n’utilisez que des nombres
   entiers, vous pouvez utiliser une version de MicroAlg sans nombres à virgule,
   mais plus rapide. Pour cela, allez dans le menu **View** puis **Parameters**,
