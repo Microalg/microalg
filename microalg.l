@@ -1477,6 +1477,12 @@ Voir la commande `Exemples_de`.")
     (if  !troiz (quit (pack "`" !cmd "`" !bla "en donnez au moins trois.")))
   )
 )
+# Factorisation du test du type des args
+(de !check_type_args (!cmd !primz !deuz)
+  (if (not (and (num? !primz) (num? !deuz)))
+      (quit (pack "Les paramètres de " !cmd " doivent être des nombres"))
+  )
+)
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
 et `Faux` sinon.
@@ -1516,6 +1522,7 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
 (put '< 'text "Prédicat `<`.")
 (de < (x y !troiz)
   (!check2args "<" x y !troiz)
+  (!check_type_args "<" x y)
   (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1531,6 +1538,7 @@ dans l’ordre croissant.
 (put '<= 'text "Prédicat `<=`.")
 (de <= (x y !troiz)
   (!check2args "<=" x y !troiz)
+  (!check_type_args "<=" x y)
   (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1544,6 +1552,7 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.
 (put '> 'text "Prédicat `>`.")
 (de > (x y !troiz)
   (!check2args ">" x y !troiz)
+  (!check_type_args ">" x y)
   (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1559,6 +1568,7 @@ dans l’ordre décroissant.
 (put '>= 'text "Prédicat `>=`.")
 (de >= (x y !troiz)
   (!check2args ">=" x y !troiz)
+  (!check_type_args ">=" x y)
   (if (ge0 (- x y)) Vrai Faux))
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
