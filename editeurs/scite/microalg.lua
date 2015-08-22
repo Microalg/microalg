@@ -110,7 +110,6 @@ else
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
-        props["command.go.subsystem.*.malg"] = 2
         props["command.build.*.malg"] = [[start $(microalg_path)\start_processing.bat]]
 end
 
