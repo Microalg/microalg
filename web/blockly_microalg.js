@@ -1437,8 +1437,8 @@ Blockly.Blocks['operations'] = {
          ['Différence', 'MINUS'],
          ['Produit',    'MULTIPLY'],
          ['Quotient',   'DIVIDE'],
-         ['%', 'MOD'],
-         ['^', 'POW']];
+         ['Reste',      'MOD'],
+         ['Puissance ', 'POW']];
     this.setHelpUrl(malg_url + '#oprationsavecblockly');
     this.setColour(colour);
     this.setOutput(true, 'Number');
