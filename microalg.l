@@ -1469,6 +1469,14 @@ Voir la commande `Exemples_de`.")
 (setq <= NIL)
 (setq > NIL)
 (setq >= NIL)
+# Factorisation du test du nbre d’args
+(de !check2args (!cmd !primz !deuz !troiz)
+  (let !bla " prend 2 paramètres. Vous "
+    (ifn !primz (quit (pack "`" !cmd "`" !bla "n’en donnez aucun.")))
+    (ifn !deuz  (quit (pack "`" !cmd "`" !bla "n’en donnez qu’un seul.")))
+    (if  !troiz (quit (pack "`" !cmd "`" !bla "en donnez au moins trois.")))
+  )
+)
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
 et `Faux` sinon.
@@ -1506,7 +1514,8 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '< 'text "Prédicat `<`.")
-(de < (x y)
+(de < (x y !troiz)
+  (!check2args "<" x y !troiz)
   (ifn (ge0 (- x y)) Vrai Faux))
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1520,7 +1529,8 @@ dans l’ordre croissant.
     -> Faux
 ")
 (put '<= 'text "Prédicat `<=`.")
-(de <= (x y)
+(de <= (x y !troiz)
+  (!check2args "<=" x y !troiz)
   (if (le0 (- x y)) Vrai Faux))
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1532,7 +1542,8 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '> 'text "Prédicat `>`.")
-(de > (x y)
+(de > (x y !troiz)
+  (!check2args ">" x y !troiz)
   (ifn (le0 (- x y)) Vrai Faux))
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1546,7 +1557,8 @@ dans l’ordre décroissant.
     -> Faux
 ")
 (put '>= 'text "Prédicat `>=`.")
-(de >= (x y)
+(de >= (x y !troiz)
+  (!check2args ">=" x y !troiz)
   (if (ge0 (- x y)) Vrai Faux))
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
