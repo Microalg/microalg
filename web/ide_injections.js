@@ -333,6 +333,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="nieme@"></block>' +
                 '  <block type="tete"></block>' +
                 '  <block type="queue"></block>' +
+                '  <block type="millisecondes"></block>' +
                 ' </category>' +
                 ' <category name="Types et conversions">' +
                 '  <block type="type"></block>' +

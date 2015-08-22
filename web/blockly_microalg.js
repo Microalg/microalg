@@ -871,7 +871,21 @@ Blockly.MicroAlg['longueur'] = function(block) {
 };
 
 // Bloc Millisecondes
+Blockly.Blocks['millisecondes'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Millisecondes');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Millisecondes');
+    this.setOutput(true, 'Number');
+    this.setTooltip('Nombre de millisecondes écoulées depuis le début du programme.');
+  }
+};
+
 // Gen Millisecondes
+Blockly.MicroAlg['millisecondes'] = function(block) {
+  return '(Millisecondes)';
+};
 
 // Bloc Nieme
 Blockly.Blocks['nieme'] = {

@@ -205,6 +205,8 @@
         content
         "</value>"
         "</block>"))
+(de Millisecondes ()
+  "<block type=\"millisecondes\"></block>")
 (de Nieme (value index)
   (pack "<block type=\"nieme\">"
         "<value name=\"VALUE\">"
