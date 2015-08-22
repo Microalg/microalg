@@ -74,8 +74,8 @@
 
     <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
     <p>La tortue n’est pas visible à l’écran mais elle laisse un trait noir
-    derrière elle. Elle part du centre du grand carré blanc en dessous des blocs
-    de code, tournée vers le haut.</p>
+    derrière elle. Elle évolue dans le grand carré blanc en dessous des blocs
+    de code en partant du centre, tournée vers le haut.</p>
     <p>En cliquant sur le bouton <code>OK</code> (gris et très large sous les
     blocs de code), vous afficherez le chemin vert qu’elle doit suivre.
     Allez-y ! Cliquez sur <code>OK</code> !</p>
@@ -133,6 +133,8 @@
     <h2 id="tourner-quart"><a href="#tourner-quart">: </a>Tourner d’un quart de tour à droite</a></h2>
     <p>La commande <code>TD</code> fait <strong>tourner la tortue</strong> d’un
     quart de tour (90 degrés) <strong>sur elle-même vers sa droite</strong>.</p>
+    <p>Attention, la tortue repart du centre, elle doit refaire le trait de la
+    section précédente.</p>
     <div id="script-td-90"></div>
     <script>inject_microalg_editor_in('script-td-90', {
      processing: true,
@@ -160,7 +162,7 @@
             '(AV 100)(TD 45)(AV 200)' +
             '(LC)(TD 180)(AV 200)(TG 45)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
      src:
-        '(AV 0)\n(TD 90)\n(AV 0)'
+        '(AV 0)\n(TD 0)\n(AV 0)'
     });</script>
 
     <h2 id="tourner-gauche-droite"><a href="#tourner-gauche-droite">: </a>Tourner à gauche et à droite</a></h2>
