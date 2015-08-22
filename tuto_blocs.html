@@ -309,9 +309,15 @@
 
     <h2 id="calculs-nombres"><a href="#calculs-nombres">: </a>Calculs avec des nombres</h2>
     <p>MicroAlg sait effectuer des calculs. Il faut juste savoir que :</p>
-    <ol><li>il n’y a un seul bloc pour les quatre opérations de base +, -, × et
-        ÷ ;</li>
-        <li>l’opération apparaît sur la gauche du bloc.</li>
+    <ol><li>il n’y a un seul bloc pour les quatre opérations de base ;</li>
+        <li>le nom du résultat de l’opération apparaît sur le bloc :</li>
+        <ul>
+            <li><em>Somme</em> pour +,</li>
+            <li><em>Différence</em> pour -,</li>
+            <li><em>Produit</em> pour ×,</li>
+            <li><em>Quotient</em> pour ÷</li>
+        </ul>
+        <li>l’opération apparaît sur la gauche du bloc et non entre les nombres.</li>
     </ol>
     <p>Pour chaque exemple ci-dessous, essayer de deviner ce que va afficher
     MicroAlg, puis vérifier en cliquant sur <code>OK</code>.</p>
@@ -327,7 +333,7 @@
      blockly_only: true,
      src:
         '(!!! "Une expression peut prendre la place d’un nombre.")\n' +
-        '(!!! "Ici le deuxième 2 a été remplacé par (+ 1 1) :")\n' +
+        '(!!! "Ici le deuxième 2 a été remplacé par (Somme 1 1) :")\n' +
         '(Afficher (+ 2 (+ 1 1)))'
     });</script>
     <br>
@@ -352,9 +358,8 @@
         '(Afficher (* -1 (+ 2 2)))\n' +
         ''
     });</script>
-    <p>Autres exemples avec <code>+</code>, <code>-</code>, <code>*</code> et
-    <code>/</code> (papier crayon ou calculatrice autorisés si vous n’êtes pas
-    fort en calcul mental).</p>
+    <p>Autres exemples avec les opérations (papier crayon ou calculatrice
+    autorisés si vous n’êtes pas fort en calcul mental).</p>
     <div id="script-calc1"></div>
     <script>inject_microalg_editor_in('script-calc1', {
      blockly_only: true,
@@ -386,9 +391,8 @@
     <p>La commande <code>Demander</code> renvoie du texte, celui tapé par
     l’utilisateur. Même s’il n’est constitué que de chiffres, MicroAlg le
     considère comme étant du texte.</p>
-    <p>Le problème ici est que les opérations <code>+</code>, <code>-</code>,
-    <code>*</code> et <code>/</code> ne travaillent qu'avec des nombres et non
-    avec du texte. En voici la preuve (le programme génère une erreur) :</p>
+    <p>Le problème ici est que les opérations ne travaillent qu'avec des nombres
+    et non avec du texte. En voici la preuve (le programme génère une erreur) :</p>
     <div id="script-un-plus-un"></div>
     <script>inject_microalg_editor_in('script-un-plus-un', {
      blockly_only: true,
