@@ -14,6 +14,7 @@ var lisp_srcs = {};
 function getLispSource(what) {
     if (typeof lisp_srcs[what] == 'undefined') {
         var file = {
+        '0.3.17':     'microalg-0.3.17.l',
         'microalg':   'microalg.l',
         'export':     'microalg_export.l',
         'blockly':    'microalg_export_blockly.l',
@@ -154,7 +155,9 @@ function ide_action(editor_elt, config_64, presrc_b64) {
     var config = JSON.parse(atob(config_64));
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(getLispSource('microalg'));
+    var lisp_source = 'microalg';
+    if (config.version === '0.3.17') lisp_source = '0.3.17';
+    EMULISP_CORE.eval(getLispSource(lisp_source));
     // Custom state for a custom display in the page.
     EMULISP_CORE.currentState().context = {
         type: 'editor',
@@ -194,6 +197,9 @@ according to `config` which may have these keys :
 
 * `src` is a string defining the content displayed at first load,  
   empty if not provided,
+* `version` is a string defining the version of microalg.l to load,
+  currently only "0.3.17" is available and, if not set, the default will be
+  the latest version of the microalg.l file,
 * `localStorage` is a boolean telling to remember last program if possible,  
   false if not provided,
 * `blockly` is a boolean telling to also display code as blocks,  
