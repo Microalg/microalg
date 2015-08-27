@@ -10,23 +10,27 @@ var this_script_url = (function(scripts) {
 }());
 var this_script_path = 'web/ide_injections.js';
 var root_path = this_script_url.slice(0, -this_script_path.length);
-var microalg_l_src =
-    EMULISP_CORE.getFileSync(root_path + 'microalg.l');
-var microalg_export_src =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export.l');
-var microalg_export_other_src = {};
-microalg_export_other_src['casio'] =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_casio.l');
-microalg_export_other_src['ti'] =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_ti.l');
-microalg_export_other_src['arbretxt'] =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbretxt.l');
-microalg_export_other_src['arbresvg'] =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbresvg.l');
-microalg_export_other_src['arbreninja'] =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_arbreninja.l');
-var microalg_export_blockly_src =
-    EMULISP_CORE.getFileSync(root_path + 'microalg_export_blockly.l');
+var lisp_srcs = {};
+function getLispSource(what) {
+    if (typeof lisp_srcs[what] == 'undefined') {
+        var file = {
+        'microalg':   'microalg.l',
+        'export':     'microalg_export.l',
+        'blockly':    'microalg_export_blockly.l',
+        'casio':      'microalg_export_casio.l',
+        'ti':         'microalg_export_ti.l',
+        'arbretxt':   'microalg_export_arbretxt.l',
+        'arbresvg':   'microalg_export_arbresvg.l',
+        'arbreninja': 'microalg_export_arbreninja.l'
+        }[what];
+        if (typeof file == 'undefined') {
+            alert("Lisp file unavailable: " + what);
+            return "";
+        }
+        lisp_srcs[what] = EMULISP_CORE.getFileSync(root_path + file);
+    }
+    return lisp_srcs[what];
+}
 
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
@@ -148,7 +152,7 @@ function ide_action(editor_elt, store, presrc_b64) {
     var processing_id = elt_id + '-processing';
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_l_src);
+    EMULISP_CORE.eval(getLispSource('microalg'));
     // Custom state for a custom display in the page.
     EMULISP_CORE.currentState().context = {
         type: 'editor',
@@ -447,8 +451,8 @@ function export_action(elt_id, select) {
 
 function malg2other(lang, src) {
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_export_src);
-    EMULISP_CORE.eval(microalg_export_other_src[lang]);
+    EMULISP_CORE.eval(getLispSource('export'));
+    EMULISP_CORE.eval(getLispSource(lang));
     if (lang == 'arbretxt') {
         var raw_tree = cleanTransient(EMULISP_CORE.eval('(arbretxt ' + src + ')').toString());
         var colored = raw_tree.replace(/([│├└─])/g,'<span class="malg-guide">$1</span>');
@@ -468,7 +472,7 @@ function malg2other(lang, src) {
         var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
         var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
         EMULISP_CORE.init();
-        EMULISP_CORE.eval(microalg_l_src);
+        EMULISP_CORE.eval(getLispSource('microalg'));
         exported_src = "Attention, fonctionnalité encore expérimentale !\n\n" + exported_src;
         return exported_src;
     }
@@ -505,7 +509,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     var repl_id = elt_id + '-malg-repl';
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_l_src);
+    EMULISP_CORE.eval(getLispSource('microalg'));
     // Custom state for a custom display in the REPL.
     EMULISP_CORE.currentState().context = {type: 'repl', display_elt: repl_id};
     emulisp_states[repl_id] = EMULISP_CORE.currentState();
@@ -556,7 +560,7 @@ function inject_microalg_jrepl_in(elt_id, msg) {
         onInit: function(term) {
             // Init the state and load it with MicroAlg.
             EMULISP_CORE.init();
-            EMULISP_CORE.eval(microalg_l_src);
+            EMULISP_CORE.eval(getLispSource('microalg'));
             // Custom state for a custom display in the REPL.
             EMULISP_CORE.currentState().context = {type: 'jrepl', term: term};
             emulisp_states[elt_id] = EMULISP_CORE.currentState();
@@ -571,9 +575,10 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 
 function malg2blockly(src) {
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_export_src);
+    EMULISP_CORE.eval(getLispSource('export'));
+
     var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
-    EMULISP_CORE.eval(microalg_export_blockly_src);
+    EMULISP_CORE.eval(getLispSource('blockly'));
     var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")").toString();
     // Le car pour récupérer l’unique élément de la liste finale.
     var xml = EMULISP_CORE.eval('(pack (car ' + avec_des_next + ')').toString();
@@ -581,7 +586,7 @@ function malg2blockly(src) {
           xml.slice(1,-1).replace(/\\"/g, '"') +
           '</value></block></xml>';
     EMULISP_CORE.init();
-    EMULISP_CORE.eval(microalg_l_src);
+    EMULISP_CORE.eval(getLispSource('microalg'));
     return xml;
 }
 
