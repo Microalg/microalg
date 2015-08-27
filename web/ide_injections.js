@@ -86,11 +86,11 @@ function stdPrompt() {
     else throw new Error("Commande `Demander` annulée.")
 }
 
-function onCtrl(elt, f, store, presrc_b64) {
+function onCtrl(elt, f, config_64, presrc_b64) {
     elt.keydown(function (e) {
         if (e.ctrlKey) {
             if (e.keyCode == 10 || e.keyCode == 13) {
-                f(elt, store, presrc_b64);
+                f(elt, config_64, presrc_b64);
             } else if (e.keyCode == 66) {
                 e.preventDefault();
                 // Voir aussi dans editeurs/scite/malg_abbrev.properties.
@@ -145,11 +145,13 @@ function onCtrl(elt, f, store, presrc_b64) {
     });
 }
 
-function ide_action(editor_elt, store, presrc_b64) {
+function ide_action(editor_elt, config_64, presrc_b64) {
     // Compute the target HTML elt.
     var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
     var display_target_id = elt_id + '-displaytarget';
     var processing_id = elt_id + '-processing';
+    // Decode config_64.
+    var config = JSON.parse(atob(config_64));
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
     EMULISP_CORE.eval(getLispSource('microalg'));
@@ -179,7 +181,7 @@ function ide_action(editor_elt, store, presrc_b64) {
         error_elt.html(e.message + ' <span class="malg-freq-error">' + link + '</span>');
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
-    if (store && typeof(Storage) !== "undefined") {
+    if (config.localStorage && typeof(Storage) !== "undefined") {
         var key = 'microalg_src_' + elt_id;
         localStorage[key] = src;
     }
@@ -213,6 +215,7 @@ function inject_microalg_editor_in(elt_id, config) {
     var processing_id = elt_id + '-processing';
     var src = '';
     var blockly_src = '';
+    var config_64 = btoa(JSON.stringify(config));
     // According to config.localStorage, load source code (if any) from local
     // storage in the `src` var.
     if (config.localStorage) {
@@ -265,7 +268,7 @@ function inject_microalg_editor_in(elt_id, config) {
                                       'spellcheck="false">' + src + '</textarea></div>' +
         '<input type="button" value="OK" class="malg-ok" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
-                                     config.localStorage + ', ' +
+                                     "'" + config_64 + "'" + ', ' +
                                      "'" + presrc_b64 + "'" + ')" />' +
         '<div class="malg-error"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
@@ -422,7 +425,7 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
-    onCtrl(editor, ide_action, config.localStorage, presrc_b64);
+    onCtrl(editor, ide_action, config_64, presrc_b64);
 }
 
 function export_action(elt_id, select) {
