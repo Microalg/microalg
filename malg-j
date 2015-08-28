@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "MicroAlg 0.3.17 (Ersatz)"
+echo "MicroAlg 0.4 (Ersatz)"
 echo
 
 # http://stackoverflow.com/questions/242538/unix-shell-script-find-out-which-directory-the-script-file-resides#1638397
