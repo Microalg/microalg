@@ -256,6 +256,8 @@ function inject_microalg_editor_in(elt_id, config) {
     var hidden = config.blockly_only ? ' style="display:none;"' : '';
     var link_snippet =
         '<div class="link-snippet">' +
+        ((config.version === '0.3.17') ?
+         '<strong>⚠</strong> MicroAlg 0.3.17 ':'') +
         '<select onchange="export_action(\'' + elt_id + '\', this);">' +
         '<option>exporter</option>' +
         '<option>Casio</option>' +
