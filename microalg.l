@@ -451,7 +451,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
                  # Affectation au symbole dans `var`.
                  (ifn (get var 'type)
-                      (quit "Variable non initialisée." var)
+                      (quit "Variable non déclarée." var)
                  )
                  (if (or (not val)  # Pour accepter "" qui est NIL.
                          (<> Faux (= (get var 'type) (Type val))))
