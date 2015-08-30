@@ -197,6 +197,8 @@
             '(or (put 'x 'type NIL) T)
             '(let (x NIL) (= "(Liste 1 2 (Liste 3 4))" (prog (Declarer x De_type "liste") (Affecter_a x (Liste 3 4)) (Afficher (Liste 1 2 x)) *LastStdOut)))
             '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= "(Liste \"bonjour\")" (prog (Declarer x De_type "liste") (Affecter_a x (Liste "bonjour")) (Afficher x) *LastStdOut)))
+            '(or (put 'x 'type NIL) T)
             '(= "(Liste 1 2 (Liste 3 (Liste 4 5)))" (prog (Afficher (Liste 1 2 (Liste 3 (Liste 4 5)))) *LastStdOut))
             '(or (put 'x 'type NIL) T)
             '(= "(Liste 1 \"bonjour\" Vrai)" (prog (Afficher (Liste 1 "bonjour" Vrai)) *LastStdOut))

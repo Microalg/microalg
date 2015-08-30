@@ -582,6 +582,8 @@ avec les plus jeunes.")
 (dm T (ELTS)
       (=: elts ELTS)
 )
+(dm list> ()
+    T)
 (dm length> ()
     (length (: elts))
 )
@@ -991,7 +993,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 
 # Types et conversions
 (de !liste? (!x)
-  (or (try 'text> !x) (try 'text> !evaled_x)) )
+  (or (try 'list> !x) (try 'list> !evaled_x)) )
 (de !type_sym (!x)
   (let (!evaled_x (eval !x)
         embedded_type (ifn (num? !x) (get !x 'type)))
