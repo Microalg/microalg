@@ -39,6 +39,9 @@ ol.tree
 		cursor: pointer;
 		display: block;
 		padding-left: 24px;
+		margin-bottom: 0;
+		font-weight: normal;
+		font-size: 100%;
 	}
 
 	ol.tree li input:checked + ol
@@ -50,3 +53,8 @@ ol.tree
 	}
 		ol.tree li input:checked + ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
 		ol.tree li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
+
+/* Because of Skeleton */
+.tree ul ul, ul ol, ol ol, ol ul {
+	font-size: 100%;
+}
