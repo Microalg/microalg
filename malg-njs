@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "MicroAlg 0.4 (NodeJS + EmuLisp)"
+echo "MicroAlg 0.4.04 (NodeJS + EmuLisp)"
 echo
 
 # http://stackoverflow.com/questions/242538/unix-shell-script-find-out-which-directory-the-script-file-resides#1638397

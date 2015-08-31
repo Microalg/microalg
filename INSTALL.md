@@ -9,7 +9,7 @@ Aller directement à :
 * Windows :
     * édition avec SciTE :
         * [instructions](#user-content-scite)
-        * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.4/microalg_0.4.zip)
+        * [lien direct vers le zip](https://github.com/Microalg/Microalg/releases/download/v0.4.04/microalg_0.4.04.zip)
           correspondant aux instructions
 * Autre (sauf Mac) :
     * [édition avec SciTE](#user-content-scite-1)
@@ -69,7 +69,7 @@ convient (sans lien, c’est que la section n’est pas encore rédigée) :
 
 ## Installer sur son site
 
-* Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.zip).
+* Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.04.zip).
 * Extraire quelque part dans l’arborescence de votre site.
 * Ajuster des URLS codées en dur (un jour, elles seront configurables) dans
   `web/ide_injections.js` :
@@ -118,7 +118,7 @@ d’un `.exe`. On est aussi là pour faire un peu d’informatique.
 #### Hors ligne
 
 * MicroAlg
-    * Télécharger [ce zip](https://github.com/Microalg/Microalg/releases/download/v0.4/microalg_0.4.zip).
+    * Télécharger [ce zip](https://github.com/Microalg/Microalg/releases/download/v0.4.04/microalg_0.4.04.zip).
     * Extraire l’archive quelque part, disons dans un dossier `microalg` de
       façon à avoir `microalg\INSTALL.md`, puis supprimer cette archive.
 * Un serveur (au choix)
@@ -150,10 +150,10 @@ avec le bon numéro de `version` bien sûr.
 #### SciTE
 
 Vous pouvez télécharger le résultat des instructions suivantes
-[directement ici](https://github.com/Microalg/Microalg/releases/download/v0.4/microalg_0.4.zip).
+[directement ici](https://github.com/Microalg/Microalg/releases/download/v0.4.04/microalg_0.4.04.zip).
 
 * MicroAlg
-    * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.zip)
+    * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.04.zip)
     * Extraire l’archive quelque part, puis supprimer cette archive.
     * Obtenir un dossier contenant les différents fichiers de l’archive (et non
       contenant un dossier seul contenant ces fichiers).
@@ -259,7 +259,7 @@ avec le bon numéro de `version` bien sûr.
 
 * MicroAlg
     * Récupérer les fichiers
-       * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.zip)
+       * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.04.zip)
        * Extraire l’archive quelque part, puis supprimer cette archive.
        * Obtenir un répertoire contenant les différents fichiers de l’archive (et
          non contenant un répertoire seul contenant ces fichiers).
@@ -310,7 +310,7 @@ Pour la sortie graphique :
           versions :  
           `git clone http://github.com/Microalg/Microalg.git microalg`
         * Sinon à partir d’une archive inerte :
-           * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.zip)
+           * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.04.zip)
            * Extraire l’archive quelque part, puis supprimer cette archive.
            * Obtenir un répertoire contenant les différents fichiers de l’archive (et
              non contenant un répertoire seul contenant ces fichiers).
