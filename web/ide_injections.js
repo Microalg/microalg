@@ -317,8 +317,8 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Valeurs">' +
                 '  <block type="texte_litteral"></block>' +
                 '  <block type="nombre_litteral"></block>' +
-                '  <block type="valeur_utilisateur"></block>' +
                 '  <block type="variable"></block>' +
+                '  <block type="valeur_utilisateur"></block>' +
                 '  <block type="vrai"></block>' +
                 '  <block type="faux"></block>' +
                 '  <block type="liste"></block>' +
