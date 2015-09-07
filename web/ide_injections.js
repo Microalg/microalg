@@ -1,4 +1,6 @@
-// Load microalg.l.
+// Some defs.
+
+// Helpers to fetch the content of lisp source files.
 // http://stackoverflow.com/questions/984510/what-is-my-script-src-url
 var this_script_url = (function(scripts) {
     var scripts = document.getElementsByTagName('script'),
