@@ -35,6 +35,14 @@ function getLispSource(what) {
     return lisp_srcs[what];
 }
 
+// Better base 64 functions.
+function mybtoa(x) {
+    return btoa(unescape(encodeURIComponent(x)));
+}
+function myatob(x) {
+    return decodeURIComponent(escape(window.atob(x)));
+}
+
 // Editor states are stored with key = div id to print
 var emulisp_states = {};
 
@@ -154,7 +162,7 @@ function ide_action(editor_elt, config_64) {
     var display_target_id = elt_id + '-displaytarget';
     var processing_id = elt_id + '-processing';
     // Decode config_64.
-    var config = JSON.parse(atob(config_64));
+    var config = JSON.parse(myatob(config_64));
     // Init the state and load it with MicroAlg.
     EMULISP_CORE.init();
     var lisp_source = 'microalg';
@@ -224,7 +232,7 @@ function inject_microalg_editor_in(elt_id, config) {
     var src = '';
     var blockly_src = '';
     config.src = config.src.replace(/’/g, "'");
-    var config_64 = btoa(JSON.stringify(config));
+    var config_64 = mybtoa(JSON.stringify(config));
     // According to config.localStorage, load source code (if any) from local
     // storage in the `src` var.
     if (config.localStorage) {
