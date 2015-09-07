@@ -89,11 +89,11 @@ function stdPrompt() {
     else throw new Error("Commande `Demander` annulée.")
 }
 
-function onCtrl(elt, f, config_64, presrc_b64) {
+function onCtrl(elt, f, config_64) {
     elt.keydown(function (e) {
         if (e.ctrlKey) {
             if (e.keyCode == 10 || e.keyCode == 13) {
-                f(elt, config_64, presrc_b64);
+                f(elt, config_64);
             } else if (e.keyCode == 66) {
                 e.preventDefault();
                 // Voir aussi dans editeurs/scite/malg_abbrev.properties.
@@ -148,7 +148,7 @@ function onCtrl(elt, f, config_64, presrc_b64) {
     });
 }
 
-function ide_action(editor_elt, config_64, presrc_b64) {
+function ide_action(editor_elt, config_64) {
     // Compute the target HTML elt.
     var elt_id = editor_elt.attr('id').slice(0, -('-malg-editor'.length));
     var display_target_id = elt_id + '-displaytarget';
@@ -174,7 +174,7 @@ function ide_action(editor_elt, config_64, presrc_b64) {
     var display_elt = editor_elt.parent().parent().parent().find('.malg-display').first();
     display_elt.html('&nbsp;');
     // Process pre src.
-    var presrc = atob(presrc_b64);
+    var presrc = config.presrc || '';
     EMULISP_CORE.eval(presrc);
     // Process src.
     var src = editor_elt.val();
@@ -241,11 +241,6 @@ function inject_microalg_editor_in(elt_id, config) {
             src = config.src;
         }
     }
-    // Encode (b64) presrc if any.
-    var presrc_b64 = '';
-    if (config.presrc) {
-        presrc_b64 = btoa(config.presrc);
-    }
     if (config.blockly || config.blockly_only) {
         // Le source doit être sur une ligne pour passer dans le js généré:
         blockly_src = src.replace(/(\r\n|\n|\r)/gm, "")
@@ -279,8 +274,7 @@ function inject_microalg_editor_in(elt_id, config) {
                                       'spellcheck="false">' + src + '</textarea></div>' +
         '<input type="button" value="OK" class="malg-ok" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
-                                     "'" + config_64 + "'" + ', ' +
-                                     "'" + presrc_b64 + "'" + ')" />' +
+                                     "'" + config_64 + "'" + ')" />' +
         '<div class="malg-error"></div>' +
         '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
     if (config.processing) {
@@ -436,7 +430,7 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
-    onCtrl(editor, ide_action, config_64, presrc_b64);
+    onCtrl(editor, ide_action, config_64);
 }
 
 function export_action(elt_id, select) {
