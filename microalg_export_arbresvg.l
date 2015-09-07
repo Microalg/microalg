@@ -6,8 +6,9 @@
 (de arbresvg_rec (malg_src !indent_level !node_str)
   (cond
     ((atom malg_src) (pack "{\"label\":\""
-                           (ifn (str? malg_src) malg_src
-                                (pack "« " malg_src " »") )
+                           (ifn (str? malg_src)
+                                (pack " " malg_src " ")
+                                (pack "«" malg_src "»") )
                            "\"}"))
     (T (let (cmd  (car malg_src)
              args (cdr malg_src))
