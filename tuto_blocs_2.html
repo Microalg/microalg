@@ -543,6 +543,7 @@
     <p>Voici quelques exemples utilisant la commande <code>Concatener</code> :</p>
     <div id="script-cmds-concatener"></div>
     <script>inject_microalg_editor_in('script-cmds-concatener', {
+     blockly_only: true,
      src:
         '(Afficher (Concatener (Liste 1 3 5) (Liste 7 9 11)))\n' +
         '(Afficher (Concatener (Liste "s") (Liste "a" "l") (Liste "u" "t")))\n' +
@@ -558,6 +559,7 @@
     <code>Concatener</code> retourne plutôt un texte vide qu’une liste vide :</p>
     <div id="script-concatener-sans-arg"></div>
     <script>inject_microalg_editor_in('script-concatener-sans-arg', {
+     blockly_only: true,
      src:
         '(Afficher "Avant.")\n' +
         '(Afficher (Concatener))\n' +
