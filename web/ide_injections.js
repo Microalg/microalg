@@ -231,7 +231,6 @@ function inject_microalg_editor_in(elt_id, config) {
     var processing_id = elt_id + '-processing';
     var src = '';
     var blockly_src = '';
-    config.src = config.src.replace(/’/g, "'");
     var config_64 = mybtoa(JSON.stringify(config));
     // According to config.localStorage, load source code (if any) from local
     // storage in the `src` var.
