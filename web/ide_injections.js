@@ -253,7 +253,9 @@ function inject_microalg_editor_in(elt_id, config) {
         blockly_src = src.replace(/(\r\n|\n|\r)/gm, "")
         // On contre-échappe les backslashes car ce code sera inséré dans
         // une iframe.
-                         .replace(/\\/g, "\\\\");
+                         .replace(/\\/g, "\\\\")
+        // On échappe les ':
+                         .replace("'", "\\'")
     }
     // Build the html and bind to ide_action.
     var script_container = $('#' + elt_id);
