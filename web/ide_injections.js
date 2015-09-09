@@ -358,9 +358,6 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' </category>' +
                 ' <category name="Types et conversions">' +
                 '  <block type="type"></block>' +
-                '  <block type="texte?"></block>' +
-                '  <block type="nombre?"></block>' +
-                '  <block type="booleen?"></block>' +
                 '  <block type="texte"></block>' +
                 '  <block type="nombre"></block>' +
                 ' </category>' +
