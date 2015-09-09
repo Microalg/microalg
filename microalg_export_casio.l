@@ -49,9 +49,11 @@
                      splitted  (split (cddr arg_lst) 'Sinon)
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
-                    (pack "If " (eval condition) "^J" "Then^J" (eval bloc_vrai) "^J"
-                     (if bloc_faux (pack "Else^J" (eval bloc_faux)))
-                     "IfEnd^J"
+                    (pack
+                      "If " (eval condition) "^J" "Then^J"
+                      (mapcar 'eval bloc_vrai)
+                      (if bloc_faux (pack "Else^J" (mapcar 'eval bloc_faux)))
+                      "IfEnd^J"
                     )
                 )
 )
@@ -61,15 +63,21 @@
 (de Tant_que arg_lst (let (!cond (car arg_lst)
                            !mot-clef (cadr arg_lst)
                            !corps (cddr arg_lst))
-                          (pack "While " (eval !cond) "^J" (eval !corps)
-                          "WhileEnd^J")
+                          (pack
+                            "While " (eval !cond) "^J"
+                            (mapcar 'eval !corps)
+                            "WhileEnd^J"
+                          )
                      )
 )
 (de Faire arg_lst (let (!splitted (split arg_lst 'Tant_que)
                         !corps (car !splitted)
                         !cond (caadr !splitted))
-                       (pack "Do^J" (eval !corps)
-                       "LpWhile " (eval !cond) "^J")
+                       (pack
+                         "Do^J"
+                         (mapcar 'eval !corps)
+                         "LpWhile " (eval !cond) "^J"
+                       )
                   )
 )
 
