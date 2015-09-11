@@ -75,16 +75,17 @@
     <h2 id="tortue"><a href="#tortue">: </a>La tortue</a></h2>
     <p>La tortue n’est pas visible à l’écran mais elle laisse un trait noir
     derrière elle. Elle évolue dans le grand carré blanc en dessous des blocs
-    de code en partant du centre, tournée vers le haut.</p>
-    <p>En cliquant sur le bouton <code>OK</code> (gris et très large sous les
-    blocs de code), vous afficherez le chemin vert qu’elle doit suivre.
-    Allez-y ! Cliquez sur <code>OK</code> !</p>
-    <p>Ensuite, vous devrez modifier ou écrire vous-même un programme pour que
-    la tortue suive ce chemin, en entier et sans dépasser. Pour cette
-    démonstration, vous n’avez qu’à changer le <code>Faux</code> en
-    <code>Vrai</code> (à trouver dans la catégorie « Valeurs »), puis cliquer
-    à nouveau sur <code>OK</code> pour voir la tortue dessiner. Bon, elle nous
-    fait un joli dessin, mais elle ne suit pas le chemin correctement !</p>
+    de code en partant du centre, tournée vers le haut. Vous devez lui donner
+    les bonnes instructions pour qu’elle suive le chemin vert, en entier et
+    sans dépasser.</p>
+    <p>Pour lui donner des instructions, il faut modifier ou écrire vous-même
+    un programme sous forme de blocs emboîtés.</p>
+    <p>Pour cette démonstration, comme pour beaucoup d’autres défis de cette,
+    page, un programme a déjà été mis en place. Vous n’avez qu’à changer le
+    <code>Faux</code> en <code>Vrai</code> (à trouver dans la catégorie
+    « Valeurs »), puis cliquer <code>OK</code> pour voir la tortue dessiner.
+    Bon, elle nous fait un joli dessin, mais elle ne suit pas le chemin
+    correctement !</p>
     <p>Si jamais vous supprimez des blocs par erreur, rafraîchissez la page avec
     <code>F5</code>.</p>
     <p>Vous pouvez maintenant passer à <a href="#avancer">la suite</a>.</p>
@@ -92,6 +93,7 @@
     <script>inject_microalg_editor_in('script-demo', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 100)(TD)(AV 50)' +
             '(LC)(TD)(AV 100)(TD)(AV 50)(TD)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
@@ -114,7 +116,6 @@
     <strong>AV-ancer la tortue</strong> du nombre de pixels indiqué.</p>
     <p>Pour ce défi comme pour tous les autres, il faut :</p>
     <ol>
-      <li>cliquer sur <code>OK</code> pour afficher le chemin à suivre ;</li>
       <li>modifier le programme proposé ou en écrire un (ici simplement changer
           le zéro en une autre valeur) ;</li>
       <li>cliquer sur <code>OK</code> pour tester le programme ;</li>
@@ -125,6 +126,7 @@
     <script>inject_microalg_editor_in('script-avancer', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 100)' +
             '(LC)(TD 180)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
@@ -141,6 +143,7 @@
     <script>inject_microalg_editor_in('script-td-90', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 100)(TD)(AV 50)' +
             '(LC)(TD)(AV 100)(TD)(AV 50)(TD)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
@@ -160,6 +163,7 @@
     <script>inject_microalg_editor_in('script-td', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 100)(TD 45)(AV 200)' +
             '(LC)(TD 180)(AV 200)(TG 45)(AV 100)(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
@@ -182,6 +186,7 @@
     <script>inject_microalg_editor_in('script-tgd', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 50)(TG 45)(AV 50)(TD 45)(AV 50)(TD 45)(AV 50)(TG 90)(AV 50)(TD 135)(AV 100)' +
             '(LC)(TD 180)(AV (- 100 (* 0.7 50)))(TG)(AV (+ 100 (* 0.7 150)))(TD 180)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
@@ -196,6 +201,7 @@
     <script>inject_microalg_editor_in('script-carre', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 200)(TG)(AV 200)(TG)(AV 200)(TG)(AV 200)' +
             '(TG)(Contour (Liste 0 0 0))(Epaisseur 2)',
@@ -208,6 +214,7 @@
     <script>inject_microalg_editor_in('script-triangle', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 200)(TG 120)(AV 200)(TG 120)(AV 200)' +
             '(TG 120)(Contour (Liste 0 0 0))(Epaisseur 2)',
@@ -229,6 +236,7 @@
     <script>inject_microalg_editor_in('script-autre-carre', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
             '(AV 200)(TG)(AV 200)(TG)(AV 200)(TG)(AV 200)' +
             '(TG)(Contour (Liste 0 0 0))(Epaisseur 2)',
@@ -265,6 +273,7 @@
     <script>inject_microalg_editor_in('script-polygones', {
      processing: true,
      blockly_only:true,
+     autorun:true,
      presrc:'',
      src:
         '(Declarer n i De_type "nombre")\n' +
