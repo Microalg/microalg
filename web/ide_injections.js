@@ -285,7 +285,11 @@ function inject_microalg_editor_in(elt_id, config) {
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
                                      "'" + config_64 + "'" + ')" />' +
         '<div class="malg-error"></div>' +
-        '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>';
+        '<div id="' + display_target_id + '" class="malg-display">&nbsp;</div>' +
+        ((config.autorun && !config.processing)?
+          "<script>ide_action($('#" + editor_id + "'), '" + config_64 +"');</script>\n":
+          "") +
+        '';
     if (config.processing) {
         if (typeof Processing == "undefined") {
             script_string += '<script src="' + root_path + 'web/processing-1.4.15.min.js"></script>';
@@ -307,6 +311,9 @@ function inject_microalg_editor_in(elt_id, config) {
         '                processing_sketches["' + processing_id + '"] = Processing.getInstanceById("' + processing_id + '");' + "\n" +
         '                if (processing_sketches["' + processing_id + '"]) {' + "\n" +
         '                    clearInterval(processing_tIds["' + processing_id + '"]);' + "\n" +
+        (config.autorun?
+          "ide_action($('#" + editor_id + "'), '" + config_64 +"');\n":
+          "") +
         '                }' + "\n" +
         '            }, 500);' + "\n" +
         '        }' + "\n" +
