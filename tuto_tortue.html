@@ -81,10 +81,10 @@
     Allez-y ! Cliquez sur <code>OK</code> !</p>
     <p>Ensuite, vous devrez modifier ou écrire vous-même un programme pour que
     la tortue suive ce chemin, en entier et sans dépasser. Pour cette
-    démonstration, vous n’avez qu’à changer le <code>-1</code> en
-    <code>20</code> puis cliquer à nouveau sur <code>OK</code> pour voir la
-    tortue dessiner. Bon, elle nous fait un joli dessin, mais elle ne suit pas
-    le chemin correctement !</p>
+    démonstration, vous n’avez qu’à changer le <code>Faux</code> en
+    <code>Vrai</code> (à trouver dans la catégorie « Valeurs »), puis cliquer
+    à nouveau sur <code>OK</code> pour voir la tortue dessiner. Bon, elle nous
+    fait un joli dessin, mais elle ne suit pas le chemin correctement !</p>
     <p>Si jamais vous supprimez des blocs par erreur, rafraîchissez la page avec
     <code>F5</code>.</p>
     <p>Vous pouvez maintenant passer à <a href="#avancer">la suite</a>.</p>
@@ -96,12 +96,14 @@
             '(AV 100)(TD)(AV 50)' +
             '(LC)(TD)(AV 100)(TD)(AV 50)(TD)(Contour (Liste 0 0 0))(Epaisseur 2)(BC)',
      src:
-        '(Declarer i De_type "nombre")\n' +
-        '(Affecter_a i -1)\n' +
-        '(Tant_que (> i 0) Faire\n' +
-        '(AV i)\n' +
-        '(TD (* 3 (- 20 i)))\n' +
-        '(Affecter_a i (- i 1))\n' +
+        '(Si Faux Alors\n' +
+        '    (Declarer i De_type "nombre")\n' +
+        '    (Affecter_a i 20)\n' +
+        '    (Tant_que (> i 0) Faire\n' +
+        '        (AV i)\n' +
+        '        (TD (* 3 (- 20 i)))\n' +
+        '        (Affecter_a i (- i 1))\n' +
+        '    )\n' +
         ')\n' +
         ''
     });</script>
