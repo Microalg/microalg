@@ -245,6 +245,16 @@
         content
         "</value>"
         "</block>"))
+(de Repeter inputs
+  (let (!repet  (car inputs)
+        !corps (cddr inputs)
+        # !next est le dernier de la liste inputs, si son car vaut Next.
+        !next (let !last (last inputs) (if (= (car !last) 'Next) !last)))
+       (pack "<block type=\"repeter\">"
+             "<value name=\"REPET\">" (eval !repet) "</value>"
+             "<statement name=\"INSTR\">" (eval (insertion_next !corps)) "</statement>"
+             (eval !next)
+             "</block>") ))
 (de Si inputs
   (let (condition (car inputs)
         kw_alors  (cadr inputs)

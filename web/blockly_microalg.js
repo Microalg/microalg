@@ -1126,6 +1126,35 @@ Blockly.MicroAlg['queue'] = function(block) {
   }
 };
 
+// Bloc Repeter
+Blockly.Blocks['repeter'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Repeter');
+    this.setColour(colour);
+    this.appendValueInput("REPET")
+        .setCheck("Number")
+        .appendField("Repeter");
+    this.appendDummyInput()
+        .appendField("Fois");
+    this.setInputsInline(true);
+    this.appendStatementInput('INSTR')
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Structure itérative');
+    },
+};
+
+// Gen Repeter
+Blockly.MicroAlg['repeter'] = function(block) {
+    var instr = Blockly.MicroAlg.statementToCode(block, 'INSTR') || '';
+    var repet = Blockly.MicroAlg.statementToCode(block, 'REPET') || '';
+    instr = instr.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
+    var code = '(Repeter ' + repet.trim() + ' Fois\n' +
+               instr +
+               '\n)'
+    return code;
+};
+
 // Bloc Si
 // https://github.com/google/blockly/blob/master/blocks/logic.js#L34
 Blockly.Blocks['si'] = {
