@@ -17,14 +17,14 @@ Voir <http://microalg.info>.")
 "Cercle" "Concatener" "Contour" "credit_iterations"
 "Declarer" "Definir" "Demander" "Demander_un_nombre"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
-"Faire" "Faux"
+"Faire" "Faux" "Fois"
 "Initialiser@"
 "Liste" "Longueur"
 "Millisecondes"
 "Nieme" "Nieme@" "Nombre" "Non"
 "Ou"
 "Queue"
-"RAZ" "Rectangle" "Remplissage" "Retirer_de" "Retourner" "Rien"
+"RAZ" "Rectangle" "Remplissage" "Repeter" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon"
 "Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
@@ -1277,6 +1277,50 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
                        Rien
                   )
 )
+(put 'Fois 'doc "Mot-clef intermédiaire pour la commande `Repeter`.")
+(setq Fois 'Fois)
+(put 'Repeter 'doc
+"Structure itérative de type « répéter ... fois : ... ».
+
+    (Repeter nombre Fois
+        instruction_1
+        instruction_2
+        ...
+    )
+
+Exemples :
+
+    : (Repeter 3 Fois (Afficher \"Bonjour.\"))
+    Bonjour.
+    Bonjour.
+    Bonjour.
+    -> Rien
+
+    : (Repeter 2 Fois (Afficher \"C’est…\") (Afficher \" …bien.\"))
+    C’est…
+     …bien.
+    C’est…
+     …bien.
+    -> Rien
+")
+(put 'Repeter 'text "Commande `Repeter`.")
+(de !repeter @
+  (let (!error_prefix "`Repeter` : "
+        !arg_lst (rest))
+       (if (<> 2 (index 'Fois !arg_lst))
+           (quit "`Repeter` : Le mot-clef `Fois` doit être en 2ème position.") )
+
+       (let (!nb_repetitions (eval (car !arg_lst))
+             !corps (cddr !arg_lst))
+            (ifn (num? !nb_repetitions)
+                 (quit "Le nombre de répétitions doit être de type \"nombre\".") )
+            (do !nb_repetitions (run !corps))
+       )
+       Rien
+  )
+)
+(de Repeter !arg_lst (apply '!repeter !arg_lst))
+(de Répéter !arg_lst (apply '!repeter !arg_lst))
 
 # Procédures utilisateur
 # Tout d’abord les générateurs d’initialisation

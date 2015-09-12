@@ -125,6 +125,13 @@
             '(let (x 3) (= 2 (prog (Faire (dec 'x) Tant_que Faux) x)))
             '(let (x 3 y 0) (= 3 (prog (Tant_que (=/ x 0) Faire (dec 'x) (inc 'y)) y)))
             '(let (x 3 y 0) (= 3 (prog (Faire (dec 'x) (inc 'y) Tant_que (=/ x 0)) y)))
+            '(= Rien (Repeter 0 Fois (quit "bug dans Repeter")))
+            '(let (x 3) (= 0 (prog (Repeter 3 Fois (dec 'x)) x)))
+            '(let (x 4) (= 0 (prog (Repeter 2 Fois (dec 'x) (dec 'x)) x)))
+            '(let (x 0 y 0) (= "36" (prog (Repeter 3 Fois
+                                            (inc 'x)
+                                            (Repeter 2 Fois (inc 'y)))
+                                          (pack x y))))
             # Commandes utilisateur
             '(let (f NIL) (= 14 (prog
                                   (Definir (f x) (Retourner (* 2 x)))
