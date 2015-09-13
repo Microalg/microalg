@@ -44,6 +44,7 @@
     <a href="#autre-carre">Un autre carré</a>,
     <a href="#triangle">Triangle</a>,
     <a href="#polygones">Polygones</a>,
+    <a href="#encore-autre-carre">Encore un autre carré (ou presque)</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -215,9 +216,8 @@
     éviter la modification de quatre nombres. Fastidieux ! Heureusement que ce
     carré n’a pas 1000 côtés !</p>
     <p>Le programme qui a été écrit pour vous ci-dessous utilise la commande
-    répétitive <code>Tant_que</code> et la variable <code>i</code> pour aider
-    la tortue à compter jusqu’à 4. Dessinez le carré vert, puis des carrés de
-    différentes taille. Grâce au <code>Tant_que</code>, il n’y a plus qu’un seul
+    <code>Repeter</code>. Dessinez le carré vert, puis des carrés de
+    différentes taille. Grâce à <code>Repeter</code>, il n’y a plus qu’un seul
     nombre à modifier !</p>
     <div id="script-autre-carre"></div>
     <script>inject_microalg_editor_in('script-autre-carre', {
@@ -228,12 +228,9 @@
             '(AV 200)(TG)(AV 200)(TG)(AV 200)(TG)(AV 200)' +
             '(TG)(Contour (Liste 0 0 0))(Epaisseur 2)',
      src:
-        '(Declarer i De_type "nombre")\n' +
-        '(Affecter_a i 1)\n' +
-        '(Tant_que (<= i 4) Faire\n' +
+        '(Repeter 4 Fois\n' +
         '(AV 0)\n' +
         '(TG)\n' +
-        '(Affecter_a i (+ i 1))\n' +
         ')\n' +
         ''
     });</script>
@@ -253,7 +250,7 @@
 
     <h2 id="polygones"><a href="#polygones">: </a>Polygones</a></h2>
     <p>Ici, pas de chemin à faire suivre à la tortue. La tortue est libre !</p>
-    <p>Nous allons utiliser une autre variable, <code>n</code>, qui
+    <p>Nous allons utiliser une variable, <code>n</code>, qui
     représentera le nombre de côtés à dessiner. Tout ce que vous avez à faire,
     c’est dire à la tortue quel calcul faire pour tourner du bon angle afin de
     dessiner un polygone à <code>n</code> côtés. Le calcul n’est pas facile à
@@ -268,6 +265,8 @@
       <li>Plutôt que d’avancer systématiquement de 100 pixels, faire un calcul
           pour que le polygone soit assez grand mais ne sorte pas du cadre.</li>
       <li>Dessiner une étoile à 17 branches.</li>
+      <li>Dessiner des polygones ayant des polygones dessinés au bout des
+          sommets (et ainsi de suite).</li>
     </ul>
     <div id="script-polygones"></div>
     <script>inject_microalg_editor_in('script-polygones', {
@@ -276,18 +275,55 @@
      autorun:true,
      presrc:'',
      src:
-        '(Declarer n i De_type "nombre")\n' +
+        '(Declarer n De_type "nombre")\n' +
         '(Affecter_a n 8)\n' +
-        '(Affecter_a i 1)\n' +
-        '(Tant_que (<= i n) Faire\n' +
+        '(Repeter n Fois\n' +
         '(AV 100)\n' +
         '(TG (+ 90 n))\n' +
-        '(Affecter_a i (+ i 1))\n' +
         ')\n' +
         ''
     });</script>
     <p>Pour vous aider à comprendre la calcul à effectuer, reprenez le cas du
     triangle, puis du carré, puis du pentagone, puis de l’hexagone…</p>
+
+    <h2 id="encore-autre-carre"><a href="#encore-autre-carre">: </a>Encore un autre carré (ou presque)</a></h2>
+    <p>Le programme qui a été écrit pour vous ci-dessous utilise la commande
+    répétitive <code>Tant_que</code> et la variable <code>i</code> pour
+    dessiner un simple carré. Il y a beaucoup plus de blocs qu’avec la
+    commande <code>Repeter</code>, mais la tortue sait maintenant quel est le
+    numéro du côté qu’elle est en train de dessiner, le numéro
+    <code>i</code>.</p>
+    <p>Après chaque trait, elle tourne, puis augmente de 1 la valeur de
+    <code>i</code> grâce à une somme, et ceci tant que <code>i</code> est plus
+    petit ou égal à 4.</p>
+    <p>Ce programme dessine pour l’instant bêtement un carré, mais on peut
+    utiliser un calcul avec le numéro du côté pour changer :</p>
+    <ul>
+      <li>la longueur de ce côté,</li>
+      <li>ou l’angle de rotation après l’avoir dessiné.</li>
+    </ul>
+    <p>Essayez par exemple de remplacer le <code>100</code> ou le
+    <code>90</code> par un calcul utilisant <code>i</code>. Peut-être que vous
+    aurez aussi besoin d’augmenter la valeur de <code>n</code> pour observer
+    votre œuvre. N’hésitez pas à aller jusqu’à 20 ou 50, voire plus !</p>
+    <div id="script-encore-autre-carre"></div>
+    <script>inject_microalg_editor_in('script-encore-autre-carre', {
+     processing: true,
+     blockly_only:true,
+     autorun:true,
+     src:
+        '(RAZ)\n' +
+        '(Declarer i De_type "nombre")\n' +
+        '(Affecter_a i 1)\n' +
+        '(Tant_que (<= i 4) Faire\n' +
+        '(AV 100)\n' +
+        '(TG 90)\n' +
+        '(Affecter_a i (+ i 1))\n' +
+        ')\n' +
+        ''
+    });</script>
+    <p><strong>Indice</strong> : Changer par exemple le <code>100</code> par
+    <code>Produit</code> de <code>i</code> par <code>10</code>.</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Pour apprendre d’autres commandes graphiques, vous
