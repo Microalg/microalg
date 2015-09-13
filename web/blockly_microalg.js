@@ -1668,6 +1668,29 @@ Blockly.MicroAlg['cercle'] = function(block) {
   return '(Cercle (Liste ' + x.trim() + ' ' + y.trim() + ') ' + r.trim() + ')';
 };
 
+// Bloc Contour Picker
+Blockly.Blocks['contour-p'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Contour');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Contour')
+        .appendField(new Blockly.FieldColour("#ff0000"), "COULEUR");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur des contours.');
+  }
+};
+
+// Gen Contour Picker
+Blockly.MicroAlg['contour-p'] = function(block) {
+  var c = block.getFieldValue('COULEUR');
+  var r = parseInt(c.slice(1, 3), 16).toString();
+  var v = parseInt(c.slice(3, 5), 16).toString();
+  var b = parseInt(c.slice(5, 7), 16).toString();
+  return '(Contour (Liste ' + r + ' ' + v + ' ' + b + '))';
+};
+
 // Bloc Contour
 Blockly.Blocks['contour'] = {
   init: function() {
@@ -1835,6 +1858,29 @@ Blockly.MicroAlg['rectangle'] = function(block) {
   var y2 = Blockly.MicroAlg.statementToCode(block, 'Y2') || '';
   return '(Rectangle (Liste ' + x1.trim() + ' ' + y1.trim() + ') ' +
                     '(Liste ' + x2.trim() + ' ' + y2.trim() + '))';
+};
+
+// Bloc Remplissage Picker
+Blockly.Blocks['remplissage-p'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Remplissage');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Remplissage')
+        .appendField(new Blockly.FieldColour("#ff0000"), "COULEUR");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la couleur du remplissage des formes.');
+  }
+};
+
+// Gen Remplissage Picker
+Blockly.MicroAlg['remplissage-p'] = function(block) {
+  var c = block.getFieldValue('COULEUR');
+  var r = parseInt(c.slice(1, 3), 16).toString();
+  var v = parseInt(c.slice(3, 5), 16).toString();
+  var b = parseInt(c.slice(5, 7), 16).toString();
+  return '(Remplissage (Liste ' + r + ' ' + v + ' ' + b + '))';
 };
 
 // Bloc Remplissage
