@@ -1644,13 +1644,16 @@ Blockly.Blocks['cercle'] = {
         .appendField('Cercle');
     this.appendValueInput("ORIG_X")
         .setCheck('Number')
-        .appendField('X');
+        .appendField('X')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("ORIG_Y")
         .setCheck('Number')
-        .appendField('Y');
+        .appendField('Y')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("R")
         .setCheck('Number')
-        .appendField('R');
+        .appendField('R')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Dessine le cercle de centre (X,Y) et de rayon R.');
@@ -1674,13 +1677,16 @@ Blockly.Blocks['contour'] = {
         .appendField('Contour');
     this.appendValueInput("R")
         .setCheck('Number')
-        .appendField('R');
+        .appendField('R')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("V")
         .setCheck('Number')
-        .appendField('V');
+        .appendField('V')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("B")
         .setCheck('Number')
-        .appendField('B');
+        .appendField('B')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Change la couleur des contours.');
@@ -1704,16 +1710,20 @@ Blockly.Blocks['contour-alpha'] = {
         .appendField('Contour');
     this.appendValueInput("R")
         .setCheck('Number')
-        .appendField('R');
+        .appendField('R')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("V")
         .setCheck('Number')
-        .appendField('V');
+        .appendField('V')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("B")
         .setCheck('Number')
-        .appendField('B');
+        .appendField('B')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("A")
         .setCheck('Number')
-        .appendField('A');
+        .appendField('A')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Change la couleur des contours.');
@@ -1738,16 +1748,20 @@ Blockly.Blocks['ellipse'] = {
         .appendField('Ellipse');
     this.appendValueInput("ORIG_X")
         .setCheck('Number')
-        .appendField('X');
+        .appendField('X')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("ORIG_Y")
         .setCheck('Number')
-        .appendField('Y');
+        .appendField('Y')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("R1")
         .setCheck('Number')
-        .appendField('R1');
+        .appendField('R1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("R2")
         .setCheck('Number')
-        .appendField('R2');
+        .appendField('R2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Dessine l’ellipse de centre (X,Y) et de rayons R1 et R2.');
@@ -1793,16 +1807,20 @@ Blockly.Blocks['rectangle'] = {
         .appendField('Rectangle');
     this.appendValueInput("X1")
         .setCheck('Number')
-        .appendField('X1');
+        .appendField('X1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y1")
         .setCheck('Number')
-        .appendField('Y1');
+        .appendField('Y1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("X2")
         .setCheck('Number')
-        .appendField('X2');
+        .appendField('X2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y2")
         .setCheck('Number')
-        .appendField('Y2');
+        .appendField('Y2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Dessine le rectangle de sommets opposés (X1,Y1) et (X2,Y2).');
@@ -1828,13 +1846,16 @@ Blockly.Blocks['remplissage'] = {
         .appendField('Remplissage');
     this.appendValueInput("R")
         .setCheck('Number')
-        .appendField('R');
+        .appendField('R')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("V")
         .setCheck('Number')
-        .appendField('V');
+        .appendField('V')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("B")
         .setCheck('Number')
-        .appendField('B');
+        .appendField('B')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Change la couleur du remplissage des formes.');
@@ -1858,16 +1879,20 @@ Blockly.Blocks['remplissage-alpha'] = {
         .appendField('Remplissage');
     this.appendValueInput("R")
         .setCheck('Number')
-        .appendField('R');
+        .appendField('R')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("V")
         .setCheck('Number')
-        .appendField('V');
+        .appendField('V')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("B")
         .setCheck('Number')
-        .appendField('B');
+        .appendField('B')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("A")
         .setCheck('Number')
-        .appendField('A');
+        .appendField('A')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Change la couleur du remplissage des formes.');
@@ -1892,16 +1917,20 @@ Blockly.Blocks['segment'] = {
         .appendField('Segment');
     this.appendValueInput("X1")
         .setCheck('Number')
-        .appendField('X1');
+        .appendField('X1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y1")
         .setCheck('Number')
-        .appendField('Y1');
+        .appendField('Y1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("X2")
         .setCheck('Number')
-        .appendField('X2');
+        .appendField('X2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y2")
         .setCheck('Number')
-        .appendField('Y2');
+        .appendField('Y2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Dessine le segment d’extrémités (X1,Y1) et (X2,Y2).');
@@ -1927,22 +1956,28 @@ Blockly.Blocks['triangle'] = {
         .appendField('Triangle');
     this.appendValueInput("X1")
         .setCheck('Number')
-        .appendField('X1');
+        .appendField('X1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y1")
         .setCheck('Number')
-        .appendField('Y1');
+        .appendField('Y1')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("X2")
         .setCheck('Number')
-        .appendField('X2');
+        .appendField('X2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y2")
         .setCheck('Number')
-        .appendField('Y2');
+        .appendField('Y2')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("X3")
         .setCheck('Number')
-        .appendField('X3');
+        .appendField('X3')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.appendValueInput("Y3")
         .setCheck('Number')
-        .appendField('Y3');
+        .appendField('Y3')
+        .setAlign(Blockly.ALIGN_RIGHT);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Dessine le triangle de sommets (X1,Y1), (X2,Y2) et (X3,Y3).');
