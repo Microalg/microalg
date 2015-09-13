@@ -1375,6 +1375,17 @@ var coreFunctions = {
 		if (c !== NIL) { var s = valueToStr(evalArgs(c)); if (s !== "") return newTransSymbol(s); }
 		return NIL;
 	},
+	"pad": function(c) {
+		var v = evalLisp(c.car);
+		if (!(v instanceof Number)) {
+			throw new Error(newErrMsg(NUM_EXP, v));
+		}
+		var size = evalLisp(c.cdr.car);
+		while (number.length < size) {
+			number = "0" + number;
+		}
+		return newTransSymbol(number);
+	},
 	"pass": function(c) { return applyFn(c.car, cst.evFrames.car.cdr, c.cdr); },
 	"pop": function(c) { var cv = evalLisp(c.car);
 		if (cv.getVal) {
