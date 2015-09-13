@@ -18,6 +18,7 @@ Voir <http://microalg.info>.")
 "Declarer" "Definir" "Demander" "Demander_un_nombre"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire" "Faux" "Fois"
+"Geler"
 "Initialiser@"
 "Liste" "Longueur"
 "Millisecondes"
@@ -2001,4 +2002,18 @@ L’angle doit être fourni en degrés.
     ((gt0 (- !angle 90)) (1000Cosinus (- !angle 90)))
     (T (car (nth !valeurs_trigo (- 91 !angle))))
   )
+)
+
+(put 'Geler 'doc
+"Retourne l’argument qu’on lui passe, sans l’évaluer.
+
+    : (Geler x)
+    -> x
+")
+(put 'Geler 'text "Commande `Geler`.")
+(de Geler !arg_lst
+    (if (<> 1 (length !arg_lst))
+        (quit (pack "`Geler` : prend exactement un paramètre. "
+                    "Vous en donnez " (length !arg_lst) ".")) )
+    (car !arg_lst)
 )

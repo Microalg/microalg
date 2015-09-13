@@ -255,6 +255,8 @@
             '(= -500 (1000Sinus 210))
             '(= -500 (1000Sinus -30))
             '(=  500 (1000Sinus 390))
+            # Geler
+            '(= 'x (Geler x))
         ) )
 
 (let (Goods 0 Bads 0)
