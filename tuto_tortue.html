@@ -41,8 +41,8 @@
     <a href="#tourner">Tourner à droite</a>,
     <a href="#tourner-gauche-droite">Tourner à gauche et à droite</a>,
     <a href="#premier-carre">Premier carré</a>,
-    <a href="#triangle">Triangle</a>,
     <a href="#autre-carre">Un autre carré</a>,
+    <a href="#triangle">Triangle</a>,
     <a href="#polygones">Polygones</a>,
     <a href="#contact">Contact</a>.
     </p>
@@ -209,19 +209,6 @@
         ''
     });</script>
     
-    <h2 id="triangle"><a href="#triangle">: </a>Triangle</a></h2>
-    <div id="script-triangle"></div>
-    <script>inject_microalg_editor_in('script-triangle', {
-     processing: true,
-     blockly_only:true,
-     autorun:true,
-     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
-            '(AV 200)(TG 120)(AV 200)(TG 120)(AV 200)' +
-            '(TG 120)(Contour (Liste 0 0 0))(Epaisseur 2)',
-     src:
-        ''
-    });</script>
-
     <h2 id="autre-carre"><a href="#autre-carre">: </a>Un autre carré</a></h2>
     <p>Tout d’abord, modifiez votre programme précédent pour que la tortue
     dessine un carré d’une autre taille. Vous remarquez que vous ne pouvez pas
@@ -248,6 +235,19 @@
         '(TG)\n' +
         '(Affecter_a i (+ i 1))\n' +
         ')\n' +
+        ''
+    });</script>
+
+    <h2 id="triangle"><a href="#triangle">: </a>Triangle</a></h2>
+    <div id="script-triangle"></div>
+    <script>inject_microalg_editor_in('script-triangle', {
+     processing: true,
+     blockly_only:true,
+     autorun:true,
+     presrc:'(RAZ)(Epaisseur 6)(Contour (Liste 0 255 0))' +
+            '(AV 200)(TG 120)(AV 200)(TG 120)(AV 200)' +
+            '(TG 120)(Contour (Liste 0 0 0))(Epaisseur 2)',
+     src:
         ''
     });</script>
 
