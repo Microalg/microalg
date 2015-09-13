@@ -791,16 +791,24 @@ Avec une liste :
 (put 'Ajouter_a 'text "Commande `Ajouter_a`.")
 (de Ajouter_a arg_lst
   (let (!sym (car arg_lst)
+        !type_du_sym (!type_sym !sym)
         !evaled_sym (eval !sym)
         !elt (eval (cadr arg_lst))
         !troize (caddr arg_lst))
        # Quelques vérifications
        (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
-       (ifn (!inited !sym !evaled_sym) (quit "`Ajouter_a` : la variable n’a pas été déclarée." !sym))
-       (if (!boolM2P (!texte? !sym))
+       (ifn (!inited !sym !evaled_sym)
+            (quit "`Ajouter_a` : la variable n’a pas été déclarée." !sym))
+       (if (and (<> !type_du_sym "texte") (<> !type_du_sym "liste"))
+           (quit (pack "`Ajouter_a` : la variable doit être de type "
+                       "\"texte\" ou \"liste\".")) )
+       (ifn (<> 'Rien !evaled_sym)
+            (quit (pack "`Ajouter_a` : la variable n’a pas été initialisée. "
+                        "Affectez-lui une valeur de type \"texte\" ou \"liste\".")) )
+       (ifn (<> "texte" !type_du_sym)
            (if (or (not (!boolM2P (!texte? !elt)))
                    (!boolM2P (> (!longueur !elt) 1)) )
-               (quit "On peut `Ajouter_a` un texte qu’un caractère." !elt) ))
+               (quit "On ne peut `Ajouter_a` un texte qu’un caractère." !elt) ))
        # Le calcul
        (cond
          ((!liste? !evaled_sym) (prog (push> !evaled_sym !elt) Rien))
