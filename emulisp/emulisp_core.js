@@ -1202,6 +1202,16 @@ var coreFunctions = {
 	},
 	"gt0": function(c) { var cv = evalLisp(c.car);
 		return ((cv instanceof Number) && (cv > 0)) ? cv : NIL; },
+	"hex": function(c) { var cv = evalLisp(c.car);
+		// Separator not implemented yet:
+		// http://www.software-lab.de/doc/refH.html#hex
+		if (cv instanceof Number) return newTransSymbol(cv.toString(16));
+		if (cv.trans) {
+			var hex = new Number(parseInt(cv.name, 16));
+			return isNaN(hex)? NIL : hex;
+		}
+		return NIL;
+	},
 	"idx": function(c) { var s = evalLisp(c.car);
 		if (!(s instanceof Symbol)) return NIL;
 		if (c.cdr === NIL) { var r = new List(); idxLinkSorted(s.getVal(), r); return r.list; }
