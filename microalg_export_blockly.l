@@ -160,7 +160,7 @@
        (let (!length_vars (length !vars))
             (pack "<block type=\"declarer\">"
                   "<field name=\"VAR\">" (car !vars) "</field>"
-                  "<value name=\"TYPE\">" (eval !type) "</value>"
+                  "<field name=\"TYPE\">" (eval !type) "</field>"
                   (if (and (<> 0 !length_vars) (<> 1 !length_vars) 2)  # len >= 2
                       (pack "<next>" (!declarer_rec (cdr !vars) !type !next) "</next>")
                       (!declarer_rec (cdr !vars) !type !next)

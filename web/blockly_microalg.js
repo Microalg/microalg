@@ -487,9 +487,11 @@ Blockly.Blocks['declarer'] = {
     this.setNextStatement(true);
     this.setTooltip('Déclarer une variable avec un type.');
     this.interpolateMsg(
-      'Declarer' + ' %1 ' + 'De_type' + '%2',
+      'Declarer %1 De_type %2 %3 %4',
       ['VAR', new Blockly.FieldVariable("ma_variable")],
-      ['TYPE', null],
+      ['Q1', Blockly.MicroAlg.newQuote(true)],
+      ['TYPE', new Blockly.FieldTextInput('')],
+      ['Q2', Blockly.MicroAlg.newQuote(false)],
       Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
     this.contextMenuMsg_ = "Créer truc"; // ???
@@ -509,7 +511,7 @@ Blockly.Blocks['declarer'] = {
 // Gen Declarer
 // https://github.com/google/blockly/blob/master/generators/javascript/variables.js
 Blockly.MicroAlg['declarer'] = function(block) {
-  var type = Blockly.MicroAlg.statementToCode(block, 'TYPE') || '';
+  var type = Blockly.MicroAlg.quote_(block.getFieldValue('TYPE'));
   var type_cleaned = type.toString().trim();
   return '(Declarer ' + this.getFieldValue('VAR') + ' De_type ' + type_cleaned + ')';
 };
