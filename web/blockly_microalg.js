@@ -43,6 +43,15 @@ Blockly.MicroAlg.addReservedWords(
     'Queue, Retirer_de, Retourner, Rien, Si, Sinon, ' +
     'Tant_que, Tester, Tete, Texte, Type, ' +
     'Vide?, Vrai');
+Blockly.MicroAlg.newQuote = function(open) {
+    if (open == Blockly.RTL) {
+      var file = 'quote1.png';
+    } else {
+      var file = 'quote0.png';
+    }
+    return new Blockly.FieldImage(
+        Blockly.pathToBlockly + 'media/' + file, 12, 12, '"');
+}
 
 // La suite, jusqu’au commentaire de fin, n’a pas été modifiée.
 
@@ -278,21 +287,12 @@ Blockly.Blocks['commentaire'] = {
     this.setColour(colour);
     this.appendDummyInput()
         .appendField('!!!')
-        .appendField(this.newQuote_(true))
+        .appendField(Blockly.MicroAlg.newQuote(true))
         .appendField(new Blockly.FieldTextInput(''), 'COMZ')
-        .appendField(this.newQuote_(false));
+        .appendField(Blockly.MicroAlg.newQuote(false));
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Commentaire. Aucune action n’est réalisée.');
-  },
-  newQuote_: function(open) {
-    if (open == Blockly.RTL) {
-      var file = 'quote1.png';
-    } else {
-      var file = 'quote0.png';
-    }
-    return new Blockly.FieldImage(Blockly.pathToBlockly + 'media/' + file,
-                                  12, 12, '"');
   }
 };
 
@@ -1417,20 +1417,11 @@ Blockly.Blocks['texte_litteral'] = {
     this.setHelpUrl(malg_url + '#textesavecblockly');
     this.setColour(colour);
     this.appendDummyInput()
-        .appendField(this.newQuote_(true))
+        .appendField(Blockly.MicroAlg.newQuote(true))
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
-        .appendField(this.newQuote_(false));
+        .appendField(Blockly.MicroAlg.newQuote(false));
     this.setOutput(true, 'String');
     this.setTooltip('Texte');
-  },
-  newQuote_: function(open) {
-    if (open == Blockly.RTL) {
-      var file = 'quote1.png';
-    } else {
-      var file = 'quote0.png';
-    }
-    return new Blockly.FieldImage(Blockly.pathToBlockly + 'media/' + file,
-                                  12, 12, '"');
   }
 };
 
