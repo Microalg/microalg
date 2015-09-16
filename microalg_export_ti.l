@@ -102,6 +102,7 @@
 (de Nombre () (!no_export "Nombre"))
 # Alors Sinon
 (de Faire () (!no_export "Faire"))
+(de Repeter () (!no_export "Repeter"))
 (de Definir () (!no_export "Definir"))
 (de Retourner () (!no_export "Retourner"))
 (de Exemples_de () (!no_export "Exemples_de"))
