@@ -498,7 +498,6 @@ function malg2other(lang, src) {
         var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
         EMULISP_CORE.init();
         EMULISP_CORE.eval(getLispSource('microalg'));
-        exported_src = "Attention, fonctionnalité encore expérimentale !\n\n" + exported_src;
         return exported_src;
     }
 }
