@@ -127,7 +127,7 @@ function onCtrl(elt, f, config_64) {
                   "(N@":  "(Nieme@ |)",
                   "(No":  "(Nombre |)",
                   "(Rd":  "(Retirer_de |)",
-                  "(R":   "(Retourner |)",
+                  "(Re":  "(Retourner |)",
                   "(S":   "(Si (|) Alors\n    ()\n)",
                   "(Ss":  "(Si (|)\n Alors ()\n Sinon ()\n)",
                   "(Te":  "(Tester |)",
