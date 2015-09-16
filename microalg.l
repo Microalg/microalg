@@ -1122,7 +1122,7 @@ Ou :
                      splitted  (split (cddr arg_lst) 'Sinon)
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
-                    (if (<> Alors kw_alors) (quit "Mot-clef `Alors` manquant."))
+                    (if (<> Alors kw_alors) (quit "`Si` : Le mot-clef `Alors` doit être le deuxième argument."))
                     (if (!boolCheckM2P (eval condition) "La condition n’est pas un booléen.")
                         (run bloc_vrai)
                         (if (== NIL bloc_faux)
