@@ -126,6 +126,7 @@ function onCtrl(elt, f, config_64) {
                   "(Ni":  "(Nieme |)",
                   "(N@":  "(Nieme@ |)",
                   "(No":  "(Nombre |)",
+                  "(R":   "(Repeter | Fois\n    ()\n)",
                   "(Rd":  "(Retirer_de |)",
                   "(Re":  "(Retourner |)",
                   "(S":   "(Si (|) Alors\n    ()\n)",
