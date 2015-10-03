@@ -571,7 +571,7 @@ Blockly.Blocks['cmds_defnoreturn'] = {
       hash['arg_' + this.arguments_[i].toLowerCase()] = true;
     }
     if (badArg) {
-      this.setWarningText(Blockly.Msg.PROCEDURES_DEF_DUPLICATE_WARNING);
+      this.setWarningText('Conflit dans les noms de vos paramètres.');
     } else {
       this.setWarningText(null);
     }
@@ -832,7 +832,6 @@ Blockly.Blocks['procedures_callnoreturn'] = {
     this.setHelpUrl(malg_url + '#sym-Definir');
     this.setColour(colour);
     this.appendDummyInput('TOPROW')
-        .appendField('appelssretour')
         .appendField('', 'NAME');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
@@ -1006,7 +1005,6 @@ Blockly.Blocks['procedures_callreturn'] = {
     this.setHelpUrl(malg_url + '#sym-Definir');
     this.setColour(colour);
     this.appendDummyInput('TOPROW')
-        .appendField('Definir17')
         .appendField('', 'NAME');
     this.setOutput(true);
     // Tooltip is set in domToMutation.
