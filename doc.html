@@ -361,6 +361,14 @@ valeur ou de la commande qui est parfois fournie :
       juste écrire la valeur de `x`, car `x` n’est pas une commande.
 * java.lang.StackOverflowError
     * Voir la sous-section [récursion](#rcursion).
+* L’espace des valeurs possibles dépasse … .
+    * Le générateur de nombre pseudo-aléatoires qui sert aux commandes
+      `Entier@` et `Nieme@` ne peut travailler qu’avec un certain nombre de
+      valeurs possibles (environ un cinquième de 2 puissance 32), soit un peu
+      plus de 800 millions.  
+      MicroAlg ne peut donc pas tirer un entier au sort entre deux valeurs dont
+      la différence est supérieure à 800 millions, ou tirer un élément dans une
+      liste de plus de 800 millions d’éléments. Désolé.
 * X -- La condition n’est pas un booléen.
     * Voir la sous-section [booléens](#boolens).
 * La variable n’est pas initialisée.
