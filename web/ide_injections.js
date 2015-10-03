@@ -118,7 +118,7 @@ function onCtrl(elt, f, config_64) {
                   "(Dm":  "(Demander)|",
                   "(E":   "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
                   "(E@":  "(Entie@ |)\n",
-                  "(F":   "(Faire (|)\n       ()\n Tant_que ()\n)",
+                  "(F":   "(Faire\n    (|)\n    ()\n Tant_que ()\n)",
                   "(I@":  "(Initialiser@ |)\n",
                   "(Li":  "(Liste |)",
                   "(Lo":  "(Longueur |)",
@@ -132,7 +132,7 @@ function onCtrl(elt, f, config_64) {
                   "(S":   "(Si (|) Alors\n    ()\n)",
                   "(Ss":  "(Si (|)\n Alors ()\n Sinon ()\n)",
                   "(Te":  "(Tester |)",
-                  "(Tq":  "(Tant_que (|) Faire\n    ()\n    ()\n)"
+                  "(Tq":  "(Tant_que (|)\n Faire\n    ()\n    ()\n)"
                 };
                 // Grab content and split in 'before' and 'after' caret.
                 var src = elt.val();
