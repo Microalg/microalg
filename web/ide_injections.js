@@ -399,10 +399,11 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="bc"></block>' +
                 '  <block type="lc"></block>' +
                 ' </category>' +
-                ' <category name="Vos commandes">' +
-                '  <block type="procedures_defnoreturn"></block>' +
-                '  <block type="procedures_defreturn"></block>' +
+                ' <category name="Définir vos cmdes">' +
+                '  <block type="cmds_defnoreturn"></block>' +
+                '  <block type="cmds_defreturn"></block>' +
                 ' </category>' +
+                ' <category name="Vos commandes" custom="PROCEDURE"></category>' +
                 '</xml>';
         var content = '<!DOCTYPE html>' +
             '<html>\n' +

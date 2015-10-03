@@ -517,7 +517,7 @@ Blockly.MicroAlg['declarer'] = function(block) {
 };
 
 // Bloc Definir sans retour
-Blockly.Blocks['procedures_defnoreturn'] = {
+Blockly.Blocks['cmds_defnoreturn'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Definir');
     this.setColour(colour);
@@ -755,7 +755,7 @@ Blockly.Blocks['procedures_defnoreturn'] = {
 };
 
 // Bloc Definir avec retour
-Blockly.Blocks['procedures_defreturn'] = {
+Blockly.Blocks['cmds_defreturn'] = {
   init: function() {
     this.setHelpUrl(malg_url + '#sym-Definir');
     this.setColour(colour);
@@ -777,20 +777,20 @@ Blockly.Blocks['procedures_defreturn'] = {
     this.setStatements_(true);
     this.statementConnection_ = null;
   },
-  setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
-  validate: Blockly.Blocks['procedures_defnoreturn'].validate,
-  updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
-  mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
-  domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
-  decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
-  compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-  dispose: Blockly.Blocks['procedures_defnoreturn'].dispose,
+  setStatements_: Blockly.Blocks['cmds_defnoreturn'].setStatements_,
+  validate: Blockly.Blocks['cmds_defnoreturn'].validate,
+  updateParams_: Blockly.Blocks['cmds_defnoreturn'].updateParams_,
+  mutationToDom: Blockly.Blocks['cmds_defnoreturn'].mutationToDom,
+  domToMutation: Blockly.Blocks['cmds_defnoreturn'].domToMutation,
+  decompose: Blockly.Blocks['cmds_defnoreturn'].decompose,
+  compose: Blockly.Blocks['cmds_defnoreturn'].compose,
+  dispose: Blockly.Blocks['cmds_defnoreturn'].dispose,
   getProcedureDef: function() {
     return [this.getFieldValue('NAME'), this.arguments_, true];
   },
-  getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
-  renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
-  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
+  getVars: Blockly.Blocks['cmds_defnoreturn'].getVars,
+  renameVar: Blockly.Blocks['cmds_defnoreturn'].renameVar,
+  customContextMenu: Blockly.Blocks['cmds_defnoreturn'].customContextMenu,
   callType_: 'procedures_callreturn'
 };
 
@@ -1026,7 +1026,7 @@ Blockly.Blocks['procedures_callreturn'] = {
 };
 
 // Gen Definir
-Blockly.MicroAlg['procedures_defreturn'] = function(block) {
+Blockly.MicroAlg['cmds_defreturn'] = function(block) {
     var name = Blockly.MicroAlg.variableDB_.getName(block.getFieldValue('NAME'),
       Blockly.Procedures.NAME_TYPE);
     var branch = Blockly.MicroAlg.statementToCode(block, 'STACK');
@@ -1052,7 +1052,7 @@ Blockly.MicroAlg['procedures_defreturn'] = function(block) {
     var sep = args.length > 0 ? " " : "";
     return "(Definir (" + name + sep + args.join(' ') + ")\n" + branch + ")";
 }
-Blockly.MicroAlg['procedures_defnoreturn'] = Blockly.MicroAlg['procedures_defreturn'];
+Blockly.MicroAlg['cmds_defnoreturn'] = Blockly.MicroAlg['cmds_defreturn'];
 
 // Bloc Demander
 Blockly.Blocks['demander'] = {
