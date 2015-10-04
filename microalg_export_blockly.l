@@ -170,12 +170,14 @@
   )
 )
 (de Definir inputs
+  # signature de la forme (Commande_utilisateur ma_cmd (Variable x)).
   (let (signature (car inputs)
-        nom       (car signature)
-        params    (cdr signature)
+        nom       (cadr signature)
+        params    (cddr signature)
         corps     (cdr inputs))
        (pack "<block type=\"cmds_defreturn\">"
                "<mutation>"
+                 # cadr car de la forme (Variable x).
                  (mapcar '((param) (pack "<arg name=\"" (cadr param) "\"></arg>"))
                          params)
                "</mutation>"
