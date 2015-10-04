@@ -402,6 +402,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 ' <category name="Définir vos cmdes">' +
                 '  <block type="cmds_defnoreturn"></block>' +
                 '  <block type="cmds_defreturn"></block>' +
+                '  <block type="retourner"></block>' +
                 ' </category>' +
                 ' <category name="Vos commandes" custom="PROCEDURE"></category>' +
                 '</xml>';

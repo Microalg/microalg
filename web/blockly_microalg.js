@@ -1693,6 +1693,32 @@ Blockly.MicroAlg['repeter'] = function(block) {
     return code;
 };
 
+// Bloc Retourner
+Blockly.Blocks['retourner'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Retourner');
+    this.setColour(colour);
+    this.appendValueInput('VALUE')
+        .appendField('Retourner');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Spécifier la valeur de retour d’une commande.');
+  }
+};
+
+// Gen Retourner
+Blockly.MicroAlg['retourner'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  if (arg === '') return '(Retourner Rien)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Retourner ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Retourner\n' + arg + '\n)';
+  }
+};
+
 // Bloc Si
 // https://github.com/google/blockly/blob/master/blocks/logic.js#L34
 Blockly.Blocks['si'] = {

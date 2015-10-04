@@ -284,6 +284,12 @@
              "<statement name=\"INSTR\">" (eval (insertion_next !corps)) "</statement>"
              (eval !next)
              "</block>") ))
+(de Retourner (content)
+  (pack "<block type=\"retourner\">"
+        "<value name=\"VALUE\">"
+        content
+        "</value>"
+        "</block>"))
 (de Si inputs
   (let (condition (car inputs)
         kw_alors  (cadr inputs)
