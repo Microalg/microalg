@@ -169,6 +169,27 @@
        )
   )
 )
+(de Definir inputs
+  (let (signature (car inputs)
+        nom       (car signature)
+        params    (cdr signature)
+        corps     (cdr inputs))
+       (pack "<block type=\"cmds_defreturn\">"
+               "<mutation>"
+                 (mapcar '((param) (pack "<arg name=\"" (cadr param) "\"></arg>"))
+                         params)
+               "</mutation>"
+               "<field name=\"NAME\">" nom "</field>"
+               "<statement name=\"STACK\">"
+              #   (eval corps)
+               "</statement>"
+               "<value name=\"RETURN\">"
+              # ?
+               "</value>"
+             "</block>"
+       )
+  )
+)
 (de Demander ()
   "<block type=\"demander\"></block>")
 (de Demander_un_nombre ()
