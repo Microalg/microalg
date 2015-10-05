@@ -205,7 +205,7 @@
                "</mutation>"
                "<field name=\"NAME\">" nom "</field>"
                "<statement name=\"STACK\">"
-              #   (eval corps)
+                 (run corps)
                "</statement>"
                "<value name=\"RETURN\">"
               # ?
