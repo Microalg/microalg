@@ -24,6 +24,26 @@
     )
   )
 )
+(de Commande_utilisateur inputs
+   (let (nom "ma_cmd")
+        (pack
+           "<block type=\"procedures_callreturn\">"
+             "<mutation name=\"" nom "\">"
+               "<arg name=\"x\"></arg>"
+             "</mutation>"
+             "<value name=\"ARG0\">"
+               "<block type=\"nombre_litteral\">"
+                 "<field name=\"NUM\">1</field>"
+               "</block>"
+             "</value>"
+             "<value name=\"ARG1\">"
+               "<block type=\"nombre_litteral\">"
+              "   <field name=\"NUM\">2</field>"
+             "  </block>"
+            " </value>"
+           "</block>")
+   )
+)
 (de !num? (x)
   (and (== 'Litteral (car x)) (num? (cadr x)))
 )
