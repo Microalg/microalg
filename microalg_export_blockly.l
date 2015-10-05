@@ -194,7 +194,9 @@
   (let (signature (car inputs)
         nom       (cadr signature)
         params    (cddr signature)
-        corps     (cdr inputs))
+        corps     (cdr inputs)
+        last_corps (last corps)
+        next      (ifn (<> 'Next (car last_corps)) last_corps))
        (pack "<block type=\"cmds_defreturn\">"
                "<mutation>"
                  # cadr car de la forme (Variable x).
@@ -208,6 +210,7 @@
                "<value name=\"RETURN\">"
               # ?
                "</value>"
+               (eval next)
              "</block>"
        )
   )
