@@ -961,7 +961,7 @@ Blockly.Blocks['procedures_callnoreturn'] = {
   domToMutation: function(xmlElement) {
     var name = xmlElement.getAttribute('name');
     this.setFieldValue(name, 'NAME');
-    this.setTooltip('Exécuter la commande %1.'.replace('%1', newName));
+    this.setTooltip('Exécuter la commande %1.'.replace('%1', name));
     var def = Blockly.Procedures.getDefinition(name, this.workspace);
     if (def && def.mutator && def.mutator.isVisible()) {
       // Initialize caller with the mutator's IDs.
