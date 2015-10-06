@@ -855,13 +855,24 @@ Certaines commandes de langage MicroAlg n’ont pas encore de bloc.
 
 #### Passer des blocs au texte
 
-* Opérations sur les nombres
-    * `Somme` correspond à la commande `+`.
-    * `Différence` correspond à la commande `-`.
-    * `Produit` correspond à la commande `*`.
-    * `Quotient` correspond à la commande `/`.
-    * `Reste` correspond à la commande `%`.
-    * `Puissance` correspond à la commande `^`.
+* Les blocs de la catégorie Valeurs, sauf Liste, ne s’écrivent pas
+  avec des parenthèses.
+* Les autres blocs, qu’ils aient ou non une prise sur la gauche,
+  s’écrivent : `(nom_du_bloc … …)` où les pointillés sont à remplacer par des
+  valeurs ou d’autres commandes.
+    * Avoir la [liste des commandes](#listedessymbolesprdfinis) sous les yeux
+      est donc bien pratique.
+    * Même les opérations et les comparaisons sont à écrire `(+ 2 2)` ou
+      `(< 0 1)`.
+    * Opérations sur les nombres :
+        * `Somme` correspond à la commande `+`.
+        * `Différence` correspond à la commande `-`.
+        * `Produit` correspond à la commande `*`.
+        * `Quotient` correspond à la commande `/`.
+        * `Reste` correspond à la commande `%`.
+        * `Puissance` correspond à la commande `^`.
+* Si vous ne tapez pas très vite, des [abbréviations](#abbrviations) peuvent
+  vous aider.
 
 ## Sortie graphique
 
