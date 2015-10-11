@@ -33,7 +33,7 @@ Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
     'RAZ, AV, BC, LC, TD, TG, Cercle, Contour, Ellipse, Epaisseur, ' +
-    'Rectangle, Remplissage, Segment, Triangle, ' +
+    'Rectangle, Remplissage, Repere, Segment, Triangle, ' +
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Concatener, ' +
     'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
     'En_position, Entier@, Et, Exemples_de, ' +
@@ -1626,6 +1626,45 @@ Blockly.Blocks['raz'] = {
 // Gen RAZ
 Blockly.MicroAlg['raz'] = function(block) {
   return '(RAZ)';
+};
+
+// Bloc Repere
+Blockly.Blocks['repere'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Repere');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('Repere');
+    this.appendValueInput("X_MIN")
+        .setCheck('Number')
+        .appendField('X min')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("X_MAX")
+        .setCheck('Number')
+        .appendField('X max')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("Y_MIN")
+        .setCheck('Number')
+        .appendField('Y min')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput("Y_MAX")
+        .setCheck('Number')
+        .appendField('Y max')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Change la zone que le carré graphique représente.');
+  }
+};
+
+// Gen Repere
+Blockly.MicroAlg['repere'] = function(block) {
+  var x_min = Blockly.MicroAlg.statementToCode(block, 'X_MIN') || '';
+  var x_max = Blockly.MicroAlg.statementToCode(block, 'X_MAX') || '';
+  var y_min = Blockly.MicroAlg.statementToCode(block, 'Y_MIN') || '';
+  var y_max = Blockly.MicroAlg.statementToCode(block, 'Y_MAX') || '';
+  return '(Repere ' + x_min.trim() + ' ' + x_max.trim() + ' '
+                    + y_min.trim() + ' ' + y_max.trim() + ')';
 };
 
 // Bloc Cercle

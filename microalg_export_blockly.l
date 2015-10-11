@@ -463,7 +463,8 @@
          "<value name=\"Y_MIN\">" y_min "</value>"
          "<value name=\"Y_MAX\">" y_max "</value>"
          next
-         "</block>")
+         "</block>"))
+>>>>>>> 7b10ac6... Blockly: commande Repere.
 (de Segment inputs
   (let (p1 (car inputs)
         p2 (cadr inputs)
