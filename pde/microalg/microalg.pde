@@ -133,21 +133,21 @@ void interact(String data) {
     } else if (cmd.equals("Epaisseur")) {
         strokeWeight(int(params[1]));
     } else if (cmd.equals("Segment")) {
-        line(mapx(int(params[1])), mapy(int(params[2])),
-             mapx(int(params[3])), mapy(int(params[4])));
+        line(mapx(float(params[1])), mapy(float(params[2])),
+             mapx(float(params[3])), mapy(float(params[4])));
     } else if (cmd.equals("Cercle")) {
-        ellipse(mapx(int(params[1])), mapy(int(params[2])),
-                mapw(int(params[3])), maph(int(params[3])));
+        ellipse(mapx(float(params[1])), mapy(float(params[2])),
+                mapw(float(params[3])), maph(float(params[3])));
     } else if (cmd.equals("Ellipse")) {
-        ellipse(mapx(int(params[1])), mapy(int(params[2])),
-                mapw(int(params[3])), maph(int(params[4])));
+        ellipse(mapx(float(params[1])), mapy(float(params[2])),
+                mapw(float(params[3])), maph(float(params[4])));
     } else if (cmd.equals("Rectangle")) {
-        rect(mapx(int(params[1])), mapy(int(params[2])),
-             mapx(int(params[3])), mapy(int(params[4])));
+        rect(mapx(float(params[1])), mapy(float(params[2])),
+             mapx(float(params[3])), mapy(float(params[4])));
     } else if (cmd.equals("Triangle")) {
-        triangle(mapx(int(params[1])), mapy(int(params[2])),
-                 mapx(int(params[3])), mapy(int(params[4])),
-                 mapx(int(params[5])), mapy(int(params[6])));
+        triangle(mapx(float(params[1])), mapy(float(params[2])),
+                 mapx(float(params[3])), mapy(float(params[4])),
+                 mapx(float(params[5])), mapy(float(params[6])));
     } else if (cmd.equals("AV")) {
         turtle.forward(int(params[1]));
     } else if (cmd.equals("TD")) {
