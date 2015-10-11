@@ -1754,13 +1754,14 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Repere 'doc
 "Dans la sortie graphique, permet de choisir un nouveau repère.
 
-Les quatre paramètres sont parfois appelés Xmin, Xmax, Ymin et Ymax.  
+Les quatre paramètres sont parfois appelés Xmin, Xmax, Ymin et Ymax. Ils valent
+par défaut 0, 600, 0 et 600.  
 **Note** : La commande `Epaisseur` et les commandes de la tortue ne sont pas
 affectées par le changement de repère.
 
 Exemple : `(Repere -10 10 -1 1)`  
-Le carré graphique 600×600 permettra de visualiser les points d’abscisses
-comprises entre -10 et 10 et d’ordonnées comprises entre -1 et 1.
+Avec ces valeurs, le carré graphique 600×600 permettra de visualiser les points
+d’abscisses comprises entre -10 et 10 et d’ordonnées comprises entre -1 et 1.
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Repere 'text "Commande `Repere`.")
