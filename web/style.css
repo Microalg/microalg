@@ -102,6 +102,7 @@ body.microalg {
 }
 .malg-sketch {
     border: solid 1px;
+	margin-bottom: 3em;
 }
 .microalg .terminal, .microalg .cmd {
     width: 93%;
