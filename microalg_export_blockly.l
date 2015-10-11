@@ -456,6 +456,14 @@
                  (if a (pack "<value name=\"A\">" (eval a) "</value>"))
                  next
                  "</block>"))))
+(de Repere (x_min x_max y_min y_max next)
+   (pack "<block type=\"repere\">"
+         "<value name=\"X_MIN\">" x_min "</value>"
+         "<value name=\"X_MAX\">" x_max "</value>"
+         "<value name=\"Y_MIN\">" y_min "</value>"
+         "<value name=\"Y_MAX\">" y_max "</value>"
+         next
+         "</block>")
 (de Segment inputs
   (let (p1 (car inputs)
         p2 (cadr inputs)

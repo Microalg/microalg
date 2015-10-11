@@ -12,6 +12,11 @@ String data;
 int w = 600;
 int h = 600;
 
+float x_min = 0;
+float x_max = 600;
+float y_min = 0;
+float y_max = 600;
+
 void setup() {
     size(w, h);
     try {
@@ -77,6 +82,22 @@ class Turtle {
     }
 }
 
+float mapx(x) {
+    return map(x, x_min, x_max, 0, 600);
+}
+
+float mapy(y) {
+    return map(y, y_min, y_max, 600, 0);
+}
+
+float mapw(x) {
+    return map(x, 0, x_max - x_min, 0, 600);
+}
+
+float maph(y) {
+    return map(y, 0, y_max - y_min, 0, 600);
+}
+
 void interact(String data) {
     String[] params = data.split(" ");
     String cmd = "";
@@ -90,6 +111,11 @@ void interact(String data) {
     }
     if (false) {
         // pas de switch sur les strings !!!
+    } else if (cmd.equals("Repere")) {
+        x_min = float(params[1]);
+        x_max = float(params[2]);
+        y_min = float(params[3]);
+        y_max = float(params[4]);
     } else if (cmd.equals("Contour")) {
         int alpha = 255;
         if (params.length == 5) {
@@ -107,17 +133,21 @@ void interact(String data) {
     } else if (cmd.equals("Epaisseur")) {
         strokeWeight(int(params[1]));
     } else if (cmd.equals("Segment")) {
-        line(int(params[1]), h - int(params[2]), int(params[3]), h - int(params[4]));
+        line(mapx(int(params[1])), mapy(int(params[2])),
+             mapx(int(params[3])), mapy(int(params[4])));
     } else if (cmd.equals("Cercle")) {
-        ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[3]));
+        ellipse(mapx(int(params[1])), mapy(int(params[2])),
+                mapw(int(params[3])), maph(int(params[3])));
     } else if (cmd.equals("Ellipse")) {
-        ellipse(int(params[1]), h - int(params[2]), int(params[3]), int(params[4]));
+        ellipse(mapx(int(params[1])), mapy(int(params[2])),
+                mapw(int(params[3])), maph(int(params[4])));
     } else if (cmd.equals("Rectangle")) {
-        rect(int(params[1]), h - int(params[2]), int(params[3]), h - int(params[4]));
+        rect(mapx(int(params[1])), mapy(int(params[2])),
+             mapx(int(params[3])), mapy(int(params[4])));
     } else if (cmd.equals("Triangle")) {
-        triangle(int(params[1]), h - int(params[2]),
-                 int(params[3]), h - int(params[4]),
-                 int(params[5]), h - int(params[6]));
+        triangle(mapx(int(params[1])), mapy(int(params[2])),
+                 mapx(int(params[3])), mapy(int(params[4])),
+                 mapx(int(params[5])), mapy(int(params[6])));
     } else if (cmd.equals("AV")) {
         turtle.forward(int(params[1]));
     } else if (cmd.equals("TD")) {

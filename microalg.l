@@ -25,7 +25,7 @@ Voir <http://microalg.info>.")
 "Nieme" "Nieme@" "Nombre" "Non"
 "Ou"
 "Queue"
-"RAZ" "Rectangle" "Remplissage" "Repeter" "Retirer_de" "Retourner" "Rien"
+"RAZ" "Rectangle" "Remplissage" "Repere" "Repeter" "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon"
 "Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
@@ -1749,6 +1749,23 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'RAZ 'text "Commande `RAZ`.")
 (de RAZ ()
   (!processing "RAZ")
+  Rien
+)
+(put 'Repere 'doc
+"Dans la sortie graphique, permet de choisir un nouveau repère.
+
+Les quatre paramètres sont parfois appelés Xmin, Xmax, Ymin et Ymax.  
+**Note** : La commande `Epaisseur` et les commandes de la tortue ne sont pas
+affectées par le changement de repère.
+
+Exemple : `(Repere -10 10 -1 1)`  
+Le carré graphique 600×600 permettra de visualiser les points d’abscisses
+comprises entre -10 et 10 et d’ordonnées comprises entre -1 et 1.
+
+Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
+(put 'Repere 'text "Commande `Repere`.")
+(de Repere (xmin xmax ymin ymax)
+  (!processing (pack "Repere " xmin " " xmax " " ymin " " ymax))
   Rien
 )
 (put 'Contour 'doc
