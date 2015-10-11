@@ -129,6 +129,7 @@
 (de RAZ () (!no_export "RAZ"))
 (de Rectangle () (!no_export "Rectangle"))
 (de Remplissage () (!no_export "Remplissage"))
+(de Repere () (!no_export "Repere"))
 (de Segment () (!no_export "Segment"))
 (de Triangle () (!no_export "Triangle"))
 (de 1000Cosinus () (!no_export "1000Cosinus"))

@@ -39,6 +39,7 @@ Nombre val: Convertit `val` en nombre.
 Non b: Opération logique.
 Ou b1 b2 ...: Opération logique.
 Queue val: Retourne `val` (liste ou texte), privé de son premier élément.
+Repere x_min x_max y_min y_max: Change la zone que le carré graphique représente.
 Repeter n Fois instructions: Répète `n` fois les `instructions`.
 Retirer_de obj: Retire le dernier élément à la fin de `obj` et le retourne.
 Retourner val: À utiliser à la fin de la définition d'une commande.
