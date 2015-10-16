@@ -1547,7 +1547,8 @@ Voir la commande `Exemples_de`.")
 # Factorisation du test du type des args
 (de !check_type_args (!cmd !primz !deuz)
   (if (not (and (num? !primz) (num? !deuz)))
-      (quit (pack "Les paramètres de " !cmd " doivent être des nombres"))
+      (quit (pack "Les paramètres de " !cmd " doivent être des nombres.")
+            (Concatener (Texte !primz) " " !cmd " " (Texte !deuz)))
   )
 )
 (put '= 'doc
