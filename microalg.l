@@ -679,7 +679,7 @@ La numérotation commence à 1.
 
     : (Nieme \"salut\" 2)
     -> \"a\"
-    : (Nieme (Liste 1 3 5 7) 2
+    : (Nieme (Liste 1 3 5 7) 2)
     -> 3
 ")
 (put 'Nieme 'text "Commande `Nieme`.")
