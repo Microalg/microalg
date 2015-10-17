@@ -497,7 +497,23 @@ function malg2other(lang, src) {
         var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
         // On récupère une liste d’instructions.
         var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
-        var exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
+        var exported_src = '';
+        try {
+            exported_src = cleanTransient(EMULISP_CORE.eval(source_preparee).toString());
+        } catch(e) {
+            var prefix = "Error: ";
+            var suffix = " -- Undefined";
+            var msg = e.toString();
+            if (msg.slice(0, prefix.length) === prefix &&
+                msg.slice(-suffix.length) === suffix) {
+                var cmd = msg.slice(prefix.length, -suffix.length);
+                exported_src = "Impossible d’exporter " +
+                               "à cause de l’appel à la commande " +
+                               cmd + " (définie dans le programme).";
+            } else {
+                exported_src = msg;
+            }
+        }
         EMULISP_CORE.init();
         EMULISP_CORE.eval(getLispSource('microalg'));
         return exported_src;
