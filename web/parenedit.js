@@ -41,7 +41,7 @@ function createRichInput(original) {
     });
 
     fresh = true;
-    original.bind('propertychange keydown keyup input paste click', function(e) {
+    original.on('propertychange keydown keyup input paste click', function(e) {
         var code = (e.keyCode ? e.keyCode : e.which);
         var text = original.val();
         if (code == 13) text += '<br>';
