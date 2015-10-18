@@ -1,5 +1,10 @@
 html {
-  font-size: 62.5%;
+    font-size: 62.5%;
+    color: #000;
+    background-color: #fff;
+}
+#dokuwiki__site {
+    font-size: 120%;
 }
 body.microalg {
     font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
