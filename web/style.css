@@ -84,6 +84,16 @@ body.microalg {
     background-color: #ddd;
     width: 100%;
 }
+.malg-ok-editor {
+    margin: 2px;
+    background-color: #ddd;
+    width: 75%;
+}
+.malg-output-type {
+    float: right;
+    margin: 2px;
+    width: 20%;
+}
 .malg-error {
     color: red;
 }
@@ -100,10 +110,13 @@ body.microalg {
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color: white;
+    min-height: 1em;
+    padding: 2px;
 }
-.malg-display p {
+pre.brut {
+    font-size: 1.3em;
+    line-height: 1em;
     margin: 0px;
-    margin-left: 3px;
 }
 .malg-sketch {
     border: solid 1px;

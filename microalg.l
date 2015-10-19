@@ -288,9 +288,7 @@ Si vous ne l’avez pas déjà fait, commencez par le
   (setq *LastStdOut (if a_afficher a_afficher ""))
   (ifn !testing
        (println (ifn a_afficher
-                     (if (<> *EMUENV "browser")
-                         " "
-                         "&nbsp;")
+                     " "
                      a_afficher)))
   Rien  # Pas de valeur de retour
   )

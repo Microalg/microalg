@@ -69,15 +69,39 @@ function stdPrint(text, state) {
         return;
     }
     var target = $('#' + state.context.display_elt);
+    var suffix_length = "-displaytarget".length;
+    var root_id = state.context.display_elt.slice(0, -suffix_length);
+    var output_type_id = root_id + '-output-type';
+    var output_type = $('#' + output_type_id).val();
     text = cleanTransient(text);
     if (state.context.type == 'editor') {
-        if (target.html() == "&nbsp;" && text != "") {
-            target.html("");            // clean the target
+        // Create or append to state.context.output.
+        if (typeof state.context.output === "undefined") {
+            state.context.output = text;
+        } else {
+            state.context.output += '\n' + text;
         }
-        if (typeof Showdown != 'undefined') {
-            text = new Showdown.converter().makeHtml(text);
+        var output_as_html = '';
+        switch (output_type) {
+            case 'HTML':
+                output_as_html = state.context.output;
+                break;
+            case 'MD':
+                // Convert to HTML if Showdown available.
+                output_as_html = new Showdown.converter()
+                                     .makeHtml(state.context.output);
+                break;
+            case 'brut':
+            default:
+                output_as_html = state.context.output
+                                   .replace(/[<>]/g,
+                                     function (a) {
+                                       return {'<': '&lt;', '>': '&gt;'}[a];
+                                     })
+                                   .replace(/\n/g, '<br>');
+                output_as_html = '<pre class="brut">' + output_as_html + '</pre>';
         }
-        target.html(target.html() + text);
+        target.html(output_as_html);
     }
     if (state.context.type == 'repl') {
         var repl_elt = $('#' + state.context.display_elt);
@@ -232,6 +256,7 @@ function inject_microalg_editor_in(elt_id, config) {
     var export_id = elt_id + '-export';
     var editor_id = elt_id + '-malg-editor';
     var display_target_id = elt_id + '-displaytarget';
+    var output_type_id = elt_id + '-output-type';
     var blockly_id = elt_id + '-blockly';
     var processing_id = elt_id + '-processing';
     var src = '';
@@ -286,7 +311,12 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
                                       'class="malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +
-        '<input type="button" value="OK" class="malg-ok" ' +
+        '<select id="' + output_type_id + '" class="malg-output-type">' +
+        '<option>brut</option>' +
+        '<option>HTML</option>' +
+        ((typeof Showdown === 'undefined') ? '' : '<option>MD</option>') +
+        '</select> ' +
+        '<input type="button" value="OK" class="malg-ok-editor" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
                                      "'" + config_64 + "'" + ')" />' +
         '<div class="malg-error"></div>' +
