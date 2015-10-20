@@ -312,9 +312,9 @@ function inject_microalg_editor_in(elt_id, config) {
                                       'class="malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +
         '<select id="' + output_type_id + '" class="malg-output-type">' +
-        '<option>brut</option>' +
-        '<option>HTML</option>' +
-        ((typeof Showdown === 'undefined') ? '' : '<option>MD</option>') +
+        '<option' + ((config.output == 'brut')?' selected':'') + '>brut</option>' +
+        '<option' + ((config.output == 'HTML')?' selected':'') + '>HTML</option>' +
+        ((typeof Showdown === 'undefined') ? '' : '<option' + ((config.output == 'MD')?' selected':'') + '>MD</option>') +
         '</select> ' +
         '<input type="button" value="OK" class="malg-ok-editor" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
