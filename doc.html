@@ -189,6 +189,15 @@ en sorte que `(Demander)` attende l’utilisateur.
       apparition, avant même d’effectuer un quelconque traitement.
     * Pour les commandes imbriquées, c’est donc la commande qui est à le plus à
       l’intérieur qui est exécutée en premier.
+    * Exemple : si on considère
+      <span class="paren_1">(</span>F <span class="paren_2">(</span>B A <span class="paren_3">(</span>D C <span class="paren_4">(</span>E<span class="paren_4">)</span><span class="paren_3">)</span><span class="paren_2">)</span> <span class="paren_2">(</span>G <span class="paren_3">(</span>I H<span class="paren_3">)</span><span class="paren_2">)</span><span class="paren_1">)</span>,  
+      l’ordre d’exécution est donné par le passage de la flèche en pointillés
+      sur les points noirs dans le diagramme suivant, ce qui donne :
+      A, C, E, D, B, H, I, G et finalement F.  
+      <img width="256" alt="parcours en profondeur suffixe"
+           src="visuels/Sorted_binary_tree_postorder.svg"/>
+      Source : <a title="Public domain, via Wikimedia Commons"
+      href="https://commons.wikimedia.org/wiki/File%3ASorted_binary_tree_postorder.svg">Wikimedia Commons</a>
 * Les symboles (noms de variables ou commandes) ne peuvent pas contenir les
   caractères suivants :  
   `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
