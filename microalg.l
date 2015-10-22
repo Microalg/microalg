@@ -38,6 +38,16 @@ Voir <http://microalg.info>.")
      (car (car (cdr arg)))
   )
 )
+(ifn cdddr
+  (de cdddr (arg)
+     (cdr (cddr arg))
+  )
+)
+(ifn cddddr
+  (de cddddr (arg)
+     (cdr (cdddr arg))
+  )
+)
 (ifn cut
   (de cut (n sym acc)
     (let esym (eval sym)
