@@ -1093,7 +1093,7 @@ en minuscule).
 (de Nombre (x) (cond
                 ((num? x) x)
                 ((str? x) (or (format x)
-                              (quit "`Nombre` : la valeur ne peut pas être convertie.")))
+                              (quit "Cette valeur ne peut pas être convertie par `Nombre`." x)))
                 (T NIL)
               ))
 
