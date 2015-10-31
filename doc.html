@@ -53,7 +53,9 @@ Aller directement à :
     * [SciTE](#scite)
     * [Vim](#vim)
     * [Blockly](#blockly)
-    * [Sortie graphique](#sortiegraphique) et [Tortue](#tortue) (merci Processing)
+    * [Sortie graphique](#sortiegraphique) avec Processing
+        * [Tortue](#tortue)
+        * [Fonctionnement](#communicationavecprocessing)
 * [Remerciements](#remerciements)
 
 ## Avertissement
@@ -713,15 +715,8 @@ Attention, `pil-j` n’est pas le nom officiel de l’exécutable d’Ersatz (c�
 pas de `pil-Xjs`. `pil-rjs` et `pil-njs` n’existent (pour l’instant) que dans
 MicroAlg.
 
-Concernant les commandes graphiques, `microalg.l` envoie des informations à
-`microalg.pde` :
-
-* via TCP/IP dans la version Java avec
-  [`connect`](http://www.software-lab.de/doc/refC.html#connect)
-  côté PicoLisp/Ersatz, et
-  [`Client`](https://processing.org/reference/libraries/net/Client.html)
-  et [`Server`](https://processing.org/reference/libraries/net/Server.html) côté Processing
-* via un bête `eval(interact(…` dans la version JavaScript
+Concernant les commandes graphiques, voir la section
+[Communication avec Processing](#communicationavecprocessing).
 
 ### Interpréteurs
 
@@ -1076,6 +1071,39 @@ L’épaisseur du tracé est gérée avec la commande `Epaisseur` (sans accent) 
 on passe un entier en paramètre. C’est le nombre de pixel de la largeur des
 traits.  À partir de la ligne cette commande est utilisée, toutes les formes
 seront dessinées avec l’épaisseur choisie, jusqu’à un autre appel à `Epaisseur`.
+
+### Communication avec Processing
+
+Cette section est plutôt technique et est destinée à celles et ceux qui veulent
+comprendre le fonctionnement MicroAlg.
+
+Même si l’export du code MicroAlg vers du code Processing est possible (voir
+la section [Fonctionnement de l’export](#fonctionnementdelexport)), la sortie
+graphique n’utilise pas de conversion. Les commandes graphiques envoient des
+informations à un sketch Processing, qui réalise les affichages en conséquence.
+
+En n’utilisant que du code compatible Processing/Processing.js, MicroAlg
+peut n’utiliser qu’un seul fichier `.pde` pour les deux modes :
+`pde/microalg/microalg.pde`.
+
+Plus précisément, par exemple avec l’instruction `(Epaisseur 5)` :
+
+1. La commande `Epaisseur` envoie `"Epaisseur 5"` à la commande
+   `!processing` ([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg.l#L1794)).
+1. La commande `!processing` centralise la communication avec le sketch et
+   envoie à son tour "Epaisseur 5" au sketch `pde/microalg/microalg.pde`
+   ([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg.l#L1725)) :
+    * via TCP/IP dans la version Java avec
+      [`connect`](http://www.software-lab.de/doc/refC.html#connect)
+      côté PicoLisp/Ersatz, et
+      [`Client`](https://processing.org/reference/libraries/net/Client.html)
+      et [`Server`](https://processing.org/reference/libraries/net/Server.html)
+      côté Processing,
+    * via un bête `eval(interact(…` dans la version JavaScript.
+1. Dans `pde/microalg/microalg.pde`, la chaîne `"Epaisseur 5"` est décomposée
+   en commande et arguments, et un switch géant sur le nom de la commande gère
+   la commande Processing finale à exécuter
+   ([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/pde/microalg/microalg.pde#L80)).
 
 ## Tortue
 
