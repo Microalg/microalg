@@ -44,6 +44,8 @@ Aller directement à :
 * [Types](#types)
 * [Erreurs fréquentes](#erreursfrquentes)
 * [Export](#export)
+    * [Limitations](#limitations)
+    * [Fonctionnement](#fonctionnementdelexport)
 * [Feuille de route](#feuillederoute)
 * [Contribuer](#contribuer)
 * [Architecture](#architecture)
@@ -497,6 +499,93 @@ sera représenté par un arbre ayant cette structure :
       ├─"du texte"
       └─"et encore du texte"
 
+### Fonctionnement de l’export
+
+Cette section est plutôt technique et est destinée à celles et ceux qui veulent
+comprendre le fonctionnement MicroAlg.
+
+#### Le principe
+
+Exporter un programme depuis MicroAlg vers n’importe quoi (un autre langage de
+programmation, de description…) est assez facile car MicroAlg est un
+Lisp (<a class="wp" href="https://fr.wikipedia.org/wiki/Lisp">voir l’article
+Wikipedia correspondant</a>).
+Il est donc possible de reprogrammer les commandes de MicroAlg pour qu’elles
+retournent une chaîne de caractères au lieu d’avoir leur comportement habituel.
+Ce n’est pas possible avec la plupart des autres langages car certaines
+commandes comme `Si` ou `Tant_que` sont des mots-clefs et donc ne sont pas
+reprogrammables.
+
+Par exemple, l’addition peut être reprogrammée pour que `(+ x 1)` donne `"x+1"`
+(voir [ici](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg_export_casio.l#L12)) :
+
+    (de + (A B) (pack "(" A "+" B ")"))
+
+Ce qui signifie, si on devait traduire cette ligne en MicroAlg :
+
+    (Definir (+ A B)
+        (Retourner (Concatener A "+" B))
+    )
+
+L’expression `(+ x 1)`, au lieu de :
+
+1. chercher la valeur de x,
+1. d’y ajouter 1,
+1. et de retourner le résultat,
+
+va concaténer `x` (sans en chercher la valeur) `+` et `1` pour donner `"x+1"`.
+
+Ainsi, les fichiers `microalg_export_*.l` reprogramment MicroAlg pour chaque
+langage cible.
+
+#### Récursion
+
+Une fois que MicroAlg est reprogrammé, l’exécution d’un programme complet
+génère récursivement la version exportée, sans effort supplémentaire. En effet,
+chaque commande inclut le travail des commandes qui lui ont été passées en
+argument.
+
+Avec par exemple `(+ (* 2 x) 1)` :
+
+1. `+` attend que ses arguments aient été exécutés
+    * le premier est `(* 2 x)`
+        * (là est la récursion) `*` concatène `"2"`, `"*"` et `"x"` pour donner
+          `"2*x"`
+    * le second est le nombre 1
+1. `+` peut maintenant concaténér `"2*x"`, `"+"` et `"1"` pour donner `"2*x+1"`.
+
+#### Préparation
+
+Dans les exemples précédents, nous n’avons pas évoqué le mécanisme qui
+transforme `x` en `"x"`.
+
+Pour empêcher l’évaluateur d’aller chercher la valeur de `x` et de plutôt
+utiliser la chaîne de caractères `"x"`, on « protège » certaines valeurs comme
+les nombres, les textes et les symboles (sauf certains mots-clefs).
+
+Encore une fois, c’est assez facile car nous travaillons avec un Lisp. Nous
+utilisons son
+[homoiconicité](https://fr.wikipedia.org/wiki/Homoiconicit%C3%A9), qui nous
+permet de manipuler le code source facilement car ce code source est encodé
+dans la structure de donnée fondamentale des Lisps : la liste.
+
+Un travail de transformation du code est donc effectué par la commande
+`proteger_source` du fichier `microalg_export.l`
+([voir ici](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg_export.l)).
+
+Elle remplace :
+
+* un nombre littéral `42` par `(Litteral 42)`,
+* un texte littéral `"bonjour"` par `(Litteral "bonjour")`,
+* certains symboles `x` par `(Variable x)`.
+
+Ainsi, pour chaque langage cible, l’implémentation de `Litteral` et `Variable`
+permet de contrôler finement l’export.
+
+C’est en particulier ce qui permet de mettre en place, à partir d’un programme
+textuel en MicroAlg, les blocs de Blockly correspondants
+([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg_export_blockly.l)
+de `microalg_export_blockly.l`).
 
 ## Feuille de route
 
