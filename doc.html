@@ -369,7 +369,7 @@ valeur ou de la commande qui est parfois fournie :
       est une variable contenant un nombre. Dans ce cas, vous voulez peut-être
       juste écrire la valeur de `x`, car `x` n’est pas une commande.
 * java.lang.StackOverflowError
-    * Voir la sous-section [récursion](#rcursion).
+    * Voir la sous-section [récursion](#rcursioninfini).
 * L’espace des valeurs possibles dépasse … .
     * Le générateur de nombre pseudo-aléatoires qui sert aux commandes
       `Entier@` et `Nieme@` ne peut travailler qu’avec un certain nombre de
@@ -395,7 +395,7 @@ valeur ou de la commande qui est parfois fournie :
 * (V est un W ; X un Y) -- Le type ne correspond pas.
 * Mauvais tirage forcé : x n’est pas compris entre min et max.
 * Maximum call stack size exceeded.
-    * Voir la sous-section [récursion](#rcursion).
+    * Voir la sous-section [récursion](#rcursioninfini).
 * Mot-clef `Alors` manquant.
     * La condition du `Si` correspondant a pu être laissée ouverte.
     * Le `Si` correspondant a pu être fermé prématurément.
@@ -416,9 +416,9 @@ valeur ou de la commande qui est parfois fournie :
 * X -- Read open error
     * Voir la sous-section [espaces dans les noms de fichiers](#espacesdanslesnomsdefichiers).
 * Stack overflow
-    * Voir la sous-section [récursion](#rcursion).
+    * Voir la sous-section [récursion](#rcursioninfini).
 * too much recursion
-    * Voir la sous-section [récursion](#rcursion).
+    * Voir la sous-section [récursion](#rcursioninfini).
 * Un objet vide n’a pas de queue.
 * Un objet vide n’a pas de tête.
 * X -- undefined
@@ -445,7 +445,7 @@ le signaler en :
    en premier car c’est une commande comme les autres. Par exemple `(n > 1)`
    ne fonctionnera pas, il faut écrire `(> n 1)`.
 
-### Récursion
+### Récursion infinie
 
 * Il est possible que vos appels récursifs (appel d’une commande depuis sa
   définition) ne trouvent pas de point d’appui. Votre test est-il bon ?  
