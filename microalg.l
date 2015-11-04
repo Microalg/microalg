@@ -1400,9 +1400,15 @@ Exemple 2 :
 (de !definir @
   (let (arg_lst (rest)
         signature (car arg_lst)
+        sig_as_txt (pack "(" (apply 'glue (cons " " (list signature))) ")")
+        corps     (cdr arg_lst))
+       (ifn signature
+         (quit "`Definir` a au moins deux paramètres."))
+       (ifn corps
+         (quit (pack "`Definir` le corps de `" sig_as_txt "` est vide.")))
+    (let (arg_lst (rest)
         nom       (car signature)
         params    (cdr signature)
-        corps     (cdr arg_lst)
         aug_corps (conc
                     (!liste_inits_type params)
                     (!liste_inits_val params)
@@ -1424,6 +1430,7 @@ Exemple 2 :
                             "*."))
        (set nom (list params (list 'run (cons 'quote aug_corps))))
        Rien  # Pas de valeur de retour
+    )
   )
 )
 (de Definir !arg_lst (apply '!definir !arg_lst))
