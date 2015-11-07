@@ -905,7 +905,7 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 (setq sequence_tirages@ (Liste))
 (put 'sequence_tirages@ 'type "liste")
 (setq !shift@ 5)
-(setq !space_lenght@ (/ (- 4294967296 (% 4294967296 !shift@)) !shift@))
+(setq !space_length@ (/ (- 4294967296 (% 4294967296 !shift@)) !shift@))
 (de !prochain_etat@ ()
   (ifn !etat@ (setq !etat@ (% (+ (time) (usec)) 4294967296)))  # 2^32
   # http://en.wikipedia.org/wiki/Linear_congruential_generator#Parameters_in_common_use
@@ -925,9 +925,9 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
       (let (!mod (- (+ !max 1) !min)
             !etat (!prochain_etat@)
             !shifted_etat (/ (- !etat (% !etat !shift@)) !shift@))
-            (if (gt0 (- !mod !space_lenght@))
+            (if (gt0 (- !mod !space_length@))
                 (quit (pack "L’espace des valeurs possibles dépasse "
-                            !space_lenght@ ".")) )
+                            !space_length@ ".")) )
             (+ !min (% !shifted_etat !mod))
       )
   )
