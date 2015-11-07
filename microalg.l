@@ -1783,14 +1783,34 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Repere 'doc
 "Dans la sortie graphique, permet de choisir un nouveau repère.
 
-Les quatre paramètres sont parfois appelés Xmin, Xmax, Ymin et Ymax. Ils valent
-par défaut 0, 600, 0 et 600.  
-**Note** : La commande `Epaisseur` et les commandes de la tortue ne sont pas
-affectées par le changement de repère.
+Cette commande peut s’utiliser avec 4 ou 6 paramètres.
 
-Exemple : `(Repere -10 10 -1 1)`  
+* Les quatre premiers paramètres sont parfois appelés Xmin, Xmax, Ymin et Ymax.
+  Ils valent par défaut 0, 600, 0 et 600.  
+* Le cinquième et le sixième sont facultatifs et représentent l’écart entre,
+  respectivement, les graduations sur l’axe des abscisses et les graduations
+  sur l’axe des ordonnées.  
+  S’ils sont fournis, les axes et les graduations sont dessinés.
+
+**Exemples** :
+
+`(Repere -1 3 -2 2)`  
 Avec ces valeurs, le carré graphique 600×600 permettra de visualiser les points
-d’abscisses comprises entre -10 et 10 et d’ordonnées comprises entre -1 et 1.
+d’abscisses comprises entre -1 et 3 et d’ordonnées comprises entre -2 et 2.
+
+`(Repere -10 10 -2 2 1 0.5)`  
+Avec ces valeurs, le carré graphique 600×600 permettra de visualiser les points
+d’abscisses comprises entre -10 et 10 et d’ordonnées comprises entre -1 et 1.  
+De plus, des axes gradués seront dessinés, toutes les unités sur l’axe des
+abscisses, et toutes les demies unités sur l’axe des ordonnées.  
+Attention, les proportions ne seront pas respectées.
+
+`(Repere -10 10 -2 2 11 3)`  
+Idem, mais les axes seront dessinés sans graduations.
+
+**Attention** :  
+La commande `Epaisseur` et les commandes de la tortue ne sont pas
+  affectées par le changement de repère.
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Repere 'text "Commande `Repere`.")
