@@ -573,3 +573,4 @@
         next
         "</block>"))
 
+(de Definir () (!sans_bloc "Definir"))
