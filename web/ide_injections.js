@@ -424,6 +424,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="remplissage"></block>' +
                 '  <block type="remplissage-alpha"></block>' +
                 '  <block type="repere"></block>' +
+                '  <block type="repere_grad"></block>' +
                 ' </category>' +
                 ' <category name="Cmdes tortue">' +
                 '  <block type="av"></block>' +

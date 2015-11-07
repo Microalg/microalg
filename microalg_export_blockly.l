@@ -456,14 +456,26 @@
                  (if a (pack "<value name=\"A\">" (eval a) "</value>"))
                  next
                  "</block>"))))
-(de Repere (x_min x_max y_min y_max next)
-   (pack "<block type=\"repere\">"
-         "<value name=\"X_MIN\">" x_min "</value>"
-         "<value name=\"X_MAX\">" x_max "</value>"
-         "<value name=\"Y_MIN\">" y_min "</value>"
-         "<value name=\"Y_MAX\">" y_max "</value>"
-         next
-         "</block>"))
+(de Repere inputs
+  (let (x_min (eval (car inputs))
+        x_max (eval (cadr inputs))
+        y_min (eval (caddr inputs))
+        y_max (eval (cadddr inputs))
+        x_grad (eval (car (cddr (cddr inputs))))
+        y_grad (eval (cadr (cddr (cddr inputs))))
+        next  (if y_grad
+                  (eval (caddr (cddr (cddr inputs))))
+                  x_grad))
+       (pack "<block type=\"repere" (if y_grad "_grad") "\">"
+             "<value name=\"X_MIN\">" x_min "</value>"
+             "<value name=\"X_MAX\">" x_max "</value>"
+             "<value name=\"Y_MIN\">" y_min "</value>"
+             "<value name=\"Y_MAX\">" y_max "</value>"
+             (if y_grad
+                 (pack "<value name=\"X_GRAD\">" x_grad "</value>"
+                       "<value name=\"Y_GRAD\">" y_grad "</value>"))
+             next
+             "</block>")))
 (de Segment inputs
   (let (p1 (car inputs)
         p2 (cadr inputs)
