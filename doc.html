@@ -587,7 +587,30 @@ permet de contrôler finement l’export.
 C’est en particulier ce qui permet de mettre en place, à partir d’un programme
 textuel en MicroAlg, les blocs de Blockly correspondants
 ([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg_export_blockly.l)
-de `microalg_export_blockly.l`).
+de `microalg_export_blockly.l`).  
+En effet, sans cela, les simples nombres ne pourraient pas générer le code XML
+correspondant aux blocs « nombre ».
+
+De plus, spécifiquement pour Blockly, une autre préparation est nécessaire car
+un bloc est accroché au bloc précédent seulement s’il est dans ses balises
+`<next>...</next>`. C’est le rôle de `insertion_next`
+([voir le code](https://github.com/Microalg/microalg/blob/f229f05a696c132cd58e07d31d83ffd9def81c65/microalg_export_blockly.l#L35t))
+qui réorganise un programme comme :
+
+    (Afficher "bonjour")
+    (Afficher "tout le")
+    (Afficher "monde !")
+
+en :
+
+    (Afficher "bonjour" (Next (Afficher "tout le" (Next (Afficher "monde !")))))
+
+La commande `Next` étant définie un peu plus loin simplement ainsi :
+
+    (de Next (content)
+      (pack "<next>"
+            content
+            "</next>"))
 
 ## Feuille de route
 
