@@ -345,8 +345,6 @@ Aller directement à :
 
 ## Types
 
-En cours de rédaction.
-
 On trouvera :
 
 * [booléen](#boolen),
@@ -361,12 +359,15 @@ Deux valeurs : `Vrai` ou `Faux`.
 
 ### Nombre
 
-Les nombres de MicroAlg sont ceux de PicoLisp.
-
 * Les entiers sont arbitrairement grands, positifs ou négatifs.
     * [Documentation PicoLisp](http://software-lab.de/doc/ref.html#number)
       (en anglais)
-* Les décimaux sont à <a href="http://fr.wikipedia.org/wiki/Virgule_fixe"
+* Par défaut (MicroAlg sur EmuLisp, donc JavaScript), les décimaux sont à
+  <a href="https://fr.wikipedia.org/wiki/Virgule_flottante"
+  class="wp">virgule flottante</a>.
+    * Le séparateur décimal est `.`.
+* Si vous utilisez MicroAlg sur PicoLisp ou Ersatz, Les décimaux sont à
+  <a href="http://fr.wikipedia.org/wiki/Virgule_fixe"
   class="wp">virgule fixe</a>.
     * Le séparateur décimal est `.`.
     * L’échelle est `*Scl`. <!-- TODO: http://pastebin.com/A6tPQNqT -->
@@ -375,22 +376,31 @@ Les nombres de MicroAlg sont ceux de PicoLisp.
 
 ### Texte
 
-Délimités par des guillemets doubles : `"salut"`.
+Les valeurs de type *texte* sont délimitées par des guillemets doubles :
+`"salut"`.
 
-* [Documentation PicoLisp](http://software-lab.de/doc/ref.html#transient)
-  (en anglais)
-* [Documentation PicoLisp](http://software-lab.de/doc/ref.html#transient-io)
-  (en anglais)
+Il est possible d’incorporer des guillemets en les *échappant* avec un `^`
+(voir
+<a href="https://fr.wikipedia.org/wiki/Caract%C3%A8re_d%27%C3%A9chappement"
+   class="wp">l’article Wikipedia</a> sur les caractères d’échappement).
+
+Pour plus de détails :
+
+* [Documentation PicoLisp sur les
+  *transients*](http://software-lab.de/doc/ref.html#transient) (en anglais)
+* [Documentation PicoLisp sur les notations des
+  *transients*](http://software-lab.de/doc/ref.html#transient-io) (en anglais)
 
 ### Liste
 
-En cours de rédaction.
+Pour créer une valeur de type *liste*, il faut taper : `(Liste ...)`.
 
-**Attention, les listes ne sont pas disponibles dans la version web !**
+Les valeurs contenues peuvent être de types différents. Il est même possible
+de créer des listes de listes (de listes…).
 
 ### Commande
 
-En cours de rédaction.
+En cours d’élaboration.
 
 ## Erreurs fréquentes
 
