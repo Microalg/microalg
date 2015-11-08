@@ -262,9 +262,86 @@ suivre l’évolution d’une quantité.
 Cette section est générée directement à partir du fichier `microalg.l`, que
 vous pouvez trouver [ici](microalg.l).
 
+Ces symboles sont aussi classés [par thème](#symbolesparthmes).
+
 Aller directement à :
 
 <div id="syms"></div>
+
+### Symboles par thèmes
+
+**Structures de contrôle**
+
+`(Si ... Alors ... Sinon ...)`, `(Tant_que ... Faire ...)` et
+`(Faire ... Tant_que ...)`, `(Repeter ... Fois ...)`. Pas de boucle POUR.
+
+**Gestion des variables**
+
+`(Affecter_a ... ... [En_position ...])`,
+`(Declarer ... [...] De_type "...")`
+
+**Types et conversions**
+
+`(Type ...)`, `(Nombre ...)`, `(Texte ...)`
+
+**Gestion des listes et du texte**
+
+`(Liste ... [...])`, `(Vide? ...)`, `(Concatener ... [...])`
+`(Longueur ...)`, `(Nieme ... ...)`, `(Nieme@ ...)`, `(Tete ...)`,
+`(Queue ...)`, `(Ajouter_a ... ...)`, `(Retirer_de ...)`
+
+**Opérations mathématiques, comparaisons et nombres pseudo-aléatoires**
+
+`+`, `-`, `*`, `/`, `%`, `^`, `1000Cosinus`, `1000Sinus`,
+`=`, `=/`, `<`, `<=`, `>`, `>=`, `(Entier@ ... ...)`, `(Initialiser@ ...)`
+
+**Logique booléenne**
+
+`Vrai`, `Faux`, `(Et ... [...])`, `(Ou ... [...])`, `(Non ...)`
+
+**Commandes graphiques**
+
+`(RAZ)`,
+`(Repere ... ... ... ... [... ...])`,
+`(Epaisseur ...)`,
+`(Contour (Liste ... ... ...))`,
+`(Remplissage (Liste ... ... ...))`,
+`(Cercle (Liste ... ...) ...)`,
+`(Ellipse (Liste ... ...) ... ...)`,
+`(Rectangle (Liste ... ...) (Liste ... ...)`,
+`(Segment (Liste ... ...) (Liste ... ...)`,
+`(Segment (Liste ... ...) (Liste ... ...) (Liste ... ...)`,
+
+**Commandes pour la tortue**
+
+`(AV ...)`, `(BC)`, `(LC)`, `(TD [...])`, `(TG [...])`
+
+**Création et test de nouvelles commandes**
+
+    (Definir (... ... [...])
+        "documentation"
+        "auteur"
+        ...
+        (Retourner ...)
+    )
+
+    (Exemples_de ...
+        (Liste
+            (? ...) ...
+            [(? ...) ...]
+        )
+    )
+
+    (Tester ...)
+
+**Variables spéciales**
+
+`credit_iterations`, `sequence_tirages@`, `valeur_utilisateur`
+
+**Divers**
+
+`Rien`, `(Afficher ...)`, `(!!! "commentaire")`, `(Aide ...)`,
+`(Demander)`, `(Demander_un_nombre)`, `(Geler ...)`, `(Millisecondes)`
 
 ## Types
 
