@@ -440,7 +440,21 @@ Si la variable contient un texte ou une liste et qu’une position est fournie,
 comme par exemple dans :  
 `(Affecter_a var val En_position idx)`  
 alors l’élément à la `idx` ième position dans `var` est affecté de la valeur
- `val`.")
+`val`.
+
+    : (Declarer mot De_type \"texte\")
+    -> Rien
+    : (Affecter_a mot \"salut\")
+    -> Rien
+    : (Afficher mot)
+    \"salut\"
+    -> Rien
+    : (Affecter_a mot \"z\" En_position 1)
+    -> Rien
+    : (Afficher mot)
+    \"zalut\"
+    -> Rien
+")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
 (de !affecter_a (var val_expr kw idx_expr cinquieme)
     (let (evaled_var (eval var)
