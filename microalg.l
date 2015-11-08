@@ -488,7 +488,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  # Affectation à l’élément `idx` du symbole dans `var`.
                  # Tout d’abord quelques vérifications:
                  (if (<> 'En_position kw)
-                     (quit "Le mot-clef intermédiaire avant l’indice doit être `En_position`.")
+                     (quit "`Affecter_a` n’est pas bien fermé, ou il manque `En_position`.")
                  )
                  (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
                  (let (len (!longueur evaled_var))
