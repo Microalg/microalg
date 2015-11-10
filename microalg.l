@@ -1193,7 +1193,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
         )
     )
     # Le calcul :
-    (!boolP2M (apply 'and (mapcar '((x) (!boolM2P (eval x))) !arg_lst)))
+    (!boolP2M (apply 'and (mapcar '((!x) (!boolM2P (eval !x))) !arg_lst)))
 )
 (put 'Ou 'doc
 "Ou logique.
@@ -1217,7 +1217,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
         )
     )
     # Le calcul :
-    (!boolP2M (apply 'or (mapcar '((x) (!boolM2P (eval x))) !arg_lst)))
+    (!boolP2M (apply 'or (mapcar '((!x) (!boolM2P (eval !x))) !arg_lst)))
 )
 
 # Structures itératives
