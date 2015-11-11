@@ -1106,12 +1106,14 @@ en minuscule).
     -> 42
 ")
 (put 'Nombre 'text "Commande `Nombre`.")
-(de Nombre (x) (cond
-                ((num? x) x)
-                ((str? x) (or (format x)
-                              (quit "Cette valeur ne peut pas être convertie par `Nombre`." x)))
-                (T NIL)
-              ))
+(de Nombre (x)
+  (cond
+    ((num? x) x)
+    ((str? x) (or (format x)
+                  (quit "Cette valeur ne peut pas être convertie par `Nombre`." x)))
+    (T NIL)
+  )
+)
 
 # Structure conditionnelle
 (put 'Vrai 'doc "Booléen valant Vrai.")
