@@ -1148,17 +1148,21 @@ Ou :
     )
 ")
 (put 'Si 'text "Commande `Si`.")
-(de Si arg_lst (let (condition (car arg_lst)
-                     kw_alors  (cadr arg_lst)
-                     splitted  (split (cddr arg_lst) 'Sinon)
-                     bloc_vrai (car splitted)
-                     bloc_faux (cadr splitted))
-                    (if (<> Alors kw_alors) (quit "`Si` : Le mot-clef `Alors` doit être le deuxième argument."))
-                    (if (!boolCheckM2P (eval condition) "La condition n’est pas un booléen.")
-                        (run bloc_vrai)
-                        (if (== NIL bloc_faux)
-                            Rien
-                            (run bloc_faux)))))
+(de Si arg_lst
+  (let (condition (car arg_lst)
+        kw_alors  (cadr arg_lst)
+        splitted  (split (cddr arg_lst) 'Sinon)
+        bloc_vrai (car splitted)
+        bloc_faux (cadr splitted))
+       (if (<> Alors kw_alors)
+           (quit "`Si` : Le mot-clef `Alors` doit être le deuxième argument."))
+       (if (!boolCheckM2P (eval condition) "La condition n’est pas un booléen.")
+           (run bloc_vrai)
+           (if (== NIL bloc_faux)
+               Rien
+               (run bloc_faux)))
+  )
+)
 
 # Opérations logiques
 (put 'Non 'doc
