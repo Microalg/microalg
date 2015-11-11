@@ -1087,16 +1087,18 @@ en minuscule).
     -> \"42\"
 ")
 (put 'Texte 'text "Commande `Texte`.")
-(de Texte (x) (cond
-                ((not (<> x 'Vrai)) "Vrai")
-                ((not (<> x 'Faux)) "Faux")
-                ((not (<> x 'Rien)) "Rien")
-                ((!liste? x) (!text x))  # mettre avant str?
-                ((str? x) x)
-                ((num? x) (format x))
-                ((sym? x) (pack x))
-                (T "???")
-              ))
+(de Texte (x)
+  (cond
+    ((not (<> x 'Vrai)) "Vrai")
+    ((not (<> x 'Faux)) "Faux")
+    ((not (<> x 'Rien)) "Rien")
+    ((!liste? x) (!text x))  # mettre avant str?
+    ((str? x) x)
+    ((num? x) (format x))
+    ((sym? x) (pack x))
+    (T "???")
+  )
+)
 (put 'Nombre 'doc
 "Commande qui retourne le nombre correspondant à son paramètre textuel.
 
