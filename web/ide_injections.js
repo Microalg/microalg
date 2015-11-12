@@ -24,6 +24,7 @@ function getLispSource(what) {
         'export':     'microalg_export.l',
         'blockly':    'microalg_export_blockly.l',
         'casio':      'microalg_export_casio.l',
+        'processing': 'microalg_export_processing.l',
         'ti':         'microalg_export_ti.l',
         'arbretxt':   'microalg_export_arbretxt.l',
         'arbresvg':   'microalg_export_arbresvg.l',
@@ -299,6 +300,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option>exporter</option>' +
         '<option>Casio</option>' +
         '<option>TI</option>' +
+        '<option>Processing</option>' +
         '<option>Arbre 1</option>' +
         '<option>Arbre 2</option>' +
         '<option>Arbre 3</option>' +
@@ -488,11 +490,14 @@ function inject_microalg_editor_in(elt_id, config) {
 }
 
 function export_action(elt_id, select) {
+    if (typeof Processing !== "undefined" && Processing.instances.length > 0) {
+        Processing.instances[0].exit();
+    }
     if (select.selectedIndex == 0) {
         $('#' + elt_id + '-export').html('');
         select.options[0].innerHTML = "exporter";
     } else {
-        var langs = [undefined, 'casio', 'ti', 'arbretxt', 'arbresvg', 'arbreninja'];
+        var langs = [undefined, 'casio', 'ti', 'processing', 'arbretxt', 'arbresvg', 'arbreninja'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         var exported_src = malg2other(lang, src);
@@ -503,6 +508,40 @@ function export_action(elt_id, select) {
                 JSON.parse(exported_src));
             tree.root.extended = false;
             tree.draw();
+        } else if (lang == 'processing') {
+            export_target.html('');
+            exported_src =
+                  "void setup() {\n" +
+                  "  size(600, 600);\n" +
+                  "  background(255);\n" +
+                  "  strokeWeight(1);\n" +
+                  "  stroke(color(0, 0, 0));\n" +
+                  "  fill(1, 0, 0, 0);\n" +
+                  "  rectMode(CORNERS);\n" +
+                  // TODO "  turtle = new Turtle();\n" +
+                  "}\n" +
+                  "void draw() {\n" +
+                  "  // EXPORTÉ DEPUIS MicroAlg\n" +
+                  exported_src.trim().split("\n")
+                              .map(function (l) {return '  ' + l;})
+                              .join("\n") + "\n" +
+                  "}\n" +
+                  "";
+            var msg = "Notez que les procédures <code>setup</code> (où la " +
+                      "taille est forcée à 600×600, entre autres choses) et " +
+                      "<code>draw</code> (contenant l’export) ont été ajoutées.";
+            var doc = $('<p/>', {html: msg});
+            export_target.append(doc);
+            var source = $('<div/>', {html: exported_src,
+                                      class: 'malg-export'});
+            export_target.append(source);
+            var sketch = $('<script/>', {html: exported_src,
+                                         type: "application/processing"});
+            export_target.append(sketch);
+            var canvas = $('<canvas/>', {class: "malg-sketch"});
+            export_target.append(canvas);
+            var reload = $('<script/>', {html: "Processing.reload();"});
+            export_target.append(reload);
         } else {
             export_target.html($('<div/>', {html: exported_src,
                                             class: 'malg-export'}));
