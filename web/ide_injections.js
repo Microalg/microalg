@@ -220,7 +220,8 @@ function ide_action(editor_elt, config_64) {
         EMULISP_CORE.eval(src);
     } catch(e) {
         var link = '<a target="_blank" href="http://microalg.info/doc.html#erreursfrquentes">Voir les erreurs fréquentes.</a>';
-        error_elt.html(e.message + ' <span class="malg-freq-error">' + link + '</span>');
+        var msg = e.message.replace('<', '&lt;');
+        error_elt.html(msg + ' <span class="malg-freq-error">' + link + '</span>');
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
     if (config.localStorage && typeof(Storage) !== "undefined") {
