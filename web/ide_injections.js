@@ -510,6 +510,12 @@ function export_action(elt_id, select) {
             tree.draw();
         } else if (lang == 'processing') {
             export_target.html('');
+            if (typeof Processing === "undefined") {
+                var msg = "Erreur : Processing n’est pas activé pour l’échantillon.";
+                export_target.html(msg);
+                select.options[0].innerHTML = "pas d’export";
+                return;
+            }
             exported_src =
                   "void setup() {\n" +
                   "  size(600, 600);\n" +
