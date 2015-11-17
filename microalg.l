@@ -1426,6 +1426,9 @@ Exemple 2 :
         signature (car arg_lst)
         sig_as_txt (pack "(" (apply 'glue (cons " " (list signature))) ")")
         corps     (cdr arg_lst))
+       (ifn (lst? signature)
+         (quit (pack "Le premier argument de `Definir` doit être de la forme "
+                     "`(commande arg1 arg2 ...)`.")))
        (ifn signature
          (quit "`Definir` a au moins deux paramètres."))
        (ifn corps
