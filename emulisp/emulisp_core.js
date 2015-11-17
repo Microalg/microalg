@@ -1292,6 +1292,8 @@ var coreFunctions = {
 	"loop": function(c) {
 		var v = NIL; while (true) { var r = iter(c); v = r.v; if (r.m) break; }; return v;
 	},
+	"lst?": function(c) { var v = evalLisp(c.car);
+		return ((v instanceof Cell) || v === NIL) ? T : NIL; },
 	"lt0": function(c) { var cv = evalLisp(c.car);
 		return ((cv instanceof Number) && (cv < 0)) ? cv : NIL; },
 	"make": function(c) { mkNew(); prog(c); return mkResult(); },
