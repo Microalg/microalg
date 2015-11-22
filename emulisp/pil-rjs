@@ -5,11 +5,11 @@
 
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
-	print(text.replace(/\n$/g,''));
+    print(text);
 }
 // Override _warn with the official mechanism.
 function warn(msg) {
-	print(msg);
+    print(msg);
 }
 
 var NO_DEBUG = "piljs -> no debug yet";
