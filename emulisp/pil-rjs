@@ -5,7 +5,7 @@
 
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
-    print(text);
+    print(text.replace(/\n$/,''));
 }
 // Override _warn with the official mechanism.
 function warn(msg) {
