@@ -404,7 +404,7 @@ function indx(x, y) {	// Ersatz-like
 }
 
 function Source(text, chars) {
-	this.src = text;
+	this.src = new String(text);
 	// character limitation for symbols
 	if (chars instanceof Symbol) {
 		this.charset = chars.valueOf();
