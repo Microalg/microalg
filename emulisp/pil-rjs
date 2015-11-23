@@ -3,10 +3,18 @@
 
 // Helper file to run EmuLisp on RhinoJS.
 
+// Fix the default print in Rhino and add println:
+// See http://mail.openjdk.java.net/pipermail/nashorn-dev/2013-September/001951.html
+function print(arg) {
+    java.lang.System.out.print(arg);
+}
+function println(arg) {
+    java.lang.System.out.println(arg);
+}
+
 // Override _stdPrint with the official mechanism.
 function stdPrint(text) {
-    var text_as_js_string = new String(text);
-    print(text_as_js_string.replace(/\n$/,''));
+    print(text);
 }
 // Override _warn with the official mechanism.
 function warn(msg) {
@@ -43,18 +51,18 @@ while (true) {
             src = readFile(arg);
         } else {
             if (arg == '+') {
-                print("+ not supported (yet)");
+                println("+ not supported (yet)");
             } else {
-                print(arg + " not found.");
+                println(arg + " not found.");
             }
         }
     }
     try {
         EMULISP_CORE.eval(src);
     } catch(e) {
-        print(e.message)
+        println(e.message)
         EMULISP_CORE.eval("(run *Err)");
-        print("? (" + NO_DEBUG + ")");
+        println("? (" + NO_DEBUG + ")");
     }
 }
 
@@ -68,12 +76,12 @@ while (true) {
     user_input = stdin.readLine();
     try {
         var result = EMULISP_CORE.eval(user_input);
-        print('-> ' + result);
+        println('-> ' + result);
     } catch(e) {
-        print("!? " + user_input)
-        print(e.message)
+        println("!? " + user_input)
+        println(e.message)
         EMULISP_CORE.eval("(run *Err)");
-        print("? (" + NO_DEBUG + ")");
+        println("? (" + NO_DEBUG + ")");
     }
 }
 
