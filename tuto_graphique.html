@@ -40,6 +40,7 @@
     <a href="#couleurs">Couleurs</a>,
     <a href="#autres-formes">Autres Formes</a>,
     <a href="#tortue">La tortue</a>,
+    <a href="#repere">Dans un repère</a>,
     <a href="#contact">Contact</a>.
     </p>
 
@@ -367,6 +368,65 @@
         '(BC)\n' +
         ''
     });</script>
+
+    <h2 id="repere"><a href="#repere">: </a>Dans un repère</a></h2>
+    <p>Par défaut, la fenêtre graphique est le carré délimité par
+    <em>x=0</em> et <em>x=600</em> en abscisses, et
+    <em>y=0</em> et <em>y=600</em> en ordonnées.</p>
+    <p>Il est possible de changer cette fenêtre avec la commande
+    <code>Repere</code>. En lui passant six nombres, on peut choisir :</p>
+    <ul>
+        <li>la limite à gauche (abscisse minimale),</li>
+        <li>la limite à droite (abscisse maximale),</li>
+        <li>la limite en bas (ordonnée minimale),</li>
+        <li>la limite en haut (ordonnée maximale),</li>
+        <li>l’écart entre les graduations sur les abscisses,</li>
+        <li>l’écart entre les graduations sur les ordonnées.</li>
+    </ul>
+    <div id="script-repere"></div>
+    <script>inject_microalg_editor_in('script-repere', {
+     processing: true,
+     blockly:true,
+     src:
+        '(Repere -5 5 -1 9 1 1)\n' +
+        '(Cercle (Liste 3 2) 1)\n' +
+        ''
+    });</script>
+    <p>En ne passant que quatre nombres, on change bien la fenêtre de
+    visualisation, mais les axes ne sont pas dessinés.</p>
+    <div id="script-repere-sans-axes"></div>
+    <script>inject_microalg_editor_in('script-repere-sans-axes', {
+     processing: true,
+     blockly:true,
+     src:
+        '(Repere -5 5 -1 9)\n' +
+        '(Cercle (Liste 3 2) 1)\n' +
+        ''
+    });</script>
+    <p>Pour avoir les axes sans graduation, il suffit de passer des écarts
+    entre graduations plus grands que les bornes de la fenêtre.</p>
+    <div id="script-repere-axes-sans-grad"></div>
+    <script>inject_microalg_editor_in('script-repere-axes-sans-grad', {
+     processing: true,
+     blockly:true,
+     src:
+        '(Repere -5 5 -1 9 6 10)\n' +
+        '(Cercle (Liste 3 2) 1)\n' +
+        ''
+    });</script>
+    <p>Attention, si les bornes ne forment pas un carré, le dessin va être
+    déformé.</p>
+    <div id="script-repere-deforme"></div>
+    <script>inject_microalg_editor_in('script-repere-deforme', {
+     processing: true,
+     blockly:true,
+     src:
+        '(Repere -10 10 -1 9 1 1)\n' +
+        '(Cercle (Liste 3 2) 1)\n' +
+        ''
+    });</script>
+    <p>Dernière remarque : la commande <code>Epaisseur</code> et les commandes
+    de la tortue ne sont pas affectées par le changement de repère.</p>
 
     <h2 id="fin">Fin</h2>
     <p>Voilà, c’est fini. Si désormais vous cherchez une information, allez
