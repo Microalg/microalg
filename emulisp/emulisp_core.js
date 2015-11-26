@@ -1321,8 +1321,24 @@ var coreFunctions = {
 		}
 		return r.list;
 	},
+	"max": function(c) { var m = c.car; c = c.cdr; var v = NIL;
+		while (c instanceof Cell) {
+			v = evalLisp(c.car);
+			if (ltVal(m, v)) m = v;
+			c = c.cdr;
+		}
+		return m;
+	},
 	"method": function(c) { var m = evalLisp(c.car), t = evalLisp(c.cdr.car); TheKey = m;
 		return ((m = method(t)) === null) ? NIL : m;
+	},
+	"min": function(c) { var m = c.car; c = c.cdr; var v = NIL;
+		while (c instanceof Cell) {
+			v = evalLisp(c.car);
+			if (ltVal(v, m)) m = v;
+			c = c.cdr;
+		}
+		return m;
 	},
 	"n0": function(c) { return eqVal(evalLisp(c.car), ZERO) ? NIL : T; },
 	"need": function(c, ex) { var x, y, z, n = numeric(evalLisp((ex = ex.cdr).car));
