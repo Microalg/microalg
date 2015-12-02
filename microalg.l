@@ -470,14 +470,14 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
              ((== var 'Faux) (quit (pack !onppauv "au booléen Faux.")))
              ((== var 'Rien) (quit (pack !onppauv "à Rien.")))
          )
+         (ifn (get var 'type)
+              (quit "Variable non déclarée." var)
+         )
          (ifn kw
               (prog
                  (if (and (!liste? (eval var)) (not (!liste? val)))
                      (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
                  # Affectation au symbole dans `var`.
-                 (ifn (get var 'type)
-                      (quit "Variable non déclarée." var)
-                 )
                  (if (or (not val)  # Pour accepter "" qui est NIL.
                          (<> Faux (= (get var 'type) (Type val))))
                      (set var val)
