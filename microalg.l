@@ -479,6 +479,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
                  # Affectation au symbole dans `var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
+                         (= (get var 'type) "rien")
                          (<> Faux (= (get var 'type) (Type val))))
                      (set var val)
                      (quit "Le type ne correspond pas."
