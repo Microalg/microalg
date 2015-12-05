@@ -501,7 +501,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
                    )
                  )
-                 (if (str? evaled_var)  # check pour textes, inutile pour listes
+                 (if (!boolM2P (!texte? evaled_var))  # check pour textes, inutile pour listes
                      (ifn (and (str? val) (not (<> 1 (length val))))
                           (quit (pack "La valeur affectée à un texte doit être "
                                       "un texte de longueur 1 (un caractère) "
