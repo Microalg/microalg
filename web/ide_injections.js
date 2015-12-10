@@ -312,7 +312,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div id="' + export_id + '"></div>' +
         ((config.blockly || config.blockly_only) ? '<div id="' + blockly_id + '"></div>' : '') +
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
-                                      'class="malg-editor" cols="80" rows="2"' +
+                                      'class="tabIndent malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +
         '<select id="' + output_type_id + '" class="malg-output-type">' +
         '<option' + ((config.output == 'brut')?' selected':'') + '>brut</option>' +
