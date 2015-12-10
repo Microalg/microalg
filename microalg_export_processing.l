@@ -87,7 +87,7 @@
 (de Millisecondes () "millis()")
 
 (de RAZ () "background(255);^J")
-(de Cercle inputs                                                               
+(de Cercle inputs
   (let (origine (car inputs)
         orig_x  (eval (cadr origine))
         orig_y  (eval (caddr origine))
