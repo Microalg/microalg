@@ -9,7 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq symboles '(
-"+" "-" "*" "/" "%" "\^"
+"..." "+" "-" "*" "/" "%" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
 "1000Cosinus" "1000Sinus"
 "AV" "BC" "LC" "TD" "TG"
@@ -1741,7 +1741,14 @@ Exemples :
 (put 'Rien 'text "Rien")
 (setq Rien 'Rien)
 (put '... 'text "Commande `...`.")
-(put '... 'doc "Commande permettant de présenter les exercices à trous.")
+(put '... 'doc "Commande permettant de présenter les exercices à trous.
+
+Exemple :
+
+    : (...)
+    Erreur: Les trois points et/ou les parenthèses `(...)` doivent être
+    remplacés pour que le programme fonctionne.
+    ")
 (de ... ()
   (quit (pack "Les trois points et/ou les parenthèses `(...)` doivent être "
               "remplacés pour que le programme fonctionne.")) )
