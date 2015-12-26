@@ -90,12 +90,14 @@ if uname_s == "Linux" then
         escaped_hat_char = sed ..    [['s/\\\^/\^/g']]
         escaped_backslash = sed ..   [['s/\\\\/\\/g']]
         hat_J = sed ..               [['s/\^J/\n/g']]
-        props["command.go.*.malg"] = "$(microalg_path)/$(1) $(FilePath)"
+        command = "$(microalg_path)/$(1) $(FilePath)"
                                      .. enclosing_quotes
                                      .. escaped_dble_quotes
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
+        props["command.go.*.malg"] = command
+        props["command.go.*.l"] = command
 else
         jrepl = [[ | $(SciteDefaultHome)\jrepl.bat ]]
         jrepl_opts = " /X"
@@ -104,12 +106,14 @@ else
         escaped_hat_char = jrepl ..    [["\\\^" "^"]] .. jrepl_opts
         escaped_backslash = jrepl ..   [["\\\\" "\"]] .. jrepl_opts
         hat_J = jrepl ..               [["\^J" "\n"]] .. jrepl_opts
-        props["command.go.*.malg"] = [[$(SciteDefaultHome)\$(1)-scite.bat $(FilePath)]]
+        command = [[$(SciteDefaultHome)\$(1)-scite.bat $(FilePath)]]
                                      .. enclosing_quotes
                                      .. escaped_dble_quotes
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
+        props["command.go.*.malg"] = command
+        props["command.go.*.l"] = command
         props["command.build.*.malg"] = [[start $(microalg_path)\start_processing.bat]]
 end
 
