@@ -475,8 +475,13 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          )
          (ifn kw
               (prog
-                 (if (and (!liste? (eval var)) (not (!liste? val)))
-                     (quit (pack !onppauv "autre qu’une liste à une liste, utiliser `Affecter_a … … En_position …`.") var))
+                 (if (and (not (<> "liste" (!type_sym var)))
+                          (not (!liste? val)))
+                     (quit (pack !onppauv
+                                 "autre qu’une liste à une liste, "
+                                 "utiliser `Affecter_a … … En_position …`.")
+                           var)
+                 )
                  # Affectation au symbole dans `var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
                          (= (get var 'type) "rien")
