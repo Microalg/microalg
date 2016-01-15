@@ -1471,9 +1471,9 @@ Exemple 2 :
                             auteur
                             "*."))
        (set nom (list params (list 'run (cons 'quote aug_corps))))
-       Rien  # Pas de valeur de retour
     )
   )
+  Rien
 )
 (de Definir !arg_lst (apply '!definir !arg_lst))
 (de Définir !arg_lst (apply '!definir !arg_lst))
@@ -1530,6 +1530,7 @@ Pour lancer les tests, utiliser la commande `Tester`.
                      )
        )
   )
+  Rien
 )
 (put 'Tester 'doc
 "Vérifie que les exemples de la commande passée en paramètre sont conformes.
@@ -1572,6 +1573,7 @@ Voir la commande `Exemples_de`.")
                      ) (!paires (elts> !exemples))))
        )
   )
+  Rien
 )
 
 # Prédicats
