@@ -108,6 +108,9 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `doc.html` : la documentation de MicroAlg
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
 * `malg` : exécutable permettant d’interpréter un `.malg` avec PicoLisp (ASM/C)
+* `malg-clj.bat` : exécutable permettant d’interpréter un `.malg` avec MicroAlg-clj
+  (Clojure), mais le `.jar` n’est pas fourni car réservé aux utilisateurs
+  avancés
 * `malg-j` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
 * `malg-j.bat` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
   sous Windows
