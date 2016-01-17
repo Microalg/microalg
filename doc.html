@@ -39,7 +39,7 @@ Aller directement à :
 * [Installation](#installation)
 * [Pourquoi MicroAlg](#pourquoimicroalg)
 * [Limitations](#limitations)
-* [Syntaxe](#syntaxe)
+* [Syntaxe](#syntaxe) - [Forme de Backus-Naur](#formedebackusnaur)
 * [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
 * [Types](#types)
 * [Erreurs fréquentes](#erreursfrquentes)
@@ -217,6 +217,165 @@ Quelques « trucs » :
     * les parenthèses correspondantes n’étant pas sur la même ligne mais
       alignées verticalement seront de la même couleur.
 * On ne trouvera jamais deux parenthèses ouvrantes de suite.
+
+### Forme de Backus-Naur
+
+Voir l’article <a href="https://fr.wikipedia.org/wiki/Forme_de_Backus-Naur"
+                  class="wp">Forme de Backus-Naur</a> sur Wikipedia.
+
+* `« description en français »` désigne une description en français.
+* `::=` est le méta-symbole de la définition.
+* `<x>` désigne le symbole non terminal `x`.
+* Les symboles terminaux du langage MicroAlg sont entre guillemets simples :  
+  `'('`, `')'`, `' '` (espace) et `'"'`. Le retour à la ligne a été omis mais
+  peut jouer le rôle de l’espace, ainsi que la succession d’espaces et/ou de
+  retours à la ligne.
+* `x` désigne le symbole terminal `x` pour certains symboles terminaux. En
+  effet, par soucis de lisibilité, les mots-clefs n’ont pas été mis entre
+  guillemets simples.
+* `{ « contenu des accolades » }` désigne zéro, un ou plusieurs éléments
+  décrits par le contenu des accolades.
+* `|` est le méta-symbole de l’alternative.
+* `…` est le méta-symbole qui désigne une ellipse. Il sert uniquement à éviter
+  d’énoncer la totalité des commandes de MicroAlg dans la version simplifiée.
+  Elles sont détaillées dans la version… détaillée.
+
+#### Version simplifiée
+
+Cette version ne fait pas apparaître les contraintes sur les arguments attendus
+ou retournés par les commandes.
+
+      <programme>  ::= { <instruction> }
+    <instruction>  ::= '(' <commande> { ' ' <argument> } ')'
+       <commande>  ::= + | - | * | … | Affecter_a | Afficher | …
+       <argument>  ::= <valeur> | <instruction> | <mot-clef-intermédiaire>
+         <valeur>  ::= <nombre> | <texte> | <booleen> | <variable> | Rien
+         <nombre>  ::= « un nombre (le séparateur décimal étant le point) »
+          <texte>  ::= '"' « une chaîne de caractères » '"'
+        <booleen>  ::= Vrai | Faux
+       <variable>  ::= « caractères alphanum. sauf espace » | <var_spéciale>
+    <var_spéciale> ::= credit_iterations | sequence_tirages@ | valeur_utilisateur
+    <mot-clef_intermédiaire> ::=
+        Alors | Sinon | Faire | Tant_que | Fois | En_position | De_type
+
+#### Version détaillée
+
+Nous allons détailler les instructions et les arguments qui peuvent leur être
+associés. On reprend la signification des symboles de la version précédente
+avec deux modifications :
+
+* On ajoute deux méta-symboles, les parenthèses :
+    * `|` est toujours le méta-symbole de l’alternative,
+    * mais des parenthèses `(` et  `)` peuvent servir à la délimiter.
+* Des symboles du langage MicroAlg sont mis entre guillemets simples dans un
+  soucis de clarté. Ils ne participent pas à la syntaxe car ce sont des
+  commandes :
+    * `=`, `=/`, `<`, `<=`, `>` et `>=`,
+    * `+`, `-`, `*`, `/`, `%` et `^`,
+    * `?`.
+
+&nbsp;
+
+    <programme>   ::= { <instruction> }
+      <type>      ::= "nombre" | "texte" | "booleen" | "liste" | "rien" |
+                      '(' Type <instr_valeur> ')'
+      <valeur>    ::= <nombre> | <texte> | <booleen> | <variable> | Rien
+      <nombre>    ::= « un nombre (le séparateur décimal étant le point) »
+      <texte>     ::= '"' « une chaîne de caractères » '"'
+      <booleen>   ::= Vrai | Faux
+      <variable>  ::= « caractères alphanum. sauf espace » | <var_spéciale>
+      <commande>  ::= « caractères alphanum. sauf espace »
+    <var_spéciale> ::= credit_iterations | sequence_tirages@ | valeur_utilisateur
+    <instruction>  ::=
+        '(' Afficher <instr_valeur> ')' |
+        '(' Aide <instr_valeur> ')' |
+        '(' !!! <texte> ')' |
+        '(' Si ' ' <instr_booleen> ' ' Alors ' ' <programme> ')' |
+        '(' Si ' ' <instr_booleen> ' ' Alors ' ' <programme> ' ' Sinon ' ' <programme> ')' |
+        '(' Tant_que ' ' <instr_booleen> ' ' Faire ' ' <programme> ')' |
+        '(' Faire ' ' <programme> ' ' Tant_que ' ' <booleen> ')' |
+        '(' Repeter ' ' <instr_nombre> ' ' Fois ' ' <programme> ')' |
+        '(' Declarer ' ' <variable> { ' ' <variable> } ' ' De_type ' ' <type> ')' |
+        '(' Affecter_a ' ' <variable> ' ' <instr_valeur> ')' |
+        '(' Affecter_a ' ' <variable> ' ' <instr_valeur> ' ' En_position ' ' <instr_nombre> ')' |
+        '(' Ajouter_a ' ' <variable> ' ' <valeur> ')' | « si la variable est de type liste »
+        '(' Ajouter_a ' ' <variable> ' ' <valeur> ')' | « si la var est de type texte et la val un caractère »
+        '(' Definir ' ' '(' <commande>  { ' ' <variable> } ')' ' ' <programme> ')' |
+        '(' Definir ' ' '(' <commande>  { ' ' <variable> } ')' ' ' <texte> ' ' <programme> ')' |
+        '(' Definir ' ' '(' <commande>  { ' ' <variable> } ')' ' ' <texte> ' ' <texte> ' ' <programme> ')' |
+        '(' <commande> { ' ' <instr_valeur> } ')' |
+        '(' Exemples_de <commande> ' ' '(' Liste { ' ' <exemple> } ')' ')' |
+        '(' Tester ' ' <commande> ')' |
+        '(' Initialiser@ ' ' <instr_nombre> ')' |
+        '(' RAZ ')'
+        '(' Repere ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ')' |
+        '(' Repere ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ')' |
+        '(' Epaisseur ' ' <instr_nombre> ')' |
+        '(' Contour ' ' <couleur> ')' |
+        '(' Remplissage ' ' <couleur> ')' |
+        '(' Cercle ' ' <coords> ' ' <instr_nombre> ')' |
+        '(' Ellipse ' ' <coords> ' ' <instr_nombre> ' ' <instr_nombre> ')' |
+        '(' Rectangle ' ' <coords> ' ' <coords> ')' |
+        '(' Segment ' ' <coords> ' ' <coords> ')' |
+        '(' Triangle ' ' <coords> ' ' <coords> ' ' <coords> ')' |
+        '(' AV ' ' <instr_nombre> ')' |
+        '(' BC ')' |
+        '(' LC ')' |
+        '(' TD ')' |
+        '(' TD ' ' <instr_nombre> ')' |
+        '(' TG ')' |
+        '(' TG ' ' <instr_nombre> ')'
+    <exemple> ::= '(' '?' { ' ' <valeur> } ')' ' ' <valeur>
+    <couleur> ::= '(' Liste ' ' <instr_nombre> ' ' <instr_nombre> ' ' <instr_nombre> ')'
+    <coords>  ::= '(' Liste ' ' <instr_nombre> ' ' <instr_nombre> ')'
+    <instr_valeur> ::=
+        <instr_nombre> | <instr_texte> | <instr_booleen> | <instr_liste> | '(' Geler ')'
+    <instr_nombre> ::=
+        <nombre> |
+        <variable> « si la variable contient un nombre » |
+        '(' Nombre ' ' <instr_valeur> ')' |
+        '(' Demander_un_nombre ')' |
+        '(' ( '-' | 1000Cosinus | 1000Sinus ) ' ' <instr_nombre> ')' |
+        '(' ( '+' | '*' ) ' ' <instr_nombre> { ' ' <instr_nombre> } ')' |
+        '(' ( '-' | '/' | '%' | '^' ) ' ' <instr_nombre> ' ' <instr_nombre> ')' |
+        '(' Entier@ ' ' <instr_nombre> ' ' <instr_nombre>) |
+        '(' Tete ' ' <instr_liste> ')' « si la tête est bien un nombre » |
+        '(' Retirer_de ' ' <instr_liste> ')' « si la valeur retirée est bien un nombre » |
+        '(' Nieme ' ' <instr_liste> ' ' <instr_nombre> ')' « si l’élément est bien un nombre » |
+        '(' Nieme@ ' ' <instr_liste> ')' « si l’élément est bien un nombre » |
+        '(' Longueur ' ' <instr_texte> ')' |
+        '(' Longueur ' ' <instr_liste> ')' |
+        '(' Millisecondes ')'
+    <instr_texte> ::=
+        <texte> |
+        <variable> « si la variable contient un texte » |
+        '(' Texte ' ' <instr_valeur> ')' |
+        '(' Demander ')' |
+        '(' Concatener ' ' <instr_texte> { ' ' <instr_texte> } ')' |
+        '(' Tete ' ' <instr_liste> ')' « si la tête est bien un texte » |
+        '(' Queue ' ' <instr_texte> ')'
+        '(' Retirer_de ' ' <instr_liste> ')' « si la valeur retirée est bien un texte » |
+        '(' Nieme ' ' <instr_liste> ' ' <instr_nombre> ')' « si l’élément est bien un texte » |
+        '(' Nieme@ ' ' <instr_liste> ')' « si l’élément est bien un texte »
+        '(' Nieme ' ' <instr_texte> ' ' <instr_nombre> ')' |
+        '(' Nieme@ ' ' <instr_texte> ')'
+    <instr_booleen> ::=
+        <booleen> |
+        <variable> « si la variable contient un booléen » |
+        '(' Non ' ' <instr_booleen> ')' |
+        '(' ( Et | Ou ) ' ' <instr_booleen> { ' ' <instr_booleen> } ')' |
+        '(' ( '=' | '=/' | '<' | '<=' | '>' | '>=' ) ' ' <instr_valeur> ' ' <instr_valeur> ')' |
+        '(' Vide? ' ' <instr_texte> ')' |
+        '(' Vide? ' ' <instr_liste> ')' |
+        '(' Tete ' ' <instr_liste> ')' « si la tête est bien un booléen » |
+        '(' Retirer_de ' ' <instr_liste> ')' « si la valeur retirée est bien un booléen »
+    <instr_liste> ::=
+        <variable> « si la variable contient une liste » |
+        '(' Liste { ' ' <valeur> } ')' |
+        '(' Concatener ' ' <instr_liste> { ' ' <instr_liste> } ')' |
+        '(' Tete ' ' <instr_liste> ')' « si la tête est bien une liste » |
+        '(' Queue ' ' <instr_liste> ')' |
+        '(' Retirer_de ' ' <instr_liste> ')' « si la valeur retirée est bien une liste »
 
 ### Symboles
 
