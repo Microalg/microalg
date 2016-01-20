@@ -703,6 +703,7 @@ avec les plus jeunes.")
         ((==   !evaled_obj 'Vrai) (quit (pack "`Vrai`" !npdl)))
         ((==   !evaled_obj 'Faux) (quit (pack "`Faux`" !npdl)))
         ((==   !evaled_obj 'Rien) (quit (pack "`Rien`" !npdl)))
+        ((get  !obj 'doc)         (quit (pack "`" !obj "`" !npdl)))
     )
     # Le calcul
     (!longueur !evaled_obj)
