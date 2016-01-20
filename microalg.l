@@ -521,7 +521,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                          (set var (pack (head (- idx 1) chopped)
                                         val
                                         (tail (- idx) chopped) )) ))
-                   (T (quit "Affectation positionnelle impossible." (Type evar)))
+                   (T (quit "Affectation positionnelle impossible." (Type evaled_var)))
                  )
               )
          )
