@@ -458,42 +458,42 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
     -> Rien
 ")
 (put 'Affecter_a 'text "Commande `Affecter_a`.")
-(de !affecter_a (var val_expr kw idx_expr cinquieme)
-    (let (evaled_var (eval var)
+(de !affecter_a (!var val_expr kw idx_expr cinquieme)
+    (let (evaled_var (eval !var)
           val (eval val_expr)
           idx (eval idx_expr))
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
-             ((num? var) (quit (pack !onppauv "à un nombre.") var))
-             ((str? var) (quit (pack !onppauv "à un texte.") var))
-             ((== var 'Vrai) (quit (pack !onppauv "au booléen Vrai.")))
-             ((== var 'Faux) (quit (pack !onppauv "au booléen Faux.")))
-             ((== var 'Rien) (quit (pack !onppauv "à Rien.")))
+             ((num? !var) (quit (pack !onppauv "à un nombre.") !var))
+             ((str? !var) (quit (pack !onppauv "à un texte.") !var))
+             ((== !var 'Vrai) (quit (pack !onppauv "au booléen Vrai.")))
+             ((== !var 'Faux) (quit (pack !onppauv "au booléen Faux.")))
+             ((== !var 'Rien) (quit (pack !onppauv "à Rien.")))
          )
-         (ifn (get var 'type)
-              (quit "Variable non déclarée." var)
+         (ifn (get !var 'type)
+              (quit "Variable non déclarée." !var)
          )
          (ifn kw
               (prog
-                 (if (and (not (<> "liste" (!type_sym var)))
+                 (if (and (not (<> "liste" (!type_sym !var)))
                           (not (!liste? val)))
                      (quit (pack !onppauv
                                  "autre qu’une liste à une liste, "
                                  "utiliser `Affecter_a … … En_position …`.")
-                           var)
+                           !var)
                  )
-                 # Affectation au symbole dans `var`.
+                 # Affectation au symbole dans `!var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
-                         (= (get var 'type) "rien")
-                         (<> Faux (= (get var 'type) (Type val))))
-                     (set var val)
+                         (= (get !var 'type) "rien")
+                         (<> Faux (= (get !var 'type) (Type val))))
+                     (set !var val)
                      (quit "Le type ne correspond pas."
-                           (list var 'est 'un (get var 'type) '; val 'un (Type val))
+                           (list !var 'est 'un (get !var 'type) '; val 'un (Type val))
                      )
                  )
               )
               (prog
-                 # Affectation à l’élément `idx` du symbole dans `var`.
+                 # Affectation à l’élément `idx` du symbole dans `!var`.
                  # Tout d’abord quelques vérifications:
                  (if (<> 'En_position kw)
                      (quit "`Affecter_a` n’est pas bien fermé, ou il manque `En_position`.")
@@ -518,7 +518,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                    ((!liste? evaled_var) (put> evaled_var val idx))
                    ((str? evaled_var)
                     (let (chopped (chop evaled_var))
-                         (set var (pack (head (- idx 1) chopped)
+                         (set !var (pack (head (- idx 1) chopped)
                                         val
                                         (tail (- idx) chopped) )) ))
                    (T (quit "Affectation positionnelle impossible." (Type evaled_var)))
