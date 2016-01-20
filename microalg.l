@@ -700,9 +700,9 @@ avec les plus jeunes.")
     (setq !npdl " n’a pas de `Longueur`.")
     (cond
         ((num? !evaled_obj) (quit (pack "Un nombre" !npdl) !evaled_obj))
-        ((==   !evaled_obj 'Vrai) (quit (pack "Vrai" !npdl)))
-        ((==   !evaled_obj 'Faux) (quit (pack "Faux" !npdl)))
-        ((==   !evaled_obj 'Rien) (quit (pack "Rien" !npdl)))
+        ((==   !evaled_obj 'Vrai) (quit (pack "`Vrai`" !npdl)))
+        ((==   !evaled_obj 'Faux) (quit (pack "`Faux`" !npdl)))
+        ((==   !evaled_obj 'Rien) (quit (pack "`Rien`" !npdl)))
     )
     # Le calcul
     (!longueur !evaled_obj)
