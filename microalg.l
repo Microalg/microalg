@@ -214,6 +214,12 @@ Sinon :
 (put '!!! 'doc
 "Commande qui ne fait rien et sert pour les commentaires.
 
+Utilisation :
+
+    (!!! \"...\")
+
+Exemple :
+
     : (!!! \"Ceci est un commentaire.\")
     -> Rien
 
@@ -230,7 +236,12 @@ entre guillemets.
 
 # Aide
 (put 'Aide 'doc
-"Commande qui permet d’obtenir de l’aide.")
+"Commande qui permet d’obtenir de l’aide.
+
+Utilisation :
+
+    (Aide ...)
+")
 (de Aide syms (let (truc (car syms)
                     doc (get truc 'doc))
                    (cond
@@ -255,6 +266,12 @@ Si vous ne l’avez pas déjà fait, commencez par le
 # On garde une trace du dernier affichage dans la variable globale *LastStdOut.
 (put 'Afficher 'doc
 "Commande qui affiche son unique argument, si besoin après l’avoir évalué.
+
+Utilisation :
+
+    (Afficher ...)
+
+Exemple :
 
     : (Afficher \"Bonjour !\")
     Bonjour !
@@ -309,6 +326,12 @@ Si vous ne l’avez pas déjà fait, commencez par le
 # Concatener
 (put 'Concatener 'doc
 "Commande qui concatène les textes ou les listes passés en paramètre (deux ou plus).
+
+Utilisation :
+
+    (Concatener ... [...])
+
+Exemples :
 
     : (Concatener \"abra\" \"cadabra\")
     -> \"abracadabra\"
@@ -371,6 +394,12 @@ Si vous ne l’avez pas déjà fait, commencez par le
 (put 'Declarer 'doc
 "Commande qui permet de déclarer une variable, avec son type.
 
+Utilisation :
+
+    (Declarer ... [...] De_type \"...\")
+
+Exemples :
+
     : (Declarer x De_type \"nombre\")
     -> Rien
     : (Type x)
@@ -426,6 +455,16 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
               "Merci d’utiliser `Declarer`.")))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.
+
+Utilisations :
+
+    (Affecter_a ... ...)
+
+ou
+
+    (Affecter_a ... ... En_position ...)
+
+Exemples :
 
     : (Declarer x De_type \"nombre\")
     -> Rien
@@ -559,6 +598,12 @@ commandes `Demander` et `Demander_un_nombre` (voir `Declarer` et `Affecter_a`)."
 (put 'Demander 'doc
 "Commande qui permet de demander une valeur à l’utilisateur.
 
+Utilisation :
+
+    (Demander)
+
+Exemples :
+
     : (Afficher (Demander))
     salut  <--- Ici, c’est l’utilisateur qui tape ;
     salut  <--- là, c’est MicroAlg qui affiche.
@@ -597,6 +642,10 @@ Pour simplifier cette commande, deux facilités ont été mises en place :
 )
 (put 'Demander_un_nombre 'doc
 "Commande qui permet de demander un nombre à l’utilisateur.
+
+Utilisation :
+
+    (Demander_un_nombre)
 
 Préférer `(Nombre (Demander))`.
 
@@ -658,6 +707,12 @@ avec les plus jeunes.")
 (put 'Liste 'doc
 "Commande qui construit une liste.
 
+Utilisation :
+
+    (Liste ... [...])
+
+Exemple :
+
     : (Afficher (Liste 1 3 5))
     \"(Liste 1 3 5)\"
     -> Rien
@@ -677,6 +732,12 @@ avec les plus jeunes.")
 # Manipulations de texte et de liste
 (put 'Longueur 'doc
 "Commande qui retourne la longueur d’un texte ou d’une liste.
+
+Utilisation :
+
+    (Longueur ...)
+
+Exemples :
 
     : (Longueur \"bonjour\")
     -> 7
@@ -714,6 +775,12 @@ avec les plus jeunes.")
 (se lit « énième »).
 
 La numérotation commence à 1.
+
+Utilisation :
+
+    (Nieme ... ...)
+
+Exemples :
 
     : (Nieme \"salut\" 2)
     -> \"a\"
@@ -755,6 +822,12 @@ La numérotation commence à 1.
 (put 'Tete 'doc
 "Commande qui retourne le premier élément d’un texte ou d’une liste.
 
+Utilisation :
+
+    (Tete ...)
+
+Exemples :
+
     : (Tete \"salut\")
     -> \"s\"
     : (Tete (Liste 1 3 5 7))
@@ -778,6 +851,12 @@ La numérotation commence à 1.
 (put 'Queue 'doc
 "Commande qui retourne une copie du texte ou de la liste en paramètre,
  mais sans son premier élément.
+
+Utilisation :
+
+    (Queue ...)
+
+Exemples :
 
     : (Queue \"salut\")
     -> \"alut\"
@@ -803,7 +882,11 @@ La numérotation commence à 1.
 "Commande qui, si le premier argument est un texte ou une liste, affecte un
 nouvel élément à la fin de ce texte ou de cette liste (après le dernier élément).
 
-Avec du texte :
+Utilisation :
+
+    (Ajouter_a ... ...)
+
+Exemples avec du texte :
 
     : (Declarer mot De_type \"texte\")
     -> Rien
@@ -815,7 +898,7 @@ Avec du texte :
     \"bonjour!\"
     -> Rien
 
-Avec une liste :
+Exemples avec une liste :
 
     : (Declarer v De_type \"liste\")
     -> Rien
@@ -860,7 +943,11 @@ Avec une liste :
 "Commande qui, si le premier paramètre contient un texte ou une liste, retire
  le dernier élément à la fin de ce texte ou de cette liste et le retourne.
 
-Avec du texte :
+Utilisation :
+
+    (Retirer_de ...)
+
+Exemples avec du texte :
 
     : (Declarer mot De_type \"texte\")
     -> Rien
@@ -872,7 +959,7 @@ Avec du texte :
     \"bonjou\"
     -> Rien
 
-Avec une liste :
+Exemples avec une liste :
 
     : (Declarer v De_type \"liste\")
     -> Rien
@@ -966,8 +1053,14 @@ commandes `Entier@` et `Nieme@`, dans cet ordre.
 (put 'Initialiser@ 'doc
 "Initialise la séquence des nombres pseudo-aléatoires.
 
+Utilisation :
+
+    (Entier@ ... ...)
+
 En passant une valeur à `Initialiser@` comprise entre 0 (inclus) et 2 puissance
 32 (exclus), on initialise l’état du générateur à cette valeur.
+
+Exemples :
 
     : (Entier@ 0 1000)
     -> 422  # Cette valeur dépendra du moment où un premier tirage aura été
@@ -992,6 +1085,12 @@ En passant une valeur à `Initialiser@` comprise entre 0 (inclus) et 2 puissance
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
 paramètres entiers).
+
+Utilisation :
+
+    (Entier@ ... ...)
+
+Exemples :
 
     : (Entier@ 1 6)
     -> 2
@@ -1019,6 +1118,12 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 (put 'Nieme@ 'doc
 "Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
  fourni en paramètre.
+
+Utilisation :
+
+    (Nieme' ...)
+
+Exemples :
 
     : (Nieme@ (Liste 13 666 2015))
     -> 666
@@ -1070,6 +1175,12 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 "Commande qui retourne le type de son paramètre (sous forme de texte et
 en minuscule).
 
+Utilisation :
+
+    (Type ...)
+
+Exemples :
+
     : (Type \"salut\")
     -> \"texte\"
     : (Type 42)
@@ -1099,6 +1210,12 @@ en minuscule).
 (put 'Texte 'doc
 "Commande qui retourne le texte correspondant à son paramètre.
 
+Utilisation :
+
+    (Texte ...)
+
+Exemples :
+
     : (Texte 42)
     -> \"42\"
 ")
@@ -1117,6 +1234,12 @@ en minuscule).
 )
 (put 'Nombre 'doc
 "Commande qui retourne le nombre correspondant à son paramètre textuel.
+
+Utilisation :
+
+    (Nombre ...)
+
+Exemples :
 
     : (Nombre \"42\")
     -> 42
@@ -1146,7 +1269,9 @@ en minuscule).
 "Structure conditionnelle, de la forme `Si ... Alors ... Sinon ...` où le
 `Sinon` est facultatif.
 
-    (Si booleen
+Utilisation :
+
+    (Si booléen
      Alors instruction_si_Vrai_1
            instruction_si_Vrai_2
            ...
@@ -1157,7 +1282,7 @@ en minuscule).
 
 Ou :
 
-    (Si booleen
+    (Si booléen
      Alors instruction_si_Vrai_1
            instruction_si_Vrai_2
            ...
@@ -1184,6 +1309,12 @@ Ou :
 (put 'Non 'doc
 "Non logique.
 
+Utilisation :
+
+    (Non ...)
+
+Exemples :
+
     : (Non Vrai)
     -> Faux
     : (Non Faux)
@@ -1197,6 +1328,12 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_NON>.")
     (!boolP2M (not (!boolM2P !P))) )
 (put 'Et 'doc
 "Et logique.
+
+Utilisation :
+
+    (Et ... [...])
+
+Exemples :
 
     : (Et Vrai Faux)
     -> Faux
@@ -1221,6 +1358,12 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_ET>.")
 )
 (put 'Ou 'doc
 "Ou logique.
+
+Utilisation :
+
+    (Ou ... [...])
+
+Exemples :
 
     : (Ou Vrai Faux)
     -> Vrai
@@ -1270,14 +1413,25 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (put 'Tant_que 'doc
 "Structure itérative de type « tant que ... faire ... ».
 
+Utilisation :
+
+    (Tant_que booléen
+     Faire
+        instruction_1
+        instruction_2
+        ...
+    )
+
+Exemple :
+
     : (Declarer i De_type \"nombre\")
     -> Rien
     : (Affecter_a i 3)
     -> Rien
     : (Tant_que (>= i 0)
        Faire
-           (Afficher i)
-           (Affecter_a i (- i 1))
+          (Afficher i)
+          (Affecter_a i (- i 1))
     )
     3
     2
@@ -1300,6 +1454,17 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 )
 (put 'Faire 'doc
 "Structure itérative de type « faire ... tant que ... ».
+
+Utilisation :
+
+    (Faire
+        instruction_1
+        instruction_2
+        ...
+     Tant_que booléen
+    )
+
+Exemple :
 
     : (Declarer i De_type \"nombre\")
     -> Rien
@@ -1342,6 +1507,8 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 (setq Fois 'Fois)
 (put 'Repeter 'doc
 "Structure itérative de type « répéter ... fois : ... ».
+
+Utilisation :
 
     (Repeter nombre Fois
         instruction_1
@@ -1705,6 +1872,10 @@ dans l’ordre décroissant.
 * **Listes** : la seule liste vide est `(Liste)`.
 * Les valeurs des autres types se sont jamais vide.
 
+Utilisation :
+
+    (Vide? ...)
+
 Exemples :
 
     : (Vide? 0)
@@ -1764,6 +1935,10 @@ Exemple :
 # Mesure du temps d’exécution
 (put 'Millisecondes 'doc
 "Retourne le nombre de millisecondes écoulées depuis le début du programme.
+
+Utilisation :
+
+    (Millisecondes)
 
 Exemples :
 
@@ -1834,6 +2009,14 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 )
 (put 'Repere 'doc
 "Dans la sortie graphique, permet de choisir un nouveau repère.
+
+Utilisations :
+
+    (Repere x_min x_max y_min y_max)
+
+ou
+
+    (Repere x_min x_max y_min y_max x_grad y_grad)
 
 Cette commande peut s’utiliser avec 4 ou 6 paramètres.
 
