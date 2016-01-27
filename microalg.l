@@ -1513,7 +1513,7 @@ Exemples :
     -> (Liste (? 1) 2 (? 2) 4 (? 3) 6)
 
     (!!! \"Pour recopier les exemples de Cmd_1 dans Cmd_2.\")
-    (Exemples de Cmd_2 (Exemples de Cmd_1))
+    (Exemples_de Cmd_2 (Exemples_de Cmd_1))
 
 Pour lancer les tests, utiliser la commande `Tester`.
 ")
