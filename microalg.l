@@ -995,8 +995,8 @@ Exemples avec une liste :
 
 # Tirages pseudo-aléatoires.
 (put 'sequence_tirages@ 'doc
-"Liste contenant les nombres entiers qui seront « tirés au sort » par les
-commandes `Entier@` et `Nieme@`, dans cet ordre.
+"Liste contenant les nombres entiers qui seront « tirés au sort », dans l’ordre
+indiqué par cette liste et en boucle, par les commandes `Entier@` et `Nieme@`.
 
     : (Affecter_a sequence_tirages@ (Liste 1 3 5 7))
     -> Rien
