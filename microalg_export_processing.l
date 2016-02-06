@@ -21,8 +21,14 @@
 (de Declarer !arg_lst
   (let (!splitted (split !arg_lst 'De_type)
         !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
-        !type (caadr !splitted))
-       (pack "float " (glue " " !vars) " de type " (cadr !type) ";^J")  # type is in (Litteral ...)
+        !type (cadr (caadr !splitted)))  # type is in (Litteral ...)
+       (cond
+         ((not (<> !type "nombre"))
+          (pack "float " (glue " " !vars) ";^J"))
+         ((not (<> !type "texte"))
+          (pack "String " (glue " " !vars) ";^J"))
+         (T (pack "Impossible de gérer le type « " !type " » avec Processing.^J"))
+       )
   )
 )
 (de Concatener @ (glue " + " (rest)))
