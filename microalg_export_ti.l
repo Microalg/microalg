@@ -16,7 +16,7 @@
 (de % (A B) (pack "Mod(" A "," B ")"))
 (de ^ (A B) (pack "(" A "\^" B ")"))
 
-(de !!! (comz) (pack comz "^J"))
+(de !!! (comz) (pack "\" " comz "^J"))
 (de Afficher (obj) (pack "Disp " obj "^J"))
 (de !store (!arg_lst)
   (let (var (eval (car !arg_lst))
