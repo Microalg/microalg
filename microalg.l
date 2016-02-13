@@ -1615,7 +1615,7 @@ Exemple 2 :
        (ifn signature
          (quit "`Definir` a au moins deux paramètres."))
        (ifn corps
-         (quit (pack "`Definir` le corps de `" sig_as_txt "` est vide.")))
+         (quit (pack "`Definir` : le corps de `" sig_as_txt "` est vide.")))
     (let (arg_lst (rest)
         nom       (car signature)
         params    (cdr signature)
