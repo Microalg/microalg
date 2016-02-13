@@ -1616,6 +1616,13 @@ Exemple 2 :
          (quit "`Definir` a au moins deux paramètres."))
        (ifn corps
          (quit (pack "`Definir` : le corps de `" sig_as_txt "` est vide.")))
+       # Empêcher la collision entre paramètres et variables déjà déclarées.
+       (let (params (cdr signature)
+             msg1 "`Definir` : le paramètre "
+             msg2 " a déjà été déclaré comme variable.")
+            (mapcar '((!sym) (if (!inited !sym (eval !sym))
+                                 (quit (pack msg1 !sym msg2))))
+                    params))
     (let (
         nom       (car signature)
         params    (cdr signature)
