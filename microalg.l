@@ -1438,6 +1438,14 @@ Exemple :
     1
     0
     -> Rien
+
+Remarque :
+
+Par défaut, la commande `Tant_que` est bridée à 1000 tours (au total,
+c’est-à-dire en cumulant les différents `Tant_que` tout au long du programme,
+même s’ils sont imbriqués). Voir la variable
+[credit_iterations](#sym-credit_iterations).
+
 ")
 (put 'Tant_que 'text "Commande `Tant_que`.")
 (de Tant_que arg_lst
