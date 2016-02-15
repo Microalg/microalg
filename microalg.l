@@ -793,10 +793,12 @@ Exemples :
         !evaled_obj (eval !obj)
         !idx (cadr arg_lst)
         !evaled_idx (eval (cadr arg_lst))
-        !troize (caddr arg_lst))
+        !longueur_arg_lst (length arg_lst))
     # Quelques vérifications
-    (if !troize
-        (quit "`Nieme` n’a que deux paramètres."))
+    (if (<> !longueur_arg_lst 2)
+        (quit (pack "`Nieme` a exactement deux paramètres, vous en donnez "
+                    !longueur_arg_lst ".")))
+    # Vérifications concernant l’objet dont on extrait une valeur
     (ifn (!inited !obj !evaled_obj)
         (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
     (let (!onppeuv "`Nieme` ne peut pas extraire une valeur ")
@@ -811,19 +813,24 @@ Exemples :
              (quit (pack !onppeuv "de `Rien`.")))
          )
     )
-    (let (len (!longueur !evaled_obj))
-      (cond
-        ((not !idx)
-          (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
-        ((not !evaled_idx)
-          (quit "`Nieme` : l’indice est une variable non déclarée."))
-        ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
-          (quit "Indice non entier." !evaled_idx))
-        ((le0 !evaled_idx)
-          (quit "`Nieme` : Indice négatif ou nul." !evaled_idx))
-        ((lt0 (- len !evaled_idx))
-          (quit "`Nieme` : Indice trop grand." (list !evaled_idx '> len)))
-      )
+    # Vérifications concernant l’indice
+    (let (!nli "`Nieme` : l’indice ")
+         (cond
+           ((not !idx)
+             (quit (pack !nli "doit être un nombre et non ce qui semble être un texte vide.")))
+           ((not !evaled_idx)
+             (quit (pack !nli "est une variable non déclarée.") !idx))
+           ((!boolM2P (!texte? !evaled_idx))
+             (quit (pack !nli "doit être un nombre et non du texte.") !evaled_idx))
+           ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
+             (quit (pack !nli "doit être un nombre entier.") !evaled_idx))
+           ((le0 !evaled_idx)
+             (quit (pack !nli "doit être strictement positif.") !evaled_idx))
+           ((lt0 (- (!longueur !evaled_obj) !evaled_idx))
+             (quit (pack !nli "est trop grand (position "
+                         !evaled_idx " dans un objet de longueur "
+                         (!longueur !evaled_obj) ").")))
+         )
     )
     # Le calcul
     (cond
