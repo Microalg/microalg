@@ -795,8 +795,10 @@ Exemples :
         !evaled_idx (eval (cadr arg_lst))
         !troize (caddr arg_lst))
     # Quelques vérifications
-    (if !troize (quit "`Nieme` n’a que deux paramètres."))
-    (ifn (!inited !obj !evaled_obj) (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
+    (if !troize
+        (quit "`Nieme` n’a que deux paramètres."))
+    (ifn (!inited !obj !evaled_obj)
+        (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
     (let (!onppeuv "`Nieme` ne peut pas extraire une valeur ")
          (cond
            ((num? !evaled_obj)
@@ -811,18 +813,26 @@ Exemples :
     )
     (let (len (!longueur !evaled_obj))
       (cond
-        ((not !idx) (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
-        ((not !evaled_idx) (quit "`Nieme` : l’indice est une variable non déclarée."))
-        ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ",")) (quit "Indice non entier." !evaled_idx))
-        ((le0 !evaled_idx) (quit "`Nieme` : Indice négatif ou nul." !evaled_idx))
-        ((lt0 (- len !evaled_idx)) (quit "`Nieme` : Indice trop grand." (list !evaled_idx '> len)))
+        ((not !idx)
+          (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
+        ((not !evaled_idx)
+          (quit "`Nieme` : l’indice est une variable non déclarée."))
+        ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
+          (quit "Indice non entier." !evaled_idx))
+        ((le0 !evaled_idx)
+          (quit "`Nieme` : Indice négatif ou nul." !evaled_idx))
+        ((lt0 (- len !evaled_idx))
+          (quit "`Nieme` : Indice trop grand." (list !evaled_idx '> len)))
       )
     )
     # Le calcul
     (cond
-      ((!liste? !evaled_obj) (nth> !evaled_obj !evaled_idx))
-      ((!boolM2P (!texte? !evaled_obj)) (car (nth (chop !evaled_obj) !evaled_idx)))
-      (T Rien)
+      ((!liste? !evaled_obj)
+        (nth> !evaled_obj !evaled_idx))
+      ((!boolM2P (!texte? !evaled_obj))
+        (car (nth (chop !evaled_obj) !evaled_idx)))
+      (T
+        Rien)
     )
   )
 )
