@@ -791,7 +791,8 @@ Exemples :
 (de Nieme arg_lst
   (let (!obj (car arg_lst)
         !evaled_obj (eval !obj)
-        !idx (eval (cadr arg_lst))
+        !idx (cadr arg_lst)
+        !evaled_idx (eval (cadr arg_lst))
         !troize (caddr arg_lst))
     # Quelques vérifications
     (if !troize (quit "`Nieme` n’a que deux paramètres."))
@@ -811,15 +812,16 @@ Exemples :
     (let (len (!longueur !evaled_obj))
       (cond
         ((not !idx) (quit "`Nieme` : Il manque le deuxième paramètre : l’indice."))
-        ((<> !idx (format (round !idx 0) 0 "." ",")) (quit "Indice non entier." !idx))
-        ((le0 !idx) (quit "`Nieme` : Indice négatif ou nul." !idx))
-        ((lt0 (- len !idx)) (quit "`Nieme` : Indice trop grand." (list !idx '> len)))
+        ((not !evaled_idx) (quit "`Nieme` : l’indice est une variable non déclarée."))
+        ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ",")) (quit "Indice non entier." !evaled_idx))
+        ((le0 !evaled_idx) (quit "`Nieme` : Indice négatif ou nul." !evaled_idx))
+        ((lt0 (- len !evaled_idx)) (quit "`Nieme` : Indice trop grand." (list !evaled_idx '> len)))
       )
     )
     # Le calcul
     (cond
-      ((!liste? !evaled_obj) (nth> !evaled_obj !idx))
-      ((!boolM2P (!texte? !evaled_obj)) (car (nth (chop !evaled_obj) !idx)))
+      ((!liste? !evaled_obj) (nth> !evaled_obj !evaled_idx))
+      ((!boolM2P (!texte? !evaled_obj)) (car (nth (chop !evaled_obj) !evaled_idx)))
       (T Rien)
     )
   )
