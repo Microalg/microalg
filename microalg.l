@@ -796,12 +796,17 @@ Exemples :
     # Quelques vérifications
     (if !troize (quit "`Nieme` n’a que deux paramètres."))
     (ifn (!inited !obj !evaled_obj) (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
-    (setq !onppeuv "`Nieme` ne peut pas extraire une valeur ")
-    (cond
-        ((num? !evaled_obj) (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
-        ((==   !evaled_obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
-        ((==   !evaled_obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
-        ((==   !evaled_obj 'Rien) (quit (pack !onppeuv "de Rien.")))
+    (let (!onppeuv "`Nieme` ne peut pas extraire une valeur ")
+         (cond
+           ((num? !evaled_obj)
+             (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
+           ((==   !evaled_obj 'Vrai)
+             (quit (pack !onppeuv "du booléen `Vrai`.")))
+           ((==   !evaled_obj 'Faux)
+             (quit (pack !onppeuv "du booléen `Faux`.")))
+           ((==   !evaled_obj 'Rien)
+             (quit (pack !onppeuv "de `Rien`.")))
+         )
     )
     (let (len (!longueur !evaled_obj))
       (cond
