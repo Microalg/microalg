@@ -125,13 +125,33 @@ function stdPrompt() {
     else throw new Error("Commande `Demander` annulée.")
 }
 
+function preparation_exception(e) {
+    var link = '<a target="_blank" href="http://microalg.info/doc.html#erreursfrquentes">Voir les erreurs fréquentes.</a>';
+    var msg = e.message.replace('<', '&lt;');
+    return msg + ' <span class="malg-freq-error">' + link + '</span>';
+}
+
 function onCtrl(elt, f, config_64) {
     elt.keydown(function (e) {
-        if (e.ctrlKey) {
-            if (e.keyCode == 10 || e.keyCode == 13) {
-                f(elt, config_64);
-            } else if (e.keyCode == 66) {
-                e.preventDefault();
+        if (!e.ctrlKey) return;
+        if (e.keyCode == 10 || e.keyCode == 13) {
+            f(elt, config_64);
+        } else if (e.keyCode == 66) {
+            e.preventDefault();
+            if (e.shiftKey) {
+                try {
+                    var xml_text = malg2blockly(elt[0].value);
+                    var xml = window.blockly.Xml.textToDom(xml_text);
+                    window.blockly.mainWorkspace.clear();
+                    window.blockly.Xml.domToWorkspace(window.blockly.mainWorkspace, xml);
+                } catch(e) {
+                    // The editor is in a hiddable div,
+                    // createRichInput put the editor in a sub div,
+                    // that's why we use parent().parent().parent()
+                    var error_elt = elt.parent().parent().parent().find('.malg-error').first();
+                    error_elt.html(preparation_exception(e));
+                }
+            } else {
                 // Voir aussi dans editeurs/scite/malg_abbrev.properties.
                 var abbrevs = {
                   "(Af":  "(Affecter_a |)",
@@ -220,9 +240,7 @@ function ide_action(editor_elt, config_64) {
         error_elt.text('');
         EMULISP_CORE.eval(src);
     } catch(e) {
-        var link = '<a target="_blank" href="http://microalg.info/doc.html#erreursfrquentes">Voir les erreurs fréquentes.</a>';
-        var msg = e.message.replace('<', '&lt;');
-        error_elt.html(msg + ' <span class="malg-freq-error">' + link + '</span>');
+        error_elt.html(preparation_exception(e));
     }
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
     if (config.localStorage && typeof(Storage) !== "undefined") {
@@ -713,6 +731,7 @@ function malg2blockly(src) {
 }
 
 function blocklyLoaded(blockly, editor_id, msg) {
+    window.blockly = blockly;
     if (typeof msg != 'undefined') {
         var xml_text = malg2blockly(msg);
         var xml = blockly.Xml.textToDom(xml_text);
