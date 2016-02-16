@@ -429,10 +429,10 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !kw (eval (cadr (reverse arg_lst)))
         !type (eval (caadr !splitted)))
        (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
+       # Le type existe-t-il ?
+       (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
+            (quit "Ce type n’existe pas." !type))
        (for (!var_num . !var) !vars
-         # Le type existe-t-il ?
-         (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
-              (quit "Ce type n’existe pas." !type))
          # Les variables ont-elles déjà été déclarées ?
          (let (!type (!type_sym !var))
            (if (<> "rien" !type)
