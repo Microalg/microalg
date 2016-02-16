@@ -427,7 +427,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !splitted (split arg_lst 'De_type)
         !vars (car !splitted)
         !kw (eval (cadr (reverse arg_lst)))
-        !type (eval (caadr !splitted)))
+        !type (caadr !splitted))
        (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
        # Le type existe-t-il ?
        (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
