@@ -427,19 +427,22 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !splitted (split arg_lst 'De_type)
         !vars (car !splitted)
         !kw (eval (cadr (reverse arg_lst)))
-        !type (caadr !splitted))
-       (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
+        !type (caadr !splitted)
+        !msg "`Declarer` : ")
+       (if (<> De_type !kw)
+           (quit (pack !msg "mot-clef `De_type` manquant.")))
        # Le type est-t-il bien du texte ?
        (ifn (!boolM2P (!texte? !type))
-            (quit "Le type doit être du texte (entre \"\")." !type))
+            (quit (pack !msg "le type doit être du texte (entre \"\").")
+                  !type))
        # Le type existe-t-il ?
        (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
-            (quit "Ce type n’existe pas." !type))
+            (quit (pack !msg "ce type n’existe pas.") !type))
        (for (!var_num . !var) !vars
          # Les variables ont-elles déjà été déclarées ?
          (let (!type (!type_sym !var))
            (if (<> "rien" !type)
-               (quit (pack "`Declarer` : la variable " !var
+               (quit (pack !msg "la variable " !var
                            " a déjà été déclarée de type \"" !type "\"."))
            )
          )
