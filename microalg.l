@@ -546,6 +546,8 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
                  (let (len (!longueur evaled_var))
                    (cond
+                     ((not idx_expr) (quit "Après `En_position`, il manque l’indice."))
+                     ((not (num? idx_expr)) (quit "Après `En_position`, il faut un nombre entier." idx_expr))
                      ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
                      ((le0 idx) (quit "Indice négatif ou nul." idx))
                      ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
