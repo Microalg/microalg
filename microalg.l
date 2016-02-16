@@ -429,6 +429,9 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !kw (eval (cadr (reverse arg_lst)))
         !type (caadr !splitted))
        (if (<> De_type !kw) (quit "Mot-clef `De_type` manquant."))
+       # Le type est-t-il bien du texte ?
+       (ifn (!boolM2P (!texte? !type))
+            (quit "Le type doit être du texte (entre \"\")." !type))
        # Le type existe-t-il ?
        (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
             (quit "Ce type n’existe pas." !type))
