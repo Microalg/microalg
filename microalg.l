@@ -135,6 +135,10 @@ Voir <http://microalg.info>.")
                        (!add_quotes x)
                        x))
 
+(de !erreur @
+  (let (!code (next))
+    (quit (pack (rest) " [erreur n°" !code "]"))))
+
 # Vérif qu’une variable est bien initialisée :
 (de !inited (!sym !evaled_sym)
     (or
