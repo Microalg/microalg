@@ -139,6 +139,9 @@ Voir <http://microalg.info>.")
   (let (!code (next))
     (quit (pack (rest) " [erreur n°" !code "]"))))
 
+(de pico_list_to_transient (!lst)
+  (pack "(" (glue " " !lst) ")") )
+
 # Vérif qu’une variable est bien initialisée :
 (de !inited (!sym !evaled_sym)
     (or
@@ -301,7 +304,9 @@ Exemple :
           ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
           ((sym? efirst) efirst)                  # expr -> sym (Rien, bool…)
           # m’est arrivé avec (Liste (0 255 0)) :
-          ((and lst? (lst? first)) (quit "Parenthèses mal placées." first))
+          ((and lst? (lst? first))
+            (!erreur 3 "Parenthèses mal placées dans `"
+                       (pico_list_to_transient first) "`."))
           (T (quit "Pas de représentation textuelle." first))
          )
      )
