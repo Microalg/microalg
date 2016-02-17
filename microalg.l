@@ -544,13 +544,27 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      (quit "`Affecter_a` n’est pas bien fermé, ou il manque `En_position`.")
                  )
                  (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
-                 (let (len (!longueur evaled_var))
+                 (let (!aepli (pack "`Affecter_a ... En_position ...` : "
+                                    "après `En_position`, l’indice "))
                    (cond
-                     ((not idx_expr) (quit "Après `En_position`, il manque l’indice."))
-                     ((not (num? idx_expr)) (quit "Après `En_position`, il faut un nombre entier." idx_expr))
-                     ((<> idx (format (round idx 0) 0 "." ",")) (quit "Indice non entier." idx))
-                     ((le0 idx) (quit "Indice négatif ou nul." idx))
-                     ((lt0 (- len idx)) (quit "Indice trop grand." (list idx '> len)))
+                     ((not idx_expr)
+                       (quit (pack !aepli "est manquant.")))
+                     ((not idx)
+                       (quit (pack !aepli "est une variable non déclarée : `"
+                                   idx_expr "`.")))
+                     ((!boolM2P (!texte? idx))
+                       (quit (pack !aepli "doit être un nombre et non du texte.")
+                             idx))
+                     ((not (num? idx))
+                       (quit (pack !aepli "doit être un nombre.") idx_expr))
+                     ((<> idx (format (round idx 0) 0 "." ","))
+                       (quit (pack !aepli "doit être un nombre entier.") idx))
+                     ((le0 idx)
+                       (quit (pack !aepli "doit être strictement positif.") idx))
+                     ((lt0 (- (!longueur evaled_var) idx))
+                       (quit (pack !aepli "est trop grand (position "
+                                   idx " dans un objet de longueur "
+                                   (!longueur evaled_var) ").")))
                    )
                  )
                  (if (!boolM2P (!texte? evaled_var))  # check pour textes, inutile pour listes
