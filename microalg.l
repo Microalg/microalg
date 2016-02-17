@@ -841,7 +841,7 @@ Exemples :
            ((not !idx)
              (quit (pack !nli "doit être un nombre et non ce qui semble être un texte vide.")))
            ((not !evaled_idx)
-             (quit (pack !nli "est une variable non déclarée.") !idx))
+             (quit (pack !nli "est une variable non déclarée : `" !idx "`.")))
            ((!boolM2P (!texte? !evaled_idx))
              (quit (pack !nli "doit être un nombre et non du texte.") !evaled_idx))
            ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
