@@ -233,9 +233,9 @@ entre guillemets.
 (put '!!! 'text "Commande commentaire.")
 (de !!! !arg_lst
   (if (<> (length !arg_lst) 1)
-    (quit "La commande `!!!` n’accepte qu’un argument."))
+    (!erreur 1 "La commande `!!!` n’accepte qu’un argument."))
   (ifn (str? (car !arg_lst))
-    (quit "Un commentaire doit être du texte (entre guillemets)."))
+    (!erreur 2 "Un commentaire doit être du texte (entre guillemets)."))
   Rien)
 
 # Aide
