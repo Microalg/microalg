@@ -307,7 +307,7 @@ Exemple :
           ((and lst? (lst? first))
             (!erreur 3 "Parenthèses mal placées dans `"
                        (pico_list_to_transient first) "`."))
-          (T (quit "Pas de représentation textuelle." first))
+          (T (!erreur 4 "Pas de représentation textuelle pour " first "."))
          )
      )
 )
@@ -319,9 +319,11 @@ Exemple :
    a_afficher (!text first)
   )
   # Quelques vérifications
-  (ifn (!inited first a_afficher) (quit "`Afficher` : la variable n’a pas été déclarée." first))
-  (if second (quit (pack "`Afficher` n’a qu’un paramètre, faites plusieurs "
-                         "affichages ou utilisez `Concatener`." )))
+  (ifn (!inited first a_afficher)
+       (!erreur 5 "`Afficher` : la variable `" first "` n’a pas été déclarée."))
+  (if second
+      (!erreur 6 "`Afficher` n’a qu’un paramètre, "
+                 "faites plusieurs affichages ou utilisez `Concatener`."))
   # Le boulot
   (setq *LastStdOut (if a_afficher a_afficher ""))
   (ifn !testing
@@ -364,7 +366,8 @@ Exemples :
              # Variables initialisées ?
              (for (!arg_num . !arg) !arg_lst
                (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
-                    (quit (pack !error_prefix !arg_num " n’a pas été déclaré.") !arg)
+                    (!erreur 7 !error_prefix !arg_num " (`" !arg "`) "
+                               "est une variable qui n’a pas été déclarée.")
                )
              )
              # Quelques vérifs, puis le calcul :
@@ -372,13 +375,14 @@ Exemples :
                    !type (!type_sym !preumz))
                   # D’abord le type du premier arg :
                   (ifn (index !type '("liste" "texte"))
-                       (quit (pack "Ce type de valeur : \"" !type
-                                   "\" , n’est pas concaténable.") !preumz))
+                       (!erreur 8 "La valeur `" !preumz "` est de type "
+                                  "\"" !type "\" et n’est donc pas "
+                                  "concaténable."))
                   # Ensuite le type des autres :
                   (for (!arg_num . !arg) !evaled_arg_lst
                     (if (<> !type (!type_sym !arg))
-                         (quit (pack !error_prefix !arg_num " n’est pas de type \""
-                                     !type "\".") !arg)))
+                         (!erreur 9 !error_prefix !arg_num " (`" !arg "`) "
+                                    "n’est pas de type \"" !type "\".")))
                   # Le calcul :
                   (ifn (<> 1 !arg_nbre)
                        (car !evaled_arg_lst)  # Légère optimisation
@@ -428,8 +432,8 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
   (let (arg_lst (rest)
         nbr_args (length arg_lst))
        (if (lt0 (- nbr_args 3))
-           (quit (pack "`Declarer` prend au moins 3 paramètres. "
-                       "Vous en donnez " nbr_args ".") )
+           (!erreur 10 "`Declarer` prend au moins 3 paramètres. "
+                       "Vous en donnez " nbr_args ".")
        )
   )
   (let (arg_lst (rest)
@@ -439,11 +443,11 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !type (caadr !splitted)
         !msg "`Declarer` : ")
        (if (<> De_type !kw)
-           (quit (pack !msg "mot-clef `De_type` manquant.")))
+           (!erreur 11 !msg "mot-clef `De_type` manquant."))
        # Le type est-t-il bien du texte ?
        (ifn (!boolM2P (!texte? !type))
-            (quit (pack !msg "le type doit être du texte (entre \"\").")
-                  !type))
+            (!erreur 12 !msg "le type ne peut pas être `" !type "` "
+                        "mais doit être du texte (entre \"\")."))
        # Le type existe-t-il ?
        (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
             (quit (pack !msg "ce type n’existe pas.") !type))
