@@ -413,6 +413,8 @@ Utilisation :
 
     (Declarer ... [...] De_type \"...\")
 
+Pour une liste des types disponibles, voir [cette section](#types).
+
 Exemples :
 
     : (Declarer x De_type \"nombre\")
