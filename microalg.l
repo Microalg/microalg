@@ -366,7 +366,7 @@ Exemples :
              # Variables initialisées ?
              (for (!arg_num . !arg) !arg_lst
                (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
-                    (!erreur 7 !error_prefix !arg_num " (`" !arg "`) "
+                    (!erreur 7 !error_prefix !arg_num ", `" !arg "`, "
                                "est une variable qui n’a pas été déclarée.")
                )
              )
@@ -381,8 +381,10 @@ Exemples :
                   # Ensuite le type des autres :
                   (for (!arg_num . !arg) !evaled_arg_lst
                     (if (<> !type (!type_sym !arg))
-                         (!erreur 9 !error_prefix !arg_num " (`" !arg "`) "
-                                    "n’est pas de type \"" !type "\".")))
+                         (!erreur 9 !error_prefix !arg_num ", "
+                                    "`" (!text !arg) "`, "
+                                    "doit être de type `\"" !type "\"` "
+                                    "mais est de type `\"" (!type_sym !arg) "\"`.")))
                   # Le calcul :
                   (ifn (<> 1 !arg_nbre)
                        (car !evaled_arg_lst)  # Légère optimisation
