@@ -42,7 +42,7 @@ Aller directement à :
 * [Syntaxe](#syntaxe) - [Forme de Backus-Naur](#formedebackusnaur)
 * [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
 * [Types](#types)
-* [Erreurs fréquentes](#erreursfrquentes)
+* [Aide sur les messages d’erreur](#aidesurlesmessagesderreur)
 * [Abréviations](#abrviations)
 * [Export](#export)
     * [Limitations](#limitations)
@@ -571,16 +571,28 @@ de créer des listes de listes (de listes…).
 
 En cours d’élaboration.
 
-## Erreurs fréquentes
+## Aide sur les messages d’erreur
+
+Un programme peut produire des erreurs à l’exécution. Certaines erreurs ont pu
+être identifiées par un numéro et rédigées en français et sont répertoriées
+[dans cette section](#erreursnumrotes). Mais pour des raisons techniques,
+certaines sont restées en anglais. Ces dernières sont listées dans
+[cette section](#erreursfrquentes).
+
+Ainsi, si le message d’erreur ne permet pas de résoudre le problème, des
+informations supplémentaires sont données ici. Dans le cas d’une erreur
+non numérotée, il faut chercher soi-même dans la liste des
+[erreurs fréquentes](#erreursfrquentes).
+
+Dans tous les cas, si vous ne trouvez pas l’information que vous cherchiez,
+merci de m’<a href="mailto:profgra.org@gmail.com"
+class="email">écrire un petit email</a>.
+
+### Erreurs fréquentes
 
 Les messages sont classés par ordre alphabétique, sans tenir compte de la
 valeur ou de la commande qui est parfois fournie :
 
-* `Afficher` n’a qu’un paramètre, faites plusieurs affichages ou utilisez
-  `Concatener`.
-    * Vous utilisez peut-être `Concatener`, mais il manque une parenthèse
-      fermante. Le reste du programme est vu comme le reste des arguments à
-      `Afficher`.
 * Après `En_position`, il n’y a qu’un paramètre.
     * Vous n’avez peut-être pas bien fermé la parenthèse de la commande
       `Affecter_a`.
@@ -716,6 +728,109 @@ le signaler en :
   parce que son nom contient des espaces. Pour le confirmer, observez le nom de
   fichier qui précède ce message d’erreur, il s’arrête sans doute au premier
   espace rencontré.
+
+### Erreurs numérotées
+
+[1](#erreur_1)
+[2](#erreur_2)
+[3](#erreur_3)
+[4](#erreur_4)
+[5](#erreur_5)
+[6](#erreur_6)
+[7](#erreur_7)
+[8](#erreur_8)
+[9](#erreur_9)
+[10](#erreur_10)
+[11](#erreur_11)
+[12](#erreur_12)
+
+#### erreur_1
+
+> La commande `!!!` n’accepte qu’un argument.
+
+Voir [l’aide de la commande !!!](#sym-!!!).
+
+#### erreur_2
+
+> Un commentaire doit être du texte (entre guillemets).
+
+Voir [l’aide de la commande !!!](#sym-!!!).
+
+#### erreur_3
+
+> Parenthèses mal placées dans `(X Y Z)`.
+
+Cela peut arriver si vous mettez les valeurs d’une liste dans une autre
+série de parenthèses : `(Liste (X Y Z))`. Il faut taper `(Liste X Y Z)`.
+
+#### erreur_4
+
+> Pas de représentation textuelle pour `truc`.
+
+`truc` a une valeur tellement étrange que MicroAlg n’arrive pas à l’afficher.
+
+Merci de m’envoyer votre programme
+<a href="mailto:profgra.org@gmail.com" class="email">par email</a> pour que
+je puisse vous en dire plus.
+
+#### erreur_5
+
+> `Afficher` : la variable `truc` n’a pas été déclarée.
+
+Vérifiez l’orthographe de votre variable.
+
+#### erreur_6
+
+> `Afficher` n’a qu’un paramètre, faites plusieurs affichages ou utilisez
+> `Concatener`.
+
+Vous utilisez peut-être `Concatener`, mais il manque peut-être une parenthèse
+fermante, ce qui fait que le reste du programme est vu comme le reste des
+arguments de `Afficher`.
+
+#### erreur_7
+
+> `Concatener` : l’argument n°X (`truc`) est une variable qui n’a pas été
+> déclarée.
+
+Vérifiez l’orthographe de votre variable.
+
+#### erreur_8
+
+> `Concatener` : la valeur `truc` est de type `"machin"` et n’est donc pas
+> concaténable.
+
+* Seules les valeurs de type `"texte"` ou `"liste"` sont concaténables. Vérifiez
+  le type des valeurs que vous voulez concaténer.
+* Pour construire du texte avec des valeurs qui ne sont pas de type `"texte"`,
+  on peut utiliser la commande [`Texte`](#sym-Texte).
+
+#### erreur_9
+
+> `Concatener` : l’argument n°X (`truc`) doit être de type `"machin"` mais est
+> `"bidule"`.
+
+Les valeurs à concaténer doivent être du même type que la première valeur
+envoyée à `Concatener`.
+
+#### erreur_10
+
+> `Declarer` prend au moins 3 paramètres. Vous en donnez X.
+
+Voir [l’aide de la commande Declarer](#sym-Declarer).
+
+#### erreur_11
+
+> `Declarer` : mot-clef `De_type` manquant.
+
+Voir [l’aide de la commande Declarer](#sym-Declarer).
+
+#### erreur_12
+
+> `Declarer` : le type ne peut pas être `truc` mais doit être du texte
+> (entre "").
+
+Voir [l’aide de la commande Declarer](#sym-Declarer).
 
 ## Abréviations
 
