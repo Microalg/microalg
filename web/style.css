@@ -58,6 +58,14 @@ body.microalg {
     white-space: pre;
     position: relative;
 }
+.microalg blockquote {
+    background-color: #F9F9F9;
+    border: solid #CCC 1px;
+    border-left: solid #DDD 5px;
+    padding-left: 0.7em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
 .malg-container {
     width: 95%;
     margin: 0px auto;
