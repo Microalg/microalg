@@ -375,8 +375,8 @@ Exemples :
                    !type (!type_sym !preumz))
                   # D’abord le type du premier arg :
                   (ifn (index !type '("liste" "texte"))
-                       (!erreur 8 "La valeur `" !preumz "` est de type "
-                                  "\"" !type "\" et n’est donc pas "
+                       (!erreur 8 "`Concatener` : la valeur `" !preumz "` est "
+                                  "de type `\"" !type "\"` et n’est donc pas "
                                   "concaténable."))
                   # Ensuite le type des autres :
                   (for (!arg_num . !arg) !evaled_arg_lst
