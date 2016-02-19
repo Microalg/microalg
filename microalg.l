@@ -307,7 +307,7 @@ Exemple :
           ((and lst? (lst? first))
             (!erreur 3 "Parenthèses mal placées dans `"
                        (pico_list_to_transient first) "`."))
-          (T (!erreur 4 "Pas de représentation textuelle pour " first "."))
+          (T (!erreur 4 "Pas de représentation textuelle pour `" first "`."))
          )
      )
 )
