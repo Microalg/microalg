@@ -126,8 +126,23 @@ function stdPrompt() {
 }
 
 function preparation_exception(e) {
-    var link = '<a target="_blank" href="http://microalg.info/doc.html#erreursfrquentes">Voir les erreurs fréquentes.</a>';
-    var msg = e.message.replace('<', '&lt;');
+    var msg_escaped = e.message.replace('<', '&lt;');
+    var link_prefix = '<a target="_blank" href="http://microalg.info/doc.html#';
+    var re = /^(.*) \[erreur n°(\d+)\]$/;
+    var matches = msg_escaped.match(re);
+    var msg;
+    var link;
+    if (matches) {
+        // erreurs new style
+        msg = matches[1];
+        var error_id = matches[2];
+        link = link_prefix + 'erreur_' + error_id +
+                   '">Voir des infos sur cette erreur.</a>';
+    } else {
+        // erreurs old style
+        msg = msg_escaped;
+        link = link_prefix + 'erreursfrquentes">Voir les erreurs fréquentes.</a>';
+    }
     return msg + ' <span class="malg-freq-error">' + link + '</span>';
 }
 
