@@ -474,8 +474,8 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
 (de Declarer !arg_lst (apply '!declarer !arg_lst))
 (de Déclarer !arg_lst (apply '!declarer !arg_lst))
 (de Initialiser ()
-  (quit (pack "`Initialiser` a été abandonnée dans la version 0.4. "
-              "Merci d’utiliser `Declarer`.")))
+  (!erreur 15 "`Initialiser` a été abandonnée dans la version 0.4. "
+              "Merci d’utiliser `Declarer`."))
 (put 'Affecter_a 'doc
 "Commande qui permet d’affecter une valeur à une variable.
 
@@ -526,14 +526,15 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
           idx (eval idx_expr))
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
-             ((num? !var) (quit (pack !onppauv "à un nombre.") !var))
-             ((str? !var) (quit (pack !onppauv "à un texte.") !var))
-             ((== !var 'Vrai) (quit (pack !onppauv "au booléen Vrai.")))
-             ((== !var 'Faux) (quit (pack !onppauv "au booléen Faux.")))
-             ((== !var 'Rien) (quit (pack !onppauv "à Rien.")))
+             ((num? !var) (!erreur 16 !onppauv "à `" !var "`, qui est un nombre."))
+             ((str? !var) (!erreur 16 !onppauv "à `" !var "`, qui est un texte."))
+             ((== !var 'Vrai) (!erreur 16 !onppauv "au booléen `Vrai`."))
+             ((== !var 'Faux) (!erreur 16 !onppauv "au booléen `Faux`."))
+             ((== !var 'Rien) (!erreur 16 !onppauv "à `Rien`."))
          )
          (ifn (get !var 'type)
-              (quit "Variable non déclarée." !var)
+              (!erreur 17 "`Affecter_a` : la variable `" !var "` "
+                          "n’a pas été déclarée.")
          )
          (ifn kw
               (prog
