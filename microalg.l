@@ -454,13 +454,13 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
                         "mais doit être du texte (entre \"\")."))
        # Le type existe-t-il ?
        (ifn (index !type '("booleen" "liste" "nombre" "rien" "texte"))
-            (quit (pack !msg "ce type n’existe pas.") !type))
+            (!erreur 13 !msg "le type `\"" !type "\"` n’existe pas."))
        (for (!var_num . !var) !vars
          # Les variables ont-elles déjà été déclarées ?
          (let (!type (!type_sym !var))
            (if (<> "rien" !type)
-               (quit (pack !msg "la variable " !var
-                           " a déjà été déclarée de type \"" !type "\"."))
+               (!erreur 14 !msg "la variable " !var
+                           " a déjà été déclarée de type `\"" !type "\"`.")
            )
          )
          # Typer la variable.
