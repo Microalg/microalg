@@ -143,19 +143,23 @@
     <div id="script-concat-lignes"></div>
     <script>inject_microalg_editor_in('script-concat-lignes', {
      src:
-        '(Afficher (Concatener\n' +
-        '             "du texte "\n' +
-        '             "et encore du texte"\n' +
-        '))'
+        '(Afficher\n' +
+        '    (Concatener\n' +
+        '        "du texte, "\n' +
+        '        "et encore du texte"\n' +
+        '    )\n' +
+        ')'
     });</script>
     <div id="script-concat3"></div>
     <script>inject_microalg_editor_in('script-concat3', {
      src:
-        '(Afficher (Concatener\n' +
-        '             "du texte, "\n' +
-        '             "du texte, "\n' +
-        '             "et encore du texte"\n' +
-        '))'
+        '(Afficher\n' +
+        '    (Concatener\n' +
+        '        "du texte, "\n' +
+        '        "du texte, "\n' +
+        '        "et encore du texte"\n' +
+        '    )\n' +
+        ')'
     });</script>
 
     <h2 id="parentheses"><a href="#parentheses">: </a>Les parenthèses</h2>
@@ -175,16 +179,30 @@
     });</script>
     <p>Si jamais les parenthèses ne sont pas équilibrées, les parenthèses en
     trop seront affichées en rouge vif. Essayez d’en ajouter ou d’en
-    supprimer !</p>
+    supprimer dans le « programme » précédent !</p>
+    <p>Si l’indentation est respectée :</p>
+    <ul>
+      <li>les parenthèses en début de ligne (ouvrantes ou fermantes) seront
+        toujours rouges ;</li>
+      <li>les parenthèses correspondantes n’étant pas sur la même ligne mais
+        alignées verticalement seront de la même couleur.</li>
+    </ul>
+    <p>De plus, on ne trouvera jamais deux parenthèses ouvrantes de suite.</p>
+    <p>Dans le dernier exemple de la section précédente, nous avons affiché la
+    concaténation de trois textes.</p>
     <div id="script-concat-rappel"></div>
     <script>inject_microalg_editor_in('script-concat-rappel', {
      src:
-        '(Afficher (Concatener\n' +
-        '             "du texte, "\n' +
-        '             "du texte, "\n' +
-        '             "et encore du texte"\n' +
-        '))'
+        '(Afficher\n' +
+        '    (Concatener\n' +
+        '        "du texte, "\n' +
+        '        "du texte, "\n' +
+        '        "et encore du texte"\n' +
+        '    )\n' +
+        ')'
     });</script>
+    <p>Même si la commande <code>Concatener</code> n’acceptait que deux textes,
+    nous aurions pu en concaténer trois quand même.</p>
     <p>Si on commence par la gauche :</p>
     <div id="script-concat-gauche"></div>
     <script>inject_microalg_editor_in('script-concat-gauche', {
