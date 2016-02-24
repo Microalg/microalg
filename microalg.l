@@ -1284,7 +1284,8 @@ Exemples :
     -> \"42\"
 ")
 (put 'Texte 'text "Commande `Texte`.")
-(de Texte (x)
+(de Texte (x !deuze)
+  (if !deuze (quit (pack "`Texte` n’a qu’un paramètre.")))
   (cond
     ((not (<> x 'Vrai)) "Vrai")
     ((not (<> x 'Faux)) "Faux")
@@ -1309,7 +1310,8 @@ Exemples :
     -> 42
 ")
 (put 'Nombre 'text "Commande `Nombre`.")
-(de Nombre (x)
+(de Nombre (x !deuze)
+  (if !deuze (quit (pack "`Nombre` n’a qu’un paramètre.")))
   (cond
     ((num? x) x)
     ((str? x) (or (format x)
