@@ -748,6 +748,10 @@ le signaler en :
 [15](#erreur_15)
 [16](#erreur_16)
 [17](#erreur_17)
+[18](#erreur_18)
+[19](#erreur_19)
+[20](#erreur_20)
+[21](#erreur_21)
 
 #### erreur_1
 
@@ -873,6 +877,43 @@ Voir l’aide de la commande [Declarer](#sym-Declarer) et de la commande
 Avant d’utiliser une variable, il faut la déclarer avec la commande `Declarer`.
 
 Voir [l’aide de la commande Declarer](#sym-Declarer).
+
+#### erreur_18
+
+> `truc` est une liste. On ne peut pas lui affecter `machin` qui n’est pas une
+> liste.
+
+* Si vous vouliez ajouter une nouvelle valeur à la liste, il faut utiliser
+  [Ajouter_a](#sym-Ajouter_a).
+* Si vous vouliez remplacer une valeur de la liste par une autre valeur, il
+  faut utiliser `Affecter_a … … En_position …`.
+  Voir [la documentation de Affecter_a](#sym-Affecter_a).
+
+#### erreur_19
+
+> `Affecter_a` : le type ne correspond pas. `truc` est un `"machin"` et
+> `bidule` est un `"chose"`.
+
+Si une variable est d’un certain type, il faut lui affecter une valeur du même
+type. Vérifiez le type de votre variable ou de votre valeur.
+
+#### erreur_20
+
+> `Affecter_a` n’est pas bien fermé, ou il manque `En_position`.
+
+Vous fournissez un troisième argument à `Affecter_a` qui n’est pas
+`En_position`.
+
+* Pour une affectation à une variable qui n’est pas de type `"liste"`,
+  Il manque sans doute une parenthèse après la valeur à affecter à la variable.
+* Si vous voulez changer une valeur d’une liste, il faut utiliser le mot-clé
+  intermédiaire `En_position`.
+
+#### erreur_21
+
+> `Affecter_a` : après `En_position`, il n’y a qu’un paramètre.
+
+Il ne faut pas en mettre plus.
 
 ## Abréviations
 

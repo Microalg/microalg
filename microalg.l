@@ -540,28 +540,30 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
               (prog
                  (if (and (not (<> "liste" (!type_sym !var)))
                           (not (!liste? val)))
-                     (quit (pack !onppauv
-                                 "autre qu’une liste à une liste, "
-                                 "utiliser `Affecter_a … … En_position …`.")
-                           !var)
+                     (!erreur 18 "`" !var "` est une liste. On ne peut pas lui "
+                                 "affecter `" val "` qui n’est pas une liste.")
                  )
                  # Affectation au symbole dans `!var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
                          (not (<> "rien" (get !var 'type)))
                          (<> Faux (= (get !var 'type) (Type val))))
                      (set !var val)
-                     (quit "Le type ne correspond pas."
-                           (list !var 'est 'un (get !var 'type) '; val 'un (Type val))
-                     )
+                     (!erreur 19 "`Affecter_a` : le type ne correspond pas. "
+                                 "`" !var "` est un `\"" (get !var 'type) "\"` "
+                                 "et `" (!text val) "` "
+                                 "est un `\"" (Type val) "\"`.")
                  )
               )
               (prog
                  # Affectation à l’élément `idx` du symbole dans `!var`.
                  # Tout d’abord quelques vérifications:
                  (if (<> 'En_position kw)
-                     (quit "`Affecter_a` n’est pas bien fermé, ou il manque `En_position`.")
+                     (!erreur 20 "`Affecter_a` n’est pas bien fermé, "
+                                 "ou il manque `En_position`.")
                  )
-                 (if cinquieme (quit "Après `En_position`, il n’y a qu’un paramètre."))
+                 (if cinquieme
+                     (!erreur 21 "`Affecter_a` : après `En_position`, "
+                                 "il n’y a qu’un paramètre."))
                  (let (!aepli (pack "`Affecter_a ... En_position ...` : "
                                     "après `En_position`, l’indice "))
                    (cond
