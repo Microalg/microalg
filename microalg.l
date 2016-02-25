@@ -610,13 +610,13 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 (de Affecter_a arg_lst
   (ifn (caddr arg_lst)
     (!affecter_a (car arg_lst) (cadr arg_lst))
-    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst))
+    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst) (car (cddddr arg_lst)))
   )
 )
 (de Affecter_à arg_lst
   (ifn (caddr arg_lst)
     (!affecter_a (car arg_lst) (cadr arg_lst))
-    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst))
+    (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst) (car (cddddr arg_lst)))
   )
 )
 (put 'En_position 'doc "Mot-clef intermédiaire pour la commande `Affecter_a`.")
