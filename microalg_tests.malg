@@ -194,6 +194,8 @@
             # Manipulations de listes
             '(let (x NIL) (= "(Liste 2 4 6)" (prog (Declarer x De_type "liste") (Affecter_a x (Liste 2 4 0)) (Affecter_a x 6 En_position 3) (!text x))))
             '(or (put 'x 'type NIL) T)
+            '(let (x NIL) (= "(Liste (Liste 1))" (prog (Declarer x De_type "liste") (Affecter_a x (Liste (Liste 0))) (Affecter_a (Nieme x 1) 1 En_position 1) (!text x))))
+            '(or (put 'x 'type NIL) T)
             '(= "liste" (Type (Liste)))
             '(= "(Liste)" (prog (Afficher (Liste)) *LastStdOut))
             '(= "(Liste Rien)" (prog (Afficher (Liste Rien)) *LastStdOut))

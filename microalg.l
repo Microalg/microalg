@@ -532,7 +532,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
              ((== !var 'Faux) (!erreur 16 !onppauv "au booléen `Faux`."))
              ((== !var 'Rien) (!erreur 16 !onppauv "à `Rien`."))
          )
-         (ifn (get !var 'type)
+         (if (and (atom !var) (not (get !var 'type)))
               (!erreur 17 "`Affecter_a` : la variable `" !var "` "
                           "n’a pas été déclarée.")
          )
