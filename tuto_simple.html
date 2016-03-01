@@ -729,8 +729,10 @@ Bonjour,
      src:
         '(Afficher "Salut, ça va ?")\n' +
         '(Si (= (Demander) "oui")\n' +
-        ' Alors (Afficher "Tant mieux !")\n' +
-        ' Sinon (Afficher "Ah, qu’y a-t-il ?")\n' +
+        ' Alors\n' +
+        '    (Afficher "Tant mieux !")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Ah, qu’y a-t-il ?")\n' +
         ')'
     });</script>
     <p>Le code ci-dessus peut se lire :</p>
@@ -744,8 +746,10 @@ Bonjour,
     <code>(Si booléen Alors commande-si-vrai Sinon commande-si-faux)</code></p>
     <p>Ou en arrangeant le code sur plusieurs lignes :<br>
     <pre><code>(Si booléen
- Alors commande-si-vrai
- Sinon commande-si-faux
+ Alors
+    commande-si-vrai
+ Sinon
+    commande-si-faux
 )</code></pre></p>
     <p>Si on veut détailler, la commande <code>Si</code> possède cinq
     paramètres :</p>
@@ -767,8 +771,10 @@ Bonjour,
      src:
         '(Afficher "Quel est le mot de passe ?")\n' +
         '(Si (= (Demander) "funambule")\n' +
-        ' Alors (Afficher "Accès autorisé.")\n' +
-        ' Sinon (Afficher "Accès refusé.")\n' +
+        ' Alors\n' +
+        '    (Afficher "Accès autorisé.")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Accès refusé.")\n' +
         ')'
     });</script>
     <div id="script-si-calcul"></div>
@@ -776,8 +782,10 @@ Bonjour,
      src:
         '(Afficher "Combien font deux et deux ?")\n' +
         '(Si (= (Demander) "quatre")\n' +
-        ' Alors (Afficher "Bravo !")\n' +
-        ' Sinon (Afficher "Perdu, c’était « quatre ».")\n' +
+        ' Alors\n' +
+        '    (Afficher "Bravo !")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Perdu, c’était « quatre ».")\n' +
         ')'
     });</script>
     <div id="script-si-majeur-mineur"></div>
@@ -785,8 +793,10 @@ Bonjour,
      src:
         '(Afficher "Quel âge as-tu ?")\n' +
         '(Si (< (Nombre (Demander)) 18)\n' +
-        ' Alors (Afficher "Tu es mineur.")\n' +
-        ' Sinon (Afficher "Tu es majeur.")\n' +
+        ' Alors\n' +
+        '    (Afficher "Tu es mineur.")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Tu es majeur.")\n' +
         ')'
     });</script>
     <p>Après avoir vu les bases de la commande <code>Si</code>, voyons quelques
@@ -803,10 +813,12 @@ Bonjour,
     <script>inject_microalg_editor_in('script-si-sans-sinon', {
      src:
         '(Si Vrai\n' +
-        ' Alors (Afficher "Bonjour !")\n' +
+        ' Alors\n' +
+        '    (Afficher "Bonjour !")\n' +
         ')\n' +
         '(Si Faux\n' +
-        ' Alors (Afficher "Au revoir !")\n' +
+        ' Alors\n' +
+        '    (Afficher "Au revoir !")\n' +
         ')\n' +
         '(Afficher "Voilà.")\n' +
         ''
@@ -819,17 +831,21 @@ Bonjour,
     <script>inject_microalg_editor_in('script-si-blocs', {
      src:
         '(Si Vrai\n' +
-        ' Alors (Afficher "Bonjour !")\n' +
-        '       (Afficher "Et rebonjour !")\n' +
-        ' Sinon (Afficher "Au revoir !")\n' +
-        '       (Afficher "Et au revoir encore !")\n' +
+        ' Alors\n' +
+        '    (Afficher "Bonjour !")\n' +
+        '    (Afficher "Et rebonjour !")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Au revoir !")\n' +
+        '    (Afficher "Et au revoir encore !")\n' +
         ')\n' +
         '(!!! "Le même code, mais avec l’autre booléen :")\n' +
         '(Si Faux\n' +
-        ' Alors (Afficher "Bonjour !")\n' +
-        '       (Afficher "Et rebonjour !")\n' +
-        ' Sinon (Afficher "Au revoir !")\n' +
-        '       (Afficher "Et au revoir encore !")\n' +
+        ' Alors\n' +
+        '    (Afficher "Bonjour !")\n' +
+        '    (Afficher "Et rebonjour !")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Au revoir !")\n' +
+        '    (Afficher "Et au revoir encore !")\n' +
         ')\n' +
         ''
     });</script>
@@ -838,12 +854,14 @@ Bonjour,
     <code>(Si booléen Alors commandes-si-vrai Sinon commandes-si-faux)</code></p>
     <p>Ou en arrangeant le code sur plusieurs lignes :<br>
     <pre><code>(Si booléen
- Alors commande-si-vrai
-       commande-si-vrai
-       ...
- Sinon commande-si-faux
-       commande-si-faux
-       ...
+ Alors
+    commande-si-vrai
+    commande-si-vrai
+    ...
+ Sinon
+    commande-si-faux
+    commande-si-faux
+    ...
 )</code></pre></p>
     <h3 id="si-emboites"><a href="#si-emboites">: </a>Si(s) emboîtés</h3>
     <p>Un arbre a parfois plus de deux branches !</p>
@@ -854,14 +872,20 @@ Bonjour,
     <script>inject_microalg_editor_in('script-si-emboites', {
      src:
         '(Si Vrai\n' +
-        ' Alors (Si Vrai\n' +
-        '        Alors (Afficher "premier")\n' +
-        '        Sinon (Afficher "deuxième")\n' +
-        '       )\n' +
-        ' Sinon (Si Vrai\n' +
-        '        Alors (Afficher "troisième")\n' +
-        '        Sinon (Afficher "quatrième")\n' +
-        '       )\n' +
+        ' Alors\n' +
+        '    (Si Vrai\n' +
+        '     Alors\n' +
+        '        (Afficher "premier")\n' +
+        '     Sinon\n' +
+        '        (Afficher "deuxième")\n' +
+        '    )\n' +
+        ' Sinon\n' +
+        '    (Si Vrai\n' +
+        '     Alors\n' +
+        '        (Afficher "troisième")\n' +
+        '     Sinon\n' +
+        '        (Afficher "quatrième")\n' +
+        '    )\n' +
         ')'
     });</script>
     <p>Voici une application concrète d’une structure avec des <code>Si</code>
@@ -874,14 +898,20 @@ Bonjour,
         '(Afficher "Veuillez taper un nombre.")\n' +
         '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
-        ' Alors (Si (>= nbre 1000)\n' +
-        '        Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
-        '        Sinon (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
-        '       )\n' +
-        ' Sinon (Si (<= nbre -1000)\n' +
-        '        Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
-        '        Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
-        '       )\n' +
+        ' Alors\n' +
+        '    (Si (>= nbre 1000)\n' +
+        '     Alors\n' +
+        '        (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '     Sinon\n' +
+        '        (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
+        '    )\n' +
+        ' Sinon\n' +
+        '    (Si (<= nbre -1000)\n' +
+        '     Alors\n' +
+        '        (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '     Sinon\n' +
+        '        (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        '    )\n' +
         ')'
     });</script>
     <h3 id="si-valeurs"><a href="#si-valeurs">: </a>Si avec des valeurs uniquement</h3>
@@ -1085,13 +1115,19 @@ Bonjour,
         '(Declarer nbre De_type "nombre")\n' +
         '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (>= nbre 0)\n' +
-        '    Alors (Si (>= nbre 1000)\n' +
-        '              Alors (Afficher "Ce nombre est positif et assez grand.")\n' +
-        '              Sinon (Afficher "Ce nombre est positif ou nul, et pas trop grand.")\n' +
-        '          )\n' +
-        '    Sinon (Si (<= nbre -1000)\n' +
-        '              Alors (Afficher "Ce nombre est négatif et assez grand.")\n' +
-        '              Sinon (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
+        ' Alors\n' +
+        '    (Si (>= nbre 1000)\n' +
+        '     Alors\n' +
+        '        (Afficher "Ce nombre est positif et assez grand.")\n' +
+        '     Sinon\n' +
+        '        (Afficher "Ce nombre est positif ou nul et pas trop grand.")\n' +
+        '    )\n' +
+        ' Sinon\n' +
+        '    (Si (<= nbre -1000)\n' +
+        '     Alors\n' +
+        '        (Afficher "Ce nombre est négatif et assez grand.")\n' +
+        '     Sinon\n' +
+        '        (Afficher "Ce nombre est négatif et pas trop grand.")\n' +
         '    )\n' +
         ')'
     });</script>
@@ -1105,8 +1141,10 @@ Bonjour,
         '(Declarer nbre De_type "nombre")\n' +
         '(Affecter_a nbre (Nombre (Demander)))\n' +
         '(Si (Et (>= nbre 1) (<= nbre 6))\n' +
-        '    Alors (Afficher "Ce nombre est compris entre 1 et 6.")\n' +
-        '    Sinon (Afficher "Ce nombre est n’est pas compris entre 1 et 6.")\n' +
+        ' Alors\n' +
+        '    (Afficher "Ce nombre est compris entre 1 et 6.")\n' +
+        ' Sinon\n' +
+        '    (Afficher "Ce nombre est n’est pas compris entre 1 et 6.")\n' +
         ')' +
         ''
     });</script>
