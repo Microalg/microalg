@@ -82,19 +82,19 @@ class Turtle {
     }
 }
 
-float mapx(x) {
+float mapx(float x) {
     return map(x, x_min, x_max, 0, 600);
 }
 
-float mapy(y) {
+float mapy(float y) {
     return map(y, y_min, y_max, 600, 0);
 }
 
-float mapw(x) {
+float mapw(float x) {
     return map(x, 0, x_max - x_min, 0, 600);
 }
 
-float maph(y) {
+float maph(float y) {
     return map(y, 0, y_max - y_min, 0, 600);
 }
 
