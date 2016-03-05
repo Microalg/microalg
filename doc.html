@@ -752,6 +752,15 @@ le signaler en :
 [19](#erreur_19)
 [20](#erreur_20)
 [21](#erreur_21)
+[22](#erreur_22)
+[23](#erreur_23)
+[24](#erreur_24)
+[25](#erreur_25)
+[26](#erreur_26)
+[27](#erreur_27)
+[28](#erreur_28)
+[29](#erreur_29)
+[30](#erreur_30)
 
 #### erreur_1
 
@@ -914,6 +923,86 @@ Vous fournissez un troisième argument à `Affecter_a` qui n’est pas
 > `Affecter_a` : après `En_position`, il n’y a qu’un paramètre.
 
 Il ne faut pas en mettre plus.
+
+#### erreur_22
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice est manquant.
+
+Après le mot-clé `En_position`, il faut fournir un nombre entier qui indique
+la position de la valeur à changer.
+
+#### erreur_23
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice est une
+> variable qui n’a pas été déclarée : `truc`.
+
+Avant d’utiliser la variable `truc`, il faut la déclarer avec la commande
+`Declarer`.
+
+Voir [l’aide de la commande Declarer](#sym-Declarer).
+
+#### erreur_24
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice doit être un
+> nombre et non un texte. Donc `"truc"` ne convient pas.
+
+Vérifiez le type de ce que vous avez indiqué comme position.
+
+#### erreur_25
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice doit être un
+> nombre. Donc `truc` ne convient pas.
+
+Vérifiez le type de ce que vous avez indiqué comme position.
+
+#### erreur_26
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice doit être un
+> nombre entier. Donc `truc` ne convient pas.
+
+* Si c’est un nombre constant, il ne doit pas comporter de point.
+* Si c’est le résultat d’un calcul ou une variable, vérifiez que cette valeur
+  est toujours un nombre entier. Si réfléchir ne suffit pas, vous pouvez
+  insérer un affichage de cette valeur dans votre programme.
+
+#### erreur_27
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice doit être
+> strictement positif. Donc `truc` ne convient pas.
+
+* Si c’est un nombre constant, il ne doit pas être précédé du signe « moins ».
+* Si c’est le résultat d’un calcul ou une variable, vérifiez que cette valeur
+  est toujours un nombre strictement positif. Si réfléchir ne suffit pas, vous
+  pouvez insérer un affichage de cette valeur dans votre programme.
+
+**Rappel** : les positions sont numérotées à partir de 1.
+
+#### erreur_28
+
+> `Affecter_a ... En_position ...` : après `En_position`, l’indice est trop
+> grand (position X dans un objet de longueur Y).
+
+* Si c’est un nombre constant, ajustez-le.
+* Si c’est le résultat d’un calcul ou une variable, vérifiez cette valeur.
+  Si réfléchir ne suffit pas, vous pouvez insérer un affichage de cette valeur
+  dans votre programme.
+
+**Rappel** : les positions sont numérotées à partir de 1.
+
+#### erreur_29
+
+> La valeur affectée à un texte doit être un texte de longueur 1 (un caractère)
+> mais vous avez donné : `truc`.
+
+Dans `(Affecter_a mon_texte truc En_position X)`, `truc` ne peut être qu’un
+caractère. Vérifiez la valeur de votre `truc`, et sa longueur si c’est un texte.
+
+#### erreur_30
+
+> Affectation positionnelle impossible sur `truc` qui est de type `"machin"`.
+
+`Affecter_a truc ... En_position ...` ne fonctionne que si `truc` est un texte
+ou une liste. Vérifiez le type de votre `truc`.
 
 ## Abréviations
 

@@ -568,30 +568,34 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                                     "après `En_position`, l’indice "))
                    (cond
                      ((not idx_expr)
-                       (quit (pack !aepli "est manquant.")))
+                       (!erreur 22 !aepli "est manquant."))
                      ((not idx)
-                       (quit (pack !aepli "est une variable non déclarée : `"
-                                   idx_expr "`.")))
+                       (!erreur 23 !aepli "est une variable qui n’a pas été "
+                                   "déclarée : `" idx_expr "`."))
                      ((!boolM2P (!texte? idx))
-                       (quit (pack !aepli "doit être un nombre et non du texte.")
-                             idx))
+                       (!erreur 24 !aepli "doit être un nombre et non un "
+                                   "texte. Donc `\"" idx "\"` ne convient pas."))
                      ((not (num? idx))
-                       (quit (pack !aepli "doit être un nombre.") idx_expr))
+                       (!erreur 25 !aepli "doit être un nombre. Donc "
+                                   "`" (!text idx_expr) "` ne convient pas."))
                      ((<> idx (format (round idx 0) 0 "." ","))
-                       (quit (pack !aepli "doit être un nombre entier.") idx))
+                       (!erreur 26 !aepli "doit être un nombre entier. "
+                                   "Donc `" idx "` ne convient pas."))
                      ((le0 idx)
-                       (quit (pack !aepli "doit être strictement positif.") idx))
+                       (!erreur 27 !aepli "doit être strictement positif. "
+                                   "Donc `" idx "` ne convient pas."))
                      ((lt0 (- (!longueur evaled_var) idx))
-                       (quit (pack !aepli "est trop grand (position "
+                       (!erreur 28 !aepli "est trop grand (position "
                                    idx " dans un objet de longueur "
-                                   (!longueur evaled_var) ").")))
+                                   (!longueur evaled_var) ")."))
                    )
                  )
                  (if (!boolM2P (!texte? evaled_var))  # check pour textes, inutile pour listes
                      (ifn (and (str? val) (not (<> 1 (length val))))
-                          (quit (pack "La valeur affectée à un texte doit être "
+                          (!erreur 29 "La valeur affectée à un texte doit être "
                                       "un texte de longueur 1 (un caractère) "
-                                      "mais vous avez donné : " (Texte val) "."))
+                                      "mais vous avez donné `"
+                                      (!quote_txt val) "`.")
                      )
                  )
                  # Puis le travail:
@@ -602,7 +606,9 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                          (set !var (pack (head (- idx 1) chopped)
                                         val
                                         (tail (- idx) chopped) )) ))
-                   (T (quit "Affectation positionnelle impossible." (Type evaled_var)))
+                   (T (!erreur 30 "Affectation positionnelle impossible sur "
+                                  "`" (!text !var) "` qui est de type `\""
+                                  (Type evaled_var) "\"`."))
                  )
               )
          )
