@@ -682,7 +682,8 @@ Pour simplifier cette commande, deux facilités ont été mises en place :
 ")
 (put 'Demander 'text "Commande `Demander`.")
 (de Demander (!rien_ici)
-  (if !rien_ici (quit "`Demander` ne prend pas de paramètre."))
+  (if !rien_ici
+      (!erreur 31 "`Demander` ne prend pas de paramètre."))
   (put 'valeur_utilisateur 'type "texte")
   (let (!input (in NIL (line T)))
     (setq valeur_utilisateur !input)
@@ -701,11 +702,14 @@ Cette commande est peu documentée et sert uniquement pour faciliter le travail
 avec les plus jeunes.")
 (put 'Demander_un_nombre 'text "Commande `Demander_un_nombre`.")
 (de Demander_un_nombre (!rien_ici)
-  (if !rien_ici (quit "`Demander_un_nombre` ne prend pas de paramètre."))
+  (if !rien_ici
+      (!erreur 32 "`Demander_un_nombre` ne prend pas de paramètre."))
   (put 'valeur_utilisateur 'type "nombre")
   (let (!input (in NIL (line T))
         !input_nbre (format !input))
-       (ifn !input_nbre (quit "La valeur entrée n’est pas un nombre."))
+       (ifn !input_nbre
+            (!erreur 33 "`Demander_un_nombre` : "
+                        "La valeur entrée n’est pas un nombre."))
        (setq valeur_utilisateur !input_nbre)
   )
 )
