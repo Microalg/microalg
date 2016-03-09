@@ -1624,11 +1624,15 @@ Exemples :
        (if (<> 2 (index 'Fois !arg_lst))
            (quit "`Repeter` : Le mot-clef `Fois` doit être en 2ème position.") )
 
-       (let (!nb_repetitions (eval (car !arg_lst))
+       (let (!nb_repetitions (car !arg_lst)
+             !nb_repetitions_evaled (eval !nb_repetitions)
              !corps (cddr !arg_lst))
-            (ifn (num? !nb_repetitions)
+            (ifn (!inited !nb_repetitions !nb_repetitions_evaled)
+                 (quit (pack "`Repeter` : `" !nb_repetitions "` "
+                             "n’a pas été déclarée.")))
+            (ifn (num? !nb_repetitions_evaled)
                  (quit "Le nombre de répétitions doit être de type \"nombre\".") )
-            (do !nb_repetitions (run !corps))
+            (do !nb_repetitions_evaled (run !corps))
        )
        Rien
   )
