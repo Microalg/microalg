@@ -121,7 +121,9 @@ void interact(String data) {
         if (params.length == 5) {
             alpha = int(params[4]);
         }
-        stroke(int(params[1]), int(params[2]), int(params[3]), alpha);
+        Color c = color(int(params[1]), int(params[2]), int(params[3]), alpha);
+        stroke(c);
+        turtle.pencolor(c);
     } else if (cmd.equals("Remplissage")) {
         int alpha = 255;
         if (params.length == 5) {
