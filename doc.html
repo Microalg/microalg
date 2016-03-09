@@ -593,9 +593,6 @@ class="email">écrire un petit email</a>.
 Les messages sont classés par ordre alphabétique, sans tenir compte de la
 valeur ou de la commande qui est parfois fournie :
 
-* Après `En_position`, il n’y a qu’un paramètre.
-    * Vous n’avez peut-être pas bien fermé la parenthèse de la commande
-      `Affecter_a`.
 * "type" -- Ce type n’existe pas.
     * Le type `"type"` que vous fournissez n’existe pas. Il doit valoir
       `"booleen"`, `"liste"`, `"nombre"`, `"rien"` ou `"texte"`.
@@ -624,14 +621,10 @@ valeur ou de la commande qui est parfois fournie :
 * X -- Executable or Number expected.
     * Vous avez ouvert deux parenthèses de suite.
     * Il y a une parenthèse en trop devant `X`.
-* Il manque le deuxième paramètre : l’indice.
 * Impossible d’utiliser la sortie graphique avec `malg-njs` ou `malg-rjs`.
     * Il faut configurer SciTE pour qu’il utilise `malg-j` (voire `malg` si
       vous avez pu l’installer). Cliquer sur **View** puis **Parameters** et
       indiquer par exemple `malg-j`.  Voir [cette section](#excution).
-* Indice négatif ou nul.
-* Indice non entier.
-* Indice trop grand.
 * java.lang.ClassCastException: PicoLisp$Symbol cannot be cast to PicoLisp$Number
     * Une commande qui concerne uniquement les nombres (comme `+`, `-`, `*`,
     `/`, `%` ou `^`) a été écrite avec autre chose qu’un nombre en argument
@@ -652,9 +645,6 @@ valeur ou de la commande qui est parfois fournie :
       liste de plus de 800 millions d’éléments. Désolé.
 * X -- La condition n’est pas un booléen.
     * Voir la sous-section [booléens](#boolens).
-* La variable n’est pas initialisée.
-    * Vous utilisez une variable inconnue de MicroAlg. Vérifier l’orthographe
-      de la variable.
 * Le premier paramètre de `Entier@` doit être un nombre.
 * Le premier paramètre de X doit être un booléen.
     * Voir la sous-section [booléens](#boolens).
@@ -696,9 +686,6 @@ valeur ou de la commande qui est parfois fournie :
       version de MicroAlg.
     * « `Affecter` -- undefined » indique qu’il vous manque un « _ ».
     * « `Tant` -- undefined » indique qu’il vous manque un « _ ».
-* Valeur de type X, ne peut initialiser Y qui est de type Z.
-* X -- Variable non initialisée.
-    * Affectation sur une variable non initialisée.
 
 Si jamais le message que vous avez n’est pas ou pas assez documenté, merci de
 le signaler en :
