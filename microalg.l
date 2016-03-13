@@ -1519,11 +1519,10 @@ Exemple :
 
 Remarque :
 
-Par défaut, la commande `Tant_que` est bridée à 1000 tours (au total,
-c’est-à-dire en cumulant les différents `Tant_que` tout au long du programme,
-même s’ils sont imbriqués). Voir la variable
+Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1000 tours (au
+total, c’est-à-dire en cumulant les différents `Tant_que` et `Repeter` tout au
+long du programme, même s’ils sont imbriqués). Voir la variable
 [credit_iterations](#sym-credit_iterations).
-
 ")
 (put 'Tant_que 'text "Commande `Tant_que`.")
 (de Tant_que arg_lst
@@ -1616,6 +1615,13 @@ Exemples :
     C’est…
      …bien.
     -> Rien
+
+Remarque :
+
+Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1000 tours (au
+total, c’est-à-dire en cumulant les différents `Tant_que` et `Repeter` tout au
+long du programme, même s’ils sont imbriqués). Voir la variable
+[credit_iterations](#sym-credit_iterations).
 ")
 (put 'Repeter 'text "Commande `Repeter`.")
 (de !repeter @
@@ -1623,10 +1629,12 @@ Exemples :
         !arg_lst (rest))
        (if (<> 2 (index 'Fois !arg_lst))
            (quit "`Repeter` : Le mot-clef `Fois` doit être en 2ème position.") )
-
        (let (!nb_repetitions (car !arg_lst)
              !nb_repetitions_evaled (eval !nb_repetitions)
-             !corps (cddr !arg_lst))
+             !corps (conc (cddr !arg_lst)
+                          '((if (=0 (dec 'credit_iterations))
+                                (quit credit_iterations_message))))
+            )
             (ifn (!inited !nb_repetitions !nb_repetitions_evaled)
                  (quit (pack "`Repeter` : `" !nb_repetitions "` "
                              "n’a pas été déclarée.")))
