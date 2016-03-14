@@ -1470,6 +1470,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
 "Variable stockant le nombre d’itérations possibles restantes.
 
     : (Tant_que Vrai Faire (Afficher credit_iterations))
+    1000
     999
     998
     997
@@ -1478,14 +1479,14 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     2
     1
     Erreur :
-    Crédit d’itérations épuisé (1 000 par défaut).
+    Crédit d’itérations épuisé (1 001 par défaut).
     Vous pouvez recharger votre crédit en affectant une valeur
     à la variable `credit_iterations`.
 ")
-(setq credit_iterations 1000)
+(setq credit_iterations 1001)
 (put 'credit_iterations 'type "nombre")
 (setq credit_iterations_message
-      (pack "Crédit d’itérations épuisé (1 000 par défaut). Vous pouvez "
+      (pack "Crédit d’itérations épuisé (1 001 par défaut). Vous pouvez "
             "recharger votre crédit en affectant une valeur à la variable "
             "`credit_iterations`."))
 (put 'Tant_que 'doc
@@ -1519,7 +1520,7 @@ Exemple :
 
 Remarque :
 
-Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1000 tours (au
+Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1 001 tours (au
 total, c’est-à-dire en cumulant les différents `Tant_que` et `Repeter` tout au
 long du programme, même s’ils sont imbriqués). Voir la variable
 [credit_iterations](#sym-credit_iterations).
@@ -1618,7 +1619,7 @@ Exemples :
 
 Remarque :
 
-Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1000 tours (au
+Par défaut, les commandes `Tant_que` et `Repeter` sont bridées à 1 001 tours (au
 total, c’est-à-dire en cumulant les différents `Tant_que` et `Repeter` tout au
 long du programme, même s’ils sont imbriqués). Voir la variable
 [credit_iterations](#sym-credit_iterations).
