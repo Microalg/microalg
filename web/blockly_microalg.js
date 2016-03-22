@@ -72,14 +72,6 @@ Blockly.MicroAlg.init = function() {
     } else {
       Blockly.MicroAlg.variableDB_.reset();
     }
-
-    var defvars = [];
-    var variables = Blockly.Variables.allVariables();
-    for (var x = 0; x < variables.length; x++) {
-      defvars[x] = Blockly.MicroAlg.variableDB_.getName(variables[x],
-          Blockly.Variables.NAME_TYPE) + ' = None';
-    }
-    Blockly.MicroAlg.definitions_['variables'] = defvars.join('\n');
   }
 };
 
