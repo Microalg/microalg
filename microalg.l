@@ -776,7 +776,8 @@ Exemple :
        # Variables initialisées ?
        (for (!arg_num . !arg) !arg_lst
          (ifn (!inited !arg (car (nth !evaled_arg_lst !arg_num)))
-              (quit (pack !error_prefix !arg_num " n’a pas été déclaré.") !arg)
+              (!erreur 34 !error_prefix !arg_num ", `"  !arg "`, "
+                          "est une variable qui n’a pas été déclarée.")
          )
        )
        (new '(+Liste) !evaled_arg_lst) ))
@@ -808,8 +809,9 @@ Exemples :
         !evaled_obj (eval !obj)
         !deuze (cadr arg_lst))
     # Quelques vérifications
-    (if !deuze (quit "`Longueur` n’a qu’un paramètre."))
-    (ifn (!inited !obj !evaled_obj) (quit "`Longueur` : la variable n’a pas été déclarée." !obj))
+    (if !deuze (!erreur 35 "`Longueur` n’a qu’un paramètre."))
+    (ifn (!inited !obj !evaled_obj)
+         (!erreur 36 "`Longueur` : la variable `" !obj "` n’a pas été déclarée."))
     (setq !npdl " n’a pas de `Longueur`.")
     (cond
         ((num? !evaled_obj) (quit (pack "Un nombre" !npdl) !evaled_obj))
