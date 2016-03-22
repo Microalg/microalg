@@ -478,11 +478,16 @@ Blockly.Blocks['declarer'] = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Déclarer une variable avec un type.');
+    var TYPES =
+        [['nombre',  'nombre'],
+         ['texte',   'texte'],
+         ['booleen', 'booleen'],
+         ['liste',   'liste']];
     this.interpolateMsg(
       'Declarer %1 De_type %2 %3 %4',
       ['VAR', new Blockly.FieldVariable("ma_variable")],
       ['Q1', Blockly.MicroAlg.newQuote(true)],
-      ['TYPE', new Blockly.FieldTextInput('')],
+      ['TYPE', new Blockly.FieldDropdown(TYPES)],
       ['Q2', Blockly.MicroAlg.newQuote(false)],
       Blockly.ALIGN_RIGHT);
     this.setInputsInline(false);
