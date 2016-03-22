@@ -15,7 +15,7 @@ dans [PicoLisp](http://picolisp.com). Donc :
 
 * c’est un [Lisp](http://fr.wikipedia.org/wiki/Lisp), donc il n’y a pas de
   syntaxe à apprendre, juste des commandes,
-* elle peut *tourner* sur plusieurs plateformes :
+* elle peut *tourner* sur plusieurs plates-formes :
     * Javascript (navigateurs ou NodeJS) grâce à
       [EmuLisp](http://grahack.github.io/EmuLisp),
     * là où PicoLisp (ASM, C) peut tourner nativement,
@@ -134,7 +134,7 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `microalg_tests.malg` : les tests des commandes MicroAlg testables avec
       PicoLisp/MicroAlg seulement
     * `microalg_tests.sh` :  de quoi lancer les tests sur toutes les
-                             plateformes possibles, features non comprises
+                             plates-formes possibles, features non comprises
     * `microalg_tests_*.bat` : de quoi lancer les tests avec Windows
     * `microalg_tests_*.sh` :  de quoi lancer les tests autrement qu’avec Windows
     * `microalg_tests_features.sh` : de quoi lancer les tests de fonctionnalité

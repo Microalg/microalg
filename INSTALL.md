@@ -101,7 +101,7 @@ et les versions Javascript (via Rhino et NodeJS). Plus précisément, installer�
   exemple besoin d’une chaîne d’outils de base pour la compilation de projets
   en C).
 * Pas besoin d’installer les trois autres implémentations de PicoLisp (Java et
-  NodeJS), mais besoin des plateformes sous-jacentes :
+  NodeJS), mais besoin des plates-formes sous-jacentes :
     * Java (pas besoin de `javac`), pour faire tourner Ersatz et Rhino ;
     * [NodeJS](http://nodejs.org/download/) (`npm` compris, le gestionnaire de
       modules pour NodeJS).
