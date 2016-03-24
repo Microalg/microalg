@@ -4,7 +4,7 @@ html {
     background-color: #fff;
 }
 #dokuwiki__site {
-    font-size: 120%;
+    font-size: 160%;
 }
 body.microalg {
     font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
