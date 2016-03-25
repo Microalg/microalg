@@ -2255,6 +2255,21 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
   (!processing (pack "Epaisseur " epaisseur))
   Rien
 )
+(de !check_coords (!liste !cmd !arg_num)
+  (if (<> (!type_sym !liste) "liste")
+      (quit (pack "`" !cmd "` : l’argument n°" !arg_num
+                  " doit être une liste.")) )
+  (if (<> 2 (!longueur !liste))
+      (quit (pack "`" !cmd "` : l’argument n°" !arg_num
+                  " doit être une liste de longueur 2.")) )
+  (let (!lpvdla " valeur de l’argument n°"
+        !deun " doit être un nombre.")
+       (ifn (num? (nth> !liste 1))
+            (quit (pack "`" !cmd "` : la première" !lpvdla !arg_num !deun)) )
+       (ifn (num? (nth> !liste 2))
+            (quit (pack "`" !cmd "` : la seconde" !lpvdla !arg_num !deun)) )
+  )
+)
 (put 'Segment 'doc
 "Dans la sortie graphique, trace un segment.
 
@@ -2265,9 +2280,17 @@ Exemple : `(Segment (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Segment 'text "Commande `Segment`.")
-(de Segment (point1 point2)
-  (!processing (pack "Segment " (Nieme point1 1) " " (Nieme point1 2) " "
-                                (Nieme point2 1) " " (Nieme point2 2)))
+(de Segment (point1 point2 !troize)
+  (ifn point1
+       (quit "`Segment` : il manque les deux extrémités.") )
+  (!check_coords point1 "Segment" 1)
+  (ifn point2
+       (quit "`Segment` : il manque la seconde extrémité.") )
+  (!check_coords point2 "Segment" 2)
+  (if !troize
+      (quit "`Segment` : vous donnez un argument de trop.") )
+  (!processing (pack "Segment " (nth> point1 1) " " (nth> point1 2) " "
+                                (nth> point2 1) " " (nth> point2 2)))
   Rien
 )
 (put 'Cercle 'doc
@@ -2280,8 +2303,17 @@ Exemple : `(Cercle (Liste 300 300) 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Cercle 'text "Commande `Cercle`.")
-(de Cercle (centre rayon)
-  (!processing (pack "Cercle " (Nieme centre 1) " " (Nieme centre 2)
+(de Cercle (centre rayon !troize)
+  (ifn centre
+       (quit "`Cercle` : il manque le centre et le rayon.") )
+  (!check_coords centre "Cercle" 1)
+  (ifn rayon
+       (quit "`Cercle` : il manque le rayon.") )
+  (ifn (num? rayon)
+       (quit "`Cercle` : le rayon doit être un nombre.") )
+  (if !troize
+      (quit "`Cercle` : vous donnez un argument de trop.") )
+  (!processing (pack "Cercle " (nth> centre 1) " " (nth> centre 2)
                      " " (* 2 rayon)))
   Rien
 )
@@ -2295,8 +2327,22 @@ Exemple : `(Ellipse (Liste 300 300) 200 100)`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Ellipse 'text "Commande `Ellipse`.")
-(de Ellipse (centre rayon1 rayon2)
-  (!processing (pack "Ellipse " (Nieme centre 1) " " (Nieme centre 2)
+(de Ellipse (centre rayon1 rayon2 !quatrz)
+  (ifn centre
+       (quit "`Ellipse` : il manque le centre et les rayons.") )
+  (!check_coords centre "Ellipse" 1)
+  (ifn rayon1
+       (quit "`Ellipse` : il manque les rayons.") )
+  (ifn (num? rayon1)
+       (quit "`Ellipse` : le premier rayon doit être un nombre.") )
+  (ifn rayon2
+       (quit "`Ellipse` : il manque le second rayon.") )
+  (ifn (num? rayon2)
+       (quit "`Ellipse` : le second rayon doit être un nombre.") )
+  (if !quatrz
+      (quit "`Ellipse` : vous donnez un argument de trop.") )
+  (!check_coords centre "Ellipse" 1)
+  (!processing (pack "Ellipse " (nth> centre 1) " " (nth> centre 2)
                      " " (* 2 rayon1) " " (* 2 rayon2)))
   Rien
 )
@@ -2309,9 +2355,17 @@ Exemple : `(Rectangle (Liste 300 300) (Liste 450 600))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Rectangle 'text "Commande `Rectangle`.")
-(de Rectangle (point1 point2)
-  (!processing (pack "Rectangle " (Nieme point1 1) " " (Nieme point1 2) " "
-                                  (Nieme point2 1) " " (Nieme point2 2)))
+(de Rectangle (point1 point2 !troize)
+  (ifn point1
+       (quit "`Rectangle` : il manque les deux coins.") )
+  (!check_coords point1 "Rectangle" 1)
+  (ifn point2
+       (quit "`Rectangle` : il manque le second coin.") )
+  (!check_coords point2 "Rectangle" 2)
+  (if !troize
+      (quit "`Rectangle` : vous donnez un argument de trop.") )
+  (!processing (pack "Rectangle " (nth> point1 1) " " (nth> point1 2) " "
+                                  (nth> point2 1) " " (nth> point2 2)))
   Rien
 )
 (put 'Triangle 'doc
@@ -2323,10 +2377,21 @@ Exemple : `(Triangle (Liste 200 300) (Liste 400 300) (Liste 300 400))`
 
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Triangle 'text "Commande `Triangle`.")
-(de Triangle (point1 point2 point3)
-  (!processing (pack "Triangle " (Nieme point1 1) " " (Nieme point1 2) " "
-                                 (Nieme point2 1) " " (Nieme point2 2) " "
-                                 (Nieme point3 1) " " (Nieme point3 2)))
+(de Triangle (point1 point2 point3 !quatrz)
+  (ifn point1
+       (quit "`Triangle` : il manque les trois sommets.") )
+  (!check_coords point1 "Triangle" 1)
+  (ifn point2
+       (quit "`Triangle` : il manque les deux derniers sommet.") )
+  (!check_coords point2 "Triangle" 2)
+  (ifn point3
+       (quit "`Triangle` : il manque le troisième sommet.") )
+  (!check_coords point3 "Triangle" 3)
+  (if !quatrz
+      (quit "`Triangle` : vous donnez un argument de trop.") )
+  (!processing (pack "Triangle " (nth> point1 1) " " (nth> point1 2) " "
+                                 (nth> point2 1) " " (nth> point2 2) " "
+                                 (nth> point3 1) " " (nth> point3 2)))
   Rien
 )
 
