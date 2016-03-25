@@ -179,6 +179,7 @@ function onCtrl(elt, f, config_64) {
                   "(D":   "(Declarer | De_type \"\")",
                   "(De":  "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
                   "(Dm":  "(Demander)|",
+                  "(Dn":  "(Demander_un_nombre)|",
                   "(E":   "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
                   "(E@":  "(Entie@ |)\n",
                   "(F":   "(Faire\n    (|)\n    ()\n Tant_que ()\n)",
