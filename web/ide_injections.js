@@ -353,7 +353,7 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option' + ((config.output == 'HTML')?' selected':'') + '>HTML</option>' +
         ((typeof Showdown === 'undefined') ? '' : '<option' + ((config.output == 'MD')?' selected':'') + '>MD</option>') +
         '</select> ' +
-        '<input type="button" value="OK" class="malg-ok-editor" ' +
+        '<input type="button" value="Exécuter" class="malg-ok-editor" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
                                      "'" + config_64 + "'" + ')" />' +
         '<div class="malg-error"></div>' +
@@ -673,7 +673,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     var repl_container = $('#' + elt_id);
     var rows = msg.split('\n').length;
     var repl_string = '<textarea id="' + repl_id + '" class="malg-repl" rows="' + (rows+2) + '" spellcheck="false">' + malg_prompt + msg + '</textarea>' +
-        '<input type="button" onclick="repl_action($(\'#' + elt_id + '-malg-repl\'))" value="OK" class="malg-ok"/>';
+        '<input type="button" onclick="repl_action($(\'#' + elt_id + '-malg-repl\'))" value="Exécuter" class="malg-ok"/>';
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
     createRichInput(repl);
