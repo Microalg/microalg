@@ -2206,6 +2206,19 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
   )
   Rien
 )
+(de !check_couleur (!liste !cmd)
+  (if (<> (!type_sym !liste) "liste")
+      (quit (pack "`" !cmd "` : l’argument doit être une liste.")) )
+  (let (!len_couleur (!longueur !liste))
+       (if (and (<> !len_couleur 3) (<> !len_couleur 4))
+           (quit (pack "`" !cmd "` : l’argument "
+                       "doit être une liste de longueur 3 ou 4.")) )
+  )
+  (mapcar '((x) (ifn (num? x)
+                     (quit (pack "`" !cmd "` : les valeurs de la liste "
+                                 "doivent tous être des nombres.")) ))
+          (elts> !liste) )
+)
 (put 'Contour 'doc
 "Dans la sortie graphique, permet de choisir la couleur du contour des tracés.
 
@@ -2215,6 +2228,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
 (put 'Contour 'text "Commande `Contour`.")
 (de Contour (couleur)
+  (!check_couleur couleur "Contour")
   (!processing (pack "Contour "
                      (Nieme couleur 1)
                      " " (Nieme couleur 2)
@@ -2234,6 +2248,7 @@ Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>
 et <http://microalg.info/doc.html#couleurs>.")
 (put 'Remplissage 'text "Commande `Remplissage`.")
 (de Remplissage (couleur)
+  (!check_couleur couleur "Remplissage")
   (!processing (pack "Remplissage "
                      (Nieme couleur 1)
                      " " (Nieme couleur 2)
@@ -2252,6 +2267,8 @@ Exemple : `(Epaisseur 5)`
 Voir <http://microalg.info/doc.html#utilisationdescommandesgraphiques>.")
 (put 'Epaisseur 'text "Commande `Epaisseur`.")
 (de Epaisseur (epaisseur)
+  (ifn (num? epaisseur)
+       (quit "`Epaisseur` : l’argument doit être un nombre.") )
   (!processing (pack "Epaisseur " epaisseur))
   Rien
 )
