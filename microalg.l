@@ -1640,9 +1640,22 @@ long du programme, même s’ils sont imbriqués). Voir la variable
             (ifn (!inited !nb_repetitions !nb_repetitions_evaled)
                  (quit (pack !cmd_pref "`" !nb_repetitions "` "
                              "n’a pas été déclarée.")))
-            (ifn (num? !nb_repetitions_evaled)
-                 (quit (pack !cmd_pref "le nombre de répétitions "
-                             "doit être de type \"nombre\".") ))
+            (let (!lnr "le nombre de répétitions ")
+                 (ifn (num? !nb_repetitions_evaled)
+                      (quit (pack !cmd_pref !lnr
+                                  "doit être de type \"nombre\".")
+                            !nb_repetitions_evaled))
+                 (if (<> !nb_repetitions (format (round !nb_repetitions 0) 0 "." ","))
+                     (quit (pack !cmd_pref !lnr
+                                 "doit être un nombre entier.")
+                           !nb_repetitions_evaled))
+                 (if (le0 (+ !nb_repetitions 1))
+                     (quit (pack !cmd_pref !lnr
+                                 "doit être strictement positif.")
+                           !nb_repetitions_evaled))
+            )
+            (if (le0 (- (length !arg_lst) 2))
+                (quit (pack !cmd_pref "il n’y a pas d’instruction à répéter.")) )
             (do !nb_repetitions_evaled (run !corps))
        )
        Rien
