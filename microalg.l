@@ -1149,7 +1149,8 @@ Exemples :
             # Avec 0 en argument, MicroAlg retournera toujours 266, puis 104, puis 869…
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
-(de Initialiser@ (x)
+(de Initialiser@ (x !deuze)
+    (if !deuze (quit (pack "`Initialiser@` n’a qu’un paramètre.")))
     (ifn x (quit "`Initialiser@` prend un paramètre, mais vous n’en donnez aucun.")
            (if (or (lt0 (- x 0)) (le0 (- 4294967296 x)))  # 2^32
                (quit (pack "`Initialiser@` n’accepte que des valeurs entre "
