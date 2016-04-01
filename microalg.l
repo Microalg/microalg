@@ -855,21 +855,21 @@ Exemples :
         !longueur_arg_lst (length arg_lst))
     # Quelques vérifications
     (if (<> !longueur_arg_lst 2)
-        (quit (pack "`Nieme` a exactement deux paramètres, vous en donnez "
-                    !longueur_arg_lst ".")))
+        (!erreur 42 "`Nieme` attend exactement deux arguments, vous en donnez "
+                    !longueur_arg_lst "."))
     # Vérifications concernant l’objet dont on extrait une valeur
     (ifn (!inited !obj !evaled_obj)
-        (quit "`Nieme` : la variable n’a pas été déclarée." !obj))
+        (!erreur 43 "`Nieme` : la variable `" !obj "` n’a pas été déclarée."))
     (let (!onppeuv "`Nieme` ne peut pas extraire une valeur ")
          (cond
            ((num? !evaled_obj)
-             (quit (pack !onppeuv "d’un nombre.") !evaled_obj))
-           ((==   !evaled_obj 'Vrai)
-             (quit (pack !onppeuv "du booléen `Vrai`.")))
-           ((==   !evaled_obj 'Faux)
-             (quit (pack !onppeuv "du booléen `Faux`.")))
-           ((==   !evaled_obj 'Rien)
-             (quit (pack !onppeuv "de `Rien`.")))
+             (!erreur 44 !onppeuv "du nombre " !evaled_obj "."))
+           ((== !evaled_obj 'Vrai)
+             (!erreur 45 !onppeuv "du booléen `Vrai`."))
+           ((== !evaled_obj 'Faux)
+             (!erreur 46 !onppeuv "du booléen `Faux`."))
+           ((== !evaled_obj 'Rien)
+             (!erreur 47 !onppeuv "de `Rien`."))
          )
     )
     # Vérifications concernant l’indice
