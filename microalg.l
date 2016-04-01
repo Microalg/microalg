@@ -1152,7 +1152,7 @@ Exemples :
 (de Initialiser@ (x)
     (ifn x (quit "`Initialiser@` prend un paramètre, mais vous n’en donnez aucun.")
            (if (or (lt0 (- x 0)) (le0 (- 4294967296 x)))  # 2^32
-               (quit (pack "Initialiser@ n’accepte que des valeurs entre "
+               (quit (pack "`Initialiser@` n’accepte que des valeurs entre "
                            "0 (inclus) et 2 puissance 32 (exclus).") x)
                (setq !etat@ x)
            )
