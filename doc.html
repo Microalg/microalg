@@ -791,6 +791,13 @@ Vous êtes peut-être dans un des cas suivants :
 [45](#erreur_45)
 [46](#erreur_46)
 [47](#erreur_47)
+[48](#erreur_48)
+[49](#erreur_49)
+[50](#erreur_50)
+[51](#erreur_51)
+[52](#erreur_52)
+[53](#erreur_53)
+[54](#erreur_54)
 
 #### erreur_1
 
@@ -1155,6 +1162,57 @@ Vérifiez le type de votre valeur.
 
 Le premier argument de `Nieme` doit être du texte ou une liste.  
 Si c’est une variable, l’avez-vous initialisée ?
+
+#### erreur_48
+
+> `Nieme` : l’indice doit être un nombre et non ce qui semble être un texte
+> vide.
+
+Voir [la documentation](#sym-Nieme) de cette commande.
+
+#### erreur_49
+
+> `Nieme` : l’indice est une variable non déclarée : `truc`.
+
+Vous utilisez une variable inconnue de MicroAlg.
+
+* Déclarez-la si ce n’est pas fait.
+* Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
+  minuscules.
+
+#### erreur_50
+
+> `Nieme` : l’indice doit être un nombre et donc le texte `"truc"` ne convient
+> pas.
+
+Voir [la documentation](#sym-Nieme) de cette commande.
+
+#### erreur_51
+
+> `Nieme` : l’indice vaut `Rien` et donc ne convient pas. Il faut un nombre.
+
+Le premier argument de `Nieme` doit être du texte ou une liste.  
+Si c’est une variable, l’avez-vous initialisée ?
+
+#### erreur_52
+
+> `Nieme` : l’indice doit être un nombre entier et donc `truc` ne convient pas.
+
+Voir [la documentation](#sym-Nieme) de cette commande.
+
+#### erreur_53
+
+> `Nieme` : l’indice doit être strictement positif et donc X ne convient pas.
+
+Si vous utilisez une variable pour l’indice, il ne faut pas qu’elle s’annule.
+Contrôlez-la mieux.
+
+#### erreur_54
+
+> `Nieme` : l’indice est trop grand (position X dans un objet de longueur Y).
+
+Si vous utilisez une variable pour l’indice, il ne faut pas qu’elle soit trop
+grande. Contrôlez-la mieux.
 
 ## Abréviations
 

@@ -876,19 +876,26 @@ Exemples :
     (let (!nli "`Nieme` : l’indice ")
          (cond
            ((not !idx)
-             (quit (pack !nli "doit être un nombre et non ce qui semble être un texte vide.")))
+             (!erreur 48 !nli "doit être un nombre "
+                         "et non ce qui semble être un texte vide."))
            ((not !evaled_idx)
-             (quit (pack !nli "est une variable non déclarée : `" !idx "`.")))
+             (!erreur 49 !nli "est une variable non déclarée : `" !idx "`."))
            ((!boolM2P (!texte? !evaled_idx))
-             (quit (pack !nli "doit être un nombre et non du texte.") !evaled_idx))
+             (!erreur 50 !nli "doit être un nombre et donc le texte "
+                         "`\"" !evaled_idx "\"` ne convient pas."))
+           ((not (<> 'Rien !evaled_idx))
+             (!erreur 51 !nli "vaut `Rien` et donc ne convient pas. "
+                         "Il faut un nombre."))
            ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
-             (quit (pack !nli "doit être un nombre entier.") !evaled_idx))
+             (!erreur 52 !nli "doit être un nombre entier et donc `"
+                         (!text !evaled_idx) "` ne convient pas."))
            ((le0 !evaled_idx)
-             (quit (pack !nli "doit être strictement positif.") !evaled_idx))
+             (!erreur 53 !nli "doit être strictement positif et donc "
+                         !evaled_idx " ne convient pas."))
            ((lt0 (- (!longueur !evaled_obj) !evaled_idx))
-             (quit (pack !nli "est trop grand (position "
+             (!erreur 54 !nli "est trop grand (position "
                          !evaled_idx " dans un objet de longueur "
-                         (!longueur !evaled_obj) ").")))
+                         (!longueur !evaled_obj) ")."))
          )
     )
     # Le calcul
