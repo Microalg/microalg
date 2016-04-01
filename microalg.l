@@ -1628,10 +1628,10 @@ long du programme, même s’ils sont imbriqués). Voir la variable
 ")
 (put 'Repeter 'text "Commande `Repeter`.")
 (de !repeter @
-  (let (!error_prefix "`Repeter` : "
+  (let (!cmd_pref "`Repeter` : "
         !arg_lst (rest))
        (if (<> 2 (index 'Fois !arg_lst))
-           (quit "`Repeter` : Le mot-clef `Fois` doit être en 2ème position.") )
+           (quit (pack !cmd_pref "le mot-clef `Fois` doit être en 2ème position.")) )
        (let (!nb_repetitions (car !arg_lst)
              !nb_repetitions_evaled (eval !nb_repetitions)
              !corps (conc (cddr !arg_lst)
@@ -1639,10 +1639,11 @@ long du programme, même s’ils sont imbriqués). Voir la variable
                                 (quit credit_iterations_message))))
             )
             (ifn (!inited !nb_repetitions !nb_repetitions_evaled)
-                 (quit (pack "`Repeter` : `" !nb_repetitions "` "
+                 (quit (pack !cmd_pref "`" !nb_repetitions "` "
                              "n’a pas été déclarée.")))
             (ifn (num? !nb_repetitions_evaled)
-                 (quit "Le nombre de répétitions doit être de type \"nombre\".") )
+                 (quit (pack !cmd_pref "le nombre de répétitions "
+                             "doit être de type \"nombre\".") ))
             (do !nb_repetitions_evaled (run !corps))
        )
        Rien
