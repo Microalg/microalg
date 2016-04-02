@@ -308,7 +308,7 @@ Blockly.Blocks['affecter_a'] = {
       ['VAR', new Blockly.FieldVariable("ma_variable")],
       ['VALUE', null],
       Blockly.ALIGN_RIGHT);
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.contextMenuMsg_ = "Créer truc"; // ???
     this.contextMenuType_ = 'variable';
   },
