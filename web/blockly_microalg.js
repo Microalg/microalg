@@ -308,7 +308,7 @@ Blockly.Blocks['affecter_a'] = {
       ['VAR', new Blockly.FieldVariable("ma_variable")],
       ['VALUE', null],
       Blockly.ALIGN_RIGHT);
-    this.setInputsInline(true);
+    this.setInputsInline(false);
     this.contextMenuMsg_ = "Créer truc"; // ???
     this.contextMenuType_ = 'variable';
   },
@@ -329,6 +329,47 @@ Blockly.MicroAlg['affecter_a'] = function(block) {
   var value = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
   var value_cleaned = value.toString().trim();
   return '(Affecter_a ' + this.getFieldValue('VAR') + ' ' + value_cleaned + ')';
+};
+
+// Bloc Affecter_a En_position
+// https://github.com/google/blockly/blob/master/blocks/variables.js
+Blockly.Blocks['affecter_a_en_position'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Affecter_a');
+    this.setColour(colour);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Affecter une valeur à un endroit dans une liste ou un texte.');
+    this.interpolateMsg(
+      'Affecter_a' + ' %1 ' + ' %2 ' + 'En_position' + ' %3',
+      ['VAR', new Blockly.FieldVariable("ma_variable")],
+      ['VALUE', null],
+      ['POS', null],
+      Blockly.ALIGN_RIGHT);
+    this.setInputsInline(true);
+    this.contextMenuMsg_ = "Créer truc"; // ???
+    this.contextMenuType_ = 'variable';
+  },
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+        this.setFieldValue(newName, 'VAR');
+    }
+  },
+  customContextMenu: Blockly.Blocks['variable'].customContextMenu
+};
+
+// Gen Affecter_a En_position
+// https://github.com/google/blockly/blob/master/generators/javascript/variables.js
+Blockly.MicroAlg['affecter_a_en_position'] = function(block) {
+  var value = Blockly.MicroAlg.statementToCode(block, 'VALUE') || '';
+  var value_cleaned = value.toString().trim();
+  var pos = Blockly.MicroAlg.statementToCode(block, 'POS') || '';
+  var pos_cleaned = pos.toString().trim();
+  return '(Affecter_a ' + this.getFieldValue('VAR') + ' ' + value_cleaned +
+         ' En_position ' + pos_cleaned + ')';
 };
 
 // Bloc Afficher

@@ -419,6 +419,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="tant_que"></block>' +
                 '  <block type="declarer"></block>' +
                 '  <block type="affecter_a"></block>' +
+                '  <block type="affecter_a_en_position"></block>' +
                 '  <block type="initialiser_pseudo_aleatoire"></block>' +
                 ' </category>' +
                 ' <category name="Cmdes avec retour">' +

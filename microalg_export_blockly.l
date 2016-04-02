@@ -132,12 +132,24 @@
 (de Affecter_a inputs
   (let (!var (cadr (car inputs))  # var name is in (Variable ...)
         !val (eval (cadr inputs))
-        !next (eval (caddr inputs)))
-       (pack "<block type=\"affecter_a\">"
-             "<field name=\"VAR\">" !var "</field>"
-             "<value name=\"VALUE\">" !val "</value>"
-             !next
-             "</block>")))
+        !next_raw (cddr inputs))
+       (if (<> 'En_position (car !next_raw))
+         (pack "<block type=\"affecter_a\">"
+               "<field name=\"VAR\">" !var "</field>"
+               "<value name=\"VALUE\">" !val "</value>"
+               (eval (car !next_raw))
+               "</block>")
+         (let (!pos (eval (cadr !next_raw)))
+              (pack "<block type=\"affecter_a_en_position\">"
+                    "<field name=\"VAR\">" !var "</field>"
+                    "<value name=\"VALUE\">" !val "</value>"
+                    "<value name=\"POS\">" !pos "</value>"
+                    (eval (caddr !next_raw))
+                    "</block>")
+         )
+       )
+  )
+)
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
