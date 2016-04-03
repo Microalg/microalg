@@ -1,3 +1,9 @@
+(setq !cmdes_sans_retour
+  '(!!! AV BC LC TD TG Affecter_a Afficher Ajouter_a Cercle Contour
+    Declarer Definir Demander Demander_un_nombre Ellipse Epaisseur Exemples_de
+    Faire Initialiser@ RAZ Rectangle Remplissage Repere Repeter Retirer_de
+    Retourner Segment Si Tant_que Tester Triangle) )
+
 (de proteger_source src (mapcar 'proteger_source_aux src))
 (de proteger_source_aux (src)
    (cond
@@ -7,8 +13,25 @@
                                    En_position De_type Fois))
                       src
                       (list 'Variable src)))
-      (T          (cons (car src) (mapcar 'proteger_source_aux (cdr src))))
+      (T          (if (index (car src) !cmdes_sans_retour)
+                      (list 'indent
+                            (cons (car src)
+                                  (mapcar 'proteger_source_aux (cdr src))))
+                      (cons (car src) (mapcar 'proteger_source_aux (cdr src)))
+                  )
+      )
     )
+)
+
+# Default implementation, should be reimplemented for every textual language:
+(de indent (!instr) !instr)
+# Standard implementation, if needed:
+(de indent_std (!instr)
+  (let (!lines_with_final_NIL (mapcar pack (split (chop !instr) "^J"))
+        !lines (reverse (cdr (reverse !lines_with_final_NIL))))
+       (mapcar (list '(!line)
+                     (list 'pack "  " '!line "^J")) !lines)
+  )
 )
 
 (ifn glue
