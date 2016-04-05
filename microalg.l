@@ -899,6 +899,9 @@ Exemples :
            ((not (<> 'Rien !evaled_idx))
              (!erreur 51 !nli "vaut `Rien` et donc ne convient pas. "
                          "Il faut un nombre."))
+           ((not (num? !evaled_idx))
+             (!erreur 55 !nli "doit être un nombre et donc `"
+                         (!text !idx) "` ne convient pas."))
            ((<> !evaled_idx (format (round !evaled_idx 0) 0 "." ","))
              (!erreur 52 !nli "doit être un nombre entier et donc `"
                          (!text !evaled_idx) "` ne convient pas."))
