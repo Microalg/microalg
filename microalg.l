@@ -140,6 +140,10 @@ Voir <http://microalg.info>.")
   (if (or (not x) (!boolM2P (!texte? x)))
       (!add_quotes x)
       x) )
+(de !text_n_quote (x)
+  (if (or (not x) (!boolM2P (!texte? x)))
+      (!add_quotes (!text x))
+      (!text x)) )
 
 (de !erreur @
   (let (!code (next))
@@ -1904,19 +1908,42 @@ Voir la commande `Exemples_de`.")
 (setq <= NIL)
 (setq > NIL)
 (setq >= NIL)
-# Factorisation du test du nbre d’args
-(de !check2args (!cmd !primz !deuz !troiz)
-  (let !bla " prend 2 paramètres. Vous "
-    (ifn !primz (quit (pack "`" !cmd "`" !bla "n’en donnez aucun.")))
-    (ifn !deuz  (quit (pack "`" !cmd "`" !bla "n’en donnez qu’un seul.")))
-    (if  !troiz (quit (pack "`" !cmd "`" !bla "en donnez au moins trois.")))
+# Factorisation du test du nombre des arguments des comparaisons
+(de !check_2_args (!arg_lst)
+  # On passe aussi le nom de la commande, d’où la soustraction
+  (let (!nb_args (- (length !arg_lst) 1)
+        !cmd (car !arg_lst)
+        !adamv " attend deux arguments mais vous ")
+       (cond
+         ((not (<> 0 !nb_args))
+            (quit (pack "`" !cmd "`" !adamv "n’en donnez aucun.")) )
+         ((not (<> 1 !nb_args))
+            (quit (pack "`" !cmd "`" !adamv "n’en donnez qu’un seul.")) )
+         ((ge0 (- !nb_args 3))
+            (quit (pack "`" !cmd "`" !adamv "en donnez au moins trois.")) )
+       )
   )
 )
-# Factorisation du test du type des args
-(de !check_type_args (!cmd !primz !deuz)
-  (if (not (and (num? !primz) (num? !deuz)))
-      (quit (pack "Les paramètres de " !cmd " doivent être des nombres.")
-            (Concatener (Texte !primz) " " !cmd " " (Texte !deuz)))
+# Factorisation du test de la déclaration des variables
+(de !check_inited_args (!cmd !x_sym !x_evaled !y_sym !y_evaled)
+  (let (!euvqnped "` est une variable qui n’a pas été déclarée.")
+       (ifn (!inited !x_sym !x_evaled)
+            (quit (pack "`" !cmd "` : le premier argument `" !x_sym !euvqnped)) )
+       (ifn (!inited !y_sym !y_evaled)
+            (quit (pack "`" !cmd "` : le second argument `" !x_sym !euvqnped)) )
+  )
+)
+# Factorisation du test du type des arguments des comparaisons
+(de !check_args_numeriques (!cmd !primz !deuz)
+  # On passe aussi le nom de la commande, d’où la soustraction
+  (let (!adnml " attend des nombres mais le "
+        !ade   " argument donné est `")
+       (if (not (num? !primz))
+           (quit (pack "`" !cmd "`" !adnml "premier" !ade
+                       (!text_n_quote !primz) "`.")) )
+       (if (not (num? !deuz))
+           (quit (pack "`" !cmd "`" !adnml "second" !ade
+                      (!text_n_quote !deuz) "`.")) )
   )
 )
 (put '= 'doc
@@ -1927,14 +1954,23 @@ et `Faux` sinon.
     -> Vrai
 ")
 (put '= 'text "Prédicat `=`.")
-(de = (x y)
-  (ifn (<> x y)
-       (if (or (== x Vrai) (== x Faux) (== x Rien)
-               (== y Vrai) (== y Faux) (== y Rien))
-           (if (== x y) Vrai Faux)  # test == pour les vals ci-dessus
-           Vrai                     # pour les autres, c’est not <>
-       )
-       Faux)  # ici, ils sont <>
+(de = !arg_lst
+  (!check_2_args (cons "=" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args "=" !x_sym !x_evaled !y_sym !y_evaled)
+       (ifn (<> !x_evaled !y_evaled)
+            (if (or (== !x_evaled Vrai) (== !x_evaled Faux) (== !x_evaled Rien)
+                    (== !y_evaled Vrai) (== !y_evaled Faux) (== !y_evaled Rien))
+                (if (== !x_evaled !y_evaled) Vrai Faux)
+                # test == pour les vals ci-dessus
+                # pour les autres, c’est not <> :
+                Vrai
+            )
+            Faux)  # ici, ils sont <>
+  )
 )
 (put '=/ 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
@@ -1944,8 +1980,16 @@ différentes, et `Faux` sinon.
     -> Faux
 ")
 (put '=/ 'text "Prédicat `=/`.")
-(de =/ (x y)
-  (if (<> x y) Vrai Faux))
+(de =/ !arg_lst
+  (!check_2_args (cons "=/" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args "=/" !x_sym !x_evaled !y_sym !y_evaled)
+       (if (<> !x_evaled !y_evaled) Vrai Faux)
+  )
+)
 (put '< 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre croissant (strictement), et `Faux` sinon.
@@ -1956,10 +2000,17 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '< 'text "Prédicat `<`.")
-(de < (x y !troiz)
-  (!check2args "<" x y !troiz)
-  (!check_type_args "<" x y)
-  (ifn (ge0 (- x y)) Vrai Faux))
+(de < !arg_lst
+  (!check_2_args (cons "<" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args "<" !x_sym !x_evaled !y_sym !y_evaled)
+       (!check_args_numeriques "<" !x_evaled !y_evaled)
+       (ifn (ge0 (- !x_evaled !y_evaled)) Vrai Faux)
+  )
+)
 (put '<= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre croissant.
@@ -1972,10 +2023,17 @@ dans l’ordre croissant.
     -> Faux
 ")
 (put '<= 'text "Prédicat `<=`.")
-(de <= (x y !troiz)
-  (!check2args "<=" x y !troiz)
-  (!check_type_args "<=" x y)
-  (if (le0 (- x y)) Vrai Faux))
+(de <= !arg_lst
+  (!check_2_args (cons "<=" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args "<=" !x_sym !x_evaled !y_sym !y_evaled)
+       (!check_args_numeriques "<=" !x_evaled !y_evaled)
+       (if (le0 (- !x_evaled !y_evaled)) Vrai Faux)
+  )
+)
 (put '> 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant (strictement), et `Faux` sinon.
@@ -1986,10 +2044,17 @@ dans l’ordre décroissant (strictement), et `Faux` sinon.
     -> Vrai
 ")
 (put '> 'text "Prédicat `>`.")
-(de > (x y !troiz)
-  (!check2args ">" x y !troiz)
-  (!check_type_args ">" x y)
-  (ifn (le0 (- x y)) Vrai Faux))
+(de > !arg_lst
+  (!check_2_args (cons ">" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args ">" !x_sym !x_evaled !y_sym !y_evaled)
+       (!check_args_numeriques ">" !x_evaled !y_evaled)
+       (ifn (le0 (- !x_evaled !y_evaled)) Vrai Faux)
+  )
+)
 (put '>= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont
 dans l’ordre décroissant.
@@ -2002,10 +2067,17 @@ dans l’ordre décroissant.
     -> Faux
 ")
 (put '>= 'text "Prédicat `>=`.")
-(de >= (x y !troiz)
-  (!check2args ">=" x y !troiz)
-  (!check_type_args ">=" x y)
-  (if (ge0 (- x y)) Vrai Faux))
+(de >= !arg_lst
+  (!check_2_args (cons ">=" !arg_lst))
+  (let (!x_sym    (car  !arg_lst)
+        !x_evaled (eval !x_sym)
+        !y_sym    (cadr !arg_lst)
+        !y_evaled (eval !y_sym))
+       (!check_inited_args ">=" !x_sym !x_evaled !y_sym !y_evaled)
+       (!check_args_numeriques ">=" !x_evaled !y_evaled)
+       (if (ge0 (- !x_evaled !y_evaled)) Vrai Faux)
+  )
+)
 (put 'Vide? 'doc
 "Prédicat retournant `Vrai` si l’argument est considéré comme vide.
 
