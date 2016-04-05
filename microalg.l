@@ -1898,8 +1898,6 @@ Voir la commande `Exemples_de`.")
    ((not !obj) Vrai)                       # Possiblement "" en direct.
    ((num? !obj) Faux)                      # Un nombre en direct.
    ((!liste? !obj) Faux)                   # Liste.
-   ((if (sym? !obj) (== (get !obj 'type) "texte")) Vrai)  # Un sym textuel.
-   ((== (get !obj 'type) "texte") Vrai)    # Un sym textuel.
    ((str? !obj) Vrai)                      # Texte.
    (T Faux)                                # Le reste.
   )
