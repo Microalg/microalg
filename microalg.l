@@ -123,17 +123,23 @@ Voir <http://microalg.info>.")
 (setq *Err '((bye)))
 
 # Vérif et conversions de booléens MicroAlg <-> PicoLisp:
-(de !boolM2P (x) (if (<> Faux x) T NIL))
-(de !boolP2M (x) (if x Vrai Faux))
-(de !boolCheck (x) (if (member x '(Vrai Faux)) T))
+(de !boolM2P (x)
+  (if (<> Faux x) T NIL) )
+(de !boolP2M (x)
+  (if x Vrai Faux) )
+(de !boolCheck (x)
+  (if (member x '(Vrai Faux)) T))
 (de !boolCheckM2P (x msg)
-    (ifn (!boolCheck x) (quit msg x))
-    (!boolM2P x) )
+  (ifn (!boolCheck x) (quit msg x))
+  (!boolM2P x) )
 
-(de !add_quotes (x) (pack "\"" x "\""))
-(de !quote_txt (x) (if (or (not x) (!boolM2P (!texte? x)))
-                       (!add_quotes x)
-                       x))
+# Helpers pour affichage:
+(de !add_quotes (x)
+  (pack "\"" x "\"") )
+(de !quote_txt (x)
+  (if (or (not x) (!boolM2P (!texte? x)))
+      (!add_quotes x)
+      x) )
 
 (de !erreur @
   (let (!code (next))
