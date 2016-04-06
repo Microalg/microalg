@@ -618,6 +618,9 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                          (set !var (pack (head (- idx 1) chopped)
                                         val
                                         (tail (- idx) chopped) )) ))
+                   (not (<> Rien evaled_var)
+                    (!erreur 56 "Affectation positionnelle impossible sur "
+                                  "`Rien`."))
                    (T (!erreur 30 "Affectation positionnelle impossible sur "
                                   "`" (!text !var) "` qui est de type `\""
                                   (Type evaled_var) "\"`."))
