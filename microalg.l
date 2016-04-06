@@ -558,7 +558,8 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  (if (and (not (<> "liste" (!type_sym !var)))
                           (not (!liste? val)))
                      (!erreur 18 "`" !var "` est une liste. On ne peut pas lui "
-                                 "affecter `" val "` qui n’est pas une liste.")
+                                 "affecter `" (!text_n_quote val) "` "
+                                 "qui n’est pas une liste.")
                  )
                  # Affectation au symbole dans `!var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
