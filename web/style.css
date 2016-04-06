@@ -76,7 +76,7 @@ body.microalg {
     white-space: pre;
 }
 .malg-guide {
-	color: #ddd;
+    color: #ddd;
 }
 .malg-blockly-iframe {
     height: 350px;
@@ -146,12 +146,12 @@ pre.brut {
 }
 .microalg .link-snippet a {
     text-decoration: none;
-	border-bottom: 0;
-	background-color: #eee;
-	padding: 0 .5em 0 .5em;
+    border-bottom: 0;
+    background-color: #eee;
+    padding: 0 .5em 0 .5em;
 }
 .microalg .link-snippet a:hover {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 a.wp:after, a.offi:after, a.email:after {
     color: black;
