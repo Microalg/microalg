@@ -536,6 +536,10 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
     (let (evaled_var (eval !var)
           val (eval val_expr)
           idx (eval idx_expr))
+         (if (== val En_position)
+             (!erreur 58 "`Affecter_a ... En_position ...` : "
+                         "avant `En_position`, il faut la variable "
+                         "puis la valeur.") )
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
              ((num? !var) (!erreur 16 !onppauv "à `" !var "`, qui est un nombre."))
