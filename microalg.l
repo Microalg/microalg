@@ -539,7 +539,8 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          (setq !onppauv "On ne peut pas affecter une valeur ")
          (cond
              ((num? !var) (!erreur 16 !onppauv "à `" !var "`, qui est un nombre."))
-             ((str? !var) (!erreur 16 !onppauv "à `" !var "`, qui est un texte."))
+             ((str? !var) (!erreur 16 !onppauv "à `" (!add_quotes !var) "`, "
+                                      "qui est un texte."))
              ((== !var 'Vrai) (!erreur 16 !onppauv "au booléen `Vrai`."))
              ((== !var 'Faux) (!erreur 16 !onppauv "au booléen `Faux`."))
              ((== !var 'Rien) (!erreur 16 !onppauv "à `Rien`."))
