@@ -1209,8 +1209,8 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 (put 'Entier@ 'text "Commande `Entier@`.")
 (de Entier@ (!min !max !rien_ici)
     # Quelques vérifications
-    (ifn (and !min !max) (quit "`Entier@` prend deux paramètres (entiers)."))
-    (if !rien_ici (quit "`Entier@` ne prend que deux paramètres (entiers)."))
+    (ifn (and !min !max) (quit "`Entier@` attend deux arguments (entiers)."))
+    (if !rien_ici (quit "`Entier@` n’attend que deux arguments (entiers)."))
     (cond
         ((<> !min (format (round !min 0) 0 "." ","))
          (quit "Le minimum de `Entier@` n’est pas entier." !min))
