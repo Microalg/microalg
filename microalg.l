@@ -588,6 +588,9 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      ((!boolM2P (!texte? idx))
                        (!erreur 24 !aepli "doit être un nombre et non un "
                                    "texte. Donc `\"" idx "\"` ne convient pas."))
+                     ((not (<> Rien idx))
+                       (!erreur 57 !aepli "doit être un nombre. Donc "
+                                   "`Rien` ne convient pas."))
                      ((not (num? idx))
                        (!erreur 25 !aepli "doit être un nombre. Donc "
                                    "`" (!text idx_expr) "` ne convient pas."))
