@@ -52,8 +52,8 @@ Voir <http://microalg.info>.")
   (de cut (n sym acc)
     (let esym (eval sym)
       (cond
-        ((not (<> 0 n)) (reverse acc))
-        (T              (let elt (pop sym) (push 'acc elt) (cut (- n 1) sym acc)))
+        ((=0 n) (reverse acc))
+        (T      (let elt (pop sym) (push 'acc elt) (cut (- n 1) sym acc)))
       )
     )
   )
@@ -555,7 +555,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
          )
          (ifn kw
               (prog
-                 (if (and (not (<> "liste" (!type_sym !var)))
+                 (if (and (== "liste" (!type_sym !var))
                           (not (!liste? val)))
                      (!erreur 18 "`" !var "` est une liste. On ne peut pas lui "
                                  "affecter `" (!text_n_quote val) "` "
@@ -563,7 +563,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  )
                  # Affectation au symbole dans `!var`.
                  (if (or (not val)  # Pour accepter "" qui est NIL.
-                         (not (<> "rien" (get !var 'type)))
+                         (== "rien" (get !var 'type))
                          (<> Faux (= (get !var 'type) (Type val))))
                      (set !var val)
                      (!erreur 19 "`Affecter_a` : le type ne correspond pas. "
@@ -593,7 +593,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                      ((!boolM2P (!texte? idx))
                        (!erreur 24 !aepli "doit être un nombre et non un "
                                    "texte. Donc `\"" idx "\"` ne convient pas."))
-                     ((not (<> Rien idx))
+                     ((== Rien idx)
                        (!erreur 57 !aepli "doit être un nombre. Donc "
                                    "`Rien` ne convient pas."))
                      ((not (num? idx))
@@ -612,7 +612,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                    )
                  )
                  (if (!boolM2P (!texte? evaled_var))  # check pour textes, inutile pour listes
-                     (ifn (and (str? val) (not (<> 1 (length val))))
+                     (ifn (and (str? val) (not (<> 1 (length val))))  ## pas ==
                           (!erreur 29 "La valeur affectée à un texte doit être "
                                       "un texte de longueur 1 (un caractère) "
                                       "mais vous avez donné `"
@@ -627,7 +627,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                          (set !var (pack (head (- idx 1) chopped)
                                         val
                                         (tail (- idx) chopped) )) ))
-                   ((not (<> Rien evaled_var))
+                   ((== Rien evaled_var)
                     (!erreur 56 "Affectation positionnelle impossible sur "
                                   "`Rien`."))
                    (T (!erreur 30 "Affectation positionnelle impossible sur "
@@ -908,7 +908,7 @@ Exemples :
            ((!boolM2P (!texte? !evaled_idx))
              (!erreur 50 !nli "doit être un nombre et donc le texte "
                          "`\"" !evaled_idx "\"` ne convient pas."))
-           ((not (<> 'Rien !evaled_idx))
+           ((== Rien !evaled_idx)
              (!erreur 51 !nli "vaut `Rien` et donc ne convient pas. "
                          "Il faut un nombre."))
            ((not (num? !evaled_idx))
@@ -956,7 +956,7 @@ Exemples :
     # Quelques vérifications
     (cond ((num? obj)
            (quit "Un nombre n’a pas de tête, il faut un texte ou une liste." obj))
-          ((not (<> 0 (!longueur obj)))
+          ((=0 (!longueur obj))
            (quit "Un objet vide n’a pas de tête."))
     )
     # Le calcul
@@ -986,7 +986,7 @@ Exemples :
     # Quelques vérifications
     (cond ((num? obj)
            (quit "Un nombre n’a pas de queue, il faut un texte ou une liste." obj))
-          ((not (<> 0 (!longueur obj)))
+          ((=0 (!longueur obj))
            (quit "Un objet vide n’a pas de queue."))
     )
     # Le calcul
@@ -1342,9 +1342,9 @@ Exemples :
 (de Texte (x !deuze)
   (if !deuze (quit (pack "`Texte` n’a qu’un paramètre.")))
   (cond
-    ((not (<> x 'Vrai)) "Vrai")
-    ((not (<> x 'Faux)) "Faux")
-    ((not (<> x 'Rien)) "Rien")
+    ((== x Vrai) "Vrai")
+    ((== x Faux) "Faux")
+    ((== x Rien) "Rien")
     ((!liste? x) (!text x))  # mettre avant str?
     ((str? x) x)
     ((num? x) (format x))
@@ -1931,7 +1931,7 @@ Voir la commande `Exemples_de`.")
         !cmd (car !arg_lst)
         !adamv " attend deux arguments mais vous ")
        (cond
-         ((not (<> 0 !nb_args))
+         ((=0 !nb_args)
             (quit (pack "`" !cmd "`" !adamv "n’en donnez aucun.")) )
          ((not (<> 1 !nb_args))
             (quit (pack "`" !cmd "`" !adamv "n’en donnez qu’un seul.")) )
