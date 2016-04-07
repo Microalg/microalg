@@ -952,20 +952,28 @@ Exemples :
     -> 1
 ")
 (put 'Tete 'text "Commande `Tete`.")
-(de Tete (obj)
-    # Quelques vérifications
-    (cond ((num? obj)
-           (quit "Un nombre n’a pas de tête, il faut un texte ou une liste." obj))
-          ((=0 (!longueur obj))
-           (quit "Un objet vide n’a pas de tête."))
+(de Tete !arg_lst
+  (let (!arg (car !arg_lst)
+        !evaled_arg (eval !arg))
+       # Quelques vérifications
+       (cond
+          ((not (!inited !arg !evaled_arg))
+           (!erreur 60 "`Tete` : la variable `" !arg "` n’a pas été déclarée."))
+          ((not (or (!liste? !evaled_arg) (str? !evaled_arg) (not !evaled_arg)))
+           (!erreur 61 "Vous cherchez la tête de `"
+                       (!text_n_quote !evaled_arg) "`, "
+                       "qui n’est ni un texte ni une liste mais de type `\""
+                       (Type !evaled_arg) "\"`."))
+          ((=0 (!longueur !evaled_arg))
+           (!erreur 62 "Un valeur vide n’a pas de tête."))
     )
     # Le calcul
     (cond
-      ((!liste? obj) (nth> obj 1))
-      ((str? obj) (car (chop obj)))
-      (T (quit "Vous cherchez la tete d’une valeur qui n’est ni un texte ni une liste."
-               (list obj (Type obj))))
-    ))
+      ((!liste? !evaled_arg) (nth> !evaled_arg 1))
+      ((str? !evaled_arg)    (car (chop !evaled_arg)))
+    )
+  )
+)
 (put 'Queue 'doc
 "Commande qui retourne une copie du texte ou de la liste en paramètre,
  mais sans son premier élément.
