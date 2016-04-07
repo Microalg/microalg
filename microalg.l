@@ -1049,27 +1049,32 @@ Exemples avec une liste :
   (let (!sym (car arg_lst)
         !type_du_sym (!type_sym !sym)
         !evaled_sym (eval !sym)
-        !elt (eval (cadr arg_lst))
-        !troize (caddr arg_lst))
+        !elt (eval (cadr arg_lst)))
        # Quelques vérifications
-       (if !troize (quit "`Ajouter_a` n’a que deux paramètres."))
+       (if (<> 2 (length arg_lst))
+           (!erreur 66 "`Ajouter_a` attend exactement deux arguments. "
+                       "Vous en donnez " (length arg_lst) "."))
        (ifn (!inited !sym !evaled_sym)
-            (quit "`Ajouter_a` : la variable n’a pas été déclarée." !sym))
-       (if (and (<> !type_du_sym "texte") (<> !type_du_sym "liste"))
-           (quit (pack "`Ajouter_a` : la variable doit être de type "
-                       "\"texte\" ou \"liste\".")) )
+            (!erreur 67 "`Ajouter_a` : la variable `" !sym "` "
+                        "n’a pas été déclarée."))
        (ifn (<> 'Rien !evaled_sym)
-            (quit (pack "`Ajouter_a` : la variable n’a pas été initialisée. "
-                        "Affectez-lui une valeur de type \"texte\" ou \"liste\".")) )
+            (!erreur 68 "`Ajouter_a` : la variable n’a pas été initialisée. "
+                        "Affectez-lui une valeur de type "
+                        "`\"texte\"` ou `\"liste\"`."))
+       (ifn (index !type_du_sym '("liste" "texte"))
+           (!erreur 69 "`Ajouter_a` : la variable est de type "
+                       "`\"" !type_du_sym "\"` alors qu’elle doit être de type "
+                       "`\"texte\"` ou `\"liste\"`."))
        (ifn (<> "texte" !type_du_sym)
            (if (or (not (!boolM2P (!texte? !elt)))
                    (!boolM2P (> (!longueur !elt) 1)) )
-               (quit "On ne peut `Ajouter_a` un texte qu’un caractère." !elt) ))
+               (!erreur 70 "Vous voulez ajouter `" (!text_n_quote !elt) "` à "
+                           "`" !sym "` mais on ne peut `Ajouter_a` un texte "
+                           "qu’un seul caractère.")))
        # Le calcul
        (cond
          ((!liste? !evaled_sym) (prog (push> !evaled_sym !elt) Rien))
          ((!boolM2P (str? !evaled_sym)) (prog (set !sym (pack !evaled_sym !elt)) Rien))
-         (T (quit "Le premier argument de `Ajouter_a` doit être du texte ou une liste." !sym))
        )
   )
 )

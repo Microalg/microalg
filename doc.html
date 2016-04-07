@@ -809,6 +809,11 @@ Vous êtes peut-être dans un des cas suivants :
 [63](#erreur_63)
 [64](#erreur_64)
 [65](#erreur_65)
+[66](#erreur_66)
+[67](#erreur_67)
+[68](#erreur_68)
+[69](#erreur_69)
+[70](#erreur_70)
 
 #### erreur_0
 
@@ -1330,6 +1335,45 @@ une variable qui n’a pas été initialisée.
 
 Vérifiez la valeur dont vous cherchez la queue. Il faut au moins qu’elle
 contienne **un** élément.
+
+#### erreur_66
+
+> `Ajouter_a` attend exactement deux arguments. Vous en donnez `truc`.
+
+Voir [l’aide de la commande Ajouter_a](#sym-Ajouter_a).
+
+#### erreur_67
+
+> `Ajouter_a` : la variable `truc` n’a pas été déclarée.
+
+Vous utilisez une variable inconnue de MicroAlg.
+
+* Déclarez-la si ce n’est pas fait.
+* Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
+  minuscules.
+
+#### erreur_68
+
+> `Ajouter_a` : la variable n’a pas été initialisée. Affectez-lui une valeur
+> de type `"texte"` ou `"liste"`.
+
+Cela peut être le texte vide `""` ou la liste vide `(Liste)`, ou des valeurs
+non vides.
+
+#### erreur_69
+
+> `Ajouter_a` : la variable est de type `"truc"` alors qu’elle doit être de
+> type `"texte"` ou `"liste"`.
+
+Vérifiez bien le type et la valeur de votre variable.
+
+#### erreur_70
+
+> Vous voulez ajouter `"truc"` à `machin` mais on ne peut `Ajouter_a` un texte
+> qu’un seul caractère.
+
+Le deuxième argument de la commande `Ajouter_a` doit être un texte de longueur
+1 comme `"a"` ou `"x"`.
 
 ## Abréviations
 
