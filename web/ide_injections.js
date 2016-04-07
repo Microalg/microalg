@@ -126,7 +126,7 @@ function stdPrompt() {
 }
 
 function preparation_exception(e) {
-    var msg_escaped = e.message.replace('<', '&lt;');
+    var msg_escaped = e.message.replace('<', '&lt;').replace(/(\r\n|\n|\r)/gm, " ");
     var link_prefix = '<a target="_blank" href="http://microalg.info/doc.html#';
     var re = /^(.*) \[erreur n°(\d+)\]$/;
     var matches = msg_escaped.match(re);
@@ -139,13 +139,20 @@ function preparation_exception(e) {
         link = link_prefix + 'erreur_' + error_id +
                    '">Voir des infos sur cette erreur.</a>';
     } else {
-        // erreurs old style
-        var re = /^(.*) -- Undefined$/;
-        var matches = msg_escaped.match(re);
-        if (matches) {
+        // erreurs old style ou non contrôlées
+        if (matches = msg_escaped.match(/^(.*) -- Undefined$/)) {
             var sym = matches[1];
             msg = "La commande `" + sym + "` n’existe pas.";
             link = link_prefix + 'erreur_0' +
+                   '">Voir des infos sur cette erreur.</a>';
+        } else if (matches = msg_escaped.match(/^(.*) -- Number expected$/)) {
+            var sym = matches[1];
+            if (sym == '$*') sym = '`(Liste ...)`';
+            else if (sym.slice(0, 11) == 'function (c') sym = 'Une commande';
+            else sym = '`' + sym + '`';
+            msg = "Les calculs attendent des nombres. " +
+                  sym + " ne convient pas.";
+            link = link_prefix + 'erreur_59' +
                    '">Voir des infos sur cette erreur.</a>';
         } else {
             msg = msg_escaped;
