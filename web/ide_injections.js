@@ -140,8 +140,17 @@ function preparation_exception(e) {
                    '">Voir des infos sur cette erreur.</a>';
     } else {
         // erreurs old style
-        msg = msg_escaped;
-        link = link_prefix + 'erreursfrquentes">Voir les erreurs fréquentes.</a>';
+        var re = /^(.*) -- Undefined$/;
+        var matches = msg_escaped.match(re);
+        if (matches) {
+            var sym = matches[1];
+            msg = "La commande `" + sym + "` n’existe pas.";
+            link = link_prefix + 'erreur_0' +
+                   '">Voir des infos sur cette erreur.</a>';
+        } else {
+            msg = msg_escaped;
+            link = link_prefix + 'erreursfrquentes">Voir les erreurs fréquentes.</a>';
+        }
     }
     return msg + ' <span class="malg-freq-error">' + link + '</span>';
 }
