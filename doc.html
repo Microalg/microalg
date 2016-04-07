@@ -806,6 +806,9 @@ Vous êtes peut-être dans un des cas suivants :
 [60](#erreur_60)
 [61](#erreur_61)
 [62](#erreur_62)
+[63](#erreur_63)
+[64](#erreur_64)
+[65](#erreur_65)
 
 #### erreur_0
 
@@ -1301,6 +1304,31 @@ une variable qui n’a pas été initialisée.
 > Un valeur vide n’a pas de tête.
 
 Vérifiez la valeur dont vous cherchez la tête. Il faut au moins qu’elle
+contienne **un** élément.
+
+#### erreur_63
+
+> `Queue` : la variable `truc` n’a pas été déclarée.
+
+Vous utilisez une variable inconnue de MicroAlg.
+
+* Déclarez-la si ce n’est pas fait.
+* Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
+  minuscules.
+
+#### erreur_64
+
+> Vous cherchez la queue de `truc`, qui n’est ni un texte ni une liste mais
+> de type `"machin"`.
+
+Si la valeur qui ne convient pas est `Rien`, il se peut que vous utilisiez
+une variable qui n’a pas été initialisée.
+
+#### erreur_65
+
+> Un valeur vide n’a pas de queue.
+
+Vérifiez la valeur dont vous cherchez la queue. Il faut au moins qu’elle
 contienne **un** élément.
 
 ## Abréviations

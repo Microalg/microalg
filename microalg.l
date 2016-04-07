@@ -990,20 +990,28 @@ Exemples :
     -> \"(Liste 3 5 7)\"
 ")
 (put 'Queue 'text "Commande `Queue`.")
-(de Queue (obj)
-    # Quelques vérifications
-    (cond ((num? obj)
-           (quit "Un nombre n’a pas de queue, il faut un texte ou une liste." obj))
-          ((=0 (!longueur obj))
-           (quit "Un objet vide n’a pas de queue."))
+(de Queue !arg_lst
+  (let (!arg (car !arg_lst)
+        !evaled_arg (eval !arg))
+       # Quelques vérifications
+       (cond
+          ((not (!inited !arg !evaled_arg))
+           (!erreur 63 "`Queue` : la variable `" !arg "` n’a pas été déclarée."))
+          ((not (or (!liste? !evaled_arg) (str? !evaled_arg) (not !evaled_arg)))
+           (!erreur 64 "Vous cherchez la queue de `"
+                       (!text_n_quote !evaled_arg) "`, "
+                       "qui n’est ni un texte ni une liste mais de type `\""
+                       (Type !evaled_arg) "\"`."))
+          ((=0 (!longueur !evaled_arg))
+           (!erreur 65 "Un valeur vide n’a pas de queue."))
     )
     # Le calcul
     (cond
-      ((!liste? obj) (apply Liste (cdr (elts> obj))))
-      ((str? obj) (pack (cdr (chop obj))))
-      (T (quit "Vous cherchez la queue d’une valeur qui n’est ni un texte ni une liste."
-               (list obj (Type obj))))
-    ))
+      ((!liste? !evaled_arg) (apply Liste (cdr (elts> !evaled_arg))))
+      ((str? !evaled_arg)    (pack (cdr (chop !evaled_arg))))
+    )
+  )
+)
 (put 'Ajouter_a 'doc
 "Commande qui, si le premier argument est un texte ou une liste, affecte un
 nouvel élément à la fin de ce texte ou de cette liste (après le dernier élément).
