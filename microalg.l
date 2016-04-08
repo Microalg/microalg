@@ -1058,11 +1058,11 @@ Exemples avec une liste :
             (!erreur 67 "`Ajouter_a` : la variable `" !sym "` "
                         "n’a pas été déclarée."))
        (ifn (<> 'Rien !evaled_sym)
-            (!erreur 68 "`Ajouter_a` : la variable n’a pas été initialisée. "
-                        "Affectez-lui une valeur de type "
+            (!erreur 68 "`Ajouter_a` : la variable `" !sym "` n’a pas été "
+                        "initialisée. Affectez-lui une valeur de type "
                         "`\"texte\"` ou `\"liste\"`."))
        (ifn (index !type_du_sym '("liste" "texte"))
-           (!erreur 69 "`Ajouter_a` : la variable est de type "
+           (!erreur 69 "`Ajouter_a` : la variable `" !sym "` est de type "
                        "`\"" !type_du_sym "\"` alors qu’elle doit être de type "
                        "`\"texte\"` ou `\"liste\"`."))
        (ifn (<> "texte" !type_du_sym)
@@ -1123,11 +1123,11 @@ Exemples avec une liste :
             (!erreur 72 "`Retirer_de` : la variable `" !sym "` "
                         "n’a pas été déclarée."))
        (ifn (<> 'Rien !evaled_sym)
-            (!erreur 73 "`Retirer_de` : la variable n’a pas été initialisée. "
-                        "Affectez-lui une valeur de type "
+            (!erreur 73 "`Retirer_de` : la variable `" !sym "` n’a pas été "
+                        "initialisée. Affectez-lui une valeur de type "
                         "`\"texte\"` ou `\"liste\"`."))
        (ifn (index !type_du_sym '("liste" "texte"))
-           (!erreur 74 "`Retirer_de` : la variable est de type "
+           (!erreur 74 "`Retirer_de` : la variable `" !sym "` est de type "
                        "`\"" !type_du_sym "\"` alors qu’elle doit être de type "
                        "`\"texte\"` ou `\"liste\"`."))
        # Le calcul
