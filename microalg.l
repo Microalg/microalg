@@ -1113,11 +1113,23 @@ Exemples avec une liste :
 (put 'Retirer_de 'text "Commande `Retirer_de`.")
 (de Retirer_de arg_lst
   (let (!sym (car arg_lst)
-        !evaled_sym (eval !sym)
-        !deuze (cadr arg_lst))
+        !type_du_sym (!type_sym !sym)
+        !evaled_sym (eval !sym))
        # Quelques vérifications
-       (if !deuze (quit "`Retirer_de` n’a qu’un paramètre."))
-       (ifn (!inited !sym !evaled_sym) (quit "`Retirer_de` : la variable n’a pas été déclarée." !sym))
+       (if (<> 1 (length arg_lst))
+           (!erreur 71 "`Retirer_de` attend exactement un argument. "
+                       "Vous en donnez " (length arg_lst) "."))
+       (ifn (!inited !sym !evaled_sym)
+            (!erreur 72 "`Retirer_de` : la variable `" !sym "` "
+                        "n’a pas été déclarée."))
+       (ifn (<> 'Rien !evaled_sym)
+            (!erreur 73 "`Retirer_de` : la variable n’a pas été initialisée. "
+                        "Affectez-lui une valeur de type "
+                        "`\"texte\"` ou `\"liste\"`."))
+       (ifn (index !type_du_sym '("liste" "texte"))
+           (!erreur 74 "`Retirer_de` : la variable est de type "
+                       "`\"" !type_du_sym "\"` alors qu’elle doit être de type "
+                       "`\"texte\"` ou `\"liste\"`."))
        # Le calcul
        (cond
          ((!liste? !evaled_sym) (pop> !evaled_sym))
@@ -1127,7 +1139,6 @@ Exemples avec une liste :
                   (set !sym (pack (head (- (length !evaled_sym) 1) !chopped)))
                   !return_val
              ))
-         (T (quit "Le premier argument de `Retirer_de` doit être du texte ou une liste." !sym))
        )
   )
 )
