@@ -197,7 +197,7 @@ function onCtrl(elt, f, config_64) {
                   "(Dm":  "(Demander)|",
                   "(Dn":  "(Demander_un_nombre)|",
                   "(E":   "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
-                  "(E@":  "(Entie@ |)\n",
+                  "(E@":  "(Entier@ |)",
                   "(F":   "(Faire\n    (|)\n    ()\n Tant_que ()\n)",
                   "(I@":  "(Initialiser@ |)\n",
                   "(Li":  "(Liste |)",
