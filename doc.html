@@ -818,6 +818,8 @@ Vous êtes peut-être dans un des cas suivants :
 [72](#erreur_72)
 [73](#erreur_73)
 [74](#erreur_74)
+[75](#erreur_75)
+[76](#erreur_76)
 
 #### erreur_0
 
@@ -1408,6 +1410,23 @@ Voir [l’aide de la commande Retirer_de](#sym-Retirer_de).
 > type `"texte"` ou `"liste"`.
 
 Vérifiez bien le type et la valeur de votre variable.
+
+#### erreur_75
+
+> Mauvais tirage forcé : `truc` n’est pas compris entre `machin` et `bidule`.
+
+Une des valeurs spécifiées dans la liste `sequence_tirages@` :
+
+* n’est pas comprise entre les arguments passés à `Entier@`,
+* ou est strictement plus grande que la longueur d’un argument passé à `Nieme@`.
+
+#### erreur_76
+
+> L’espace des valeurs possibles dépasse `truc`.
+
+Le générateur de nombres pseudo aléatoires peut « seulement » choisir entre
+`truc` valeurs possibles. L’écart entre les deux arguments d’un appel à
+`Entier@` dépasse ce nombre donc `Entier@` ne peut pas fonctionner correctement.
 
 ## Abréviations
 

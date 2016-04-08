@@ -1182,8 +1182,8 @@ indiqué par cette liste et en boucle, par les commandes `Entier@` et `Nieme@`.
   (if (!boolM2P (> (!longueur sequence_tirages@) 0))
       (let !val (car (elts> sequence_tirages@))
         (if (or (gt0 (- !min !val)) (gt0 (- !val !max)))
-          (quit (pack "Mauvais tirage forcé : " !val " n’est pas compris entre "
-                      !min " et " !max "."))
+            (!erreur 75 "Mauvais tirage forcé : " !val " "
+                        "n’est pas compris entre " !min " et " !max ".")
         )
         (setq sequence_tirages@ (apply Liste (cdr (elts> sequence_tirages@))))
         (push> sequence_tirages@ !val)
@@ -1193,8 +1193,8 @@ indiqué par cette liste et en boucle, par les commandes `Entier@` et `Nieme@`.
             !etat (!prochain_etat@)
             !shifted_etat (/ (- !etat (% !etat !shift@)) !shift@))
             (if (gt0 (- !mod !space_length@))
-                (quit (pack "L’espace des valeurs possibles dépasse "
-                            !space_length@ ".")) )
+                (!erreur 76 "L’espace des valeurs possibles dépasse "
+                            !space_length@ "."))
             (+ !min (% !shifted_etat !mod))
       )
   )
