@@ -1266,20 +1266,27 @@ Exemples :
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 ")
 (put 'Entier@ 'text "Commande `Entier@`.")
-(de Entier@ (!min !max !rien_ici)
-    # Quelques vérifications
-    (ifn (and !min !max) (quit "`Entier@` attend deux arguments (entiers)."))
-    (if !rien_ici (quit "`Entier@` n’attend que deux arguments (entiers)."))
-    (cond
+(de Entier@ !arg_lst
+  (let (!min (eval (car !arg_lst))
+        !max (eval (cadr !arg_lst)))
+       # Quelques vérifications
+       (cond
+        ((<> 2 (length !arg_lst))
+         (!erreur 82 "`Entier@` attend exactement deux arguments. "
+                        "Vous en donnez " (length !arg_lst) "."))
         ((<> !min (format (round !min 0) 0 "." ","))
-         (quit "Le minimum de `Entier@` n’est pas entier." !min))
+         (!erreur 83 "Le minimum donné à `Entier@` n’est pas un nombre entier "
+                     "(vous avez donné " (!text_n_quote !min) ")."))
         ((<> !max (format (round !max 0) 0 "." ","))
-         (quit "Le maximum de `Entier@` n’est pas entier." !max))
+         (!erreur 84 "Le maximum donné à `Entier@` n’est pas un nombre entier "
+                     "(vous avez donné " (!text_n_quote !max) ")."))
         ((!boolM2P (> !min !max))
-         (quit "Le minimum et le maximum de `Entier@` ne sont pas dans l’ordre."))
-    )
-    # Le calcul
-    (!rand !min !max)
+         (!erreur 85 "Le minimum et le maximum de `Entier@`, "
+                     "ne sont pas dans l’ordre (" !min " > " !max ")."))
+       )
+       # Le calcul
+       (!rand !min !max)
+  )
 )
 (put 'Nieme@ 'doc
 "Retourne un élément choisi pseudo-aléatoirement dans la liste ou le texte
