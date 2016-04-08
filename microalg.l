@@ -1222,16 +1222,31 @@ Exemples :
             # Avec 0 en argument, MicroAlg retournera toujours 266, puis 104, puis 869…
 ")
 (put 'Initialiser@ 'text "Commande `Initialiser@`.")
-(de Initialiser@ (x !deuze)
-    (if !deuze (quit (pack "`Initialiser@` n’a qu’un paramètre.")))
-    (ifn x (quit "`Initialiser@` prend un paramètre, mais vous n’en donnez aucun.")
-           (if (or (lt0 (- x 0)) (le0 (- 4294967296 x)))  # 2^32
-               (quit (pack "`Initialiser@` n’accepte que des valeurs entre "
-                           "0 (inclus) et 2 puissance 32 (exclus).") x)
-               (setq !etat@ x)
-           )
+(de Initialiser@ !arg_lst
+    (let (!arg (car !arg_lst)
+          !x   (eval !arg))
+         (cond
+           ((<> 1 (length !arg_lst))
+            (!erreur 77 "`Initialiser@` attend exactement un argument. "
+                        "Vous en donnez " (length !arg_lst) "."))
+           ((not (!inited !arg !x))
+            (!erreur 78 "`Initialiser@` : la variable `" !arg "` "
+                        "n’a pas été déclarée."))
+           ((not (<> 'Rien !x))
+            (!erreur 79 "`Initialiser@` : la variable `" !arg "` n’a pas été "
+                        "initialisée. Affectez-lui une valeur de type "
+                        "`\"nombre\"`."))
+           ((not (num? !x))
+            (!erreur 80 "`Initialiser@` : l’argument doit être un nombre. "
+                        "Vous avez donné `" (!text_n_quote !x) "`."))
+           ((or (lt0 (- !x 0)) (le0 (- 4294967296 !x)))  # 2^32
+            (!erreur 81 "`Initialiser@` n’accepte que des valeurs entre "
+                        "0 (inclus) et 2 puissance 32 (exclus). "
+                        "Vous avez donné : " !x "."))
+         )
+         (setq !etat@ !x)
+         Rien
     )
-    Rien
 )
 (put 'Entier@ 'doc
 "Retourne un nombre entier pseudo-aléatoire dans [`min`;`max`] (les deux
