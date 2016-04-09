@@ -1,6 +1,6 @@
 (setq !cmdes_sans_retour
   '(!!! AV BC LC TD TG Affecter_a Afficher Ajouter_a Cercle Contour
-    Declarer Definir Demander Demander_un_nombre Ellipse Epaisseur Exemples_de
+    Declarer Definir Ellipse Epaisseur Exemples_de
     Faire Initialiser@ RAZ Rectangle Remplissage Repere Repeter Retirer_de
     Retourner Segment Si Tant_que Tester Triangle) )
 
