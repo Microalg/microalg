@@ -1273,7 +1273,7 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
        (cond
         ((<> 2 (length !arg_lst))
          (!erreur 82 "`Entier@` attend exactement deux arguments. "
-                        "Vous en donnez " (length !arg_lst) "."))
+                     "Vous en donnez " (length !arg_lst) "."))
         ((<> !min (format (round !min 0) 0 "." ","))
          (!erreur 83 "Le minimum donné à `Entier@` n’est pas un nombre entier "
                      "(vous avez donné " (!text_n_quote !min) ")."))
