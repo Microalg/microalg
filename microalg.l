@@ -1310,22 +1310,37 @@ Exemples :
 Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
 ")
 (put 'Nieme@ 'text "Commande `Nieme@`.")
-(de Nieme@ (obj !rien_ici)
-    # Quelques vérifications
-    (setq !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
-    (cond
-        ((num? obj) (quit (pack !onppeuv "d’un nombre.") obj))
-        ((== obj 'Vrai) (quit (pack !onppeuv "du booléen Vrai.")))
-        ((== obj 'Faux) (quit (pack !onppeuv "du booléen Faux.")))
-        ((== obj 'Rien) (quit (pack !onppeuv "de Rien.")))
-    )
-    (if !rien_ici (quit "`Nieme@` ne prend qu’un paramètre (liste ou texte)."))
-    # Le calcul
-    (cond
-        ((!liste? obj) (nth> obj (!rand 1 (length> obj))))
-        ((str? obj) (car (nth (chop obj) (!rand 1 (length obj)))))
-        (T Rien)
-    )
+(de Nieme@ !arg_lst
+  (let (!arg (car !arg_lst)
+        !evaled_arg (eval !arg)
+        !type_de_l_arg (!type_sym !evaled_arg)
+        !onppeuv "`Nieme@` ne peut pas extraire un élément pseudo-aléatoire ")
+       # Quelques vérifications
+       (cond
+        ((<> 1 (length !arg_lst))
+         (!erreur 86 "`Nieme@` attend exactement un argument. "
+                     "Vous en donnez " (length !arg_lst) "."))
+        ((num? !evaled_arg)
+         (!erreur 87 !onppeuv "du nombre " !evaled_arg "."))
+        ((== !evaled_arg 'Vrai)
+         (!erreur 88 !onppeuv "du booléen `Vrai`."))
+        ((== !evaled_arg 'Faux)
+         (!erreur 89 !onppeuv "du booléen `Faux`."))
+        ((== !evaled_arg 'Rien)
+         (!erreur 90 !onppeuv "de la valeur `Rien`."))
+        ((not (index !type_de_l_arg '("liste" "texte")))
+         (!erreur 91 !onppeuv "que d’une liste ou d’un texte. "
+                     "Vous avez donné `" (!text_n_quote !evaled_arg) "` "
+                     "qui est de type `\"" !type_de_l_arg "\"`."))
+       )
+       # Le calcul
+       (cond
+        ((!liste? !evaled_arg)
+         (nth> !evaled_arg (!rand 1 (length> !evaled_arg))))
+        ((str? !evaled_arg)
+         (car (nth (chop !evaled_arg) (!rand 1 (length !evaled_arg)))))
+       )
+  )
 )
 
 # Types et conversions
