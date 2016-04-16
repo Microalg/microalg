@@ -1329,7 +1329,8 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
         ((== !evaled_arg 'Rien)
          (!erreur 90 !onppeuv "de la valeur `Rien`."))
         ((not (index !type_de_l_arg '("liste" "texte")))
-         (!erreur 91 !onppeuv "que d’une liste ou d’un texte. "
+         (!erreur 91 "`Nieme@` ne peut extraire un élément pseudo-aléatoire "
+                     "que d’une liste ou d’un texte. "
                      "Vous avez donné `" (!text_n_quote !evaled_arg) "` "
                      "qui est de type `\"" !type_de_l_arg "\"`."))
        )
