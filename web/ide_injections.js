@@ -126,7 +126,7 @@ function stdPrompt() {
 }
 
 function preparation_exception(e) {
-    var msg_escaped = e.message.replace('<', '&lt;').replace(/(\r\n|\n|\r)/gm, " ");
+    var msg_escaped = e.message.replace(/</g, '&lt;').replace(/(\r\n|\n|\r)/gm, " ");
     var link_prefix = '<a target="_blank" href="http://microalg.info/doc.html#';
     var re = /^(.*) \[erreur n°(\d+)\]$/;
     var matches = msg_escaped.match(re);
