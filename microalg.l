@@ -1757,11 +1757,12 @@ long du programme, même s’ils sont imbriqués). Voir la variable
                       (quit (pack !cmd_pref !lnr
                                   "doit être de type \"nombre\".")
                             !nb_repetitions_evaled))
-                 (if (<> !nb_repetitions (format (round !nb_repetitions 0) 0 "." ","))
+                 (if (<> !nb_repetitions_evaled
+                         (format (round !nb_repetitions_evaled 0) 0 "." ","))
                      (quit (pack !cmd_pref !lnr
                                  "doit être un nombre entier.")
                            !nb_repetitions_evaled))
-                 (if (le0 (+ !nb_repetitions 1))
+                 (if (le0 (+ !nb_repetitions_evaled 1))
                      (quit (pack !cmd_pref !lnr
                                  "doit être strictement positif.")
                            !nb_repetitions_evaled))

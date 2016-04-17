@@ -134,6 +134,7 @@
                                             (inc 'x)
                                             (Repeter 2 Fois (inc 'y)))
                                           (pack x y))))
+            '(let (x 3) (= 0 (prog (Repeter x Fois (dec 'x)) x)))
             # Commandes utilisateur
             '(let (f NIL) (= 14 (prog
                                   (Definir (f x) (Retourner (* 2 x)))
