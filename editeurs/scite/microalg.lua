@@ -96,8 +96,6 @@ if uname_s == "Linux" then
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
-        props["command.go.*.malg"] = command
-        props["command.go.*.l"] = command
 else
         jrepl = [[ | $(SciteDefaultHome)\jrepl.bat ]]
         jrepl_opts = " /X"
@@ -112,10 +110,12 @@ else
                                      .. escaped_hat_char
                                      .. escaped_backslash
                                      .. hat_J
-        props["command.go.*.malg"] = command
-        props["command.go.*.l"] = command
         props["command.build.*.malg"] = [[start $(microalg_path)\start_processing.bat]]
 end
+
+props["command.1.*"] = command
+props["command.name.1.*"] = "Exécuter le programme"
+props["command.shortcut.1.*"] = "F5"
 
 -- Definition of the lexer:
 function OnStyle(styler)
