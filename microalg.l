@@ -323,23 +323,27 @@ Exemple :
 )
 
 (de Afficher args
-  (let (
-   first (car args)
-   second (cadr args)
-   a_afficher (!text first)
-  )
-  # Quelques vérifications
-  (ifn (!inited first a_afficher)
-       (!erreur 5 "`Afficher` : la variable `" first "` n’a pas été déclarée."))
-  (if second
-      (!erreur 6 "`Afficher` n’a qu’un paramètre."))
-  # Le boulot
-  (setq *LastStdOut (if a_afficher a_afficher ""))
-  (ifn !testing
-       (println (ifn a_afficher
-                     " "
-                     a_afficher)))
-  Rien  # Pas de valeur de retour
+  (let
+    (first (car args)
+     second (cadr args)
+    )
+    # Quelques vérifications
+    (if second
+      (!erreur 6 "`Afficher` n’a qu’un paramètre.")
+      (let
+        (a_afficher (!text first))
+        (ifn (!inited first a_afficher)
+             (!erreur 5 "`Afficher` : la variable `" first
+                        "` n’a pas été déclarée."))
+        # Le boulot
+        (setq *LastStdOut (if a_afficher a_afficher ""))
+        (ifn !testing
+             (println (ifn a_afficher
+                           " "
+                           a_afficher)))
+        Rien  # Pas de valeur de retour
+      )
+    )
   )
 )
 
