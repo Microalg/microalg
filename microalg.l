@@ -1847,6 +1847,22 @@ Exemple 2 :
                      "`(commande arg1 arg2 ...)`.")))
        (ifn signature
          (quit "`Definir` a au moins deux paramètres."))
+       # Le nom doit être un symbole et non un texte.
+       (let (msg1 "`Definir` : le nom de commande `"
+             msg2 "` ne convient pas.")
+            (if (or (not (sym? nom)) (str? nom))
+                                 (quit (pack msg1 nom msg2))))
+       # Les params doivent être des symboles non textes.
+       (let (msg1 "`Definir` : le paramètre `"
+             msg2 "` ne convient pas.")
+            (mapcar '((!sym) (if (or (not (sym? !sym)) (str? !sym))
+                                 (quit (pack msg1 !sym msg2))))
+                    params))
+       # Le nom de la commande ne doit pas être un symbole prédef de MicroAlg
+       (let (msg1 "`Definir` : le nom de commande `"
+             msg2 "` est un symbole prédéfini de MicroAlg.")
+            (if (index nom symboles)
+                (quit (pack msg1 nom msg2))))
        (ifn corps
          (quit (pack "`Definir` : le corps de `" sig_as_txt "` est vide.")))
        # Empêcher la collision entre paramètres et variables déjà déclarées.
