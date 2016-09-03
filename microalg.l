@@ -8,6 +8,8 @@ PicoLisp.
 Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
+(setq !sans_declaration T)
+
 (setq symboles '(
 "..." "+" "-" "*" "/" "%" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
@@ -155,6 +157,7 @@ Voir <http://microalg.info>.")
 # Vérif qu’une variable est bien initialisée :
 (de !inited (!sym !evaled_sym)
     (or
+        !sans_declaration
         (not (sym? !sym))  # pas un symbole
         !evaled_sym        # une valeur non NIL, donc initialisée
         (not !sym)         # le symbole non évalué est NIL, donc ""
@@ -446,6 +449,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
 (put 'De_type 'doc "Mot-clef intermédiaire pour la commande `Declarer`.")
 (setq De_type 'De_type)
 (de !declarer @
+  (off !sans_declaration)
   (let (arg_lst (rest)
         nbr_args (length arg_lst))
        (if (lt0 (- nbr_args 3))
@@ -553,7 +557,10 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
              ((== !var 'Faux) (!erreur 16 !onppauv "au booléen `Faux`."))
              ((== !var 'Rien) (!erreur 16 !onppauv "à `Rien`."))
          )
-         (if (and (atom !var) (not (get !var 'type)))
+         (if (and
+               (not !sans_declaration)
+               (atom !var)
+               (not (get !var 'type)))
               (!erreur 17 "`Affecter_a` : la variable `" !var "` "
                           "n’a pas été déclarée.")
          )
@@ -566,9 +573,11 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                                  "qui n’est pas une liste.")
                  )
                  # Affectation au symbole dans `!var`.
-                 (if (or (not val)  # Pour accepter "" qui est NIL.
-                         (== "rien" (get !var 'type))
-                         (<> Faux (= (get !var 'type) (Type val))))
+                 (if (or
+                       !sans_declaration
+                       (not val)  # Pour accepter "" qui est NIL.
+                       (== "rien" (get !var 'type))
+                       (<> Faux (= (get !var 'type) (Type val))))
                      (set !var val)
                      (!erreur 19 "`Affecter_a` : le type ne correspond pas. "
                                  "`" !var "` est un `\"" (get !var 'type) "\"` "
