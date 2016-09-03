@@ -1838,6 +1838,8 @@ Exemple 2 :
 (de !definir @
   (let (arg_lst (rest)
         signature (car arg_lst)
+        nom       (car signature)
+        params    (cdr signature)
         sig_as_txt (pack "(" (apply 'glue (cons " " (list signature))) ")")
         corps     (cdr arg_lst))
        (ifn (lst? signature)
@@ -1855,8 +1857,6 @@ Exemple 2 :
                                  (quit (pack msg1 !sym msg2))))
                     params))
     (let (
-        nom       (car signature)
-        params    (cdr signature)
         aug_corps (conc
                     (!liste_inits_type params)
                     (!liste_inits_val params)
