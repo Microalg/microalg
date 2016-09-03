@@ -154,6 +154,12 @@ function preparation_exception(e) {
                   sym + " ne convient pas.";
             link = link_prefix + 'erreur_59' +
                    '">Voir des infos sur cette erreur.</a>';
+        } else if (msg_escaped.match(/^too much recursion$/) ||
+                   msg_escaped.match(/^Maximum call stack size exceeded$/) ||
+                   msg_escaped.match(/^Out of stack space$/)) {
+            msg = "Récursion infinie.";
+            link = link_prefix + 'rcursioninfinie' +
+                   '">Voir des infos sur cette erreur.</a>';
         } else {
             msg = msg_escaped;
             link = link_prefix + 'erreursfrquentes">Voir les erreurs fréquentes.</a>';
