@@ -1599,6 +1599,11 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     Crédit d’itérations épuisé (1 001 par défaut).
     Vous pouvez recharger votre crédit en affectant une valeur
     à la variable `credit_iterations`.
+
+Pour des programmes ayant besoin de plus d’itérations, il faudra
+ajouter en tête de programme :
+
+    (Affecter_a credit_iterations 50000)
 ")
 (setq credit_iterations 1001)
 (put 'credit_iterations 'type "nombre")
