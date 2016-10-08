@@ -106,7 +106,7 @@
 (de Ajouter_a () (!no_export "Ajouter_a"))
 (de Retirer_de () (!no_export "Retirer_de"))
 # En_position
-(de Initialiser@() (!no_export "Initialiser@"))
+(de Initialiser@ () (!no_export "Initialiser@"))
 (de Nieme@ () (!no_export "Nieme@"))
 (de Type () (!no_export "Type"))
 (de Texte () (!no_export "Texte"))

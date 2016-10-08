@@ -182,7 +182,7 @@
 
 (de Demander () (!no_export "Demander"))
 (de Demander_un_nombre () (!no_export "Demander_un_nombre"))
-(de Initialiser@() (!no_export "Initialiser@"))
+(de Initialiser@ () (!no_export "Initialiser@"))
 (de Type () (!no_export "Type"))
 (de Definir () (!no_export "Definir"))
 (de Retourner () (!no_export "Retourner"))
