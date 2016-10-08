@@ -72,9 +72,9 @@
                         !corps (car !splitted)
                         !cond (caadr !splitted))
                        (pack
-                         "do{^J"
+                         "do {^J"
                          (mapcar 'eval !corps)
-                         "} while (" (eval !cond) ")^J"
+                         "} while (" (eval !cond) ");^J"
                        )
                   )
 )
