@@ -1610,7 +1610,7 @@ Voir <http://fr.wikipedia.org/wiki/Fonction_OU>.")
     à la variable `credit_iterations`.
 
 Pour des programmes ayant besoin de plus d’itérations, il faudra
-ajouter en tête de programme :
+ajouter en tête de programme :
 
     (Affecter_a credit_iterations 50000)
 ")
