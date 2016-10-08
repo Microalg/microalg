@@ -24,6 +24,8 @@ function getLispSource(what) {
         'export':     'microalg_export.l',
         'blockly':    'microalg_export_blockly.l',
         'casio':      'microalg_export_casio.l',
+        'javascript': 'microalg_export_javascript.l',
+        'microalg':   'microalg_export_microalg.l',
         'processing': 'microalg_export_processing.l',
         'ti':         'microalg_export_ti.l',
         'arbretxt':   'microalg_export_arbretxt.l',
@@ -356,6 +358,8 @@ function inject_microalg_editor_in(elt_id, config) {
         '<option>exporter</option>' +
         '<option>Casio</option>' +
         '<option>TI</option>' +
+        '<option>JavaScript</option>' +
+        '<option>MicroAlg</option>' +
         '<option>Processing</option>' +
         '<option>Arbre 1</option>' +
         '<option>Arbre 2</option>' +
@@ -554,7 +558,7 @@ function export_action(elt_id, select) {
         $('#' + elt_id + '-export').html('');
         select.options[0].innerHTML = "exporter";
     } else {
-        var langs = [undefined, 'casio', 'ti', 'processing', 'arbretxt', 'arbresvg', 'arbreninja'];
+        var langs = [undefined, 'casio', 'ti', 'javascript', 'microalg', 'processing', 'arbretxt', 'arbresvg', 'arbreninja'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
         var exported_src = malg2other(lang, src);
