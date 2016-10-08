@@ -20,7 +20,7 @@
 (de % (A B) (pack "Mod(" A "," B ")"))
 (de ^ (A B) (pack "(" A "\^" B ")"))
 
-(de !!! (comz) (pack "\" " comz "^J"))
+(de !!! (comz) (pack "\" " (cdr (reverse (cdr (reverse (chop comz))))) "^J"))
 (de Afficher (obj) (pack "Disp " obj "^J"))
 (de !store (!arg_lst)
   (let (var (eval (car !arg_lst))
@@ -37,7 +37,7 @@
   (let (!splitted (split !arg_lst 'De_type)
         !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
         !type (caadr !splitted))
-       (pack "\" " (glue " " !vars) " de tpe " (cadr !type) "^J")  # type is in (Litteral ...)
+       (pack "\" " (glue " " !vars) " de type " (cadr !type) "^J")  # type is in (Litteral ...)
   )
 )
 (de Affecter_a  !arg_lst (!store !arg_lst))

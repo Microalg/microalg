@@ -14,7 +14,7 @@
 
 (de + (A B) (pack "(" A "+" B ")"))
 (de - (A B) (pack "(" A "-" B ")"))
-(de * (A B) (pack "(" A "×" B ")"))
+(de * (A B) (pack "(" A "*" B ")"))
 (de / (A B) (pack "(" A "/" B ")"))
 (de % (A B) (pack "(" A "%" B ")"))
 (de ^ (A B) (pack "pow(" A ", " B ")"))
@@ -27,9 +27,9 @@
         !type (cadr (caadr !splitted)))  # type is in (Litteral ...)
        (cond
          ((not (<> !type "nombre"))
-          (pack "float " (glue " " !vars) ";^J"))
+          (pack "float " (glue ", " !vars) ";^J"))
          ((not (<> !type "texte"))
-          (pack "String " (glue " " !vars) ";^J"))
+          (pack "String " (glue ", " !vars) ";^J"))
          (T (pack "Impossible de gérer le type « " !type " » avec Processing.^J"))
        )
   )
@@ -38,7 +38,7 @@
 (de Affecter_a !arg_lst
   (let (!var (cadr (car !arg_lst))  # var name is in (Variable ...)
         !val (eval (cadr !arg_lst)))
-       (pack !var " = " !val ";")))
+       (pack !var " = " !val ";^J")))
 (de Entier@ (A B) (pack "int(" A " + random(" B "-" A "+1))"))
 (setq Vrai "true")
 (setq Faux "false")
