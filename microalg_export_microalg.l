@@ -9,7 +9,7 @@
     (if nom_var nom_var "")
   )
 )
-(de indent_std (!instr)
+(de indent (!instr)
   (let (!lines_with_final_NIL (mapcar pack (split (chop !instr) "^J"))
         !lines (reverse (cdr (reverse !lines_with_final_NIL))))
        (mapcar (list '(!line)
