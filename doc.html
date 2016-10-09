@@ -1984,11 +1984,28 @@ C’est pour l’instant le seul environnement qui permette :
 
 * la programmation avec des blocs (voir [cette section](#blockly)),
 * l’export des programmes (voir [cette section](#export)),
-* l’interprétation de l’affichage en tant que code HTML ou Markdown (grâce au
-  menu déroulant à droite du bouton `Exécuter`).
+* l’interprétation de l’affichage en tant que code HTML ou Markdown, grâce au
+  menu déroulant à droite du bouton `Exécuter`
+  (voir [cette section](#formatdelaffichage)).
 
 Notez que les [abréviations](#abrviations) sont utilisables dans les
 échantillons interactifs.
+
+#### Format de l’affichage
+
+Dans le navigateur, à droite du bouton `Exécuter`, un menu déroulant permet
+de choisir le format de l’affichage. Ce qui est passé à la commande `Afficher`
+peut en effet subir une transformation avant de passer à l’écran.
+
+Les possibilités sont `brut`, `HTML` et `MD`.
+
+* `brut` : aucune transformation ;
+* `HTML` : l’affichage est vu comme du code HTML et les balises sont
+  interprétées (voir [l’article HTML sur Wikipedia](https://fr.wikipedia.org/wiki/Hypertext_Markup_Language)) ;
+* `MD` : l’affichage est vu comme du code Markdown
+  (voir [l’article Markdown sur Wikipedia](https://fr.wikipedia.org/wiki/Markdown)).
+
+Voir [des exemples sur la galerie](http://galerie.microalg.info/microalg:affichage).
 
 ### SciTE
 
