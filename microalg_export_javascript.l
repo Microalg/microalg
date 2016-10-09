@@ -9,6 +9,9 @@
     (if nom_var nom_var "")
   )
 )
+(de indent (!instr)
+  (indent_std !instr))
+
 (de + @ (pack "(" (glue " + " (rest)) ")"))
 (de - (A B) (pack "(" A "-" B ")"))
 (de * @ (pack "(" (glue " * " (rest)) ")"))
