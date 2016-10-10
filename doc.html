@@ -166,25 +166,41 @@ en sorte que `(Demander)` attende l’utilisateur.
 * Un *programme* est constitué d’une ou plusieurs *instructions*.
 * Une *instruction* est constituée de parenthèses, contenant une *commande* et
   ses *arguments* :  
-  `(Commande arg1 arg2 ...)`
+  `(Commande arg1 arg2 ...)`  
+    * C’est absolument universel dans MicroAlg. Même les commentaires sont de
+      cette forme :  
+      `(!!! "Ceci est un commentaire")`
+    * Si une *commande* ne prend pas d’*argument*, on écrira simplement :  
+      `(Commande)`  
+      C’est assez rare, les seules commandes qui n’ont pas de paramètre sont
+      `BC`, `LC`, `Demander`, `Demander_un_nombre` et `Millisecondes`. De plus,
+      le paramètre de `TG` et de `TD` (l’angle) est facultatif.
 * Les séparateurs possibles sont :
     * l’espace,
     * le retour à la ligne,
     * la tabulation (déconseillée).
-* C’est absolument universel dans MicroAlg. Même les commentaires sont de cette
-  forme :  
-  `(!!! "Ceci est un commentaire")`
-* Si une *commande* ne prend pas d’*argument*, on écrira simplement :  
-  `(Commande)`  
-  C’est assez rare, les seules commandes qui n’ont pas de paramètre sont
-  `BC`, `LC`, `Demander`, `Demander_un_nombre` et `Millisecondes`. De plus,
-  le paramètre de `TG` et de `TD` (l’angle) est facultatif.
+* Les symboles (noms de variables ou commandes) ne peuvent pas contenir les
+  caractères suivants :  
+  `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
+  Le point peut être utilisé dans un symbole, mais pas tout seul.
 * Les *instructions* peuvent être imbriquées. En effet, dans une *instruction*,
   un des *arguments* d’une *commande* peut être remplacé par une autre
   *instruction* :  
   `(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`  
   Un environnement MicroAlg doit colorer les parenthèses selon leur profondeur :
   <span class="paren_1">(</span> <span class="paren_2">(</span> <span class="paren_3">(</span> <span class="paren_4">(</span> <span class="paren_5">(</span> <span class="paren_6">(</span> <span class="paren_0">(</span> <span class="paren_0">)</span> <span class="paren_6">)</span> <span class="paren_5">)</span> <span class="paren_4">)</span> <span class="paren_3">)</span> <span class="paren_2">)</span> <span class="paren_1">)</span>.
+
+<div id="trucs-syntaxe"></div>
+Quelques « trucs » :
+
+* Si l’indentation est respectée :
+    * les parenthèses en début de ligne (ouvrantes ou fermantes) seront toujours rouges ;
+    * les parenthèses correspondantes n’étant pas sur la même ligne mais
+      alignées verticalement seront de la même couleur.
+* On ne trouvera jamais deux parenthèses ouvrantes de suite.
+
+### Ordre d’exécution
+
 * L’imbrication des parenthèses donnent à un programme en MicroAlg une
   structure d’arbre.
 * À part pour quelques commandes prédéfinies comme `Si`, `Tant_que` ou
@@ -206,19 +222,6 @@ en sorte que `(Demander)` attende l’utilisateur.
            src="visuels/Sorted_binary_tree_postorder.svg"/>
       Source : <a title="Public domain, via Wikimedia Commons"
       href="https://commons.wikimedia.org/wiki/File%3ASorted_binary_tree_postorder.svg">Wikimedia Commons</a>
-* Les symboles (noms de variables ou commandes) ne peuvent pas contenir les
-  caractères suivants :  
-  `"` `'` `(` `)` `,` `[` `]` `` ` `~` `{` `}`.  
-  Le point peut être utilisé dans un symbole, mais pas tout seul.
-
-<div id="trucs-syntaxe"></div>
-Quelques « trucs » :
-
-* Si l’indentation est respectée :
-    * les parenthèses en début de ligne (ouvrantes ou fermantes) seront toujours rouges ;
-    * les parenthèses correspondantes n’étant pas sur la même ligne mais
-      alignées verticalement seront de la même couleur.
-* On ne trouvera jamais deux parenthèses ouvrantes de suite.
 
 ### Forme de Backus-Naur
 
