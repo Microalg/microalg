@@ -185,6 +185,8 @@ en sorte que `(Demander)` attende l’utilisateur.
   `(Commande2 (Commande1 arg1 arg2 ...) arg3 ...)`  
   Un environnement MicroAlg doit colorer les parenthèses selon leur profondeur :
   <span class="paren_1">(</span> <span class="paren_2">(</span> <span class="paren_3">(</span> <span class="paren_4">(</span> <span class="paren_5">(</span> <span class="paren_6">(</span> <span class="paren_0">(</span> <span class="paren_0">)</span> <span class="paren_6">)</span> <span class="paren_5">)</span> <span class="paren_4">)</span> <span class="paren_3">)</span> <span class="paren_2">)</span> <span class="paren_1">)</span>.
+* L’imbrication des parenthèses donnent à un programme en MicroAlg une
+  structure d’arbre.
 * À part pour quelques commandes prédéfinies comme `Si`, `Tant_que` ou
   `Definir`, l’ordre de traitement est un parcours en profondeur suffixe de
   l’arbre défini par la position des parenthèses :
