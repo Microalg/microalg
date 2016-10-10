@@ -1638,6 +1638,18 @@ un langage de calculatrice.
   `(Demander)` ou `(Nombre (Demander))`.
 * La commande `Declarer` s’exporte en un commentaire seulement.
 
+#### Spécificités de l’export vers Processing
+
+L’export vers Processing est spécial pour deux raisons :
+
+1. la procédure `setup` est définie avec des instructions fixes, et les
+   instructions qui correspondent au code MicroAlg sont insérées dans la
+   procédure `draw` ;
+2. le code Processing est exécuté dans la page.
+
+Ces spécificités permettent de créer des animations avec MicroAlg, même si le
+langage n’est pas prévu pour.
+
 #### Précisions sur la visualisation sous forme d’arbre
 
 Pour représenter `(Commande arg1 arg2…)`, on considère que `Commande` est un
