@@ -516,17 +516,17 @@ et `(Faire ... Tant_que ...)`, `(Repeter ... Fois ...)`. Pas de boucle POUR.
 
 On trouvera :
 
-* [booléen](#boolen),
-* [nombre](#nombre),
-* [texte](#texte),
-* [liste](#liste),
-* [commande](#commande).
+* [booléen](#typeboolen),
+* [nombre](#typenombre),
+* [texte](#typetexte),
+* [liste](#typeliste),
+* [commande](#typecommande).
 
-### Booléen
+### Type Booléen
 
 Deux valeurs : `Vrai` ou `Faux`.
 
-### Nombre
+### Type Nombre
 
 * Les entiers sont arbitrairement grands, positifs ou négatifs.
     * [Documentation PicoLisp](http://software-lab.de/doc/ref.html#number)
@@ -543,7 +543,7 @@ Deux valeurs : `Vrai` ou `Faux`.
     * [Documentation PicoLisp](http://software-lab.de/doc/ref.html#num-io)
       (en anglais)
 
-### Texte
+### Type Texte
 
 Les valeurs de type *texte* sont délimitées par des guillemets doubles :
 `"salut"`.
@@ -560,14 +560,14 @@ Pour plus de détails :
 * [Documentation PicoLisp sur les notations des
   *transients*](http://software-lab.de/doc/ref.html#transient-io) (en anglais)
 
-### Liste
+### Type Liste
 
 Pour créer une valeur de type *liste*, il faut taper : `(Liste ...)`.
 
 Les valeurs contenues peuvent être de types différents. Il est même possible
 de créer des listes de listes (de listes…).
 
-### Commande
+### Type Commande
 
 En cours d’élaboration.
 
@@ -2108,7 +2108,7 @@ Voir aussi [cette section](#nombre).
 Il faut taper du texte dans un bloc de texte, sinon la valeur par défaut est
 le texte vide `""`.
 
-Voir aussi [cette section](#texte).
+Voir aussi [cette section](#typetexte).
 
 #### Opérations avec Blockly
 
