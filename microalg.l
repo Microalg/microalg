@@ -653,12 +653,18 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
     )
 )
 (de Affecter_a arg_lst
+  (if (!boolM2P (< (length arg_lst) 2))
+      (!erreur 93 "`Affecter_a` attends au moins deux arguments. "
+                  "Vous en donnez " (length arg_lst) ".") )
   (ifn (caddr arg_lst)
     (!affecter_a (car arg_lst) (cadr arg_lst))
     (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst) (car (cddddr arg_lst)))
   )
 )
 (de Affecter_à arg_lst
+  (if (!boolM2P (< (length arg_lst) 2))
+      (!erreur 93 "`Affecter_a` attends au moins deux arguments. "
+                  "Vous en donnez " (length arg_lst) ".") )
   (ifn (caddr arg_lst)
     (!affecter_a (car arg_lst) (cadr arg_lst))
     (!affecter_a (car arg_lst) (cadr arg_lst) (caddr arg_lst) (cadddr arg_lst) (car (cddddr arg_lst)))
