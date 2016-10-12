@@ -1394,6 +1394,9 @@ Exemples :
 ")
 (put 'Type 'text "Commande `Type`.")
 (de Type arg_lst
+  (if (<> (length arg_lst) 1)
+      (!erreur 92 "`Type` attend exactement un argument. Vous en donnez "
+                  (length arg_lst) ".") )
   (let (!x (car arg_lst)
         !evaled_x (eval !x))
         embedded_type (ifn (num? !x) (get !x 'type))
