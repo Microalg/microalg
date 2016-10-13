@@ -397,8 +397,9 @@
      src:
         '(Declarer valeur De_type "nombre")\n' +
         '(Affecter_a valeur 3)\n' +
-        '(Faire (Afficher valeur)\n' +
-        '       (Affecter_a valeur (- valeur 1))\n' +
+        '(Faire\n' +
+        '    (Afficher valeur)\n' +
+        '    (Affecter_a valeur (- valeur 1))\n' +
         ' Tant_que (=/ valeur 0)\n' +
         ')\n' +
         '(Afficher "Zéro !")\n' +
@@ -442,9 +443,10 @@
         '(Declarer somme valeur De_type "nombre")\n' +
         '(Affecter_a somme 0)\n' +
         '(Affecter_a valeur 0)\n' +
-        '(Faire (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
-        '       (Affecter_a valeur (Nombre (Demander)))\n' +
-        '       (Affecter_a somme (+ somme valeur))\n' +
+        '(Faire\n' +
+        '    (Afficher "Veuillez taper un nombre SVP, 0 pour arrêter.")\n' +
+        '    (Affecter_a valeur (Nombre (Demander)))\n' +
+        '    (Affecter_a somme (+ somme valeur))\n' +
         ' Tant_que (=/ valeur 0)\n' +
         ')\n' +
         '(Afficher "La somme des nombres vaut :")\n' +
@@ -459,9 +461,10 @@
         '(Declarer mots mot De_type "texte")\n' +
         '(Affecter_a mots "")\n' +
         '(Affecter_a mot "")\n' +
-        '(Faire (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
-        '       (Affecter_a mot (Demander))\n' +
-        '       (Affecter_a mots (Concatener mots " " mot))\n' +
+        '(Faire\n' +
+        '    (Afficher "Veuillez taper un mot SVP, STOP pour arrêter.")\n' +
+        '    (Affecter_a mot (Demander))\n' +
+        '    (Affecter_a mots (Concatener mots " " mot))\n' +
         ' Tant_que (=/ mot "STOP")\n' +
         ')\n' +
         '(Afficher "Vous avez tapé :")\n' +
@@ -489,8 +492,9 @@
         '(Afficher "Combien de fois voulez-vous afficher « Bonjour ! » ?")\n' +
         '(Affecter_a repetitions (Nombre (Demander)))\n' +
         '(Tant_que (=/ repetitions 0)\n' +
-        ' Faire (Afficher "Bonjour !")\n' +
-        '       (Affecter_a repetitions (- repetitions 1))\n' +
+        ' Faire\n' +
+        '    (Afficher "Bonjour !")\n' +
+        '    (Affecter_a repetitions (- repetitions 1))\n' +
         ')\n' +
         ''
     });</script>
