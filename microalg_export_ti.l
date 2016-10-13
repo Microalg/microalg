@@ -13,9 +13,9 @@
   (indent_std !instr)
 )
 
-(de + (A B) (pack "(" A "+" B ")"))
+(de + @ (pack "(" (glue "+" (rest)) ")"))
 (de - (A B) (pack "(" A "-" B ")"))
-(de * (A B) (pack "(" A "×" B ")"))
+(de * @ (pack "(" (glue "×" (rest)) ")"))
 (de / (A B) (pack "(" A "÷" B ")"))
 (de % (A B) (pack "Mod(" A "," B ")"))
 (de ^ (A B) (pack "(" A "\^" B ")"))
