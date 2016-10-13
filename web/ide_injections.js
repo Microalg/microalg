@@ -641,7 +641,7 @@ function malg2other(lang, src) {
         var clean = cleanTransient(raw);
         return clean;
     } else {
-        var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
+        var source_protegee = EMULISP_CORE.eval("(proteger_source " + src + ")").toString();
         // On récupère une liste d’instructions.
         var source_preparee = '(pack ' + source_protegee.slice(1, -1) + ')';
         var exported_src = '';
@@ -766,7 +766,7 @@ function malg2blockly(src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(getLispSource('export'));
 
-    var source_protegee = EMULISP_CORE.eval("(proteger_source  " + src + ")").toString();
+    var source_protegee = EMULISP_CORE.eval("(proteger_source_sans_indentation " + src + ")").toString();
     EMULISP_CORE.eval(getLispSource('blockly'));
     var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")").toString();
     // Le car pour récupérer l’unique élément de la liste finale.

@@ -24,6 +24,19 @@
     )
 )
 
+(de proteger_source_sans_indentation src (mapcar 'proteger_source_sans_indentation_aux src))
+(de proteger_source_sans_indentation_aux (src)
+   (cond
+      ((num? src) (list 'Litteral src))
+      ((str? src) (list 'Litteral src))
+      ((sym? src) (if (index src '(Vrai Faux Rien Alors Sinon Tant_que Faire
+                                   En_position De_type Fois))
+                      src
+                      (list 'Variable src)))
+      (T          (cons (car src) (mapcar 'proteger_source_sans_indentation_aux (cdr src))))
+    )
+)
+
 # Default implementation, should be reimplemented for every textual language:
 (de indent (!instr) !instr)
 # Standard implementation, if needed:
