@@ -765,7 +765,6 @@ function inject_microalg_jrepl_in(elt_id, msg) {
 function malg2blockly(src) {
     EMULISP_CORE.init();
     EMULISP_CORE.eval(getLispSource('export'));
-
     var source_protegee = EMULISP_CORE.eval("(proteger_source_sans_indentation " + src + ")").toString();
     EMULISP_CORE.eval(getLispSource('blockly'));
     var avec_des_next = EMULISP_CORE.eval("(insertion_next '" + source_protegee + ")").toString();
