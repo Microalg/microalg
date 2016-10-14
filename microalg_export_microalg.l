@@ -67,7 +67,7 @@
                            !mot-clef (cadr arg_lst)
                            !corps (cddr arg_lst))
                           (pack
-                            "(Tant_que " (eval !cond) ")^J"
+                            "(Tant_que " (eval !cond) "^J"
                             " Faire^J"
                             (mapcar 'eval !corps)
                             ")^J"
