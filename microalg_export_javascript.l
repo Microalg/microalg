@@ -98,7 +98,7 @@
 (de Ajouter_a (obj val) (pack obj ".push(" val ");^J"))
 (de Retirer_de (obj val) (pack obj ".pop();^J"))
 # En_position
-(de Nieme@ (obj idx) (pack obj ".[" idx "]"))
+(de Nieme@ (obj idx) (pack obj "[Math.floor(Math.random() * " obj ".length)]"))
 (de Texte (obj) (pack "String(" obj ")"))
 (de Nombre (obj) (pack "parseFloat(" obj ")"))
 (de ... () " (...) ")
