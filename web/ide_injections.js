@@ -789,6 +789,9 @@ function blocklyLoaded(blockly, editor_id, msg) {
         var raw_src = blockly.MicroAlg.workspaceToCode();
         // Ne garder que le code entre les marqueurs:
         var src = /.*««««««««««([^]*)»»»»»»»»»».*/.exec(raw_src)[1];
+        // Passage dans l’export afin d’avoir la bonne mise en forme:
+        src = malg2other('malg-export', src);
+        // Et injection dans le textarea
         var textarea = $('#' + editor_id);
         textarea.val(src);
         textarea.click();  // Trigger a parenedit redraw.
