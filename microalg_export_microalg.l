@@ -37,7 +37,19 @@
        )
   )
 )
-(de Concatener @ (pack "(Concatener " (glue " " (rest)) ")"))
+(de Concatener @
+  (let (!arg_lst (rest)
+        !space_separated (glue " " !arg_lst)
+        !length (length !space_separated))
+       (if (le0 (dec '!length 30))  # à la louche
+           (pack "(Concatener " !space_separated ")")
+           (pack "^J    (Concatener^J        "
+                 (glue "^J        " !arg_lst) "^J"
+                 "    )"
+                 "^J")
+       )
+  )
+)
 (de Affecter_a !arg_lst
   (let (!var (cadr (car !arg_lst))  # var name is in (Variable ...)
         !val (eval (cadr !arg_lst)))
