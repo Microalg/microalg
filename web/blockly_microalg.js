@@ -1188,8 +1188,10 @@ Blockly.Blocks['repeter'] = {
 Blockly.MicroAlg['repeter'] = function(block) {
     var instr = Blockly.MicroAlg.statementToCode(block, 'INSTR') || '';
     var repet = Blockly.MicroAlg.statementToCode(block, 'REPET') || '';
+    var trimmed_repet = repet.trim();
+    var prepared_repet = trimmed_repet? trimmed_repet : '(...)';
     instr = instr.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
-    var code = '(Repeter ' + repet.trim() + ' Fois\n' +
+    var code = '(Repeter ' + prepared_repet + ' Fois\n' +
                instr +
                '\n)'
     return code;
@@ -1311,9 +1313,11 @@ Blockly.Blocks['si_alors_sinon_sinon'] = {
 // https://github.com/google/blockly/blob/master/generators/python/logic.js#L32
 Blockly.MicroAlg['si'] = function(block) {
     var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    var trimmed_cond = cond.trim();
+    var prepared_cond = trimmed_cond? trimmed_cond : '(...)';
     var branch = Blockly.MicroAlg.statementToCode(block, 'ALORS') || '';
     branch = branch.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
-    var code = '(Si ' + cond.substring(Blockly.MicroAlg.INDENT.length) +
+    var code = '(Si ' + prepared_cond +
                '\n Alors\n' + branch;
     if (block.elseCount_) {
         branch = Blockly.MicroAlg.statementToCode(block, 'SINON') || '';
@@ -1344,8 +1348,10 @@ Blockly.Blocks['tant_que'] = {
 Blockly.MicroAlg['tant_que'] = function(block) {
     var instr = Blockly.MicroAlg.statementToCode(block, 'INSTR') || '';
     var cond = Blockly.MicroAlg.statementToCode(block, 'COND') || '';
+    var trimmed_cond = cond.trim();
+    var prepared_cond = trimmed_cond? trimmed_cond : '(...)';
     instr = instr.replace(/\)\(/gm, ')\n' + Blockly.MicroAlg.INDENT + '(');
-    var code = '(Tant_que ' + cond.trim() +
+    var code = '(Tant_que ' + prepared_cond +
                '\nFaire\n' + instr;
     code += '\n)'
     return code;
