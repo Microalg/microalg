@@ -52,7 +52,7 @@
                      bloc_faux (cadr splitted))
                     (pack
                       "(Si " (eval condition) "^J"
-                      " Alors^J    "
+                      " Alors^J"
                       (mapcar 'eval bloc_vrai)
                       (if bloc_faux (pack " Sinon^J    "
                       (mapcar 'eval bloc_faux)))
