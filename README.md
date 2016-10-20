@@ -144,4 +144,3 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `tuto_blocs.html` : le tuto avec les blocs (inachevé par manque de blocs)
     * `tuto_graphique.html` : le tuto sur les commandes ayant une sortie graphique, dont la tortue
     * `tuto_rapide.html` : le tuto pour les programmeurs avertis
-    * `tuto_simple.html` : le tuto plus succint et moins littéraire
