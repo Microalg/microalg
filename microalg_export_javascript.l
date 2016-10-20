@@ -42,7 +42,7 @@
                      bloc_vrai (car splitted)
                      bloc_faux (cadr splitted))
                     (pack
-                      "if " (eval condition) "^J" "{^J"
+                      "if (" (eval condition) ")^J" "{^J"
                       (mapcar 'eval bloc_vrai)
                       (if bloc_faux (pack "} else {^J" (mapcar 'eval bloc_faux)))
                       "}^J"
