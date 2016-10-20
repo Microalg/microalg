@@ -577,6 +577,15 @@ function export_action(elt_id, select) {
                            exported_src;
             export_target.html($('<div/>', {html: exported_src,
                                             class: 'malg-export'}));
+        } else if (lang == 'javascript') {
+            export_target.append($('<input/>',
+                {type: 'button',
+                 value: 'Exécuter',
+                 onclick: 'eval(\'' + exported_src.replace(/\n/g, ' ') + '\')',
+                 class: 'eval-js'}));
+            export_target.append($('<div/>',
+                {html: exported_src,
+                 class: 'malg-export'}));
         } else if (lang == 'processing') {
             export_target.html('');
             if (typeof Processing === "undefined") {

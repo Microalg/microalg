@@ -75,6 +75,10 @@ body.microalg {
     font-family: monospace;
     white-space: pre;
 }
+.eval-js {
+    margin: 1em;
+    background-color: #eee;
+}
 .malg-guide {
     color: #ddd;
 }
