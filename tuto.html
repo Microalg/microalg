@@ -47,6 +47,7 @@
     <a href="#booleens">Booléens</a>,
     <a href="#si">Si</a>,
     <a href="#variables">Variables</a>,
+    <a href="#affectation-circulaire">Affectation circulaire</a>,
     <a href="#operations-logiques">Opérations logiques</a>,
     <a href="#manipulation-de-texte">Manipulation de texte</a>,
     <a href="#faire-tant-que">Faire… tant que…</a>,
@@ -1047,11 +1048,12 @@ Bonjour,
     <p><strong>Astuce</strong> : Il est possible de déclarer plusieurs
     variables en une seule instruction :<br>
     <code>(Declarer var1 var2 var3 ... De_type "le_type")</code></p>
-    <p><strong>Remarque</strong> : Il n’est pas interdit d’utiliser la valeur
-    d’une variable dans une instruction qui sera affectée à cette même
-    variable. C’est même parfois utile en vue d’<em>accumuler</em> des
-    valeurs, textuelles, numériques ou autres. Nous allons donner deux
-    exemples.</p>
+
+    <h2 id="affectation-circulaire"><a href="#affectation-circulaire">: </a>Affectation circulaire</h2>
+    <p>Il n’est pas interdit d’utiliser une variable dans un calcul dont le
+    résultat sera affectée à cette même variable. C’est même parfois utile en
+    vue d’<em>accumuler</em> des valeurs, qu’elles soient textuelles,
+    numériques ou d’un autre type. Nous allons donner deux exemples.</p>
     <p>Dans le premier, on accumule des nombres avec une instruction de la
     forme :<br>
     <code>(Affecter_a valeur (+ valeur valeur_a_ajouter))</code></p>
