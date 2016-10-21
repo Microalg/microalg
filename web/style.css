@@ -74,6 +74,9 @@ body.microalg {
     line-height: 1.2em;
     font-family: monospace;
     white-space: pre;
+    border: solid 1px;
+    padding: 3px;
+    margin-bottom: 1em;
 }
 .eval-js {
     margin: 1em;
