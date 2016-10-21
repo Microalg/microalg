@@ -578,11 +578,12 @@ function export_action(elt_id, select) {
             export_target.html($('<div/>', {html: exported_src,
                                             class: 'malg-export'}));
         } else if (lang == 'javascript') {
-            export_target.append($('<input/>',
+            var evalDiv = $('<div/>', {class: 'malg-export-eval'});
+            evalDiv.append($('<input/>',
                 {type: 'button',
-                 value: 'Exécuter',
-                 onclick: 'eval(\'' + exported_src.replace(/\n/g, ' ') + '\')',
-                 class: 'eval-js'}));
+                 value: 'Exécuter dans la console JS',
+                 onclick: 'eval(\'' + exported_src.replace(/\n/g, ' ') + '\')'}));
+            export_target.append(evalDiv);
             export_target.append($('<div/>',
                 {html: exported_src,
                  class: 'malg-export'}));

@@ -78,9 +78,13 @@ body.microalg {
     padding: 3px;
     margin-bottom: 1em;
 }
-.eval-js {
-    margin: 1em;
+.malg-export-eval {
+    text-align: right;
+}
+.malg-export-eval input {
     background-color: #eee;
+    margin: 1em 0 1em 1em;
+    border: none;
 }
 .malg-guide {
     color: #ddd;
