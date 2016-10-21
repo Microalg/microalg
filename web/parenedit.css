@@ -26,14 +26,14 @@
     word-wrap: break-word;
     color: transparent;
 }
-input,.richtext {
+.richtext {
     padding: 0px;
     color: #282828;
     background: #fff;
     outline: 0;
     border: 1px solid #BABABA;
 }
-input, textarea, .richtext > pre {
+.richtext > textarea, .richtext > pre {
     font-family: 'Courier New', Courier, monospace;
     font-size: 100%;
     line-height: 1.5;
