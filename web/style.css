@@ -105,9 +105,12 @@ body.microalg {
     width: 100%;
 }
 .malg-ok-editor {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
     margin: 2px;
     background-color: #ddd;
     width: 75%;
+    border: 1px solid #BABABA;
 }
 .malg-output-type {
     float: right;
