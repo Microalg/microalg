@@ -11,8 +11,13 @@
 .richtext {
     display: inline-block;
     overflow: hidden;
+    color: #282828;
+    background: #fff;
     margin: 2px 0;
+    padding: 0px;
     vertical-align: top;
+    outline: 0;
+    border: 1px solid #BABABA;
 }
 .richtext pre {
     display: inline-block;
@@ -25,13 +30,6 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     color: transparent;
-}
-.richtext {
-    padding: 0px;
-    color: #282828;
-    background: #fff;
-    outline: 0;
-    border: 1px solid #BABABA;
 }
 .richtext > textarea, .richtext > pre {
     font-family: 'Courier New', Courier, monospace;
