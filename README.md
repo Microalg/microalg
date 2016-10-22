@@ -40,6 +40,7 @@ Fichiers
 
 Listés dans l’ordre où ils apparaissent sur GitHub.
 
+* `dev` : différents outils pour les développeurs
 * `editeurs` : fichiers pour l’intégration avec différents éditeurs
     * `scite` : pour [SciTE](http://www.scintilla.org/SciTE.html)
         * `SciTEGlobal.properties` : configuration recommandée et/ou obligatoire
