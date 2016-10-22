@@ -1590,6 +1590,13 @@ var coreFunctions = {
 		}
 		return lst;
 	},
+	"sqrt": function(c) {
+		var v = evalLisp(c.car);
+		v = numeric(v);
+		if (v === NIL) return NIL;
+		if (v < 0) throw new Error(newErrMsg(BAD_ARG, v));
+		return new Number(Math.sqrt(v));
+	},
 	"str": function(c) {
 		var cv = evalLisp(c.car);
 		if (cv instanceof Symbol) {
