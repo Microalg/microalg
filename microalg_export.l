@@ -63,3 +63,10 @@
      (car (car (cdr arg)))
   )
 )
+
+(setq Somme     '+)
+(setq Diff      '-)
+(setq Produit   '*)
+(setq Quotient  '/)
+(setq Reste     '%)
+(setq Puissance '^)

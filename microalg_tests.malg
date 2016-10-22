@@ -103,6 +103,12 @@
             # Opérations mathématiques
             '(= 1 (^ 2 0))
             '(= 8 (^ 2 3))
+            '(= 4 (Somme 2 2))
+            '(= 1 (Diff 3 2))
+            '(= 6 (Produit 2 3))
+            '(= 3 (Quotient 6 2))
+            '(= 2 (Reste 23 7))
+            '(= 8 (Puissance 2 3))
             # Opérations logiques
             '(= Vrai (Non Faux))
             '(= Faux (Non Vrai))

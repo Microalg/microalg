@@ -17,7 +17,7 @@ Voir <http://microalg.info>.")
 "AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Cercle" "Concatener" "Contour" "credit_iterations"
-"Declarer" "Definir" "Demander" "Demander_un_nombre"
+"Declarer" "Definir" "Demander" "Demander_un_nombre" "Diff"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire" "Faux" "Fois"
 "Geler"
@@ -26,10 +26,12 @@ Voir <http://microalg.info>.")
 "Millisecondes"
 "Nieme" "Nieme@" "Nombre" "Non"
 "Ou"
-"Queue"
-"RAZ" "Rectangle" "Remplissage" "Repere" "Repeter" "Retirer_de" "Retourner" "Rien"
+"Produit" "Puissance"
+"Queue" "Quotient"
+"RAZ" "Rectangle" "Remplissage" "Repere" "Repeter" "Reste"
+"Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
-"Segment" "Si" "Sinon"
+"Segment" "Si" "Sinon" "Somme"
 "Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
 "valeur_utilisateur" "Vide?" "Vrai"
 ))
@@ -174,6 +176,9 @@ Voir <http://microalg.info>.")
     -> 10
 ")
 (put '+ 'text "Commande somme.")
+(put 'Somme 'doc (get '+ 'doc))
+(put 'Somme 'text (get '+ 'text))
+(setq Somme '+)
 (put '- 'doc
 "Commande qui soustrait son second paramètre à son premier paramètre et retourne le résultat.
 
@@ -181,6 +186,9 @@ Voir <http://microalg.info>.")
     -> 4
 ")
 (put '- 'text "Commande différence.")
+(put 'Diff 'doc (get '- 'doc))
+(put 'Diff 'text (get '- 'text))
+(setq Diff '-)
 (put '* 'doc
 "Commande qui multiplie tous ses paramètres et retourne le résultat.
 
@@ -190,6 +198,9 @@ Voir <http://microalg.info>.")
     -> 24
 ")
 (put '* 'text "Commande produit.")
+(put 'Produit 'doc (get '* 'doc))
+(put 'Produit 'text (get '* 'text))
+(setq Produit '*)
 (put '/ 'doc
 "Commande qui divise son premier paramètre par son second paramètre et retourne le résultat.
 
@@ -214,6 +225,9 @@ Sinon :
     -> 4.5
 ")
 (put '/ 'text "Commande quotient.")
+(put 'Quotient 'doc (get '/ 'doc))
+(put 'Quotient 'text (get '/ 'text))
+(setq Quotient '/)
 (put '% 'doc
 "Commande qui retourne le reste de la division euclidienne de son premier paramètre par son second paramètre.
 
@@ -221,6 +235,9 @@ Sinon :
     -> 1
 ")
 (put '% 'text "Commande reste.")
+(put 'Reste 'doc (get '% 'doc))
+(put 'Reste 'text (get '% 'text))
+(setq Reste '%)
 (put '^ 'doc
 "Commande qui retourne son premier paramètre à la puissance du second paramètre.
 
@@ -229,6 +246,9 @@ Sinon :
 ")
 (put '^ 'text "Commande puissance.")
 (de ^ (!x !y) (** !x !y))
+(put 'Puissance 'doc (get '^ 'doc))
+(put 'Puissance 'text (get '^ 'text))
+(setq Puissance '^)
 
 # Commentaires
 (put '!!! 'doc
