@@ -10,25 +10,33 @@ déployer sur galerie via
     # si ok
     git br -d prod_old; git co prod; git br prod_old; git merge master; git co master
     test de quelques pages:
-        http://galerie.microalg.info/profgra:tests:images
-        rec
-    Ajouter section sur http://galerie.microalg.info/microalg:config_echantillons
-      si nouvelle conf
+        http://galerie.microalg.info/profgra:tests:images # pas de chance, bug
+        http://galerie.microalg.info/profgra:tests:pgcd
+    Si nouvelle conf:
+        Ajouter section sur http://galerie.microalg.info/microalg:config_echantillons
 
 dans ce fichier:
-:%s/0.4.06/0.4.07/g  # puis incrémenter le second
-:%s/0.4.05/0.4.06/g  # remettre, exécuter, incrémenter le second
+:%s/0.4.07/0.4.08/g  # puis incrémenter le second
+:%s/0.4.06/0.4.07/g  # remettre à la ver précédente, exécuter, incrémenter le second
 
-git tag -a v0.4.06 -f -m v0.4.06
+git tag -a v0.4.07 -f -m v0.4.07
+git push --tags
 
-git diff v0.4.05 v0.4.06  # pour préparer le change log
+# check nouveaux fichiers ou renames pour update README
+git log v0.4.06..v0.4.07 --diff-filter=A --summary | less
+git log v0.4.06..v0.4.07 --diff-filter=D --summary | less
+git log v0.4.06..v0.4.07 --diff-filter=R --summary | less
+
+git diff v0.4.06 v0.4.07  # pour préparer le change log
 Sur github, click sur Releases, puis sur la dernière, puis «Edit tag»
 Pas de «Release title»
 
-«««
-Voir les [instructions d’installation](https://github.com/Microalg/Microalg/blob/v0.4.06/INSTALL.md) ou [télécharger directement](https://github.com/Microalg/Microalg/releases/download/v0.4.06/microalg_0.4.06.zip) la version pour Windows (contenant l’éditeur SciTE 3.5.3).
+C’est l’occaze de peaufiner la release.
 
-Changements notables depuis 0.4.05 :
+«««
+Voir les [instructions d’installation](https://github.com/Microalg/Microalg/blob/v0.4.07/INSTALL.md) ou [télécharger directement](https://github.com/Microalg/Microalg/releases/download/v0.4.07/microalg_0.4.07.zip) la version pour Windows (contenant l’éditeur SciTE 3.5.3).
+
+Changements notables depuis 0.4.06 :
 
 En bref :
 
@@ -41,11 +49,11 @@ num version
     git co master
     bump version dans microalg.l et microalg_tests.malg
     ./microalg_tests.sh
-    modif INSTALL.md (à plusieurs endroits: 6)
+    modif INSTALL.md (à plusieurs endroits: 8 dans 6 lignes)
     # modif scripts de démarrage
     vim malg*  # 7 fichiers
     git ap
-    git cm "v0.4.05 -> v0.4.06"
+    git cm "v0.4.06 -> v0.4.07"
     git push origin master
     git lol  # pour vérif
 
@@ -53,15 +61,15 @@ num version
 git pull origin master # depuis serveur, puis
 git co prod; git merge master; git co master
 
+# faux tag «latest» sur working dir
 git co latest; git merge master; git push origin latest; git co master
-# check nouveaux fichiers ou renames pour update README
 git lol  # pour vérif
 
-git tag -a v0.4.06 -f -m v0.4.06
+git tag -a v0.4.07 -f -m v0.4.07
 git push --tags -f
 git lol  # pour vérif
 
-git rma dist-win; git archive HEAD --prefix=microalg_0.4.06/ --format=zip > microalg_0.4.06.zip; git co master
+git rma dist-win; git archive HEAD --prefix=microalg_0.4.07/ --format=zip > microalg_0.4.07.zip; git co master
 ajouter le zip à la release, puis publier
 
 déployer sur microalg.info
@@ -72,7 +80,7 @@ déployer sur microalg.info
     # faire les copies, puis
     # check suppressions aussi
     # et attention aux fontes google à conserver
-    git add .; git cm "MAJ MicroAlg 0.4.06."
+    git add .; git cm "MAJ MicroAlg 0.4.07."
     modifs de index.html si besoin
     git push origin master
     modifs de index.html si besoin
