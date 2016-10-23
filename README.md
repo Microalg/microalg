@@ -129,7 +129,10 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `microalg_export_arbretxt.l` : reprogrammation de MicroAlg pour la visualisation sous forme d’arbre textuel
     * `microalg_export_blockly.l` : reprogrammation de MicroAlg pour la mise en place de blocs correspondant à un programme
     * `microalg_export_casio.l` : reprogrammation de MicroAlg pour l’export d’un programme vers le langage des Casio
+    * `microalg_export_javascript.l` : reprogrammation de MicroAlg pour l’export d’un programme vers JavaScript
+    * `microalg_export_microalg.l` : reprogrammation de MicroAlg pour l’export d’un programme vers MicroAlg
     * `microalg_export_processing.l` : reprogrammation de MicroAlg pour l’export d’un programme vers Processing
+    * `microalg_export_python.l` : reprogrammation de MicroAlg pour l’export d’un programme vers Python
     * `microalg_export_ti.l` :  reprogrammation de MicroAlg pour l’export d’un programme vers le langage des TI
 * `microalg_tests*` :
     * `microalg_tests.malg` : les tests des commandes MicroAlg testables avec
