@@ -133,7 +133,7 @@
   )
 )
 (de Epaisseur (e)
-  (pack "(Epaisseur" e ")^J")
+  (pack "(Epaisseur " e ")^J")
 )
 (de Rectangle (p1 p2)
   (pack "(Rectangle " p1 " " p2 ")^J")
