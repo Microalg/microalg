@@ -24,7 +24,7 @@
 (de % (A B) (pack "(%" A " " B ")"))
 (de ^ (A B) (pack "(\^ " A " " B ")"))
 
-(de !!! (comz) (pack "(!!! " comz ")^J"))
+(de !!! (comz) (pack "(!!! " (if comz @ "\"\"") ")^J"))
 (de Afficher (obj) (pack "(Afficher " obj ")^J"))
 (de Declarer !arg_lst
   (let (!splitted (split !arg_lst 'De_type)
