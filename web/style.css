@@ -152,6 +152,9 @@ pre.brut {
     background-color: white;
     font-family: 'Courier New', Courier, monospace;
 }
+.microalg .terminal {
+    border: solid 1px #BABABA;
+}
 .microalg .link-right {
     text-align: right;
 }
