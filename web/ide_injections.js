@@ -578,6 +578,7 @@ function export_action(elt_id, select) {
             export_target.html($('<div/>', {html: exported_src,
                                             class: 'malg-export'}));
         } else if (lang == 'javascript') {
+            export_target.html('');
             var evalDiv = $('<div/>', {class: 'malg-export-eval'});
             evalDiv.append($('<input/>',
                 {type: 'button',
