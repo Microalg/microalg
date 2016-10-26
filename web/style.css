@@ -99,18 +99,18 @@ body.microalg {
 .malg-editor, .malg-repl {
     width: 100%;
 }
-.malg-ok {
-    margin: 2px;
-    background-color: #ddd;
-    width: 100%;
-}
-.malg-ok-editor {
+.malg-ok-editor, .malg-ok {
     font-family: 'Courier New', Courier, monospace;
     line-height: 1.5;
     margin: 2px;
     background-color: #ddd;
-    width: 75%;
     border: 1px solid #BABABA;
+}
+.malg-ok {
+    width: 100%;
+}
+.malg-ok-editor {
+    width: 75%;
 }
 .malg-output-type {
     float: right;
