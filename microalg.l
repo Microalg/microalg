@@ -485,7 +485,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
         !msg "`Declarer` : ")
        # Le type est-il manquant ?
        (ifn (<> De_type !type)
-            (quit (pack !msg "le type est manquant.")) )
+            (!erreur 94 (pack !msg "le type est manquant.")) )
        # Le type est-t-il bien du texte ?
        (ifn (!boolM2P (!texte? !type))
             (!erreur 12 !msg "le type ne peut pas être `" !type "` "
@@ -1451,17 +1451,21 @@ Exemples :
     -> \"42\"
 ")
 (put 'Texte 'text "Commande `Texte`.")
-(de Texte (x !deuze)
-  (if !deuze (quit (pack "`Texte` n’a qu’un paramètre.")))
-  (cond
-    ((== x Vrai) "Vrai")
-    ((== x Faux) "Faux")
-    ((== x Rien) "Rien")
-    ((!liste? x) (!text x))  # mettre avant str?
-    ((str? x) x)
-    ((num? x) (format x))
-    ((sym? x) (pack x))
-    (T "???")
+(de Texte !arg_lst
+  (if (<> 1 (length !arg_lst))
+      (!erreur 95 (pack "`Texte` attend exactement un paramètre. "
+                  "Vous en donnez " (length arg_lst) ".")))
+  (let !obj (eval (car !arg_lst))
+    (cond
+      ((== !obj Vrai) "Vrai")
+      ((== !obj Faux) "Faux")
+      ((== !obj Rien) "Rien")
+      ((!liste? !obj) (!text !obj))  # mettre avant str?
+      ((str? !obj) !obj)
+      ((num? !obj) (format !obj))
+      ((sym? !obj) (pack !obj))
+      (T "???")
+    )
   )
 )
 (put 'Nombre 'doc
@@ -1477,13 +1481,17 @@ Exemples :
     -> 42
 ")
 (put 'Nombre 'text "Commande `Nombre`.")
-(de Nombre (x !deuze)
-  (if !deuze (quit (pack "`Nombre` n’a qu’un paramètre.")))
-  (cond
-    ((num? x) x)
-    ((str? x) (or (format x)
-                  (quit "Cette valeur ne peut pas être convertie par `Nombre`." x)))
-    (T NIL)
+(de Nombre !arg_lst
+  (if (<> 1 (length !arg_lst))
+      (!erreur 96 (pack "`Nombre` attend exactement un paramètre. "
+                  "Vous en donnez " (length arg_lst) ".")))
+  (let !obj (eval (car !arg_lst))
+    (cond
+      ((num? !obj) !obj)
+      ((str? !obj) (or (format !obj)
+                    (quit "Cette valeur ne peut pas être convertie par `Nombre`." !obj)))
+      (T NIL)
+    )
   )
 )
 
