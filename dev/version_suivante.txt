@@ -79,7 +79,7 @@ déployer sur microalg.info
     ./dev_tools/diff.microalg.info.sh
     # faire les copies, puis
     # check suppressions aussi
-    # et attention aux fontes google à conserver
+    # et attention aux fontes google à conserver (doc, ide, tutos)
     git add .; git cm "MAJ MicroAlg 0.4.07."
     modifs de index.html si besoin
     git push origin master
