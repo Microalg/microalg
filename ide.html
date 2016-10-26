@@ -111,14 +111,12 @@
             txtarea.focus().selectRange(txtarea.val().length, txtarea.val().length);
             // REPL de fortune:
             inject_microalg_repl_in('repl-container',
-                '# Voici la console interactive de MicroAlg.\n' +
-                ': # <- le # indique que la fin de la ligne est un commentaire.\n' +
-                ': # Ctrl + Entrée pour exécuter le code.\n' +
+                'Console interactive de MicroAlg.\n' +
+                ': Ctrl + Entrée pour exécuter le code.\n' +
                 ': (Aide)');
             // jQuery Term:
             inject_microalg_jrepl_in('repl-container2',
-                ': # Voici la console interactive de MicroAlg.\n' +
-                ': # <- le # indique que la fin de la ligne est un commentaire.');
+                'Console interactive de MicroAlg.');
     </script>
     <script type="text/javascript" src="web/tabIndent.js"></script>
     <script>
