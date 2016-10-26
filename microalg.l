@@ -1489,7 +1489,9 @@ Exemples :
     (cond
       ((num? !obj) !obj)
       ((str? !obj) (or (format !obj)
-                    (quit "Cette valeur ne peut pas être convertie par `Nombre`." !obj)))
+                       (!erreur 97
+                                (pack "Le texte \"" !obj "\" ne peut pas être "
+                                      "converti par `Nombre`."))))
       (T NIL)
     )
   )
