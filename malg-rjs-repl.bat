@@ -1,6 +1,6 @@
 @echo off
 echo MicroAlg 0.4.07 (Rhino + EmuLisp)
-echo Taper (bye) pour quitter
+echo Taper (bye) pour quitter.
 echo.
 SET MICROALG_DIR=%~dp0
 SET EMULISP_DIR=%MICROALG_DIR%\emulisp

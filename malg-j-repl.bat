@@ -1,6 +1,6 @@
 @echo off
 echo MicroAlg 0.4.07 (Ersatz)
-echo Taper (bye) pour quitter
+echo Taper (bye) pour quitter.
 echo.
 SET MICROALG_DIR=%~dp0
 SET ERSATZ_DIR=%MICROALG_DIR%\ersatz
