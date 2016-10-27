@@ -247,6 +247,24 @@ Sinon :
 
     : (\^ 2 3)
     -> 8
+
+**Attention** : le comportement de cette commande diffère suivant les
+implémentations.  
+
+* Avec `malg` et `malg-j`, la puissance doit être entière.
+* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
+  navigateur, la puissance peut être un nombre à virgule flottante et un nombre
+  à virgule flottante peut être retourné.
+
+Dans le premier cas :
+
+    : (\^ 2 0.5)
+    -> 2
+
+Sinon :
+
+    : (\^ 2 0.5)
+    -> 1.4142135623730951
 ")
 (put '^ 'text "Commande puissance.")
 (de ^ (!x !y) (** !x !y))
