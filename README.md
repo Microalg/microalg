@@ -115,12 +115,18 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `malg-j` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
 * `malg-j.bat` : exécutable permettant d’interpréter un `.malg` avec Ersatz (Java)
   sous Windows
+* `malg-j-repl.bat` : exécutable permettant de travailler avec une console
+  interactive avec Ersatz (Java) sous Windows
 * `malg-njs` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
 * `malg-njs.bat` : exécutable permettant d’interpréter un `.malg` avec Node et Emulisp
   sous Windows
+* `malg-njs-repl.bat` : exécutable permettant de travailler avec une console
+  interactive avec Node et Emulisp sous Windows
 * `malg-rjs` : exécutable permettant d’interpréter un `.malg` avec Rhino et Emulisp
 * `malg-rjs.bat` : exécutable permettant d’interpréter un `.malg` avec Rhino et Emulisp
   sous Windows
+* `malg-rjs-repl.bat` : exécutable permettant de travailler avec une console
+  interactive avec Rhino et Emulisp sous Windows
 * `microalg.l` : implémentation de MicroAlg en PicoLisp, le cœur de ce projet
 * `microalg_export*`
     * `microalg_export.l` : fonctions PicoLisp préparant l’export en général
