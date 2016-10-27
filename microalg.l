@@ -216,7 +216,7 @@ implémentations.
 
 * Avec `malg` et `malg-j`, la division donnera toujours un entier.
 * Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
-  navigateur, un nombre à virgule flottante sera retourné.
+  navigateur, un nombre à virgule flottante peut être retourné.
 
 Dans le premier cas :
 
