@@ -285,8 +285,18 @@ Exemple :
     : (!!! \"Ceci est un commentaire.\")
     -> Rien
 
-Notez bien que l’argument passé à `!!!` doit être un texte et doit donc être
-entre guillemets.
+Notez bien que :
+
+1. l’argument passé à `!!!` doit être un texte et doit donc être entre
+   guillemets ;
+2. `!!!` ne doit pas être utilisé la place d’un argument ou d’un mot-clé
+   intermédiaire. On ne peut donc pas mettre un commentaire dans :
+    * un `Si` avant le `Alors` ;
+    * un `Repeter` avant le `Fois` ;
+    * un `Tant_que` avant le `Faire` ;
+    * un `Faire` après le `Faire` ;
+    * des opérations sur les nombres, les textes…
+    * …
 ")
 (put '!!! 'text "Commande commentaire.")
 (de !!! !arg_lst
