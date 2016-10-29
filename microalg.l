@@ -1507,14 +1507,14 @@ Exemples :
   (if (<> 1 (length !arg_lst))
       (!erreur 96 (pack "`Nombre` attend exactement un paramètre. "
                   "Vous en donnez " (length arg_lst) ".")))
-  (let !obj (eval (car !arg_lst))
+  (let (!obj (eval (car !arg_lst))
+        !msg "`Nombre` ne peut pas travailler sur ")
     (cond
       ((num? !obj) !obj)
+      ((not  !obj) (!erreur 97 (pack !msg "le texte vide.")))
       ((str? !obj) (or (format !obj)
-                       (!erreur 97
-                                (pack "Le texte \"" !obj "\" ne peut pas être "
-                                      "converti par `Nombre`."))))
-      (T NIL)
+                       (!erreur 97 (pack !msg "le texte `" !obj "`."))))
+      (T (!erreur 98 (pack !msg "la valeur `" !obj "`.")))
     )
   )
 )
