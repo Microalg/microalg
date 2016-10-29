@@ -1,7 +1,26 @@
 @echo off
+echo %NO_PAUSE%
 echo MicroAlg 0.4.07 (Rhino + EmuLisp)
-echo.
 SET MICROALG_DIR=%~dp0
 SET EMULISP_DIR=%MICROALG_DIR%\emulisp
-java -jar %MICROALG_DIR%\jar\js.jar %EMULISP_DIR%\pil-rjs %MICROALG_DIR%\microalg.l "%1" -bye
-IF NOT DEFINED NO_PAUSE pause>nul|set/p="Une touche pour quitter."&echo(
+
+if "%1"=="" goto :REPL
+
+:FILE
+echo.
+
+if not defined %NO_PAUSE% ( ^
+  java -jar %MICROALG_DIR%\jar\js.jar %EMULISP_DIR%\pil-rjs %MICROALG_DIR%\microalg.l "%1" -bye
+) else (
+  java -jar %MICROALG_DIR%\jar\js.jar %EMULISP_DIR%\pil-rjs %MICROALG_DIR%\microalg.l "%1"
+  echo "--- Une touche pour quitter." ^
+  pause>nul
+)
+goto DONE
+
+:REPL
+echo Taper (bye) pour quitter.
+java -jar %MICROALG_DIR%\jar\js.jar %EMULISP_DIR%\pil-rjs %MICROALG_DIR%\microalg.l
+goto DONE
+
+:DONE
