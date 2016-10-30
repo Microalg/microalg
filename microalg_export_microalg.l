@@ -66,9 +66,10 @@
                       "(Si " (eval condition) "^J"
                       " Alors^J"
                       (mapcar 'eval bloc_vrai)
-                      (if bloc_faux (pack " Sinon^J"
-                      (mapcar 'eval bloc_faux)))
-                      ")^J"
+                      (if bloc_faux
+                         (pack " Sinon^J"
+                               (mapcar 'eval bloc_faux)))
+                               ")^J"
                     )
                 )
 )
