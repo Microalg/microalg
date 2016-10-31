@@ -1750,6 +1750,19 @@ L’export vers Processing est spécial pour deux raisons :
 Ces spécificités permettent de créer des animations avec MicroAlg, même si le
 langage n’est pas prévu pour.
 
+#### Limitations de l’export vers Blockly
+
+L’export vers Blockly sert principalement à mettre en place les blocs au
+chargement d’une page (dans les tutoriels ou la galerie).
+
+Pour l’instant, certains programmes ne peuvent pas être reconstitués. Par
+exemple les programmes où :
+
+* `(Demander)` ou `(Demander_un_nombre)` sont utilisés comme instruction et non
+  comme argument à une autre commande ;
+* `Si` est utilisé comme une valeur ;
+* …
+
 #### Précisions sur la visualisation sous forme d’arbre
 
 Pour représenter `(Commande arg1 arg2…)`, on considère que `Commande` est un
@@ -2205,7 +2218,9 @@ Dans le cas où vous avez accès à la fois aux blocs et au code textuel, le cod
 textuel est mis à jour à chaque modification faite sur les blocs.
 
 Inversement, il est possible de reconstituer les blocs correspondant au code
-textuel avec `Ctrl`+`Shift`+`B` depuis l’éditeur textuel.
+textuel avec `Ctrl`+`Shift`+`B` depuis l’éditeur textuel. Ce n’est pas toujours
+possible : voir les
+[limitations de l’export Blockly](#limitationsdelexportversblockly).
 
 #### Bloc Programme
 
