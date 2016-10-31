@@ -748,8 +748,8 @@ Utilisation :
 Exemples :
 
     : (Afficher (Demander))
-    salut  <--- Ici, c’est l’utilisateur qui tape ;
-    salut  <--- là, c’est MicroAlg qui affiche.
+    salut      <--- Ici, c’est l’utilisateur qui tape ;
+    \"salut\"  <--- là, c’est MicroAlg qui affiche.
     -> Rien
 
 Comme `Demander` retourne un texte, il est parfois nécessaire de convertir la
