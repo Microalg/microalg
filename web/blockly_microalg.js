@@ -2319,21 +2319,38 @@ Blockly.MicroAlg['tg90'] = function(block) {
   return '(TG)';
 };
 
-// Bloc valeur_utilisateur
-Blockly.Blocks['valeur_utilisateur'] = {
+// Bloc texte_demandé
+Blockly.Blocks['texte_demande'] = {
   init: function() {
-    this.setHelpUrl(malg_url + '#sym-valeur_utilisateur');
+    this.setHelpUrl(malg_url + '#sym-texte_demandé');
     this.setColour(colour);
     this.appendDummyInput()
-        .appendField('valeur_utilisateur');
+        .appendField('texte_demandé');
     this.setOutput(true);
-    this.setTooltip('Dernière valeur entrée par l’utilisateur.');
+    this.setTooltip('Dernier texte entré par l’utilisateur.');
   }
 };
 
-// Gen valeur_utilisateur
-Blockly.MicroAlg['valeur_utilisateur'] = function(block) {
-  return 'valeur_utilisateur';
+// Gen texte_demandé
+Blockly.MicroAlg['texte_demande'] = function(block) {
+  return 'texte_demandé';
+};
+
+// Bloc nombre_demandé
+Blockly.Blocks['nombre_demande'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-nombre_demandé');
+    this.setColour(colour);
+    this.appendDummyInput()
+        .appendField('nombre_demandé');
+    this.setOutput(true);
+    this.setTooltip('Dernier nombre entré par l’utilisateur.');
+  }
+};
+
+// Gen nombre_demandé
+Blockly.MicroAlg['nombre_demande'] = function(block) {
+  return 'nombre_demandé';
 };
 
 // Bloc credit_iterations

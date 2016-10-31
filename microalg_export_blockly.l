@@ -11,12 +11,14 @@
 (de Variable inputs
   (let (nom_var (car inputs))
     (cond
-      ((== 'valeur_utilisateur nom_var)
-        "<block type=\"valeur_utilisateur\"></block>")
       ((== 'credit_iterations  nom_var)
         "<block type=\"credit_iterations\"></block>")
+      ((== 'nombre_demandé nom_var)
+        "<block type=\"nombre_demande\"></block>")
       ((== 'sequence_tirages@  nom_var)
         "<block type=\"sequence_tirages\"></block>")
+      ((== 'texte_demandé nom_var)
+        "<block type=\"texte_demande\"></block>")
       ((not nom_var)
         "<block type=\"texte_litteral\"><field name=\"TEXT\"></field></block>")
       (T

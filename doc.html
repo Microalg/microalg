@@ -259,7 +259,8 @@ ou retournés par les commandes.
           <texte>  ::= '"' « une chaîne de caractères » '"'
         <booleen>  ::= Vrai | Faux
        <variable>  ::= « caractères alphanum. sauf espace » | <var_spéciale>
-    <var_spéciale> ::= credit_iterations | sequence_tirages@ | valeur_utilisateur
+    <var_spéciale> ::=
+        credit_iterations | nombre_demandé | sequence_tirages@ | texte_demandé
     <mot-clef_intermédiaire> ::=
         Alors | Sinon | Faire | Tant_que | Fois | En_position | De_type
 
@@ -290,7 +291,8 @@ avec deux modifications :
       <booleen>   ::= Vrai | Faux
       <variable>  ::= « caractères alphanum. sauf espace » | <var_spéciale>
       <commande>  ::= « caractères alphanum. sauf espace »
-    <var_spéciale> ::= credit_iterations | sequence_tirages@ | valeur_utilisateur
+    <var_spéciale> ::=
+        credit_iterations | nombre_demandé | sequence_tirages@ | texte_demandé
     <instruction>  ::=
         '(' Afficher <instr_valeur> ')' |
         '(' Aide <instr_valeur> ')' |
@@ -409,13 +411,15 @@ organisés comme ceci :
 * Si le nom d’un symbole comporte plusieurs mots, le séparateur est le « tiret
   du 8 » ou « underscore » (`_`).
 * Les noms des symboles ne contiennent en général pas d’accent, mais certaines
-  commandes parmi les plus simples et fréquentes peuvent s’écrire avec des
-  lettres accentuées (sinon, réessayer sans accent). C’est le cas de :
+  commandes ou variables spéciales peuvent s’écrire avec des lettres accentuées
+  (sinon, réessayer sans accent).  
+  C’est le cas de :
     * `Affecter_à`
     * `Concaténer`
     * `Déclarer`
     * `Définir`
     * `Répéter`
+    * `nombre_demandé` et `texte_demandé`
 
 ### Liste des symboles prédéfinis
 
@@ -507,7 +511,7 @@ Les six premières opérations peuvent aussi être écrites
 
 **Variables spéciales**
 
-`credit_iterations`, `sequence_tirages@`, `valeur_utilisateur`.
+`credit_iterations`, `nombre_demandé`, `sequence_tirages@`, `texte_demandé`.
 
 **Divers**
 

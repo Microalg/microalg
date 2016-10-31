@@ -24,7 +24,7 @@ Voir <http://microalg.info>.")
 "Initialiser@"
 "Liste" "Longueur"
 "Millisecondes"
-"Nieme" "Nieme@" "Nombre" "Non"
+"Nieme" "Nieme@" "Nombre" "nombre_demandé" "Non"
 "Ou"
 "Produit" "Puissance"
 "Queue" "Quotient"
@@ -32,8 +32,8 @@ Voir <http://microalg.info>.")
 "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon" "Somme"
-"Tant_que" "Tester" "Tete" "Texte" "Triangle" "Type"
-"valeur_utilisateur" "Vide?" "Vrai"
+"Tant_que" "Tester" "Tete" "Texte" "texte_demandé" "Triangle" "Type"
+"Vide?" "Vrai"
 ))
 
 # picolisp.l shimz
@@ -730,14 +730,42 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
 # _stdPrompt, surchargée dans ide_injection.js. Dans un navigateur, la dernière
 # ligne ayant été affichée précédemment est réutilisée lors de l’appel à
 # window.prompt.
-(put 'valeur_utilisateur 'doc
-"Contient la dernière valeur donnée par l’utilisateur en réponse aux commandes
-`Demander` et `Demander_un_nombre`.
+(put 'texte_demande 'doc
+"Contient le dernier texte donné par l’utilisateur en réponse à la commande
+`Demander`.
 
-Préférer l’utilisation d’une variable classique pour stocker le retour des
-commandes `Demander` et `Demander_un_nombre` (voir `Declarer` et `Affecter_a`).")
-(put 'valeur_utilisateur 'type "rien")
-(setq valeur_utilisateur 'Rien)
+Exemple :
+
+    : (Demander)
+    bonjour   <--- Ici, c’est l’utilisateur qui tape.
+    -> \"bonjour\"
+    : (Afficher texte_demande)
+    \"bonjour\"
+    -> Rien
+")
+(put 'texte_demandé 'doc (get 'texte_demande 'doc))
+(put 'texte_demande 'type "texte")
+(setq texte_demande 'Rien)
+(put 'texte_demandé 'type "texte")
+(setq texte_demandé 'Rien)
+(put 'nombre_demande 'doc
+"Contient le dernier nombre donné par l’utilisateur en réponse à la commande
+`Demander_un_nombre`.
+
+Exemple :
+
+    : (Demander_un_nombre)
+    42   <--- Ici, c’est l’utilisateur qui tape.
+    -> 42
+    : (Afficher nombre_demande)
+    42
+    -> Rien
+")
+(put 'nombre_demandé 'doc (get 'nombre_demande 'doc))
+(put 'nombre_demande 'type "nombre")
+(setq nombre_demande 'Rien)
+(put 'nombre_demandé 'type "nombre")
+(setq nombre_demandé 'Rien)
 (put 'Demander 'doc
 "Commande qui permet de demander une valeur à l’utilisateur.
 
@@ -767,8 +795,10 @@ Pour simplifier cette commande, deux facilités ont été mises en place :
 
 * La commande `Demander_un_nombre` peut remplacer la combinaison
   `(Nombre (Demander))`.
-* La variable spéciale `valeur_utilisateur` contient la dernière valeur donnée
-  par l’utilisateur en réponse aux commandes `Demander` et `Demander_un_nombre`.
+* La variable spéciale `texte_demande` (ou `texte_demandé`) contient le
+  dernier texte donné par l’utilisateur en réponse à la commande `Demander`.
+  Pour `Demander_un_nombre`, c’est la variable `nombre_demande` (ou
+  `nombre_demandé`).
 
 **Remarque** : On peut s’en servir pour marquer une pause dans un programme :
 
@@ -779,9 +809,9 @@ Pour simplifier cette commande, deux facilités ont été mises en place :
 (de Demander (!rien_ici)
   (if !rien_ici
       (!erreur 31 "`Demander` ne prend pas de paramètre."))
-  (put 'valeur_utilisateur 'type "texte")
   (let (!input (in NIL (line T)))
-    (setq valeur_utilisateur !input)
+       (setq texte_demande !input)
+       (setq texte_demandé !input)
   )
 )
 (put 'Demander_un_nombre 'doc
@@ -791,21 +821,30 @@ Utilisation :
 
     (Demander_un_nombre)
 
-Préférer `(Nombre (Demander))`.
+Exemples :
 
-Cette commande est peu documentée et sert uniquement pour faciliter le travail
-avec les plus jeunes.")
+    : (Afficher (Demander))
+    salut  <--- Ici, c’est l’utilisateur qui tape ;
+    \"salut\"  <--- là, c’est MicroAlg qui affiche.
+    -> Rien
+
+Pour simplifier cette commande, une facilité a été mise en place :
+
+* La variable spéciale `nombre_demande` (ou `nombre_demandé`) contient le
+  dernier nombre donné par l’utilisateur en réponse à la commande
+  `Demander_un_nombre`.
+")
 (put 'Demander_un_nombre 'text "Commande `Demander_un_nombre`.")
 (de Demander_un_nombre (!rien_ici)
   (if !rien_ici
       (!erreur 32 "`Demander_un_nombre` ne prend pas de paramètre."))
-  (put 'valeur_utilisateur 'type "nombre")
   (let (!input (in NIL (line T))
         !input_nbre (format !input))
        (ifn !input_nbre
             (!erreur 33 "`Demander_un_nombre` : "
                         "La valeur entrée n’est pas un nombre."))
-       (setq valeur_utilisateur !input_nbre)
+       (setq nombre_demande !input_nbre)
+       (setq nombre_demandé !input_nbre)
   )
 )
 

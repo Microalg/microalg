@@ -1,3 +1,3 @@
 (Afficher "Un nombre ?")
 (Demander_un_nombre)
-(Afficher (+ valeur_utilisateur 1))
+(Afficher (+ nombre_demandé 1))
