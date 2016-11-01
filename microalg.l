@@ -823,9 +823,9 @@ Utilisation :
 
 Exemples :
 
-    : (Afficher (Demander))
-    salut  <--- Ici, c’est l’utilisateur qui tape ;
-    \"salut\"  <--- là, c’est MicroAlg qui affiche.
+    : (Afficher (Demander_un_nombre))
+    42  <--- Ici, c’est l’utilisateur qui tape ;
+    42  <--- là, c’est MicroAlg qui affiche.
     -> Rien
 
 Pour simplifier cette commande, une facilité a été mise en place :
