@@ -40,7 +40,9 @@
        (pack "' " (glue " " !vars) " de type " (cadr !type) "^J")  # type is in (Litteral ...)
   )
 )
+(setq Déclarer 'Declarer)
 (de Affecter_a  !arg_lst (!store !arg_lst))
+(setq Affecter_à 'Affecter_a)
 (de Demander () (pack "-- La commande `Demander` doit être utilisée avec "
                       "`Affecter_a`. --"))
 (de Demander_un_nombre () (pack "-- La commande `Demander_un_nombre` doit être utilisée avec "
@@ -98,6 +100,7 @@
   (pack "-- La commande " cmd " ne peut être exportée. --^J"))
 
 (de Concatener () (!no_export "Concatener"))  # StrJoin(
+(de Concaténer () (!no_export "Concaténer"))
 (de Liste () (!no_export "Liste"))
 (de Longueur () (!no_export "Longueur"))
 (de Nieme () (!no_export "Nieme"))
@@ -113,7 +116,9 @@
 (de Nombre () (!no_export "Nombre"))
 # Alors Sinon
 (de Repeter () (!no_export "Repeter"))
+(de Répéter () (!no_export "Répéter"))
 (de Definir () (!no_export "Definir"))
+(de Définir () (!no_export "Définir"))
 (de Retourner () (!no_export "Retourner"))
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))

@@ -34,11 +34,14 @@
        )
   )
 )
+(setq Déclarer 'Declarer)
 (de Concatener @ (glue " + " (rest)))
+(setq Concaténer 'Concatener)
 (de Affecter_a !arg_lst
   (let (!var (cadr (car !arg_lst))  # var name is in (Variable ...)
         !val (eval (cadr !arg_lst)))
        (pack !var " = " !val ";^J")))
+(setq Affecter_à 'Affecter_a)
 (de Entier@ (A B) (pack "int(" A " + random(" B "-" A "+1))"))
 (setq Vrai "true")
 (setq Faux "false")
@@ -175,6 +178,7 @@
 (de Nombre () (!no_export "Nombre"))
 # Alors Sinon
 (de Repeter () (!no_export "Repeter"))
+(de Répéter () (!no_export "Répéter"))
 (de ... () " (...) ")
 
 (de !no_export (cmd)
@@ -185,6 +189,7 @@
 (de Initialiser@ () (!no_export "Initialiser@"))
 (de Type () (!no_export "Type"))
 (de Definir () (!no_export "Definir"))
+(de Définir () (!no_export "Définir"))
 (de Retourner () (!no_export "Retourner"))
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))

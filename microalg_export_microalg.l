@@ -37,6 +37,7 @@
        )
   )
 )
+(setq Déclarer 'Declarer)
 (de Concatener @
   (let (!arg_lst (rest)
         !space_separated (glue " " !arg_lst)
@@ -50,10 +51,12 @@
        )
   )
 )
+(setq Concaténer 'Concatener)
 (de Affecter_a !arg_lst
   (let (!var (cadr (car !arg_lst))  # var name is in (Variable ...)
         !val (eval (cadr !arg_lst)))
        (pack "(Affecter_a " !var " " !val ")^J")))
+(setq Affecter_à 'Affecter_a)
 (de Entier@ (A B) (pack "(Entier@ " A " " B ")"))
 (setq Vrai "Vrai")
 (setq Faux "Faux")
@@ -170,6 +173,7 @@
        )
   )
 )
+(setq Répéter 'Repeter)
 (de ... () "(...)")
 (de Demander () (pack "(Demander)"))
 (de Demander_un_nombre () (pack "(Demander_un_nombre)"))
@@ -185,6 +189,7 @@
   (pack "-- La commande " cmd " ne peut être exportée. --^J"))
 
 (de Definir () (!no_export "Definir"))
+(de Définir () (!no_export "Définir"))
 (de Retourner () (!no_export "Retourner"))
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))

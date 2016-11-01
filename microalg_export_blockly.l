@@ -150,6 +150,7 @@
        )
   )
 )
+(setq Affecter_à 'Affecter_a)
 (de Concatener inputs
   (pack "<block type=\"concatener\">"
         "<mutation items=\"" (length inputs) "\"></mutation>"
@@ -158,6 +159,7 @@
                     (range 0 (dec (length inputs)))
                     inputs))
         "</block>"))
+(setq Concaténer 'Concatener)
 (de Declarer arg_lst
   (let (!splitted (split arg_lst 'De_type)
         !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
@@ -166,6 +168,7 @@
        (!declarer_rec !vars !type !next)
   )
 )
+(setq Déclarer 'Declarer)
 (de !declarer_rec (!vars !type !next)
   (ifn !vars
        (eval !next)
@@ -275,6 +278,7 @@
              "<statement name=\"INSTR\">" (eval (insertion_next !corps)) "</statement>"
              (eval !next)
              "</block>") ))
+(setq Répéter 'Repeter)
 (de Si inputs
   (let (condition (car inputs)
         kw_alors  (cadr inputs)
@@ -598,3 +602,4 @@
         "</block>"))
 
 (de Definir () (!sans_bloc "Definir"))
+(de Définir () (!sans_bloc "Définir"))
