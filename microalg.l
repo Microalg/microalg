@@ -475,7 +475,7 @@ Exemples :
 
 # Gestion des variables
 (put 'Declarer 'doc
-"Commande qui permet de déclarer une variable, avec son type.
+"Commande qui déclare une variable et lui associe son type.
 
 Utilisation :
 
@@ -549,7 +549,7 @@ Il est possible de déclarer plusieurs variables en une seule instruction :
   (!erreur 15 "`Initialiser` a été abandonnée dans la version 0.4. "
               "Merci d’utiliser `Declarer`."))
 (put 'Affecter_a 'doc
-"Commande qui permet d’affecter une valeur à une variable.
+"Commande qui affecte une valeur à une variable.
 
 Utilisations :
 
@@ -767,7 +767,7 @@ Exemple :
 (put 'nombre_demandé 'type "nombre")
 (setq nombre_demandé 'Rien)
 (put 'Demander 'doc
-"Commande qui permet de demander une valeur à l’utilisateur.
+"Commande qui demande un texte à l’utilisateur et retourne ce texte.
 
 Utilisation :
 
@@ -815,7 +815,7 @@ Pour simplifier cette commande, deux facilités ont été mises en place :
   )
 )
 (put 'Demander_un_nombre 'doc
-"Commande qui permet de demander un nombre à l’utilisateur.
+"Commande qui demande un nombre à l’utilisateur et retourne ce nombre.
 
 Utilisation :
 
