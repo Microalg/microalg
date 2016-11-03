@@ -2160,7 +2160,7 @@ Voir la commande `Exemples_de`.")
        (ifn (!inited !x_sym !x_evaled)
             (quit (pack "`" !cmd "` : le premier argument `" !x_sym !euvqnped)) )
        (ifn (!inited !y_sym !y_evaled)
-            (quit (pack "`" !cmd "` : le second argument `" !x_sym !euvqnped)) )
+            (quit (pack "`" !cmd "` : le second argument `" !y_sym !euvqnped)) )
   )
 )
 # Factorisation du test du type des arguments des comparaisons
