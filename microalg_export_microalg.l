@@ -107,7 +107,7 @@
 (de <= (A B) (pack "(<= " A " " B ")"))
 (de >  (A B) (pack "(> "  A " " B ")"))
 (de >= (A B) (pack "(>= " A " " B ")"))
-(de =/ (A B) (pack "(=/"  A " " B ")"))
+(de =/ (A B) (pack "(=/ " A " " B ")"))
 
 (de Liste @ (pack "(Liste " (glue " " (rest)) ")"))
 
