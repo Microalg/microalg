@@ -177,7 +177,7 @@
 (de ... () "(...)")
 (de Demander () (pack "(Demander)"))
 (de Demander_un_nombre () (pack "(Demander_un_nombre)"))
-(de Initialiser@ () (pack "(Initialiser@)^J"))
+(de Initialiser@ (n) (pack "(Initialiser@ " n ")^J"))
 (de Type (obj) (pack "(Type " obj ")"))
 (de AV (n) (pack "(AV " n ")^J"))
 (de BC () (pack "(BC)^J"))
