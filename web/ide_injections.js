@@ -171,7 +171,7 @@ function preparation_exception(e) {
     return msg + ' <span class="malg-freq-error">' + link + '</span>';
 }
 
-function onCtrl(elt, f, config_64) {
+function attachKeyWatcher(elt, f, config_64) {
     elt.keydown(function (e) {
         if (!e.ctrlKey) return;
         if (e.keyCode == 10 || e.keyCode == 13) {
@@ -556,7 +556,7 @@ function inject_microalg_editor_in(elt_id, config) {
     }
     var editor = $('#' + elt_id + '-malg-editor');
     createRichInput(editor);
-    onCtrl(editor, ide_action, config_64);
+    attachKeyWatcher(editor, ide_action, config_64);
 }
 
 function export_action(elt_id, select) {
@@ -730,7 +730,7 @@ function inject_microalg_repl_in(elt_id, msg) {
     repl_container.html(repl_string);
     var repl = $('#' + repl_id);
     createRichInput(repl);
-    onCtrl(repl, repl_action, null);
+    attachKeyWatcher(repl, repl_action, null);
     EMULISP_CORE.currentState().old_src = malg_prompt;
 }
 
