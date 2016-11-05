@@ -1,0 +1,25 @@
+# Check-list pour ajouter une commande dans MicroAlg:
+
+* microalg.l
+    * doc de la commande dans `'doc`
+    * implémentation de la commande en elle même
+    * entrée dans la liste `symboles`
+    * alias si accents
+* abréviation
+    * `editeurs/scite/malg_abbrev.properties`
+    * `web/ide_injections.js`
+* microalg_export_blockly.l
+    * attention à `insertion_next` si la commande contient des blocs de code
+* Blockly
+    * config et génération dans `web/blockly_microalg.js`
+    * toolbox dans `web/ide_injections.js`
+* exports
+    * microalg_export_blockly.l (/!\ Next)
+    * microalg_export_casio.l
+    * microalg_export_javascript.l
+    * microalg_export_microalg.l
+    * microalg_export_processing.l
+    * microalg_export_python.l
+    * microalg_export_ti.l
+* tutos
+* doc.html
