@@ -110,12 +110,21 @@ body.microalg {
     width: 100%;
 }
 .malg-ok-editor {
-    width: 75%;
+    width: 73%;
 }
-.malg-output-type {
+.malg-tools {
     float: right;
     margin: 2px;
-    width: 20%;
+    width: 25%;
+    text-align: right;
+}
+.malg-suggestions {
+    margin-right: 1em;
+    padding: 2px;
+    border: solid 1px #aaa;
+}
+.malg-output-type {
+    text-align: center;
 }
 .malg-error {
     color: red;

@@ -172,6 +172,36 @@ function preparation_exception(e) {
 }
 
 function attachKeyWatcher(elt, f, config_64) {
+    // autocompletion
+    elt.keyup(function (e) {
+        var kc = e.keyCode;
+        // keys we want to ignore:
+        // ALTGR 17 18, | 220, autres: 16
+        if (kc == 16 || kc == 17 || kc == 18 || kc == 220) return;
+        // keys at which we want to react:
+        // DEL 8, SUPPR 46, SHIFT 16
+        // SPACE 32
+        // é->0
+        // 0->9 48->57
+        // A->Z 65->90
+        // = 161
+        // _ 173
+        // < 188 > 190 . 190
+        // / 191
+        if (kc == 8 || kc == 46 || kc == 16 ||
+            kc == 32 ||
+            kc == 0 ||
+            (kc >= 48 && kc <= 57) || (kc >= 65 && kc <= 90) ||
+            kc == 161 || kc == 173 || kc == 188 || kc == 190 || kc == 191
+            ) {
+            console.log("cplt ");
+        } else {
+            console.log(kc);
+        }
+        var src = elt[0].value
+        elt[0].value = src;
+    });
+    // run source, complete abbreviation or build blocks
     elt.keydown(function (e) {
         if (!e.ctrlKey) return;
         if (e.keyCode == 10 || e.keyCode == 13) {
@@ -383,11 +413,16 @@ function inject_microalg_editor_in(elt_id, config) {
         '<div ' + hidden + '><textarea id="' + editor_id + '" ' +
                                       'class="tabIndent malg-editor" cols="80" rows="2"' +
                                       'spellcheck="false">' + src + '</textarea></div>' +
+        '<div class="malg-tools">' +
+        '<span class="malg-suggestions">' +
+        '<input type="checkbox" name="suggestions" value="1" > sugg.' +
+        '</span>' +
         '<select id="' + output_type_id + '" class="malg-output-type">' +
         '<option' + ((config.output == 'brut')?' selected':'') + '>brut</option>' +
         '<option' + ((config.output == 'HTML')?' selected':'') + '>HTML</option>' +
         ((typeof Showdown === 'undefined') ? '' : '<option' + ((config.output == 'MD')?' selected':'') + '>MD</option>') +
         '</select> ' +
+        '</div>' +
         '<input type="button" value="Exécuter" class="malg-ok-editor" ' +
                 'onclick="ide_action($(\'#' + elt_id + '-malg-editor\'), ' +
                                      "'" + config_64 + "'" + ')" />' +
