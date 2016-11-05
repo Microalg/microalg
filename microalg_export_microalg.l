@@ -177,6 +177,11 @@
 (de ... () "(...)")
 (de Demander () (pack "(Demander)"))
 (de Demander_un_nombre () (pack "(Demander_un_nombre)"))
+(de Demander_un_nombre_pour !arg_lst
+  (let (!var (cadr (car !arg_lst)))  # var name is in (Variable ...)
+       (pack "(Demander_un_nombre_pour " !var ")^J")
+  )
+)
 (de Initialiser@ (n) (pack "(Initialiser@ " n ")^J"))
 (de Type (obj) (pack "(Type " obj ")"))
 (de AV (n) (pack "(AV " n ")^J"))

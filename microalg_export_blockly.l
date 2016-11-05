@@ -190,6 +190,15 @@
   "<block type=\"demander\"></block>")
 (de Demander_un_nombre ()
   "<block type=\"demander_un_nombre\"></block>")
+(de Demander_un_nombre_pour !arg_lst
+  (let (!var  (cadr (car !arg_lst))  # var name is in (Variable ...)
+        !next (eval (cadr !arg_lst)))
+       (pack "<block type=\"demander_un_nombre_pour\">"
+             "<field name=\"VAR\">" !var "</field>"
+             !next
+             "</block>")
+  )
+)
 (de Entier@ (MIN MAX)
   (pack "<block type=\"entier_pseudo_aleatoire\">"
         "<value name=\"MIN\">" MIN "</value>"

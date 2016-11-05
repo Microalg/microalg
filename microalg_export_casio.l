@@ -47,6 +47,11 @@
                       "`Affecter_a`. --"))
 (de Demander_un_nombre () (pack "-- La commande `Demander_un_nombre` doit être utilisée avec "
                                 "`Affecter_a`. --"))
+(de Demander_un_nombre_pour !arg_lst
+  (let (!var (cadr (car !arg_lst)))  # var name is in (Variable ...)
+       (pack "?→" !var "^J")
+  )
+)
 (de Entier@ (A B) (pack "RanInt#(" A "," B ")"))
 (setq Vrai "1")
 (setq Faux "0")

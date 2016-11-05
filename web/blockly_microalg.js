@@ -36,6 +36,7 @@ Blockly.MicroAlg.addReservedWords(
     'Rectangle, Remplissage, Repere, Segment, Triangle, ' +
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Concatener, ' +
     'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
+    'Demander_un_nombre_pour' +
     'En_position, Entier@, Et, Exemples_de, ' +
     'Faire, Faux, Initialiser@, ' +
     'Liste, Longueur, Millisecondes, ' +
@@ -586,6 +587,39 @@ Blockly.Blocks['demander_un_nombre'] = {
 // Gen Demander un nombre
 Blockly.MicroAlg['demander_un_nombre'] = function(block) {
   return '(Demander_un_nombre)';
+};
+
+// Bloc Demander un nombre pour
+Blockly.Blocks['demander_un_nombre_pour'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Demander_un_nombre_pour');
+    this.setColour(colour);
+    this.setOutput(false);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('Demander un nombre et le stocker dans une variable.');
+    this.interpolateMsg(
+      'Demander un nombre pour' + ' %1',
+      ['VAR', new Blockly.FieldVariable("ma_variable")],
+      Blockly.ALIGN_RIGHT);
+    this.setInputsInline(false);
+    this.contextMenuMsg_ = "Créer truc"; // ???
+    this.contextMenuType_ = 'variable';
+  },
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+        this.setFieldValue(newName, 'VAR');
+    }
+  },
+  customContextMenu: Blockly.Blocks['variable'].customContextMenu
+};
+
+// Gen Demander un nombre pour
+Blockly.MicroAlg['demander_un_nombre_pour'] = function(block) {
+  return '(Demander_un_nombre_pour ' + this.getFieldValue('VAR') + ')';
 };
 
 // Bloc Entier@

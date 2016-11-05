@@ -105,6 +105,11 @@
 
 (de Demander () "input()")
 (de Demander_un_nombre () "float(input())")
+(de Demander_un_nombre_pour !arg_lst
+  (let (!var (cadr (car !arg_lst)))  # var name is in (Variable ...)
+       (pack !var "=float(input())^J")
+  )
+)
 (de Type (A) (pack "type(" A ")"))
 
 (de Tete (obj) (pack obj "[0]"))

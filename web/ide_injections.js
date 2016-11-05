@@ -206,6 +206,7 @@ function attachKeyWatcher(elt, f, config_64) {
                   "(De":  "(Definir |\n    \"...\"\n    \"...\"\n    (Retourner )\n)",
                   "(Dm":  "(Demander)|",
                   "(Dn":  "(Demander_un_nombre)|",
+                  "(Dnp": "(Demander_un_nombre_pour |)",
                   "(E":   "(Exemples_de |\n    (Liste\n        (? )\n        (? )\n    )\n)",
                   "(E@":  "(Entier@ |)",
                   "(F":   "(Faire\n    (|)\n    ()\n Tant_que ()\n)",
@@ -449,6 +450,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="commentaire"></block>' +
                 '  <block type="afficher"></block>' +
                 '  <block type="repeter"></block>' +
+                '  <block type="demander_un_nombre_pour"></block>' +
                 '  <block type="si"></block>' +
                 '  <block type="faire"></block>' +
                 '  <block type="tant_que"></block>' +

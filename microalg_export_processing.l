@@ -186,6 +186,7 @@
 
 (de Demander () (!no_export "Demander"))
 (de Demander_un_nombre () (!no_export "Demander_un_nombre"))
+(de Demander_un_nombre_pour () (!no_export "Demander_un_nombre_pour"))
 (de Initialiser@ () (!no_export "Initialiser@"))
 (de Type () (!no_export "Type"))
 (de Definir () (!no_export "Definir"))

@@ -862,6 +862,8 @@ Vous êtes peut-être dans un des cas suivants :
 [100](#erreur_100)
 [101](#erreur_101)
 [102](#erreur_102)
+[103](#erreur_103)
+[103](#erreur_104)
 
 #### erreur_0
 
@@ -1656,6 +1658,24 @@ Vérifiez sa valeur.
 
 La condition de la commande `Faire` doit être `Vrai` ou `Faux`.
 Vérifiez sa valeur.
+
+#### erreur_103
+
+> `Demander_un_nombre_pour` attend exactement un argument. Vous en donnez
+> `truc`.
+
+Il faut taper `(Demander_un_nombre_pour ...)`, avec la variable qui reçoit la
+valeur de l’utilisateur à la place des points de suspension.
+
+Voir [l’aide de la commande Demander_un_nombre_pour](#sym-Demander_un_nombre_pour).
+
+#### erreur_104
+
+> `Demander_un_nombre_pour` : La valeur entrée n’est pas un nombre.
+
+Ce n’est pas une erreur liée au programme.  
+Cette erreur survient lorsque l’utilisateur du programme tape autre chose qu’un
+nombre lorsque le programme lui en demande un.
 
 ## Outils d’édition
 

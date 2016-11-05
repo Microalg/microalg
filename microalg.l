@@ -17,7 +17,8 @@ Voir <http://microalg.info>.")
 "AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
 "Cercle" "Concatener" "Contour" "credit_iterations"
-"Declarer" "Definir" "Demander" "Demander_un_nombre" "Diff"
+"Declarer" "Definir" "Demander"
+"Demander_un_nombre" "Demander_un_nombre_pour" "Diff"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
 "Faire" "Faux" "Fois"
 "Geler"
@@ -845,6 +846,45 @@ Pour simplifier cette commande, une facilité a été mise en place :
                         "La valeur entrée n’est pas un nombre."))
        (setq nombre_demande !input_nbre)
        (setq nombre_demandé !input_nbre)
+  )
+)
+
+(put 'Demander_un_nombre_pour 'doc
+"Commande qui demande un nombre à l’utilisateur et l’affecte à la variable donnée.
+
+Utilisation :
+
+    (Demander_un_nombre_pour ...)
+
+Exemples :
+
+    : (Demander_un_nombre_pour x)
+    42  <--- Ici, c’est l’utilisateur qui tape ;
+    -> Rien
+    : (Afficher x)
+    42  <--- là, c’est MicroAlg qui affiche.
+    -> Rien
+
+*Remarque* : La variable spéciale `nombre_demande` (ou `nombre_demandé`) n’est
+pas mise à jour.
+")
+(put 'Demander_un_nombre_pour 'text "Commande `Demander_un_nombre_pour`.")
+(de Demander_un_nombre_pour !arg_lst
+  (if (<> 1 (length !arg_lst))
+      (!erreur 103 "`Ajouter_a` attend exactement un argument. "
+                   "Vous en donnez " (length arg_lst) "."))
+  (let (!var (car !arg_lst))
+       (ifn (sym? !var)
+            (!erreur 104 "bla") )
+            # check type si strict
+       (let (!input (in NIL (line T))
+             !input_nbre (format !input))
+            (ifn !input_nbre
+                 (!erreur 104 "`Demander_un_nombre_pour` : "
+                              "La valeur entrée n’est pas un nombre."))
+            (set !var !input_nbre)
+            (setq nombre_demandé !input_nbre)
+       )
   )
 )
 

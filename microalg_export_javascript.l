@@ -94,6 +94,11 @@
 
 (de Demander () "window.prompt()")
 (de Demander_un_nombre () "parseFloat(window.prompt())")
+(de Demander_un_nombre_pour !arg_lst
+  (let (!var (cadr (car !arg_lst)))  # var name is in (Variable ...)
+       (pack !var " = parseFloat(window.prompt());^J")
+  )
+)
 (de Type (A) (pack "typeof(" A ")"))
 
 (de Tete (obj) (pack obj "[0]"))
