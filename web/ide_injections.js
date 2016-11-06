@@ -197,12 +197,12 @@ function attachKeyWatcher(elt, f, config_64) {
             (kc >= 48 && kc <= 57) || (kc >= 65 && kc <= 90) ||
             kc == 161 || kc == 173 || kc == 188 || kc == 190 || kc == 191
             ) {
-            console.log("cplt ");
+            var src = elt[0].value
+            console.log(propo_type(src));
+            // elt[0].value = src;
         } else {
             console.log(kc);
         }
-        var src = elt[0].value
-        elt[0].value = src;
     });
     // run source, complete abbreviation or build blocks
     elt.keydown(function (e) {
