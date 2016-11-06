@@ -176,10 +176,13 @@ function attachKeyWatcher(elt, f, config_64) {
     elt.keyup(function (e) {
         var kc = e.keyCode;
         // keys we want to ignore:
+        // <^>v 37->40
         // ALTGR 17 18, | 220, autres: 16
-        if (kc == 16 || kc == 17 || kc == 18 || kc == 220) return;
+        if (kc == 16 || kc == 17 || kc == 18 ||
+            (kc >= 37 && kc <= 40) || kc == 220
+           ) return;
         // keys at which we want to react:
-        // DEL 8, SUPPR 46, SHIFT 16
+        // DEL 8, ENTER 13, SUPPR 46, SHIFT 16
         // SPACE 32
         // é->0
         // 0->9 48->57
@@ -188,7 +191,7 @@ function attachKeyWatcher(elt, f, config_64) {
         // _ 173
         // < 188 > 190 . 190
         // / 191
-        if (kc == 8 || kc == 46 || kc == 16 ||
+        if (kc == 8 || kc == 13 || kc == 46 || kc == 16 ||
             kc == 32 ||
             kc == 0 ||
             (kc >= 48 && kc <= 57) || (kc >= 65 && kc <= 90) ||
