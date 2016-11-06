@@ -561,6 +561,14 @@ function inject_microalg_editor_in(elt_id, config) {
     attachKeyWatcher(editor, ide_action, config_64);
 }
 
+function escapeHTML(html) {
+    // http://stackoverflow.com/questions/24816/escaping-html-strings-with-jquery/17546215#17546215
+    return document.createElement('div')
+                   .appendChild(document.createTextNode(html))
+                   .parentNode
+                   .innerHTML;
+}
+
 function export_action(elt_id, select) {
     if (typeof Processing !== "undefined" && Processing.instances.length > 0) {
         Processing.instances[0].exit();
@@ -572,7 +580,7 @@ function export_action(elt_id, select) {
         var langs = [undefined, 'casio', 'ti', 'javascript', 'malg-export', 'processing', 'python', 'arbretxt', 'arbresvg', 'arbreninja'];
         var lang = langs[select.selectedIndex];
         var src = $('#' + elt_id + '-malg-editor').val();
-        var exported_src = malg2other(lang, src);
+        var exported_src = escapeHTML(malg2other(lang, src));
         var export_target = $('#' + elt_id + '-export');
         if (lang == 'arbresvg') {
             export_target.html($('<div/>', {id: elt_id + '-export-svg'}));
