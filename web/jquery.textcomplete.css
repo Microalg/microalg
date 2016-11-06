@@ -2,9 +2,12 @@
 .textcomplete-dropdown {
     border: 1px solid #ddd;
     background-color: white;
+    padding: 0;
+    margin: 0;
 }
 
 .textcomplete-dropdown li {
+    list-style: none;
     border-top: 1px solid #ddd;
     padding: 2px 5px;
 }
@@ -15,13 +18,11 @@
 
 .textcomplete-dropdown li:hover,
 .textcomplete-dropdown .active {
-    background-color: rgb(110, 183, 219);
+    background-color: rgb(160, 223, 160);
 }
 
-.textcomplete-dropdown {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.textcomplete-dropdown a {
+    border-bottom: none;
 }
 
 .textcomplete-dropdown a:hover {
