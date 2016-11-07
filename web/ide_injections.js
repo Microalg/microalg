@@ -828,6 +828,27 @@ function blocklyLoaded(blockly, editor_id, msg) {
     });
 }
 
+function attachTextComplete() {
+    EMULISP_CORE.init();
+    EMULISP_CORE.eval(getLispSource('microalg'));
+    var syms_as_list = EMULISP_CORE.eval("symboles").toString();
+    var syms_as_strings = syms_as_list
+      .slice(1, -1) // les parenthèses
+      .split(' ')
+      .map(cleanTransient);
+    $('.malg-editor').textcomplete([{
+        match: /(^|\b)(\w{1,})$/,
+        search: function (term, callback) {
+            callback($.map(syms_as_strings, function (word) {
+                return word.indexOf(term) === 0 ? word : null;
+            }));
+        },
+        replace: function (word) {
+            return word + ' ';
+        }
+    }]);
+}
+
 // http://www.sitepoint.com/jquery-set-focus-character-range/
 $.fn.selectRange = function(start, end) {
     return this.each(function() {
