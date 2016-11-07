@@ -92,6 +92,7 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
     * `ide_injections.js` : contient de quoi intégrer MicroAlg dans une page
     * `jquery.terminal*` : pour la console ou REPL ([site officiel](http://terminal.jcubic.pl/))
     * `parenedit.*` : pour les parenthèses de couleur
+    * `jquery.textcomplete.*` : pour les suggestions
     * `processing.*.min.js` : Processing pour le web
     * `showdown.*` : ([github](https://github.com/coreyti/showdown))
     * `showup.*` : ([github](https://github.com/upstage/showup))
