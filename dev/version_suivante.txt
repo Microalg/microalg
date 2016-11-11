@@ -12,6 +12,7 @@ déployer sur galerie via
     test de quelques pages:
         http://galerie.microalg.info/profgra:tests:images # pas de chance, bug
         http://galerie.microalg.info/profgra:tests:pgcd
+        http://galerie.microalg.info/profgra:peda:fonctions_pures
     Si nouvelle conf:
         Ajouter section sur http://galerie.microalg.info/microalg:config_echantillons
 
