@@ -897,7 +897,6 @@ pas mise à jour.
                  (!erreur 104 "`Demander_un_nombre_pour` : "
                               "La valeur entrée n’est pas un nombre."))
             (set !var !input_nbre)
-            (setq nombre_demandé !input_nbre)
        )
   )
 )
