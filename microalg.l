@@ -873,10 +873,24 @@ pas mise à jour.
   (if (<> 1 (length !arg_lst))
       (!erreur 103 "`Ajouter_a` attend exactement un argument. "
                    "Vous en donnez " (length arg_lst) "."))
-  (let (!var (car !arg_lst))
+  (let (!var (car !arg_lst)
+        !dunp "`Demander_un_nombre_pour` : "
+       )
+       (ifn !var
+            (!erreur 105 !dunp "le premier argument doit être une variable. "
+                               "Vous avez donné le texte vide `\"\"`.") )
+       (if (str? !var)
+           (!erreur 106 !dunp "le premier argument doit être une variable. "
+                               "Vous avez donné le texte `\""!var "\"`.") )
        (ifn (sym? !var)
-            (!erreur 104 "bla") )
-            # check type si strict
+            (!erreur 107 !dunp "le premier argument doit être une variable. "
+                               "Vous avez donné `"!var "`.") )
+       (if (and
+             (not !sans_declaration)
+             (atom !var)
+             (not (get !var 'type)))
+            (!erreur 108 !dunp "la variable `" !var "` n’a pas été déclarée.")
+       )
        (let (!input (in NIL (line T))
              !input_nbre (format !input))
             (ifn !input_nbre

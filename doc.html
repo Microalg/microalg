@@ -864,6 +864,10 @@ Vous êtes peut-être dans un des cas suivants :
 [102](#erreur_102)
 [103](#erreur_103)
 [104](#erreur_104)
+[105](#erreur_105)
+[106](#erreur_106)
+[107](#erreur_107)
+[108](#erreur_108)
 
 #### erreur_0
 
@@ -1676,6 +1680,37 @@ Voir [l’aide de la commande Demander_un_nombre_pour](#sym-Demander_un_nombre_p
 Ce n’est pas une erreur liée au programme.  
 Cette erreur survient lorsque l’utilisateur du programme tape autre chose qu’un
 nombre lorsque le programme lui en demande un.
+
+#### erreur_105
+
+> `Demander_un_nombre_pour` : le premier argument doit être une variable.
+> Vous avez donné le texte vide `""`.
+
+#### erreur_106
+
+> `Demander_un_nombre_pour` : le premier argument doit être une variable.
+> Vous avez donné le texte `"truc"`.
+
+Il ne faut pas mettre de guillemets autour du nom de la variable dans laquelle
+vous voulez stocker le nombre tapé par l’utilisateur.
+
+#### erreur_107
+
+> `Demander_un_nombre_pour` : le premier argument doit être une variable.
+> Vous avez donné `truc`.
+
+Cette commande attend le nom de la variable dans laquelle vous voulez stocker
+le nombre tapé par l’utilisateur.
+
+#### erreur_108
+
+> `Demander_un_nombre_pour` : la variable `truc` n’a pas été déclarée.
+
+Vous utilisez une variable inconnue de MicroAlg.
+
+* Déclarez-la si ce n’est pas fait.
+* Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
+  minuscules.
 
 ## Outils d’édition
 
