@@ -835,6 +835,15 @@ Bonjour,
     <h2 id="affectation-circulaire"><a href="#affectation-circulaire">: </a>Affectation circulaire</h2>
     <p>Il n’est pas interdit d’utiliser une variable dans un calcul dont le
     résultat sera affectée à cette même variable.</p>
+    <p>Dans <code>(Affecter_a var (Calcul var))</code>, il faut comprendre
+    que :</p>
+    <ol>
+      <li>le second <code>var</code> désigne la <strong>valeur</strong> qui est
+        stockée dans la variable, qui sera envoyée à <code>Calcul</code> ;</li>
+      <li>le premier <code>var</code> désigne le <strong>nom</strong> de la
+        variable à mettre à jour avec le résultat de
+        <code>(Calcul var)</code>.</li>
+    </ol>
     <p>Dans ce premier exemple, on accumule des nombres avec une instruction de
     la forme :<br>
     <code>(Affecter_a valeur (+ valeur valeur_a_ajouter))</code></p>
