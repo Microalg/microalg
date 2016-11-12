@@ -170,6 +170,13 @@ Voir <http://microalg.info>.")
         (not !sym)         # le symbole non évalué est NIL, donc ""
         (get !sym 'type)   # un symbole contenant une valeur typée
     ) )
+(de !inited_sans_sans_declaration (!sym !evaled_sym)
+    (or
+        (not (sym? !sym))  # pas un symbole
+        !evaled_sym        # une valeur non NIL, donc initialisée
+        (not !sym)         # le symbole non évalué est NIL, donc ""
+        (get !sym 'type)   # un symbole contenant une valeur typée
+    ) )
 
 # Doc pour les fonctions PicoLisp
 (put '+ 'doc
@@ -2045,7 +2052,7 @@ Exemple 2 :
        # Empêcher la collision entre paramètres et variables déjà déclarées.
        (let (msg1 "`Definir` : le paramètre `"
              msg2 "` a déjà été déclaré comme variable.")
-            (mapcar '((!sym) (if (!inited !sym (eval !sym))
+            (mapcar '((!sym) (if (!inited_sans_sans_declaration !sym (eval !sym))
                                  (quit (pack msg1 !sym msg2))))
                     params))
     (let (
