@@ -821,6 +821,7 @@ function blocklyLoaded(blockly, editor_id, msg) {
         var src = /.*««««««««««([^]*)»»»»»»»»»».*/.exec(raw_src)[1];
         // Passage dans l’export afin d’avoir la bonne mise en forme:
         src = malg2other('malg-export', src);
+        if (src == "NIL") src = "";
         // Et injection dans le textarea
         var textarea = $('#' + editor_id);
         textarea.val(src);
