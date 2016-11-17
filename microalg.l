@@ -422,7 +422,7 @@ Exemples :
 
     : (Concatener \"abra\" \"cadabra\")
     -> \"abracadabra\"
-    : (Concatener \"bonjour \" \"tout \" \"le \" \"monde\")
+    : (Concatener \"bonjour\" \" \" \"tout\" \" \" \"le\" \" \" \"monde\")
     -> \"bonjour tout le monde\"
     : (Afficher (Concatener (Liste 1 2) (Liste 3 4)))
     \"(Liste 1 2 3 4)\"
