@@ -1646,20 +1646,23 @@ Exemples :
 Utilisation :
 
     (Si booléen
-     Alors instruction_si_Vrai_1
-           instruction_si_Vrai_2
-           ...
-     Sinon instruction_si_Faux_1
-           instruction_si_Faux_2
-           ...
+     Alors
+        instruction_si_Vrai_1
+        instruction_si_Vrai_2
+        ...
+     Sinon
+        instruction_si_Faux_1
+        instruction_si_Faux_2
+        ...
     )
 
 Ou :
 
     (Si booléen
-     Alors instruction_si_Vrai_1
-           instruction_si_Vrai_2
-           ...
+     Alors
+        instruction_si_Vrai_1
+        instruction_si_Vrai_2
+        ...
     )
 ")
 (put 'Si 'text "Commande `Si`.")
