@@ -108,6 +108,7 @@ Listés dans l’ordre où ils apparaissent sur GitHub.
 * `LICENSE` : la licence
 * `README.md` : ce fichier (j’ai toujours rêvé d’écrire ça)
 * `doc.html` : la documentation de MicroAlg
+* `faq.html` : la foire aux questions de MicroAlg
 * `ide.html` : un IDE web de fortune, accessible [ici](http://microalg.info/ide.html)
 * `malg` : exécutable permettant d’interpréter un `.malg` avec PicoLisp (ASM/C)
 * `malg-clj.bat` : exécutable permettant d’interpréter un `.malg` avec MicroAlg-clj

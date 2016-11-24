@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>FAQ - MicroAlg</title>
+        <meta name="description"
+              content="Foire Aux Questions en ligne pour MicroAlg." />
+        <meta name="keywords" content="microalg, algo, algorithme, algorithmique, lisp, environnement" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="web/jquery.min.js"><\/script>')</script>
+        <script src="web/showdown.js"></script>
+        <script src="web/showup.js"></script>
+        <link type="text/css" href="web/showup.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="web/style.css" />
+    </head>
+    <body class="microalg doc">
+        <div class="navbar">
+            <a href="./">Accueil</a> :
+            <a href="#top">Haut de page</a>
+        </div>
+        <noscript>
+            <div style="color:#CC0000; text-align:center">
+            Besoin de JavaScript pour afficher certaines listes.
+            </div>
+        </noscript>
+        <script type="text/markdown">
+<!--
+<div id="top"></div>
+
+# MicroAlg - Foire Aux Questions
+
+Si vous ne trouvez pas l’information que vous êtes venue chercher, envoyez votre
+question à <a href="mailto:microalg@netc.fr"
+class="email">microalg@netc.fr</a>.
+
+## Questions
+
+* [Pourquoi avoir créé MicroAlg ?](#pourquoiavoircrmicroalg)
+* [Pourquoi un Lisp ?](#pourquoiunlisp)
+
+## Réponses
+
+### Pourquoi avoir créé MicroAlg ?
+
+Parce qu’au printemps 2011, aucune solution pour enseigner l’algorithmique ne
+me convenait. Me sentant capable de réaliser moi-même ce dont j’avais besoin,
+j’ai commencé à rédiger un cahier des charges, qui est finalement sorti de son
+tiroir au printemps 2014.
+
+### Pourquoi un Lisp ?
+
+C’est un accident. Il était prévu que MicroAlg soit codé avec (ou dans) Tcl,
+mais je n’ai pas trouvé de version de Tcl fonctionnant assez bien dans le
+navigateur. Après une expérience concluante avec EmuLisp, une version de
+PicoLisp en JavaScript, je me suis dit que la syntaxe limpide de Lisp serait
+finalement intéressante.
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+-->
+        </script>
+        <script>
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++){
+            var script = scripts[i];
+            if (script.type != 'text/markdown') continue;
+            var md = script.innerHTML.replace(/^\s<!--*/, '')
+                .replace(/-->\s*$/, '');
+            var markup = new Showdown.converter().makeHtml(md);
+            document.write(markup);
+        }
+        </script>
+        <script>
+            $().showUp('.navbar', {
+                upClass: 'navbar-show',
+                downClass: 'navbar-hide'
+            });
+        </script>
+    </body>
+</html>
