@@ -724,13 +724,7 @@ le signaler en :
 ### Récursion infinie
 
 Le programme est perdu dans une récursion infinie : une commande s’appelle
-elle-même sans cesse.
-
-Avant que l’ordinateur ne *plante* franchement, un mécanisme de la plate-forme
-que vous utilisez (et non MicroAlg, d’où la variété des messages d’erreur)
-arrête ce qui lui semble être un travail infini car un certain nombre d’appels
-a été dépassé. Ce nombre est variable suivant les plate-formes et ne peut que
-très rarement être modifié.
+elle-même sans cesse (voir les détails plus bas).
 
 Vous êtes peut-être dans un des cas suivants :
 
@@ -749,6 +743,14 @@ Vous êtes peut-être dans un des cas suivants :
 * Vous utilisez les parenthèses comme des accolades. Attention, la première
   parenthèse est toujours *devant* la commande (voir la section
   [syntaxe](#syntaxe)).
+
+**Détails** :  
+Après un certain nombre d’appels récursifs, un mécanisme de la plate-forme que
+vous utilisez arrête ce qui lui semble être un travail infini, ceci afin
+d’éviter que l’ordinateur ne *plante* franchement. Ce nombre d’appels est
+variable suivant les plate-formes et ne peut être que très rarement être
+modifié, c’est pourquoi MicroAlg n’a parfois pas de contrôle dessus. Ceci
+explique aussi la variété des messages d’erreur.
 
 ### Espaces dans les noms de fichiers
 
