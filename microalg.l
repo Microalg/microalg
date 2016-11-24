@@ -377,7 +377,7 @@ Exemple :
           ((get efirst 'text) (get efirst 'text)) # expr -> cmd (un jour)
           ((sym? efirst) efirst)                  # expr -> sym (Rien, bool…)
           # m’est arrivé avec (Liste (0 255 0)) :
-          ((and lst? (lst? first))
+          ((lst? first)
             (!erreur 3 "Parenthèses mal placées dans `"
                        (pico_list_to_transient first) "`."))
           (T (!erreur 4 "Pas de représentation textuelle pour `" first "`."))
