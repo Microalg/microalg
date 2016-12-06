@@ -100,7 +100,7 @@
 (de 1000Sinus   (angle) (pack "math.sin(" angle "/180*math.pi)"))
 
 (de Longueur (A) (pack "len(" A ")"))
-(de Nieme (obj idx) (pack obj "[" idx "]"))
+(de Nieme (obj idx) (pack obj "[" idx "-1]"))
 (de Millisecondes () "(time.time()*1000.0)")
 
 (de Demander () "input()")

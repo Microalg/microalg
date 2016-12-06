@@ -95,7 +95,7 @@
 (de 1000Sinus   (angle) (pack "sin(radians(" angle "))"))
 
 (de Longueur (A) (pack A ".length"))
-(de Nieme (obj idx) (pack obj "[" idx "]"))
+(de Nieme (obj idx) (pack obj "[" idx "-1]"))
 (de Millisecondes () "millis()")
 
 (de RAZ () "background(255);^J")

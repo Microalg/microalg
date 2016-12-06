@@ -89,7 +89,7 @@
 (de 1000Sinus   (angle) (pack "Math.sin(" angle "/180*Math.PI)"))
 
 (de Longueur (A) (pack A ".length"))
-(de Nieme (obj idx) (pack obj "[" idx "]"))
+(de Nieme (obj idx) (pack obj "[" idx "-1]"))
 (de Millisecondes () "(new Date().getTime())")
 
 (de Demander () "window.prompt()")
