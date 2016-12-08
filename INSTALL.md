@@ -275,15 +275,17 @@ avec le bon numéro de `version` bien sûr.
       précédemment) dans votre répertoire personnel. Pour cela, taper dans un
       terminal :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
-* Relier les deux
+* Exécution des programmes MicroAlg depuis SciTE
     * Java devrait déjà être installé sur votre machine.  
       Taper `which java` dans un terminal pour le vérifier.  Si ça répond,
       c’est que c’est bon. Sinon, il faut
-      [installer Java](https://www.java.com/fr/download/) ou passer à la
-      version longue des instructions.
+      [installer Java](https://www.java.com/fr/download/) ou…
+    * …passer à la version longue des instructions pour examiner d’autres
+      possibilités.
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
-  programme, il faudra taper sur `F5`.
+  programme, il faudra l’enregistrer avec l’extension `.malg` et taper sur
+  `F5`. Vous pouvez d’abord essayer d’ouvrir un exemple pour l’exécuter.
 
 Pour la sortie graphique :
 
@@ -334,7 +336,7 @@ Pour la sortie graphique :
       un lien symbolique vers votre répertoire personnel en changeant le nom
       du fichier. Pour cela, taper :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
-* Relier les deux
+* Exécution des programmes MicroAlg depuis SciTE
     * Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez
       installer au choix (un seul suffit) :
         * Java, la solution la plus facile car Java devrait déjà être installé.
@@ -343,6 +345,13 @@ Pour la sortie graphique :
         * PicoLisp (il faut pour l’instant une installation « à la main », voir
           le fichier `install_scripts/install_picolisp.sh`).
         * NodeJS.
+            * l’installer ([page téléchargements](http://nodejs.org/download/))
+              (`npm` compris, le gestionnaire de modules pour NodeJS).
+            * Installer le module `readline-sync`
+              ([npm](https://www.npmjs.com/package/readline-sync),
+              [github](https://github.com/anseki/readline-sync))
+              en tapant dans un terminal :  
+              `npm install -g readline-sync`
     * Une fois l’implémentation choisie, il faut paramétrer SciTE pour qu’il
       utilise la bonne. Pour cela, allez dans le menu **View** puis
       **Parameters** et indiquer `malg`, `malg-j`, `malg-njs` ou `malg-rjs`.  
@@ -357,7 +366,8 @@ Pour la sortie graphique :
         props["command.go.*.malg"] = "$(microalg_path)/malg-rjs $(FilePath)"</code></pre>
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
-  programme, il faudra taper sur `F5`.
+  programme, il faudra l’enregistrer avec l’extension `.malg` et taper sur
+  `F5`. Vous pouvez d’abord essayer d’ouvrir un exemple pour l’exécuter.
 
 Pour la sortie graphique :
 
