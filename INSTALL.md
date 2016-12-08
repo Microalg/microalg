@@ -354,9 +354,9 @@ Pour la sortie graphique :
       décommenter astucieusement des lignes dans `editeurs/scite/SciTEGlobal.properties`,
       vers :
       <pre><code>if uname_s == "Linux" then
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg-j $(FilePath)"
-        -- props["command.go.*.malg"] = "$(microalg_path)/malg-njs $(FilePath)"
+        -- props["command.go.\*.malg"] = "$(microalg_path)/malg $(FilePath)"
+        -- props["command.go.\*.malg"] = "$(microalg_path)/malg-j $(FilePath)"
+        -- props["command.go.\*.malg"] = "$(microalg_path)/malg-njs $(FilePath)"
         props["command.go.*.malg"] = "$(microalg_path)/malg-rjs $(FilePath)"</code></pre>
 * Et voilà. Pour plus d’informations sur l’utilisation en elle-même, voir
   [la documentation](http://microalg.info/doc.html#scite). Pour exécuter un
