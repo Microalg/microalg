@@ -153,7 +153,7 @@ Vous pouvez télécharger le résultat des instructions suivantes
 [directement ici](https://github.com/Microalg/Microalg/releases/download/v0.4.07/microalg_0.4.07.zip).
 
 * MicroAlg
-    * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip)
+    * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip).
     * Extraire l’archive quelque part, puis supprimer cette archive.
     * Obtenir un dossier contenant les différents fichiers de l’archive (et non
       contenant un dossier seul contenant ces fichiers).
@@ -259,7 +259,7 @@ avec le bon numéro de `version` bien sûr.
 
 * MicroAlg
     * Récupérer les fichiers
-       * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip)
+       * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip).
        * Extraire l’archive quelque part, puis supprimer cette archive.
        * Obtenir un répertoire contenant les différents fichiers de l’archive (et
          non contenant un répertoire seul contenant ces fichiers).
@@ -310,7 +310,7 @@ Pour la sortie graphique :
           versions :  
           `git clone http://github.com/Microalg/Microalg.git microalg`
         * Sinon à partir d’une archive inerte :
-           * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip)
+           * Télécharger [ce zip](https://github.com/Microalg/Microalg/archive/v0.4.07.zip).
            * Extraire l’archive quelque part, puis supprimer cette archive.
            * Obtenir un répertoire contenant les différents fichiers de l’archive (et
              non contenant un répertoire seul contenant ces fichiers).
