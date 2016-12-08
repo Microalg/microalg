@@ -171,8 +171,8 @@ Vous pouvez télécharger le résultat des instructions suivantes
   [ce lien](http://lmgtfy.com/?q=+windows+installer+java)).
 * Si vous voulez utiliser NodeJS, il faut :
     * l’installer ([page téléchargements](http://nodejs.org/download/))
-      (`npm` compris, le gestionnaire de modules pour NodeJS).
-    * Installer le module `readline-sync`
+      (`npm` compris, le gestionnaire de modules pour NodeJS) ;
+    * installer le module `readline-sync`
       ([npm](https://www.npmjs.com/package/readline-sync),
       [github](https://github.com/anseki/readline-sync))
       en tapant dans une console DOS :  
