@@ -177,11 +177,6 @@ Vous pouvez télécharger le résultat des instructions suivantes
       [github](https://github.com/anseki/readline-sync))
       en tapant dans une console DOS :  
       `npm install -g readline-sync`  
-      Vous devriez obtenir :
-      <pre><code>    D:\microalg>npm install -g readline-sync
-        npm http GET https://registry.npmjs.org/readline-sync
-        npm http 304 https://registry.npmjs.org/readline-sync
-        readline-sync@0.2.5 C:\Users\prof\AppData\Roaming\npm\node_modules\readline-sync</code></pre>
 * Et voilà, il ne reste plus qu’à double-cliquer sur `editeurs/scite/SC???.exe`
   (ou sur `00_SciTE.bat` si vous avez téléchargé l’archive).  
   Pour plus d’informations sur l’utilisation en elle-même, voir
