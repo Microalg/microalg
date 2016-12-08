@@ -276,8 +276,9 @@ avec le bon numéro de `version` bien sûr.
     * Utiliser le gestionnaire de paquets de votre distribution (le paquet
       s’appelle bêtement `scite` dans la plupart des cas) ou les liens de
       [la page de téléchargements de SciTE](http://www.scintilla.org/SciTEDownload.html).
-    * Faire un lien symbolique du fichier `SciTEGlobal.properties` fourni vers
-      votre répertoire personnel. Taper dans un terminal :  
+    * Faire un lien symbolique du fichier `SciTEGlobal.properties` (modifié
+      précédemment) dans votre répertoire personnel. Pour cela, taper dans un
+      terminal :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
 * Relier les deux
     * Java devrait déjà être installé sur votre machine.  
@@ -335,7 +336,8 @@ Pour la sortie graphique :
       [la page de téléchargements de SciTE](http://www.scintilla.org/SciTEDownload.html).
     * Le fichier `SciTEGlobal.properties` fourni dans le dépôt MicroAlg est
       prévu pour vivre dans le même répertoire que l’exécutable `scite`. Faire
-      un lien symbolique vers votre répertoire personnel avec :  
+      un lien symbolique vers votre répertoire personnel en changeant le nom
+      du fichier. Pour cela, taper :  
       `ln -sf /chemin/absolu/vers/microalg/editeurs/scite/SciTEGlobal.properties ~/.SciTEUser.properties`
 * Relier les deux
     * Suivant l’implémentation de PicoLisp que vous voulez utiliser, vous devrez
