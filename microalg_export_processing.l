@@ -18,6 +18,7 @@
 (de / (A B) (pack "(" A "/" B ")"))
 (de % (A B) (pack "(" A "%" B ")"))
 (de ^ (A B) (pack "pow(" A ", " B ")"))
+(de Racine (A) (pack "sqrt(" A ")"))
 
 (de !!! (comz) (pack "// " (cdr (reverse (cdr (reverse (chop comz))))) "^J"))
 (de Afficher (obj) (pack "println(" obj ");^J"))

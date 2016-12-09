@@ -41,7 +41,7 @@ Blockly.MicroAlg.addReservedWords(
     'Faire, Faux, Initialiser@, ' +
     'Liste, Longueur, Millisecondes, ' +
     'Nieme, Nieme@, Nombre, Non, Ou, ' +
-    'Queue, Retirer_de, Retourner, Rien, Si, Sinon, ' +
+    'Queue, Racine, Retirer_de, Retourner, Rien, Si, Sinon, ' +
     'Tant_que, Tester, Tete, Texte, Type, ' +
     'Vide?, Vrai');
 Blockly.MicroAlg.newQuote = function(open) {
@@ -1635,6 +1635,32 @@ Blockly.MicroAlg['comparaisons'] = function(block) {
   var argument1 = inputB.substring(Blockly.MicroAlg.INDENT.length) || '';
   var code = '(' + operator + ' ' + argument0 + ' ' + argument1 + ')';
   return code;
+};
+
+// Bloc Racine
+Blockly.Blocks['racine'] = {
+  init: function() {
+    this.setHelpUrl(malg_url + '#sym-Racine');
+    this.setColour(colour);
+    this.appendValueInput('A')
+        .appendField('Racine')
+        .setCheck('Number');
+    this.setOutput(true, 'Number');
+    this.setTooltip('Convertir une valeur en racine.');
+  }
+};
+
+// Gen Racine
+Blockly.MicroAlg['racine'] = function(block) {
+  var arg = Blockly.MicroAlg.statementToCode(block, 'A') || '';
+  if (arg === '') return '(Racine)';
+  var num_lines = arg.split('\n').length;
+  if (num_lines == 1) {
+    // Prevent indentation if we only have one line.
+    return '(Racine ' + arg.substring(Blockly.MicroAlg.INDENT.length) + ')';
+  } else {
+    return '(Racine\n' + arg + '\n)';
+  }
 };
 
 // Bloc Faux

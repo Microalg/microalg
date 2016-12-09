@@ -23,6 +23,7 @@
 (de / (A B) (pack "(/ " A " " B ")"))
 (de % (A B) (pack "(% " A " " B ")"))
 (de ^ (A B) (pack "(\^ " A " " B ")"))
+(de Racine (A) (pack "(Racine " A ")"))
 
 (de !!! (comz) (pack "(!!! " (if comz @ "\"\"") ")^J"))
 (de Afficher (obj) (pack "(Afficher " obj ")^J"))

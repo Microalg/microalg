@@ -464,7 +464,7 @@ et `(Faire ... Tant_que ...)`, `(Repeter ... Fois ...)`. Pas de boucle POUR.
 
 **Opérations mathématiques, comparaisons et nombres pseudo-aléatoires**
 
-`+`, `-`, `*`, `/`, `%`, `^`, `1000Cosinus`, `1000Sinus`,
+`+`, `-`, `*`, `/`, `%`, `^`, `Racine`, `1000Cosinus`, `1000Sinus`,
 `=`, `=/`, `<`, `<=`, `>`, `>=`, `(Entier@ ... ...)`, `(Initialiser@ ...)`.
 
 Les six premières opérations peuvent aussi être écrites
@@ -873,6 +873,9 @@ explique aussi la variété des messages d’erreur.
 [106](#erreur_106)
 [107](#erreur_107)
 [108](#erreur_108)
+[109](#erreur_109)
+[110](#erreur_110)
+[111](#erreur_111)
 
 #### erreur_0
 
@@ -1717,6 +1720,26 @@ Vous utilisez une variable inconnue de MicroAlg.
 * Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
   minuscules.
 
+#### erreur_109
+
+> `Racine` attend exactement un argument. Vous en donnez `truc`.
+
+Voir [l’aide de la commande Racine](#sym-Racine).
+
+#### erreur_110
+
+> `Racine` : L’argument doit être un nombre. Vous avez donné `truc`.
+
+Vérifiez le type ou la valeur de ce que vous passez à `Racine`.
+
+#### erreur_111
+
+> `Racine` : L’argument doit être un nombre positif ou nul. Vous avez donné
+> `truc`.
+
+On ne peut calculer la racine carrée que d’un nombre positif ou nul.
+Vérifiez la valeur de ce que vous passez à `Racine`.
+
 ## Outils d’édition
 
 ### Indentation
@@ -1758,6 +1781,7 @@ un appui sur `Ctrl`+`B` vous complètera les débuts de commandes suivants :
     (Pu  ->  (Puissance |)
     (Q   ->  (Quotient |)
     (R   ->  (Repeter | Fois...
+    (Ra  ->  (Racine |)
     (Rd  ->  (Retirer_de |)
     (Re  ->  (Retourner |)
     (Rp  ->  (Repere |)
@@ -2326,7 +2350,7 @@ bloc et non le symbole de l’opération :
 
 Voir aussi les commandes 
 [`+`](#sym-+), [`-`](#sym--), [`*`](#sym-*), [`/`](#sym-/), [`%`](#sym-%) et
-[`^`](#sym-^).
+[`^`](#sym-^), [`Racine`](#sym-Racine).
 
 #### Comparaisons avec Blockly
 

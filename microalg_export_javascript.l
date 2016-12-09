@@ -18,6 +18,7 @@
 (de / (A B) (pack "(" A "/" B ")"))
 (de % (A B) (pack "(" A "%" B ")"))
 (de ^ (A B) (pack "Math.pow(" A ", " B ")"))
+(de Racine (A) (pack "Math.sqrt(" A ")"))
 
 (de !!! (comz) (pack "// " (cdr (reverse (cdr (reverse (chop comz))))) "^J"))
 (de Afficher (obj) (pack "console.log(" obj ");^J"))

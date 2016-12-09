@@ -94,6 +94,10 @@
          "<value name=\"A\">" A "</value>"
          "<value name=\"B\">" B "</value>"
          "</block>"))
+(de Racine (A)
+   (pack "<block type=\"racine\">"
+         "<value name=\"A\">" A "</value>"
+         "</block>"))
 (de = (A B)
    (pack "<block type=\"comparaisons\"><field name=\"COMP\">EQ</field>"
          "<value name=\"A\">" A "</value>"

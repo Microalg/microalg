@@ -23,6 +23,7 @@
 (de / (A B) (pack "(" A "/" B ")"))
 (de % (A B) (pack "(" A "%" B ")"))
 (de ^ (A B) (pack "(" A "**" B ")"))
+(de Racine (A) (pack "math.sqrt(" A ")"))
 
 (de !!! (comz) (pack "# " (cdr (reverse (cdr (reverse (chop comz))))) "^J"))
 (de Afficher (obj) (pack "print(" obj ")^J"))

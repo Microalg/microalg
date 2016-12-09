@@ -221,6 +221,7 @@ function attachKeyWatcher(elt, f, config_64) {
                   "(Pu":  "(Puissance |)",
                   "(Q":   "(Quotient |)",
                   "(R":   "(Repeter | Fois\n    ()\n)\n",
+                  "(Ra":  "(Racine |)",
                   "(Rd":  "(Retirer_de |)",
                   "(Re":  "(Retourner |)\n",
                   "(Rp":  "(Repere |)\n",
@@ -464,6 +465,7 @@ function inject_microalg_editor_in(elt_id, config) {
                 '  <block type="demander"></block>' +
                 '  <block type="demander_un_nombre"></block>' +
                 '  <block type="operations"></block>' +
+                '  <block type="racine"></block>' +
                 '  <block type="comparaisons"></block>' +
                 '  <block type="entier_pseudo_aleatoire"></block>' +
                 '  <block type="longueur"></block>' +

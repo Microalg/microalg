@@ -29,7 +29,7 @@ Voir <http://microalg.info>.")
 "Ou"
 "Produit" "Puissance"
 "Queue" "Quotient"
-"RAZ" "Rectangle" "Remplissage" "Repere" "Repeter" "Reste"
+"RAZ" "Racine" "Rectangle" "Remplissage" "Repere" "Repeter" "Reste"
 "Retirer_de" "Retourner" "Rien"
 "sequence_tirages@"
 "Segment" "Si" "Sinon" "Somme"
@@ -279,6 +279,46 @@ Sinon :
 (put 'Puissance 'doc (get '^ 'doc))
 (put 'Puissance 'text (get '^ 'text))
 (setq Puissance '^)
+
+(put 'Racine 'doc
+"Commande qui retourne la racine carrée de son paramètre.
+
+    : (Racine 9)
+    -> 3
+
+**Attention** : le comportement de cette commande diffère suivant les
+implémentations.
+
+* Avec `malg` et `malg-j`, le résultat sera toujours un nombre entier.
+* Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
+  navigateur, le résultat peut être un nombre à virgule flottante.
+
+Dans le premier cas :
+
+    : (Racine 2)
+    -> 1
+
+Sinon :
+
+    : (Racine 2)
+    -> 1.4142135623730951
+")
+(put '^ 'text "Commande Racine.")
+(de Racine !arg_lst
+  (if (<> 1 (length !arg_lst))
+      (!erreur 109 (pack "`Racine` attend exactement un paramètre. "
+                  "Vous en donnez " (length arg_lst) ".")))
+  (let (!evaled_arg (eval (car !arg_lst))
+        !rladeun "`Racine` : L’argument doit être un nombre")
+       (ifn (num? !evaled_arg)
+         (!erreur 110 !rladeun ". Vous avez donné `"
+                      (!add_quotes !evaled_arg) "`."))
+       (ifn (gt0 !evaled_arg)
+         (!erreur 111 !rladeun " positif ou nul. Vous avez donné `"
+                      !evaled_arg "`."))
+       (sqrt !evaled_arg)
+  )
+)
 
 # Commentaires
 (put '!!! 'doc
