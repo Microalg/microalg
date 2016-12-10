@@ -715,7 +715,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                  # Affectation à l’élément `idx` du symbole dans `!var`.
                  # Tout d’abord quelques vérifications:
                  (if (<> 'En_position kw)
-                     (!erreur 20 "`Affecter_a` n’est pas bien fermé, "
+                     (!erreur 20 "`Affecter_a` n’est pas bien fermée, "
                                  "ou il manque `En_position`.")
                  )
                  (if cinquieme
