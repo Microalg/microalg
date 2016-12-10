@@ -246,7 +246,7 @@ Voir <http://microalg.info>.")
     -> 4
 
 **Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
+implémentations.
 
 * Avec `malg` et `malg-j`, la division donnera toujours un entier.
 * Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
@@ -283,7 +283,7 @@ Sinon :
     -> 8
 
 **Attention** : le comportement de cette commande diffère suivant les
-implémentations.  
+implémentations.
 
 * Avec `malg` et `malg-j`, la puissance doit être entière.
 * Avec `malg-njs`, `malg-rjs` (configuration par défaut de SciTE) et dans le
