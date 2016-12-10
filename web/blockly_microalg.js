@@ -32,17 +32,19 @@ Blockly.Msg.RENAME_VARIABLE_TITLE = "Renommer toutes les variables '%1' en :";
 Blockly.MicroAlg = new Blockly.Generator('MicroAlg');
 Blockly.MicroAlg.INDENT = '  ';
 Blockly.MicroAlg.addReservedWords(
+    'credit_iterations, sequence_tirages@, nombre_demandé, texte_demandé, ' +
     'RAZ, AV, BC, LC, TD, TG, Cercle, Contour, Ellipse, Epaisseur, ' +
     'Rectangle, Remplissage, Repere, Segment, Triangle, ' +
+    '1000Cosinus, 1000Sinus, ' +
     'Affecter_a, Afficher, Aide, Ajouter_a, Alors, Concatener, ' +
     'Declarer', 'Definir, Demander, Demander_un_nombre, ' +
-    'Demander_un_nombre_pour' +
+    'Demander_un_nombre_pour, Diff, ' +
     'En_position, Entier@, Et, Exemples_de, ' +
-    'Faire, Faux, Initialiser@, ' +
+    'Faire, Faux, Fois, Geler, Initialiser@, ' +
     'Liste, Longueur, Millisecondes, ' +
-    'Nieme, Nieme@, Nombre, Non, Ou, ' +
-    'Queue, Racine, Retirer_de, Retourner, Rien, Si, Sinon, ' +
-    'Tant_que, Tester, Tete, Texte, Type, ' +
+    'Nieme, Nieme@, Nombre, Non, Ou, Produit, Puissance, ' +
+    'Queue, Quotient, Racine, Repeter, Reste, Retirer_de, Retourner, Rien, ' +
+    'Si, Sinon, Somme, Tant_que, Tester, Tete, Texte, Type, ' +
     'Vide?, Vrai');
 Blockly.MicroAlg.newQuote = function(open) {
     if (open == Blockly.RTL) {
