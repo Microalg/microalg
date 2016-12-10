@@ -3,15 +3,19 @@
 * microalg.l
     * doc de la commande dans `'doc`
     * implémentation de la commande en elle même
+    * nouvelles erreurs (+ explications dans doc.html)
     * entrée dans la liste `symboles`
     * alias si accents
+* microalg_tests.malg
 * abréviation
     * `editeurs/scite/malg_abbrev.properties`
     * `web/ide_injections.js`
-* microalg_export_blockly.l
-    * attention à `insertion_next` si la commande contient des blocs de code
+    * `doc.html`
 * Blockly
-    * config et génération dans `web/blockly_microalg.js`
+    * `web/blockly_microalg.js`
+        * reserved words
+        * config
+        * génération
     * toolbox dans `web/ide_injections.js`
 * exports
     * microalg_export_blockly.l (/!\ Next)
@@ -25,3 +29,4 @@
 * doc.html
     * penser à la section accents
     * liste syms par thèmes
+    * doc spécifique à Blockly
