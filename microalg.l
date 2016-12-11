@@ -334,8 +334,12 @@ Sinon :
   (if (<> 1 (length !arg_lst))
       (!erreur 109 (pack "`Racine` attend exactement un paramètre. "
                   "Vous en donnez " (length arg_lst) ".")))
-  (let (!evaled_arg (eval (car !arg_lst))
+  (let (!arg (car !arg_lst)
+        !evaled_arg (eval !arg)
         !rladeun "`Racine` : L’argument doit être un nombre")
+       (ifn (!inited !arg !evaled_arg)
+            (!erreur 112 "`Racine` : la variable `" !arg
+                         "` n’a pas été déclarée."))
        (ifn (num? !evaled_arg)
          (!erreur 110 !rladeun ". Vous avez donné `"
                       (!add_quotes !evaled_arg) "`."))
