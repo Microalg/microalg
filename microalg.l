@@ -691,6 +691,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                           "n’a pas été déclarée.")
          )
          (ifn kw
+              # Affecter_a sans En_position
               (prog
                  (if (and (== "liste" (!type_sym !var))
                           (not (!liste? val)))
@@ -711,6 +712,7 @@ alors l’élément à la `idx` ième position dans `var` est affecté de la val
                                  "est un `\"" (Type val) "\"`.")
                  )
               )
+              # Affecter_a avec En_position
               (prog
                  # Affectation à l’élément `idx` du symbole dans `!var`.
                  # Tout d’abord quelques vérifications:
