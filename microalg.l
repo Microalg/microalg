@@ -329,7 +329,7 @@ Sinon :
     : (Racine 2)
     -> 1.4142135623730951
 ")
-(put '^ 'text "Commande Racine.")
+(put 'Racine 'text "Commande Racine.")
 (de Racine !arg_lst
   (if (<> 1 (length !arg_lst))
       (!erreur 109 (pack "`Racine` attend exactement un paramètre. "
