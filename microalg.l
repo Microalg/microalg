@@ -90,6 +90,32 @@ Voir <http://microalg.info>.")
   )
 )
 
+# For Ersatz, fix sqrt in lib.l
+# (>= N M) is now (ge0 (- N M)) and the same for > with gt0
+(if (= *CPU "JVM")
+   (prog
+      (setq sqrt NIL)
+      (de sqrt (N F)
+         (cond
+            ((lt0 N) (quit "Bad argument" N))
+            (N
+               (and (num? F) (setq N (* N @)))
+               (let (M 1  R 0)
+                  (while (ge0 (- N M))
+                     (setq M (>> -2 M)) )
+                  (loop
+                     (if (gt0 (- (inc 'R M) N))
+                        (dec 'R M)
+                        (dec 'N R)
+                        (inc 'R M) )
+                     (setq R (>> 1 R)  M (>> 2 M))
+                     (T (=0 M)) )
+                  (and F (> N R) (inc 'R))
+                  R ) ) ) )
+   )
+)
+
+
 # 26oct14jk
 # extracts from PicoLisp lib.l, (c) Software Lab. Alexander Burger
 
