@@ -351,10 +351,8 @@
         content
         "</value>"
         "</block>"))
-(de Vrai ()
-  "<block type=\"vrai\"></block>")
-(de Faux ()
-  "<block type=\"faux\"></block>")
+(setq Vrai "<block type=\"vrai\"></block>")
+(setq Faux "<block type=\"faux\"></block>")
 (de RAZ (next)
   (pack "<block type=\"raz\">"
         next
