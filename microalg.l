@@ -2229,6 +2229,17 @@ Voir la commande `Exemples_de`.")
          (!paires !list !acc))
     )
 )
+(de !tester_paire (!paire)
+  (let (!args (cdr (car !paire))
+        !got (apply (eval !commande) !args)
+        !expected (cadr !paire))
+       (if (not (!egaux !got !expected))
+           (Afficher (pack "Erreur: (" !commande " "
+                           (glue " " (mapcar '!text !args)) ")"
+                           " donne " !got
+                           " au lieu de " !expected ".")))
+  )
+)
 (de Tester arg_lst
   (let (!commande (car arg_lst)
         !deuze (cadr arg_lst)
@@ -2241,16 +2252,7 @@ Voir la commande `Exemples_de`.")
             (Afficher (pack "La commande " !commande " n’a pas d’exemples.")))
          ((not (!liste? !exemples))
             (Afficher (pack "La commande " !commande " n’a pas d’exemples valables.")))
-         (T (mapcar '((!paire) (let (!args (cdr (car !paire))
-                                     !got (apply (eval !commande) !args)
-                                     !expected (cadr !paire))
-                                    (if (<> !got !expected)
-                                        (Afficher (pack "Erreur: (" !commande " "
-                                                        (glue " " (mapcar '!text !args)) ")"
-                                                        " donne " !got
-                                                        " au lieu de " !expected ".")))
-                               )
-                     ) (!paires (elts> !exemples))))
+         (T (mapcar !tester_paire (!paires (elts> !exemples))))
        )
   )
   Rien
