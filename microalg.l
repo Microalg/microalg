@@ -342,7 +342,7 @@ Sinon :
                          "` n’a pas été déclarée."))
        (ifn (num? !evaled_arg)
          (!erreur 110 !rladeun ". Vous avez donné `"
-                      (!add_quotes !evaled_arg) "`."))
+                      (!text_n_quote !evaled_arg) "`."))
        (ifn (gt0 !evaled_arg)
          (!erreur 111 !rladeun " positif ou nul. Vous avez donné `"
                       !evaled_arg "`."))
