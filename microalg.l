@@ -2236,8 +2236,8 @@ Voir la commande `Exemples_de`.")
        (if (not (!egaux !got !expected))
            (Afficher (pack "Erreur: (" !commande " "
                            (glue " " (mapcar '!text !args)) ")"
-                           " donne " !got
-                           " au lieu de " !expected ".")))
+                           " donne " (!text_n_quote !got)
+                           " au lieu de " (!text_n_quote !expected) ".")))
   )
 )
 (de Tester arg_lst
