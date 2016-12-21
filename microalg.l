@@ -2244,6 +2244,7 @@ Voir la commande `Exemples_de`.")
   (let (!commande (car arg_lst)
         !deuze (cadr arg_lst)
         !exemples (get !commande 'exemples))
+       (ifn !commande (quit "Vous n’avez rien donné à `Tester`."))
        (if !deuze (quit "`Tester` n’a qu’un paramètre."))
        (cond
          ((not (eval !commande))
