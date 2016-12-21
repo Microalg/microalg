@@ -188,6 +188,8 @@
             '(= Vrai (=/ "Vrai" "Faux"))
             '(= Faux (= Vrai "Vrai"))
             '(= Faux (= Faux "Faux"))
+            '(= Vrai (=/ Vrai "Vrai"))
+            '(= Vrai (=/ Faux "Faux"))
             '(= Faux (< 0 0))
             '(= Vrai (< 0 1))
             '(= Faux (< 1 0))

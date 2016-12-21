@@ -2311,6 +2311,19 @@ Voir la commande `Exemples_de`.")
                       (!text_n_quote !deuz) "`.")) )
   )
 )
+(de !egaux (!x !y)
+   (ifn (<> !x !y)
+        (if (or (== !x Vrai) (== !x Faux) (== !x Rien)
+                (== !y Vrai) (== !y Faux) (== !y Rien))
+            (if (== !x !y) T NIL)
+            # test == pour les vals ci-dessus
+            # pour les autres, c’est not <> :
+            T
+        )
+        # ici, ils sont <>
+        NIL
+   )
+)
 (put '= 'doc
 "Prédicat retournant `Vrai` si les valeurs de ses deux arguments sont égales,
 et `Faux` sinon.
@@ -2326,15 +2339,7 @@ et `Faux` sinon.
         !y_sym    (cadr !arg_lst)
         !y_evaled (eval !y_sym))
        (!check_inited_args "=" !x_sym !x_evaled !y_sym !y_evaled)
-       (ifn (<> !x_evaled !y_evaled)
-            (if (or (== !x_evaled Vrai) (== !x_evaled Faux) (== !x_evaled Rien)
-                    (== !y_evaled Vrai) (== !y_evaled Faux) (== !y_evaled Rien))
-                (if (== !x_evaled !y_evaled) Vrai Faux)
-                # test == pour les vals ci-dessus
-                # pour les autres, c’est not <> :
-                Vrai
-            )
-            Faux)  # ici, ils sont <>
+       (!boolP2M (!egaux !x_evaled !y_evaled))
   )
 )
 (put '=/ 'doc
@@ -2352,7 +2357,7 @@ différentes, et `Faux` sinon.
         !y_sym    (cadr !arg_lst)
         !y_evaled (eval !y_sym))
        (!check_inited_args "=/" !x_sym !x_evaled !y_sym !y_evaled)
-       (if (<> !x_evaled !y_evaled) Vrai Faux)
+       (!boolP2M (not (!egaux !x_evaled !y_evaled)))
   )
 )
 (put '< 'doc
