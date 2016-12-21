@@ -45,6 +45,7 @@
 (de Entier@ (A B) (pack "random.randint(" A ", " B ")"))
 (setq Vrai "True")
 (setq Faux "False")
+(setq Rien "None")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
                      splitted  (split (cddr arg_lst) 'Sinon)
@@ -133,7 +134,6 @@
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))
 (de ? () (!no_export "?"))
-# Rien
 # Alors Sinon
 
 (de AV () (!no_export "AV"))

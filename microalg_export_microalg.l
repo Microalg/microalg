@@ -200,4 +200,4 @@
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))
 (de ? () (!no_export "?"))
-# Rien
+(setq Rien "Rien")

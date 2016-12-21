@@ -353,6 +353,7 @@
         "</block>"))
 (setq Vrai "<block type=\"vrai\"></block>")
 (setq Faux "<block type=\"faux\"></block>")
+(setq Rien "<block type=\"rien\"></block>")
 (de RAZ (next)
   (pack "<block type=\"raz\">"
         next

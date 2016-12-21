@@ -56,6 +56,7 @@
 (de Entier@ (A B) (pack "randInt(" A "," B ")"))
 (setq Vrai "1")
 (setq Faux "0")
+(setq Vrai "Rien")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
                      splitted  (split (cddr arg_lst) 'Sinon)
@@ -123,7 +124,6 @@
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))
 (de ? () (!no_export "?"))
-# Rien
 (de Millisecondes () (!no_export "Millisecondes"))
 
 (de AV () (!no_export "AV"))

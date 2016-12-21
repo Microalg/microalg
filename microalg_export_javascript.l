@@ -40,6 +40,7 @@
 (de Entier@ (A B) (pack "int(" A " + random(" B "-" A "+1))"))
 (setq Vrai "true")
 (setq Faux "false")
+(setq Rien "null")
 (de Si arg_lst (let (condition (car arg_lst)
                      kw_alors  (cadr arg_lst)
                      splitted  (split (cddr arg_lst) 'Sinon)
@@ -122,7 +123,6 @@
 (de Exemples_de () (!no_export "Exemples_de"))
 (de Tester () (!no_export "Tester"))
 (de ? () (!no_export "?"))
-# Rien
 # Alors Sinon
 (de Repeter () (!no_export "Repeter"))
 (de Répéter () (!no_export "Répéter"))
