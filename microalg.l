@@ -2135,7 +2135,7 @@ Exemple 2 :
          (quit (pack "`Definir` : le corps de `" sig_as_txt "` est vide.")))
        # Empêcher la collision entre paramètres et variables déjà déclarées.
        (let (msg1 "`Definir` : le paramètre `"
-             msg2 "` a déjà été déclaré comme variable.")
+             msg2 "` est un symbole prédéfini ou a déjà été déclaré comme variable.")
             (mapcar '((!sym) (if (!inited_sans_sans_declaration !sym (eval !sym))
                                  (quit (pack msg1 !sym msg2))))
                     params))
