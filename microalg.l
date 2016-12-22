@@ -2248,11 +2248,14 @@ Voir la commande `Exemples_de`.")
        (if !deuze (quit "`Tester` n’a qu’un paramètre."))
        (cond
          ((not (eval !commande))
-            (Afficher (pack "Il faut définir la commande " !commande " avant de la tester.")))
+            (Afficher (pack "Il faut définir la commande `" !commande "` "
+                            "avant de la tester.")))
          ((not !exemples)
-            (Afficher (pack "La commande " !commande " n’a pas d’exemples.")))
+            (Afficher (pack "La commande `" !commande "` "
+                            "n’a pas d’exemples.")))
          ((not (!liste? !exemples))
-            (Afficher (pack "La commande " !commande " n’a pas d’exemples valables.")))
+            (Afficher (pack "La commande `" !commande "` "
+                            "n’a pas d’exemples valables.")))
          (T (mapcar !tester_paire (!paires (elts> !exemples))))
        )
   )
