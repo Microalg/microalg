@@ -2103,17 +2103,18 @@ Exemple 2 :
 ")
 (put 'Definir 'text "Commande `Definir`.")
 (de !definir @
-  (let (arg_lst (rest)
-        signature (car arg_lst)
-        nom       (car signature)
+  (let
+    (arg_lst (rest)
+     signature (car arg_lst))
+    (ifn (lst? signature)
+         (quit (pack "Le premier argument de `Definir` doit être de la forme "
+                     "`(commande arg1 arg2 ...)`.")))
+    (ifn signature
+         (quit "`Definir` a au moins deux paramètres."))
+    (let (nom       (car signature)
         params    (cdr signature)
         sig_as_txt (pack "(" (apply 'glue (cons " " (list signature))) ")")
         corps     (cdr arg_lst))
-       (ifn (lst? signature)
-         (quit (pack "Le premier argument de `Definir` doit être de la forme "
-                     "`(commande arg1 arg2 ...)`.")))
-       (ifn signature
-         (quit "`Definir` a au moins deux paramètres."))
        # Le nom doit être un symbole et non un texte.
        (let (msg1 "`Definir` : le nom de commande `"
              msg2 "` ne convient pas.")
@@ -2159,6 +2160,7 @@ Exemple 2 :
                             auteur
                             "*."))
        (set nom (list params (list 'run (cons 'quote aug_corps))))
+    )
     )
   )
   Rien
