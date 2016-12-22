@@ -218,10 +218,18 @@ Voir <http://microalg.info>.")
 (put 'Somme 'text (get '+ 'text))
 (setq Somme '+)
 (put '- 'doc
-"Commande qui soustrait son second paramètre à son premier paramètre et retourne le résultat.
+"Commande qui retourne la différence de deux nombres ou l’opposé d’un nombre.
+
+Si deux arguments sont fournis, `-` soustrait le second au premier et
+retourne le résultat.
 
     : (- 7 3)
     -> 4
+
+Si un seul argument est fourni, `-` retourne l’opposé de cet argument.
+
+    : (- 7)
+    -> -7
 ")
 (put '- 'text "Commande différence.")
 (put 'Diff 'doc (get '- 'doc))
