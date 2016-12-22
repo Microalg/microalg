@@ -2212,12 +2212,11 @@ Pour lancer les tests, utiliser la commande `Tester`.
         exemples (eval (cadr arg_lst))
         troize (caddr arg_lst))
        (if troize (quit "`Exemples_de` n’a pas de troisième paramètre."))
-       (ifn exemples (get commande 'exemples)
-                     (prog
-                       (ifn (!liste? exemples)
-                            (quit "Les exemples fournis ne forment pas une liste."))
-                       (put commande 'exemples exemples)
-                     )
+       (ifn exemples
+            (get commande 'exemples)
+            (ifn (!liste? exemples)
+                 (quit "Les exemples fournis ne forment pas une liste."))
+            (put commande 'exemples exemples)
        )
   )
   Rien
