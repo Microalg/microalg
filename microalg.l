@@ -2111,7 +2111,8 @@ Exemple 2 :
                      "`(commande arg1 arg2 ...)`.")))
     (ifn signature
          (quit "`Definir` a au moins deux paramètres."))
-    (let (nom       (car signature)
+    (let
+       (nom       (car signature)
         params    (cdr signature)
         sig_as_txt (pack "(" (apply 'glue (cons " " (list signature))) ")")
         corps     (cdr arg_lst))
