@@ -2127,11 +2127,16 @@ Exemple 2 :
             (mapcar '((!sym) (if (or (not (sym? !sym)) (str? !sym))
                                  (quit (pack msg1 !sym msg2))))
                     params))
-       # Le nom de la commande ne doit pas être un symbole prédef de MicroAlg
+       # Le nom de la commande ne doit pas être un symbole...
        (let (msg1 "`Definir` : le nom de commande `"
-             msg2 "` est un symbole prédéfini de MicroAlg.")
+             msg2 "` est le nom d’un symbole prédéfini de MicroAlg."
+             msg3 "` est déjà utilisé dans votre programme.")
+            # ...prédéfini de MicroAlg
             (if (index nom symboles)
-                (quit (pack msg1 nom msg2))))
+                (quit (pack msg1 nom msg2)))
+            # ...utilisé dans le programme
+            (if (eval nom)
+                (quit (pack msg1 nom msg3))))
        (ifn corps
          (quit (pack "`Definir` : le corps de `" sig_as_txt "` est vide.")))
        # Empêcher la collision entre paramètres et variables déjà déclarées.
