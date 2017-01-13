@@ -877,6 +877,7 @@ explique aussi la variété des messages d’erreur.
 [110](#erreur_110)
 [111](#erreur_111)
 [112](#erreur_112)
+[113](#erreur_113)
 
 #### erreur_0
 
@@ -1750,6 +1751,16 @@ Vous utilisez une variable inconnue de MicroAlg.
 * Déclarez-la si ce n’est pas fait.
 * Sinon vérifiez l’orthographe de la variable, et respectez les majuscules et
   minuscules.
+
+#### erreur_113
+
+> La fenêtre graphique n’existe pas.
+
+Dans la configuration de l’échantillon, il faut fixer `processing` à `true`.
+Par exemple, sur la galerie, il faut ajouter `{"processing": true}`
+au moment de déclarer l’échantillon.
+
+Voir [la section correspondante de la documentation](#sortiegraphique).
 
 ## Outils d’édition
 

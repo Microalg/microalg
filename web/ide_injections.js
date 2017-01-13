@@ -163,6 +163,10 @@ function preparation_exception(e) {
             msg = "Récursion infinie.";
             link = link_prefix + 'rcursioninfinie' +
                    '">Voir des infos sur cette erreur.</a>';
+        } else if (matches = msg_escaped.match(/^processing_sketches(.*)$/)) {
+            msg = "La fenêtre graphique n’existe pas.";
+            link = link_prefix + 'erreur_113' +
+                   '">Voir des infos sur cette erreur.</a>';
         } else {
             msg = msg_escaped;
             link = link_prefix + 'erreursfrquentes">Voir les erreurs fréquentes.</a>';
