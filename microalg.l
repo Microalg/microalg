@@ -1917,7 +1917,7 @@ long du programme, même s’ils sont imbriqués). Voir la variable
        (if (<> 'Faire !mot-clef) (quit "Commande `Tant_que` sans mot-clé `Faire`."))
        (while (!boolCheckM2P (eval !cond) "Tant_que" 101)
               (if (=0 (dec 'credit_iterations))
-                  (quit credit_iterations_message))
+                  (!erreur 114 credit_iterations_message))
               (run !corps))
        Rien
   )
@@ -1965,7 +1965,7 @@ Exemple :
          (if (!boolCheckM2P !evaled_cond) "Faire" 102)
            (while (!boolCheckM2P !evaled_cond "Faire" 102)
                   (if (=0 (dec 'credit_iterations))
-                      (quit credit_iterations_message))
+                      (!erreur 114 credit_iterations_message))
                   (run !corps)
                   (setq !evaled_cond (eval !cond))
          )
@@ -2018,7 +2018,7 @@ long du programme, même s’ils sont imbriqués). Voir la variable
              !nb_repetitions_evaled (eval !nb_repetitions)
              !corps (conc (cddr !arg_lst)
                           '((if (=0 (dec 'credit_iterations))
-                                (quit credit_iterations_message))))
+                                (!erreur 114 credit_iterations_message))))
             )
             (ifn (!inited !nb_repetitions !nb_repetitions_evaled)
                  (quit (pack !cmd_pref "`" !nb_repetitions "` "

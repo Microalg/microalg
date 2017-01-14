@@ -878,6 +878,7 @@ explique aussi la variété des messages d’erreur.
 [111](#erreur_111)
 [112](#erreur_112)
 [113](#erreur_113)
+[114](#erreur_114)
 
 #### erreur_0
 
@@ -1761,6 +1762,19 @@ Par exemple, sur la galerie, il faut ajouter `{"processing": true}`
 au moment de déclarer l’échantillon.
 
 Voir [la section correspondante de la documentation](#sortiegraphique).
+
+#### erreur_114
+
+> Crédit d’itérations épuisé (... par défaut). Vous pouvez recharger votre
+> crédit en affectant une valeur à la variable `credit_iterations`.
+
+Une des boucles de votre programme effectue trop de tours. Si votre programme
+a besoin d’effectuer plus de tours que la limite par défaut, il faut changer
+cette limite en ajoutant en tête de fichier :
+
+    (Affecter_a credit_iterations 10000)
+
+Voir [la documentation de `credit_iterations`](#sym-credit_iterations).
 
 ## Outils d’édition
 
