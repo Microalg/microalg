@@ -9,6 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq !sans_declaration T)
+(seed (time))
 
 (setq symboles '(
 "..." "+" "-" "*" "/" "%" "\^"
@@ -1429,24 +1430,27 @@ indiqué par cette liste et en boucle, par les commandes `Entier@` et `Nieme@`.
   # Dans !rand ci-dessous, on ne garde que le quotient par !shift@.
   (setq !etat@ (% (+ (* !etat@ 1664525) 1013904223) 4294967296)) )
 (de !rand (!min !max)
-  (if (!boolM2P (> (!longueur sequence_tirages@) 0))
-      (let !val (car (elts> sequence_tirages@))
-        (if (or (gt0 (- !min !val)) (gt0 (- !val !max)))
-            (!erreur 75 "Mauvais tirage forcé : " !val " "
-                        "n’est pas compris entre " !min " et " !max ".")
+  (ifn !etat@
+    (rand !min !max)
+    (if (!boolM2P (> (!longueur sequence_tirages@) 0))
+        (let !val (car (elts> sequence_tirages@))
+          (if (or (gt0 (- !min !val)) (gt0 (- !val !max)))
+              (!erreur 75 "Mauvais tirage forcé : " !val " "
+                          "n’est pas compris entre " !min " et " !max ".")
+          )
+          (setq sequence_tirages@ (apply Liste (cdr (elts> sequence_tirages@))))
+          (push> sequence_tirages@ !val)
+          !val
         )
-        (setq sequence_tirages@ (apply Liste (cdr (elts> sequence_tirages@))))
-        (push> sequence_tirages@ !val)
-        !val
-      )
-      (let (!mod (- (+ !max 1) !min)
-            !etat (!prochain_etat@)
-            !shifted_etat (/ (- !etat (% !etat !shift@)) !shift@))
-            (if (gt0 (- !mod !space_length@))
-                (!erreur 76 "L’espace des valeurs possibles dépasse "
-                            !space_length@ "."))
-            (+ !min (% !shifted_etat !mod))
-      )
+        (let (!mod (- (+ !max 1) !min)
+              !etat (!prochain_etat@)
+              !shifted_etat (/ (- !etat (% !etat !shift@)) !shift@))
+              (if (gt0 (- !mod !space_length@))
+                  (!erreur 76 "L’espace des valeurs possibles dépasse "
+                              !space_length@ "."))
+              (+ !min (% !shifted_etat !mod))
+        )
+    )
   )
 )
 # Définition des commandes.
