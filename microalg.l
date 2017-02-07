@@ -315,6 +315,18 @@ Sinon :
 (put 'Puissance 'text (get '^ 'text))
 (setq Puissance '^)
 
+(put 'Carre 'doc
+"Commande qui retourne le carré de son paramètre.
+
+    : (Carre 3)
+    -> 9
+")
+(put 'Carre 'text "Commande Carre.")
+(de Carre (!nbre)
+  (^ !nbre 2)
+)
+(setq Carré Carre)
+
 (put 'Racine 'doc
 "Commande qui retourne la racine carrée de son paramètre.
 

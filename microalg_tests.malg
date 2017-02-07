@@ -122,6 +122,8 @@
             '(= 3 (Quotient 6 2))
             '(= 2 (Reste 23 7))
             '(= 8 (Puissance 2 3))
+            '(= 9 (Carre 3))
+            '(= 9 (Carre -3))
             '(= 3 (Racine 9))
             # Opérations logiques
             '(= Vrai (Non Faux))
