@@ -23,6 +23,13 @@
 (setq Carré Carre)
 (de Racine (A) (pack "√(" A ")"))
 
+(setq Somme +)
+(setq Diff -)
+(setq Produit *)
+(setq Quotient /)
+(setq Reste %)
+(setq Puissance ^)
+
 (de !!! (comz) (pack "' " (cdr (reverse (cdr (reverse (chop comz))))) "^J"))
 (de Afficher (obj) (pack obj "◢^J"))
 (de !store (!arg_lst)
