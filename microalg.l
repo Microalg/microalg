@@ -17,7 +17,7 @@ Voir <http://microalg.info>.")
 "1000Cosinus" "1000Sinus"
 "AV" "BC" "LC" "TD" "TG"
 "Affecter_a" "Afficher" "Aide" "Ajouter_a" "Alors"
-"Cercle" "Concatener" "Contour" "credit_iterations"
+"Carre" "Cercle" "Concatener" "Contour" "credit_iterations"
 "Declarer" "Definir" "Demander"
 "Demander_un_nombre" "Demander_un_nombre_pour" "Diff"
 "Ellipse" "En_position" "Entier@" "Epaisseur" "Et" "Exemples_de"
