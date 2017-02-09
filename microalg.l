@@ -9,7 +9,7 @@ Voir <http://microalg.info>.")
 (put 'apropos 'doc "Symbole contenant des informations sur MicroAlg.")
 
 (setq !sans_declaration T)
-(seed (time))
+(seed (+ (time) (usec)))
 
 (setq symboles '(
 "..." "+" "-" "*" "/" "%" "\^"
