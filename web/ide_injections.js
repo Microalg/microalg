@@ -596,7 +596,8 @@ function export_action(elt_id, select) {
             tree.draw();
         } else if (lang == 'casio' || lang == 'ti') {
             exported_src = 'Programme indenté pour une meilleure lisibilité.\n' +
-                           'Sur calculatrice, l’indentation n’est pas admise.\n\n' +
+                           'Sur calculatrice, l’indentation n’est pas admise\n' +
+                           'et le nom des variables n’a qu’une lettre.\n\n' +
                            exported_src;
             export_target.html($('<div/>', {html: exported_src,
                                             class: 'malg-export'}));
