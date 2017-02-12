@@ -1117,6 +1117,31 @@ Exemples :
     (!longueur !evaled_obj)
   )
 )
+(put 'Entiers 'doc
+"Génère une liste d’entiers compris entre les deux paramètres.
+")
+(put 'Entiers 'text "Commande `Entiers`.")
+(de Entiers !arg_lst
+  (let (!min (eval (car !arg_lst))
+        !max (eval (cadr !arg_lst)))
+       # Quelques vérifications
+       (cond
+        ((<> 2 (length !arg_lst))
+         (!erreur 115 "`Entiers` attend exactement deux arguments. "
+                     "Vous en donnez " (length !arg_lst) "."))
+        ((<> !min (format (round !min 0) 0 "." ","))
+         (!erreur 116 "Le minimum donné à `Entiers` n’est pas un nombre entier "
+                     "(vous avez donné " (!text_n_quote !min) ")."))
+        ((<> !max (format (round !max 0) 0 "." ","))
+         (!erreur 117 "Le maximum donné à `Entiers` n’est pas un nombre entier "
+                     "(vous avez donné " (!text_n_quote !max) ")."))
+        ((!boolM2P (> !min !max))
+         (!erreur 118 "Le minimum et le maximum de `Entiers`, "
+                     "ne sont pas dans l’ordre (" !min " > " !max ")."))
+       )
+       (apply Liste (range !min !max))
+  )
+)
 (put 'Nieme 'doc
 "Permet d’accéder en lecture à un des éléments d’un texte ou d’une liste
 (se lit « énième »).
