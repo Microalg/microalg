@@ -1138,10 +1138,10 @@ Exemples :
         ((<> 2 (length !arg_lst))
          (!erreur 115 "`Entiers` attend exactement deux arguments. "
                      "Vous en donnez " (length !arg_lst) "."))
-        ((<> !min (format (round !min 0) 0 "." ","))
+        ((or (not (num? !min)) (<> !min (format (round !min 0) 0 "." ",")))
          (!erreur 116 "Le minimum donné à `Entiers` n’est pas un nombre entier "
                      "(vous avez donné `" (!text_n_quote !min) "`)."))
-        ((<> !max (format (round !max 0) 0 "." ","))
+        ((or (not (num? !max)) (<> !max (format (round !max 0) 0 "." ",")))
          (!erreur 117 "Le maximum donné à `Entiers` n’est pas un nombre entier "
                      "(vous avez donné `" (!text_n_quote !max) "`)."))
         ((!boolM2P (> !min !max))
