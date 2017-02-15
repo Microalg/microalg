@@ -1140,10 +1140,10 @@ Exemples :
                      "Vous en donnez " (length !arg_lst) "."))
         ((<> !min (format (round !min 0) 0 "." ","))
          (!erreur 116 "Le minimum donné à `Entiers` n’est pas un nombre entier "
-                     "(vous avez donné " (!text_n_quote !min) ")."))
+                     "(vous avez donné `" (!text_n_quote !min) "`)."))
         ((<> !max (format (round !max 0) 0 "." ","))
          (!erreur 117 "Le maximum donné à `Entiers` n’est pas un nombre entier "
-                     "(vous avez donné " (!text_n_quote !max) ")."))
+                     "(vous avez donné `" (!text_n_quote !max) "`)."))
         ((!boolM2P (> !min !max))
          (!erreur 118 "Le minimum et le maximum de `Entiers`, "
                      "ne sont pas dans l’ordre (" !min " > " !max ")."))
@@ -1576,10 +1576,10 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
                      "Vous en donnez " (length !arg_lst) "."))
         ((<> !min (format (round !min 0) 0 "." ","))
          (!erreur 83 "Le minimum donné à `Entier@` n’est pas un nombre entier "
-                     "(vous avez donné " (!text_n_quote !min) ")."))
+                     "(vous avez donné `" (!text_n_quote !min) "`)."))
         ((<> !max (format (round !max 0) 0 "." ","))
          (!erreur 84 "Le maximum donné à `Entier@` n’est pas un nombre entier "
-                     "(vous avez donné " (!text_n_quote !max) ")."))
+                     "(vous avez donné `" (!text_n_quote !max) "`)."))
         ((!boolM2P (> !min !max))
          (!erreur 85 "Le minimum et le maximum de `Entier@`, "
                      "ne sont pas dans l’ordre (" !min " > " !max ")."))
