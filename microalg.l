@@ -1119,6 +1119,15 @@ Exemples :
 )
 (put 'Entiers 'doc
 "Génère une liste d’entiers compris entre les deux paramètres.
+
+Utilisation :
+
+    (Entiers ... ...)
+
+Exemples :
+
+    : (Entiers 1 6)
+    -> (Liste 1 2 3 4 5 6)
 ")
 (put 'Entiers 'text "Commande `Entiers`.")
 (de Entiers !arg_lst
