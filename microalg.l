@@ -1585,10 +1585,10 @@ Le suffixe `@` indique le caractère pseudo-aléatoire de cette commande.
         ((<> 2 (length !arg_lst))
          (!erreur 82 "`Entier@` attend exactement deux arguments. "
                      "Vous en donnez " (length !arg_lst) "."))
-        ((<> !min (format (round !min 0) 0 "." ","))
+        ((or (not (num? !min)) (<> !min (format (round !min 0) 0 "." ",")))
          (!erreur 83 "Le minimum donné à `Entier@` n’est pas un nombre entier "
                      "(vous avez donné `" (!text_n_quote !min) "`)."))
-        ((<> !max (format (round !max 0) 0 "." ","))
+        ((or (not (num? !max)) (<> !max (format (round !max 0) 0 "." ",")))
          (!erreur 84 "Le maximum donné à `Entier@` n’est pas un nombre entier "
                      "(vous avez donné `" (!text_n_quote !max) "`)."))
         ((!boolM2P (> !min !max))
