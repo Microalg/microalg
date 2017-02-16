@@ -2778,7 +2778,7 @@ nom digne de ce nom.</p>
         // Creates relevant html links in the elt `eltId`.
         function insertSymbols(symArray, eltId) {
             var toc = $('<div/>').appendTo($('#' + eltId));
-            $.each(syms_as_strings, function(i, sym) {
+            $.each(symArray, function(i, sym) {
                 var span = $('<span/>').appendTo(toc);
                 var code = $('<code/>').appendTo(span);
                 $("<a/>").attr("href", "#sym-" + sym)
