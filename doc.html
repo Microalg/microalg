@@ -2766,15 +2766,18 @@ nom digne de ce nom.</p>
         }
         </script>
         <script>
-        // Grabs a PicoLisp symbol `listSym` bound to a list and creates
-        // relevant html links in the div `divId`.
-        function insertSymbols(listSym, divId) {
-            var syms_as_list = EMULISP_CORE.eval(listSym).toString();
+        // Grabs a PicoLisp symbol `listSym` bound to a list.
+        function symNameToArray(name) {
+            var syms_as_list = EMULISP_CORE.eval(name).toString();
             var syms_as_strings = syms_as_list
                 .slice(1, -1) // les parenthèses
                 .split(' ')
                 .map(cleanTransient);
-            var toc = $('<div/>').appendTo($('#' + divId));
+            return syms_as_strings;
+        }
+        // Creates relevant html links in the elt `eltId`.
+        function insertSymbols(symArray, eltId) {
+            var toc = $('<div/>').appendTo($('#' + eltId));
             $.each(syms_as_strings, function(i, sym) {
                 var span = $('<span/>').appendTo(toc);
                 var code = $('<code/>').appendTo(span);
@@ -2787,8 +2790,9 @@ nom digne de ce nom.</p>
         }
         </script>
         <script>
+            var syms_as_strings = symNameToArray('symboles');
             // TOC
-            insertSymbols('symboles', 'syms');
+            insertSymbols(syms_as_strings, 'syms');
             // Defs
             var defs = $('<div/>').appendTo($('#syms'));
             var dl = $('<dl/>').appendTo(defs);
