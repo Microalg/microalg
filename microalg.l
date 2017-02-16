@@ -1118,26 +1118,32 @@ Exemples :
   )
 )
 (put 'Entiers 'doc
-"Génère une liste d’entiers compris entre les deux paramètres.
+"Génère une liste d’entiers compris entre les deux premiers paramètres.  
+Il est  aussi possible de préciser le pas (troisième paramètre, facultatif).
 
 Utilisation :
 
     (Entiers ... ...)
+    (Entiers ... ... ...)
 
 Exemples :
 
     : (Entiers 1 6)
     -> (Liste 1 2 3 4 5 6)
+    : (Entiers 1 6 2)
+    -> (Liste 1 3 5)
 ")
 (put 'Entiers 'text "Commande `Entiers`.")
 (de Entiers !arg_lst
-  (let (!min (eval (car !arg_lst))
-        !max (eval (cadr !arg_lst)))
+  (let (!num_args (length !arg_lst)
+        !min (eval (car !arg_lst))
+        !max (eval (cadr !arg_lst))
+        !pas (eval (caddr !arg_lst)))
        # Quelques vérifications
        (cond
-        ((<> 2 (length !arg_lst))
-         (!erreur 115 "`Entiers` attend exactement deux arguments. "
-                     "Vous en donnez " (length !arg_lst) "."))
+        ((and (<> 2 !num_args) (<> 3 !num_args))
+         (!erreur 115 "`Entiers` attend deux ou trois arguments. "
+                     "Vous en donnez " !num_args "."))
         ((or (not (num? !min)) (<> !min (format (round !min 0) 0 "." ",")))
          (!erreur 116 "Le minimum donné à `Entiers` n’est pas un nombre entier "
                      "(vous avez donné `" (!text_n_quote !min) "`)."))
@@ -1147,8 +1153,13 @@ Exemples :
         ((!boolM2P (> !min !max))
          (!erreur 118 "Le minimum et le maximum de `Entiers`, "
                      "ne sont pas dans l’ordre (" !min " > " !max ")."))
+        ((and (<> !num_args 2)
+              (or (not (num? !pas))
+                  (<> !pas (format (round !pas 0) 0 "." ","))))
+         (!erreur 119 "Le pas donné à `Entiers` n’est pas un nombre entier "
+                     "(vous avez donné `" (!text_n_quote !pas) "`)."))
        )
-       (apply Liste (range !min !max))
+       (apply Liste (range !min !max !pas))
   )
 )
 (put 'Nieme 'doc
