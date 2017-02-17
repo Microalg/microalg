@@ -39,8 +39,8 @@ Aller directement à :
 * [Installation](#installation) - [Architecture](#architecture)
 * [Pourquoi MicroAlg](#pourquoimicroalg) - [Limitations](#limitations)
 * [Syntaxe](#syntaxe) - [Types](#types) - [Forme de Backus-Naur](#formedebackusnaur)
-* [Symboles](#symboles) - [Symboles par thèmes](#symbolesparthmes) -
-  [Liste des symboles prédéfinis](#listedessymbolesprdfinis)
+* [Symboles](#symboles) - [Liste par thèmes](#listeparthmes) -
+  [Liste alphabétique](#listealphabtique)
 * [Aide sur les messages d’erreur](#aidesurlesmessagesderreur)
 * [Outils d’édition](#outilsddition)
     * [Indentation](#indentation)
@@ -391,23 +391,49 @@ avec deux modifications :
 ## Symboles
 
 À part les **parenthèses**, les **nombres** (le séparateur est le `.`) et les
-**textes** (délimités par des `"`), le langage comporte des symboles. Ils sont
-organisés comme ceci :
+**textes** (délimités par des `"`), le langage comporte des symboles.
+
+### Liste par thèmes
+
+Les symboles sont organisés comme ceci :
 
 * commandes
     * prédéfinies
-        * flot (`Si`, `Tant_que`…)
-        * structures de données (`Liste`…)
-        * autres (`Afficher`, `Concatener`…)
+        * entrées et sorties  
+          <span id="cmd-entree-sortie"></span>
+        * structures de **contrôle du flot** du programme  
+          <span id="cmd-controle-flot"></span>
+        * gestion des **variables**  
+          <span id="cmd-gestion-var"></span>
+        * opérations **mathématiques**  
+          <span id="cmd-maths"></span>
+        * logique **booléenne** et **comparaisons**  
+          <span id="cmd-bool-comp"></span>
+        * nombres **pseudo-aléatoires**  
+          <span id="cmd-pseudo-alea"></span>
+        * création et test de **nouvelles commandes**  
+          <span id="cmd-cmd"></span>
+        * gestion des **listes** ou des **textes**  
+          <span id="cmd-gestion-listes-textes"></span>
+        * commandes **graphiques**  
+          <span id="cmd-graphiques"></span>
+        * commandes pour diriger la **tortue**  
+          <span id="cmd-tortue"></span>
+        * commandes **diverses** ou **avancées**  
+          <span id="cmd-autres"></span>
+        * **raccourcis** pour d’autres commandes  
+          <span id="cmd-racc"></span>
     * définies par l’utilisateur
 * mots-clefs
-    * intermédiaires (`Alors`, `Sinon`…)
-    * autres (`Vrai`, `Faux`, `Rien`…)
-* variables (le reste des symboles)
-    * commencent par une minuscule
+    * valeurs **constantes**  
+      <span id="kw-valeurs"></span>
+    * mots-clefs **intermédiaires**  
+      <span id="kw-intermediaires"></span>
+* variables
     * sont le plus souvent définies par l’utilisateur, sinon ce sont des
-      *variables spéciales* (`credit_iterations`, `nombre_demandé`,
-      `sequence_tirages@` et `texte_demandé`)
+      *variables spéciales*  
+      <span id="var-speciales"></span>
+    * définies par l’utilisateur
 
 ### Conventions
 
@@ -426,7 +452,7 @@ organisés comme ceci :
     * `Répéter`
     * `nombre_demandé` et `texte_demandé`
 
-### Liste des symboles prédéfinis
+### Liste alphabétique
 
 Cette section est générée directement à partir du fichier `microalg.l`, que
 vous pouvez trouver [ici](microalg.l).
@@ -437,92 +463,6 @@ Aller directement à :
 
 <div id="syms"></div>
 
-### Symboles par thèmes
-
-Les `...` représentent une valeur ou une commande. Les crochets `[` et `]`
-représentent du code facultatif. Pour une description plus formelle, voir
-les [formes de Backus-Naur](#formedebackusnaur).
-
-**Structures de contrôle**
-
-`(Si ... Alors ...)`, `(Si ... Alors ... Sinon ...)`, `(Tant_que ... Faire ...)`
-et `(Faire ... Tant_que ...)`, `(Repeter ... Fois ...)`. Pas de boucle POUR.
-
-**Gestion des variables**
-
-`(Declarer ... [...] De_type "...")`,
-`(Affecter_a ... ... [En_position ...])`.
-
-**Types et conversions**
-
-`(Type ...)`, `(Nombre ...)`, `(Texte ...)`.
-
-**Gestion des listes et du texte**
-
-`(Liste ... [...])`, `(Vide? ...)`, `(Concatener ... [...])`
-`(Longueur ...)`, `(Nieme ... ...)`, `(Nieme@ ...)`, `(Tete ...)`,
-`(Queue ...)`, `(Ajouter_a ... ...)`, `(Retirer_de ...)`.
-
-**Opérations mathématiques, comparaisons et nombres pseudo-aléatoires**
-
-`+`, `-`, `*`, `/`, `%`, `^`, `Racine`, `1000Cosinus`, `1000Sinus`,
-`=`, `=/`, `<`, `<=`, `>`, `>=`, `(Entier@ ... ...)`, `(Initialiser@ ...)`.
-
-Les six premières opérations peuvent aussi être écrites
-`Somme`, `Diff`, `Produit`, `Quotient`, `Reste` et `Puissance`.
-
-**Logique booléenne**
-
-`Vrai`, `Faux`, `(Et ... [...])`, `(Ou ... [...])`, `(Non ...)`.
-
-**Commandes graphiques**
-
-`(RAZ)`,
-`(Repere ... ... ... ... [... ...])`,
-`(Epaisseur ...)`,
-`(Contour (Liste ... ... ...))`,
-`(Remplissage (Liste ... ... ...))`,
-`(Cercle (Liste ... ...) ...)`,
-`(Ellipse (Liste ... ...) ... ...)`,
-`(Rectangle (Liste ... ...) (Liste ... ...))`,
-`(Segment (Liste ... ...) (Liste ... ...))`,
-`(Triangle (Liste ... ...) (Liste ... ...) (Liste ... ...))`.
-
-**Commandes pour la tortue**
-
-`(AV ...)`, `(BC)`, `(LC)`, `(TD [...])`, `(TG [...])`.
-
-**Création et test de nouvelles commandes**
-
-    (Definir (... ... [...])
-        "documentation"
-        "auteur"
-        ...
-        (Retourner ...)
-    )
-
-&nbsp;
-
-    (Exemples_de ...
-        (Liste
-            (? ...) ...
-            [(? ...) ...]
-        )
-    )
-
-&nbsp;
-
-    (Tester ...)
-
-**Variables spéciales**
-
-`credit_iterations`, `nombre_demandé`, `sequence_tirages@`, `texte_demandé`.
-
-**Divers**
-
-`Rien`, `(Afficher ...)`, `(!!! "commentaire")`, `(Aide ...)`,
-`(Demander)`, `(Demander_un_nombre)`, `(Demander_un_nombre_pour)`,
-`(Geler ...)`, `(Millisecondes)`.
 
 ## Types
 
@@ -2788,11 +2728,32 @@ nom digne de ce nom.</p>
                 span.html((i==0? "" : " ") + span.html());
             });
         }
+        // Grabs a PicoLisp symbol `listSym` and creates the relevant
+        // html links in the relevant html element.
+        function insertSymbolsTheme(listSym) {
+            insertSymbols(symNameToArray(listSym), listSym);
+        }
         </script>
         <script>
             var syms_as_strings = symNameToArray('symboles');
             // TOC
             insertSymbols(syms_as_strings, 'syms');
+            // Par thème
+            insertSymbolsTheme('cmd-entree-sortie');
+            insertSymbolsTheme('cmd-controle-flot');
+            insertSymbolsTheme('cmd-gestion-var');
+            insertSymbolsTheme('cmd-maths');
+            insertSymbolsTheme('cmd-bool-comp');
+            insertSymbolsTheme('cmd-pseudo-alea');
+            insertSymbolsTheme('cmd-cmd');
+            insertSymbolsTheme('cmd-gestion-listes-textes');
+            insertSymbolsTheme('cmd-graphiques');
+            insertSymbolsTheme('cmd-tortue');
+            insertSymbolsTheme('cmd-autres');
+            insertSymbolsTheme('cmd-racc');
+            insertSymbolsTheme('kw-valeurs');
+            insertSymbolsTheme('kw-intermediaires');
+            insertSymbolsTheme('var-speciales');
             // Defs
             var defs = $('<div/>').appendTo($('#syms'));
             var dl = $('<dl/>').appendTo(defs);

@@ -38,6 +38,79 @@ Voir <http://microalg.info>.")
 "Vide?" "Vrai"
 ))
 
+(setq cmd-entree-sortie '(
+"Afficher"
+"Demander" "Demander_un_nombre" "Demander_un_nombre_pour"
+))
+
+(setq cmd-controle-flot '(
+"Repeter" "Si" "Tant_que" "Faire"
+))
+
+(setq cmd-gestion-var '(
+"Declarer" "Affecter_a" "Type" "Nombre" "Texte"
+))
+
+(setq cmd-maths '(
+"Somme" "Diff" "Produit" "Quotient" "Carre" "Racine" "Puissance" "Reste"
+"1000Cosinus" "1000Sinus"
+))
+
+(setq cmd-bool-comp '(
+"Et" "Ou" "Non"
+"=" "=/" "<" "<=" ">" ">="
+))
+
+(setq cmd-pseudo-alea '(
+"Entier@" "Nieme@" "Initialiser@"
+))
+
+(setq cmd-cmd '(
+"Definir" "Retourner" "Exemples_de" "Tester"
+))
+
+(setq cmd-gestion-listes-textes '(
+"Liste" "Longueur" "Vide?"
+"Ajouter_a" "Retirer_de" "Concatener"
+"Nieme" "Tete" "Queue"
+))
+
+(setq cmd-graphiques '(
+"RAZ" "Repere"
+"Rectangle" "Cercle" "Ellipse" "Triangle" "Segment"
+"Contour" "Remplissage" "Epaisseur"
+))
+
+(setq cmd-tortue '(
+"AV" "BC" "LC" "TD" "TG"
+))
+
+(setq cmd-autres '(
+"!!!" "..." "?"
+"Aide"
+"Geler"
+"Millisecondes"
+))
+
+(setq cmd-racc '(
+"+" "-" "*" "/" "%" "\^"
+))
+
+(setq kw-valeurs '(
+"Vrai" "Faux" "Rien"
+))
+
+(setq kw-intermediaires '(
+"Alors" "Sinon" "Fois" "Faire" "Tant_que" "En_position"
+))
+
+(setq var-speciales '(
+"nombre_demandé"
+"texte_demandé"
+"credit_iterations"
+"sequence_tirages@"
+))
+
 # picolisp.l shimz
 (ifn caadr
   (de caadr (arg)
