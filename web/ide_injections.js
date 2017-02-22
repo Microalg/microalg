@@ -295,6 +295,10 @@ function ide_action(editor_elt, config_64) {
     } catch(e) {
         error_elt.html(preparation_exception(e));
     }
+    // Process post src.
+    var postsrc = config.postsrc || '';
+    EMULISP_CORE.eval(postsrc);
+    // Rest of operations.
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
     if (config.localStorage && typeof(Storage) !== "undefined") {
         var key = 'microalg_src_' + elt_id;
