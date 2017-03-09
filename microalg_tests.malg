@@ -124,6 +124,7 @@
             '(= 8 (Puissance 2 3))
             '(= 9 (Carre 3))
             '(= 9 (Carre -3))
+            '(= 0 (Racine 0))
             '(= 3 (Racine 9))
             # Opérations logiques
             '(= Vrai (Non Faux))

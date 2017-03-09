@@ -437,7 +437,7 @@ Sinon :
        (ifn (num? !evaled_arg)
          (!erreur 110 !rladeun ". Vous avez donné `"
                       (!text_n_quote !evaled_arg) "`."))
-       (ifn (gt0 !evaled_arg)
+       (ifn (ge0 !evaled_arg)
          (!erreur 111 !rladeun " positif ou nul. Vous avez donné `"
                       !evaled_arg "`."))
        (sqrt !evaled_arg)
