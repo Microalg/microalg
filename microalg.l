@@ -2357,9 +2357,9 @@ Pour lancer les tests, utiliser la commande `Tester`.
             (ifn (!liste? exemples)
                  (quit "Les exemples fournis ne forment pas une liste."))
             (put commande 'exemples exemples)
+            Rien
        )
   )
-  Rien
 )
 (put 'Tester 'doc
 "Vérifie que les exemples de la commande passée en paramètre sont conformes.
