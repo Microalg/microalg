@@ -31,7 +31,8 @@
   (let (!splitted (split !arg_lst 'De_type)
         !vars (mapcar 'cadr (car !splitted))  # var name is in (Variable ...)
         !type (cadr (caadr !splitted)))  # type is in (Litteral ...)
-        (pack "# " (glue ", " !vars) " sont des variables^J")
+        (pack "# " (glue ", " !vars) " sont une ou plusieures variables"
+                                     " de type " !type "^J")
   )
 )
 (setq Déclarer 'Declarer)
