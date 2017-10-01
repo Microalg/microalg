@@ -228,16 +228,16 @@
     <script>inject_microalg_editor_in('script-accu-nombres', {
      blockly_only: true,
      src:
-        '(Declarer somme De_type "nombre")\n' +
-        '(Affecter_a somme 0)\n' +
+        '(Declarer S De_type "nombre")\n' +
+        '(Affecter_a S 0)\n' +
         '(Afficher "Veuillez taper un nombre SVP.")\n' +
-        '(Affecter_a somme (+ somme (Nombre (Demander))))\n' +
+        '(Affecter_a S (+ S (Nombre (Demander))))\n' +
         '(Afficher "Veuillez en taper un autre.")\n' +
-        '(Affecter_a somme (+ somme (Nombre (Demander))))\n' +
+        '(Affecter_a S (+ S (Nombre (Demander))))\n' +
         '(Afficher "Encore un dernier SVP.")\n' +
-        '(Affecter_a somme (+ somme (Nombre (Demander))))\n' +
+        '(Affecter_a S (+ S (Nombre (Demander))))\n' +
         '(Afficher "La somme des nombres vaut :")\n' +
-        '(Afficher somme)\n' +
+        '(Afficher S)\n' +
         ''
     });</script>
     <p>Un où l’on accumule du texte (en ajoutant au passage des espaces) :</p>
