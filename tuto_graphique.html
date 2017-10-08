@@ -237,8 +237,8 @@
     <code>Remplissage</code>, nous pouvons rendre le rouge à moitié opaque
     seulement, et le premier cercle va apparaître.</p>
     <p>Cliquez sur <code>Exécuter</code> pour observer l’opacité du rouge, puis
-    réessayez en remplaçant la deuxième ligne par :<br>
-    <code>(Remplissage (Liste 255 0 0 127))</code></p>
+    réessayez en remplaçant la couleur de remplissage par :
+    <code>255 0 0 127</code></p>
     <div id="script-deux-cercles-alpha"></div>
     <script>inject_microalg_editor_in('script-deux-cercles-alpha', {
      processing: true,
@@ -246,7 +246,7 @@
      src:
         '(RAZ)\n' +
         '(Cercle (Liste 300 300) 100)\n' +
-        '(Remplissage (Liste 255 0 0))\n' +
+        '(Remplissage (Liste 255 0 0 0))\n' +
         '(Cercle (Liste 300 300) 200)\n' +
         ''
     });</script>
