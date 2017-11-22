@@ -2654,7 +2654,7 @@ Exemples :
 
 # Rien
 (put 'Rien 'doc
-"Valeur de contenant aucune information, représentant l’absence de valeur.")
+"Valeur ne contenant aucune information, représentant l’absence de valeur.")
 (put 'Rien 'text "Rien")
 (setq Rien 'Rien)
 (put '... 'text "Commande `...`.")
