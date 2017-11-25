@@ -298,11 +298,20 @@ function ide_action(editor_elt, config_64) {
     // Process post src.
     var postsrc = config.postsrc || '';
     EMULISP_CORE.eval(postsrc);
-    // Rest of operations.
+
+    // Rest of operations:
+    // Reset *LastStdOut
     EMULISP_CORE.eval('(setq *LastStdOut "?")');
+    // src -> localStorage
     if (config.localStorage && typeof(Storage) !== "undefined") {
         var key = 'microalg_src_' + elt_id;
         localStorage[key] = src;
+    }
+    // Typeset the target if MathJax is loaded
+    if (typeof MathJax !== "undefined") {
+        MathJax.Hub.Queue(["Typeset",
+                           MathJax.Hub,
+                           document.getElementById(display_target_id)]);
     }
 }
 
