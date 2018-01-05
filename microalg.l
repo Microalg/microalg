@@ -11,6 +11,8 @@ Voir <http://microalg.info>.")
 (setq !sans_declaration T)
 (seed (+ (time) (usec)))
 
+(setq max nil min nil)
+
 (setq symboles '(
 "..." "+" "-" "*" "/" "%" "\^"
 "!!!" "=" "=/" "<" "<=" ">" ">=" "?"
