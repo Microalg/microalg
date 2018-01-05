@@ -593,6 +593,9 @@ Exemples :
     : (Afficher (Concatener (Liste 1 2) (Liste 3 4)))
     \"(Liste 1 2 3 4)\"
     -> Rien
+    : (Afficher (Concatener (Liste 1 2) (Liste 3 4) (Liste 5 6)))
+    \"(Liste 1 2 3 4 5 6)\"
+    -> Rien
 
 ")
 (put 'Concatener 'text "Commande `Concatener`.")
