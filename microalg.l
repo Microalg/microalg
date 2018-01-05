@@ -2487,6 +2487,8 @@ et `Faux` sinon.
 
     : (= 42 42)
     -> Vrai
+    : (= 42 43)
+    -> Faux
 ")
 (put '= 'text "Prédicat `=`.")
 (de = !arg_lst
@@ -2505,6 +2507,8 @@ différentes, et `Faux` sinon.
 
     : (=/ 42 42)
     -> Faux
+    : (=/ 42 43)
+    -> Vrai
 ")
 (put '=/ 'text "Prédicat `=/`.")
 (de =/ !arg_lst
@@ -2525,6 +2529,8 @@ dans l’ordre croissant (strictement), et `Faux` sinon.
     -> Faux
     : (< 42 43)
     -> Vrai
+    : (> 42 43)
+    -> Faux
 ")
 (put '< 'text "Prédicat `<`.")
 (de < !arg_lst
@@ -2566,6 +2572,8 @@ dans l’ordre croissant.
 dans l’ordre décroissant (strictement), et `Faux` sinon.
 
     : (> 42 42)
+    -> Faux
+    : (> 42 44)
     -> Faux
     : (> 43 42)
     -> Vrai
