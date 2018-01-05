@@ -2590,7 +2590,7 @@ dans l’ordre décroissant.
     -> Vrai
     : (>= 43 42)
     -> Vrai
-    : (<= 42 43)
+    : (>= 42 43)
     -> Faux
 ")
 (put '>= 'text "Prédicat `>=`.")
