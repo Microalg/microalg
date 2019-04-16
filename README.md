@@ -19,8 +19,8 @@ dans [PicoLisp](http://picolisp.com). Donc :
     * Javascript (navigateurs ou NodeJS) grâce à
       [EmuLisp](http://grahack.github.io/EmuLisp),
     * là où PicoLisp (ASM, C) peut tourner nativement,
-    * la JVM grâce à Ersatz PicoLisp (une implémentation en Java de Picolisp, par
-      l’auteur de Picolisp),
+    * la JVM grâce à Ersatz PicoLisp (une implémentation en Java de PicoLisp,
+      par l’auteur de PicoLisp),
 * il est toujours possible si on se sent limité par ce langage, d’utiliser
   directement PicoLisp dans du code MicroAlg voir par exemple le fichier de
   tests `microalg_tests.malg`.
