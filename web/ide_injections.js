@@ -27,7 +27,7 @@ function getLispSource(what) {
         'javascript': 'microalg_export_javascript.l',
         'malg-export':'microalg_export_microalg.l',
         'processing': 'microalg_export_processing.l',
-        'python':     'microalg_export_python.l',
+        'python 3':   'microalg_export_python.l',
         'ti':         'microalg_export_ti.l',
         'arbretxt':   'microalg_export_arbretxt.l',
         'arbresvg':   'microalg_export_arbresvg.l',
